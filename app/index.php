@@ -108,7 +108,7 @@ $saslName            = NULL;
 $appleTouchIcon60URL = NULL;
 
 if($rootrequest){
-  include_once('../no_sitelette/index.php');
+  include_once('./no_sitelette/index.php');
 } else {
 
 //

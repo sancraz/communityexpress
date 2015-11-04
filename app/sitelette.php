@@ -53,9 +53,10 @@ body {
 <?php
 
 echo '<div id=landing><div>';
-echo '<script src=./build/bundle.js></script>';
 
 ?>
+
+<script src='./build/bundle.min.js'></script>
 
 
 <script>

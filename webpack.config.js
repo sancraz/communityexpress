@@ -5,11 +5,12 @@ var webpack = require('webpack');
 module.exports = {
 	entry: './app/app.js',
 	output: {
-		path: './build/', 
-		filename: 'bundle.js',
+		path: './app/build/', 
+		filename: 'bundle.min.js',
 		publicPath: '/public/assets'
 	},
 	watch: true,
+	devtool: 'source-map',
 	resolve: {
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js', '.es6']
@@ -63,6 +64,13 @@ module.exports = {
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
 			'_': 'underscore'
+		}),
+
+		new webpack.optimize.UglifyJsPlugin({
+			minimize: true,
+			compress: {
+				warnings: false
+			}
 		})
 	]
 }
