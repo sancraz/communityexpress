@@ -31,6 +31,9 @@ if (!is_null($appleTouchIcon60URL)) {
 }
 ?>"> 
 
+<!-- Build styles -->
+<link rel="stylesheet" href="./build/styles.css">
+
 <style>
 * {
     -webkit-touch-callout: none;
@@ -56,7 +59,7 @@ echo '<div id=landing><div>';
 
 ?>
 
-<script src='./build/bundle.min.js'></script>
+<script src='./build/bundle.js'></script>
 
 
 <script>

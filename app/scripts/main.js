@@ -1,5 +1,7 @@
 'use strict';
 
+require('../styles/main.scss');
+
 var Backbone = require ('backbone'),
 	Marionette = require('backbone.marionette');
 
