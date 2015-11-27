@@ -28,21 +28,20 @@ var PromotionButton = Backbone.View.extend({
     },
 
     open: function(pid) {
-        alert('PROMOTIONS');
-        // loader.show('retrieving promotions');
-        // promotionsController.fetchPromotionUUIDsBySasl(
-        //     this.model.sa(),
-        //     this.model.sl(),
-        //     this.parent.user.getUID()
-        // ).then(function(promotions) {
-        //     if(promotions.length < 1) {
-        //         loader.showFlashMessage('No promotions were found');
-        //     } else {
-        //         this.parent.openSubview('promotions', promotions, {pid: pid, sasl: this.model});
-        //     }
-        // }.bind(this), function () {
-        //     loader.showFlashMessage('error retrieving promotions');
-        // });
+        loader.show('retrieving promotions');
+        promotionsController.fetchPromotionUUIDsBySasl(
+            this.model.sa(),
+            this.model.sl(),
+            this.parent.user.getUID()
+        ).then(function(promotions) {
+            if(promotions.length < 1) {
+                loader.showFlashMessage('No promotions were found');
+            } else {
+                this.parent.openSubview('promotions', promotions, {pid: pid, sasl: this.model});
+            }
+        }.bind(this), function () {
+            loader.showFlashMessage('error retrieving promotions');
+        });
     }
 
 });

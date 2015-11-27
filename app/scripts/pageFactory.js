@@ -4,23 +4,23 @@
 
 var Backbone = require('backbone'),
     RestaurantView = require('./views/restaurantView'),
-    // ChatView = require('./views/chatView'),
-    // ReviewsView = require('./views/reviewsView'),
-    // EditView = require('./views/editView'),
-    // CatalogView = require('./views/catalogView'),
-    // PostsView = require('./views/postsView')
+    ChatView = require('./views/chatView'),
+    ReviewsView = require('./views/reviewsView'),
+    EditView = require('./views/editView'),
+    CatalogView = require('./views/catalogView'),
+    PostsView = require('./views/postsView'),
     ContestsView = require('./views/contestsView'),
-    // PhotoContestView = require('./views/photoContestView'),
-    // PollContestView = require('./views/pollContestView'),
-    // CheckinContestView = require('./views/checkinContestView'),
+    PhotoContestView = require('./views/photoContestView'),
+    PollContestView = require('./views/pollContestView'),
+    CheckinContestView = require('./views/checkinContestView'),
     RootView = require('./views/rootView'),
     AboutUsView = require('./views/aboutUsView'),
-    // OrderView = require('./views/orderView'),
+    OrderView = require('./views/orderView'),
     RestaurantHeader = require('./views/headers/restaurantHeader'),
-    SimpleHeader = require('./views/headers/simpleHeader');
-    // ContestHeader =require('./views/headers/contestHeader'),
-    // EmptyHeader = require('./views/headers/emptyHeader'),
-    // PaginationHeader = require('./views/headers/paginationHeader');
+    SimpleHeader = require('./views/headers/simpleHeader'),
+    ContestHeader =require('./views/headers/contestHeader'),
+    EmptyHeader = require('./views/headers/emptyHeader'),
+    PaginationHeader = require('./views/headers/paginationHeader');
 
 module.exports = {
     create: function(viewName,options) {

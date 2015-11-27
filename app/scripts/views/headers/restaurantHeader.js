@@ -56,13 +56,6 @@ var RestaurantHeader = Backbone.View.extend({
         // }.bind(this));
     },
 
-    renderHamburgerButton: function() {
-        this.$('.humburger_button').html( new HumburgerButton({
-            parent: this.page,
-            model: this.restaurant
-        }).render().el);
-    },
-
     renderSignInButton: function() {
         this.$('.sign_in_button').html( new SignInButton({
             parent: this.page,

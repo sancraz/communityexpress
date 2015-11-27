@@ -51,12 +51,7 @@ module.exports = {
 				test: /vendor\/.+\.(jsx|js)$/,
 				loader: 'imports?jQuery=jquery,$=jquery,this=>window',
 				exclude: /node_modules/
-			},
-			{
-				test: /\.ejs$/,
-				loader: "ejs-loader?variable=data",
-				exclude: /node_modules/
-			},
+			}
 		]
 	},
 	plugins: [
@@ -86,7 +81,8 @@ module.exports = {
 		alias: {
 			'addToHomescreen': './vendor/add-to-homescreen/src/addtohomescreen',
 			'jquerymobile_config': './jquerymobile_config',
-			'jquerymobile': './vendor/jquery-mobile/js/jquery.mobile-1.4.0'
+			'jquerymobile': './vendor/jquery-mobile/js/jquery.mobile-1.4.0',
+			'swipe': './bower_components/swipe/swipe'
 		},
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js', '.es6']

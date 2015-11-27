@@ -2,11 +2,11 @@
 <div role="main" class="ui-content promotion_content">
     <div class='promotion_gallery swipe slider'>
         <div class='swipe-wrap'>
-            <% _(models).each( function() { %>
+            {{# each models}}
             <div class="promotion_placeholder">
                 <div class="cmntyex-content_placeholder-dark"></div>
             </div>
-            <% }) %>
+            {{/each}}
         </div>
     </div>
     <a class="prev_button">&#x2039;</a>
