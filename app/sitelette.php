@@ -5,7 +5,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
 <meta charset="utf-8">
-
+<!-- owlslider  file -->
+<link rel="stylesheet" href="styles/owl.carousel.css">
+<link rel="stylesheet" href="styles/animate.min.css">
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
  
 <title><?php
 if (!is_null($saslName)) {
@@ -30,9 +34,22 @@ if (!is_null($appleTouchIcon60URL)) {
     echo 'someicon';
 }
 ?>"> 
+ 
+<link rel="icon" sizes="192x192" href="<?php
+if (!is_null($androidHomeScreenIconURL)) {
+    echo $androidHomeScreenIconURL;
+    
+} else {
+    echo 'someicon';
+}
+?>">
 
-<!-- Build styles -->
-<link rel="stylesheet" href="./build/styles.css">
+<link rel="stylesheet" href="scripts/bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.5.min.css"/>
+<link rel="stylesheet" href="styles/sitelette.css"/>
+<link rel="stylesheet" href="styles/sitelette_icons.css"/>
+<link rel="stylesheet" href="styles/sitelette_mediastream1.css"/>
+<link rel="stylesheet" href="styles/sitelette_mediastream2.css"/>
+<link rel="stylesheet" href="vendor/add-to-homescreen/style/addtohomescreen.css"/>
 
 <style>
 * {
@@ -52,15 +69,6 @@ body {
 
 <body class="ui-mobile-viewport ui-overlay-a">
 
-<!-- include all components -->
-<?php
-
-echo '<div id=landing><div>';
-
-?>
-
-<script src='./build/bundle.js'></script>
-
 
 <script>
       window.saslData = <?php
@@ -75,10 +83,13 @@ if (!is_null($saslJSON)) {
 </script>
 
 <?php
-if (!is_null($mediaStream)) {
-    echo $mediaStream;
+if (!is_null($siteletteHome)) {
+   echo $siteletteHome;
 }
 ?>
+
+<script  src="build/bundle.js"></script>
+
 
 <script>
 window.openCustomURLinIFrame = function(a) {
@@ -108,47 +119,52 @@ var buildUrl = function(a, b, c) {
     return a + d + b + "=" + c;
 };
 
-window.updateLoyaltyStatus = function(a) {
-    var b = $("#loaltyQRCodeImg").attr("src");
-    var c = b.replace("http://sitelettes.com", a);
-    c = c.replace("html/getUserQRCode", "retail/retrieveLoyaltyStatus");
-    c = buildUrl(c, "serviceAccommodatorId", window.saslData.serviceAccommodatorId);
-    c = buildUrl(c, "serviceLocationId", window.saslData.serviceLocationId);
-    console.log(c);
-    $.get(c, function(a) {
-        if (a.hasLoyaltyProgram) {
+window.updateLoyaltyStatus = function(UID) {
+    var urlPrefix = $("#apiURLprefix").text();
+    var loyaltyAPIURL =urlPrefix+"retail/retrieveLoyaltyStatus";
+        loyaltyAPIURL  = buildUrl(loyaltyAPIURL,'UID',UID);  
+    loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceAccommodatorId", window.saslData.serviceAccommodatorId);
+    loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceLocationId", window.saslData.serviceLocationId);
+    console.log(loyaltyAPIURL);
+    $.get(loyaltyAPIURL, function(a) {
+         if (a.hasLoyaltyProgram) {
+       
             $("#loyaltyProgramName").text(a.programName);
             $("#loyaltyPrefix").text(a.prefix);
             $("#loyaltyDetails").text(a.details);
             $("#loyaltySuffix").text(a.suffix);
-        } else {
+            
+         } else {
             $("#loyaltyProgramName").text("(No active loyalty program)");
             $("#loyaltyPrefix").text("");
             $("#loyaltyDetails").text("");
             $("#loyaltySuffix").text("");
-        }
+          }
+        $("#loyaltyStatus").show();
+        $("#qrCodePlaceholder").hide();
+        $("#qrCodeImage").empty();
+         $("#qrCodeImage").prepend('<img id="theQRCodeImage" src='+a.qrcodeURL+' />');
     }, "json");
 };
 
-window.updateLoyaltyCard = function(a) {
-    var b = $("#loaltyQRCodeImg").attr("src");
-    b = b.replace("http://sitelettes.com", a);
-    $("#loaltyQRCodeImg").attr("src", b);
-    $("#loaltyQRCodeImg").fadeIn("slow");
-    $("#qrCodePlaceholder").hide();
-    console.log("image changed ");
-};
+ 
 
 $(document).ready(function() {
-    if ("undefined" !== typeof $("#loyaltyStatus").get(0)) {
+    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
         var a = localStorage.getItem("cmxUID");
         if ("undefined" !== typeof a && null !== a) {
-            window.updateLoyaltyCard(a);
             window.updateLoyaltyStatus(a);
-        } else console.log("not logged in");
+         
+        } else {
+         console.log("not logged in");
+        }
+    }else{
+      console.log("no api url");
     }
 });
 </script> 
+<!-- Include js plugin -->
+<script src="scripts/owl.carousel.min.js"></script>
 
 </body>
 </html>

@@ -1,26 +1,26 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+// var BowerWebpackPlugin = require("bower-webpack-plugin");
+// var ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
 
 module.exports = {
-	entry: './app/scripts/app.js',
+	entry: './app/scripts/main.js',
 	output: {
 		path: './app/build/', 
 		filename: 'bundle.js',
-		publicPath: '/public/assets'
+		publicPath: '/public/'
 	},
 	devtool: 'source-map',
 	watch: true,
-	resolve: {
-		modulesDirectories: ['node_modules'],
-		extensions: ['', '.js', '.es6']
-	},
 	module: {
 		loaders: [
 			{
-				test: /\.(png|jpg|ttf|eot|woff)$/,
-				loader: 'url-loader?limit=10000',
-				exclude: /node_modules/
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loaders: [
+					'file?hash=sha512&digest=hex&name=[hash].[ext]',
+					'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+				]
 			},
 			{
 				test: /\.js/,
@@ -37,16 +37,6 @@ module.exports = {
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap'),
 				exclude: /node_modules/
 			},
-			// {
-			// 	test: /\.scss$/,
-			// 	loader: 'style-loader!css-loader!sass-loader?sourceMap!autoprefixer-loader', 
-			// 	include: path.join(__dirname, 'app/styles') 
-			// },
-			// {
-			// 	test: /\.css$/,
-			// 	loader: 'style-loader!css-loader?sourceMap!autoprefixer-loader', 
-			// 	include: path.join(__dirname, 'app/styles')
-			// },
 			{ 
 				test: /\.html$/, 
 				loader: 'html-loader',
@@ -56,10 +46,28 @@ module.exports = {
 				test: /\.hbs/,
 				loader: 'handlebars-loader',
 				exclude: /node_modules/
-			}
+			},
+			{
+				test: /vendor\/.+\.(jsx|js)$/,
+				loader: 'imports?jQuery=jquery,$=jquery,this=>window',
+				exclude: /node_modules/
+			},
+			{
+				test: /\.ejs$/,
+				loader: "ejs-loader?variable=data",
+				exclude: /node_modules/
+			},
 		]
 	},
 	plugins: [
+		// new ModernizrWebpackPlugin(),
+		// new BowerWebpackPlugin({
+		// 	modulesDirectories: ["bower_components"],
+		// 	manifestFiles:      "bower.json",
+		// 	includes:           /.*/,
+		// 	excludes:           [],
+		// 	searchResolveModulesDirectories: true
+		// }),
 		new ExtractTextPlugin('styles.css'),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
@@ -67,11 +75,20 @@ module.exports = {
 			'window.jQuery': 'jquery',
 			'_': 'underscore'
 		}),
-		new webpack.optimize.UglifyJsPlugin({
-			minimize: true,
-			compress: {
-				warnings: false
-			}
-		})
-	]
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	minimize: true,
+		// 	compress: {
+		// 		warnings: false
+		// 	}
+		// })
+	],
+	resolve: {
+		alias: {
+			'addToHomescreen': './vendor/add-to-homescreen/src/addtohomescreen',
+			'jquerymobile_config': './jquerymobile_config',
+			'jquerymobile': './vendor/jquery-mobile/js/jquery.mobile-1.4.0'
+		},
+		modulesDirectories: ['node_modules'],
+		extensions: ['', '.js', '.es6']
+	},
 }

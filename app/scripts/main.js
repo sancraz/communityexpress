@@ -1,28 +1,36 @@
 'use strict';
 
-require('../styles/main.scss');
+require('addToHomescreen');
+require('jquerymobile_config');
 
-var Backbone = require ('backbone'),
-	Marionette = require('backbone.marionette');
+var App = require('./app.js'),
+	h = require('./globalHelpers.js'),
+	FastClick = require('fastclick');
 
-var App = window.App = new Marionette.Application();
+	addToHomescreen({
+        autostart: false,
+        maxDisplayCount: 1
+    });
 
-App.on('before:start', function() {
-	var RootView = Marionette.LayoutView.extend({
-		el: 'body',
+    console.log('Starting...');
 
-		regions: {
-			main: '#landing'
-		}
-	});
+    $(function() {
+        FastClick.attach(document.body);
+    });
 
-	App.regions = new RootView();
-});
+    $(document).on('click', 'a[href]:not([data-bypass])', function(evt) {
+        // Get the absolute anchor href.
+        var href = { prop: $(this).prop('href'), attr: $(this).attr('href') };
+        // Get the absolute root.
+        var root = location.protocol + '//' + location.host;
 
-App.on('start', function() {
-	Backbone.history.start();
-	App.vent.trigger('start:all');
-});
+        // Ensure the root is part of the anchor href, meaning it's relative.
+        if (href.prop.slice(0, root.length) === root) {
+            evt.preventDefault();
+            // Backbone.history.navigate(href.attr, true);
+        }
+    });
 
-module.exports = App;
-require('./router.js');
+
+new App().init();
+h().startLogger();
