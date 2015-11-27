@@ -15,7 +15,6 @@ var reportSupportError = function() {
 };
 
 var onLocationSuccess = function(location) {
-
     console.debug('=========== GEOLOCATION SUCCESS ============');
     console.log(location);
     console.debug('============================================');
