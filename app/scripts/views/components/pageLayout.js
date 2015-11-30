@@ -44,13 +44,14 @@ var PageView = function(options) {
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
     pageEvents: {
-        'click .options_button' : 'openSettings',
+        'click .hamburger_button' : 'openSettings',
     },
 
     el: 'body',
 
     openSettings: function() {
-        alert('OPTIONS BUTTON');
+        this.openSubview('restaurantMenu', {}, this.model.get('services'));
+        // this.hideMoreButton();;
         // this.openSubview('options', configurationActions.getConfigurations());
     },
 

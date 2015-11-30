@@ -19,26 +19,20 @@ var LandingView = PageLayout.extend({
 
     name: 'landing',
 
-    initialize: function(options) {
-        this.isFirstTime = options.isFirstTime;
+    initialize: function() {
         this.on('show', this.onShow, this);
-
-        if (options.pid) {
-            this.openPromotions(options.pid);
-        }
     },
 
     onShow: function(){
         this.addEvents({
-            'click .hamburger_button': 'openMenu'
+            'click .openingHours': 'triggerAboutUsView'
         });
     },
 
-    openMenu: function() {
-        this.openSubview('restaurantMenu', {}, this.model.get('services'));
-        this.hideMoreButton();
+    triggerAboutUsView: function() {
+        console.log(this.sasl);
+        Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
     }
-
 
 });
 
