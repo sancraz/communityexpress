@@ -98,7 +98,7 @@ ul {
 }
 
 .ui-mobile-viewport>.ui-header {
-	background: #333;
+	background: #0D9CAC;
 	/* height: 92px; */
 	border: none !important;
 }
@@ -787,6 +787,25 @@ ul {
 	padding-left: 10px;
 	padding-right: 10px;
 	word-wrap: break-word;
+}
+
+.hamburger_button {
+	width: 3em;
+    height: 4em;
+	float: left;
+	padding-left: 1.25em;
+	margin-bottom: 5px !important;
+	border: none;
+	box-shadow: none;
+}
+
+.hamburger_button:after {
+	content: url(icons/hamburger_icon.png);
+}
+
+.restname {
+	text-align: center;
+	border: 0px !important;
 }
 
 .more_button {
