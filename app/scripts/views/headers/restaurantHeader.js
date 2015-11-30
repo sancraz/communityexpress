@@ -28,6 +28,7 @@ var RestaurantHeader = Backbone.View.extend({
     },
 
     render: function() {
+        this.renderHamburgerButton;
         this.showNavBar();
         this.renderSignInButton();
         this.renderAboutUsButton();
@@ -37,7 +38,6 @@ var RestaurantHeader = Backbone.View.extend({
 
     showNavBar: function () {
         var header = $('.ui-header');
-        console.log('HELLO',this.setElement($(header[0].outerHTML)));
         this.setElement($(header[0].outerHTML));
         this.$el.data('role','header');
         this.$el.attr('role','');
@@ -54,6 +54,10 @@ var RestaurantHeader = Backbone.View.extend({
         // this.page.withLogIn(function () {
         //     Vent.trigger('viewChange', 'contests', [this.restaurant.sa(), this.restaurant.sl()]);
         // }.bind(this));
+    },
+
+    renderHamburgerButton: function() {
+        
     },
 
     renderSignInButton: function() {

@@ -3,6 +3,7 @@
 'use strict';
 
 var Backbone = require('backbone'),
+    LandingView = require('./views/landingView'),
     RestaurantView = require('./views/restaurantView'),
     ChatView = require('./views/chatView'),
     ReviewsView = require('./views/reviewsView'),
@@ -20,6 +21,7 @@ var Backbone = require('backbone'),
     SimpleHeader = require('./views/headers/simpleHeader'),
     ContestHeader =require('./views/headers/contestHeader'),
     EmptyHeader = require('./views/headers/emptyHeader'),
+    LandingHeader = require('./views/headers/landingHeader'),
     PaginationHeader = require('./views/headers/paginationHeader');
 
 module.exports = {
@@ -34,12 +36,15 @@ module.exports = {
             break;
         case 'restaurant':
         case 'promotions':
-            view = new RestaurantView(_.extend(options, {
-                headerView: RestaurantHeader,
-                headerData: {
-                    restaurant: options.model,
-                    back: false
-                }
+            // view = new RestaurantView(_.extend(options, {
+            //     headerView: RestaurantHeader,
+            //     headerData: {
+            //         restaurant: options.model,
+            //         back: false
+            //     }
+            // }));
+            view = new LandingView(_.extend(options, {
+                headerView: LandingHeader
             }));
             break;
         case 'chat':
