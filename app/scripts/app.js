@@ -28,6 +28,7 @@ var hasUIDinQueryParams = function () {
 };
 
 var App = function() {
+    debugger;
     this.router = new Router();
     this.params = h().parseQueryString(location.search.substring(1)) || {};
     // {demo: true, desktopiframe: true}
