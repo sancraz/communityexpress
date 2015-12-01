@@ -28,7 +28,6 @@ var hasUIDinQueryParams = function () {
 };
 
 var App = function() {
-    debugger;
     this.router = new Router();
     this.params = h().parseQueryString(location.search.substring(1)) || {};
     // {demo: true, desktopiframe: true}
@@ -109,21 +108,21 @@ App.prototype = {
     },
 
     updateUrl: function (viewName, pageModel) {
-        var url;
-        switch (viewName) {
-        case 'tiles':
-            url = 'tiles';
-            break;
-        case 'map':
-            url = '';
-            break;
-        case 'promotions':
-            url = pageModel.url + '?t=p&u=' + pageModel.pid;
-            break;
-        default:
-            url = pageModel.url;
-        }
-        this.router.navigate(url);
+        // var url;
+        // switch (viewName) {
+        // case 'tiles':
+        //     url = 'tiles';
+        //     break;
+        // case 'map':
+        //     url = '';
+        //     break;
+        // case 'promotions':
+        //     url = pageModel.url + '?t=p&u=' + pageModel.pid;
+        //     break;
+        // default:
+        //     url = pageModel.url;
+        // }
+        // this.router.navigate(url);
     },
 
     updateTitle: function (viewName, pageModel) {

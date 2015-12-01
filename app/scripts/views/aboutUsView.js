@@ -25,12 +25,12 @@ var AboutUs = PageLayout.extend({
 
     onShow:  function() {
         this.addEvents({
-            'click .back': 'triggerRestaurantView',
+            'click .back': 'triggerLandingView',
         });
     },
 
-    triggerRestaurantView: function() {
-        Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey());
+    triggerLandingView: function() {
+        Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
     },
 
 });

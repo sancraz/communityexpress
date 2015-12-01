@@ -30,6 +30,9 @@ var PageView = function(options) {
         this.headerView = new options.headerView(_.extend(options.headerData, {
             page: this
         }));
+        this.navBarView = new options.navBarView(_.extend(options.navBarData, {
+            page: this
+        }));
     } else {
         this.headerView = new ToolbarView ({ template: require('../../templates/toolbars/' + this.name + '_header.hbs') });
     }
@@ -44,7 +47,7 @@ var PageView = function(options) {
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
     pageEvents: {
-        'click .hamburger_button' : 'openSettings',
+        'click #cmtyx_navbar div' : 'openSettings',
     },
 
     el: 'body',
@@ -137,6 +140,7 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     },
 
     renderToolbars: function() {
+        this.$el.append( this.navBarView.render(this._data()).el );
         this.$el.append( this.headerView.render(this._data()).el );
     },
 

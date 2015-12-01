@@ -22,7 +22,6 @@ var RouterRouter = Backbone.Router.extend({
     },
 
     root: function() {
-        debugger;
         var p = params();
         if (p && p.serviceAccommodatorId && p.serviceLocationId) {
             Vent.trigger('viewChange', 'restaurant', [p.serviceAccommodatorId, p.serviceLocationId], params());

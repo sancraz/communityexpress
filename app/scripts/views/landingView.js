@@ -17,6 +17,8 @@ var Backbone = require('backbone'),
 
 var LandingView = PageLayout.extend({
 
+    // el: '#cmtyx_landingView',
+
     name: 'landing',
 
     initialize: function() {
