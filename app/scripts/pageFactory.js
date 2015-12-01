@@ -22,6 +22,7 @@ var Backbone = require('backbone'),
     ContestHeader =require('./views/headers/contestHeader'),
     EmptyHeader = require('./views/headers/emptyHeader'),
     LandingHeader = require('./views/headers/landingHeader'),
+    NavBarView = require('./views/headers/navBarView'),
     PaginationHeader = require('./views/headers/paginationHeader');
 
 module.exports = {
@@ -44,7 +45,8 @@ module.exports = {
             //     }
             // }));
             view = new LandingView(_.extend(options, {
-                headerView: LandingHeader
+                headerView: LandingHeader,
+                navBarView: NavBarView,
             }));
             break;
         case 'chat':
@@ -134,6 +136,7 @@ module.exports = {
         case 'aboutUs':
             view = new AboutUsView(_.extend(options, {
                 headerView: SimpleHeader,
+                navBarView: NavBarView,
                 headerData: {
                     sasl: options.sasl,
                     title: 'About Us'

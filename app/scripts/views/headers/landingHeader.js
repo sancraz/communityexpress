@@ -2,27 +2,23 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/toolbars/landing_header.hbs');
+var Backbone = require('backbone');
 
 var LandingHeader = Backbone.View.extend({
 
-    template: template,
-
     render: function() {
-        var restname = $('.ui-navbar').find('.theme2_banner').text();
-        console.log(restname);
-        this.$el.html(this.template());
-        this.setElement(this.$el.children().eq(0));
-        this.$('.restname').text(restname);
-        this.reinitialize();
+        this.setElement(document.getElementById('cmtyx_header').outerHTML);
+        this.$el.data('role','header');
+        this.$el.attr('role','');
+        this.$el.css({
+            position: 'fixed',
+            top: 0,
+            display: 'block'
+        });
+        this.$el.enhanceWithin();
         return this;
-    },
-
-    reinitialize: function(){
-        this.$el.toolbar();
     }
-
+    
 });
 
 module.exports = LandingHeader;
