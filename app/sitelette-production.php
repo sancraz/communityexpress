@@ -8,8 +8,11 @@
 
  
 <!-- owlslider  file -->
+<!--
 <link rel="stylesheet" href="styles/owl.carousel.css">
 <link rel="stylesheet" href="styles/animate.min.css">
+<link rel="stylesheet" href="styles/jquery.jqplot.min.css">
+-->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -48,7 +51,7 @@ if (!is_null($androidHomeScreenIconURL)) {
 ?>">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/main.css">
 
 <style>
 * {
@@ -56,10 +59,7 @@ if (!is_null($androidHomeScreenIconURL)) {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     /*-webkit-user-select: none;*/
 }
-
-body {
-    margin: 0;
-}
+html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}
  
 
 </style>
@@ -78,94 +78,33 @@ if (!is_null($saslJSON)) {
     echo '{"error":"null sasl"}';
 }
 ?>; 
+      
+      
 </script>
 
 <?php
-if (!is_null($siteletteHome)) {
-   echo $siteletteHome;
-}
+if (!is_null($siteletteJSON)) {
+   echo $siteletteJSON['headerDiv'];
+   echo $siteletteJSON['navBarDiv'];  
+   echo $siteletteJSON['landingViewDiv'];
+}  
 ?>
 
-<script  src="scripts/bundle.js"></script>
 
 
-<script>
-window.openCustomURLinIFrame = function(a) {
-    var b = document.documentElement;
-    var c = document.createElement("IFRAME");
-    c.setAttribute("src", a);
-    b.appendChild(c);
-    c.parentNode.removeChild(c);
-};
-
-window.iosJavascriptLogin = function(a, b, c, d) {
-    var e = "js2ios://community_login";
-    e = e + "?functionName=" + a;
-    console.log("url being invoked:" + e);
-    openCustomURLinIFrame(e);
-};
-
-window.IOSLoginSucceeded = function(a, b) {
-    console.login("IOSloginSucceeded:" + a + ", " + b);
-    require([ "actions/sessionActions" ], function(c) {
-        c.setUser(a, b);
-    });
-};
-
-var buildUrl = function(a, b, c) {
-    var d = a.indexOf("?") > -1 ? "&" : "?";
-    return a + d + b + "=" + c;
-};
-
-window.updateLoyaltyStatus = function(UID) {
-    var urlPrefix = $("#apiURLprefix").text();
-    var loyaltyAPIURL =urlPrefix+"retail/retrieveLoyaltyStatus";
-        loyaltyAPIURL  = buildUrl(loyaltyAPIURL,'UID',UID);  
-    loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceAccommodatorId", window.saslData.serviceAccommodatorId);
-    loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceLocationId", window.saslData.serviceLocationId);
-    console.log(loyaltyAPIURL);
-    $.get(loyaltyAPIURL, function(a) {
-         if (a.hasLoyaltyProgram) {
-       
-            $("#loyaltyProgramName").text(a.programName);
-            $("#loyaltyPrefix").text(a.prefix);
-            $("#loyaltyDetails").text(a.details);
-            $("#loyaltySuffix").text(a.suffix);
-            
-         } else {
-            $("#loyaltyProgramName").text("(No active loyalty program)");
-            $("#loyaltyPrefix").text("");
-            $("#loyaltyDetails").text("");
-            $("#loyaltySuffix").text("");
-          }
-        $("#loyaltyStatus").show();
-        $("#qrCodePlaceholder").hide();
-        $("#qrCodeImage").empty();
-         $("#qrCodeImage").prepend('<img id="theQRCodeImage" src='+a.qrcodeURL+' />');
-    }, "json");
-};
-
- 
-
-$(document).ready(function() {
-    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-        var a = localStorage.getItem("cmxUID");
-        if ("undefined" !== typeof a && null !== a) {
-            window.updateLoyaltyStatus(a);
-         
-        } else {
-         console.log("not logged in");
-        }
-    }else{
-      console.log("no api url");
-    }
-});
-</script> 
-
-<script src="scripts/bundle.js"></script>
+<script src="scripts/main.js"></script>
 
 <!-- Include js plugin -->
+<!--  
 <script src="scripts/owl.carousel.min.js"></script>
-
+<script src="scripts/jqplot/jquery.jqplot.min.js"></script>
+<script src="scripts/jqplot/jqplot.barRenderer.min.js"></script>
+<script src="scripts/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
+<script src="scripts/jqplot/jqplot.pointLabels.min.js"></script>
+<script src="scripts/jquery.mask.min.js"></script>
+<script src="scripts/sitelette.js"></script> 
+-->
+<script src="scripts/sitelette.min.js"></script> 
+ 
 </body>
 </html>
