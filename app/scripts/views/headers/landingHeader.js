@@ -7,7 +7,15 @@ var Backbone = require('backbone');
 var LandingHeader = Backbone.View.extend({
 
     render: function() {
-        this.setElement(document.getElementById('cmtyx_header').outerHTML);
+        this.showHeader();
+        return this;
+    },
+
+    showHeader: function() {
+        var restname = window.saslData.saslName;
+        var header = $('#cmtyx_header');
+        $(header).text(restname);
+        this.setElement($(header[0].outerHTML));
         this.$el.data('role','header');
         this.$el.attr('role','');
         this.$el.css({
@@ -16,7 +24,6 @@ var LandingHeader = Backbone.View.extend({
             display: 'block'
         });
         this.$el.enhanceWithin();
-        return this;
     }
     
 });

@@ -24,7 +24,6 @@ var NavBarView = Backbone.View.extend({
 
     render: function() {
         this.showNavBar();
-        // this.renderPressMe();
         return this;
     },
 
@@ -39,13 +38,6 @@ var NavBarView = Backbone.View.extend({
             display: 'block'
         });
         this.$el.enhanceWithin();
-    },
-
-    renderPressMe: function() {
-        $('#cmtyx_navbar').find('div').html( new PressMe({
-            parent: this.page,
-            model: this.restaurant
-        }).render().el);
     }
 
 });
