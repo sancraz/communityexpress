@@ -803,9 +803,14 @@ ul {
 	content: url(icons/hamburger_icon.png);
 }
 
-.restname {
-	text-align: center;
-	border: 0px !important;
+.landing_content {
+	margin-left: 10%;
+	text-align: left;
+}
+
+.back {
+	margin-left: 10%;
+	float: left;
 }
 
 .more_button {

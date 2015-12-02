@@ -3,17 +3,15 @@
 'use strict';
 
 var Backbone = require('backbone'),
-    Vent = require('../../Vent'),
+    // Vent = require('../../Vent'),
     loader = require('../../loader'),
     saslActions = require('../../actions/saslActions');
 
 var PressMe = Backbone.View.extend({
 
-    template: require('../../templates/partials/pressMe.hbs'),
+    el: '#cmtyx_navbar',
 
-    events: {
-        'click': 'openRestautantMenu'
-    },
+    template: require('../../templates/partials/pressMe.hbs'),
 
     initialize: function (options) {
         options = options || {};

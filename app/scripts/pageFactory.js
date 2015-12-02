@@ -47,6 +47,10 @@ module.exports = {
             view = new LandingView(_.extend(options, {
                 headerView: LandingHeader,
                 navBarView: NavBarView,
+                navBarData: {
+                    restaurant: options.model,
+                    back: false
+                }
             }));
             break;
         case 'chat':
@@ -135,8 +139,12 @@ module.exports = {
             break;
         case 'aboutUs':
             view = new AboutUsView(_.extend(options, {
-                headerView: SimpleHeader,
+                headerView: LandingHeader,
                 navBarView: NavBarView,
+                navBarData: {
+                    sasl: options.sasl,
+                    title: 'About Us'
+                },
                 headerData: {
                     sasl: options.sasl,
                     title: 'About Us'

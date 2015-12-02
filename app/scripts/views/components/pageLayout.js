@@ -50,7 +50,7 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
         'click #cmtyx_navbar div' : 'openSettings',
     },
 
-    el: 'body',
+    el: '#cmtyx_landingView',
 
     openSettings: function() {
         this.openSubview('restaurantMenu', {}, this.model.get('services'));
@@ -192,6 +192,7 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     _onPageHide: function() {
         this.trigger('hide');
         this.headerView.remove();
+        this.navBarView.remove();
         this.close();
     },
 
