@@ -51,7 +51,7 @@ if (!is_null($androidHomeScreenIconURL)) {
 ?>">
 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-<link rel="stylesheet" href="styles/main.css">
+<link rel="stylesheet" href="styles/styles.css">
 
 <style>
 * {
@@ -92,7 +92,7 @@ if (!is_null($siteletteJSON)) {
 
 
 
-<script src="scripts/main.js"></script>
+<script src="scripts/bundle.js"></script>
 
 <!-- Include js plugin -->
 <!--  
@@ -104,7 +104,7 @@ if (!is_null($siteletteJSON)) {
 <script src="scripts/jquery.mask.min.js"></script>
 <script src="scripts/sitelette.js"></script> 
 -->
-<script src="scripts/sitelette.min.js"></script> 
+<!-- <script src="scripts/sitelette.min.js"></script>  -->
  
 </body>
 </html>

@@ -21,7 +21,7 @@ var LandingView = PageLayout.extend({
 
     name: 'landing',
 
-    initialize: function() {
+    initialize: function(options) {
         this.on('show', this.onShow, this);
     },
 
