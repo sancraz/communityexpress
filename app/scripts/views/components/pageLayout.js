@@ -46,10 +46,6 @@ var PageView = function(options) {
 
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
-    pageEvents: {
-        'click #cmtyx_navbar div' : 'openSettings',
-    },
-
     el: '#cmtyx_landingView',
 
     openSettings: function() {

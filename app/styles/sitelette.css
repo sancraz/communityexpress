@@ -789,30 +789,6 @@ ul {
 	word-wrap: break-word;
 }
 
-.hamburger_button {
-	width: 3em;
-    height: 4em;
-	float: left;
-	padding-left: 1.25em;
-	margin-bottom: 5px !important;
-	border: none;
-	box-shadow: none;
-}
-
-.hamburger_button:after {
-	content: url(icons/hamburger_icon.png);
-}
-
-.landing_content {
-	margin-left: 10%;
-	text-align: left;
-}
-
-.back {
-	margin-left: 10%;
-	float: left;
-}
-
 .more_button {
 	z-index: 1000;
 	cursor: pointer;
@@ -1143,4 +1119,47 @@ ul {
 	float: right;
 	padding-left: 10px;
 	box-sizing: border-box;
+}
+
+/*Added styles*/
+.hamburger_button {
+	width: 3em;
+    height: 4em;
+	float: left;
+	padding-left: 1.25em;
+	margin-bottom: 5px !important;
+	border: none;
+	box-shadow: none;
+}
+
+.hamburger_button:after {
+	content: url(icons/hamburger_icon.png);
+}
+
+#cmtyx_navbar div:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#content {
+	background-color: red;
+}
+
+#about_us_page {
+	background-color: #bdbdbd;
+}
+
+.landing_content {
+	margin-left: 10%;
+	text-align: left;
+}
+
+.back {
+	margin-left: 10%;
+	float: left;
+}
+
+.back:hover {
+	text-decoration: underline;
+	cursor: pointer;
 }

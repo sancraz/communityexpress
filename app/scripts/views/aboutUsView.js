@@ -30,7 +30,7 @@ var AboutUs = PageLayout.extend({
     },
 
     triggerLandingView: function() {
-        Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
+        Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey());
     },
 
 });

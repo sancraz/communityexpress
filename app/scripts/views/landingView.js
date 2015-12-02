@@ -17,8 +17,6 @@ var Backbone = require('backbone'),
 
 var LandingView = PageLayout.extend({
 
-    // el: '#cmtyx_landingView',
-
     name: 'landing',
 
     initialize: function(options) {
@@ -27,6 +25,7 @@ var LandingView = PageLayout.extend({
 
     onShow: function(){
         this.addEvents({
+            'click #cmtyx_navbar div' : 'openSettings',
             'click .openingHours': 'triggerAboutUsView'
         });
     },
