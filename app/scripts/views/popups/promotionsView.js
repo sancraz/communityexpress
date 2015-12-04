@@ -26,7 +26,6 @@ var PromotionsView = PopupView.extend({
             'click .prev_button': 'prevSlide',
             'click .next_button': 'nextSlide'
         });
-        console.log(this.addEvents, 'Hello, events');
 
         this.sasl = options.sasl;
         if (options.pid) {

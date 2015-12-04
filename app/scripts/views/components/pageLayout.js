@@ -14,8 +14,6 @@ var Backbone = require('backbone'),
 
 var T_PATH = '../../templates/';
 
-console.log();
-
 var PageView = function(options) {
 
     options = options || {};
@@ -46,9 +44,14 @@ var PageView = function(options) {
 
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
+    pageEvents: {
+            'click .menu_button_1' : 'openSettings'
+        },
+
     el: '#cmtyx_landingView',
 
     openSettings: function() {
+        console.log("HELLO, clicked");
         this.openSubview('restaurantMenu', {}, this.model.get('services'));
         // this.hideMoreButton();;
         // this.openSubview('options', configurationActions.getConfigurations());

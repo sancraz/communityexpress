@@ -41,10 +41,16 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/build',
+                        cwd: '<%= yeoman.app %>/styles/icons',
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
-                        dest: '<%= yeoman.dist %>/public/'
+                        dest: '<%= yeoman.dist %>/styles/icons/'
                     },
+                    // {
+                    //     expand: true,
+                    //     cwd: '<%= yeoman.app %>/build',
+                    //     src: '{,*/}*.{png,jpg,jpeg,gif}',
+                    //     dest: '<%= yeoman.dist %>/public/'
+                    // },
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>/images',
@@ -70,7 +76,11 @@ module.exports = function (grunt) {
                     {
 						src: '<%= yeoman.app %>/styles/owl.carousel.css',
 						dest: '<%= yeoman.dist %>/styles/owl.carousel.css'
-                    }, 
+                    },
+                    {
+                        src: '<%= yeoman.app %>/vendor/main.css',
+                        dest: '<%= yeoman.dist %>/styles/main.css'
+                    },
                     { 
 						src: '<%= yeoman.app %>/styles/owl.transitions.css',
 						dest: '<%= yeoman.dist %>/styles/owl.transitions.css'
