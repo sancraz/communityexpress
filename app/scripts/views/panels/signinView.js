@@ -6,10 +6,15 @@ var Backbone = require('backbone'),
     template = require('../../templates/signin.hbs'),
     loader = require('../../loader'),
     PopupView = require('../components/popupView'),
-    favoriteActions = require('../../actions/favoriteActions'),
+    sessionActions = require('../../actions/sessionActions'),
     h = require('../../globalHelpers');
 
 var SigninView = PopupView.extend({
+
+    events: {
+        'click .submit_button': 'submitForm',
+        'click .signup_button': 'openSignupView'
+    },
 
     template: template,
 
@@ -28,10 +33,10 @@ var SigninView = PopupView.extend({
 
         this.$el.attr('id', 'cmntyex_signin_panel');
 
-        this.addEvents({
-            'click .submit_button': 'submitForm',
-            'click .signup_button': 'openSignupView'
-        });
+        // this.addEvents({
+        //     'click .submit_button': 'submitForm',
+        //     'click .signup_button': 'openSignupView'
+        // });
     },
 
     openSignupView: function() {

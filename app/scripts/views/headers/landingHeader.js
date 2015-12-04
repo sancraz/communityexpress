@@ -12,10 +12,9 @@ var LandingHeader = Backbone.View.extend({
     },
 
     showHeader: function() {
-        var restname = window.saslData.saslName;
         var header = $('#cmtyx_header');
-        $(header).text(restname);
         this.setElement($(header[0].outerHTML));
+        $(header[0]).css('display', 'none');
         this.$el.data('role','header');
         this.$el.attr('role','');
         this.$el.css({

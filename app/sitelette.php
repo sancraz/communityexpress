@@ -8,7 +8,7 @@
 <!-- owlslider  file -->
 <link rel="stylesheet" href="styles/owl.carousel.css">
 <link rel="stylesheet" href="styles/animate.min.css">
-<link rel="stylesheet" href="vendor/jqplot/jquery.jqplot.min.css">
+<link rel="stylesheet" href="styles/jquery.jqplot.min.css">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
@@ -48,6 +48,7 @@ if (!is_null($androidHomeScreenIconURL)) {
 
 <link rel="stylesheet" href="scripts/bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.5.min.css"/>
 <link rel="stylesheet" href="styles/sitelette.css"/>
+<link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" href="styles/sitelette_icons.css"/>
 <link rel="stylesheet" href="styles/sitelette_mediastream1.css"/>
 <link rel="stylesheet" href="styles/sitelette_mediastream2.css"/>
@@ -60,7 +61,7 @@ if (!is_null($androidHomeScreenIconURL)) {
     /*-webkit-user-select: none;*/
 }
 
-html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}
+/*html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}*/
 </style>
 
 </head>
@@ -84,7 +85,7 @@ if (!is_null($saslJSON)) {
 <?php
 if (!is_null($siteletteJSON)) {
    echo $siteletteJSON['headerDiv'];
-   echo $siteletteJSON['navBarDiv'];
+   // echo $siteletteJSON['navBarDiv'];
    echo $siteletteJSON['landingViewDiv'];
 }
 ?>
@@ -101,6 +102,6 @@ if (!is_null($siteletteJSON)) {
 <script src="vendor/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
 <script src="vendor/jqplot/plugins/jqplot.pointLabels.min.js"></script> 
 <script src="vendor/jquery.mask.js"></script>
-<!-- <script src="scripts/sitelette.js"></script>  -->
+<script src="scripts/vendor/sitelette.js"></script> 
 </body>
 </html>

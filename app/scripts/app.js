@@ -37,6 +37,9 @@ var App = function() {
 App.prototype = {
 
     init: function() {
+        var landing = $('<div></div>')
+        $('body').append(landing);
+        landing.attr('id', 'cmtyx_landingView');
 
         if (window.saslData.error) {
             loader.showFlashMessage(window.saslData.error.message);

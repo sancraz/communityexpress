@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="styles/animate.min.css">
 <link rel="stylesheet" href="styles/jquery.jqplot.min.css">
 -->
+<link rel="stylesheet" href="styles/main.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
@@ -59,7 +60,7 @@ if (!is_null($androidHomeScreenIconURL)) {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     /*-webkit-user-select: none;*/
 }
-html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}
+/*html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}*/
  
 
 </style>
@@ -85,7 +86,7 @@ if (!is_null($saslJSON)) {
 <?php
 if (!is_null($siteletteJSON)) {
    echo $siteletteJSON['headerDiv'];
-   echo $siteletteJSON['navBarDiv'];  
+   // echo $siteletteJSON['navBarDiv'];  
    echo $siteletteJSON['landingViewDiv'];
 }  
 ?>

@@ -1,6 +1,37 @@
 body, html {
+	margin:0;
+	height:100%;
 	background: #222;
 }
+
+#cmtyx_header {
+	font-family: arial;
+	color: #FFF;
+	text-align: center;
+	background-color: blue;
+	width: 100%;
+	height:40px
+}
+#cmtyx_navbar {
+	font-family: arial;
+	color: #FFF;
+	text-align: center;
+	background-color: green;
+	width: 100%;
+	height: 40px
+}
+#cmtyx_landingView {
+	font-family: arial;
+	color: #FFF;
+	text-align: center;
+	/*background-color: red;*/
+	width: 100%;
+	min-height: 100%;
+	height: auto!important;
+	height: 100%;
+	margin: 0 auto -60px
+}
+
 
 @font-face {
 	font-family: 'Open Sans';
@@ -1132,34 +1163,17 @@ ul {
 	box-shadow: none;
 }
 
-.hamburger_button:after {
-	content: url(icons/hamburger_icon.png);
-}
-
-#cmtyx_navbar div:hover {
-	text-decoration: underline;
+.theme2_navbar_buttons img {
 	cursor: pointer;
-}
-
-#content {
-	background-color: red;
-}
-
-#about_us_page {
-	background-color: #bdbdbd;
-}
-
-.landing_content {
-	margin-left: 10%;
-	text-align: left;
 }
 
 .back {
 	margin-left: 10%;
 	float: left;
+	cursor: pointer;
 }
 
-.back:hover {
-	text-decoration: underline;
-	cursor: pointer;
+.landing_content {
+	margin-left: 10%;
+	text-align: left;
 }

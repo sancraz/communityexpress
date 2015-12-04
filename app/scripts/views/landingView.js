@@ -25,13 +25,11 @@ var LandingView = PageLayout.extend({
 
     onShow: function(){
         this.addEvents({
-            'click #cmtyx_navbar div' : 'openSettings',
             'click .openingHours': 'triggerAboutUsView'
         });
     },
 
     triggerAboutUsView: function() {
-        console.log(this.sasl);
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
     }
 
