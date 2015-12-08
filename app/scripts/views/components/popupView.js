@@ -50,7 +50,9 @@ _.extend(PopUpView.prototype, Backbone.View.prototype, {
     onShow: function(){},
 
     addEvents: function(eventObj) {
-        this.inheritedEvents.push(eventObj);
+        // this.inheritedEvents.push(eventObj);
+        var events = _.extend( {}, eventObj, this.pageEvents );
+        this.delegateEvents(events);
     },
 
     render: function() {

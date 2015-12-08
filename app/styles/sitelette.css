@@ -1164,6 +1164,7 @@ ul {
 }
 
 .theme2_navbar_buttons img {
+	margin: 5px 0 10px 0;
 	cursor: pointer;
 }
 

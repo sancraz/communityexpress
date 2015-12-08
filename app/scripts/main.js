@@ -1,7 +1,7 @@
 'use strict';
 
-require('addToHomescreen');
-require('jquerymobile_config');
+require('./vendor/add-to-homescreen/src/addtohomescreen.min');
+require('./jquerymobile_config');
 
 var App = require('./app.js'),
 	h = require('./globalHelpers.js'),

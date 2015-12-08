@@ -4,9 +4,15 @@
 
 var Backbone = require('backbone'),
     Vent = require('../../Vent'),
-    SignInButton = require('../partials/signInButton');
+    AboutUsButton = require('../partials/aboutUsButton'),
+    SignInButton = require('../partials/signInButton'),
+    PromotionButton = require('../partials/promotionButton');
 
 var NavBarView = Backbone.View.extend({
+
+    events: {
+        'click .menu_button_2': 'triggerContestsView'
+    },
 
     initialize: function(options) {
         this.options = options || {};
@@ -20,7 +26,10 @@ var NavBarView = Backbone.View.extend({
 
     render: function() {
         this.showNavBar();
+        this.renderAboutUsButton();
         this.renderSignInButton();
+        this.renderPromotionButton();
+
         return this;
     },
 
@@ -38,12 +47,32 @@ var NavBarView = Backbone.View.extend({
         this.$el.enhanceWithin();
     },
 
+    renderAboutUsButton: function() {
+        this.$('.menu_button_4').html( new AboutUsButton({
+            parent: this.page,
+            model: this.restaurant
+        }).render().el);
+    },
+
     renderSignInButton: function() {
         this.$('.menu_button_5').html( new SignInButton({
             parent: this.page,
             model: this.restaurant
         }).render().el);
     },
+
+    renderPromotionButton: function() {
+        this.$('.menu_button_3').html( new PromotionButton({
+            parent: this.page,
+            model: this.restaurant
+        }).render().el);
+    },
+
+    triggerContestsView: function() {
+        this.page.withLogIn(function () {
+            Vent.trigger('viewChange', 'contests', [this.restaurant.sa(), this.restaurant.sl()]);
+        }.bind(this));
+    }   
 
 });
 

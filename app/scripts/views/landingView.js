@@ -21,16 +21,28 @@ var LandingView = PageLayout.extend({
 
     initialize: function(options) {
         this.on('show', this.onShow, this);
+        $('.navbar_buttons_text').css('display', 'none');
     },
 
     onShow: function(){
         this.addEvents({
-            'click .openingHours': 'triggerAboutUsView'
+            'click .openingHours': 'openHours'
         });
     },
 
     triggerAboutUsView: function() {
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
+    },
+
+    openHours: function() {
+        loader.show('retrieving opening hours');
+        saslActions.getOpeningHours(this.model.sa(), this.model.sl())
+            .then(function (hours) {
+                this.openSubview('openingHours', hours);
+                loader.hide();
+            }.bind(this), function () {
+                loader.showFlashMessage('error retrieving opening hours');
+            });
     }
 
 });
