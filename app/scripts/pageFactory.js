@@ -19,7 +19,7 @@ var Backbone = require('backbone'),
     OrderView = require('./views/orderView'),
     RestaurantHeader = require('./views/headers/restaurantHeader'),
     SimpleHeader = require('./views/headers/simpleHeader'),
-    ContestHeader =require('./views/headers/contestHeader'),
+    ContestHeader = require('./views/headers/contestHeader'),
     EmptyHeader = require('./views/headers/emptyHeader'),
     LandingHeader = require('./views/headers/landingHeader'),
     NavBarView = require('./views/headers/navBarView'),
@@ -100,7 +100,12 @@ module.exports = {
             break;
         case 'contests':
             view = new ContestsView(_.extend(options, {
+                navBarView: NavBarView,
                 headerView: SimpleHeader,
+                navBarData: {
+                    sasl: options.sasl,
+                    title: 'Contests'
+                },
                 headerData: {
                     sasl: options.sasl,
                     title: 'Contests'

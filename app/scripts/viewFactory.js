@@ -65,7 +65,6 @@ var viewMap = {
 module.exports = {
 
     create: function(viewname, model, parent, options) {
-    	console.log(viewMap);
         if (viewname === 'legend') {
             return this.createLegendView();
         }

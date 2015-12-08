@@ -46,7 +46,7 @@ if (!is_null($androidHomeScreenIconURL)) {
 }
 ?>">
 
-<link rel="stylesheet" href="scripts/bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.5.min.css"/>
+<link rel="stylesheet" href="scripts/vendor/jquery-mobile/css/jquery.mobile-1.4.0.min.css"/>
 <link rel="stylesheet" href="styles/sitelette.css"/>
 <link rel="stylesheet" href="styles/main.css">
 <link rel="stylesheet" href="styles/sitelette_icons.css"/>

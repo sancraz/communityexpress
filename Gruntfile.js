@@ -1,3 +1,5 @@
+var webpackDevConfig = require('./webpack.config.js');
+
 module.exports = function (grunt) {
      'use strict';
 
@@ -9,6 +11,29 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
         yeoman: yeomanConfig,
+
+        jst: {
+            options: {
+                amd: true
+            },
+            compile: {
+                files: {
+             '<%= yeoman.app %>/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/{,*/}*.ejs']
+              // '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/{,*/}*.ejs']
+                }
+            }
+        },
+
+        webpack: {
+            options: webpackDevConfig,
+            start: {
+            },
+            watch: {
+                watch: true,
+                keepalive: true
+            }
+        },
+
         copy: {
             dist: {
                 files: [
@@ -102,8 +127,14 @@ module.exports = function (grunt) {
         },
     });
 
+    grunt.loadNpmTasks('grunt-webpack');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-jst');
 
+    grunt.registerTask('createDefaultTemplate', function () {
+        grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
+    });
+    grunt.registerTask('default', ['jst', 'webpack:start']);
     grunt.registerTask('build', function() {
     	grunt.task.run('copy')
     });

@@ -51,7 +51,6 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     el: '#cmtyx_landingView',
 
     openSettings: function() {
-        console.log("HELLO, clicked");
         this.openSubview('restaurantMenu', {}, this.model.get('services'));
         // this.hideMoreButton();;
         // this.openSubview('options', configurationActions.getConfigurations());

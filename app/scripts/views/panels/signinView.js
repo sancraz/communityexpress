@@ -11,11 +11,6 @@ var Backbone = require('backbone'),
 
 var SigninView = PopupView.extend({
 
-    events: {
-        'click .submit_button': 'submitForm',
-        'click .signup_button': 'openSignupView'
-    },
-
     template: template,
 
     username: 'input[name="username"]',
@@ -33,10 +28,10 @@ var SigninView = PopupView.extend({
 
         this.$el.attr('id', 'cmntyex_signin_panel');
 
-        // this.addEvents({
-        //     'click .submit_button': 'submitForm',
-        //     'click .signup_button': 'openSignupView'
-        // });
+        this.addEvents({
+            'click .submit_button': 'submitForm',
+            'click .signup_button': 'openSignupView'
+        });
     },
 
     openSignupView: function() {

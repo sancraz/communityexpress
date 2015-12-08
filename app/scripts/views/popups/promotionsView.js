@@ -2,7 +2,7 @@
 
 'use strict';
 
-require('../../bower_components/swipe/swipe');
+require('../../vendor/swipe/swipe');
 
 var template = require('../../templates/promotions.hbs'),
     loader = require('../../loader'),

@@ -8,19 +8,15 @@ var Backbone = require('backbone'),
 
 var ConfirmationPopup = PopupView.extend({
 
-    events: {
-        'click .confirmation_button': 'performAction'
-    },
-
     template: template,
 
     initialize: function(options){
         this.text = options.text;
         this.action = options.action;
 
-        // this.addEvents({
-        //     'click .confirmation_button': 'performAction'
-        // });
+        this.addEvents({
+            'click .confirmation_button': 'performAction'
+        });
 
         this.renderData = {
             text: this.text

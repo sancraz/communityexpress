@@ -7,7 +7,7 @@ require('../styles/sitelette_mediastream1.css');
 require('../styles/sitelette_mediastream2.css');
 require('../styles/main.scss');
 require('../styles/main.scss');
-require('jquerymobile');
+require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
 
 var Backbone = require ('backbone'),
 	userController = require('./controllers/userController'),

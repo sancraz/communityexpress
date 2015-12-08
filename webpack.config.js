@@ -1,8 +1,6 @@
 var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
-// var BowerWebpackPlugin = require("bower-webpack-plugin");
-// var ModernizrWebpackPlugin = require('modernizr-webpack-plugin');
 
 module.exports = {
 	entry: './app/scripts/main.js',
@@ -13,6 +11,7 @@ module.exports = {
 	},
 	devtool: 'source-map',
 	watch: true,
+	keepalive: true,
 	module: {
 		loaders: [
 			{
@@ -55,14 +54,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		// new ModernizrWebpackPlugin(),
-		// new BowerWebpackPlugin({
-		// 	modulesDirectories: ["bower_components"],
-		// 	manifestFiles:      "bower.json",
-		// 	includes:           /.*/,
-		// 	excludes:           [],
-		// 	searchResolveModulesDirectories: true
-		// }),
 		new ExtractTextPlugin('styles.css'),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
@@ -70,20 +61,8 @@ module.exports = {
 			'window.jQuery': 'jquery',
 			'_': 'underscore'
 		}),
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	minimize: true,
-		// 	compress: {
-		// 		warnings: false
-		// 	}
-		// })
 	],
 	resolve: {
-		alias: {
-			'addToHomescreen': './vendor/add-to-homescreen/src/addtohomescreen',
-			'jquerymobile_config': './jquerymobile_config',
-			'jquerymobile': './vendor/jquery-mobile/js/jquery.mobile-1.4.0',
-			'swipe': './bower_components/swipe/swipe'
-		},
 		modulesDirectories: ['node_modules'],
 		extensions: ['', '.js', '.es6']
 	},
