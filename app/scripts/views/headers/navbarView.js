@@ -4,15 +4,14 @@
 
 var Backbone = require('backbone'),
     Vent = require('../../Vent'),
+    RestMenuButton = require('../partials/restMenuButton'),
     AboutUsButton = require('../partials/aboutUsButton'),
     SignInButton = require('../partials/signInButton'),
     PromotionButton = require('../partials/promotionButton');
 
-var NavBarView = Backbone.View.extend({
+var NavbarView = Backbone.View.extend({
 
-    events: {
-        'click .menu_button_2': 'triggerContestsView'
-    },
+    el: '#cmtyx_navbar',
 
     initialize: function(options) {
         this.options = options || {};
@@ -25,7 +24,8 @@ var NavBarView = Backbone.View.extend({
     },
 
     render: function() {
-        this.showNavBar();
+        // this.showNavBar();
+        this.renderRestMenuButton();
         this.renderAboutUsButton();
         this.renderSignInButton();
         this.renderPromotionButton();
@@ -36,7 +36,6 @@ var NavBarView = Backbone.View.extend({
     showNavBar: function() {
         var navbar = $('#cmtyx_navbar');
         this.setElement($(navbar[0].outerHTML));
-        $(navbar[0]).css('display', 'none');
         this.$el.data('role','navbar');
         this.$el.attr('role','');
         this.$el.css({
@@ -47,11 +46,18 @@ var NavBarView = Backbone.View.extend({
         this.$el.enhanceWithin();
     },
 
-    renderAboutUsButton: function() {
-        this.$('.menu_button_4').html( new AboutUsButton({
+    renderRestMenuButton: function() {
+        new RestMenuButton({
             parent: this.page,
             model: this.restaurant
-        }).render().el);
+        }).render().el;
+    },
+
+    renderAboutUsButton: function() {
+        new AboutUsButton({
+            parent: this.page,
+            model: this.restaurant
+        }).render().el;
     },
 
     renderSignInButton: function() {
@@ -62,18 +68,12 @@ var NavBarView = Backbone.View.extend({
     },
 
     renderPromotionButton: function() {
-        this.$('.menu_button_3').html( new PromotionButton({
+        new PromotionButton({
             parent: this.page,
             model: this.restaurant
-        }).render().el);
-    },
-
-    triggerContestsView: function() {
-        this.page.withLogIn(function () {
-            Vent.trigger('viewChange', 'contests', [this.restaurant.sa(), this.restaurant.sl()]);
-        }.bind(this));
-    }   
+        }).render().el;
+    }
 
 });
 
-module.exports = NavBarView;
+module.exports = NavbarView;

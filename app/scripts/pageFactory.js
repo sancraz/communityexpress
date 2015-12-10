@@ -22,7 +22,7 @@ var Backbone = require('backbone'),
     ContestHeader = require('./views/headers/contestHeader'),
     EmptyHeader = require('./views/headers/emptyHeader'),
     LandingHeader = require('./views/headers/landingHeader'),
-    NavBarView = require('./views/headers/navBarView'),
+    NavbarView = require('./views/headers/navbarView'),
     PaginationHeader = require('./views/headers/paginationHeader');
 
 module.exports = {
@@ -45,9 +45,8 @@ module.exports = {
             //     }
             // }));
             view = new LandingView(_.extend(options, {
-                headerView: LandingHeader,
-                navBarView: NavBarView,
-                navBarData: {
+                navbarView: NavbarView,
+                navbarData: {
                     restaurant: options.model,
                     back: false
                 }
@@ -100,9 +99,9 @@ module.exports = {
             break;
         case 'contests':
             view = new ContestsView(_.extend(options, {
-                navBarView: NavBarView,
+                navbarView: NavbarView,
                 headerView: SimpleHeader,
-                navBarData: {
+                navbarData: {
                     sasl: options.sasl,
                     title: 'Contests'
                 },
@@ -145,8 +144,8 @@ module.exports = {
         case 'aboutUs':
             view = new AboutUsView(_.extend(options, {
                 headerView: LandingHeader,
-                navBarView: NavBarView,
-                navBarData: {
+                navbarView: NavbarView,
+                navbarData: {
                     sasl: options.sasl,
                     title: 'About Us'
                 },

@@ -1,4 +1,4 @@
-'use strict';
+    'use strict';
 
 require('../styles/main.scss');
 require('../styles/sitelette.css');
@@ -10,6 +10,7 @@ require('../styles/main.scss');
 require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
 
 var Backbone = require ('backbone'),
+    NavbarView = require('./views/headers/navbarView'),
 	userController = require('./controllers/userController'),
 	configurationActions = require('./actions/configurationActions'),
 	sessionActions = require('./actions/sessionActions'),
@@ -37,9 +38,6 @@ var App = function() {
 App.prototype = {
 
     init: function() {
-        var landing = $('<div></div>')
-        $('body').append(landing);
-        landing.attr('id', 'cmtyx_landingView');
 
         if (window.saslData.error) {
             loader.showFlashMessage(window.saslData.error.message);
@@ -183,8 +181,8 @@ App.prototype = {
         var content = view.renderContent().$el;
 
         // hide initial html content
-        $('.cmntyex-mediastream .restaurant_gallery').hide();
-        $('.ui-header').hide();
+        // $('.cmntyex-mediastream .restaurant_gallery').hide();
+        // $('.ui-header').hide();
 
         $.mobile.initializePage();
         $($.mobile.pageContainer).pagecontainer('change', content, settings);

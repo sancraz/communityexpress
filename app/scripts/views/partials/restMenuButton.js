@@ -7,12 +7,12 @@ var Backbone = require('backbone'),
     loader = require('../../loader'),
     saslActions = require('../../actions/saslActions');
 
-var AboutUsButton = Backbone.View.extend({
+var RestMenuButton = Backbone.View.extend({
 
-    el: '.menu_button_4',
+    el: '.menu_button_1',
 
     events: {
-        'click': 'triggerAboutUsView'
+        'click': 'openMenu'
     },
 
     initialize: function (options) {
@@ -27,9 +27,9 @@ var AboutUsButton = Backbone.View.extend({
         return this;
     },
 
-    triggerAboutUsView: function() {
-        Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
+    openMenu: function() {
+        this.parent.openSubview('restaurantMenu', {}, this.model.get('services'));
     }
 });
 
-module.exports = AboutUsButton;
+module.exports = RestMenuButton;

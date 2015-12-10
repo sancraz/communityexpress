@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="styles/owl.carousel.css">
 <link rel="stylesheet" href="styles/animate.min.css">
 <link rel="stylesheet" href="styles/jquery.jqplot.min.css">
+<link rel="stylesheet" href="styles/fullcalendar.min.css">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
@@ -85,7 +86,7 @@ if (!is_null($saslJSON)) {
 <?php
 if (!is_null($siteletteJSON)) {
    echo $siteletteJSON['headerDiv'];
-   // echo $siteletteJSON['navBarDiv'];
+   echo $siteletteJSON['navbarDiv'];
    echo $siteletteJSON['landingViewDiv'];
 }
 ?>
@@ -102,6 +103,9 @@ if (!is_null($siteletteJSON)) {
 <script src="vendor/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
 <script src="vendor/jqplot/plugins/jqplot.pointLabels.min.js"></script> 
 <script src="vendor/jquery.mask.js"></script>
+<script src="vendor/moment.min.js"></script>
+<script src="vendor/fullcalendar.min.js"></script>
+<script src="vendor/jquery-radiobutton.min.js"></script>
 <script src="scripts/vendor/sitelette.js"></script> 
 </body>
 </html>
