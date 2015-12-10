@@ -8,6 +8,7 @@ var Backbone = require('backbone'),
     NotificationPanel = require('../panels/notificationView'),
     viewFactory = require('../../viewFactory'),
     loader = require('../../loader'),
+    Vent = require('../../Vent'),
     configurationActions = require('../../actions/configurationActions'),
     h = require('../../globalHelpers');
 
@@ -22,18 +23,23 @@ var PageView = function(options) {
     this.inheritedEvents = [];
 
     Backbone.View.call(this, options);
+    this.contentView = new ContentView();
 
-    this.contentView = options.contentView || new ContentView ({ template: require('../../templates/content/' + this.name + '_content.hbs') });
-    if ( options.headerView ) {
-        this.headerView = new options.headerView(_.extend(options.headerData, {
-            page: this
-        }));
-        this.navBarView = new options.navBarView(_.extend(options.navBarData, {
-            page: this
-        }));
-    } else {
-        this.headerView = new ToolbarView ({ template: require('../../templates/toolbars/' + this.name + '_header.hbs') });
-    }
+    // this.contentView = options.contentView || new ContentView ({ template: require('../../templates/content/' + this.name + '_content.hbs') });
+    this.navbarView = new options.navbarView(_.extend(options.navbarData, {
+        page: this
+    }));
+    console.log(this, 'hello');
+    // if ( options.navbarView ) {
+        // this.headerView = new options.headerView(_.extend(options.headerData, {
+        //     page: this
+        // }));
+        // this.navbarView = new options.navbarView(_.extend(options.navbarData, {
+        //     page: this
+        // }));
+    // } else {
+    //     this.headerView = new ToolbarView ({ template: require('../../templates/toolbars/' + this.name + '_header.hbs') });
+    // }
 
     this.listenTo(this.contentView, 'show', this._onPageShow, this);
     this.listenTo(this.contentView, 'beforehide', this._onPageBeforeHide, this);
@@ -45,13 +51,14 @@ var PageView = function(options) {
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
     pageEvents: {
-            'click .menu_button_1' : 'openSettings'
-        },
+        'click .menu_button_1' : 'openSettings'
+    },
 
     el: '#cmtyx_landingView',
 
     openSettings: function() {
-        this.openSubview('restaurantMenu', {}, this.model.get('services'));
+        alert(321);
+        // this.openSubview('restaurantMenu', {}, this.model.get('services'));
         // this.hideMoreButton();;
         // this.openSubview('options', configurationActions.getConfigurations());
     },
@@ -133,13 +140,14 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     },
 
     renderContent: function() {
-        this.$el.append(this.contentView.render( this._data() ).el);
+        this.$el.append(this.contentView.render().el);
         return this.contentView;
     },
 
     renderToolbars: function() {
-        this.$el.append( this.navBarView.render(this._data()).el );
-        this.$el.append( this.headerView.render(this._data()).el );
+        this.navbarView.render(this._data()).el;
+        // this.$el.append( this.navbarView.render(this._data()).el );
+        // this.$el.append( this.headerView.render(this._data()).el );
     },
 
     openOverlay: function (name, options) {
@@ -189,8 +197,8 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
 
     _onPageHide: function() {
         this.trigger('hide');
-        this.headerView.remove();
-        this.navBarView.remove();
+        // this.headerView.remove();
+        this.navbarView.remove();
         this.close();
     },
 

@@ -21,12 +21,12 @@ var LandingView = PageLayout.extend({
 
     initialize: function(options) {
         this.on('show', this.onShow, this);
-        $('.navbar_buttons_text').css('display', 'none');
+        // $('.navbar_buttons_text').css('display', 'none');
     },
 
     onShow: function(){
         this.addEvents({
-            'click .openingHours': 'openHours'
+            'click .sasl_menu_button': 'openHours'
         });
     },
 

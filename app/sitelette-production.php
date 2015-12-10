@@ -86,7 +86,7 @@ if (!is_null($saslJSON)) {
 <?php
 if (!is_null($siteletteJSON)) {
    echo $siteletteJSON['headerDiv'];
-   // echo $siteletteJSON['navBarDiv'];  
+   echo $siteletteJSON['navbarDiv'];
    echo $siteletteJSON['landingViewDiv'];
 }  
 ?>

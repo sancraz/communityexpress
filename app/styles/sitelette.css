@@ -76,7 +76,7 @@ ul {
 }
 
 .ui-page {
-	padding-top: 92px !important;
+	/*padding-top: 92px !important;*/
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 	box-sizing: border-box;
@@ -1152,29 +1152,11 @@ ul {
 	box-sizing: border-box;
 }
 
-/*Added styles*/
-.hamburger_button {
-	width: 3em;
-    height: 4em;
-	float: left;
-	padding-left: 1.25em;
-	margin-bottom: 5px !important;
-	border: none;
-	box-shadow: none;
+
+#cmtyx_navbar {
+	height: 0;
 }
 
-.theme2_navbar_buttons img {
-	margin: 5px 0 10px 0;
-	cursor: pointer;
-}
-
-.back {
-	margin-left: 10%;
-	float: left;
-	cursor: pointer;
-}
-
-.landing_content {
-	margin-left: 10%;
-	text-align: left;
+.page.restaurant_gallery.theme2_background {
+	margin-top: 45px;
 }

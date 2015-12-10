@@ -42,28 +42,31 @@ var OpeningHoursView = PopupView.extend({
         var r = [];
         _.each(hours, function (hour) {
             var midHour = [];
-            var F = function() {
+            var f = function() {
                 if (hour[1] == "closed") {
-                    return [0,'closed', ''];
+                    return '<div>closed</div>';
                 } else {
-                    return _.each(hour, function(v, i) {
-                        if (i == 1 && hour[1] && hour[2]) {
-                            return hour[1] + hour[2];
-                        } if (i > 2 && i % 2 > 0 && hour[i+1]) {
-                            return hour[i]+hour[i+1];
-                        }
-                    });
+                    var k = function() {
+                        return _.each(hour, function(v, i) {
+                            if (i == 1 && hour[1] && hour[2]) {
+                                return hour[1] + hour[2];
+                            } else if (i > 2 && i % 2 > 0 && hour[i+1]) {
+                                return hour[i]+hour[i+1];
+                            };
+                        });
+                    };
+                    return '<div>'+k()[1]+' - '+k()[2]+'</div>';
                 }
             };
-        var P = '<tr>'+'<td>'+hour[0]+'</td>'+'<td>'+'<div>'+F()[1]+' - '+F()[2]+'</div>'+'</td>'+'</tr>';
-        r.push(P);
+        var p='<tr>'+'<td>'+hour[0]+'</td>'+'<td>'+'<div>'+f()+'</div>'+'</td>'+'</tr>';
+        r.push(p);
         });
 
         return r[0]+r[1]+r[2]+r[3]+r[4]+r[5]+r[6];
     },
 
     render: function () {
-        this.$el.html(this.template({ oh: this.oHours({ hours: this._parseHours(this.model) }) }));
+        this.$el.html(this.template({ oh: this.oHours() }));
         return this;
     }
 
