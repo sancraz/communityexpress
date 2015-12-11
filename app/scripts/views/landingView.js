@@ -20,13 +20,18 @@ var LandingView = PageLayout.extend({
     name: 'landing',
 
     initialize: function(options) {
+        $('.restaurant_gallery').show();
         this.on('show', this.onShow, this);
-        // $('.navbar_buttons_text').css('display', 'none');
     },
 
     onShow: function(){
         this.addEvents({
-            'click .sasl_menu_button': 'openHours'
+            'click .openingHours': 'openHours',
+            'click .userMediaService': 'openUpload',
+            'click .userReviewsService': 'triggerReviewsView',
+            'click .messagingService': 'triggerChatView',
+            'click .catalog': 'triggerCatalogView',
+            'click .wallService': 'triggerPostsView'
         });
     },
 
@@ -43,6 +48,26 @@ var LandingView = PageLayout.extend({
             }.bind(this), function () {
                 loader.showFlashMessage('error retrieving opening hours');
             });
+    },
+
+    openUpload: function() {
+        alert('openUpload');
+    },
+
+    triggerReviewsView: function() {
+        alert('triggerReviewsView');
+    },
+
+    triggerChatView: function() {
+        alert('triggerChatView');
+    },
+
+    triggerCatalogView: function() {
+        alert('triggerCatalogView');
+    },
+
+    triggerPostsView: function() {
+        alert('triggerPostsView');
     }
 
 });

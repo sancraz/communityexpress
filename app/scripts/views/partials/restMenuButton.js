@@ -3,13 +3,14 @@
 'use strict';
 
 var Backbone = require('backbone'),
+    template = require('../../templates/partials/restMenuButton.hbs'),
     Vent = require('../../Vent'),
     loader = require('../../loader'),
     saslActions = require('../../actions/saslActions');
 
 var RestMenuButton = Backbone.View.extend({
 
-    el: '.menu_button_1',
+    template: template,
 
     events: {
         'click': 'openMenu'
@@ -23,7 +24,7 @@ var RestMenuButton = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html();
+        this.$el.html(this.template());
         return this;
     },
 

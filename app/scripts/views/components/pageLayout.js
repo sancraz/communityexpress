@@ -23,20 +23,18 @@ var PageView = function(options) {
     this.inheritedEvents = [];
 
     Backbone.View.call(this, options);
-    this.contentView = new ContentView();
 
-    // this.contentView = options.contentView || new ContentView ({ template: require('../../templates/content/' + this.name + '_content.hbs') });
+    this.contentView = options.contentView || new ContentView ({ template: require('../../templates/content/' + this.name + '_content.hbs') });
     this.navbarView = new options.navbarView(_.extend(options.navbarData, {
         page: this
     }));
-    console.log(this, 'hello');
     // if ( options.navbarView ) {
-        // this.headerView = new options.headerView(_.extend(options.headerData, {
-        //     page: this
-        // }));
-        // this.navbarView = new options.navbarView(_.extend(options.navbarData, {
-        //     page: this
-        // }));
+    //     // this.headerView = new options.headerView(_.extend(options.headerData, {
+    //     //     page: this
+    //     // }));
+    //     this.navbarView = new options.navbarView(_.extend(options.navbarData, {
+    //         page: this
+    //     }));
     // } else {
     //     this.headerView = new ToolbarView ({ template: require('../../templates/toolbars/' + this.name + '_header.hbs') });
     // }
@@ -51,14 +49,11 @@ var PageView = function(options) {
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
     pageEvents: {
-        'click .menu_button_1' : 'openSettings'
     },
 
     el: '#cmtyx_landingView',
 
     openSettings: function() {
-        alert(321);
-        // this.openSubview('restaurantMenu', {}, this.model.get('services'));
         // this.hideMoreButton();;
         // this.openSubview('options', configurationActions.getConfigurations());
     },
@@ -140,14 +135,12 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     },
 
     renderContent: function() {
-        this.$el.append(this.contentView.render().el);
+        this.$el.append(this.contentView.render( this._data() ).el);
         return this.contentView;
     },
 
     renderToolbars: function() {
         this.navbarView.render(this._data()).el;
-        // this.$el.append( this.navbarView.render(this._data()).el );
-        // this.$el.append( this.headerView.render(this._data()).el );
     },
 
     openOverlay: function (name, options) {
@@ -175,7 +168,7 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
             callback()
         ).then(function(viewmodel){
             var view = viewFactory.create(viewname, viewmodel, self, options);
-            self.contentView.$el.append( view.render().el );
+            self.$el.append( view.render().el );
             view.enhance();
             loader.hide();
             setTimeout(view.open.bind(view),50); // a little hack to enhance the opening animation
@@ -198,7 +191,7 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     _onPageHide: function() {
         this.trigger('hide');
         // this.headerView.remove();
-        this.navbarView.remove();
+        // this.navbarView.remove();
         this.close();
     },
 

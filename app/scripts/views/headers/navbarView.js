@@ -24,7 +24,6 @@ var NavbarView = Backbone.View.extend({
     },
 
     render: function() {
-        // this.showNavBar();
         this.renderRestMenuButton();
         this.renderAboutUsButton();
         this.renderSignInButton();
@@ -33,31 +32,18 @@ var NavbarView = Backbone.View.extend({
         return this;
     },
 
-    showNavBar: function() {
-        var navbar = $('#cmtyx_navbar');
-        this.setElement($(navbar[0].outerHTML));
-        this.$el.data('role','navbar');
-        this.$el.attr('role','');
-        this.$el.css({
-            position: 'fixed',
-            top: '40px',
-            display: 'block'
-        });
-        this.$el.enhanceWithin();
-    },
-
     renderRestMenuButton: function() {
-        new RestMenuButton({
+        this.$('.menu_button_1').html( new RestMenuButton({
             parent: this.page,
             model: this.restaurant
-        }).render().el;
+        }).render().el);
     },
 
     renderAboutUsButton: function() {
-        new AboutUsButton({
+        this.$('.menu_button_4').html( new AboutUsButton({
             parent: this.page,
             model: this.restaurant
-        }).render().el;
+        }).render().el);
     },
 
     renderSignInButton: function() {
@@ -68,10 +54,10 @@ var NavbarView = Backbone.View.extend({
     },
 
     renderPromotionButton: function() {
-        new PromotionButton({
+        this.$('.menu_button_3').html( new PromotionButton({
             parent: this.page,
             model: this.restaurant
-        }).render().el;
+        }).render().el);
     }
 
 });

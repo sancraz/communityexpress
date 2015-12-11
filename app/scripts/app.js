@@ -5,12 +5,9 @@ require('../styles/sitelette.css');
 require('../styles/sitelette_icons.css');
 require('../styles/sitelette_mediastream1.css');
 require('../styles/sitelette_mediastream2.css');
-require('../styles/main.scss');
-require('../styles/main.scss');
 require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
 
 var Backbone = require ('backbone'),
-    NavbarView = require('./views/headers/navbarView'),
 	userController = require('./controllers/userController'),
 	configurationActions = require('./actions/configurationActions'),
 	sessionActions = require('./actions/sessionActions'),

@@ -12,6 +12,7 @@ var AboutUs = PageLayout.extend({
     name: 'about_us',
 
     initialize: function(options) {
+        $('.restaurant_gallery').hide();
         window.globThis = this;
         options = options || {};
         this.html = options.html;

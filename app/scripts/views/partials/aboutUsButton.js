@@ -3,13 +3,14 @@
 'use strict';
 
 var Backbone = require('backbone'),
+    template = require('../../templates/partials/aboutUsButton.hbs'),
     Vent = require('../../Vent'),
     loader = require('../../loader'),
     saslActions = require('../../actions/saslActions');
 
 var AboutUsButton = Backbone.View.extend({
 
-    el: '.menu_button_4',
+    template: template,
 
     events: {
         'click': 'triggerAboutUsView'
@@ -23,7 +24,7 @@ var AboutUsButton = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html();
+        this.$el.html(this.template());
         return this;
     },
 

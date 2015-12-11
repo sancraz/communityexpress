@@ -12,18 +12,6 @@ module.exports = function (grunt) {
     grunt.initConfig({
         yeoman: yeomanConfig,
 
-        jst: {
-            options: {
-                amd: true
-            },
-            compile: {
-                files: {
-             '<%= yeoman.app %>/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/{,*/}*.ejs']
-              // '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/{,*/}*.ejs']
-                }
-            }
-        },
-
         webpack: {
             options: webpackDevConfig,
             start: {

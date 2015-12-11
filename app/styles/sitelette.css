@@ -1160,3 +1160,12 @@ ul {
 .page.restaurant_gallery.theme2_background {
 	margin-top: 45px;
 }
+
+#about_us_page {
+	top: 40px;
+}
+
+#landing {
+	top: 40px;
+	min-height: 0px!important;
+}
