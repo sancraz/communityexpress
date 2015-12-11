@@ -37,13 +37,6 @@ module.exports = {
             break;
         case 'restaurant':
         case 'promotions':
-            // view = new RestaurantView(_.extend(options, {
-            //     headerView: RestaurantHeader,
-            //     headerData: {
-            //         restaurant: options.model,
-            //         back: false
-            //     }
-            // }));
             view = new LandingView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
@@ -81,10 +74,10 @@ module.exports = {
             break;
         case 'catalog':
             view = new CatalogView(_.extend(options, {
-                headerView: SimpleHeader,
-                headerData: {
-                    sasl: options.sasl,
-                    title: 'Menu'
+                navbarView: NavbarView,
+                navbarData: {
+                    restaurant: options.model,
+                    back: false
                 }
             }));
             break;

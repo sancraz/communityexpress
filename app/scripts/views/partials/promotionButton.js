@@ -3,12 +3,13 @@
 'use strict';
 
 var Backbone = require('backbone'),
+    template = require('../../templates/partials/promotionButton.hbs'),
     loader = require('../../loader'),
     promotionsController = require('../../controllers/promotionsController');
 
 var PromotionButton = Backbone.View.extend({
 
-    el: '.menu_button_3',
+    template: template,
 
     events: {
         'click': 'open'
@@ -22,7 +23,7 @@ var PromotionButton = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html();
+        this.$el.html(this.template());
         return this;
     },
 
