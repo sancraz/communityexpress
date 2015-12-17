@@ -26,6 +26,7 @@ var CatalogView = PageLayout.extend({
     },
 
     initialize: function (options) {
+        $('.restaurant_gallery').hide();
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -34,7 +35,10 @@ var CatalogView = PageLayout.extend({
     },
 
     renderData: function () {
-        return { basket: this.basket };
+        return {
+            basket: this.basket,
+            'HA': this.updateBasket()
+        };
     },
 
     triggerRestaurantView: function() {
@@ -60,7 +64,7 @@ var CatalogView = PageLayout.extend({
                     }.bind(this));
                 }.bind(this)
             },
-            template: JST['app/scripts/templates/partials/edit_basket_item.ejs']
+            template: require('../templates/partials/edit_basket_item.hbs')
         });
     },
 

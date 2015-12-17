@@ -51,7 +51,19 @@ var LandingView = PageLayout.extend({
     },
 
     openUpload: function() {
-        alert('openUpload');
+        this.withLogIn(function () {
+            this.openSubview('upload', this.model, {
+                action: function () {
+                    loader.show('uploading');
+                    return mediaActions.uploadUserMedia.apply(null, arguments)
+                        .then(function () {
+                            loader.showFlashMessage('upload successful');
+                        }, function (e) {
+                            loader.showFlashMessage(h().getErrorMessage(e, 'error uploading'));
+                        });
+                }
+            });
+        }.bind(this));
     },
 
     triggerReviewsView: function() {
@@ -63,7 +75,7 @@ var LandingView = PageLayout.extend({
     },
 
     triggerCatalogView: function() {
-        alert('triggerCatalogView');
+        Vent.trigger('viewChange', 'catalog', this.model.getUrlKey() );
     },
 
     triggerPostsView: function() {

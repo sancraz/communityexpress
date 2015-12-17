@@ -1,11 +1,20 @@
-    'use strict';
+'use strict';
 
 require('../styles/main.scss');
+require('./vendor/jquery-mobile/css/jquery.mobile-1.4.0.css');
+require('./vendor/add-to-homescreen/style/addtohomescreen.css');
+require('../styles/jquery.jqplot.min.css');
+require('../styles/fullcalendar.min.css');
 require('../styles/sitelette.css');
 require('../styles/sitelette_icons.css');
 require('../styles/sitelette_mediastream1.css');
 require('../styles/sitelette_mediastream2.css');
+
 require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
+require('./vendor/canvasResize/canvasResize');
+require('./sitelette');
+require('./vendor/jquery.mask');
+
 
 var Backbone = require ('backbone'),
 	userController = require('./controllers/userController'),

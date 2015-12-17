@@ -114,15 +114,10 @@ module.exports = function (grunt) {
             }
         },
     });
-
     grunt.loadNpmTasks('grunt-webpack');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-jst');
 
-    grunt.registerTask('createDefaultTemplate', function () {
-        grunt.file.write('.tmp/scripts/templates.js', 'this.JST = this.JST || {};');
-    });
-    grunt.registerTask('default', ['jst', 'webpack:start']);
+    grunt.registerTask('default', ['webpack:start']);
     grunt.registerTask('build', function() {
     	grunt.task.run('copy')
     });
