@@ -1,0 +1,81 @@
+<div id="" data-role="page" class="page">
+    <div data-role="content" class="content">
+
+        <div data-role="collapsible" data-inset="false">
+            <h3>{{count}} items, ${{getTotalPrice}} + Taxes</h3>
+            <table class="cmntyex-order_table">
+                <thead>
+                    <th>QTY</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                </thead>
+                <% _(models).each(function (item) { %>
+                    <tr>
+                        <td><%= item.get('quantity') %></td>
+                        <td><%= item.get('itemName') %></td>
+                        <td>$<%= (item.get('quantity') * item.get('price')).toFixed(2) %></td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+        <ul style="margin: 0 -1em;" data-role="listview" >
+            <li>From: {{username}}</li>
+        </ul>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                {{#unless allowDelivery}}
+                <input type="radio" name="pickupSelected" id="delivery" value="false" disabled>
+                {{else}}
+                <input type="radio" name="pickupSelected" id="delivery" value="false">
+                {{/unless}}
+                <label for="delivery">Delivery</label>
+            </div>
+            <div class="ui-block-b">
+                <input type="radio" name="pickupSelected" id="pickup" value="true" checked="checked">
+                <label for="pickup">Pick Up</label>
+            </div>
+        </div>
+        {{#if allowDelivery}}
+            <div data-role="collapsible" data-inset="false">
+                <h3>Delivery Address</h3>
+                <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="zip" placeholder="Zip" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="email" placeholder="Email" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="phone" placeholder="Phone" data-corners="false"/>
+            </div>
+        {{/if}}
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                {{#unless paymentOnlineAccepted}}
+                <input type="radio" name="creditCardSelected" id="credit" value="true" disabled>
+                {{else}}
+                <input type="radio" name="creditCardSelected" id="credit" value="true">
+                {{/unless}}
+                <label for="credit">Credit</label>
+            </div>
+            <div class="ui-block-b">
+                <input type="radio" name="creditCardSelected" id="cash" value="false" checked="checked">
+                <label for="cash">Cash</label>
+            </div>
+        </div>
+        {{#if paymentOnlineAccepted}}
+            <div data-role="collapsible" data-inset="false">
+                <h3>Payment Info</h3>
+                <input autocapitalize="off" type="text" name="cardType" placeholder="Card Type" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="name" placeholder="Name" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="expr" placeholder="Expr." data-corners="false"/>
+                <input autocapitalize="off" type="text" name="cvv" placeholder="CVV." data-corners="false"/>
+            </div>
+        {{/if}}
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <a href="#" class="cancel_button" data-role="button" data-corners="false">Cancel</a>
+            </div>
+            <div class="ui-block-b">
+                <input type="submit" value="Send" class="submit_button" data-corners="false">
+            </div>
+        </div>
+    </div>
+</div>

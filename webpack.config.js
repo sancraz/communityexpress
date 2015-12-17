@@ -6,8 +6,8 @@ module.exports = {
 	entry: './app/scripts/main.js',
 	output: {
 		path: './app/build/', 
-		filename: 'bundle.js',
-		publicPath: '/public/'
+		filename: 'bundle.js'
+		// publicPath: '/public/'
 	},
 	devtool: 'source-map',
 	watch: true,

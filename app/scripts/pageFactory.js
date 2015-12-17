@@ -47,15 +47,20 @@ module.exports = {
             break;
         case 'chat':
             view = new ChatView(_.extend(options, {
-                headerView: PaginationHeader,
-                headerData: {
-                    sasl: options.restaurant,
+                navbarView: NavbarView,
+                navbarData: {
+                    restaurant: options.model,
                     title: 'Chat'
                 }
             }));
             break;
         case 'reviews':
             view = new ReviewsView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {
+                    restaurant: options.model,
+                    title: 'Reviews'
+                },
                 headerView: PaginationHeader,
                 headerData: {
                     sasl: options.restaurant,
@@ -76,8 +81,7 @@ module.exports = {
             view = new CatalogView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
-                    restaurant: options.model,
-                    back: false
+                    restaurant: options.model
                 }
             }));
             break;
@@ -93,12 +97,7 @@ module.exports = {
         case 'contests':
             view = new ContestsView(_.extend(options, {
                 navbarView: NavbarView,
-                headerView: SimpleHeader,
                 navbarData: {
-                    sasl: options.sasl,
-                    title: 'Contests'
-                },
-                headerData: {
                     sasl: options.sasl,
                     title: 'Contests'
                 }
@@ -136,13 +135,8 @@ module.exports = {
             break;
         case 'aboutUs':
             view = new AboutUsView(_.extend(options, {
-                headerView: LandingHeader,
                 navbarView: NavbarView,
                 navbarData: {
-                    sasl: options.sasl,
-                    title: 'About Us'
-                },
-                headerData: {
                     sasl: options.sasl,
                     title: 'About Us'
                 }
@@ -150,8 +144,8 @@ module.exports = {
             break;
         case 'order':
             view = new OrderView(_.extend(options, {
-                headerView: SimpleHeader,
-                headerData: {
+                navbarView: NavbarView,
+                navbarData: {
                     sasl: options.sasl,
                     title: 'Order'
                 }

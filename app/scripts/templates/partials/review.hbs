@@ -1,0 +1,16 @@
+<div class="cmntyex-review_title">
+    <span class="cmntyex-review_author">{{userName}}</span>
+    <% for (var i = 0; i < 10; i += 2) { %>
+        <% if (rating - i == 1) { %>
+            <span class="cmntyex-icon ui-icon-cmntyex_half_star"></span>
+        <% } else if (rating - i > 1) { %>
+            <span class="cmntyex-icon ui-icon-cmntyex_star"></span>
+        <% } else { %>
+            <span class="cmntyex-icon ui-icon-cmntyex_grey_star"></span>
+        <% } %>
+    <% } %>
+</div>
+<div class="cmntyex-review_text">
+    <p>{{text_excerpt}}</p>
+    <img src="{{imageURL}}"></img>
+</div>

@@ -745,6 +745,7 @@ ul {
 #cmntyex_menu_panel {
 	width: 120px;
 	background: rgba(0, 0, 0, 0.8);
+	z-index: 10001;
 }
 
 #cmntyex_menu_panel img {
@@ -1157,15 +1158,10 @@ ul {
 	height: 0;
 }
 
-.page.restaurant_gallery.theme2_background {
-	margin-top: 45px;
-}
-
-#about_us_page {
-	top: 40px;
+.page {
+	top: 40px!important;
 }
 
 #landing {
-	top: 40px;
 	min-height: 0px!important;
 }

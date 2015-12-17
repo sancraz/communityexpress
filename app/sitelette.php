@@ -7,9 +7,6 @@
 <meta charset="utf-8">
 <!-- owlslider  file -->
 <link rel="stylesheet" href="styles/owl.carousel.css">
-<link rel="stylesheet" href="styles/animate.min.css">
-<link rel="stylesheet" href="styles/jquery.jqplot.min.css">
-<link rel="stylesheet" href="styles/fullcalendar.min.css">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
@@ -47,13 +44,13 @@ if (!is_null($androidHomeScreenIconURL)) {
 }
 ?>">
 
-<link rel="stylesheet" href="scripts/vendor/jquery-mobile/css/jquery.mobile-1.4.0.min.css"/>
-<link rel="stylesheet" href="styles/sitelette.css"/>
+<link rel="stylesheet" href="build/styles.css"/>
+<!-- <link rel="stylesheet" href="styles/sitelette.css"/> -->
 <link rel="stylesheet" href="styles/main.css">
-<link rel="stylesheet" href="styles/sitelette_icons.css"/>
-<link rel="stylesheet" href="styles/sitelette_mediastream1.css"/>
-<link rel="stylesheet" href="styles/sitelette_mediastream2.css"/>
-<link rel="stylesheet" href="vendor/add-to-homescreen/style/addtohomescreen.css"/>
+<!-- <link rel="stylesheet" href="styles/sitelette_icons.css"/> -->
+<!-- <link rel="stylesheet" href="styles/sitelette_mediastream1.css"/> -->
+<!-- <link rel="stylesheet" href="styles/sitelette_mediastream2.css"/> -->
+<!-- <link rel="stylesheet" href="vendor/add-to-homescreen/style/addtohomescreen.css"/> -->
 
 <style>
 * {
@@ -96,7 +93,7 @@ if (!is_null($siteletteJSON)) {
 
  
 <!-- Include js plugins -->
-<script src="vendor/jquery-migrate-1.2.1.min.js"></script>
+<!-- <script src="vendor/jquery-migrate-1.2.1.min.js"></script>
 <script src="scripts/owl.carousel.min.js"></script>
 <script src="vendor/jqplot/jquery.jqplot.js"></script>
 <script src="vendor/jqplot/plugins/jqplot.barRenderer.min.js"></script>
@@ -106,6 +103,6 @@ if (!is_null($siteletteJSON)) {
 <script src="vendor/moment.min.js"></script>
 <script src="vendor/fullcalendar.min.js"></script>
 <script src="vendor/jquery-radiobutton.min.js"></script>
-<script src="scripts/vendor/sitelette.js"></script> 
+<script src="scripts/vendor/sitelette.js"></script>  -->
 </body>
 </html>
