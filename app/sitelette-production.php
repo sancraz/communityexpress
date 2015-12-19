@@ -5,17 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
  
 <meta charset="utf-8">
-
- 
-<!-- owlslider  file -->
-<!--
-<link rel="stylesheet" href="styles/owl.carousel.css">
-<link rel="stylesheet" href="styles/animate.min.css">
-<link rel="stylesheet" href="styles/jquery.jqplot.min.css">
--->
 <link rel="stylesheet" href="styles/main.css">
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 
 <title><?php
@@ -60,7 +51,6 @@ if (!is_null($androidHomeScreenIconURL)) {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     /*-webkit-user-select: none;*/
 }
-/*html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}*/
  
 
 </style>
@@ -91,21 +81,7 @@ if (!is_null($siteletteJSON)) {
 }  
 ?>
 
-
-
-<script src="scripts/bundle.js"></script>
-
-<!-- Include js plugin -->
-<!--  
-<script src="scripts/owl.carousel.min.js"></script>
-<script src="scripts/jqplot/jquery.jqplot.min.js"></script>
-<script src="scripts/jqplot/jqplot.barRenderer.min.js"></script>
-<script src="scripts/jqplot/jqplot.categoryAxisRenderer.min.js"></script>
-<script src="scripts/jqplot/jqplot.pointLabels.min.js"></script>
-<script src="scripts/jquery.mask.min.js"></script>
-<script src="scripts/sitelette.js"></script> 
--->
-<!-- <script src="scripts/sitelette.min.js"></script>  -->
+<script src="scripts/main.min.js"></script>
  
 </body>
 </html>

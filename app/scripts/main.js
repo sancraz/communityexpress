@@ -1,7 +1,12 @@
 'use strict';
 
 require('./vendor/add-to-homescreen/src/addtohomescreen.min');
+require('./vendor/add-to-homescreen/style/addtohomescreen.css');
 require('./jquerymobile_config');
+require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
+require('../styles/main.scss');
+require('../styles/sitelette_icons.css');
+require('./vendor/swipe/swipe');
 
 var App = require('./app.js'),
 	h = require('./globalHelpers.js'),

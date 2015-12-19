@@ -2,8 +2,6 @@
 
 'use strict';
 
-require('../../vendor/swipe/swipe');
-
 var template = require('../../templates/promotions.hbs'),
     loader = require('../../loader'),
     PromotionView = require('../partials/promotionView'),

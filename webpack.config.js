@@ -22,25 +22,20 @@ module.exports = {
 				]
 			},
 			{
-				test: /\.js/,
-				loader: 'babel',
-				exclude: /node_modules/
-			},
-			{
 				test: /\.scss$/,
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader?sourceMap'),
-				exclude: /node_modules/
+				exclude: ["app/vendor", "node_modules"]
 			},
 			{
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap'),
-				exclude: /node_modules/
+				exclude: ["app/vendor", "node_modules"]
 			},
-			{ 
-				test: /\.html$/, 
-				loader: 'html-loader',
-				include: path.join(__dirname, 'app/scripts')
-			},
+			// { 
+			// 	test: /\.html$/, 
+			// 	loader: 'html-loader',
+			// 	include: path.join(__dirname, 'app/scripts')
+			// },
 			{
 				test: /\.hbs/,
 				loader: 'handlebars-loader',

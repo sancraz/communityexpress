@@ -1,7 +1,10 @@
 var webpackDevConfig = require('./webpack.config.js');
 
 module.exports = function (grunt) {
-     'use strict';
+    'use strict';
+
+    // load all grunt tasks
+    require('load-grunt-tasks')(grunt);
 
     var yeomanConfig = {
         app: 'app',
@@ -21,7 +24,72 @@ module.exports = function (grunt) {
                 keepalive: true
             }
         },
-
+        clean: {
+            js: ["dist/scripts/*.js", "!dist/scripts/*.min.js"]
+        },
+        concat: {
+            options: {
+                separator: ';\n'
+            },
+            dist: {
+                src: [
+                    'app/build/bundle.js',
+                    'app/vendor/scripts/moment.min.js',
+                    'app/vendor/scripts/owl.carousel.min.js',
+                    'app/vendor/scripts/fullcalendar.min.js',
+                    'app/vendor/scripts/jquery.jqplot.min.js',
+                    'app/vendor/scripts/jqplot.barRenderer.min.js',
+                    'app/vendor/scripts/jqplot.categoryAxisRenderer.min.js',
+                    'app/vendor/scripts/jqplot.pointLabels.min.js',
+                    'app/vendor/scripts/jquery-migrate-1.2.1.min.js',
+                    'app/vendor/scripts/jquery-radiobutton.min.js',
+                    'app/vendor/scripts/jquery.mask.min.js',
+                    'app/vendor/scripts/sitelette.js'
+                ],
+                dest: 'dist/scripts/main.js',
+            },
+        },
+        uglify: {
+            options: {
+                compress: true,
+                mangle: true
+            },
+            target: {
+                src: 'dist/scripts/main.js',
+                dest: 'dist/scripts/main.min.js'
+            }
+        },
+        cacheBust: {
+            options: {
+                encoding: 'utf8',
+                algorithm: 'md5',
+                length: 16
+            },
+            assets: {
+                files: [{
+                    src: ['<%= yeoman.dist %>/index.php']
+                }]
+            }
+        },
+        cssmin: {
+            target: {
+                files: {
+                    '<%= yeoman.dist %>/styles/main.css': [
+                        '<%= yeoman.app %>/vendor/styles/animate.min.css',
+                        '<%= yeoman.app %>/vendor/styles/owl.carousel.css',
+                        '<%= yeoman.app %>/vendor/styles/jquery.jqplot.min.css',
+                        '<%= yeoman.app %>/vendor/styles/fullcalendar.min.css',
+                        '<%= yeoman.app %>/vendor/styles/sitelette_theme1.css',
+                        '<%= yeoman.app %>/vendor/styles/sitelette_theme2.css',
+                        '<%= yeoman.app %>/vendor/styles/main.css',
+                        '<%= yeoman.app %>/build/styles.css'
+                    ]
+                }
+            },
+            options: {
+                report: 'min'
+            }
+        },
         copy: {
             dist: {
                 files: [
@@ -82,44 +150,25 @@ module.exports = function (grunt) {
 						src: '<%= yeoman.app %>/sitelette-production.php',
 						dest: '<%= yeoman.dist %>/sitelette-production.php'
                     },
-                    {
-						src: '<%= yeoman.app %>/scripts/owl.carousel.min.js',
-						dest: '<%= yeoman.dist %>/scripts/owl.carousel.min.js'
-                    },
-                    {
-						src: '<%= yeoman.app %>/styles/owl.carousel.css',
-						dest: '<%= yeoman.dist %>/styles/owl.carousel.css'
-                    },
-                    {
-                        src: '<%= yeoman.app %>/vendor/main.css',
-                        dest: '<%= yeoman.dist %>/styles/main.css'
-                    },
-                    { 
-						src: '<%= yeoman.app %>/styles/owl.transitions.css',
-						dest: '<%= yeoman.dist %>/styles/owl.transitions.css'
-                    },
-                    {
-						src: '<%= yeoman.app %>/styles/animate.min.css',
-						dest: '<%= yeoman.dist %>/styles/animate.min.css'
-                    },
-                    {
-                    	src: '<%= yeoman.app %>/build/bundle.js',
-                    	dest: '<%= yeoman.dist %>/scripts/bundle.js'
-                    },
-                    {
-                    	src: '<%= yeoman.app %>/build/styles.css',
-                    	dest: '<%= yeoman.dist %>/styles/styles.css'
-                    }
                 ]
             }
         },
     });
     grunt.loadNpmTasks('grunt-webpack');
 	grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-cache-bust');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.registerTask('default', ['webpack:start']);
-    grunt.registerTask('build', function() {
-    	grunt.task.run('copy')
-    });
+    grunt.registerTask('build', [
+        'concat',
+        'uglify',
+        'clean',
+        'cssmin',
+        'copy',
+        'cacheBust'
+    ]);
  
 };
