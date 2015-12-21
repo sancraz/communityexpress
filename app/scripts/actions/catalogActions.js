@@ -3,7 +3,6 @@
 var gateway = require('../APIGateway/gateway.js'),
     sessionActions = require('../actions/sessionActions.js'),
     appCache = require('../appCache.js'),
-    Backbone = require('backbone'),
     Basket = require('../models/BasketModel.js');
 
 var getUID = function () {

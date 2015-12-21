@@ -2,9 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-    // Modernizr = require('./bower_components/modernizr/modernizr');
-
 var currentLocation = {latitude:'',longitude:''},
     watchProcess,
     NO_SUPPORT_MSG = 'Geolocation is not supported by this browser';

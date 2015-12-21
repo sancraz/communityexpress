@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    DomainModel = require('../models/domainModel.js');
+var DomainModel = require('../models/domainModel.js');
 
 var DomainCollection = Backbone.Collection.extend({
 

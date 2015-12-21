@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    GalleryModel = require('../models/galleryModel.js'),
+var GalleryModel = require('../models/galleryModel.js'),
     gateway = require('../APIGateway/gateway.js'),
     sessionActions = require('../actions/sessionActions.js');
 

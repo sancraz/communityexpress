@@ -2,12 +2,11 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    Vent = require('../../Vent'),
+var Vent = require('../../Vent'),
     SignInButton = require('../partials/signInButton'),
     AboutUsButton = require('../partials/aboutUsButton'),
     PromotionButton = require('../partials/promotionButton'),
-    template = require('../../templates/toolbars/restaurant_header.hbs');
+    template = require('ejs!../../templates/toolbars/restaurant_header.ejs');
 
 var RestaurantHeader = Backbone.View.extend({
 

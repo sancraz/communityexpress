@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/partials/editable.hbs'),
+var template = require('ejs!../../templates/partials/editable.ejs'),
     loader = require('../../loader');
 
 var FavoriteView = Backbone.View.extend({

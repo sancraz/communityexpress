@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    FavoriteModel = require('../models/favoriteModel.js');
+var FavoriteModel = require('../models/favoriteModel.js');
 
 var FavoritesCollection = Backbone.Collection.extend({
 

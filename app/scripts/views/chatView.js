@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    Vent = require('../Vent'),
+var Vent = require('../Vent'),
     viewFactory = require('../viewFactory'),
     loader = require('../loader'),
     PageLayout = require('./components/pageLayout'),

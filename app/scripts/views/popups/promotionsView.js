@@ -2,7 +2,7 @@
 
 'use strict';
 
-var template = require('../../templates/promotions.hbs'),
+var template = require('ejs!../../templates/promotions.ejs'),
     loader = require('../../loader'),
     PromotionView = require('../partials/promotionView'),
     PopupView = require('../components/popupView'),

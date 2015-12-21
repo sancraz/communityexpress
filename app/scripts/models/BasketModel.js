@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var BasketItem = Backbone.Model.extend({
 
     idAttribute: 'uUID',

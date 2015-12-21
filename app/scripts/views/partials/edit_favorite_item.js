@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/partials/edit_favorite_item.hbs');
+var template = require('ejs!../../templates/partials/edit_favorite_item.ejs');
 
 var EditFavoriteItemView = Backbone.View.extend({
 

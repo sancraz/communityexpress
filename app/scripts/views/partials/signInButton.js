@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/partials/signInButton.hbs'),
+var template = require('ejs!../../templates/partials/signInButton.ejs'),
     loader = require('../../loader'),
     Vent = require('../../Vent'),
     favoriteActions = require('../../actions/favoriteActions'),

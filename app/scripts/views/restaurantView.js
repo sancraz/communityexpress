@@ -2,10 +2,7 @@
 
 'use strict';
 
-// require('addToHomescreen');
-
-var Backbone = require('backbone'),
-    Vent = require('../Vent'),
+var Vent = require('../Vent'),
     config = require('../appConfig'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),

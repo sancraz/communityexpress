@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    DomainCollection = require('../collections/domains.js'),
+var DomainCollection = require('../collections/domains.js'),
     FilterOptionsCollection = require('../collections/filterOptions.js'),
     DomainModel = require('../models/domainModel.js'),
     gateway = require('../APIGateway/gateway.js'),

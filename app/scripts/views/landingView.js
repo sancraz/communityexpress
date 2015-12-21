@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    Vent = require('../Vent'),
+var Vent = require('../Vent'),
     config = require('../appConfig'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
@@ -20,11 +19,12 @@ var LandingView = PageLayout.extend({
     name: 'landing',
 
     initialize: function(options) {
-        $('.restaurant_gallery').show();
+        // $('.theme2_background').show();
         this.on('show', this.onShow, this);
     },
 
     onShow: function(){
+        $('.theme2_background').show();
         this.addEvents({
             'click .openingHours': 'openHours',
             'click .userMediaService': 'openUpload',

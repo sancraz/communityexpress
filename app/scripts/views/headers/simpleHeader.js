@@ -2,10 +2,9 @@
 
 'use strict';
 
-var Backbone= require('backbone'),
-    Vent = require('../../Vent'),
+var Vent = require('../../Vent'),
     LandingView = require('../landingView'),
-    template = require('../../templates/toolbars/simple_header.hbs');
+    template = require('ejs!../../templates/toolbars/simple_header.ejs');
 
 var SimpleHeader = Backbone.View.extend({
 

@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var GalleryModel = Backbone.Model.extend({
 
     idAttribute: "id",

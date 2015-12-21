@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var ToolbarView = Backbone.View.extend({
 
     initialize: function(options) {

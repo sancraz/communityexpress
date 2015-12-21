@@ -1,7 +1,6 @@
 'use strict';
 
-var Backbone = require ('backbone'),
-	Vent = require('./Vent.js'),
+var Vent = require('./Vent.js'),
 	h = require('./globalHelpers.js');
 
 var params = function () {

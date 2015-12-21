@@ -2,8 +2,6 @@
     
 'use strict';
 
-var Backbone = require('backbone');
-
 var cache = {};
 
 var getItem = function(key) {

@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/partials/subCatalog.hbs'),
+var template = require('ejs!../../templates/partials/subCatalog.ejs'),
     Vent = require('../../Vent'),
     CatalogItemView = require('./catalog_item'),
     ListView = require('../components/listView');

@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    appCache = require('../appCache.js'),
+var appCache = require('../appCache.js'),
     filtersController = require('../controllers/filtersController.js');
 
 module.exports = {

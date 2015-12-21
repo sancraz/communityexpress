@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    LandingView = require('./views/landingView'),
+var LandingView = require('./views/landingView'),
     RestaurantView = require('./views/restaurantView'),
     ChatView = require('./views/chatView'),
     ReviewsView = require('./views/reviewsView'),

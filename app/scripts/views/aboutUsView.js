@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    Vent = require('../Vent'),
+var Vent = require('../Vent'),
     loader = require('../loader'),
     PageLayout = require('./components/pageLayout');
 
@@ -12,7 +11,7 @@ var AboutUs = PageLayout.extend({
     name: 'about_us',
 
     initialize: function(options) {
-        $('.restaurant_gallery').hide();
+        // $('.theme2_background').hide();
         window.globThis = this;
         options = options || {};
         this.html = options.html;

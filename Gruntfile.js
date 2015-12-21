@@ -75,7 +75,7 @@ module.exports = function (grunt) {
             target: {
                 files: {
                     '<%= yeoman.dist %>/styles/main.css': [
-                        '<%= yeoman.app %>/vendor/styles/animate.min.css',
+                        // '<%= yeoman.app %>/vendor/styles/animate.min.css',
                         '<%= yeoman.app %>/vendor/styles/owl.carousel.css',
                         '<%= yeoman.app %>/vendor/styles/jquery.jqplot.min.css',
                         '<%= yeoman.app %>/vendor/styles/fullcalendar.min.css',
@@ -126,17 +126,17 @@ module.exports = function (grunt) {
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
                         dest: '<%= yeoman.dist %>/styles/icons/'
                     },
-                    // {
-                    //     expand: true,
-                    //     cwd: '<%= yeoman.app %>/build',
-                    //     src: '{,*/}*.{png,jpg,jpeg,gif}',
-                    //     dest: '<%= yeoman.dist %>/public/'
-                    // },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/images',
+                        cwd: '<%= yeoman.app %>/build',
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
-                        dest: '<%= yeoman.dist %>/images'
+                        dest: '<%= yeoman.dist %>/styles/'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/styles/images',
+                        src: '{,*/}*.{png,jpg,jpeg,gif}',
+                        dest: '<%= yeoman.dist %>/styles/images'
                     },
                     {
                         src: '<%= yeoman.app %>/production-index.php',
@@ -154,12 +154,6 @@ module.exports = function (grunt) {
             }
         },
     });
-    grunt.loadNpmTasks('grunt-webpack');
-	grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-cache-bust');
-    grunt.loadNpmTasks('grunt-contrib-clean');
 
     grunt.registerTask('default', ['webpack:start']);
     grunt.registerTask('build', [

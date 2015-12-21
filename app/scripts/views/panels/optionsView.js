@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/options.hbs'),
+var template = require('ejs!../../templates/options.ejs'),
     loader = require('../../loader'),
     config = require('../../appConfig'),
     PanelView = require('../components/panelView'),

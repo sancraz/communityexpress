@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    configurationActions = require('../../actions/configurationActions');
+var configurationActions = require('../../actions/configurationActions');
 
 var PanelView = function(options) {
 

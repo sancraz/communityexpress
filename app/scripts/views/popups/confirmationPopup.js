@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/confirmationPopup.hbs'),
+var template = require('ejs!../../templates/confirmationPopup.ejs'),
     PopupView = require('../components/popupView');
 
 var ConfirmationPopup = PopupView.extend({

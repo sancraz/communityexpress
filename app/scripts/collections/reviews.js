@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    config = require('../appConfig.js'),
+var config = require('../appConfig.js'),
     h = require('../globalHelpers.js'),
     ReviewModel = require('../models/reviewModel.js');
 

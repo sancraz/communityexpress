@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'), 
-    template = require('../../templates/signin.hbs'),
+var template = require('ejs!../../templates/signin.ejs'),
     loader = require('../../loader'),
     PopupView = require('../components/popupView'),
     sessionActions = require('../../actions/sessionActions'),

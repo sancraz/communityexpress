@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/legendView.hbs'),
+var template = require('ejs!../../templates/legendView.ejs'),
     PanelView = require('../components/panelView');
 
 var defaults = {

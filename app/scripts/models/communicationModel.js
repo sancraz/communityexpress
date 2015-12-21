@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    appConfig = require('../appConfig.js'),
+var appConfig = require('../appConfig.js'),
     h = require('../globalHelpers');
 
 var MessageModel = Backbone.Model.extend({
