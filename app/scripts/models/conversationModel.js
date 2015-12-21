@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    MessageCollection = require('../collections/messages.js');
+var MessageCollection = require('../collections/messages.js');
 
 var ReviewListModel = Backbone.Model.extend({
 

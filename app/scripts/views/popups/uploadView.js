@@ -3,7 +3,7 @@
 'use strict';
 
 var PopupView = require('../components/popupView'),
-    template = require('../../templates/uploadView.hbs'),
+    template = require('ejs!../../templates/uploadView.ejs'),
     loader = require('../../loader'),
     h = require('../../globalHelpers');
 

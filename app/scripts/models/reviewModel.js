@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var ReviewModel = Backbone.Model.extend({
 
     idAttribute: 'communicationId',

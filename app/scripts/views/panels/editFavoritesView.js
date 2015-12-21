@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/editFavorites.hbs'),
+var template = require('ejs!../../templates/editFavorites.ejs'),
     loader = require('../../loader'),
     PanelView = require('../components/panelView'),
     ListView = require('../components/listView'),

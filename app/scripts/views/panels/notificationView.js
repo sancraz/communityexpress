@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/notification.hbs'),
+var template = require('ejs!../../templates/notification.ejs'),
     PanelView = require('../components/panelView'),
     NotificationView = require('../partials/notificationView'),
     ListView = require('../components/listView'),

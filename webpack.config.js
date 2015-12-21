@@ -31,16 +31,6 @@ module.exports = {
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap'),
 				exclude: ["app/vendor", "node_modules"]
 			},
-			// { 
-			// 	test: /\.html$/, 
-			// 	loader: 'html-loader',
-			// 	include: path.join(__dirname, 'app/scripts')
-			// },
-			{
-				test: /\.hbs/,
-				loader: 'handlebars-loader',
-				exclude: /node_modules/
-			},
 			{
 				test: /vendor\/.+\.(jsx|js)$/,
 				loader: 'imports?jQuery=jquery,$=jquery,this=>window',
@@ -54,7 +44,8 @@ module.exports = {
 			$: 'jquery',
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
-			'_': 'underscore'
+			'_': 'underscore',
+			'Backbone': 'backbone'
 		}),
 	],
 	resolve: {

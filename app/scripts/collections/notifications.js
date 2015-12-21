@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-	config = require('../appConfig'),
+var config = require('../appConfig'),
 	NotificationModel = require('../models/communicationModel.js');
 
 var NotificationsCollection = Backbone.Collection.extend({

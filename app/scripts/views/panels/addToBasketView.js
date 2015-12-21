@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/addToBasket.hbs'),
+var template = require('ejs!../../templates/addToBasket.ejs'),
     PanelView = require('../components/panelView');
 
 var AddToBasketView = PanelView.extend({

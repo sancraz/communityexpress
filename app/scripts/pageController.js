@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    Vent = require('./Vent.js'),
+var Vent = require('./Vent.js'),
     communicationActions = require('./actions/communicationActions.js'),
     filterActions = require('./actions/filterActions.js'),
     saslActions = require('./actions/saslActions.js'),

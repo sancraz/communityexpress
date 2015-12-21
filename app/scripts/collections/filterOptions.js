@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    FilterOptionModel = require('../models/filterOptionModel.js');
+var FilterOptionModel = require('../models/filterOptionModel.js');
 
 var FilterOptionsCollection = Backbone.Collection.extend({
 

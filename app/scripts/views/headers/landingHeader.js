@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var LandingHeader = Backbone.View.extend({
 
     render: function() {

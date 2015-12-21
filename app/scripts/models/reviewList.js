@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    ReviewCollection = require('../collections/reviews.js');
+var ReviewCollection = require('../collections/reviews.js');
 
 var ReviewListModel = Backbone.Model.extend({
 

@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    Vent = require('../Vent'),
+var Vent = require('../Vent'),
     loader = require('../loader'),
     Basket = require('../models/BasketModel'),
     orderActions = require('../actions/orderActions'),
@@ -26,7 +25,7 @@ var CatalogView = PageLayout.extend({
     },
 
     initialize: function (options) {
-        $('.restaurant_gallery').hide();
+        // $('.theme2_background').hide();
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -64,7 +63,7 @@ var CatalogView = PageLayout.extend({
                     }.bind(this));
                 }.bind(this)
             },
-            template: require('../templates/partials/edit_basket_item.hbs')
+            template: require('ejs!../templates/partials/edit_basket_item.ejs')
         });
     },
 

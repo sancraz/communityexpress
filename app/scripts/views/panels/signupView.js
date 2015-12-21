@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/signup.hbs'),
+var template = require('ejs!../../templates/signup.ejs'),
     Vent = require('../../Vent'),
     loader = require('../../loader'),
     config = require('../../appConfig'),

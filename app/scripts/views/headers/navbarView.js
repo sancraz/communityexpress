@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    Vent = require('../../Vent'),
+var Vent = require('../../Vent'),
     RestMenuButton = require('../partials/restMenuButton'),
     AboutUsButton = require('../partials/aboutUsButton'),
     SignInButton = require('../partials/signInButton'),

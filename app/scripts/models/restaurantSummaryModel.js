@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var RestaurantSummaryModel = Backbone.Model.extend({
 
     defaults: {

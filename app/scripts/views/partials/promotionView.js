@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/partials/promotion.hbs'),
+var template = require('ejs!../../templates/partials/promotion.ejs'),
     h = require('../../globalHelpers'),
     promotionActions = require('../../actions/promotionActions'),
     loader = require('../../loader');

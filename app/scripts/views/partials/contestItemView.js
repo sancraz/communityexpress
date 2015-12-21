@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/partials/contestItem.hbs');
+var template = require('ejs!../../templates/partials/contestItem.ejs');
 
 var ContestItemView = Backbone.View.extend({
 

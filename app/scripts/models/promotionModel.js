@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var PromotionModel = Backbone.Model.extend({
 
     idAttribute: "promoUUID",

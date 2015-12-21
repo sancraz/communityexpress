@@ -3,6 +3,7 @@
 'use strict';
 
 var PanelView = require('../components/panelView'),
+    template = require('ejs!../../templates/restaurantMenu.ejs'),
     config = require('../../appConfig');
 
 var defaults = {
@@ -11,7 +12,7 @@ var defaults = {
 
 var RestaurantMenuView = PanelView.extend({
 
-    template: require('../../templates/restaurantMenu.hbs'),
+    template: template,
 
     initialize: function(options){
         this.options = options || {};

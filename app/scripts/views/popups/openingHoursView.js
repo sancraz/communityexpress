@@ -2,7 +2,7 @@
 
 'use strict';
 
-var template = require('../../templates/openingHours.hbs'),
+var template = require('ejs!../../templates/openingHours.ejs'),
     PopupView = require('../components/popupView'),
     h = require('../../globalHelpers');
 
@@ -37,36 +37,8 @@ var OpeningHoursView = PopupView.extend({
         return hours;
     },
 
-    oHours: function() {
-        var hours = this._parseHours(this.model);
-        var r = [];
-        _.each(hours, function (hour) {
-            var midHour = [];
-            var f = function() {
-                if (hour[1] == "closed") {
-                    return '<div>closed</div>';
-                } else {
-                    var k = function() {
-                        return _.each(hour, function(v, i) {
-                            if (i == 1 && hour[1] && hour[2]) {
-                                return hour[1] + hour[2];
-                            } else if (i > 2 && i % 2 > 0 && hour[i+1]) {
-                                return hour[i]+hour[i+1];
-                            };
-                        });
-                    };
-                    return '<div>'+k()[1]+' - '+k()[2]+'</div>';
-                }
-            };
-        var p='<tr>'+'<td>'+hour[0]+'</td>'+'<td>'+'<div>'+f()+'</div>'+'</td>'+'</tr>';
-        r.push(p);
-        });
-
-        return r[0]+r[1]+r[2]+r[3]+r[4]+r[5]+r[6];
-    },
-
     render: function () {
-        this.$el.html(this.template({ oh: this.oHours() }));
+        this.$el.html(this.template({ hours: this._parseHours(this.model) }));
         return this;
     }
 

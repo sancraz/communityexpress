@@ -1,7 +1,6 @@
 /*global define*/
 
-var Backbone = require('backbone'),
-    sessionActions = require('../../actions/sessionActions'),
+var sessionActions = require('../../actions/sessionActions'),
     ContentView = require('./contentView'),
     ToolbarView = require('./toolbarView'),
     SigninView = require('../panels/signinView'),
@@ -24,7 +23,7 @@ var PageView = function(options) {
 
     Backbone.View.call(this, options);
 
-    this.contentView = options.contentView || new ContentView ({ template: require('../../templates/content/' + this.name + '_content.hbs') });
+    this.contentView = options.contentView || new ContentView ({ template: require('ejs!../../templates/content/' + this.name + '_content.ejs') });
     this.navbarView = new options.navbarView(_.extend(options.navbarData, {
         page: this
     }));

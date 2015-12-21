@@ -2,8 +2,6 @@
 
 'use strict';
 
-var Backbone = require('backbone');
-
 var DomainModel = Backbone.Model.extend({
 
     defaults: {

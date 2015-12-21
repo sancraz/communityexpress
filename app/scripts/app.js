@@ -1,7 +1,6 @@
 'use strict';
 
-var Backbone = require ('backbone'),
-	userController = require('./controllers/userController'),
+var userController = require('./controllers/userController'),
 	configurationActions = require('./actions/configurationActions'),
 	sessionActions = require('./actions/sessionActions'),
 	pageController = require('./pageController.js'),

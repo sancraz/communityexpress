@@ -3,7 +3,7 @@
 'use strict';
 
 var PanelView = require('../components/panelView'),
-    template = require('../../templates/shareView.hbs'),
+    template = require('ejs!../../templates/shareView.ejs'),
     loader = require('../../loader'),
     favoriteActions = require('../../actions/favoriteActions'),
     h = require('../../globalHelpers');

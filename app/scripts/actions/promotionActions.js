@@ -1,7 +1,6 @@
 'use strict';
 
-var Backbone = require('backbone'),
-    gateway = require('../APIGateway/gateway.js'),
+var gateway = require('../APIGateway/gateway.js'),
     PromotionModel = require('../models/promotionModel.js'),
     sessionActions = require('../actions/sessionActions.js');
 

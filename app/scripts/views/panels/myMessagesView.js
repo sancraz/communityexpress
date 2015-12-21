@@ -2,8 +2,7 @@
 
 'use strict';
 
-var Backbone = require('backbone'),
-    template = require('../../templates/myMessages.hbs'),
+var template = require('ejs!../../templates/myMessages.ejs'),
     PanelView = require('../components/panelView'),
     MyMessagesItem = require('../partials/myMessages_item');
 
