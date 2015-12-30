@@ -97,11 +97,11 @@ if (!is_null($siteletteJSON)) {
 <script src="vendor/scripts/jquery.jqplot.min.js"></script>
 <script src="vendor/scripts/jqplot.barRenderer.min.js"></script>
 <script src="vendor/scripts/jqplot.categoryAxisRenderer.min.js"></script>
-<script src="vendor/scripts/jqplot.pointLabels.min.js"></script> 
+<script src="vendor/scripts/jqplot.pointLabels.min.js"></script>
 <script src="vendor/scripts/jquery.mask.min.js"></script>
 <script src="vendor/scripts/moment.min.js"></script>
 <script src="vendor/scripts/fullcalendar.min.js"></script>
 <script src="vendor/scripts/jquery-radiobutton.min.js"></script>
-<script src="vendor/scripts/sitelette.js"></script> 
+<!-- <script src="vendor/scripts/sitelette.js"></script> -->
 </body>
 </html>

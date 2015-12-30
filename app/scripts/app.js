@@ -35,6 +35,7 @@ App.prototype = {
 
         Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
+        
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); }
         if (this.params.embedded && !this.params.UID) {
@@ -170,7 +171,7 @@ App.prototype = {
         var content = view.renderContent().$el;
 
         // hide initial html content
-        // $('.cmntyex-mediastream .restaurant_gallery').hide();
+        $('.theme2_background').hide();
         // $('.ui-header').hide();
 
         $.mobile.initializePage();

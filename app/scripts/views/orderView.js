@@ -14,7 +14,6 @@ var OrderView = PageLayout.extend({
     name: 'order',
 
     initialize: function(options) {
-        // $('.theme2_background').hide();
         options = options || {};
         this.sasl = options.sasl;
         this.basket = options.basket;

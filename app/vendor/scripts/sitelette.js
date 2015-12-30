@@ -238,60 +238,61 @@ var buildUrl = function(a, b, c) {
 };
 
 window.updateLoyaltyStatus = function(UID) {
- var urlPrefix = $("#apiURLprefix").text();
- var loyaltyAPIURL = urlPrefix + "retail/retrieveLoyaltyStatus";
- loyaltyAPIURL = buildUrl(loyaltyAPIURL, 'UID', UID);
- loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceAccommodatorId",
-   window.saslData.serviceAccommodatorId);
- loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceLocationId",
-   window.saslData.serviceLocationId);
- console.log(loyaltyAPIURL);
- $.get(loyaltyAPIURL, function(a) {
-  if (a.hasLoyaltyProgram) {
-   $("#loyaltyLine1").text(a.loyaltyBlockLine1);
-   $("#loyaltyLine2").text(a.loyaltyBlockLine2);
-   $("#loyaltyLine3").text(a.loyaltyBlockLine3);
-  } else {
-   /*
-    * nothing to do. Loyalty block is not visible
-    */
-  }
+    debugger;
+    var urlPrefix = $("#apiURLprefix").text();
+    var loyaltyAPIURL = urlPrefix + "retail/retrieveLoyaltyStatus";
+    loyaltyAPIURL = buildUrl(loyaltyAPIURL, 'UID', UID);
+    loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceAccommodatorId",
+    window.saslData.serviceAccommodatorId);
+    loyaltyAPIURL = buildUrl(loyaltyAPIURL, "serviceLocationId",
+    window.saslData.serviceLocationId);
+    console.log(loyaltyAPIURL);
+    $.get(loyaltyAPIURL, function(a) {
+        if (a.hasLoyaltyProgram) {
+            $("#loyaltyLine1").text(a.loyaltyBlockLine1);
+            $("#loyaltyLine2").text(a.loyaltyBlockLine2);
+            $("#loyaltyLine3").text(a.loyaltyBlockLine3);
+        } else {
+        /*
+        * nothing to do. Loyalty block is not visible
+        */
+        }
 
-  /*
-   * regardless of loyalty program, update the qr code block since we may use
-   * this for other things.
-   */
-  $("#qrCodePlaceholder").hide();
-  $("#qrCodeBlock").show();
-  $("#qrCodeImage").empty();
-  $("#qrCodeImage").prepend(
-    '<img id="theQRCodeImage" src=' + a.qrcodeURL + ' />');
-  $("#qrCodeBlockLine1").text(a.qrCodeBlockLine1);
-  $("#qrCodeBlockLine2").text(a.qrCodeBlockLine2);
-  $("#qrCodeBlockLine3").text(a.qrCodeBlockLine3);
- }, "json");
+        /*
+        * regardless of loyalty program, update the qr code block since we may use
+        * this for other things.
+        */
+        $("#qrCodePlaceholder").hide();
+        $("#qrCodeBlock").show();
+        $("#qrCodeImage").empty();
+        $("#qrCodeImage").prepend(
+        '<img id="theQRCodeImage" src=' + a.qrcodeURL + ' />');
+        $("#qrCodeBlockLine1").text(a.qrCodeBlockLine1);
+        $("#qrCodeBlockLine2").text(a.qrCodeBlockLine2);
+        $("#qrCodeBlockLine3").text(a.qrCodeBlockLine3);
+    }, "json");
 };
 
 $(document).ready(function() {
- if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-  var a = localStorage.getItem("cmxUID");
-  if ("undefined" !== typeof a && null !== a) {
-   window.updateLoyaltyStatus(a);
-   window.retrieveCalendar(a);
-  } else {
-   console.log("1. NO cmxUID, try to create one");
-   /*
-    * create user
-    */
-   window.createAnonymousUser();
-   console.log("anonymous user created");
-  }
+    // if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
+    //     var a = localStorage.getItem("cmxUID");
+    //     if ("undefined" !== typeof a && null !== a) {
+    //         window.updateLoyaltyStatus(a);
+    //         window.retrieveCalendar(a);
+    //     } else {
+    //         console.log("1. NO cmxUID, try to create one");
+    //         /*
+    //         * create user
+    //         */
+    //         window.createAnonymousUser();
+    //         console.log("anonymous user created");
+    //     }
 
-  window.attachSharingButtons(); 
+    //     window.attachSharingButtons(); 
 
- } else {
-  console.log("no api url");
- }
- /* SMS share */
+    // } else {
+    //     console.log("no api url");
+    // }
+    /* SMS share */
 
 });

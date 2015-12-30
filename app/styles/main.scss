@@ -1,3 +1,31 @@
 #landing {
 	min-height: 0px!important;
 }
+
+#cmntyex_menu_panel {
+	z-index: 10001;
+}
+
+#cmntyex_add-to-basket_panel,
+#cmntyex_edit_favorites_panel {
+	background-color: #fff;
+	z-index: 10001;
+}
+
+#cmtyx_navbar {
+	height: 0;
+}
+
+#landing {
+	min-height: 0px!important;
+}
+
+
+.back {
+	cursor: pointer;
+}
+
+.page {
+	position: relative!important;
+	margin-bottom: 75px;
+}

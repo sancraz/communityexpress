@@ -15,7 +15,11 @@ var catalogItem = Backbone.View.extend({
     template: template,
 
     events: {
-        'click': 'onClick'
+        'click': 'showAddToBusketView'
+    },
+
+    showAddToBusketView: function() {
+        this.onClick();
     },
 
     initialize: function (options) {

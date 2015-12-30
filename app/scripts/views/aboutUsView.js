@@ -11,7 +11,6 @@ var AboutUs = PageLayout.extend({
     name: 'about_us',
 
     initialize: function(options) {
-        // $('.theme2_background').hide();
         window.globThis = this;
         options = options || {};
         this.html = options.html;

@@ -3,12 +3,13 @@
 'use strict';
 
 var userController = require('../controllers/userController.js'),
-    favoriteActions = require('../actions/favoriteActions.js'),
-    communicationActions = require('../actions/communicationActions.js'),
+    favoriteActions = require('./favoriteActions.js'),
+    communicationActions = require('./communicationActions.js'),
     Vent = require('../Vent.js'),
     appCache = require('../appCache.js'),
     gateway = require('../APIGateway/gateway'),
-    User = require('../models/user.js');
+    User = require('../models/user.js'),
+    updateActions = require('./updateActions');
 
 var onLoginSuccess = function (response) {
 
@@ -19,26 +20,36 @@ var onLoginSuccess = function (response) {
 
     if (response.localStorage !== false) {
         localStorage.setItem('cmxUID', response.uid);
-    }
-    
-    Vent.trigger('login_success');
-    
-    /* begin hack */
-    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-     var a = localStorage.getItem("cmxUID");
-     if ("undefined" !== typeof a && null !== a) {
-         window.updateLoyaltyStatus(a);
-     }
     };
-    /*
-     * end hack
-     */
- 
+    Vent.trigger('login_success'); 
+    checkAnonymous();
 
     return {
         uid: response.uid,
         username: response.userName
     };
+};
+
+var checkAnonymous = function() {
+    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
+        var a = localStorage.getItem("cmxUID");
+        if ("undefined" !== typeof a && null !== a) {
+            updateActions.updateLoyaltyStatus(a);
+            updateActions.retrieveCalendar(a);
+        } else {
+            console.log("1. NO cmxUID, try to create one");
+            /*
+            * create user
+            */
+            updateActions.createAnonymousUser();
+            console.log("anonymous user created");
+        }
+
+        updateActions.attachSharingButtons(); 
+
+    } else {
+        console.log("no api url");
+    }
 };
 
 module.exports = {
@@ -94,6 +105,7 @@ module.exports = {
             });
         } else {
             dfd.resolve();
+            checkAnonymous();
         }
         return dfd.promise();
     },
