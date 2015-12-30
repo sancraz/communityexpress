@@ -25,7 +25,6 @@ var CatalogView = PageLayout.extend({
     },
 
     initialize: function (options) {
-        // $('.theme2_background').hide();
         this.items = options.catalog.collection;
         this.sasl = options.sasl;
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
@@ -34,10 +33,7 @@ var CatalogView = PageLayout.extend({
     },
 
     renderData: function () {
-        return {
-            basket: this.basket,
-            'HA': this.updateBasket()
-        };
+        return { basket: this.basket };
     },
 
     triggerRestaurantView: function() {

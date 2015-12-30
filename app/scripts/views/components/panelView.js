@@ -38,18 +38,9 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
         'click .close_button': 'shut',
     },
 
-    events: function() {
-        var e = _.extend({}, this.pageEvents);
-
-        _.each(this.inheritedEvents, function(events) {
-            e = _.extend(e, events);
-        });
-
-        return e;
-    },
-
     addEvents: function(eventObj) {
-        this.inheritedEvents.push(eventObj);
+        var events = _.extend( {}, eventObj, this.pageEvents );
+        this.delegateEvents(events);
     },
 
     render: function() {

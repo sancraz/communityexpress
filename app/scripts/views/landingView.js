@@ -19,12 +19,11 @@ var LandingView = PageLayout.extend({
     name: 'landing',
 
     initialize: function(options) {
-        // $('.theme2_background').show();
         this.on('show', this.onShow, this);
+        this.on('hide', this.onHide. this);
     },
 
     onShow: function(){
-        $('.theme2_background').show();
         this.addEvents({
             'click .openingHours': 'openHours',
             'click .userMediaService': 'openUpload',
@@ -33,6 +32,15 @@ var LandingView = PageLayout.extend({
             'click .catalog': 'triggerCatalogView',
             'click .wallService': 'triggerPostsView'
         });
+        this.renderGallery();
+    },
+
+    onHide: function() {
+        this.$('.theme2_background').hide();
+    },
+
+    renderGallery: function(password) {
+        this.$('.theme2_background').show();
     },
 
     triggerAboutUsView: function() {
