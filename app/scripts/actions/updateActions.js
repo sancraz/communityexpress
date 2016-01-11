@@ -1,7 +1,7 @@
 'use strict';
 
 require('fullcalendar');
-// require('mask');
+require('jquery-mask-plugin');
 
 module.exports = {
 
@@ -69,7 +69,7 @@ module.exports = {
                 // other view-specific options here
                 }
             },
-            // defaultDate: '2015-12-05',
+            defaultDate: '2015-12-05',
             defaultView : 'agendaDay',
             editable : false,
             eventLimit : true, // allow "more" link when too many events
@@ -245,7 +245,7 @@ module.exports = {
             });
         });
 
-        // $('.phone_us').mask('(000) 000-0000');
+        $('.phone_us').mask('(000) 000-0000');
 
     },
 
@@ -265,7 +265,6 @@ module.exports = {
     },
 
     IOSLoginSucceeded: function(a, b) {
-        debugger;
         console.login("IOSloginSucceeded:" + a + ", " + b);
         require([ "./sessionActions" ], function(c) {
         c.setUser(a, b);
