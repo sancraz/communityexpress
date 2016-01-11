@@ -21,35 +21,39 @@ var onLoginSuccess = function (response) {
     if (response.localStorage !== false) {
         localStorage.setItem('cmxUID', response.uid);
     };
-    Vent.trigger('login_success'); 
-    checkAnonymous();
+    Vent.trigger('login_success');
+
+    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
+         var a = localStorage.getItem("cmxUID");
+         if ("undefined" !== typeof a && null !== a) {
+             updateActions.updateLoyaltyStatus(a);
+         }
+    };
+
+    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
+            var a = localStorage.getItem("cmxUID");
+            if ("undefined" !== typeof a && null !== a) {
+                updateActions.updateLoyaltyStatus(a);
+                updateActions.retrieveCalendar(a);
+            } else {
+                console.log("1. NO cmxUID, try to create one");
+                /*
+                * create user
+                */
+                updateActions.createAnonymousUser();
+                console.log("anonymous user created");
+            }
+
+            updateActions.attachSharingButtons(); 
+
+        } else {
+            console.log("no api url");
+        }
 
     return {
         uid: response.uid,
         username: response.userName
     };
-};
-
-var checkAnonymous = function() {
-    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-        var a = localStorage.getItem("cmxUID");
-        if ("undefined" !== typeof a && null !== a) {
-            updateActions.updateLoyaltyStatus(a);
-            updateActions.retrieveCalendar(a);
-        } else {
-            console.log("1. NO cmxUID, try to create one");
-            /*
-            * create user
-            */
-            updateActions.createAnonymousUser();
-            console.log("anonymous user created");
-        }
-
-        updateActions.attachSharingButtons(); 
-
-    } else {
-        console.log("no api url");
-    }
 };
 
 module.exports = {
@@ -86,6 +90,8 @@ module.exports = {
         var dfd = $.Deferred();
         var persistedUID;
 
+        updateActions.createAnonymousUser();
+
         persistedUID = localStorage.getItem('cmxUID');
         if (persistedUID) {
             window.asdesds=persistedUID;
@@ -105,7 +111,7 @@ module.exports = {
             });
         } else {
             dfd.resolve();
-            checkAnonymous();
+            // checkAnonymous();
         }
         return dfd.promise();
     },
