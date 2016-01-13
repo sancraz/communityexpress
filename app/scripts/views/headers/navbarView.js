@@ -12,6 +12,10 @@ var NavbarView = Backbone.View.extend({
 
     el: '#cmtyx_navbar',
 
+    events: {
+        'click .menu_button_3': 'triggerContestsView'
+    },
+
     initialize: function(options) {
         this.options = options || {};
         this.restaurant = options.restaurant;
@@ -29,6 +33,12 @@ var NavbarView = Backbone.View.extend({
         this.renderPromotionButton();
 
         return this;
+    },
+
+    triggerContestsView: function() {
+        this.page.withLogIn(function () {
+            Vent.trigger('viewChange', 'contests', [this.restaurant.sa(), this.restaurant.sl()]);
+        }.bind(this));
     },
 
     renderRestMenuButton: function() {
@@ -53,7 +63,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     renderPromotionButton: function() {
-        this.$('.menu_button_3').html( new PromotionButton({
+        this.$('.menu_button_2').html( new PromotionButton({
             parent: this.page,
             model: this.restaurant
         }).render().el);

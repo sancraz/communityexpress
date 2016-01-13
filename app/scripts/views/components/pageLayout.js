@@ -62,6 +62,7 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     },
 
     withLogIn: function (callback) {
+        debugger;
         if (this.requireLogIn(callback)) {
             callback();
         }
@@ -76,6 +77,7 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     },
 
     requireLogIn: function(callback) {
+        debugger;
         var conf = configurationActions.getConfigurations();
         var view;
         if(this.user.getUID()) {

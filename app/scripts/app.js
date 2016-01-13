@@ -39,11 +39,9 @@ App.prototype = {
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); }
         if (this.params.embedded && !this.params.UID) {
-            debugger;
             conf.set('embedded', true);
             Backbone.history.start({pushState: true});
         } else if (this.params.embedded && this.params.UID) {
-            debugger;
             conf.set('embedded', true);
             sessionActions.authenticate(this.params.UID)
                 .always(function () {
