@@ -2,6 +2,8 @@
 
 'use strict';
 
+require('../../vendor/canvasResize/canvasResize');
+
 var PopupView = require('../components/popupView'),
     template = require('ejs!../../templates/uploadView.ejs'),
     loader = require('../../loader'),
