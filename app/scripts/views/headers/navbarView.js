@@ -4,6 +4,7 @@
 
 var Vent = require('../../Vent'),
     RestMenuButton = require('../partials/restMenuButton'),
+    ContestButton = require('../partials/contestButton'),
     AboutUsButton = require('../partials/aboutUsButton'),
     SignInButton = require('../partials/signInButton'),
     PromotionButton = require('../partials/promotionButton');
@@ -28,9 +29,10 @@ var NavbarView = Backbone.View.extend({
 
     render: function() {
         this.renderRestMenuButton();
+        this.renderPromotionButton();
+        this.renderContestButton();
         this.renderAboutUsButton();
         this.renderSignInButton();
-        this.renderPromotionButton();
 
         return this;
     },
@@ -43,6 +45,13 @@ var NavbarView = Backbone.View.extend({
 
     renderRestMenuButton: function() {
         this.$('.menu_button_1').html( new RestMenuButton({
+            parent: this.page,
+            model: this.restaurant
+        }).render().el);
+    },
+
+    renderContestButton: function() {
+        this.$('.menu_button_3').html( new ContestButton({
             parent: this.page,
             model: this.restaurant
         }).render().el);

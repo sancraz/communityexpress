@@ -27,16 +27,6 @@ var PageView = function(options) {
     this.navbarView = new options.navbarView(_.extend(options.navbarData, {
         page: this
     }));
-    // if ( options.navbarView ) {
-    //     // this.headerView = new options.headerView(_.extend(options.headerData, {
-    //     //     page: this
-    //     // }));
-    //     this.navbarView = new options.navbarView(_.extend(options.navbarData, {
-    //         page: this
-    //     }));
-    // } else {
-    //     this.headerView = new ToolbarView ({ template: require('../../templates/toolbars/' + this.name + '_header.hbs') });
-    // }
 
     this.listenTo(this.contentView, 'show', this._onPageShow, this);
     this.listenTo(this.contentView, 'beforehide', this._onPageBeforeHide, this);
@@ -62,7 +52,6 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     },
 
     withLogIn: function (callback) {
-        debugger;
         if (this.requireLogIn(callback)) {
             callback();
         }
@@ -77,7 +66,6 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     },
 
     requireLogIn: function(callback) {
-        debugger;
         var conf = configurationActions.getConfigurations();
         var view;
         if(this.user.getUID()) {
@@ -191,8 +179,6 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
 
     _onPageHide: function() {
         this.trigger('hide');
-        // this.headerView.remove();
-        // this.navbarView.remove();
         this.close();
     },
 

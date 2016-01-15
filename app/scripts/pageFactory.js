@@ -16,7 +16,6 @@ var LandingView = require('./views/landingView'),
     RootView = require('./views/rootView'),
     AboutUsView = require('./views/aboutUsView'),
     OrderView = require('./views/orderView'),
-    RestaurantHeader = require('./views/headers/restaurantHeader'),
     SimpleHeader = require('./views/headers/simpleHeader'),
     ContestHeader = require('./views/headers/contestHeader'),
     EmptyHeader = require('./views/headers/emptyHeader'),
@@ -59,18 +58,13 @@ module.exports = {
                 navbarData: {
                     restaurant: options.model,
                     title: 'Reviews'
-                },
-                headerView: PaginationHeader,
-                headerData: {
-                    sasl: options.restaurant,
-                    title: 'Reviews'
                 }
             }));
             break;
         case 'editable':
             view = new EditView(_.extend(options, {
-                headerView: SimpleHeader,
-                headerData: {
+                navbarView: NavbarView,
+                navbarData: {
                     sasl: options.restaurant,
                     title: ''
                 }
@@ -86,8 +80,8 @@ module.exports = {
             break;
         case 'posts':
             view = new PostsView(_.extend(options, {
-                headerView: SimpleHeader,
-                headerData: {
+                navbarView: NavbarView,
+                navbarData: {
                     sasl: options.sasl,
                     title: 'Wall'
                 }
@@ -104,8 +98,8 @@ module.exports = {
             break;
         case 'photoContest':
             view = new PhotoContestView(_.extend(options, {
-                headerView: ContestHeader,
-                headerData: {
+                navbarView: NavbarView,
+                navbarData: {
                     sasl: options.sasl,
                     contest: options.model,
                     title: 'Photo Contest'
@@ -114,8 +108,8 @@ module.exports = {
             break;
         case 'pollContest':
             view = new PollContestView(_.extend(options, {
-                headerView: ContestHeader,
-                headerData: {
+                navbarView: NavbarView,
+                navbarData: {
                     sasl: options.sasl,
                     contest: options.model,
                     title: 'Poll Contest'
@@ -124,8 +118,8 @@ module.exports = {
             break;
         case 'checkinContest':
             view = new CheckinContestView(_.extend(options, {
-                headerView: ContestHeader,
-                headerData: {
+                navbarView: ContestHeader,
+                navbarData: {
                     sasl: options.sasl,
                     contest: options.model,
                     title: 'Checking Contest'
