@@ -178,9 +178,9 @@ module.exports = {
                     + userRegistrationDetails.uid)
                     localStorage.setItem("cmxUID", userRegistrationDetails.uid);
 
-                    //window.require([ "actions/sessionActions" ], function(c) {
-                    // c.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
-                    //});
+                    require([ "./sessionActions" ], function(c) {
+                    c.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
+                    });
                     self.updateLoyaltyStatus(userRegistrationDetails.uid);
                     self.retrieveCalendar(userRegistrationDetails.uid);
                 }

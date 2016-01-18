@@ -90,8 +90,6 @@ module.exports = {
         var dfd = $.Deferred();
         var persistedUID;
 
-        updateActions.createAnonymousUser();
-
         persistedUID = localStorage.getItem('cmxUID');
         if (persistedUID) {
             window.asdesds=persistedUID;
@@ -110,8 +108,8 @@ module.exports = {
                 dfd.resolve();
             });
         } else {
+            updateActions.createAnonymousUser();
             dfd.resolve();
-            // checkAnonymous();
         }
         return dfd.promise();
     },

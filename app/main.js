@@ -2,17 +2,17 @@
 
 require('./vendor/add-to-homescreen/src/addtohomescreen.min');
 require('./vendor/add-to-homescreen/style/addtohomescreen.css');
-require('./jquerymobile_config');
+require('./scripts/jquerymobile_config');
 require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
-require('../styles/main.scss');
-require('../styles/sitelette_icons.css');
+require('./styles/main.scss');
+require('./styles/sitelette_icons.css');
 require('./vendor/swipe/swipe');
 
-var App = require('./app.js'),
-	h = require('./globalHelpers.js'),
-	FastClick = require('fastclick');
+var App = require('./scripts/app.js'),
+    h = require('./scripts/globalHelpers.js'),
+    FastClick = require('fastclick');
 
-	addToHomescreen({
+    addToHomescreen({
         autostart: false,
         maxDisplayCount: 1
     });

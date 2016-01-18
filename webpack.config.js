@@ -3,7 +3,7 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: './app/scripts/main.js',
+	entry: './app/main.js',
 	output: {
 		path: './app/build/', 
 		filename: 'bundle.js'
@@ -12,6 +12,7 @@ module.exports = {
 	devtool: 'source-map',
 	watch: true,
 	keepalive: true,
+	exclude: ['app/vendor/scripts', 'app/vendor/styles'],
 	module: {
 		loaders: [
 			{
@@ -24,12 +25,12 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader?sourceMap'),
-				exclude: ["app/vendor", "node_modules"]
+				exclude: ['app/vendor/styles', 'node_modules']
 			},
 			{
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap'),
-				exclude: ["app/vendor", "node_modules"]
+				exclude: ["app/vendor/styles", "node_modules"]
 			},
 			{
 				test: /vendor\/.+\.(jsx|js)$/,
