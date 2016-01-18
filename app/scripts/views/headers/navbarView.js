@@ -14,7 +14,7 @@ var NavbarView = Backbone.View.extend({
     el: '#cmtyx_navbar',
 
     events: {
-        'click .menu_button_3': 'triggerContestsView'
+        // 'click .menu_button_3': 'triggerContestsView'
     },
 
     initialize: function(options) {

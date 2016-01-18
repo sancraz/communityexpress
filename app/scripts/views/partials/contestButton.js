@@ -12,7 +12,7 @@ var ContestButton = Backbone.View.extend({
     template: template,
 
     events: {
-        // 'click': 'triggerContestsView'
+        'click': 'triggerContestsView'
     },
 
     initialize: function (options) {

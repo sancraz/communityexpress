@@ -2,6 +2,7 @@
 
 var userController = require('./controllers/userController'),
 	configurationActions = require('./actions/configurationActions'),
+    updateActions = require('./actions/updateActions'),
 	sessionActions = require('./actions/sessionActions'),
 	pageController = require('./pageController.js'),
 	Router = require('./router.js'),
@@ -19,7 +20,9 @@ var hasUIDinQueryParams = function () {
 
 var App = function() {
     this.router = new Router();
-    this.params = h().parseQueryString(location.search.substring(1)) || {};
+    this.params = window.community;
+    console.log(this.params);
+    // this.params = h().parseQueryString(location.search.substring(1)) || {};
     // {demo: true, desktopiframe: true}
     Vent.on('viewChange', this.goToPage, this);
 };
@@ -35,6 +38,7 @@ App.prototype = {
 
         Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
+        console.log(this.params);
         
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); }
