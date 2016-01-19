@@ -68,7 +68,21 @@ if (!is_null($saslJSON)) {
 } else {
     echo '{"error":"null sasl"}';
 }
-?>; 
+?>;
+  window.community={};
+  window.community.UID='<?php echo $UID ?>';
+  window.community.embedded=<?php echo $embedded ?>;
+  window.community.desktop=<?php echo $desktop ?>;
+  window.community.publicAccess=<?php echo $publicAccess ?>;
+  window.community.directAccess=<?php echo $directAccess ?>;
+  window.community.demo=<?php echo $demo ?>;
+  window.community.server='<?php echo $server ?>';
+  window.community.host='<?php echo $serverName ?>';
+  window.community.friendlyURL='<?php echo $friendlyURL ?>';
+  window.community.isPrivate=<?php echo $isPrivate ?>;
+  window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
+  window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
+  window.community.canCreateAnonymousUser=<?php echo $canCreateAnonymousUser ?>;
       
       
 </script>
