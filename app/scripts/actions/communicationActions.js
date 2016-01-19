@@ -2,14 +2,12 @@
 
 'use strict';
 
-var appCache = require('../appCache.js'),
-    communicationsController = require('../controllers/communicationsController.js'),
-    ConversationModel = require('../models/conversationModel.js'),
-    MessageCollection = require('../collections/messages.js'),
-    userController = require('../controllers/userController.js'),
-    gateway = require('../APIGateway/gateway.js')
-
-
+var appCache = require('../appCache'),
+    communicationsController = require('../controllers/communicationsController'),
+    ConversationModel = require('../models/conversationModel'),
+    MessageCollection = require('../collections/messages'),
+    userController = require('../controllers/userController'),
+    gateway = require('../APIGateway/gateway');
 
 var setUserCommunications = function (user, communications) {
     user.notifications.set(communications.notifications.models);
@@ -96,6 +94,7 @@ module.exports = {
     },
 
     sendMessage: function (sa, sl, messageBody) {
+        var sessionActions = require('./sessionActions');
         var uid = sessionActions.getCurrentUser().getUID();
         var cache = getCachedConversations(sa, sl, uid);
         var offset;
