@@ -26,12 +26,12 @@ var ChatView = PageLayout.extend({
 
     onShow:  function() {
         this.addEvents({
-            'click .back': 'triggerRestaurantView',
+            'click .back': 'triggerLandingView',
             'click .new_review_button': 'openNewMessage'
         });
 
         this.renderMessages();
-        this.listenTo( Vent, 'logout_success', this.triggerRestaurantView, this);
+        this.listenTo( Vent, 'logout_success', this.triggerLandingView, this);
         this.startPolling();
     },
 
@@ -62,7 +62,8 @@ var ChatView = PageLayout.extend({
         }.bind(this));
     },
 
-    triggerRestaurantView: function() {
+    triggerLandingView: function() {
+        console.log(this.restaurant, 'HELLO');
         Vent.trigger( 'viewChange', 'restaurant', this.restaurant.getUrlKey(), { reverse: true } );
     },
 

@@ -29,7 +29,7 @@ var ReviewsView = PageLayout.extend({
 
     onShow: function(){
         this.addEvents({
-            'click .back': 'triggerRestaurantView',
+            'click .back': 'triggerLandingView',
             'click .new_review_button': 'openNewReview',
             'click .next': 'nextPage',
             'click .prev': 'prevPage'
@@ -37,7 +37,7 @@ var ReviewsView = PageLayout.extend({
         this.renderReviews();
     },
 
-    triggerRestaurantView: function() {
+    triggerLandingView: function() {
         Vent.trigger('viewChange', 'restaurant', this.restaurant.getUrlKey(), { reverse: true });
     },
 

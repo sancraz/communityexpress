@@ -116,9 +116,9 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/vendor/jquery_mobile_1_4/images',
+                        cwd: '<%= yeoman.app %>/vendor/jquery-mobile/css/images',
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
-                        dest: '<%= yeoman.dist %>//vendor/jquery_mobile_1_4/images'
+                        dest: '<%= yeoman.dist %>/vendor/jquery-mobile/css/images'
                     },
                     {
                         expand: true,

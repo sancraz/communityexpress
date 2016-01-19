@@ -75,11 +75,13 @@ var LandingView = PageLayout.extend({
     },
 
     triggerReviewsView: function() {
-        alert('triggerReviewsView');
+        Vent.trigger('viewChange', 'reviews', this.model.getUrlKey() );
     },
 
     triggerChatView: function() {
-        alert('triggerChatView');
+        this.withLogIn(function () {
+            Vent.trigger('viewChange', 'chat',  this.model.getUrlKey() );
+        }.bind(this));
     },
 
     triggerCatalogView: function() {
@@ -87,7 +89,7 @@ var LandingView = PageLayout.extend({
     },
 
     triggerPostsView: function() {
-        alert('triggerPostsView');
+        Vent.trigger('viewChange', 'posts', this.model.getUrlKey() );
     }
 
 });
