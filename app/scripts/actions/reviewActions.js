@@ -2,10 +2,10 @@
 
 'use strict';
 
-var appCache = require('../appCache.js'),
-    gateway = require('../APIGateway/gateway.js'),
-    ReviewCollection = require('../collections/reviews.js'),
-    sessionActions = require('../actions/sessionActions.js');
+var appCache = require('../appCache'),
+    gateway = require('../APIGateway/gateway'),
+    ReviewCollection = require('../collections/reviews'),
+    sessionActions = require('./sessionActions');
 
 var getUID = function () {
     return sessionActions.getCurrentUser().getUID();
@@ -31,6 +31,8 @@ module.exports = {
     },
 
     addReview: function  (sa, sl, file, title, message, rating) {
+        debugger;
+        console.log(sessionActions);
         var uid = sessionActions.getCurrentUser().getUID();
         return gateway.sendFile('addReview', {
             image: file,
