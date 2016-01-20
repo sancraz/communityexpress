@@ -19,6 +19,9 @@ var LandingView = PageLayout.extend({
     name: 'landing',
 
     initialize: function(options) {
+        options = options || {};
+        this.sasl = options.sasl;
+        this.contests = options.contests;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide. this);
     },
@@ -30,7 +33,8 @@ var LandingView = PageLayout.extend({
             'click .userReviewsService': 'triggerReviewsView',
             'click .messagingService': 'triggerChatView',
             'click .catalog': 'triggerCatalogView',
-            'click .wallService': 'triggerPostsView'
+            'click .wallService': 'triggerPostsView',
+            'click .lVphotoContestButton': 'triggerPhotoContestView'
         });
         this.renderGallery();
     },
@@ -72,6 +76,14 @@ var LandingView = PageLayout.extend({
                 }
             });
         }.bind(this));
+    },
+
+    triggerPhotoContestView: function() {
+        var contestUUID = $('.lVphotoContestButton').attr('uuid');
+        Vent.trigger('viewChange', 'photoContest', {
+            sasl: this.model.getUrlKey(),
+            id: contestUUID
+        });
     },
 
     triggerReviewsView: function() {

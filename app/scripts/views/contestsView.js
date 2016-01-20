@@ -22,7 +22,7 @@ var ContestsView = PageLayout.extend({
 
     onShow: function(){
         this.addEvents({
-            'click .back': 'triggerRestaurantView',
+            'click .back': 'triggerLandingView',
         });
         this.renderContests();
     },
@@ -63,7 +63,7 @@ var ContestsView = PageLayout.extend({
         }
     },
 
-    triggerRestaurantView: function() {
+    triggerLandingView: function() {
         Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true });
     },
 

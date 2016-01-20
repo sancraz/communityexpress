@@ -139,7 +139,7 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/styles/images'
                     },
                     {
-                        src: '<%= yeoman.app %>/production-index.php',
+                        src: '<%= yeoman.app %>/index.php',
                         dest: '<%= yeoman.dist %>/index.php'
                     },
                     {
@@ -148,7 +148,7 @@ module.exports = function (grunt) {
                     },
                     {
 						src: '<%= yeoman.app %>/sitelette-production.php',
-						dest: '<%= yeoman.dist %>/sitelette-production.php'
+						dest: '<%= yeoman.dist %>/sitelette.php'
                     },
                 ]
             }
