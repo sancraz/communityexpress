@@ -78,9 +78,9 @@ var LandingView = PageLayout.extend({
         }.bind(this));
     },
 
-    triggerPhotoContestView: function() {
-        var contestUUID = $('.lVphotoContestButton').attr('uuid');
-        console.log(contestUUID);
+    triggerPhotoContestView: function(e) {
+        var target = e.currentTarget;
+        var contestUUID = $(target).attr('uuid');
         Vent.trigger('viewChange', 'photoContest', {
             sasl: this.model.getUrlKey(),
             id: contestUUID
