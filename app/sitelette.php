@@ -105,7 +105,7 @@ if (!is_null($siteletteJSON)) {
 <script  src="build/bundle.js"></script>
 
 <!-- Include js plugins -->
-<!-- <script src="vendor/scripts/owl.carousel.min.js"></script> -->
+<script src="vendor/scripts/owl.carousel.min.js"></script>
 <script src="vendor/scripts/jquery-migrate-1.2.1.min.js"></script>
 <script src="vendor/scripts/jquery.jqplot.min.js"></script>
 <script src="vendor/scripts/jqplot.barRenderer.min.js"></script>
@@ -114,6 +114,6 @@ if (!is_null($siteletteJSON)) {
 <!-- <script src="vendor/scripts/jquery.mask.min.js"></script> -->
 <!-- <script src="vendor/scripts/moment.min.js"></script> -->
 <!-- <script src="vendor/scripts/fullcalendar.min.js"></script> -->
-<!-- <script src="vendor/scripts/jquery-radiobutton.min.js"></script> -->
+<script src="vendor/scripts/jquery-radiobutton.min.js"></script>
 </body>
 </html>
