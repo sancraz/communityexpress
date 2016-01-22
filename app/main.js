@@ -1,12 +1,17 @@
 'use strict';
 
-require('./vendor/add-to-homescreen/src/addtohomescreen.min');
-require('./vendor/add-to-homescreen/style/addtohomescreen.css');
-require('./scripts/jquerymobile_config');
-require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
 require('./styles/main.scss');
 require('./styles/sitelette_icons.css');
+require('./vendor/styles/jquery.jqplot.min.css');
+require('./vendor/add-to-homescreen/style/addtohomescreen.css');
+
+require('./vendor/add-to-homescreen/src/addtohomescreen.min');
+require('./scripts/jquerymobile_config');
+require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
 require('./vendor/swipe/swipe');
+require('./vendor/scripts/owl.carousel.min');
+require('jquery-mask-plugin');
+require('moment');
 
 var App = require('./scripts/app.js'),
     h = require('./scripts/globalHelpers.js'),

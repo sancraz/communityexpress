@@ -12,7 +12,6 @@ module.exports = {
 	devtool: 'source-map',
 	watch: true,
 	keepalive: true,
-	exclude: ['app/vendor/scripts', 'app/vendor/styles'],
 	module: {
 		loaders: [
 			{
