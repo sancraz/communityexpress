@@ -31,8 +31,6 @@ module.exports = {
     },
 
     addReview: function  (sa, sl, file, title, message, rating) {
-        debugger;
-        console.log(sessionActions);
         var uid = sessionActions.getCurrentUser().getUID();
         return gateway.sendFile('addReview', {
             image: file,

@@ -34,17 +34,13 @@ module.exports = function (grunt) {
             dist: {
                 src: [
                     'app/build/bundle.js',
-                    'app/vendor/scripts/moment.min.js',
+                    'app/vendor/scripts/jquery-radiobutton.min.js',
                     'app/vendor/scripts/owl.carousel.min.js',
-                    'app/vendor/scripts/fullcalendar.min.js',
                     'app/vendor/scripts/jquery.jqplot.min.js',
                     'app/vendor/scripts/jqplot.barRenderer.min.js',
                     'app/vendor/scripts/jqplot.categoryAxisRenderer.min.js',
                     'app/vendor/scripts/jqplot.pointLabels.min.js',
-                    'app/vendor/scripts/jquery-migrate-1.2.1.min.js',
-                    'app/vendor/scripts/jquery-radiobutton.min.js',
-                    'app/vendor/scripts/jquery.mask.min.js',
-                    'app/vendor/scripts/sitelette.js'
+                    'app/vendor/scripts/jquery-migrate-1.2.1.min.js'
                 ],
                 dest: 'dist/scripts/main.js',
             },
@@ -77,8 +73,7 @@ module.exports = function (grunt) {
                     '<%= yeoman.dist %>/styles/main.css': [
                         // '<%= yeoman.app %>/vendor/styles/animate.min.css',
                         '<%= yeoman.app %>/vendor/styles/owl.carousel.css',
-                        '<%= yeoman.app %>/vendor/styles/jquery.jqplot.min.css',
-                        '<%= yeoman.app %>/vendor/styles/fullcalendar.min.css',
+                        // '<%= yeoman.app %>/vendor/styles/jquery.jqplot.min.css',
                         '<%= yeoman.app %>/vendor/styles/sitelette_theme1.css',
                         '<%= yeoman.app %>/vendor/styles/sitelette_theme2.css',
                         '<%= yeoman.app %>/vendor/styles/main.css',
@@ -149,10 +144,10 @@ module.exports = function (grunt) {
                     {
 						src: '<%= yeoman.app %>/sitelette-production.php',
 						dest: '<%= yeoman.dist %>/sitelette.php'
-                    },
+                    }
                 ]
             }
-        },
+        }
     });
 
     grunt.registerTask('default', ['webpack:start']);
