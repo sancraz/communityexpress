@@ -3,7 +3,7 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
+
 <meta charset="utf-8">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" rel="stylesheet">
@@ -18,14 +18,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 
- 
+
 <title><?php
 if (!is_null($saslName)) {
     echo $saslName;
 } else
     echo 'sitelette.com';
 ?></title>
- 
+
 
 <!-- for IOS web app-->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -34,19 +34,19 @@ if (!is_null($saslName)) {
  content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
- 
+
 <link rel="apple-touch-icon"  href="<?php
 if (!is_null($appleTouchIcon60URL)) {
     echo $appleTouchIcon60URL;
 } else {
     echo 'someicon';
 }
-?>"> 
- 
+?>">
+
 <link rel="icon" sizes="192x192" href="<?php
 if (!is_null($androidHomeScreenIconURL)) {
     echo $androidHomeScreenIconURL;
-    
+
 } else {
     echo 'someicon';
 }
@@ -76,22 +76,22 @@ if (!is_null($saslJSON)) {
 } else {
     echo '{"error":"null sasl"}';
 }
-?>; 
+?>;
   window.community={};
   window.community.UID='<?php echo $UID ?>';
-  window.community.embedded=<?php echo $embedded ?>;
-  window.community.desktop=<?php echo $desktop ?>;
-  window.community.publicAccess=<?php echo $publicAccess ?>;
-  window.community.directAccess=<?php echo $directAccess ?>;
-  window.community.demo=<?php echo $demo ?>;
+  window.community.embedded='<?php echo  $embedded==TRUE?'true':'false'  ?>';
+  window.community.desktop='<?php echo  $desktop==TRUE?'true':'false' ?>';
+  window.community.publicAccess='<?php echo  $publicAccess==TRUE?'true':'false'?>';
+  window.community.directAccess='<?php echo  $directAccess==TRUE?'true':'false'?>';
+  window.community.demo='<?php echo  $demo==TRUE?'true':'false'?>';
   window.community.server='<?php echo $server ?>';
   window.community.host='<?php echo $serverName ?>';
   window.community.friendlyURL='<?php echo $friendlyURL ?>';
-  window.community.isPrivate=<?php echo $isPrivate ?>;
+  window.community.isPrivate='<?php echo  $isPrivate==TRUE?'true':'false'?>';
   window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
   window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
-  window.community.canCreateAnonymousUser=<?php echo $canCreateAnonymousUser ?>;
-      
+  window.community.canCreateAnonymousUser='<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>';
+
 </script>
 
 <?php

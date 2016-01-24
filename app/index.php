@@ -16,15 +16,15 @@ if (strpos($serverName, 'localhost') !== false) {
 }
 
 if (validateParams('demo')) {
-    $demo = 'true';
+    $demo = TRUE;
 } else {
-    $demo = 'false';
+    $demo = FALSE;
 }
 
 if (validateParams('desktopiframe')) {
-    $desktop = 'true';
+    $desktop = TRUE;
 } else {
-    $desktop = 'false';
+    $desktop = FALSE;
 }
 
 if (validateParams('server')) {
@@ -45,9 +45,9 @@ if (validateParams('server')) {
 }
 
 if (validateParams('embedded')) {
-    $embedded = 'true';
+    $embedded = TRUE;
 } else {
-    $embedded = 'false';
+    $embedded = FALSE;
 }
 
 if (validateParams('serviceAccommodatorId')) {
@@ -81,15 +81,15 @@ if (validateParams('debug')) {
 }
 
 if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
-    $directAccess = 'true';
+    $directAccess = TRUE;
 } else {
-    $directAccess = 'false';
+    $directAccess = FALSE;
 }
 
 if (!is_null($friendlyURL)) {
-    $publicAccess = 'true';
+    $publicAccess = TRUE;
 } else {
-    $publicAccess = 'false';
+    $publicAccess = FALSE;
 }
 
 if ($debug) {
@@ -100,8 +100,11 @@ if ($debug) {
     echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
     echo '$serviceAccommodatorId=' . $serviceAccommodatorId . "</br>";
     echo '$serviceLocationId=' . $serviceLocationId . "</br>";
-     
-    echo '$UID=' . $UID . "</br>"; ;
+
+    echo '$UID=' . $UID . "</br>";
+    echo '$directAccess='.$directAccess."</br>";
+    echo '$publicAccess='.$publicAccess."</br>";
+
 
     if (!is_null($friendlyURL)) {
         echo '$friendlyURL is ' . $friendlyURL . "</br>"; ;
@@ -118,10 +121,10 @@ $saslName = NULL;
 $appleTouchIcon60URL = NULL;
 
 //
-$isPrivate ='false';
-$canCreateAnonymousUser = 'true';
+$isPrivate =FALSE;
+$canCreateAnonymousUser = TRUE;
 
-if ($directAccess || $publicAccess) {
+if ($directAccess|| $publicAccess) {
     if ($publicAccess) {
         $apiURL = $protocol . $server . "/apptsvc/rest/sasl/getSASLByURLkey?UID=&latitude=&longitude=&urlKey=" . $friendlyURL;
     } else {
@@ -168,6 +171,7 @@ if ($directAccess || $publicAccess) {
 
     include_once ('sitelette.php');
 } else {
+
     include_once ('../no_sitelette/index.php');
 }
 ?>
