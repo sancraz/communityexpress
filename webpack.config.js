@@ -3,10 +3,13 @@ var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: './app/main.js',
+	entry: {
+		'bundle':'./app/main.js'
+		// 'bundle.min':'./app/main.js'
+	},
 	output: {
 		path: './app/build/', 
-		filename: 'bundle.js'
+		filename: '[name].js'
 		// publicPath: '/public/'
 	},
 	devtool: 'source-map',
@@ -40,6 +43,10 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin('styles.css'),
+		new webpack.optimize.UglifyJsPlugin({
+			include: /\.min\.js$/,
+			minimize: true
+		}),	
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
