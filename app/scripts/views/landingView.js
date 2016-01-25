@@ -34,7 +34,20 @@ var LandingView = PageLayout.extend({
             'click .messagingService': 'triggerChatView',
             'click .catalog': 'triggerCatalogView',
             'click .wallService': 'triggerPostsView',
-            'click .lVphotoContestButton': 'triggerPhotoContestView'
+            'click .lVphotoContestButton': 'triggerPhotoContestView',
+
+
+            'click .promotionService': 'openPromotions',
+            'click .userPictures': 'openUserPictures',
+            'click .uploadPromtion': 'openUploadPromotion',
+            'click .uploadGallery': 'openUploadGallery',
+            'click .activatePromotion': 'triggerActivatePromotion',
+            'click .deActivatePromotion': 'triggerDeActivatePromotion',
+            'click .activateGallery': 'triggerActivateGallery',
+            'click .deActiveGallery': 'triggerDeActivateGallery',
+            'click .outofNetworkPromotions': 'showOutOfNetworkText',
+            'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
+            'click .outofNetworkUserReviews': 'showOutOfNetworkText'
         });
         this.renderGallery();
     },
@@ -103,6 +116,107 @@ var LandingView = PageLayout.extend({
 
     triggerPostsView: function() {
         Vent.trigger('viewChange', 'posts', this.model.getUrlKey() );
+    },
+
+    openPromotions: function(pid) {
+        loader.show('retrieving promotions');
+        promotionsController.fetchPromotionUUIDsBySasl(
+            this.model.get('serviceAccommodatorId'),
+            this.model.get('serviceLocationId'),
+            this.user.getUID()
+        ).then(function(promotions) {
+            if(promotions.length < 1) {
+                loader.showFlashMessage('No promotions were found');
+            } else {
+                this.openSubview('promotions', promotions, {pid: pid});
+            }
+        }.bind(this), function () {
+            loader.showFlashMessage('error retrieving promotions');
+        });
+    },
+
+    openUserPictures: function() {
+        loader.show('retrieving user pictures');
+        mediaActions.getUserPictures(this.model.sa(), this.model.sl())
+            .then(function (pics) {
+                this.openSubview('userPictures', pics);
+                loader.hide();
+            }.bind(this), function () {
+                loader.showFlashMessage('error retrieving user pictures');
+            });
+    },
+
+    openUploadPromotion: function() {
+        loader.show('loading');
+        promotionActions.getPromotionTypes()
+            .then(function (promotionTypes) {
+                this.openSubview('upload', this.model, {
+                    promotionTypes: promotionTypes,
+                    action: function () {
+                        loader.show('adding promotion');
+                        return promotionActions.createAdhocPromotion.apply(null, arguments)
+                            .then(function () {
+                                loader.showFlashMessage('promotion added');
+                            }, function (e) {
+                                loader.showFlashMessage(h().getErrorMessage(e, 'error adding promotion'));
+                            });
+                    }
+                });
+                loader.hide();
+            }.bind(this), function () {
+                loader.showFlashMessage('error retrieving promotion types');
+            });
+    },
+
+    openUploadGallery: function () {
+        loader.show('uploading');
+        this.openSubview('upload', this.model, {
+            action: function (sa, sl, file, title, message) {
+                return galleryActions.createAdhocGalleryItem()
+                    .then(function () {
+                        loader.showFlashMessage('upload successful');
+                    }.bind(this), function (e) {
+                        loader.showFlashMessage(h().getErrorMessage(e, 'error uploading'));
+                    });
+            }
+        });
+    },
+
+    triggerActivatePromotion: function() {
+        Vent.trigger('viewChange', 'editable', {
+            sasl: [this.model.sa(), this.model.sl()],
+            item: 'promotion',
+            action: 'activate'
+        });
+    },
+
+    triggerDeActivatePromotion: function() {
+        Vent.trigger('viewChange', 'editable', {
+            sasl: [this.model.sa(), this.model.sl()],
+            item: 'promotion',
+            action: 'delete'
+        });
+    },
+
+    triggerActivateGallery: function() {
+        Vent.trigger('viewChange', 'editable', {
+            sasl: [this.model.sa(), this.model.sl()],
+            item: 'gallery',
+            action: 'activate'
+        });
+    },
+
+    triggerDeActivateGallery: function() {
+        Vent.trigger('viewChange', 'editable', {
+            sasl: [this.model.sa(), this.model.sl()],
+            item: 'gallery',
+            action: 'delete'
+        });
+    },
+
+    showOutOfNetworkText: function () {
+        var text = "To see live updates and content from this business, please ask them to signup. It is easy and free.";
+        this.openSubview('text', {}, {text: text});
     }
 
 });

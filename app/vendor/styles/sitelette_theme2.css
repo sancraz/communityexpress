@@ -1051,3 +1051,18 @@ main elements
 .background_other {
 	background-color: #795548;
 }
+
+/*added margin-bottom to see content behind navbar*/
+.page {
+	position: relative!important;
+	margin-bottom: 75px;
+}
+
+#landing {
+	margin-bottom: 0px;
+}
+
+/*moved photocontest block to header*/
+.photocontestblock {
+	margin-top: -5px;
+}

@@ -21,6 +21,7 @@ require('moment');
 
 var App = require('./scripts/app.js'),
     h = require('./scripts/globalHelpers.js'),
+    updateActions = require('./scripts/actions/updateActions'),
     FastClick = require('fastclick');
 
     addToHomescreen({
@@ -31,67 +32,11 @@ var App = require('./scripts/app.js'),
     console.log('Starting...');
 
     $(function() {
-
-        // Radiobutton initialization and behavior
-        $('#POLxBa08SUUR3SJx1HAIRSTYL input').radiobutton();
-        $('#POLxBa08SUUR3SJx1HAIRSTYL_submit').click(function(event){
-            var choice= $("#POLxBa08SUUR3SJx1HAIRSTYL   input[type='radio']:checked").val();
-            if(typeof choice!=='undefined'){
-                $('#POLxBa08SUUR3SJx1HAIRSTYL input[type=radio]').attr('disabled', true);
-                $('#POLxBa08SUUR3SJx1HAIRSTYL a').fadeTo('slow', .3).removeAttr('href');
-                $('#POLxBa08SUUR3SJx1HAIRSTYL a').off();
-                var url = 'http://simfel.com/apptsvc/rest/contests/enterPollAnonymous';
-                var data = {
-                    'choiceId':choice,
-                    'serviceAccommodatorId':'ISPFFD2',
-                    'serviceLocationId':'ISPFFD2',
-                    'contestUUID':'POLxBa08SUUR3SJx1HAIRSTYL'
-                };
-                $(event.target).fadeOut('slow');
-                $('#pollresultsplotPOLxBa08SUUR3SJx1HAIRSTYL').fadeIn('slow');
-                $(document).ready(function(){
-                    console.log('starting');
-                    var request=$.ajax({
-                        headers:{
-                            Accept:'application/json;charset=utf-8'
-                        },
-                        type:'POST',
-                        url:url,
-                        contentType:'application/json;charset=utf-8',
-                        data:JSON.stringify(data)
-                    }).done(function(response){
-                        console.log('done:');
-                        var dataArray=response.dataArray,
-                            options=response.options;
-                        options.seriesDefaults.renderer=eval(options.seriesDefaults.renderer),
-                        options.axes.yaxis.renderer=eval(options.axes.yaxis.renderer),
-                        options.axes.yaxis.rendererOptions.tickRenderer=eval(options.axes.yaxis.rendererOptions.tickRenderer),
-                        $.jqplot('pollresultsplotPOLxBa08SUUR3SJx1HAIRSTYL',dataArray,options)
-                    }).fail(
-                        function(e,o){
-                            console.log('Request failed: '+o),
-                            'undefined'!=typeof e.responseJSON&&'undefined'!=typeof e.responseJSON.error&&(console.log(' Error:'+e.responseJSON.error.message))
-                        }
-                    ).always(function(){
-                        console.log(' All done')
-                    })
-                });
-            }
-        }).attr('onclick','').css('cursor','pointer');
-
-        // Media Carousel initialization     
-        $('#media_carousel').owlCarousel({ 
-            items:1,
-            loop:true,
-            margin:0,
-            autoplay:true,
-            autoplayTimeout:3000,
-            dots:false,
-            animateOut:'fadeOut',
-            animateIn:'fadeIn'
-        });
-
         FastClick.attach(document.body);
+
+        // Activate Carousel and Radiobutton
+        updateActions.initOwlCarousel();
+        updateActions.initRadiobutton();
     });
 
     $(document).on('click', 'a[href]:not([data-bypass])', function(evt) {
