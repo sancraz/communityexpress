@@ -20,7 +20,7 @@ var PanelView = function(options) {
         'data-position-fixed': true,
         'data-dismissible': true,
         'data-swipe-close': false,
-        'class': 'panel'
+        'class': 'panel ui-page-theme-a'
     });
 
     if ( this.parent ) {

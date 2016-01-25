@@ -3,53 +3,49 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include_once ('parser_api_utility.php');
 
-//php_log('starting php');
 $completeURL = full_url($_SERVER, true);
-//php_log("URL: ".$completeURL);
-
 $serverName = $_SERVER['SERVER_NAME'];
-
+/* determine the http host */
 if (strpos($serverName, 'localhost') !== false) {
     $protocol = 'http://';
 } else {
     $protocol = 'https://';
 }
-
+/*is demo=true */
 if (validateParams('demo')) {
     $demo = TRUE;
 } else {
     $demo = FALSE;
 }
 
+/* is desktopiframe=true */
 if (validateParams('desktopiframe')) {
     $desktop = TRUE;
 } else {
     $desktop = FALSE;
 }
 
+/* is API server specified? */
 if (validateParams('server')) {
     $server = $_REQUEST['server'];
     if (strcmp($server, 'localhost') === 0)
         $server = $server . ':8080';
-    //php_log("server was specified:".$server);
 } else {
-    //php_log("server was NOT specified");
-
     if ($demo) {
-        //php_log("DEMO was specified");
         $server = "simfel.com";
     } else {
-        //php_log("DEMO was NOT specified");
         $server = "communitylive.ws";
     }
 }
 
+/* is IOS embedded specified?*/
 if (validateParams('embedded')) {
     $embedded = TRUE;
 } else {
     $embedded = FALSE;
 }
 
+/* is serviceAccomodatorId specified (only from Portal) */
 if (validateParams('serviceAccommodatorId')) {
     $serviceAccommodatorId = $_REQUEST['serviceAccommodatorId'];
 } else {
@@ -74,6 +70,7 @@ if (validateParams('UID')) {
     $UID = NULL;
 }
 
+/* NOTE: if debug=true then PHP will echo variables and exit */
 if (validateParams('debug')) {
     $debug = TRUE;
 } else {
@@ -105,7 +102,6 @@ if ($debug) {
     echo '$directAccess='.$directAccess."</br>";
     echo '$publicAccess='.$publicAccess."</br>";
 
-
     if (!is_null($friendlyURL)) {
         echo '$friendlyURL is ' . $friendlyURL . "</br>"; ;
     } else if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
@@ -120,31 +116,24 @@ if ($debug) {
 $saslName = NULL;
 $appleTouchIcon60URL = NULL;
 
-//
+
 $isPrivate =FALSE;
 $canCreateAnonymousUser = TRUE;
 
 if ($directAccess|| $publicAccess) {
     if ($publicAccess) {
-        $apiURL = $protocol . $server . "/apptsvc/rest/sasl/getSASLByURLkey?UID=&latitude=&longitude=&urlKey=" . $friendlyURL;
+        $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteByURLkey?UID=&latitude=&longitude=&urlKey=" . $friendlyURL;
     } else {
-        $apiURL = $protocol . $server . "/apptsvc/rest/sasl/getSASLBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=" . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId;
+        $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=" . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId;
     }
 
-    // php_log("API:".$apiURL);
+    $siteletteJSON =  makeApiCall($apiURL);
 
-    $saslJSON = makeApiCall($apiURL);
-    // check if there was an error.
-    if (isset($saslJSON['error'])) {
-        //bad url
-        //TODO MUST REMOVE THESE CALLS
-        $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSitelette" . "?embedded=" . ($embedded ? "true" : "false");
+    if (isset($siteletteJSON['error'])) {
 
-        // php_log("API:".$apiURL);
-
-        $siteletteJSON = makeApiCall($apiURL);
+        include_once ('../no_sitelette/index.php');
     } else {
-        // good url
+        $saslJSON=json_decode($siteletteJSON['saslJSON'],TRUE);
         $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
         $serviceLocationId = $saslJSON['serviceLocationId'];
         $saslName = $saslJSON['saslName'];
@@ -161,14 +150,7 @@ if ($directAccess|| $publicAccess) {
             } else
                 $friendlyURL = NULL;
         }
-
-        $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSitelette?themeId=" . $saslJSON['themeId'] . "&serviceAccommodatorId=" . $serviceAccommodatorId . "&serviceLocationId=" . $serviceLocationId . "&embedded=" . ($embedded ? "true" : "false");
-
-        // php_log("API:".$apiURL);
-
-        $siteletteJSON = makeApiCall($apiURL);
-    }// end good url
-
+    }
     include_once ('sitelette.php');
 } else {
 

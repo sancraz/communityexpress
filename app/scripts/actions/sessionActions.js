@@ -108,7 +108,6 @@ module.exports = {
                 dfd.resolve();
             });
         } else {
-            updateActions.createAnonymousUser();
             dfd.resolve();
         }
         return dfd.promise();

@@ -11,11 +11,11 @@
 <!-- <link rel="stylesheet" href="vendor/styles/fullcalendar.min.css"> -->
 <!-- <link rel="stylesheet" href="vendor/styles/animate.min.css"> -->
 <!-- <link rel="stylesheet" href="vendor/styles/jquery.jqplot.min.css"> -->
+<link rel="stylesheet" href="vendor/styles/main.css">
 <link rel="stylesheet" href="vendor/styles/sitelette_theme1.css">
 <link rel="stylesheet" href="vendor/styles/sitelette_theme2.css">
-<link rel="stylesheet" href="vendor/styles/main.css">
 <link rel="stylesheet" href="build/styles.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 
 
 
@@ -79,18 +79,18 @@ if (!is_null($saslJSON)) {
 ?>;
   window.community={};
   window.community.UID='<?php echo $UID ?>';
-  window.community.embedded='<?php echo  $embedded==TRUE?'true':'false'  ?>';
-  window.community.desktop='<?php echo  $desktop==TRUE?'true':'false' ?>';
-  window.community.publicAccess='<?php echo  $publicAccess==TRUE?'true':'false'?>';
-  window.community.directAccess='<?php echo  $directAccess==TRUE?'true':'false'?>';
-  window.community.demo='<?php echo  $demo==TRUE?'true':'false'?>';
+  window.community.embedded=<?php echo  $embedded==TRUE?'true':'false'  ?>;
+  window.community.desktop=<?php echo  $desktop==TRUE?'true':'false' ?>;
+  window.community.publicAccess=<?php echo  $publicAccess==TRUE?'true':'false'?>;
+  window.community.directAccess=<?php echo  $directAccess==TRUE?'true':'false'?>;
+  window.community.demo=<?php echo  $demo==TRUE?'true':'false'?>;
   window.community.server='<?php echo $server ?>';
   window.community.host='<?php echo $serverName ?>';
   window.community.friendlyURL='<?php echo $friendlyURL ?>';
-  window.community.isPrivate='<?php echo  $isPrivate==TRUE?'true':'false'?>';
+  window.community.isPrivate=<?php echo  $isPrivate==TRUE?'true':'false'?>;
   window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
   window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
-  window.community.canCreateAnonymousUser='<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>';
+  window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
 
 </script>
 
@@ -105,15 +105,15 @@ if (!is_null($siteletteJSON)) {
 <script  src="build/bundle.js"></script>
 
 <!-- Include js plugins -->
-<script src="vendor/scripts/owl.carousel.min.js"></script>
+<!-- <script src="vendor/scripts/owl.carousel.min.js"></script>
 <script src="vendor/scripts/jquery-migrate-1.2.1.min.js"></script>
 <script src="vendor/scripts/jquery.jqplot.min.js"></script>
 <script src="vendor/scripts/jqplot.barRenderer.min.js"></script>
 <script src="vendor/scripts/jqplot.categoryAxisRenderer.min.js"></script>
 <script src="vendor/scripts/jqplot.pointLabels.min.js"></script>
-<!-- <script src="vendor/scripts/jquery.mask.min.js"></script> -->
-<!-- <script src="vendor/scripts/moment.min.js"></script> -->
-<!-- <script src="vendor/scripts/fullcalendar.min.js"></script> -->
-<script src="vendor/scripts/jquery-radiobutton.min.js"></script>
+<script src="vendor/scripts/jquery.mask.min.js"></script>
+<script src="vendor/scripts/moment.min.js"></script>
+<script src="vendor/scripts/fullcalendar.min.js"></script>
+<script src="vendor/scripts/jquery-radiobutton.min.js"></script> -->
 </body>
 </html>

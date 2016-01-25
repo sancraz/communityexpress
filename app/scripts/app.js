@@ -41,20 +41,38 @@ App.prototype = {
         console.log(this.params);
         
 
-        if (this.params.demo) { configurationActions.toggleSimulate(true); }
-        if (this.params.embedded && !this.params.UID) {
-            conf.set('embedded', true);
-            Backbone.history.start({pushState: true});
-        } else if (this.params.embedded && this.params.UID) {
-            conf.set('embedded', true);
+        if (this.params.demo) { configurationActions.toggleSimulate(true); };
+        // if (this.params.embedded && !this.params.UID) {
+        //     conf.set('embedded', true);
+        //     Backbone.history.start({pushState: true});
+        // } else if (this.params.embedded && this.params.UID) {
+        //     conf.set('embedded', true);
+        //     sessionActions.authenticate(this.params.UID)
+        //         .always(function () {
+        //             Backbone.history.start({pushState: true});
+        //         });
+        // } else {
+        //     sessionActions.getSessionFromLocalStorage().then(function () {
+        //         Backbone.history.start({pushState: true});
+        //     });
+        // }
+        if (this.params.UID) {
+            this.params.UID = localStorage.cmxUID;
             sessionActions.authenticate(this.params.UID)
-                .always(function () {
+                .always(function() {
                     Backbone.history.start({pushState: true});
                 });
-        } else {
+        } else if (localStorage.cmxUID) {
             sessionActions.getSessionFromLocalStorage().then(function () {
                 Backbone.history.start({pushState: true});
             });
+        } else if (this.params.canCreateAnonymousUser) {
+            updateActions.createAnonymousUser();
+            sessionActions.getSessionFromLocalStorage().then(function () {
+                Backbone.history.start({pushState: true});
+            });
+        } else {
+            return
         }
     },
 
