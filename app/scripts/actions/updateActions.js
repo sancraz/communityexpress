@@ -1,7 +1,7 @@
 'use strict';
 
-require('fullcalendar');
-require('jquery-mask-plugin');
+// require('fullcalendar');
+// require('jquery-mask-plugin');
 
 module.exports = {
 
