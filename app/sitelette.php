@@ -7,13 +7,13 @@
 <meta charset="utf-8">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" rel="stylesheet">
-<link rel="stylesheet" href="vendor/styles/owl.carousel.css">
-<!-- <link rel="stylesheet" href="vendor/styles/fullcalendar.min.css"> -->
-<!-- <link rel="stylesheet" href="vendor/styles/animate.min.css"> -->
-<!-- <link rel="stylesheet" href="vendor/styles/jquery.jqplot.min.css"> -->
+<!-- <link rel="stylesheet" href="vendor/styles/owl.carousel.css">
+<link rel="stylesheet" href="vendor/styles/fullcalendar.min.css">
+<link rel="stylesheet" href="vendor/styles/animate.min.css">
+<link rel="stylesheet" href="vendor/styles/jquery.jqplot.min.css">
 <link rel="stylesheet" href="vendor/styles/main.css">
 <link rel="stylesheet" href="vendor/styles/sitelette_theme1.css">
-<link rel="stylesheet" href="vendor/styles/sitelette_theme2.css">
+<link rel="stylesheet" href="vendor/styles/sitelette_theme2.css"> -->
 <link rel="stylesheet" href="build/styles.css">
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 
