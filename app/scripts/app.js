@@ -42,6 +42,7 @@ App.prototype = {
         
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
+        if (this.params.embedded) { conf.set('embedded', true) };
         // if (this.params.embedded && !this.params.UID) {
         //     conf.set('embedded', true);
         //     Backbone.history.start({pushState: true});
@@ -57,7 +58,7 @@ App.prototype = {
         //     });
         // }
         if (this.params.UID) {
-            this.params.UID = localStorage.cmxUID;
+            localStorage.setItem("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
                     Backbone.history.start({pushState: true});
