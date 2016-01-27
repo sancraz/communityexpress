@@ -1,11 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var path = require('path'),
+	webpack = require('webpack'),
+	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
 	entry: {
 		'bundle':'./app/main.js'
-		// 'bundle.min':'./app/main.js'
 	},
 	output: {
 		path: './app/build/', 
@@ -43,10 +42,6 @@ module.exports = {
 	},
 	plugins: [
 		new ExtractTextPlugin('styles.css'),
-		new webpack.optimize.UglifyJsPlugin({
-			include: /\.min\.js$/,
-			minimize: true
-		}),	
 		new webpack.ProvidePlugin({
 			$: 'jquery',
 			jQuery: 'jquery',
