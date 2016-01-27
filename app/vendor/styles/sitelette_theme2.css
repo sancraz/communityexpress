@@ -650,7 +650,7 @@ main elements
 
 .theme2_poll_choices ul li div.jquery-checkbox-wrapper a.jquery-checkbox
 	{
-	/*background: transparent url('images/checkbox.png') repeat scroll 0px 0px;*/
+	background: transparent url('images/checkbox.png') repeat scroll 0px 0px;
 	display: block;
 	width: 16px;
 	height: 16px;
@@ -673,7 +673,7 @@ main elements
 }
 
 .theme2_poll_choices ul li div.jquery-switch-wrapper a.jquery-switch {
-	/*background: transparent url('images/switches.png') repeat scroll 0px 27px;*/
+	background: transparent url('images/switches.png') repeat scroll 0px 27px;
 	display: block;
 	width: 94px;
 	height: 27px;
