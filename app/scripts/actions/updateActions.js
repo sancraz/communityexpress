@@ -297,7 +297,8 @@ module.exports = {
                 $('#POLxBa08SUUR3SJx1HAIRSTYL input[type=radio]').attr('disabled', true);
                 $('#POLxBa08SUUR3SJx1HAIRSTYL a').fadeTo('slow', .3).removeAttr('href');
                 $('#POLxBa08SUUR3SJx1HAIRSTYL a').off();
-                var url = 'http://simfel.com/apptsvc/rest/contests/enterPollAnonymous';
+                // var url = 'http://simfel.com/apptsvc/rest/contests/enterPollAnonymous';
+                var url = community.protocol + 'simfel.com/apptsvc/rest/contests/enterPollAnonymous';
                 var data = {
                     'choiceId':choice,
                     'serviceAccommodatorId':'ISPFFD2',

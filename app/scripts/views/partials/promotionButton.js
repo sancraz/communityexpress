@@ -27,10 +27,14 @@ var PromotionButton = Backbone.View.extend({
     },
 
     open: function(pid) {
+        var sa = saslData.serviceAccommodatorId,
+            sl = saslData.serviceLocationId;
         loader.show('retrieving promotions');
         promotionsController.fetchPromotionUUIDsBySasl(
-            this.model.sa(),
-            this.model.sl(),
+            sa,
+            sl,
+            // this.model.sa(),
+            // this.model.sl(),
             this.parent.user.getUID()
         ).then(function(promotions) {
             if(promotions.length < 1) {

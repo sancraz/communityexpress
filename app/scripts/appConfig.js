@@ -2,7 +2,7 @@
 
     'use strict';
 
-    var productionRoot = 'https://communitylive.ws/apptsvc/rest';
+    var productionRoot = community.protocol+'communitylive.ws/apptsvc/rest';
     //var productionRoot = 'http://localhost:8080/apptsvc/rest';
     //var productionRoot = 'https://simfel.com/apptsvc/rest';
 
@@ -15,7 +15,7 @@
        // simulateRoot: 'http://communitylive.co/apptsvc/rest',
        // simulateRoot: 'http://localhost:8080/apptsvc/rest',
        // simulateRoot: 'http://communitylive.ws/apptsvc/rest',
-        simulateRoot: 'https://simfel.com/apptsvc/rest',
+        simulateRoot: community.protocol+'simfel.com/apptsvc/rest',
         imagePath: 'images/',
         defaultLocation: [37.7833, -122.4167],
     };

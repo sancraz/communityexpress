@@ -78,6 +78,7 @@ if (!is_null($saslJSON)) {
 }
 ?>;
   window.community={};
+  window.community.protocol='<?php echo $protocol?>';
   window.community.UID='<?php echo $UID ?>';
   window.community.embedded=<?php echo  $embedded==TRUE?'true':'false'  ?>;
   window.community.desktop=<?php echo  $desktop==TRUE?'true':'false' ?>;
