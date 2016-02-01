@@ -28,7 +28,11 @@ var AboutUsButton = Backbone.View.extend({
     },
 
     triggerAboutUsView: function() {
-        Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
+        if (this.model) {
+            Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
+        } else {
+            Vent.trigger('viewChange', 'aboutUs', this.parent.sasl.getUrlKey());
+        }
     }
 });
 

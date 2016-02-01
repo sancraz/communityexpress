@@ -29,7 +29,11 @@ var ContestButton = Backbone.View.extend({
 
     triggerContestsView: function() {
         this.parent.withLogIn(function () {
-            Vent.trigger('viewChange', 'contests', [this.model.sa(), this.model.sl()]);
+            if (this.model) {
+                Vent.trigger('viewChange', 'contests', [this.model.sa(), this.model.sl()]);
+            } else {
+                Vent.trigger('viewChange', 'contests', [this.parent.sasl.sa(), this.parent.sasl.sl()]);
+            }
         }.bind(this));
     }
 });

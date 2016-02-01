@@ -21,7 +21,6 @@ var hasUIDinQueryParams = function () {
 var App = function() {
     this.router = new Router();
     this.params = window.community;
-    console.log(this.params);
     // this.params = h().parseQueryString(location.search.substring(1)) || {};
     // {demo: true, desktopiframe: true}
     Vent.on('viewChange', this.goToPage, this);
@@ -88,8 +87,10 @@ App.prototype = {
             configurationActions.toggleSimulate(true);
         }
         if (options.server) {
-            config.productionRoot = 'http://' + options.server + '/apptsvc/rest';
-            config.simulateRoot = 'http://' + options.server + '/apptsvc/rest';
+            // config.productionRoot = 'http://' + options.server + '/apptsvc/rest';
+            // config.simulateRoot = 'http://' + options.server + '/apptsvc/rest';
+            config.productionRoot = this.params.protocol + options.server + '/apptsvc/rest';
+            config.simulateRoot = this.params.protocol + options.server + '/apptsvc/rest';
             config.apiRoot = config.productionRoot;
         }
     },
