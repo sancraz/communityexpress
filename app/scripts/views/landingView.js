@@ -40,7 +40,7 @@ var LandingView = PageLayout.extend({
             'click .catalog': 'triggerCatalogView',
             'click .wallService': 'triggerPostsView',
             'click .lVphotoContestButton': 'triggerPhotoContestView',
-
+            'click .theme2_generic_banner': 'triggerAboutUsView',
 
             'click .promotionService': 'openPromotions',
             'click .userPictures': 'openUserPictures',
