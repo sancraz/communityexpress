@@ -321,18 +321,16 @@ module.exports = {
                         console.log('done:');
                         var dataArray=response.dataArray,
                             options=response.options;
-                        options.seriesDefaults.renderer=eval(options.seriesDefaults.renderer),
-                        options.axes.yaxis.renderer=eval(options.axes.yaxis.renderer),
-                        options.axes.yaxis.rendererOptions.tickRenderer=eval(options.axes.yaxis.rendererOptions.tickRenderer),
+                        options.seriesDefaults.renderer=eval(options.seriesDefaults.renderer);
+                        options.axes.yaxis.renderer=eval(options.axes.yaxis.renderer);
+                        options.axes.yaxis.rendererOptions.tickRenderer=eval(options.axes.yaxis.rendererOptions.tickRenderer);
                         $.jqplot('pollresultsplotPOLxBa08SUUR3SJx1HAIRSTYL',dataArray,options)
-                    }).fail(
-                        function(e,o){
-                            console.log('Request failed: '+o),
-                            'undefined'!=typeof e.responseJSON&&'undefined'!=typeof e.responseJSON.error&&(console.log(' Error:'+e.responseJSON.error.message))
-                        }
-                    ).always(function(){
-                        console.log(' All done')
-                    })
+                    }).fail(function(e,o){
+                        console.log('Request failed: '+o);
+                        'undefined'!=typeof e.responseJSON&&'undefined'!=typeof e.responseJSON.error&&(console.log(' Error:'+e.responseJSON.error.message))
+                    }).always(function(){
+                        console.log(' All done');
+                    });
                 });
             }
         }).attr('onclick','').css('cursor','pointer');
