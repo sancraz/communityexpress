@@ -68,7 +68,7 @@ main elements
 	position:absolute;
 	width:100%;
 }
-.theme2_drive_button {;
+.theme2_drive_button {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	background-color: #0D9CAC;
@@ -473,7 +473,7 @@ main elements
 	padding: 1px;
 	border-style: inset;
 	border-color: gray;
-	-moz-border-radius:;
+	/*-moz-border-radius:;*/
 }
 
 #theme2_map {
