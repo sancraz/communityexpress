@@ -15,12 +15,13 @@ var PanelView = function(options) {
 
     this.$el.attr({
         'data-role': 'panel',
+        'data-theme': 'a',
         'data-position': 'left',
         'data-display': 'overlay',
         'data-position-fixed': true,
         'data-dismissible': true,
         'data-swipe-close': false,
-        'class': 'panel ui-page-theme-a'
+        'class': 'panel'
     });
 
     if ( this.parent ) {

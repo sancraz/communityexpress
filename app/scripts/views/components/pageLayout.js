@@ -38,13 +38,14 @@ var PageView = function(options) {
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
     pageEvents: {
+        'click .poll_image': 'openSettings',
     },
 
     el: '#cmtyx_landingView',
 
     openSettings: function() {
         // this.hideMoreButton();;
-        // this.openSubview('options', configurationActions.getConfigurations());
+        this.openSubview('options', configurationActions.getConfigurations());
     },
 
     closeChildren: function() {
