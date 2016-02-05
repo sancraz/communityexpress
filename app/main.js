@@ -13,7 +13,6 @@ require('./styles/sitelette.css');
 require('./vendor/add-to-homescreen/src/addtohomescreen.min');
 require('./scripts/jquerymobile_config');
 require('./vendor/jquery-mobile/js/jquery.mobile-1.4.5');
-// require('./vendor/jquery-mobile/js/jquery.mobile-1.4.0.min');
 require('imports?$=jquery!./vendor/scripts/owl.carousel.min');
 require('imports?$=jquery!./vendor/scripts/jquery.jqplot.min');
 require('imports?$=jquery!./vendor/scripts/jqplot.barRenderer.min');

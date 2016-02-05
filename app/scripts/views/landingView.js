@@ -39,7 +39,7 @@ var LandingView = PageLayout.extend({
             'click .messagingService': 'triggerChatView',
             'click .catalog': 'triggerCatalogView',
             'click .wallService': 'triggerPostsView',
-            'click .lVphotoContestButton': 'triggerPhotoContestView',
+            'click .theme2_button': 'triggerPhotoContestView',
             'click .theme2_generic_banner': 'triggerAboutUsView',
 
             'click .promotionService': 'openPromotions',
@@ -99,10 +99,13 @@ var LandingView = PageLayout.extend({
     triggerPhotoContestView: function(e) {
         var target = e.currentTarget;
         var contestUUID = $(target).attr('uuid');
-        Vent.trigger('viewChange', 'photoContest', {
-            sasl: this.model.getUrlKey(),
-            id: contestUUID
-        });
+        var s = $(document).find('.photocontestblock');
+        if (s.length !== 0) {
+            Vent.trigger('viewChange', 'photoContest', {
+                sasl: this.model.getUrlKey(),
+                id: contestUUID
+            });
+        }
     },
 
     triggerReviewsView: function() {
