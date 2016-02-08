@@ -97,7 +97,6 @@ var LandingView = PageLayout.extend({
     },
 
     triggerPhotoContestView: function(e) {
-        debugger;
         var target = e.currentTarget;
         var contestUUID = $(target).attr('uuid');
         var s = $(document).find('.photocontestblock');

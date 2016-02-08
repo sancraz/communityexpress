@@ -56,15 +56,21 @@ module.exports = function (grunt) {
                     },
                     {
 						expand: true,
-						cwd: 'no_sitelette',
+						cwd: '<%= yeoman.app %>/no_sitelette',
 						src: '{,*/}*',
 						dest: '<%= yeoman.dist %>/no_sitelette'
                     },
                     {
                         expand: true,
-                        cwd: 'd',
+                        cwd: '<%= yeoman.app %>/desktop',
                         src: '{,*/}*',
-                        dest: '<%= yeoman.dist %>/d'
+                        dest: '<%= yeoman.dist %>/desktop'
+                    },
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/error_page',
+                        src: '{,*/}*',
+                        dest: '<%= yeoman.dist %>/error_page'
                     },
                     {
                         expand: true,
