@@ -45,15 +45,15 @@
         <div class="ui-grid-a">
             <div class="ui-block-a">
                 <input type="radio" name="creditCardSelected" id="credit" value="true" <%= !paymentOnlineAccepted ? "disabled" : "" %>>
-                <label for="credit">Credit</label>
+                <label for="credit" class="showPaymentInfo">Credit</label>
             </div>
             <div class="ui-block-b">
                 <input type="radio" name="creditCardSelected" id="cash" value="false" checked="checked">
-                <label for="cash">Cash</label>
+                <label for="cash" class="hidePaymentInfo">Cash</label>
             </div>
         </div>
         <% if (paymentOnlineAccepted) { %>
-            <div data-role="collapsible" data-inset="false">
+            <div data-role="collapsible" id="collapsible1" data-inset="false">
                 <h3>Payment Info</h3>
                 <input autocapitalize="off" type="text" name="cardType" placeholder="Card Type" data-corners="false"/>
                 <input autocapitalize="off" type="text" name="name" placeholder="Name" data-corners="false"/>

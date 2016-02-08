@@ -20,14 +20,20 @@ var OrderView = PageLayout.extend({
         this.catalogOptions = this.sasl.attributes.services.catalog;
         this.user = options.user;
         this.on('show', this.onShow, this);
+        this.paymentInfoCollapsed = true;
     },
 
     onShow: function(){
         this.addEvents({
             'click .back': 'triggerCatalogView',
             'click .cancel_button': 'triggerCatalogView',
-            'click .submit_button': 'onSubmitClick'
+            'click .submit_button': 'onSubmitClick',
+            'click .showPaymentInfo': 'showPaymentInfo',
+            'click .hidePaymentInfo': 'hidePaymentInfo'
         });
+        $('#collapsible1')
+            .find('.ui-collapsible-heading-toggle')
+            .on('click', _.bind(this.collapsibleHandler, this));
     },
 
     renderData: function () {
@@ -103,7 +109,34 @@ var OrderView = PageLayout.extend({
         }.bind(this), function () {
             loader.showFlashMessage('error placing your order');
         });
+    },
+
+    // HERE IS OPENING OF CREDIT INFO, WHEN 'CREDIT' SELECTED
+    // TODO: TO RESEARCH JQUERY-MOBILE EVENTS 'EXPAND'/'COLLAPSE'
+    showPaymentInfo: function() {
+        if (this.paymentInfoCollapsed) {
+            $('#collapsible1').find('.ui-collapsible-heading-toggle').trigger('click');
+        }
+    },
+
+    hidePaymentInfo: function() {
+        if (!this.paymentInfoCollapsed) {
+            $('#collapsible1').find('.ui-collapsible-heading-toggle').trigger('click');
+        }
+    },
+
+    collapsibleHandler: function(e) {
+        var that = this,
+            $target = $(e.currentTarget);
+        setTimeout(function() {
+            if ($target.parent().hasClass('ui-collapsible-heading-collapsed')) {
+                that.paymentInfoCollapsed = true;
+            } else {
+                that.paymentInfoCollapsed = false;
+            };
+        }, 0);    
     }
+    // THE END 
 
 });
 
