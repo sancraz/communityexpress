@@ -95,6 +95,10 @@ module.exports = function (grunt) {
                     {
 						src: '<%= yeoman.app %>/sitelette.php',
 						dest: '<%= yeoman.dist %>/sitelette.php'
+                    },
+                    {
+                        src: '<%= yeoman.app %>/Mobile_Detect.php',
+                        dest: '<%= yeoman.dist %>/Mobile_Detect.php'
                     }
                 ]
             }
