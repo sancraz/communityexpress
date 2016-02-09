@@ -33,6 +33,16 @@ var SigninView = PopupView.extend({
         });
     },
 
+    beforeShow: function () {
+        var h = $( window ).height();
+        var w = $( window ).width();
+        this.$el.css({
+            'max-height': 450,
+            'max-width': 300,
+            'width': w * 0.8
+        });
+    },
+
     openSignupView: function() {
         this.shut();
         this.$el.on('popupafterclose', function () {

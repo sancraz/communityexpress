@@ -44,7 +44,6 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     el: '#cmtyx_landingView',
 
     openSettings: function() {
-        // this.hideMoreButton();;
         this.openSubview('options', configurationActions.getConfigurations());
     },
 

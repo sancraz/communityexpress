@@ -39,9 +39,8 @@ var App = require('./scripts/app.js'),
     $(function() {
         FastClick.attach(document.body);
 
-        // Activate Carousel and Radiobutton
+        // Activate Carousel
         updateActions.initOwlCarousel();
-        updateActions.initRadiobutton();
     });
 
     $(document).on('click', 'a[href]:not([data-bypass])', function(evt) {

@@ -3,7 +3,6 @@
 'use strict';
 
 var LandingView = require('./views/landingView'),
-    RestaurantView = require('./views/restaurantView'),
     ChatView = require('./views/chatView'),
     ReviewsView = require('./views/reviewsView'),
     EditView = require('./views/editView'),
@@ -16,12 +15,8 @@ var LandingView = require('./views/landingView'),
     RootView = require('./views/rootView'),
     AboutUsView = require('./views/aboutUsView'),
     OrderView = require('./views/orderView'),
-    SimpleHeader = require('./views/headers/simpleHeader'),
-    ContestHeader = require('./views/headers/contestHeader'),
-    EmptyHeader = require('./views/headers/emptyHeader'),
     LandingHeader = require('./views/headers/landingHeader'),
-    NavbarView = require('./views/headers/navbarView'),
-    PaginationHeader = require('./views/headers/paginationHeader');
+    NavbarView = require('./views/headers/navbarView');
 
 module.exports = {
     create: function(viewName,options) {
