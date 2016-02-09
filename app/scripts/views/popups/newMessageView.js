@@ -25,6 +25,16 @@ var NewMessageView = PopupView.extend({
         });
     },
 
+    beforeShow: function () {
+        var h = $( window ).height();
+        var w = $( window ).width();
+        this.$el.css({
+            'max-height': 450,
+            'max-width': 300,
+            'width': w * 0.7
+        });
+    },
+
     _onSubmit: function () {
         if (this.$('textarea').val().length <= 0) {
             $('#err_text').html("Select Message.");

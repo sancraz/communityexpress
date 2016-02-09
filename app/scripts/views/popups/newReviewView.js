@@ -45,7 +45,7 @@ var NewReview = PopupView.extend({
         this.$el.css({
             'max-height': 450,
             'max-width': 300,
-            'width': w * 0.7
+            'width': w * 0.8
         });
         this.renderRating();
     },

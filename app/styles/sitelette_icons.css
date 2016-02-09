@@ -22,6 +22,10 @@
     background-image: url("icons/Back_new.png");
 }
 
+.ui-icon-cmntyex_review:after {
+    background-image: url("icons/write_review.png");
+}
+
 .ui-icon-cmntyex_forward:after {
     background-image: url("icons/Forward.png");
 }

@@ -22,6 +22,16 @@ var SignupView = PopupView.extend({
         });
     },
 
+    beforeShow: function () {
+        var h = $( window ).height();
+        var w = $( window ).width();
+        this.$el.css({
+            'max-height': 450,
+            'max-width': 300,
+            'width': w * 0.8
+        });
+    },
+
     submitForm: function(e) {
         e.preventDefault();
         var data = this.getFormData();
