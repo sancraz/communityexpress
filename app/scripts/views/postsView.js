@@ -109,10 +109,11 @@ var PostsView = PageLayout.extend({
 
         return postActions.postComment(sa, sl, file, message, post.get('communicationId'))
             .then(function (comment) {
+                debugger;
                 var comments = post.get('comments');
                 comments.push(comment);
                 post.set('comments', comments);
-                post.trigger('change');
+                post.trigger('change', post, {});
                 loader.showFlashMessage('comment added');
             }.bind(this), function (e) {
                 loader.showErrorMessage(e, 'error adding comment');
