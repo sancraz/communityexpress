@@ -1,3 +1,30 @@
- 
+.picture_background {
+	background-image: url(images/main_background.jpg);
+	background-size: 100%;
+	background-repeat: no-repeat;
+	background-position: 0% top;
+}
 
- 
+.phone_bar {
+	background-image: url(images/iphone-6-gold.png);
+	background-size: 362px;
+	background-repeat: no-repeat;
+	background-position: 0% top;
+}
+.phone_wrapper {
+	margin-top: 88px;
+	padding-left: 6px;
+	padding-bottom: 220px;
+}
+#demoinstructions_carousel {
+	padding-top: 88px;
+}
+.owl-item div {
+	width: 320px;
+	height: auto;
+	text-align: center;
+}
+.top_gap {
+	margin-top: 20px;
+}
+

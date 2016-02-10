@@ -14,10 +14,7 @@
 <link rel="stylesheet" href="vendor/styles/main.css">
 <link rel="stylesheet" href="vendor/styles/sitelette_theme1.css">
 <link rel="stylesheet" href="vendor/styles/sitelette_theme2.css"> -->
-<link rel="stylesheet" href="build/styles.css">
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
-
-
+<link rel="stylesheet" href="build/<?php echo $themeCSS ?>"> 
 
 <title><?php
 if (!is_null($saslName)) {
@@ -59,7 +56,7 @@ if (!is_null($androidHomeScreenIconURL)) {
     /*-webkit-user-select: none;*/
 }
 
-/*html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}*/
+ 
 </style>
 
 </head>
@@ -104,7 +101,6 @@ if (!is_null($siteletteJSON)) {
 ?>
 
 <script  src="build/bundle.js"></script>
-
 <!-- Include js plugins -->
 <!-- <script src="vendor/scripts/owl.carousel.min.js"></script>
 <script src="vendor/scripts/jquery-migrate-1.2.1.min.js"></script>

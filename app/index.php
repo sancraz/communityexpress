@@ -125,7 +125,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
 
 		return;
 	}
-
+  $errorMessage=NULL;
 	$saslName = NULL;
 	$appleTouchIcon60URL = NULL;
 
@@ -141,14 +141,22 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
 
 		$siteletteJSON = makeApiCall($apiURL);
 
-		if ($siteletteJSON['curl_error']) {
-			//echo ' Unable to access services '.$siteletteJSON['curl_error'];
+		if ($siteletteJSON['curl_error']) { 
+			$errorMessage=$siteletteJSON['curl_error'];
+      $errorMessage='Service unavailable.';
 			include_once ('error_page/index.php');
 		} else {
 			if (isset($siteletteJSON['error'])) {
+			  $errorMessage=$siteletteJSON['error']['message'];
+        
 				include_once ('error_page/index.php');
 			} else {
+			  
 				$saslJSON = json_decode($siteletteJSON['saslJSON'], TRUE);
+				//
+				$themeId = $saslJSON['themeId'];
+				$themeCSS = 'styles.css';
+				
 				$serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
 				$serviceLocationId = $saslJSON['serviceLocationId'];
 				$saslName = $saslJSON['saslName'];

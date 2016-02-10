@@ -5,50 +5,24 @@
   <meta charset="utf-8">
   <meta name="description" content="">
   <meta name="keywords" content="">
-  <title>Sitelettes</title>
+<title><?php
+if (isset($saslName)) {
+  echo $saslName;
+} else
+  echo 'sitelette.com';
+?></title>
   <!--[if IE]>
   <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 
   <link href="desktop/bootstrap/bootstrap.min.css" rel="stylesheet">
-  <link href="desktop/desktop.css" rel="stylesheet">
   <link href="desktop/owl.carousel.min.css" rel="stylesheet">
   <link href="desktop/owl.theme.default.min.css" rel="stylesheet">
   <link href="desktop/owl.transitions.css" rel="stylesheet">
   <link href="desktop/formvalidation/formValidation.min.css" rel="stylesheet">
   <link href="desktop/ladda-bootstrap/ladda-themeless.min.css" rel="stylesheet">
-
-  <style>
-	.picture_background {
-		background-image: url(desktop/images/main_background.jpg);
-		background-size: 100%;
-		background-repeat: no-repeat;
-		background-position: 0% top;
-	}
-
-	.phone_bar {
-		background-image: url(desktop/images/iphone-6-gold.png);
-		background-size: 362px;
-		background-repeat: no-repeat;
-		background-position: 0% top;
-	}
-	.phone_wrapper {
-		margin-top: 88px;
-		padding-left: 6px;
-		padding-bottom: 220px;
-	}
-	#demoinstructions_carousel {
-		padding-top: 88px;
-	}
-	.owl-item div {
-		width: 320px;
-		height: auto;
-		text-align: center;
-	}
-	 .top_gap {
-margin-top:20px;
- }
-  </style>
+ 
+  <link href="desktop/desktop.css" rel="stylesheet">
  </head>
  <body>
   <div class="container-fluid   picture_background">
@@ -58,8 +32,7 @@ margin-top:20px;
       <div class="row">
        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 phone_bar" style="min-width:370px;">
         <div class="phone_wrapper"  >
-         <!--<iframe id="phoneFrame" class=" " width=260 height=456  srcdoc="<head> </head><html><body><style>body{color:#FFF;}</style> <div> Hello, <b>world</b>.</div></body></html>" frameborder="0" allowfullscreen></iframe> -->
-         <iframe id="communityexpress" class=" " width=320 height=568  src="" frameborder="0" ></iframe>
+           <iframe id="communityexpress" class=" " width=320 height=568  src="" frameborder="0" ></iframe>
         </div>
        </div>
 

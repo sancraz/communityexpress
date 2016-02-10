@@ -19,7 +19,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h1> Error. Invalid Sitelette Link. Get your free sitelette at <a href="https://sitelettes.com">sitelettes.com</a></h1>
+					<h1> <?php echo $errorMessage ?> <br> Get your free sitelette at <a href="https://sitelettes.com">sitelettes.com</a></h1>
 				</div>
 			</div>
 		</div> 
