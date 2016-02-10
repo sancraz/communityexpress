@@ -42,7 +42,12 @@ var UploadView = PopupView.extend({
         });
     },
 
+    onShow: function() {
+        $('.preview').hide();
+    },
+
     resize: function() {
+        $('.preview').show();
         var file = this.$('.file-selector')[0].files[0],
             img,
             blob;
