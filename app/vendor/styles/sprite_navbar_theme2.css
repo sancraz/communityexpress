@@ -1,0 +1,61 @@
+.sprite_navbar { background: url('vendor/styles/images/sprite_navbar_theme1.png') no-repeat top left; width: 100px; height: 100px;  } 
+.sprite_navbar.aboutUs { background-position: 0 0; } 
+.sprite_navbar.back { background-position: 0 -110px; } 
+.sprite_navbar.forward { background-position: 0 -220px; } 
+.sprite_navbar.menu { background-position: 0 -330px; } 
+.sprite_navbar.share { background-position: 0 -440px; } 
+.sprite_navbar.email_button { background-position: 0 -550px; } 
+.sprite_navbar.facebook { background-position: 0 -660px; } 
+.sprite_navbar.twitter { background-position: 0 -770px; } 
+.sprite_navbar.sms_button { background-position: 0 -880px; } 
+.sprite_navbar.favorite-gray { background-position: 0 -990px; } 
+.sprite_navbar.favorite-yellow { background-position: 0 -1100px; } 
+.sprite_navbar.filter-icon { background-position: 0 -1210px; } 
+.sprite_navbar.list-of-favorites { background-position: 0 -1320px; } 
+.sprite_navbar.list-View { background-position: 0 -1430px; } 
+.sprite_navbar.map { background-position: 0 -1540px; } 
+.sprite_navbar.near_me { background-position: 0 -1650px; } 
+.sprite_navbar.deal { background-position: 0 -1760px; } 
+.sprite_navbar.play { background-position: 0 -1870px; height: 98px; } 
+.sprite_navbar.promotion { background-position: 0 -1978px; } 
+.sprite_navbar.contests { background-position: 0 -2088px; } 
+.sprite_navbar.search { background-position: 0 -2198px; } 
+.sprite_navbar.sign_in { background-position: 0 -2308px; } 
+.sprite_navbar.sign_out { background-position: 0 -2418px; } 
+.sprite_navbar.star_gray { background-position: 0 -2528px; } 
+.sprite_navbar.star_half { background-position: 0 -2638px; } 
+.sprite_navbar.star { background-position: 0 -2748px; } 
+.sprite_navbar.thumbs-down { background-position: 0 -2858px; } 
+.sprite_navbar.thumbs-up { background-position: 0 -2968px; } 
+.sprite_navbar.write_review { background-position: 0 -3078px; } 
+/*
+ <div class='sprite_navbar aboutUs'></div>
+<div class='sprite_navbar back'></div>
+<div class='sprite_navbar forward'></div>
+<div class='sprite_navbar menu'></div>
+<div class='sprite_navbar share'></div>
+<div class='sprite_navbar email_button'></div>
+<div class='sprite_navbar facebook'></div>
+<div class='sprite_navbar twitter'></div>
+<div class='sprite_navbar sms_button'></div>
+<div class='sprite_navbar favorite-gray'></div>
+<div class='sprite_navbar favorite-yellow'></div>
+<div class='sprite_navbar filter-icon'></div>
+<div class='sprite_navbar list-of-favorites'></div>
+<div class='sprite_navbar list-View'></div>
+<div class='sprite_navbar map'></div>
+<div class='sprite_navbar near_me'></div>
+<div class='sprite_navbar deal'></div>
+<div class='sprite_navbar play'></div>
+<div class='sprite_navbar promotion'></div>
+<div class='sprite_navbar contests'></div>
+<div class='sprite_navbar search'></div>
+<div class='sprite_navbar sign_in'></div>
+<div class='sprite_navbar sign_out'></div>
+<div class='sprite_navbar star_gray'></div>
+<div class='sprite_navbar star_half'></div>
+<div class='sprite_navbar star'></div>
+<div class='sprite_navbar thumbs-down'></div>
+<div class='sprite_navbar thumbs-up'></div>
+<div class='sprite_navbar write_review'></div>
+ */
