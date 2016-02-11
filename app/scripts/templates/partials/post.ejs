@@ -7,7 +7,9 @@
             <%= likeCount %> likes
         </span>
     </div>
-    <img src="<%= attachementURL %>"/>
+    <% if (attachementURL) { %>
+        <img src="<%= attachementURL %>"/>
+    <% } %>
     <p class="cmntyex-post_content">
             <%= postbody %>
     </p>
@@ -20,7 +22,9 @@
             <li class="cmntyex-post_comment">
                 <p><span class="cmntyex-post_member"></span>
                 <%= comment.postbody %></p>
-                <img src="<%= comment.attachementURL %>"/>
+                <% if (comment.attachementURL) { %>
+                    <img src="<%= comment.attachementURL %>"/>
+                <% } %>
             </li>
         <% }) %>
     </ul>

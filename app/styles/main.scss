@@ -1,12 +1,14 @@
 .back.ui-btn-icon-top:after {
 	position: fixed;
 	left: 5px;
+	top: 0;
 	background-color: #0D9CAC;
 	-moz-border-radius: 0px;
 	-webkit-border-radius: 0px;
 	border-radius: 0;
 	background-size: 30px 30px;
-	margin: 0 0 0 0;
+	margin: 0 0 0 -30px;
+	padding: 9px 20% 9px 0px;
 	height: 30px;
 	width: 30px;
 	z-index: 1000;
@@ -18,13 +20,15 @@
 
 .new_review_button:after {
 	position: fixed;
-	left: 88%;
+	left: 80%;
+	top: 0;
 	background-color: #0D9CAC;
 	-moz-border-radius: 0px;
 	-webkit-border-radius: 0px;
 	border-radius: 0;
 	background-size: 30px 30px;
 	margin: 0 0 0 0;
+	padding: 10px 15% 10px 20px;
 	height: 30px;
 	width: 30px;
 	z-index: 1000;

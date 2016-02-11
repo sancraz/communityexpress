@@ -33,6 +33,7 @@ var UploadView = PopupView.extend({
     },
 
     beforeShow: function(){
+        $('.preview').hide();
         var h = $( window ).height();
         var w = $( window ).width();
         this.$el.css({
@@ -40,10 +41,6 @@ var UploadView = PopupView.extend({
             'max-width': 300,
             'width': w * 0.8
         });
-    },
-
-    onShow: function() {
-        $('.preview').hide();
     },
 
     resize: function() {
@@ -117,8 +114,7 @@ var UploadView = PopupView.extend({
             .then(function() {
                 this.shut();
             }.bind(this));
-
-    }
+        }
 });
 
 module.exports = UploadView;

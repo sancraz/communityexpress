@@ -40,6 +40,7 @@ var NewReview = PopupView.extend({
     },
 
     beforeShow: function () {
+        $('.preview').hide();
         var h = $( window ).height();
         var w = $( window ).width();
         this.$el.css({
@@ -51,6 +52,7 @@ var NewReview = PopupView.extend({
     },
 
     resize: function() {
+        $('.preview').show();
         var file = this.$('.file-selector')[0].files[0],
         img,
         blob;
@@ -113,7 +115,7 @@ var NewReview = PopupView.extend({
         var title = this.$('input[name=title]').val();
         var message = this.$('textarea').val();
         var rating = this.ratingView.val();
-
+        console.log(this.file);
         loader.show('adding review');
 
         return this.action.apply(this, [this.model.sa(), this.model.sl(), this.file, title, message, rating])
