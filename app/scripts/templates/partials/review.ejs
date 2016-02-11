@@ -12,5 +12,7 @@
 </div>
 <div class="cmntyex-review_text">
     <p><%= text_excerpt %></p>
-    <img src="<%= imageURL %>"></img>
+    <% if ( imageURL ) { %>
+        <img src="<%= imageURL %>"></img>
+    <% } %>
 </div>

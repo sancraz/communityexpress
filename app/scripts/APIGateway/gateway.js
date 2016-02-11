@@ -35,7 +35,9 @@ module.exports = {
         delete options.image;
 
         formData.append('mediametadata', JSON.stringify(options));
-        formData.append('image', image, 'picFromCanvas.jpg');
+        if (image) {
+            formData.append('image', image, 'picFromCanvas.jpg');
+        };
 
         return $.ajax({
             type: method,

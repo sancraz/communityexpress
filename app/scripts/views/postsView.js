@@ -109,7 +109,6 @@ var PostsView = PageLayout.extend({
 
         return postActions.postComment(sa, sl, file, message, post.get('communicationId'))
             .then(function (comment) {
-                debugger;
                 var comments = post.get('comments');
                 comments.push(comment);
                 post.set('comments', comments);
