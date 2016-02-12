@@ -24,10 +24,11 @@ var NewReview = PopupView.extend({
             'click .submit_button':'submitForm',
             'change .file-selector':'resize'
         });
-
+        options.hideTitle = this.parent.hideTitle;
         this.action = options.action;
 
         this.renderData = {
+            hideTitle: options.parent.hideTitle,
             promotionTypes: options.promotionTypes
         };
 

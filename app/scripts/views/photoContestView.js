@@ -25,19 +25,20 @@ module.exports = PageLayout.extend({
     initialize: function(options) {
         options = options || {};
         this.sasl = options.sasl;
-        this.pageB = options.pageB;
+        this.hideTitle = true;
+        this.uploadPlaceHolder = 'Caption';
         this.on('show', this.onShow, this);
     },
 
     onShow: function(){
         this.addEvents({
-            'click .back': 'triggerContestsView',
+            'click .back': 'triggerLandingView',
             'click .enter_button': 'enterContest'
         });
         this.renderPrizes();
     },
 
-    triggerContestsView: function() {
+    triggerLandingView: function() {
         Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true })
     },
 

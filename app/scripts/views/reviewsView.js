@@ -15,7 +15,6 @@ var ReviewsView = PageLayout.extend({
     name: 'reviews',
 
     initialize: function(options) {
-        $('.restaurant_gallery').hide();
         options = options || {};
         this.restaurant = options.restaurant;
         this.getReviews();
@@ -23,6 +22,7 @@ var ReviewsView = PageLayout.extend({
         this.pagination = new Backbone.Model();
         this.pagination.set('hasNextReviews', false);
         this.pagination.set('hasPreviousReviews', false);
+        this.hideTitle = true;
 
         this.listenTo(this.pagination, 'change', this.updateButtons, this);
     },
