@@ -57,9 +57,9 @@ module.exports = PageLayout.extend({
     enterContest: function () {
         this.withLogIn(function () {
             this.openSubview('upload', this.sasl, {
-                action: function (sa, sl, file) {
+                action: function (sa, sl, file, message) {
                     loader.show('');
-                    return contestActions.enterPhotoContest(sa, sl, this.model.contestUUID, file)
+                    return contestActions.enterPhotoContest(sa, sl, this.model.contestUUID, file, message)
                         .then(function () {
                             loader.showFlashMessage('contest entered');
                         }, function (e) {
