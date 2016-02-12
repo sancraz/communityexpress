@@ -5,10 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta charset="utf-8">
-<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg">
-<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone6.png">
+<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg"> 
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" rel="stylesheet">
+ 
 <!-- <link rel="stylesheet" href="vendor/styles/owl.carousel.css">
 <link rel="stylesheet" href="vendor/styles/fullcalendar.min.css">
 <link rel="stylesheet" href="vendor/styles/animate.min.css">
@@ -17,6 +17,13 @@
 <link rel="stylesheet" href="vendor/styles/sitelette_theme1.css">
 <link rel="stylesheet" href="vendor/styles/sitelette_theme2.css"> -->
 <link rel="stylesheet" href="build/<?php echo $themeCSS ?>"> 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="vendor/scripts/jquery-radiobutton.min.js"></script> 
+<script src="vendor/scripts/jquery.jqplot.min.js"></script>
+<script src="vendor/scripts/jqplot.barRenderer.min.js"></script> 
+<script src="vendor/scripts/jqplot.categoryAxisRenderer.min.js"></script> 
+<script src="vendor/scripts/jqplot.pointLabels.min.js"></script>  
 
 <title><?php
 if (!is_null($saslName)) {
