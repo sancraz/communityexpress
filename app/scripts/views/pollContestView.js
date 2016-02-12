@@ -30,14 +30,14 @@ module.exports = PageLayout.extend({
 
     onShow: function(){
         this.addEvents({
-            'click .back': 'triggerContestsView',
+            'click .back': 'triggerLandingView',
         });
         this.renderOptions();
         this.renderPrizes();
     },
 
-    triggerContestsView: function() {
-        Vent.trigger('viewChange', 'contests', this.sasl.getUrlKey(), { reverse: true });
+    triggerLandingView: function() {
+        Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true })
     },
 
     renderPrizes: function () {

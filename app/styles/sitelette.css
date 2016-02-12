@@ -450,7 +450,7 @@ ul {
 
 /* PHOTO UPLOAD */
 .comntyex-upload_message_input {
-	min-height: 60px;
+	min-height: 100px;
 }
 
 .preview-container {

@@ -27,7 +27,8 @@ var UploadView = PopupView.extend({
         this.action = options.action;
 
         this.renderData = {
-            hideTitle: options.hideTitle,
+            uploadPlaceHolder: options.parent.uploadPlaceHolder,
+            hideTitle: options.parent.hideTitle,
             promotionTypes: options.promotionTypes
         };
     },
@@ -37,9 +38,9 @@ var UploadView = PopupView.extend({
         var h = $( window ).height();
         var w = $( window ).width();
         this.$el.css({
-            'max-height': 450,
+            // 'max-height': 450,
             'max-width': 300,
-            'width': w * 0.8
+            'width': w * 0.85
         });
     },
 
