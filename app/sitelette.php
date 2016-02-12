@@ -5,8 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta charset="utf-8">
-<link rel="apple-touch-startup-image" href="/styles/splash/Default-portrait@2x~iphone5.jpg">
-<link rel="apple-touch-startup-image" href="/styles/splash/Default-portrait@2x~iphone6.png">
+<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg">
+<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone6.png">
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" rel="stylesheet">
 <!-- <link rel="stylesheet" href="vendor/styles/owl.carousel.css">
