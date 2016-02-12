@@ -70,13 +70,14 @@ module.exports = {
         });
     },
 
-    enterPhotoContest: function (sa, sl, contestUUID, file) {
+    enterPhotoContest: function (sa, sl, contestUUID, file, message) {
         return gateway.sendFile('enterPhotoContest', {
             image: file,
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             contestUUID: contestUUID,
-            UID: getUID()
+            UID: getUID(),
+            userComment: message
         });
     }
 };

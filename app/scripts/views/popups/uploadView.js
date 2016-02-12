@@ -110,8 +110,7 @@ var UploadView = PopupView.extend({
         var message = this.$('textarea').val();
         var promotionType = this.$('select[name=promotiontype]').val();
 
-
-        return this.action.apply(this, [this.model.sa(), this.model.sl(), this.file, title, message, promotionType])
+        return this.action.apply(this, [this.model.sa(), this.model.sl(), this.file, message, title, promotionType])
             .then(function() {
                 this.shut();
             }.bind(this));
