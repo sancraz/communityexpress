@@ -77,7 +77,8 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
 
     _onOpen: function() {
         this.trigger('open');
-        $('.ui-panel-dismiss' ).addClass('needsclick');
+        $('.ui-panel-dismiss' ).addClass('needsclick').css('margin-top','-50px');
+        $('#cmntyex_menu_panel').siblings('.ui-panel-dismiss').css('left','120px');
     },
 
     _onClose: function() {
