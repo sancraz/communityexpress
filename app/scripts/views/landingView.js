@@ -29,6 +29,17 @@ var LandingView = PageLayout.extend({
             'min-height': '0',
             'margin-bottom': '0px'
         });
+
+        if (options.pid) {
+            this.openPromotions(options.pid);
+        }
+    },
+
+    renderData: function(){
+        return _.extend( {}, this.model.attributes, {
+            imagePath: config.imagePath,
+            isFavorite: this.user.hasFavorite(this.model.get('serviceAccommodatorId'), this.model.get('serviceLocationId'))
+        });
     },
 
     onShow: function(){
@@ -54,7 +65,14 @@ var LandingView = PageLayout.extend({
             'click .outofNetworkOpeningHours': 'showOutOfNetworkText',
             'click .outofNetworkUserReviews': 'showOutOfNetworkText'
         });
+
         this.renderGallery();
+
+        try {
+            addToHomescreen().show();
+        } catch (e) {
+            console.warn(' failed showing addToHomescreen');
+        }
     },
 
     onHide: function() {

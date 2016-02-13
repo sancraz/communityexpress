@@ -18,6 +18,12 @@ var RestaurantMenuView = PanelView.extend({
         this.options = options || {};
         this.$el.attr('id', 'cmntyex_menu_panel');
         this.menuOptions = _.extend({}, defaults, options);
+        this.addEvents();
+    },
+
+    onShow: function() {
+        debugger;
+        $('.ui-panel-dismiss-open').css({'left':'120px', 'right':'0'});
     },
 
     render: function() {
