@@ -49,6 +49,7 @@ var LandingView = PageLayout.extend({
             'click .userReviewsService': 'triggerReviewsView',
             'click .messagingService': 'triggerChatView',
             'click .catalog': 'triggerCatalogView',
+            'click .appointmentService': 'triggerAppointmentView',
             'click .wallService': 'triggerPostsView',
             'click .lVphotoContestButton': 'triggerPhotoContestView',
             'click .theme2_generic_banner': 'triggerAboutUsView',
@@ -135,6 +136,10 @@ var LandingView = PageLayout.extend({
 
     triggerCatalogView: function() {
         Vent.trigger('viewChange', 'catalog', this.model.getUrlKey() );
+    },
+
+    triggerAppointmentView: function() {
+        console.log('open appointment info');
     },
 
     triggerPostsView: function() {

@@ -22,12 +22,6 @@ module.exports = {
     create: function(viewName,options) {
         var view;
         switch(viewName){
-        case 'root':
-            view = new RootView({
-                headerView: EmptyHeader,
-                headerData: {}
-            });
-            break;
         case 'restaurant':
         case 'promotions':
             view = new LandingView(_.extend(options, {

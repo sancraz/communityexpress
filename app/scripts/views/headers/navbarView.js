@@ -26,6 +26,9 @@ var NavbarView = Backbone.View.extend({
         this.page = options.page;
 
         this.user = sessionActions.getCurrentUser();
+        if (this.user.getUID()) {
+            $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
+        };
 
         this.listenTo(Vent, 'login_success logout_success', this.render, this);
 
@@ -60,11 +63,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     triggerAboutUsView: function() {
-        if (this.model) {
-            Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
-        } else {
-            Vent.trigger('viewChange', 'aboutUs', [this.restaurant.sa(), this.restaurant.sl()]);
-        }
+        Vent.trigger('viewChange', 'aboutUs', [this.restaurant.sa(), this.restaurant.sl()]);
     },
 
     openMenu: function() {
@@ -82,6 +81,7 @@ var NavbarView = Backbone.View.extend({
         loader.show();
         userController.logout(this.user.getUID()).then(function(){
             loader.showFlashMessage( 'signed out' );
+            $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
         }, function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });
@@ -97,13 +97,6 @@ var NavbarView = Backbone.View.extend({
         } else {
             this.confirmSignout();
         }
-    },
-
-    renderSignInButton: function() {
-        this.$('.menu_button_5').html( new SignInButton({
-            parent: this.page,
-            model: this.restaurant
-        }).render().el);
     }
 
 });

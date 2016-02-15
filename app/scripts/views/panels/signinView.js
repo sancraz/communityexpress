@@ -57,6 +57,7 @@ var SigninView = PopupView.extend({
                 loader.showFlashMessage( 'successfully signed in as ' + response.username );
                 setTimeout(this.callback, 1000);
                 this.shut();
+                $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
                     this.showLoginError();
