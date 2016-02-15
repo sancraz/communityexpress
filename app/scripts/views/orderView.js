@@ -109,12 +109,10 @@ var OrderView = PageLayout.extend({
 
     // EXPAND/COLLAPSE CREDIT INFO WHEN CREDIT/CASH SELECTED
     showPaymentInfo: function() {
-        console.log('SHOULD EXPAND');
         $('#collapsible1').collapsible('expand');
     },
 
     hidePaymentInfo: function() {
-        console.log('SHOULD COLLAPSE');
         $('#collapsible1').collapsible('collapse');
     },
     // THE END 
