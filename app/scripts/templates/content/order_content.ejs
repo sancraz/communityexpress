@@ -43,13 +43,13 @@
             </div>
         <% } %>
         <div class="ui-grid-a">
-            <div class="ui-block-a">
+            <div class="ui-block-a showPaymentInfo">
                 <input type="radio" name="creditCardSelected" id="credit" value="true" <%= !paymentOnlineAccepted ? "disabled" : "" %>>
-                <label for="credit" class="showPaymentInfo">Credit</label>
+                <label for="credit">Credit</label>
             </div>
-            <div class="ui-block-b">
+            <div class="ui-block-b hidePaymentInfo">
                 <input type="radio" name="creditCardSelected" id="cash" value="false" checked="checked">
-                <label for="cash" class="hidePaymentInfo">Cash</label>
+                <label for="cash">Cash</label>
             </div>
         </div>
         <% if (paymentOnlineAccepted) { %>
