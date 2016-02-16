@@ -7,7 +7,7 @@ $(document).ready(
    $('.embedded_video').on(
      'click',
      function(event) {
-      var src = event.target.attr('srcmedia');
+      var src = $(event.target).attr('srcmedia');
       $(this).html(
         '<iframe width=\"320\" height=\"240\" src=\"' + src + '\" frameborder=\"0\" allowfullscreen></iframe>').css(
         'background', 'none');
