@@ -1,6 +1,6 @@
 'use strict';
 
-require('./styles/main.scss');
+require('./vendor/jquery-mobile/jquery.mobile-1.4.5.css');
 require('./styles/sitelette_icons.css');
 require('./vendor/styles/jquery.jqplot.min.css');
 require('./vendor/add-to-homescreen/style/addtohomescreen.css');
@@ -9,16 +9,17 @@ require('./vendor/styles/fullcalendar.min.css');
 require('./styles/themes/theme1/sitelette_theme1.css');
 require('./styles/themes/theme2/sitelette_theme2.css');
 require('./styles/sitelette.css');
+require('./styles/main.scss');
 
 require('./vendor/add-to-homescreen/src/addtohomescreen.min');
 require('./scripts/jquerymobile_config');
-require('./vendor/jquery-mobile/js/jquery.mobile-1.4.5');
-require('imports?$=jquery!./vendor/scripts/owl.carousel.min');
-require('imports?$=jquery!./vendor/scripts/jquery.jqplot.min');
-require('imports?$=jquery!./vendor/scripts/jqplot.barRenderer.min');
-require('imports?$=jquery!./vendor/scripts/jqplot.categoryAxisRenderer.min');
-require('imports?$=jquery!./vendor/scripts/jqplot.pointLabels.min');
-require('imports?$=jquery!./vendor/scripts/jquery-radiobutton.min');
+require('./vendor/jquery-mobile/jquery.mobile-1.4.5');
+require('./vendor/scripts/owl.carousel.min');
+require('./vendor/scripts/jquery.jqplot.min');
+require('./vendor/scripts/jqplot.barRenderer.min');
+require('./vendor/scripts/jqplot.categoryAxisRenderer.min');
+require('./vendor/scripts/jqplot.pointLabels.min');
+require('./vendor/scripts/jquery-radiobutton.min');
 require('./vendor/swipe/swipe');
 require('jquery-mask-plugin');
 require('moment');
@@ -41,6 +42,9 @@ var App = require('./scripts/app.js'),
 
         // Activate Carousel
         updateActions.initOwlCarousel();
+
+        // Change the radio buttons in the poll
+        $('.embedded_poll input').radiobutton();
     });
 
     $(document).on('click', 'a[href]:not([data-bypass])', function(evt) {

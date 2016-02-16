@@ -7,10 +7,6 @@
 <meta charset="utf-8">
 <link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg"> 
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
-
-
-<!--TODO  The following should be part of build.css -->
-<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css" rel="stylesheet">
  
 <link rel="stylesheet" href="build/<?php echo $themeCSS ?>">  
  
@@ -100,19 +96,6 @@ if (!is_null($siteletteJSON)) {
 ?>
 
 <script  src="build/bundle.js"></script>
- 
-
-<!--TODO  The following should be part of build.js  --> 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script src="vendor/scripts/jquery.jqplot.min.js"></script>
-<script src="vendor/scripts/jqplot.barRenderer.min.js"></script>
-<script src="vendor/scripts/jqplot.categoryAxisRenderer.min.js"></script>
-<script src="vendor/scripts/jqplot.pointLabels.min.js"></script>
-<script src="vendor/scripts/jquery-radiobutton.min.js"></script>  
-
-<!--TODO  The following should be part of updateAction.js -->
-<script  src="scripts/alex_please_include_in_updateActions.js"></script>
-
 
 </body>
 </html>

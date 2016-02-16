@@ -287,6 +287,49 @@ module.exports = {
             animateOut:'fadeOut',
             animateIn:'fadeIn'
         });
+    },
+
+    pollContestAction: function(uuid,choice) {
+        if (typeof choice !== 'undefined') {
+            $('#' + uuid + ' input[type=radio]').attr('disabled', true);
+            $('#' + uuid + ' a').fadeTo('slow', .3).removeAttr('href');
+            $('#' + uuid + ' a').off();
+            var url = community.protocol + community.server + '/apptsvc/rest/contests/enterPollAnonymous';
+            console.log(' url:' + url);
+            var data = {
+                'choiceId' : choice,
+                'serviceAccommodatorId' : community.serviceAccommodatorId,
+                'serviceLocationId' : community.serviceLocationId,
+                'contestUUID' : uuid
+            };
+            $(event.target).fadeOut('slow');
+            $('#pollresultsplot' + uuid).fadeIn('slow');
+            $(document).ready(function() {
+                console.log('starting');
+                var request = $.ajax({
+                headers : {
+                    Accept : 'application/json;charset=utf-8'
+                },
+                type : 'POST',
+                url : url,
+                contentType : 'application/json;charset=utf-8',
+                data : JSON.stringify(data)
+                }).done(function(response) {
+                    console.log('done:');
+                    var dataArray = response.dataArray, options = response.options;
+                    options.seriesDefaults.renderer = eval(options.seriesDefaults.renderer);
+                    options.axes.yaxis.renderer = eval(options.axes.yaxis.renderer);
+                    options.axes.yaxis.rendererOptions.tickRenderer = eval(options.axes.yaxis.rendererOptions.tickRenderer);
+                    $.jqplot('pollresultsplot' + uuid, dataArray, options);
+                }).fail(function(e, o) {
+                    console.log('Request failed: ' + o);
+                    if ('undefined' != typeof e.responseJSON && 'undefined' != typeof e.responseJSON.error)
+                    console.log(' Error:' + e.responseJSON.error.message);
+                }).always(function() {
+                    console.log(' All done');
+                });
+            });
+        }
     }
 
 };

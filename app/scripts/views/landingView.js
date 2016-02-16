@@ -12,6 +12,7 @@ var Vent = require('../Vent'),
     promotionsController = require('../controllers/promotionsController'),
     galleryActions = require('../actions/galleryActions'),
     mediaActions = require('../actions/mediaActions'),
+    updateActions = require('../actions/updateActions'),
     PageLayout = require('./components/pageLayout'),
     h = require('../globalHelpers');
 
@@ -52,6 +53,8 @@ var LandingView = PageLayout.extend({
             'click .appointmentService': 'triggerAppointmentView',
             'click .wallService': 'triggerPostsView',
             'click .lVphotoContestButton': 'triggerPhotoContestView',
+            'click .poll_submit_button': 'submitPollAction',
+            'click .embedded_video': 'activateVideoPlayer',
             'click .theme2_generic_banner': 'triggerAboutUsView',
 
             'click .promotionService': 'openPromotions',
@@ -115,13 +118,26 @@ var LandingView = PageLayout.extend({
         }.bind(this));
     },
 
+    // Go to the clicked on mediascreen photoContest
     triggerPhotoContestView: function(e) {
-        var target = e.currentTarget;
-        var contestUUID = $(target).attr('uuid');
+        var uuid = $(e.target).attr('uuid');
         Vent.trigger('viewChange', 'photoContest', {
-            sasl: this.model.getUrlKey(),
-            id: contestUUID
+            sasl: this.model.id,
+            id: uuid
         });
+    },
+
+    // Clicked poll_submit_button on mediascreen
+    submitPollAction: function(e) {
+        var uuid = $(event.target).attr('uuid');
+        var choice = $('#' + uuid + " input[type='radio']:checked").val();
+        updateActions.pollContestAction(uuid,choice);
+    },
+
+    // Activate clicked video on mediascreen
+    activateVideoPlayer: function(e) {
+        var src = $(e.target).attr('srcmedia');
+        $(e.target).closest('.embedded_video').html('<iframe width=\"320\" height=\"240\" src=\"' + src + '\" frameborder=\"0\" allowfullscreen></iframe>').css('background', 'none');
     },
 
     triggerReviewsView: function() {
