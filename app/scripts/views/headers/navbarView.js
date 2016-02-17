@@ -24,6 +24,8 @@ var NavbarView = Backbone.View.extend({
         this.options = options || {};
         this.restaurant = options.restaurant;
         this.page = options.page;
+        this.sa = community.serviceAccommodatorId;
+        this.sl = community.serviceLocationId;
 
         this.user = sessionActions.getCurrentUser();
         if (this.user.getUID()) {
@@ -42,8 +44,8 @@ var NavbarView = Backbone.View.extend({
     openPromotion: function(pid) {
         loader.show('retrieving promotions');
         promotionsController.fetchPromotionUUIDsBySasl(
-            this.restaurant.sa(),
-            this.restaurant.sl(),
+            this.sa,
+            this.sl,
             this.page.user.getUID()
         ).then(function(promotions) {
             if(promotions.length < 1) {
@@ -57,31 +59,13 @@ var NavbarView = Backbone.View.extend({
     },
 
     triggerContestsView: function() {
-        if (this.restaurant) {
-            this.page.withLogIn(function () {
-                Vent.trigger('viewChange', 'contests', this.restaurant.getUrlKey());
-            }.bind(this));
-        } else if (this.page.restaurant) {
-            this.page.withLogIn(function () {
-                Vent.trigger('viewChange', 'contests', this.page.restaurant.getUrlKey());
-            }.bind(this));
-        } else {
-            this.page.withLogIn(function () {
-                Vent.trigger('viewChange', 'contests', this.page.sasl.id);
-            }.bind(this));
-        }
+        this.page.withLogIn(function () {
+            Vent.trigger('viewChange', 'contests', [this.sa, this.sl]);
+        }.bind(this));
     },
 
     triggerAboutUsView: function() {
-        if (this.restaurant) {
-            Vent.trigger('viewChange', 'aboutUs', this.restaurant.getUrlKey());
-        } else if (this.page.restaurant) {
-            this.page.withLogIn(function () {
-                Vent.trigger('viewChange', 'contests', this.page.restaurant.getUrlKey());
-            }.bind(this));
-        } else {
-           Vent.trigger('viewChange', 'aboutUs', this.page.sasl.id); 
-        };
+        Vent.trigger('viewChange', 'aboutUs', [this.sa, this.sl]);
     },
 
     openMenu: function() {
