@@ -25,7 +25,7 @@ var LandingView = PageLayout.extend({
         this.sasl = options.sasl;
         this.contests = options.contests;
         this.on('show', this.onShow, this);
-        this.on('hide', this.onHide. this);
+        this.on('hide', this.onHide, this);
         $('#landing').css({
             'min-height': '0',
             'margin-bottom': '0px'
