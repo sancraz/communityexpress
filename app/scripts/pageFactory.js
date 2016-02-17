@@ -11,11 +11,9 @@ var LandingView = require('./views/landingView'),
     ContestsView = require('./views/contestsView'),
     PhotoContestView = require('./views/photoContestView'),
     PollContestView = require('./views/pollContestView'),
-    CheckinContestView = require('./views/checkinContestView'),
     RootView = require('./views/rootView'),
     AboutUsView = require('./views/aboutUsView'),
     OrderView = require('./views/orderView'),
-    LandingHeader = require('./views/headers/landingHeader'),
     NavbarView = require('./views/headers/navbarView');
 
 module.exports = {
