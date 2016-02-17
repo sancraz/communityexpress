@@ -1,5 +1,7 @@
 /*global define*/
 
+'use strict';
+
 var sessionActions = require('../../actions/sessionActions'),
     ContentView = require('./contentView'),
     ToolbarView = require('./toolbarView'),
@@ -185,7 +187,9 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
     close: function() {
         this.closeChildren();
         this.undelegateEvents();
+        this.navbarView.undelegateEvents();
         this.stopListening();
+        this.navbarView.stopListening();
     }
 
 });

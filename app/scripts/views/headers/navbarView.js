@@ -57,17 +57,37 @@ var NavbarView = Backbone.View.extend({
     },
 
     triggerContestsView: function() {
-        this.page.withLogIn(function () {
-            Vent.trigger('viewChange', 'contests', [this.restaurant.sa(), this.restaurant.sl()]);
-        }.bind(this));
+        if (this.restaurant) {
+            this.page.withLogIn(function () {
+                Vent.trigger('viewChange', 'contests', this.restaurant.getUrlKey());
+            }.bind(this));
+        } else if (this.page.restaurant) {
+            this.page.withLogIn(function () {
+                Vent.trigger('viewChange', 'contests', this.page.restaurant.getUrlKey());
+            }.bind(this));
+        } else {
+            this.page.withLogIn(function () {
+                Vent.trigger('viewChange', 'contests', this.page.sasl.id);
+            }.bind(this));
+        }
     },
 
     triggerAboutUsView: function() {
-        Vent.trigger('viewChange', 'aboutUs', [this.restaurant.sa(), this.restaurant.sl()]);
+        if (this.restaurant) {
+            Vent.trigger('viewChange', 'aboutUs', this.restaurant.getUrlKey());
+        } else if (this.page.restaurant) {
+            this.page.withLogIn(function () {
+                Vent.trigger('viewChange', 'contests', this.page.restaurant.getUrlKey());
+            }.bind(this));
+        } else {
+           Vent.trigger('viewChange', 'aboutUs', this.page.sasl.id); 
+        };
     },
 
     openMenu: function() {
-        this.page.openSubview('restaurantMenu', {}, this.restaurant.get('services'));
+        if (this.restaurant) {
+            this.page.openSubview('restaurantMenu', {}, this.restaurant.get('services'));
+        }
     },
 
     confirmSignout: function () {
