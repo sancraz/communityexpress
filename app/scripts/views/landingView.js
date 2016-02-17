@@ -129,14 +129,14 @@ var LandingView = PageLayout.extend({
 
     // Clicked poll_submit_button on mediascreen
     submitPollAction: function(e) {
-        var uuid = $(event.target).attr('uuid');
+        var uuid = $(e.target).attr('uuid');
         var choice = $('#' + uuid + " input[type='radio']:checked").val();
         updateActions.pollContestAction(uuid,choice);
     },
 
     // Activate clicked video on mediascreen
     activateVideoPlayer: function(e) {
-        var src = $(e.target).attr('srcmedia');
+        var src = $(e.target).closest('.embedded_video').attr('srcmedia');
         $(e.target).closest('.embedded_video').html('<iframe width=\"320\" height=\"240\" src=\"' + src + '\" frameborder=\"0\" allowfullscreen></iframe>').css('background', 'none');
     },
 
