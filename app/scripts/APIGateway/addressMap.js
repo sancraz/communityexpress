@@ -75,7 +75,8 @@ module.exports = {
             getSASLFilterOptions: ['GET', '/sasl/getSASLFilterOptions'],
 
             getCatalog: ['GET', '/retail/retrieveCatalog'],
-            createUserOrder: ['POST', '/retail/createUserOrder'],
+            createUserOrder: ['POST', '/retail/createUserOrderClient'],
+            getCreditCardTypes: ['GET', '/retail/getCreditCardTypes'],
 
             retrieveContestsForClient: ['GET', '/contests/retrieveContestsForClient'],
             retrievePhotoContest: ['GET', '/contests/retrievePhotoContestClient'],

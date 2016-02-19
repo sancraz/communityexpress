@@ -34,3 +34,23 @@
 	z-index: 1000;
 }
 */
+
+.cardtype,
+.country,
+.state,
+.year,
+.month {
+	text-align: left;
+}
+
+.expriation_date .ui-controlgroup-controls  {
+	width: 100%;
+}
+
+.expriation_date .ui-select  {
+	width: 50%;
+}
+
+.save_credit_data {
+	max-width: 320px;
+}

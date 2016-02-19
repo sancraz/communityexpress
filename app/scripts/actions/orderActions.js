@@ -18,5 +18,9 @@ module.exports = {
             }),
             UID: getUser().getUID(),
         });
+    },
+
+    getCreditInfo: function() {
+        return gateway.sendRequest('getCreditCardTypes');
     }
 };

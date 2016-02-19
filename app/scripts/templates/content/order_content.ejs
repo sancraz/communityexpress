@@ -55,13 +55,47 @@
         <% if (paymentOnlineAccepted) { %>
             <div data-role="collapsible" id="collapsible1" data-inset="false">
                 <h3>Payment Info</h3>
-                <input autocapitalize="off" type="text" name="cardType" placeholder="Card Type" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="name" placeholder="Name" data-corners="false"/>
+                <select name="select-choice-1" class="country"  id="select-choice-1">
+                    <option><%= country %></option>
+                </select>
+                <input autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
                 <input autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="expr" placeholder="Expr." data-corners="false"/>
+                <select name="select-choice-1" class="cardtype"  id="select-choice-1">
+                    <option>Card Type</option>
+                    <% _(cardTypes).each(function (cardType) { %>
+                        <option value="<%= cardType.enumText %>"><%= cardType.displayText %></option>
+                     <% }) %>
+                </select>
+                <fieldset class="expriation_date" data-role="controlgroup" data-type="horizontal">
+                    <select name="select-choice-month" class="month" id="select-choice-month">
+                        <option>Month</option>
+                        <% _(months).each(function (month) { %>
+                            <option value="<%= month %>"><%= month %></option>
+                         <% }) %>
+                    </select>
+                    <select name="select-choice-year" class="year" id="select-choice-year">
+                        <option>Year</option>
+                        <% _(years).each(function (year) { %>
+                            <option value="<%= year %>"><%= year %></option>
+                         <% }) %>
+                    </select>
+                </fieldset>
                 <input autocapitalize="off" type="text" name="cvv" placeholder="CVV." data-corners="false"/>
+                <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>
+                <select name="select-choice-1" class="state"  id="select-choice-1">
+                    <option>State</option>
+                    <option>List of states</option>
+                    <option>CA</option>
+                </select>
+                <input autocapitalize="off" type="text" name="zip" placeholder="Zip" data-corners="false"/>
             </div>
         <% } %>
+        <fieldset class="save_credit_data" data-role="controlgroup">
+           <input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
+           <label for="checkbox-1">Save for future reference</label>
+        </fieldset>
         <div class="ui-grid-a">
             <div class="ui-block-a">
                 <a href="#" class="cancel_button" data-role="button" data-corners="false">Cancel</a>
