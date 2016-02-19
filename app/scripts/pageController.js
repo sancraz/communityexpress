@@ -2,16 +2,17 @@
 
 'use strict';
 
-var Vent = require('./Vent.js'),
-    communicationActions = require('./actions/communicationActions.js'),
-    filterActions = require('./actions/filterActions.js'),
-    saslActions = require('./actions/saslActions.js'),
-    sessionActions = require('./actions/sessionActions.js'),
-    promotionActions = require('./actions/promotionActions.js'),
-    galleryActions = require('./actions/galleryActions.js'),
-    catalogActions = require('./actions/catalogActions.js'),
-    contestActions = require('./actions/contestActions.js'),
-    ReviewsCollection = require('./collections/reviews.js');
+var Vent = require('./Vent'),
+    communicationActions = require('./actions/communicationActions'),
+    filterActions = require('./actions/filterActions'),
+    saslActions = require('./actions/saslActions'),
+    sessionActions = require('./actions/sessionActions'),
+    promotionActions = require('./actions/promotionActions'),
+    orderActions = require('./actions/orderActions'),
+    galleryActions = require('./actions/galleryActions'),
+    catalogActions = require('./actions/catalogActions'),
+    contestActions = require('./actions/contestActions'),
+    ReviewsCollection = require('./collections/reviews');
 
 var visited = {
     sasl: false,
@@ -264,10 +265,15 @@ module.exports = {
     },
 
     order: function (options) {
+        var sasl;
         return saslActions.getSasl(options)
-            .then(function (sasl) {
+            .then(function(ret) {
+                sasl = ret;
+                return orderActions.getCreditInfo();
+            }).then(function (cardType) {
                 return {
                     sasl: sasl,
+                    cardType: cardType,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
                     basket: catalogActions.getBasket(sasl.sa(), sasl.sl())
