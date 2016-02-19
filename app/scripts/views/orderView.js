@@ -65,8 +65,8 @@ var OrderView = PageLayout.extend({
         var lastName = this.$('input[name=lastname]').val();
         var zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
-        var expriationMonth = this.$('select.month').val();
-        var expriationYear = this.$('select.year').val();
+        var expirationMonth = this.$('select.month').val();
+        var expirationYear = this.$('select.year').val();
         var cvv = this.$('input[name=cvv]').val();
         var creditCard = this.$('#credit')[0].checked;
         var pickup = this.$('#pickup')[0].checked;
@@ -108,8 +108,8 @@ var OrderView = PageLayout.extend({
                 firstName: firstName,
                 lastName: lastName,
                 cardNumber: cardNumber,
-                expriationMonth: expriationMonth,
-                expriationYear: expriationYear,
+                expirationMonth: expirationMonth,
+                expirationYear: expirationYear,
                 cvv: cvv
             }
         });
