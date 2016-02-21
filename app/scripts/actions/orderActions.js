@@ -8,13 +8,12 @@ var getUser = function () {
 };
 
 module.exports = {
-    placeOrder: function (sa, sl, options, items) {
+    placeOrder: function (sa, sl, options) {
         return gateway.sendRequest('createUserOrder', {
             payload: _.extend(options, {
                 userName: getUser().getUserName(),
                 serviceAccommodatorId: sa,
-                serviceLocationId: sl,
-                items: items
+                serviceLocationId: sl
             }),
             UID: getUser().getUID(),
         });
