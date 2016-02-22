@@ -117,7 +117,7 @@ var OrderView = PageLayout.extend({
 
     onSubmit: function (options) {
         debugger;
-        console.log(options);
+        console.log(options, JSON.stringify(options));
         loader.show('placing your order');
         return orderActions.placeOrder(
             this.sasl.sa(),
