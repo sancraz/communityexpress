@@ -34,7 +34,7 @@ var OrderView = PageLayout.extend({
             'click .showPaymentInfo': 'showPaymentInfo',
             'click .hidePaymentInfo': 'hidePaymentInfo'
         });
-        this.$('input[name=phone]').mask('(000) 000-0000');
+        // this.$('input[name=phone]').mask('(000) 000-0000');
     },
 
     renderData: function () {
@@ -84,13 +84,14 @@ var OrderView = PageLayout.extend({
             serviceAccommodatorId: this.sasl.sa(),
             serviceLocationId: this.sasl.sl(),
             deliveryEmail: email,
+            deliveryPhone: phone,
             deliveryContactName: firstName,
             pickupSelected: pickup,
             deliverySelected: !pickup,
             cashSelected: !creditCard,
             creditCardSelected: creditCard,
             items: items,
-            billingAdress: {
+            billingAddress: {
                 zip: zip,
                 street: street,
                 state: state,
