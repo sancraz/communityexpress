@@ -35,7 +35,6 @@ App.prototype = {
 
         Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
-        console.log(this.params);
         
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
@@ -78,6 +77,7 @@ App.prototype = {
     },
 
     goToPage: function( viewName, id, options ) {
+
         this.setGlobalConfigurations(options);
 
         if ( viewName === 'chat') { // redirect to restaurant view if user is not signed in

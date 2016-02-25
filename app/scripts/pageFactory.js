@@ -14,6 +14,7 @@ var LandingView = require('./views/landingView'),
     RootView = require('./views/rootView'),
     AboutUsView = require('./views/aboutUsView'),
     OrderView = require('./views/orderView'),
+    EventActiveView = require('./views/eventActiveView'),
     NavbarView = require('./views/headers/navbarView');
 
 module.exports = {
@@ -131,6 +132,14 @@ module.exports = {
                 }
             }));
             break;
+        case 'eventActive':
+            view = new EventActiveView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {
+                    sasl: options.sasl,
+                    title: 'Active Event'
+                }
+            }));
         }
         return view;
     }

@@ -12,6 +12,7 @@ var Vent = require('./Vent'),
     galleryActions = require('./actions/galleryActions'),
     catalogActions = require('./actions/catalogActions'),
     contestActions = require('./actions/contestActions'),
+    eventActions = require('./actions/eventActions'),
     ReviewsCollection = require('./collections/reviews');
 
 var visited = {
@@ -277,6 +278,22 @@ module.exports = {
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
                     basket: catalogActions.getBasket(sasl.sa(), sasl.sl())
+                };
+            });
+    },
+
+    eventActive: function(options) {
+        var sasl = options.sasl;
+        return saslActions.getSasl(sasl)
+            .then(function(ret) {
+                sasl = ret;
+                return eventActions.getEvents(options);
+            }).then(function (eventAttrs) {
+                return {
+                    sasl: sasl,
+                    eventAttrs: eventAttrs,
+                    user: sessionActions.getCurrentUser(),
+                    url: getUrl(sasl) + '?t=e&u=' + options.id
                 };
             });
     }

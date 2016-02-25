@@ -63,7 +63,6 @@ var ChatView = PageLayout.extend({
     },
 
     triggerLandingView: function() {
-        console.log(this.restaurant, 'HELLO');
         Vent.trigger( 'viewChange', 'restaurant', this.restaurant.getUrlKey(), { reverse: true } );
     },
 
