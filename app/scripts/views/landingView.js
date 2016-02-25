@@ -56,6 +56,7 @@ var LandingView = PageLayout.extend({
             'click .poll_submit_button': 'submitPollAction',
             'click .embedded_video': 'activateVideoPlayer',
             'click .theme2_generic_banner': 'triggerAboutUsView',
+            'click .theme2_event_entry_right': 'triggerEventView',
 
             'click .promotionService': 'openPromotions',
             'click .userPictures': 'openUserPictures',
@@ -125,6 +126,17 @@ var LandingView = PageLayout.extend({
             sasl: this.model.id,
             id: uuid
         });
+    },
+
+    triggerEventView: function(e) {
+        var href = $('.theme2_event_entry_right').find('a').attr('href'),
+            uuidStart = href.search('uuid='),
+            uuid = href.substring(uuidStart+5);
+        console.log(href, uuidStart, uuid);
+        Vent.trigger('viewChange', 'eventActive', {
+            sasl: this.model.id,
+            id: uuid
+        })
     },
 
     // Clicked poll_submit_button on mediascreen

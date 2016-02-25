@@ -86,6 +86,8 @@ module.exports = {
             enterCheckIn: ['POST', '/contests/enterCheckinContest'],
             enterPhotoContest: ['POST', '/contests/enterPhotoContest'],
 
+            getEventByUUID: ['GET', '/reservations/getEventByUUID'],
+
             sendPromoURLToEmail: ['GET', '/html/sendPromoURLToEmail'],
             sendPromoURLToMobileviaSMS: ['GET', '/html/sendPromoURLToMobileviaSMS'],
 

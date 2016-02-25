@@ -1,0 +1,8 @@
+<div id="eventActive_page" data-role="page" class="page">
+	<a class="ui-icon-cmntyex_back back ui-btn-icon-top"></a>
+    <div style="margin: -16px" data-role="content" class="content">
+        <% _(attrs).each(function (item, key) { %>
+            <p><%= key %>: <%= item %></p>
+        <% }) %>
+    </div>
+</div>
