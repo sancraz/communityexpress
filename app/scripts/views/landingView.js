@@ -56,7 +56,7 @@ var LandingView = PageLayout.extend({
             'click .poll_submit_button': 'submitPollAction',
             'click .embedded_video': 'activateVideoPlayer',
             'click .theme2_generic_banner': 'triggerAboutUsView',
-            'click .theme2_event_entry_right': 'triggerEventView',
+            'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
 
             'click .promotionService': 'openPromotions',
             'click .userPictures': 'openUserPictures',
@@ -72,6 +72,16 @@ var LandingView = PageLayout.extend({
         });
 
         this.renderGallery();
+
+        if (community.type == 'e') {
+            delete community.type;
+            this.triggerEventView();
+        };
+
+        if (community.type == 'p') {
+            delete community.type;
+            this.triggerPhotoContestView();
+        }
 
         try {
             addToHomescreen().show();
@@ -121,7 +131,13 @@ var LandingView = PageLayout.extend({
 
     // Go to the clicked on mediascreen photoContest
     triggerPhotoContestView: function(e) {
-        var uuid = $(e.target).attr('uuid');
+        var uuid;
+        if (community.uuidURL) {
+            uuid = community.uuidURL;
+            delete community.uuidURL;
+        } else {
+            uuid = $(e.target).attr('uuid');
+        };
         Vent.trigger('viewChange', 'photoContest', {
             sasl: this.model.id,
             id: uuid
@@ -129,10 +145,13 @@ var LandingView = PageLayout.extend({
     },
 
     triggerEventView: function(e) {
-        var href = $('.theme2_event_entry_right').find('a').attr('href'),
-            uuidStart = href.search('uuid='),
-            uuid = href.substring(uuidStart+5);
-        console.log(href, uuidStart, uuid);
+        var uuid;
+        if (community.uuidURL) {
+            uuid = community.uuidURL;
+            delete community.uuidURL;
+        } else {
+            uuid = $(e.target).attr('href').split('=')[1];
+        }
         Vent.trigger('viewChange', 'eventActive', {
             sasl: this.model.id,
             id: uuid

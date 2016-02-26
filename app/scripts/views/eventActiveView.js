@@ -19,12 +19,10 @@ module.exports = PageLayout.extend({
     },
 
     initialize: function(options) {
-        debugger;
         this.options = options || {};
         this.attrs = this.options.eventAttrs;
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);
-        console.log(this.attrs);
     },
 
     onShow: function(){
