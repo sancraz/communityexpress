@@ -78,10 +78,10 @@ var LandingView = PageLayout.extend({
             this.triggerEventView();
         };
 
-        if (community.type == 'p') {
+        if (community.type == 'h') {
             delete community.type;
             this.triggerPhotoContestView();
-        }
+        };
 
         try {
             addToHomescreen().show();
