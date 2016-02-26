@@ -83,6 +83,18 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
 		$UID = NULL;
 	}
 
+	if (validateParams('t')) {
+		$type = $_REQUEST['t'];
+	} else {
+		$type = NULL;
+	}
+
+	if (validateParams('u')) {
+		$uuidURL = $_REQUEST['u'];
+	} else {
+		$uuidURL = NULL;
+	}
+
 	/* NOTE: if debug=true then PHP will echo variables and exit */
 	if (validateParams('debug')) {
 		$debug = TRUE;
