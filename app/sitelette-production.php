@@ -3,11 +3,12 @@
 <head>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
+
 <meta charset="utf-8">
-<link rel="stylesheet" href="styles/main.css">
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg"> 
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+ 
+<link rel="stylesheet" href="build/styles<?php echo $themeId ?>.css"> 
 
 <title><?php
 if (!is_null($saslName)) {
@@ -15,7 +16,7 @@ if (!is_null($saslName)) {
 } else
     echo 'sitelette.com';
 ?></title>
- 
+
 
 <!-- for IOS web app-->
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -24,26 +25,23 @@ if (!is_null($saslName)) {
  content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 
- 
+
 <link rel="apple-touch-icon"  href="<?php
 if (!is_null($appleTouchIcon60URL)) {
     echo $appleTouchIcon60URL;
 } else {
     echo 'someicon';
 }
-?>"> 
- 
+?>">
+
 <link rel="icon" sizes="192x192" href="<?php
 if (!is_null($androidHomeScreenIconURL)) {
     echo $androidHomeScreenIconURL;
-    
+
 } else {
     echo 'someicon';
 }
 ?>">
-
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css">
-<link rel="stylesheet" href="styles/styles.css">
 
 <style>
 * {
@@ -51,12 +49,13 @@ if (!is_null($androidHomeScreenIconURL)) {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     /*-webkit-user-select: none;*/
 }
- 
 
+/*html,body{margin:0;height:100%}#cmtyx_header{font-family:arial;color:#FFF;text-align:center;background-color:blue;width:100%;height:40px}#cmtyx_navbar{font-family:arial;color:#FFF;text-align:center;background-color:green;width:100%;height:40px}#cmtyx_landingView{font-family:arial;color:#FFF;text-align:center;background-color:red;width:100%;min-height:100%;height:auto !important;height:100%;margin:0 auto -60px}*/
 </style>
 
 </head>
- 
+
+
 
 <body class="ui-mobile-viewport ui-overlay-a">
 
@@ -70,21 +69,23 @@ if (!is_null($saslJSON)) {
 }
 ?>;
   window.community={};
+  window.community.protocol='<?php echo $protocol?>';
   window.community.UID='<?php echo $UID ?>';
-  window.community.embedded=<?php echo $embedded ?>;
-  window.community.desktop=<?php echo $desktop ?>;
-  window.community.publicAccess=<?php echo $publicAccess ?>;
-  window.community.directAccess=<?php echo $directAccess ?>;
-  window.community.demo=<?php echo $demo ?>;
+  window.community.type='<?php echo $type ?>';
+  window.community.uuidURL='<?php echo $uuidURL ?>';
+  window.community.embedded=<?php echo  $embedded==TRUE?'true':'false'  ?>;
+  window.community.desktop=<?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
+  window.community.publicAccess=<?php echo  $publicAccess==TRUE?'true':'false'?>;
+  window.community.directAccess=<?php echo  $directAccess==TRUE?'true':'false'?>;
+  window.community.demo=<?php echo  $demo==TRUE?'true':'false'?>;
   window.community.server='<?php echo $server ?>';
   window.community.host='<?php echo $serverName ?>';
   window.community.friendlyURL='<?php echo $friendlyURL ?>';
-  window.community.isPrivate=<?php echo $isPrivate ?>;
+  window.community.isPrivate=<?php echo  $isPrivate==TRUE?'true':'false'?>;
   window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
   window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
-  window.community.canCreateAnonymousUser=<?php echo $canCreateAnonymousUser ?>;
-      
-      
+  window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
+
 </script>
 
 <?php
@@ -92,10 +93,10 @@ if (!is_null($siteletteJSON)) {
    echo $siteletteJSON['headerDiv'];
    echo $siteletteJSON['navbarDiv'];
    echo $siteletteJSON['landingViewDiv'];
-}  
+}
 ?>
 
-<script src="scripts/main.min.js"></script>
- 
+<script  src="build/bundle.js"></script>
+
 </body>
 </html>
