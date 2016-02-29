@@ -44,6 +44,14 @@ module.exports = function (grunt) {
                     '<%= yeoman.dist %>/build/styles2.css': [
                         '<%= yeoman.app %>/build/styles.css',
                         '<%= yeoman.app %>/styles/themes/theme2/sitelette_theme2.css'
+                    ],
+                    '<%= yeoman.dist %>/build/styles3.css': [
+                        '<%= yeoman.app %>/build/styles.css',
+                        '<%= yeoman.app %>/styles/themes/theme3/sitelette_theme3.css'
+                    ],
+                    '<%= yeoman.dist %>/build/styles4.css': [
+                        '<%= yeoman.app %>/build/styles.css',
+                        '<%= yeoman.app %>/styles/themes/theme4/sitelette_theme4.css'
                     ]
                 }
             },
