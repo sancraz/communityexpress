@@ -6,10 +6,7 @@ require('./vendor/styles/jquery.jqplot.min.css');
 require('./vendor/add-to-homescreen/style/addtohomescreen.css');
 require('./vendor/styles/owl.carousel.css');
 require('./vendor/styles/fullcalendar.min.css');
-// require('./styles/themes/theme1/sitelette_theme1.css');
-// require('./styles/themes/theme2/sitelette_theme2.css');
 require('./styles/sitelette.css');
-require('./styles/main.scss');
 
 require('./vendor/add-to-homescreen/src/addtohomescreen.min');
 require('./scripts/jquerymobile_config');

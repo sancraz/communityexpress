@@ -1,4 +1,6 @@
 var webpackDevConfig = require('./webpack.config.js');
+webpackDevConfig.watch = false;
+webpackDevConfig.keepalive = false;
 
 module.exports = function (grunt) {
     'use strict';
@@ -18,7 +20,7 @@ module.exports = function (grunt) {
 
         webpack: {
             options: webpackDevConfig,
-            build: {
+            start: {
             }
         },
         clean: ['<%= yeoman.dist %>'],
@@ -115,9 +117,10 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.registerTask('default', ['webpack:build']);
+    grunt.registerTask('default', ['webpack']);
     grunt.registerTask('build', [
         'clean',
+        'webpack',
         'copy',
         'uglify',
         'cssmin'
