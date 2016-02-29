@@ -69,6 +69,7 @@ if (!is_null($saslJSON)) {
 }
 ?>;
   window.community={};
+  window.community.themeId=<?php echo $themeId ?>;
   window.community.protocol='<?php echo $protocol?>';
   window.community.UID='<?php echo $UID ?>';
   window.community.type='<?php echo $type ?>';
