@@ -73,14 +73,14 @@ var LandingView = PageLayout.extend({
 
         this.renderGallery();
 
-        if (community.type == 'e') {
-            delete community.type;
-            this.triggerEventView();
-        };
-
-        if (community.type == 'h') {
-            delete community.type;
-            this.triggerPhotoContestView();
+        switch (community.type) {
+            case 'e':
+                delete community.type;
+                this.triggerEventView();
+            break;
+            case 'h':
+                delete community.type;
+                this.triggerPhotoContestView();
         };
 
         try {

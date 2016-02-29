@@ -35,7 +35,14 @@ module.exports = function (grunt) {
         cssmin: {
             target: {
                 files: {
-                    '<%= yeoman.dist %>/build/styles.css': '<%= yeoman.dist %>/build/styles.css'
+                    '<%= yeoman.dist %>/build/styles1.css': [
+                        '<%= yeoman.app %>/build/styles.css',
+                        '<%= yeoman.app %>/styles/themes/theme1/sitelette_theme1.css'
+                    ],
+                    '<%= yeoman.dist %>/build/styles2.css': [
+                        '<%= yeoman.app %>/build/styles.css',
+                        '<%= yeoman.app %>/styles/themes/theme2/sitelette_theme2.css'
+                    ]
                 }
             },
             options: {
@@ -93,12 +100,16 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/parser_api_utility.php'
                     },
                     {
-						src: '<%= yeoman.app %>/sitelette.php',
+						src: '<%= yeoman.app %>/sitelette-production.php',
 						dest: '<%= yeoman.dist %>/sitelette.php'
                     },
                     {
                         src: '<%= yeoman.app %>/Mobile_Detect.php',
                         dest: '<%= yeoman.dist %>/Mobile_Detect.php'
+                    },
+                    {
+                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
+                        dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
                     }
                 ]
             }
