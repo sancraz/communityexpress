@@ -26,12 +26,12 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader?sourceMap'),
-				exclude: ['app/vendor/styles', 'node_modules']
+				exclude: /node_modules/
 			},
 			{
 				test: /\.css$/,
 				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap'),
-				exclude: ["app/vendor/styles", "node_modules"]
+				exclude: /node_modules/
 			},
 			{
 				test: /vendor\/.+\.(jsx|js)$/,
