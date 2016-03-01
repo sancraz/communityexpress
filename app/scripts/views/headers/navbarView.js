@@ -36,6 +36,13 @@ var NavbarView = Backbone.View.extend({
 
         this.listenTo(this.parent, 'hide', this.remove, this);
 
+        // Check if user launches promotion URL
+        // and open promotions
+        if (community.type == 'p') {
+            delete community.type;
+            this.openPromotion();
+        };
+
         if (!this.page) {
             throw new Error('MapHeader::Expected a page');
         }

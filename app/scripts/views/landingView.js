@@ -73,6 +73,8 @@ var LandingView = PageLayout.extend({
 
         this.renderGallery();
 
+        // Check if user launches event URL or photoContest URL
+        // and open page with current event/photoContest
         switch (community.type) {
             case 'e':
                 delete community.type;
