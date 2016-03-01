@@ -1,6 +1,23 @@
 var webpackDevConfig = require('./webpack.config.js');
+
+// stop webpack watching and keepalive
 webpackDevConfig.watch = false;
 webpackDevConfig.keepalive = false;
+
+
+// Creating multiple stylesheet's paths with diff themes (for cssmin task)
+var themes = function() {
+    // Number of themes
+    var themeNumber = 4;
+    var distStyle = {};
+    for (var i = 1; i < themeNumber + 1; i++) {
+        var styles='<%= yeoman.app %>/build/styles.css',
+            distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
+            themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
+        distStyle[distFile] = [styles, themeName];
+    };
+    return distStyle;
+};
 
 module.exports = function (grunt) {
     'use strict';
@@ -36,24 +53,7 @@ module.exports = function (grunt) {
         },
         cssmin: {
             target: {
-                files: {
-                    '<%= yeoman.dist %>/build/styles1.css': [
-                        '<%= yeoman.app %>/build/styles.css',
-                        '<%= yeoman.app %>/styles/themes/theme1/sitelette_theme1.css'
-                    ],
-                    '<%= yeoman.dist %>/build/styles2.css': [
-                        '<%= yeoman.app %>/build/styles.css',
-                        '<%= yeoman.app %>/styles/themes/theme2/sitelette_theme2.css'
-                    ],
-                    '<%= yeoman.dist %>/build/styles3.css': [
-                        '<%= yeoman.app %>/build/styles.css',
-                        '<%= yeoman.app %>/styles/themes/theme3/sitelette_theme3.css'
-                    ],
-                    '<%= yeoman.dist %>/build/styles4.css': [
-                        '<%= yeoman.app %>/build/styles.css',
-                        '<%= yeoman.app %>/styles/themes/theme4/sitelette_theme4.css'
-                    ]
-                }
+                files: themes()
             },
             options: {
                 report: 'min'
