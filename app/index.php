@@ -167,6 +167,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
 				$saslJSON = json_decode($siteletteJSON['saslJSON'], TRUE);
 				//
 				$themeId = $saslJSON['themeId'];
+				$domain  = $saslJSON['domainEnum'];
 				$themeCSS = 'styles.css';
 				
 				$serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
