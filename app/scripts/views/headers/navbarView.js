@@ -40,6 +40,7 @@ var NavbarView = Backbone.View.extend({
         // and open promotions
         if (community.type == 'p') {
             delete community.type;
+            delete community.uuidURL;
             this.openPromotion();
         };
 

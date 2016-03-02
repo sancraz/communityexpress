@@ -31,9 +31,15 @@ var LandingView = PageLayout.extend({
             'margin-bottom': '0px'
         });
 
-        if (options.pid) {
-            this.openPromotions(options.pid);
-        }
+        // Check if user launches event URL or photoContest URL
+        // and open page with current event/photoContest
+        switch (community.type) {
+            case 'e':
+                this.triggerEventView();
+            break;
+            case 'h':
+                this.triggerPhotoContestView();
+        };
     },
 
     renderData: function(){
@@ -72,18 +78,6 @@ var LandingView = PageLayout.extend({
         });
 
         this.renderGallery();
-
-        // Check if user launches event URL or photoContest URL
-        // and open page with current event/photoContest
-        switch (community.type) {
-            case 'e':
-                delete community.type;
-                this.triggerEventView();
-            break;
-            case 'h':
-                delete community.type;
-                this.triggerPhotoContestView();
-        };
 
         try {
             addToHomescreen().show();
@@ -134,8 +128,9 @@ var LandingView = PageLayout.extend({
     // Go to the clicked on mediascreen photoContest
     triggerPhotoContestView: function(e) {
         var uuid;
-        if (community.uuidURL) {
+        if (community.type == 'h') {
             uuid = community.uuidURL;
+            delete community.type;
             delete community.uuidURL;
         } else {
             uuid = $(e.target).attr('uuid');
@@ -148,8 +143,9 @@ var LandingView = PageLayout.extend({
 
     triggerEventView: function(e) {
         var uuid;
-        if (community.uuidURL) {
+        if (community.type == 'e') {
             uuid = community.uuidURL;
+            delete community.type;
             delete community.uuidURL;
         } else {
             uuid = $(e.target).attr('href').split('=')[1];
