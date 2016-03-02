@@ -86,8 +86,9 @@
                 <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>
                 <select name="select-choice-1" class="state"  id="select-choice-1">
                     <option>State</option>
-                    <option>List of states</option>
-                    <option>CA</option>
+                    <% _(states).each(function (state, abbr) { %>
+                        <option value="<%= abbr %>"><%= state %></option>
+                    <% }) %>
                 </select>
                 <input autocapitalize="off" type="text" name="zip" placeholder="Zip" data-corners="false"/>
                 <fieldset class="save_credit_data" data-role="controlgroup">

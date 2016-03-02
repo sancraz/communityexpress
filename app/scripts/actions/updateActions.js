@@ -6,7 +6,8 @@
 module.exports = {
 
     updateLoyaltyStatus: function(UID) {
-        var urlPrefix = $("#apiURLprefix").text();
+        // var urlPrefix = $("#apiURLprefix").text();
+        var urlPrefix = community.protocol+community.server+'/apptsvc/rest/';
         var loyaltyAPIURL = urlPrefix + "retail/retrieveLoyaltyStatus";
         loyaltyAPIURL = this.buildUrl(loyaltyAPIURL, 'UID', UID);
         loyaltyAPIURL = this.buildUrl(loyaltyAPIURL, "serviceAccommodatorId",
@@ -40,7 +41,8 @@ module.exports = {
     },
 
     retrieveCalendar: function(UID) {
-        var urlPrefix = $("#apiURLprefix").text();
+        // var urlPrefix = $("#apiURLprefix").text();
+        var urlPrefix = community.protocol+community.server+'/apptsvc/rest/';
         var appointmentURL = urlPrefix + "appointments/fc_retrieveEvents";
         appointmentURL = this.buildUrl(appointmentURL, 'UID', UID);
         appointmentURL = this.buildUrl(appointmentURL, "serviceAccommodatorId",
@@ -158,7 +160,8 @@ module.exports = {
 
     createAnonymousUser: function(UID) {
         var self = this;
-        var urlPrefix = $("#apiURLprefix").text();
+        // var urlPrefix = $("#apiURLprefix").text();
+        var urlPrefix = community.protocol+community.server+'/apptsvc/rest/';
         var ancnUserCreateAPI = urlPrefix + "authentication/registerAnonymousAdhocMember";
         ancnUserCreateAPI = this.buildUrl(ancnUserCreateAPI, "serviceAccommodatorId",
         window.saslData.serviceAccommodatorId);

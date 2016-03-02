@@ -7,6 +7,7 @@ var Vent = require('../Vent'),
     viewFactory = require('../viewFactory'),
     PageLayout = require('./components/pageLayout'),
     orderActions = require('../actions/orderActions'),
+    states = require('../states'),
     h = require('../globalHelpers');
 
 var OrderView = PageLayout.extend({
@@ -23,6 +24,7 @@ var OrderView = PageLayout.extend({
         this.country = this.sasl.get('country');
         this.years = this.getYears();
         this.months = this.getMonths();
+        this.states = this.getStates();
         this.on('show', this.onShow, this);
     },
 
@@ -43,7 +45,8 @@ var OrderView = PageLayout.extend({
             cardTypes: this.cardType,
             country: this.country,
             years: this.years,
-            months: this.months
+            months: this.months,
+            states: this.states
         });
     },
 
@@ -117,8 +120,6 @@ var OrderView = PageLayout.extend({
     },
 
     onSubmit: function (options) {
-        debugger;
-        console.log(options, JSON.stringify(options));
         loader.show('placing your order');
         return orderActions.placeOrder(
             this.sasl.sa(),
@@ -161,6 +162,10 @@ var OrderView = PageLayout.extend({
             months.push(i);
         };
         return months;
+    },
+
+    getStates: function() {
+        return states;
     }
 });
 
