@@ -29,6 +29,7 @@ module.exports = PageLayout.extend({
         this.addEvents({
             'click .back': 'triggerLandingView'
         });
+        $('.theme2_event_banner_wrapper').css('margin-top', '30px');
     },
 
     triggerLandingView: function() {
