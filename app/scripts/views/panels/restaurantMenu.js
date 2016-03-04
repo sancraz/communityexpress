@@ -21,11 +21,6 @@ var RestaurantMenuView = PanelView.extend({
         this.addEvents();
     },
 
-    onShow: function() {
-        debugger;
-        $('.ui-panel-dismiss-open').css({'left':'120px', 'right':'0'});
-    },
-
     render: function() {
         var buttons = _.filter(this.options, function (option, key) {
             if (!option || !option.masterEnabled) return false;

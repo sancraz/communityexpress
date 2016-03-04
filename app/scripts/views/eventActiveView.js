@@ -30,6 +30,11 @@ module.exports = PageLayout.extend({
             'click .back': 'triggerLandingView'
         });
         $('.theme2_event_banner_wrapper').css('margin-top', '30px');
+        $('.theme2_event_entry_right_top_row_calendar').find('a').css({
+            'color': '#FFF',
+            'text-align': 'center',
+            'font-weight': '0100'
+        });
     },
 
     triggerLandingView: function() {
