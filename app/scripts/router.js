@@ -10,7 +10,7 @@ var Vent = require('./Vent.js');
 var RouterRouter = Backbone.Router.extend({
 
     routes: {
-        // '': 'root',
+        '': 'restaurant',
         ':id': 'restaurant'
         // ':id/chat': 'chat',
         // ':id/reviews': 'reviews',
@@ -30,8 +30,8 @@ var RouterRouter = Backbone.Router.extend({
     //     }
     // },
 
-    restaurant: function(id) {
-        Vent.trigger('viewChange', 'restaurant', id);
+    restaurant: function() {
+        Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
         // var p = params();
         // if (p && p.u) {
         //     this.subPage(id, p.u, p.t);

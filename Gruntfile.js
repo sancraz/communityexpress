@@ -80,7 +80,7 @@ module.exports = function (grunt) {
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>/desktop',
-                        src: '{,*/}*',
+                        src: ['**'],
                         dest: '<%= yeoman.dist %>/desktop'
                     },
                     {
