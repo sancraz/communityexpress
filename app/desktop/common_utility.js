@@ -21,7 +21,7 @@ function parseCommunityURL() {
 	 * Ugly, but works. 
 	 */
 	var communityRequestProfile = {
-		idDemo : false,
+		isDemo : false,
 
 		isService : false,
 		service : undefined,
