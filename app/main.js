@@ -44,18 +44,18 @@ var App = require('./scripts/app.js'),
         $('.embedded_poll input').radiobutton();
     });
 
-    // $(document).on('click', 'a[href]:not([data-bypass])', function(evt) {
-    //     // Get the absolute anchor href.
-    //     var href = { prop: $(this).prop('href'), attr: $(this).attr('href') };
-    //     // Get the absolute root.
-    //     var root = location.protocol + '//' + location.host;
+    $(document).on('click', 'a[href]:not([data-bypass])', function(evt) {
+        // Get the absolute anchor href.
+        var href = { prop: $(this).prop('href'), attr: $(this).attr('href') };
+        // Get the absolute root.
+        var root = location.protocol + '//' + location.host;
 
-    //     // Ensure the root is part of the anchor href, meaning it's relative.
-    //     if (href.prop.slice(0, root.length) === root) {
-    //         evt.preventDefault();
-    //         // Backbone.history.navigate(href.attr, true);
-    //     }
-    // });
+        // Ensure the root is part of the anchor href, meaning it's relative.
+        if (href.prop.slice(0, root.length) === root) {
+            evt.preventDefault();
+            // Backbone.history.navigate(href.attr, true);
+        }
+    });
 
 
 new App().init();
