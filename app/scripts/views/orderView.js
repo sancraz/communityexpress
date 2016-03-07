@@ -36,7 +36,6 @@ var OrderView = PageLayout.extend({
             'click .showPaymentInfo': 'showPaymentInfo',
             'click .hidePaymentInfo': 'hidePaymentInfo'
         });
-        // this.$('input[name=phone]').mask('(000) 000-0000');
     },
 
     renderData: function () {
