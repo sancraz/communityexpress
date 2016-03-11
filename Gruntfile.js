@@ -120,6 +120,10 @@ module.exports = function (grunt) {
                     {
                         src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
                         dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
+                    },
+                    {
+                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
+                        dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
                     }
                 ]
             }
