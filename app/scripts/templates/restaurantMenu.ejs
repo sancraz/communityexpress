@@ -1,7 +1,7 @@
 <% buttons.forEach(function (button) { %>
-    <a href="#" class="sasl_menu_button <%= button.key %>">
-        <img width="64" height="64" src="<%=button.buttonURL%>" alt="<%= button.displayText %>">
-        <span><%= button.displayText %></span>
-    </a>
+	<div class="sasl_menu_button sprite <%= button.key %> <%= button.className %>">
+		<img src="../../styles/icons/Clear100x100.png">
+		<span><%= button.displayText %></span>
+	</div>
 <% }) %>
 <a class="close_button outside" href="#">close</a>

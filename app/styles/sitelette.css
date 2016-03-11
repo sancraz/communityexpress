@@ -705,14 +705,14 @@ ul {
 	min-height: 50px;
 }
 
-.ui-panel-dismiss-open.ui-panel-dismiss-position-left[data-panelid="cmntyex_menu_panel"]
+.ui-panel-dismiss-open.ui-panel-dismiss-position-left
 	{
-	left: 120px;
+	left: 146px;
 	right: 0;
 }
 
 #cmntyex_menu_panel {
-	width: 120px;
+	width: 146px;
 	background: rgba(0, 0, 0, 0.8);
 }
 
@@ -731,10 +731,10 @@ ul {
 #cmntyex_menu_panel .sasl_menu_button {
 	color: #bbb;
 	text-shadow: none;
-	font-size: 12px;
+	font-size: 14px;
 	text-align: center;
 	width: 100%;
-	margin-bottom: 11px;
+	margin-bottom: 50px;
 	display: block;
 }
 
@@ -749,7 +749,7 @@ ul {
 	border-radius: 2px 2px 0 0;
 	padding: 10px 20px;
 	top: 180px;
-	left: 99px;
+	left: 125px;
 	-ms-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
 	-o-transform: rotate(90deg);
@@ -1125,7 +1125,7 @@ ul {
 	position: fixed;
 	left: 5px;
 	top: 0;
-	background-color: #0D9CAC;
+	background-color: transparent;
 	-moz-border-radius: 0px;
 	-webkit-border-radius: 0px;
 	border-radius: 0;
@@ -1145,7 +1145,7 @@ ul {
 	position: fixed;
 	left: 80%;
 	top: 0;
-	background-color: #0D9CAC;
+	background-color: transparent;
 	-moz-border-radius: 0px;
 	-webkit-border-radius: 0px;
 	border-radius: 0;
