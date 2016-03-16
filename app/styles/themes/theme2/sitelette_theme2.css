@@ -1065,7 +1065,7 @@
  * navbar sprite css
  */
 
-.sprite_navbar { background: url('sprite_navbar.png') no-repeat top left; width: 100px; height: 100px;  } 
+.sprite_navbar { background: url('sprite_navbar_theme2.png') no-repeat top left; width: 100px; height: 100px;  } 
 .sprite_navbar.back_new { background-position: 0 0; width: 71px; height: 85px; } 
 .sprite_navbar.back_small { background-position: 0 -95px; width: 31px; height: 37px; } 
 .sprite_navbar.button0_1_0_0 { background-position: 0 -142px; } 
