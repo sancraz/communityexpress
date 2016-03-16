@@ -1047,48 +1047,320 @@
 	margin-bottom: 75px;
 }
 
-/*.sprite_navbar.navbutton_back.back {
+.sprite_navbar.back_small.back {
 	position: fixed;
-	top: 0;
+	top: 5px;
+	left: 5px;
 	z-index: 1000;
-}*/
+}
+
+.sprite_navbar.navbutton_write_review {
+	position: fixed;
+	right: 5px;
+	top: 5px;
+	z-index: 1000;
+}
 
 /*
  * navbar sprite css
  */
-.sprite_navbar { background: url('sprite_navbar_theme2.png') no-repeat top left; width: 60px; height: 60px;  } 
-.sprite_navbar.navbutton_aboutUs { background-position: 0 0; } 
-.sprite_navbar.navbutton_back { background-position: 0 -70px; } 
-.sprite_navbar.navbutton_contests { background-position: 0 -140px; } 
-.sprite_navbar.navbutton_deal { background-position: 0 -210px; } 
-.sprite_navbar.navbutton_email { background-position: 0 -280px; } 
-.sprite_navbar.navbutton_facebook { background-position: 0 -350px; } 
-.sprite_navbar.navbutton_favorite-gray { background-position: 0 -420px; width: 30px; height: 30px; } 
-.sprite_navbar.navbutton_favorite-yellow { background-position: 0 -460px; width: 30px; height: 30px; } 
-.sprite_navbar.navbutton_filter-icon { background-position: 0 -500px; } 
-.sprite_navbar.navbutton_forward { background-position: 0 -570px; } 
-.sprite_navbar.navbutton_list-of-favorites { background-position: 0 -640px; } 
-.sprite_navbar.navbutton_list-View { background-position: 0 -710px; } 
-.sprite_navbar.navbutton_map { background-position: 0 -780px; } 
-.sprite_navbar.navbutton_menu { background-position: 0 -850px; } 
-.sprite_navbar.navbutton_near_me { background-position: 0 -920px; } 
-.sprite_navbar.navbutton_promotion { background-position: 0 -990px; } 
-.sprite_navbar.navbutton_search { background-position: 0 -1060px; } 
-.sprite_navbar.navbutton_share { background-position: 0 -1130px; } 
-.sprite_navbar.navbutton_sign_in { background-position: 0 -1200px; } 
-.sprite_navbar.navbutton_sign_out { background-position: 0 -1270px; } 
-.sprite_navbar.navbutton_sms_button { background-position: 0 -1340px; } 
-.sprite_navbar.navbutton_write_review { background-position: 0 -1410px; } 
-.sprite_navbar.navbutton_twitter { background-position: 0 -1480px; } 
-.sprite_navbar.play { background-position: 0 -1550px; width: 100px; height: 100px; } 
-.sprite_navbar.star_gray { background-position: 0 -1660px; width: 100px; height: 100px; } 
-.sprite_navbar.star_half { background-position: 0 -1770px; width: 100px; height: 100px; } 
-.sprite_navbar.thumbs-down { background-position: 0 -1880px; width: 100px; height: 100px; } 
-.sprite_navbar.star { background-position: 0 -1990px; width: 100px; height: 100px; } 
-.sprite_navbar.thumbs-up { background-position: 0 -2100px; width: 100px; height: 100px; } 
 
+.sprite_navbar { background: url('sprite_navbar.png') no-repeat top left; width: 100px; height: 100px;  } 
+.sprite_navbar.back_new { background-position: 0 0; width: 71px; height: 85px; } 
+.sprite_navbar.back_small { background-position: 0 -95px; width: 31px; height: 37px; } 
+.sprite_navbar.button0_1_0_0 { background-position: 0 -142px; } 
+.sprite_navbar.button0_2_0_0 { background-position: 0 -252px; } 
+.sprite_navbar.button0_3_0_0 { background-position: 0 -362px; } 
+.sprite_navbar.button0_4_0_0 { background-position: 0 -472px; } 
+.sprite_navbar.button0_5_0_0 { background-position: 0 -582px; } 
+.sprite_navbar.button0_6_0_0 { background-position: 0 -692px; } 
+.sprite_navbar.button0_8_0_0 { background-position: 0 -802px; } 
+.sprite_navbar.button0_9_0_0 { background-position: 0 -912px; } 
+.sprite_navbar.button0_10_0_0 { background-position: 0 -1022px; } 
+.sprite_navbar.button0_11_0_0 { background-position: 0 -1132px; } 
+.sprite_navbar.button0_12_0_0 { background-position: 0 -1242px; } 
+.sprite_navbar.button0_13_0_0 { background-position: 0 -1352px; } 
+.sprite_navbar.button0_14_0_0 { background-position: 0 -1462px; } 
+.sprite_navbar.button0_15_0_0 { background-position: 0 -1572px; } 
+.sprite_navbar.button0_16_0_0 { background-position: 0 -1682px; } 
+.sprite_navbar.button0_17_0_0 { background-position: 0 -1792px; } 
+.sprite_navbar.button0_18_0_0 { background-position: 0 -1902px; width: 98px; } 
+.sprite_navbar.button0_19_0_0 { background-position: 0 -2012px; } 
+.sprite_navbar.button0_20_0_0 { background-position: 0 -2122px; } 
+.sprite_navbar.button0_21_0_0 { background-position: 0 -2232px; } 
+.sprite_navbar.button0_22_0_0 { background-position: 0 -2342px; } 
+.sprite_navbar.button0_23_0_0 { background-position: 0 -2452px; } 
+.sprite_navbar.button0_24_0_0 { background-position: 0 -2562px; } 
+.sprite_navbar.button0_25_0_0 { background-position: 0 -2672px; } 
+.sprite_navbar.button0_26_0_0 { background-position: 0 -2782px; } 
+.sprite_navbar.button0_27_0_0 { background-position: 0 -2892px; } 
+.sprite_navbar.button0_28_0_0 { background-position: 0 -3002px; } 
+.sprite_navbar.button0_29_0_0 { background-position: 0 -3112px; } 
+.sprite_navbar.button0_30_0_0 { background-position: 0 -3222px; } 
+.sprite_navbar.button0_31_0_0 { background-position: 0 -3332px; } 
+.sprite_navbar.button0_32_0_0 { background-position: 0 -3442px; } 
+.sprite_navbar.button0_33_0_0 { background-position: 0 -3552px; } 
+.sprite_navbar.button0_34_0_0 { background-position: 0 -3662px; } 
+.sprite_navbar.button0_35_0_0 { background-position: 0 -3772px; } 
+.sprite_navbar.button0_36_0_0 { background-position: 0 -3882px; } 
+.sprite_navbar.button0_37_0_0 { background-position: 0 -3992px; height: 103px; } 
+.sprite_navbar.button0_38_0_0 { background-position: 0 -4105px; height: 91px; } 
+.sprite_navbar.button0_39_0_0 { background-position: 0 -4206px; } 
+.sprite_navbar.button0_40_0_0 { background-position: 0 -4316px; width: 98px; } 
+.sprite_navbar.button0_41_0_0 { background-position: 0 -4426px; } 
+.sprite_navbar.button0_42_0_0 { background-position: 0 -4536px; } 
+.sprite_navbar.button0_43_0_0 { background-position: 0 -4646px; } 
+.sprite_navbar.button0_44_0_0 { background-position: 0 -4756px; } 
+.sprite_navbar.button0_45_0_0 { background-position: 0 -4866px; } 
+.sprite_navbar.button0_46_0_0 { background-position: 0 -4976px; } 
+.sprite_navbar.button0_47_0_0 { background-position: 0 -5086px; } 
+.sprite_navbar.button0_48_0_0 { background-position: 0 -5196px; } 
+.sprite_navbar.button0_49_0_0 { background-position: 0 -5306px; } 
+.sprite_navbar.button0_50_0_0 { background-position: 0 -5416px; } 
+.sprite_navbar.button0_51_0_0 { background-position: 0 -5526px; } 
+.sprite_navbar.button0_52_0_0 { background-position: 0 -5636px; height: 99px; } 
+.sprite_navbar.button0_53_0_0 { background-position: 0 -5745px; height: 99px; } 
+.sprite_navbar.button0_54_0_0 { background-position: 0 -5854px; } 
+.sprite_navbar.button0_55_0_0 { background-position: 0 -5964px; } 
+.sprite_navbar.button0_56_0_0 { background-position: 0 -6074px; } 
+.sprite_navbar.button0_57_0_0 { background-position: 0 -6184px; } 
+.sprite_navbar.button0_58_0_0 { background-position: 0 -6294px; } 
+.sprite_navbar.button0_59_0_0 { background-position: 0 -6404px; } 
+.sprite_navbar.button0_60_0_0 { background-position: 0 -6514px; } 
+.sprite_navbar.button0_61_0_0 { background-position: 0 -6624px; } 
+.sprite_navbar.button0_62_0_0 { background-position: 0 -6734px; } 
+.sprite_navbar.button0_63_0_0 { background-position: 0 -6844px; } 
+.sprite_navbar.button0_64_0_0 { background-position: 0 -6954px; } 
+.sprite_navbar.button0_65_0_0 { background-position: 0 -7064px; height: 75px; } 
+.sprite_navbar.button0_66_0_0 { background-position: 0 -7149px; } 
+.sprite_navbar.button12_1_0_0 { background-position: 0 -7259px; } 
+.sprite_navbar.button12_2_0_0 { background-position: 0 -7369px; } 
+.sprite_navbar.button12_3_0_0 { background-position: 0 -7479px; } 
+.sprite_navbar.button12_4_0_0 { background-position: 0 -7589px; } 
+.sprite_navbar.button12_5_0_0 { background-position: 0 -7699px; } 
+.sprite_navbar.button12_6_0_0 { background-position: 0 -7809px; } 
+.sprite_navbar.button12_7_0_0 { background-position: 0 -7919px; } 
+.sprite_navbar.button12_8_0_0 { background-position: 0 -8029px; } 
+.sprite_navbar.button12_9_0_0 { background-position: 0 -8139px; } 
+.sprite_navbar.button12_10_0_0 { background-position: 0 -8249px; } 
+.sprite_navbar.button12_11_0_0 { background-position: 0 -8359px; } 
+.sprite_navbar.button12_12_0_0 { background-position: 0 -8469px; } 
+.sprite_navbar.button12_13_0_0 { background-position: 0 -8579px; } 
+.sprite_navbar.button12_14_0_0 { background-position: 0 -8689px; } 
+.sprite_navbar.button12_15_0_0 { background-position: 0 -8799px; } 
+.sprite_navbar.button12_16_0_0 { background-position: 0 -8909px; } 
+.sprite_navbar.button12_17_0_0 { background-position: 0 -9019px; } 
+.sprite_navbar.button12_18_0_0 { background-position: 0 -9129px; width: 98px; } 
+.sprite_navbar.button12_19_0_0 { background-position: 0 -9239px; } 
+.sprite_navbar.button12_20_0_0 { background-position: 0 -9349px; } 
+.sprite_navbar.button12_21_0_0 { background-position: 0 -9459px; } 
+.sprite_navbar.button12_22_0_0 { background-position: 0 -9569px; } 
+.sprite_navbar.button12_23_0_0 { background-position: 0 -9679px; } 
+.sprite_navbar.button12_24_0_0 { background-position: 0 -9789px; } 
+.sprite_navbar.button12_25_0_0 { background-position: 0 -9899px; } 
+.sprite_navbar.button12_26_0_0 { background-position: 0 -10009px; } 
+.sprite_navbar.button12_27_0_0 { background-position: 0 -10119px; height: 102px; } 
+.sprite_navbar.button12_28_0_0 { background-position: 0 -10231px; } 
+.sprite_navbar.button12_29_0_0 { background-position: 0 -10341px; } 
+.sprite_navbar.button12_30_0_0 { background-position: 0 -10451px; } 
+.sprite_navbar.button12_31_0_0 { background-position: 0 -10561px; } 
+.sprite_navbar.button12_32_0_0 { background-position: 0 -10671px; } 
+.sprite_navbar.button12_33_0_0 { background-position: 0 -10781px; } 
+.sprite_navbar.button12_34_0_0 { background-position: 0 -10891px; } 
+.sprite_navbar.button12_35_0_0 { background-position: 0 -11001px; } 
+.sprite_navbar.button12_36_0_0 { background-position: 0 -11111px; } 
+.sprite_navbar.button12_37_0_0 { background-position: 0 -11221px; } 
+.sprite_navbar.button12_38_0_0 { background-position: 0 -11331px; } 
+.sprite_navbar.button12_39_0_0 { background-position: 0 -11441px; } 
+.sprite_navbar.button12_41_0_0 { background-position: 0 -11551px; } 
+.sprite_navbar.button12_42_0_0 { background-position: 0 -11661px; } 
+.sprite_navbar.button12_43_0_0 { background-position: 0 -11771px; } 
+.sprite_navbar.button12_44_0_0 { background-position: 0 -11881px; } 
+.sprite_navbar.button12_45_0_0 { background-position: 0 -11991px; } 
+.sprite_navbar.button12_46_0_0 { background-position: 0 -12101px; } 
+.sprite_navbar.button12_47_0_0 { background-position: 0 -12211px; } 
+.sprite_navbar.button12_48_0_0 { background-position: 0 -12321px; } 
+.sprite_navbar.button12_49_0_0 { background-position: 0 -12431px; } 
+.sprite_navbar.button12_50_0_0 { background-position: 0 -12541px; } 
+.sprite_navbar.button12_51_0_0 { background-position: 0 -12651px; } 
+.sprite_navbar.button12_52_0_0 { background-position: 0 -12761px; } 
+.sprite_navbar.button12_53_0_0 { background-position: 0 -12871px; } 
+.sprite_navbar.button12_54_0_0 { background-position: 0 -12981px; } 
+.sprite_navbar.button12_55_0_0 { background-position: 0 -13091px; } 
+.sprite_navbar.button12_56_0_0 { background-position: 0 -13201px; } 
+.sprite_navbar.button12_57_0_0 { background-position: 0 -13311px; } 
+.sprite_navbar.button12_58_0_0 { background-position: 0 -13421px; } 
+.sprite_navbar.button12_59_0_0 { background-position: 0 -13531px; } 
+.sprite_navbar.button12_60_0_0 { background-position: 0 -13641px; } 
+.sprite_navbar.button12_61_0_0 { background-position: 0 -13751px; } 
+.sprite_navbar.button12_62_0_0 { background-position: 0 -13861px; } 
+.sprite_navbar.button12_63_0_0 { background-position: 0 -13971px; } 
+.sprite_navbar.button12_64_0_0 { background-position: 0 -14081px; } 
+.sprite_navbar.button12_65_0_0 { background-position: 0 -14191px; } 
+.sprite_navbar.button12_66_0_0 { background-position: 0 -14301px; } 
+.sprite_navbar.navbutton_aboutUs { background-position: 0 -14411px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_back { background-position: 0 -14481px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_contests { background-position: 0 -14551px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_deal { background-position: 0 -14621px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_email { background-position: 0 -14691px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_facebook { background-position: 0 -14761px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_favorite-gray { background-position: 0 -14831px; width: 30px; height: 30px; } 
+.sprite_navbar.navbutton_favorite-yellow { background-position: 0 -14871px; width: 30px; height: 30px; } 
+.sprite_navbar.navbutton_filter-icon { background-position: 0 -14911px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_forward { background-position: 0 -14981px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_list-of-favorites { background-position: 0 -15051px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_list-View { background-position: 0 -15121px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_map { background-position: 0 -15191px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_menu { background-position: 0 -15261px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_near_me { background-position: 0 -15331px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_promotion { background-position: 0 -15401px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_search { background-position: 0 -15471px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_share { background-position: 0 -15541px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_sign_in { background-position: 0 -15611px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_sign_out { background-position: 0 -15681px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_sms_button { background-position: 0 -15751px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_twitter { background-position: 0 -15821px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_write_review { background-position: 0 -15891px; width: 35px; height: 35px; } 
+.sprite_navbar.navbutton_write_review_big { background-position: 0 -15936px; width: 60px; height: 60px; } 
+.sprite_navbar.play { background-position: 0 -16006px; } 
+.sprite_navbar.star { background-position: 0 -16116px; } 
+.sprite_navbar.star_gray { background-position: 0 -16226px; } 
+.sprite_navbar.star_half { background-position: 0 -16336px; } 
+.sprite_navbar.thumbs-down { background-position: 0 -16446px; } 
+.sprite_navbar.thumbs-up { background-position: 0 -16556px; } 
 
-/*
+/*<div class='sprite_navbar back_new'></div>
+<div class='sprite_navbar back_small'></div>
+<div class='sprite_navbar button0_1_0_0'></div>
+<div class='sprite_navbar button0_2_0_0'></div>
+<div class='sprite_navbar button0_3_0_0'></div>
+<div class='sprite_navbar button0_4_0_0'></div>
+<div class='sprite_navbar button0_5_0_0'></div>
+<div class='sprite_navbar button0_6_0_0'></div>
+<div class='sprite_navbar button0_8_0_0'></div>
+<div class='sprite_navbar button0_9_0_0'></div>
+<div class='sprite_navbar button0_10_0_0'></div>
+<div class='sprite_navbar button0_11_0_0'></div>
+<div class='sprite_navbar button0_12_0_0'></div>
+<div class='sprite_navbar button0_13_0_0'></div>
+<div class='sprite_navbar button0_14_0_0'></div>
+<div class='sprite_navbar button0_15_0_0'></div>
+<div class='sprite_navbar button0_16_0_0'></div>
+<div class='sprite_navbar button0_17_0_0'></div>
+<div class='sprite_navbar button0_18_0_0'></div>
+<div class='sprite_navbar button0_19_0_0'></div>
+<div class='sprite_navbar button0_20_0_0'></div>
+<div class='sprite_navbar button0_21_0_0'></div>
+<div class='sprite_navbar button0_22_0_0'></div>
+<div class='sprite_navbar button0_23_0_0'></div>
+<div class='sprite_navbar button0_24_0_0'></div>
+<div class='sprite_navbar button0_25_0_0'></div>
+<div class='sprite_navbar button0_26_0_0'></div>
+<div class='sprite_navbar button0_27_0_0'></div>
+<div class='sprite_navbar button0_28_0_0'></div>
+<div class='sprite_navbar button0_29_0_0'></div>
+<div class='sprite_navbar button0_30_0_0'></div>
+<div class='sprite_navbar button0_31_0_0'></div>
+<div class='sprite_navbar button0_32_0_0'></div>
+<div class='sprite_navbar button0_33_0_0'></div>
+<div class='sprite_navbar button0_34_0_0'></div>
+<div class='sprite_navbar button0_35_0_0'></div>
+<div class='sprite_navbar button0_36_0_0'></div>
+<div class='sprite_navbar button0_37_0_0'></div>
+<div class='sprite_navbar button0_38_0_0'></div>
+<div class='sprite_navbar button0_39_0_0'></div>
+<div class='sprite_navbar button0_40_0_0'></div>
+<div class='sprite_navbar button0_41_0_0'></div>
+<div class='sprite_navbar button0_42_0_0'></div>
+<div class='sprite_navbar button0_43_0_0'></div>
+<div class='sprite_navbar button0_44_0_0'></div>
+<div class='sprite_navbar button0_45_0_0'></div>
+<div class='sprite_navbar button0_46_0_0'></div>
+<div class='sprite_navbar button0_47_0_0'></div>
+<div class='sprite_navbar button0_48_0_0'></div>
+<div class='sprite_navbar button0_49_0_0'></div>
+<div class='sprite_navbar button0_50_0_0'></div>
+<div class='sprite_navbar button0_51_0_0'></div>
+<div class='sprite_navbar button0_52_0_0'></div>
+<div class='sprite_navbar button0_53_0_0'></div>
+<div class='sprite_navbar button0_54_0_0'></div>
+<div class='sprite_navbar button0_55_0_0'></div>
+<div class='sprite_navbar button0_56_0_0'></div>
+<div class='sprite_navbar button0_57_0_0'></div>
+<div class='sprite_navbar button0_58_0_0'></div>
+<div class='sprite_navbar button0_59_0_0'></div>
+<div class='sprite_navbar button0_60_0_0'></div>
+<div class='sprite_navbar button0_61_0_0'></div>
+<div class='sprite_navbar button0_62_0_0'></div>
+<div class='sprite_navbar button0_63_0_0'></div>
+<div class='sprite_navbar button0_64_0_0'></div>
+<div class='sprite_navbar button0_65_0_0'></div>
+<div class='sprite_navbar button0_66_0_0'></div>
+<div class='sprite_navbar button12_1_0_0'></div>
+<div class='sprite_navbar button12_2_0_0'></div>
+<div class='sprite_navbar button12_3_0_0'></div>
+<div class='sprite_navbar button12_4_0_0'></div>
+<div class='sprite_navbar button12_5_0_0'></div>
+<div class='sprite_navbar button12_6_0_0'></div>
+<div class='sprite_navbar button12_7_0_0'></div>
+<div class='sprite_navbar button12_8_0_0'></div>
+<div class='sprite_navbar button12_9_0_0'></div>
+<div class='sprite_navbar button12_10_0_0'></div>
+<div class='sprite_navbar button12_11_0_0'></div>
+<div class='sprite_navbar button12_12_0_0'></div>
+<div class='sprite_navbar button12_13_0_0'></div>
+<div class='sprite_navbar button12_14_0_0'></div>
+<div class='sprite_navbar button12_15_0_0'></div>
+<div class='sprite_navbar button12_16_0_0'></div>
+<div class='sprite_navbar button12_17_0_0'></div>
+<div class='sprite_navbar button12_18_0_0'></div>
+<div class='sprite_navbar button12_19_0_0'></div>
+<div class='sprite_navbar button12_20_0_0'></div>
+<div class='sprite_navbar button12_21_0_0'></div>
+<div class='sprite_navbar button12_22_0_0'></div>
+<div class='sprite_navbar button12_23_0_0'></div>
+<div class='sprite_navbar button12_24_0_0'></div>
+<div class='sprite_navbar button12_25_0_0'></div>
+<div class='sprite_navbar button12_26_0_0'></div>
+<div class='sprite_navbar button12_27_0_0'></div>
+<div class='sprite_navbar button12_28_0_0'></div>
+<div class='sprite_navbar button12_29_0_0'></div>
+<div class='sprite_navbar button12_30_0_0'></div>
+<div class='sprite_navbar button12_31_0_0'></div>
+<div class='sprite_navbar button12_32_0_0'></div>
+<div class='sprite_navbar button12_33_0_0'></div>
+<div class='sprite_navbar button12_34_0_0'></div>
+<div class='sprite_navbar button12_35_0_0'></div>
+<div class='sprite_navbar button12_36_0_0'></div>
+<div class='sprite_navbar button12_37_0_0'></div>
+<div class='sprite_navbar button12_38_0_0'></div>
+<div class='sprite_navbar button12_39_0_0'></div>
+<div class='sprite_navbar button12_41_0_0'></div>
+<div class='sprite_navbar button12_42_0_0'></div>
+<div class='sprite_navbar button12_43_0_0'></div>
+<div class='sprite_navbar button12_44_0_0'></div>
+<div class='sprite_navbar button12_45_0_0'></div>
+<div class='sprite_navbar button12_46_0_0'></div>
+<div class='sprite_navbar button12_47_0_0'></div>
+<div class='sprite_navbar button12_48_0_0'></div>
+<div class='sprite_navbar button12_49_0_0'></div>
+<div class='sprite_navbar button12_50_0_0'></div>
+<div class='sprite_navbar button12_51_0_0'></div>
+<div class='sprite_navbar button12_52_0_0'></div>
+<div class='sprite_navbar button12_53_0_0'></div>
+<div class='sprite_navbar button12_54_0_0'></div>
+<div class='sprite_navbar button12_55_0_0'></div>
+<div class='sprite_navbar button12_56_0_0'></div>
+<div class='sprite_navbar button12_57_0_0'></div>
+<div class='sprite_navbar button12_58_0_0'></div>
+<div class='sprite_navbar button12_59_0_0'></div>
+<div class='sprite_navbar button12_60_0_0'></div>
+<div class='sprite_navbar button12_61_0_0'></div>
+<div class='sprite_navbar button12_62_0_0'></div>
+<div class='sprite_navbar button12_63_0_0'></div>
+<div class='sprite_navbar button12_64_0_0'></div>
+<div class='sprite_navbar button12_65_0_0'></div>
+<div class='sprite_navbar button12_66_0_0'></div>
 <div class='sprite_navbar navbutton_aboutUs'></div>
 <div class='sprite_navbar navbutton_back'></div>
 <div class='sprite_navbar navbutton_contests'></div>
@@ -1110,274 +1382,12 @@
 <div class='sprite_navbar navbutton_sign_in'></div>
 <div class='sprite_navbar navbutton_sign_out'></div>
 <div class='sprite_navbar navbutton_sms_button'></div>
-<div class='sprite_navbar navbutton_write_review'></div>
 <div class='sprite_navbar navbutton_twitter'></div>
+<div class='sprite_navbar navbutton_write_review'></div>
+<div class='sprite_navbar navbutton_write_review_big'></div>
 <div class='sprite_navbar play'></div>
+<div class='sprite_navbar star'></div>
 <div class='sprite_navbar star_gray'></div>
 <div class='sprite_navbar star_half'></div>
 <div class='sprite_navbar thumbs-down'></div>
-<div class='sprite_navbar star'></div>
-<div class='sprite_navbar thumbs-up'></div>
- */
-
-.sprite { background: url('sprite_buttons_theme9.png') no-repeat top left; width: 100px; height: 100px;  } 
-.sprite.button12_36_0_0 { background-position: 0 0; } 
-.sprite.button12_37_0_0 { background-position: 0 -110px; } 
-.sprite.button12_38_0_0 { background-position: 0 -220px; } 
-.sprite.button12_39_0_0 { background-position: 0 -330px; } 
-.sprite.button12_40_0_0 { background-position: 0 -440px; } 
-.sprite.button12_41_0_0 { background-position: 0 -550px; } 
-.sprite.button12_42_0_0 { background-position: 0 -660px; } 
-.sprite.button12_43_0_0 { background-position: 0 -770px; } 
-.sprite.button12_44_0_0 { background-position: 0 -880px; } 
-.sprite.button12_45_0_0 { background-position: 0 -990px; } 
-.sprite.button12_46_0_0 { background-position: 0 -1100px; } 
-.sprite.button12_47_0_0 { background-position: 0 -1210px; } 
-.sprite.button12_48_0_0 { background-position: 0 -1320px; } 
-.sprite.button12_49_0_0 { background-position: 0 -1430px; } 
-.sprite.button12_50_0_0 { background-position: 0 -1540px; } 
-.sprite.button12_51_0_0 { background-position: 0 -1650px; } 
-.sprite.button12_52_0_0 { background-position: 0 -1760px; } 
-.sprite.button12_53_0_0 { background-position: 0 -1870px; } 
-.sprite.button12_54_0_0 { background-position: 0 -1980px; } 
-.sprite.button12_55_0_0 { background-position: 0 -2090px; } 
-.sprite.button12_56_0_0 { background-position: 0 -2200px; } 
-.sprite.button12_57_0_0 { background-position: 0 -2310px; } 
-.sprite.button12_58_0_0 { background-position: 0 -2420px; } 
-.sprite.button12_59_0_0 { background-position: 0 -2530px; } 
-.sprite.button12_60_0_0 { background-position: 0 -2640px; } 
-.sprite.button12_61_0_0 { background-position: 0 -2750px; } 
-.sprite.button12_62_0_0 { background-position: 0 -2860px; } 
-.sprite.button12_63_0_0 { background-position: 0 -2970px; } 
-.sprite.button12_64_0_0 { background-position: 0 -3080px; } 
-.sprite.button12_65_0_0 { background-position: 0 -3190px; } 
-.sprite.button12_66_0_0 { background-position: 0 -3300px; } 
-.sprite.button0_1_0_0 { background-position: 0 -3410px; } 
-.sprite.button0_2_0_0 { background-position: 0 -3520px; } 
-.sprite.button0_3_0_0 { background-position: 0 -3630px; } 
-.sprite.button0_4_0_0 { background-position: 0 -3740px; } 
-.sprite.button0_5_0_0 { background-position: 0 -3850px; } 
-.sprite.button0_6_0_0 { background-position: 0 -3960px; } 
-.sprite.button0_8_0_0 { background-position: 0 -4070px; } 
-.sprite.button0_9_0_0 { background-position: 0 -4180px; } 
-.sprite.button0_10_0_0 { background-position: 0 -4290px; } 
-.sprite.button0_11_0_0 { background-position: 0 -4400px; } 
-.sprite.button0_12_0_0 { background-position: 0 -4510px; } 
-.sprite.button0_13_0_0 { background-position: 0 -4620px; } 
-.sprite.button0_14_0_0 { background-position: 0 -4730px; } 
-.sprite.button0_15_0_0 { background-position: 0 -4840px; } 
-.sprite.button0_16_0_0 { background-position: 0 -4950px; } 
-.sprite.button0_17_0_0 { background-position: 0 -5060px; } 
-.sprite.button0_18_0_0 { background-position: 0 -5170px; } 
-.sprite.button0_19_0_0 { background-position: 0 -5280px; } 
-.sprite.button0_20_0_0 { background-position: 0 -5390px; } 
-.sprite.button0_21_0_0 { background-position: 0 -5500px; } 
-.sprite.button0_24_0_0 { background-position: 0 -5610px; } 
-.sprite.button0_25_0_0 { background-position: 0 -5720px; } 
-.sprite.button0_26_0_0 { background-position: 0 -5830px; } 
-.sprite.button0_27_0_0 { background-position: 0 -5940px; } 
-.sprite.button0_28_0_0 { background-position: 0 -6050px; } 
-.sprite.button0_29_0_0 { background-position: 0 -6160px; } 
-.sprite.button0_30_0_0 { background-position: 0 -6270px; } 
-.sprite.button0_31_0_0 { background-position: 0 -6380px; } 
-.sprite.button0_32_0_0 { background-position: 0 -6490px; } 
-.sprite.button0_33_0_0 { background-position: 0 -6600px; } 
-.sprite.button0_34_0_0 { background-position: 0 -6710px; } 
-.sprite.button0_35_0_0 { background-position: 0 -6820px; } 
-.sprite.button0_36_0_0 { background-position: 0 -6930px; } 
-.sprite.button0_37_0_0 { background-position: 0 -7040px; } 
-.sprite.button0_38_0_0 { background-position: 0 -7150px; } 
-.sprite.button0_39_0_0 { background-position: 0 -7260px; } 
-.sprite.button0_41_0_0 { background-position: 0 -7370px; } 
-.sprite.button0_42_0_0 { background-position: 0 -7480px; } 
-.sprite.button0_43_0_0 { background-position: 0 -7590px; } 
-.sprite.button0_44_0_0 { background-position: 0 -7700px; } 
-.sprite.button0_45_0_0 { background-position: 0 -7810px; } 
-.sprite.button0_46_0_0 { background-position: 0 -7920px; } 
-.sprite.button0_47_0_0 { background-position: 0 -8030px; } 
-.sprite.button0_48_0_0 { background-position: 0 -8140px; } 
-.sprite.button0_49_0_0 { background-position: 0 -8250px; } 
-.sprite.button0_50_0_0 { background-position: 0 -8360px; } 
-.sprite.button0_51_0_0 { background-position: 0 -8470px; } 
-.sprite.button0_52_0_0 { background-position: 0 -8580px; } 
-.sprite.button0_53_0_0 { background-position: 0 -8690px; } 
-.sprite.button0_54_0_0 { background-position: 0 -8800px; } 
-.sprite.button0_55_0_0 { background-position: 0 -8910px; } 
-.sprite.button0_56_0_0 { background-position: 0 -9020px; } 
-.sprite.button0_57_0_0 { background-position: 0 -9130px; } 
-.sprite.button0_58_0_0 { background-position: 0 -9240px; } 
-.sprite.button0_59_0_0 { background-position: 0 -9350px; } 
-.sprite.button0_60_0_0 { background-position: 0 -9460px; } 
-.sprite.button0_61_0_0 { background-position: 0 -9570px; } 
-.sprite.button0_62_0_0 { background-position: 0 -9680px; } 
-.sprite.button0_63_0_0 { background-position: 0 -9790px; } 
-.sprite.button0_64_0_0 { background-position: 0 -9900px; } 
-.sprite.button0_65_0_0 { background-position: 0 -10010px; } 
-.sprite.button0_66_0_0 { background-position: 0 -10120px; } 
-.sprite.button12_1_0_0 { background-position: 0 -10230px; } 
-.sprite.button12_2_0_0 { background-position: 0 -10340px; } 
-.sprite.button12_3_0_0 { background-position: 0 -10450px; } 
-.sprite.button12_4_0_0 { background-position: 0 -10560px; } 
-.sprite.button12_5_0_0 { background-position: 0 -10670px; } 
-.sprite.button12_6_0_0 { background-position: 0 -10780px; } 
-.sprite.button12_7_0_0 { background-position: 0 -10890px; } 
-.sprite.button12_8_0_0 { background-position: 0 -11000px; } 
-.sprite.button12_9_0_0 { background-position: 0 -11110px; } 
-.sprite.button12_10_0_0 { background-position: 0 -11220px; } 
-.sprite.button12_11_0_0 { background-position: 0 -11330px; } 
-.sprite.button12_12_0_0 { background-position: 0 -11440px; } 
-.sprite.button12_13_0_0 { background-position: 0 -11550px; } 
-.sprite.button12_14_0_0 { background-position: 0 -11660px; } 
-.sprite.button12_15_0_0 { background-position: 0 -11770px; } 
-.sprite.button12_16_0_0 { background-position: 0 -11880px; } 
-.sprite.button12_17_0_0 { background-position: 0 -11990px; } 
-.sprite.button12_18_0_0 { background-position: 0 -12100px; } 
-.sprite.button12_19_0_0 { background-position: 0 -12210px; } 
-.sprite.button12_20_0_0 { background-position: 0 -12320px; } 
-.sprite.button12_21_0_0 { background-position: 0 -12430px; } 
-.sprite.button12_22_0_0 { background-position: 0 -12540px; } 
-.sprite.button12_23_0_0 { background-position: 0 -12650px; } 
-.sprite.button12_24_0_0 { background-position: 0 -12760px; } 
-.sprite.button12_25_0_0 { background-position: 0 -12870px; } 
-.sprite.button12_26_0_0 { background-position: 0 -12980px; } 
-.sprite.button12_27_0_0 { background-position: 0 -13090px; } 
-.sprite.button12_28_0_0 { background-position: 0 -13200px; } 
-.sprite.button12_29_0_0 { background-position: 0 -13310px; } 
-.sprite.button12_30_0_0 { background-position: 0 -13420px; } 
-.sprite.button12_31_0_0 { background-position: 0 -13530px; } 
-.sprite.button12_32_0_0 { background-position: 0 -13640px; } 
-.sprite.button12_33_0_0 { background-position: 0 -13750px; } 
-.sprite.button12_34_0_0 { background-position: 0 -13860px; } 
-.sprite.button12_35_0_0 { background-position: 0 -13970px; } 
-
-
-/*
-
-<div class='sprite button12_36_0_0'></div>
-<div class='sprite button12_37_0_0'></div>
-<div class='sprite button12_38_0_0'></div>
-<div class='sprite button12_39_0_0'></div>
-<div class='sprite button12_40_0_0'></div>
-<div class='sprite button12_41_0_0'></div>
-<div class='sprite button12_42_0_0'></div>
-<div class='sprite button12_43_0_0'></div>
-<div class='sprite button12_44_0_0'></div>
-<div class='sprite button12_45_0_0'></div>
-<div class='sprite button12_46_0_0'></div>
-<div class='sprite button12_47_0_0'></div>
-<div class='sprite button12_48_0_0'></div>
-<div class='sprite button12_49_0_0'></div>
-<div class='sprite button12_50_0_0'></div>
-<div class='sprite button12_51_0_0'></div>
-<div class='sprite button12_52_0_0'></div>
-<div class='sprite button12_53_0_0'></div>
-<div class='sprite button12_54_0_0'></div>
-<div class='sprite button12_55_0_0'></div>
-<div class='sprite button12_56_0_0'></div>
-<div class='sprite button12_57_0_0'></div>
-<div class='sprite button12_58_0_0'></div>
-<div class='sprite button12_59_0_0'></div>
-<div class='sprite button12_60_0_0'></div>
-<div class='sprite button12_61_0_0'></div>
-<div class='sprite button12_62_0_0'></div>
-<div class='sprite button12_63_0_0'></div>
-<div class='sprite button12_64_0_0'></div>
-<div class='sprite button12_65_0_0'></div>
-<div class='sprite button12_66_0_0'></div>
-<div class='sprite button0_1_0_0'></div>
-<div class='sprite button0_2_0_0'></div>
-<div class='sprite button0_3_0_0'></div>
-<div class='sprite button0_4_0_0'></div>
-<div class='sprite button0_5_0_0'></div>
-<div class='sprite button0_6_0_0'></div>
-<div class='sprite button0_8_0_0'></div>
-<div class='sprite button0_9_0_0'></div>
-<div class='sprite button0_10_0_0'></div>
-<div class='sprite button0_11_0_0'></div>
-<div class='sprite button0_12_0_0'></div>
-<div class='sprite button0_13_0_0'></div>
-<div class='sprite button0_14_0_0'></div>
-<div class='sprite button0_15_0_0'></div>
-<div class='sprite button0_16_0_0'></div>
-<div class='sprite button0_17_0_0'></div>
-<div class='sprite button0_18_0_0'></div>
-<div class='sprite button0_19_0_0'></div>
-<div class='sprite button0_20_0_0'></div>
-<div class='sprite button0_21_0_0'></div>
-<div class='sprite button0_24_0_0'></div>
-<div class='sprite button0_25_0_0'></div>
-<div class='sprite button0_26_0_0'></div>
-<div class='sprite button0_27_0_0'></div>
-<div class='sprite button0_28_0_0'></div>
-<div class='sprite button0_29_0_0'></div>
-<div class='sprite button0_30_0_0'></div>
-<div class='sprite button0_31_0_0'></div>
-<div class='sprite button0_32_0_0'></div>
-<div class='sprite button0_33_0_0'></div>
-<div class='sprite button0_34_0_0'></div>
-<div class='sprite button0_35_0_0'></div>
-<div class='sprite button0_36_0_0'></div>
-<div class='sprite button0_37_0_0'></div>
-<div class='sprite button0_38_0_0'></div>
-<div class='sprite button0_39_0_0'></div>
-<div class='sprite button0_41_0_0'></div>
-<div class='sprite button0_42_0_0'></div>
-<div class='sprite button0_43_0_0'></div>
-<div class='sprite button0_44_0_0'></div>
-<div class='sprite button0_45_0_0'></div>
-<div class='sprite button0_46_0_0'></div>
-<div class='sprite button0_47_0_0'></div>
-<div class='sprite button0_48_0_0'></div>
-<div class='sprite button0_49_0_0'></div>
-<div class='sprite button0_50_0_0'></div>
-<div class='sprite button0_51_0_0'></div>
-<div class='sprite button0_52_0_0'></div>
-<div class='sprite button0_53_0_0'></div>
-<div class='sprite button0_54_0_0'></div>
-<div class='sprite button0_55_0_0'></div>
-<div class='sprite button0_56_0_0'></div>
-<div class='sprite button0_57_0_0'></div>
-<div class='sprite button0_58_0_0'></div>
-<div class='sprite button0_59_0_0'></div>
-<div class='sprite button0_60_0_0'></div>
-<div class='sprite button0_61_0_0'></div>
-<div class='sprite button0_62_0_0'></div>
-<div class='sprite button0_63_0_0'></div>
-<div class='sprite button0_64_0_0'></div>
-<div class='sprite button0_65_0_0'></div>
-<div class='sprite button0_66_0_0'></div>
-<div class='sprite button12_1_0_0'></div>
-<div class='sprite button12_2_0_0'></div>
-<div class='sprite button12_3_0_0'></div>
-<div class='sprite button12_4_0_0'></div>
-<div class='sprite button12_5_0_0'></div>
-<div class='sprite button12_6_0_0'></div>
-<div class='sprite button12_7_0_0'></div>
-<div class='sprite button12_8_0_0'></div>
-<div class='sprite button12_9_0_0'></div>
-<div class='sprite button12_10_0_0'></div>
-<div class='sprite button12_11_0_0'></div>
-<div class='sprite button12_12_0_0'></div>
-<div class='sprite button12_13_0_0'></div>
-<div class='sprite button12_14_0_0'></div>
-<div class='sprite button12_15_0_0'></div>
-<div class='sprite button12_16_0_0'></div>
-<div class='sprite button12_17_0_0'></div>
-<div class='sprite button12_18_0_0'></div>
-<div class='sprite button12_19_0_0'></div>
-<div class='sprite button12_20_0_0'></div>
-<div class='sprite button12_21_0_0'></div>
-<div class='sprite button12_22_0_0'></div>
-<div class='sprite button12_23_0_0'></div>
-<div class='sprite button12_24_0_0'></div>
-<div class='sprite button12_25_0_0'></div>
-<div class='sprite button12_26_0_0'></div>
-<div class='sprite button12_27_0_0'></div>
-<div class='sprite button12_28_0_0'></div>
-<div class='sprite button12_29_0_0'></div>
-<div class='sprite button12_30_0_0'></div>
-<div class='sprite button12_31_0_0'></div>
-<div class='sprite button12_32_0_0'></div>
-<div class='sprite button12_33_0_0'></div>
-<div class='sprite button12_34_0_0'></div>
-<div class='sprite button12_35_0_0'></div>
+<div class='sprite_navbar thumbs-up'></div>*/
