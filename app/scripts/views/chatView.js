@@ -27,7 +27,7 @@ var ChatView = PageLayout.extend({
     onShow:  function() {
         this.addEvents({
             'click .back': 'triggerLandingView',
-            'click .new_review_button': 'openNewMessage'
+            'click .navbutton_write_review': 'openNewMessage'
         });
 
         this.renderMessages();

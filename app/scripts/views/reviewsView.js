@@ -30,7 +30,7 @@ var ReviewsView = PageLayout.extend({
     onShow: function(){
         this.addEvents({
             'click .back': 'triggerLandingView',
-            'click .new_review_button': 'openNewReview',
+            'click .navbutton_write_review': 'openNewReview',
             'click .next': 'nextPage',
             'click .prev': 'prevPage'
         });
