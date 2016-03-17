@@ -640,7 +640,7 @@
 }
 
 .theme2_poll_choices ul li div.jquery-checkbox-wrapper a.jquery-checkbox {
-	background: transparent url('../../images/checkbox.png') repeat scroll 0px 0px;
+	/*background: transparent url('../../images/checkbox.png') repeat scroll 0px 0px;*/
 	display: block;
 	width: 16px;
 	height: 16px;
@@ -662,7 +662,7 @@
 }
 
 .theme2_poll_choices ul li div.jquery-switch-wrapper a.jquery-switch {
-	background: transparent url('../../images/switches.png') repeat scroll 0px 27px;
+	/*background: transparent url('../../images/switches.png') repeat scroll 0px 27px;*/
 	display: block;
 	width: 94px;
 	height: 27px;
@@ -684,7 +684,7 @@
 }
 
 .theme2_poll_choices ul li div.jquery-radiobutton-wrapper a.jquery-radiobutton {
-	background: transparent url('../../images/radiobutton.png') repeat scroll 0px 0px;
+	/*background: transparent url('../../images/radiobutton.png') repeat scroll 0px 0px;*/
 	display: block;
 	width: 21px;
 	height: 21px;
