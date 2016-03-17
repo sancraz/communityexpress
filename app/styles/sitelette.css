@@ -705,9 +705,7 @@ ul {
 	min-height: 50px;
 }
 
-.ui-panel-dismiss-open.ui-panel-dismiss-position-left
-	{
-	left: 146px;
+.ui-panel-dismiss-open.ui-panel-dismiss-position-left {
 	right: 0;
 }
 

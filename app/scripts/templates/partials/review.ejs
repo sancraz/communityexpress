@@ -2,11 +2,11 @@
     <span class="cmntyex-review_author"><%= userName %></span>
     <% for (var i = 0; i < 10; i += 2) { %>
         <% if (rating - i == 1) { %>
-            <span class="cmntyex-icon ui-icon-cmntyex_half_star"></span>
+            <span class="cmntyex-icon sprite_navbar half_star"></span>
         <% } else if (rating - i > 1) { %>
-            <span class="cmntyex-icon ui-icon-cmntyex_star"></span>
+            <span class="cmntyex-icon sprite_navbar star_small"></span>
         <% } else { %>
-            <span class="cmntyex-icon ui-icon-cmntyex_grey_star"></span>
+            <span class="cmntyex-icon sprite_navbar gray_star"></span>
         <% } %>
     <% } %>
 </div>
