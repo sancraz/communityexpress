@@ -9,22 +9,31 @@
             <div class="ui-block-a">
                 <a
                     href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + promoUUID) %>"
-                    class="facebook_button ui-icon-facebook cmntyex-icon-big">
+                    class="facebook_button">
+                    <div class="sprite_navbar navbutton_facebook promotion_contact"></div>
                 </a>
             </div>
             <div class="ui-block-b">
                 <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + promoUUID) %>"
-                   class="twitter_button ui-icon-twitter cmntyex-icon-big"></a>
+                   class="twitter_button">
+                   <div class="sprite_navbar navbutton_twitter promotion_contact"></div>
+                </a>
             </div>
             <div class="ui-block-c">
-                <a href="mailto:?subject=&body=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + promoUUID) %>" class="ui-icon-email cmntyex-icon-big"></a>
+                <a href="mailto:?subject=&body=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + promoUUID) %>" class="email_button">
+                    <div class="sprite_navbar navbutton_email promotion_contact"></div>
+                </a>
             </div>
             <div class="ui-block-d">
-                <a href="#" class="mobile_button ui-icon-sms cmntyex-icon-big"></a>
+                <a href="#" class="mobile_button">
+                    <div class="sprite_navbar navbutton_sms_button promotion_contact"></div>
+                </a>
             </div>
             <div class="ui-block-e">
                 <div class="cmntyex-promotion_likes"></div>
-                <a href="#" class="ui-icon-cmntyex-like cmntyex-icon-big like_button"></a>
+                <a href="#" class="like_button">
+                    <div class="sprite_navbar navbutton_thumbs-up promotion_contact"></div>
+                </a>
             </div>
         </div>
     </div>

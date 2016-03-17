@@ -40,7 +40,7 @@ var PageView = function(options) {
 _.extend(PageView.prototype, Backbone.View.prototype, {
 
     pageEvents: {
-        'click .poll_image': 'openSettings',
+        // 'click .poll_image': 'openSettings'
     },
 
     el: '#cmtyx_landingView',
