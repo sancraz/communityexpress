@@ -467,7 +467,7 @@ ul {
 /* REVIEW STYLES */
 .cmntyex-content_placeholder {
 	min-height: 50px;
-	/* background-image: url(images/ajax-loader-white.gif); */
+	 background-image: url(images/ajax-loader-white.gif); 
 	background-repeat: no-repeat;
 	background-position: center center;
 }
@@ -1119,42 +1119,16 @@ ul {
 	box-sizing: border-box;
 }
 
-.back:after {
-	position: fixed;
-	left: 5px;
-	top: 0;
-	background-color: transparent;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0;
-	background-size: 30px 30px;
-	margin: 0 0 0 -7%;
-	padding: 9px 15% 9px 0px;
-	height: 30px;
-	width: 30px;
-	z-index: 1000;
-}
-
 .cmntyex-contest img {
 	max-width: 280px;
 }
 
-.new_review_button:after {
-	position: fixed;
-	left: 80%;
-	top: 0;
-	background-color: transparent;
-	-moz-border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border-radius: 0;
-	background-size: 30px 30px;
-	margin: 0 -7% 0 0;
-	padding: 10px 15% 10px 20px;
-	height: 30px;
-	width: 30px;
-	z-index: 1000;
+a.jquery-radiobutton {
+	background: transparent url('./images/radiobutton.png') repeat scroll 0px 0px;
 }
-
-.theme2_button {
-	cursor: pointer;
+a.jquery-switch {
+	background: transparent url('./images/switches.png') repeat scroll 0px 27px;
+}
+a.jquery-checkbox {
+	background: transparent url('./images/checkbox.png') repeat scroll 0px 0px;
 }
