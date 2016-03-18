@@ -1123,6 +1123,12 @@ ul {
 	max-width: 280px;
 }
 
+.expiration_date .ui-controlgroup-controls {
+	width: 100%;
+}
+.expiration_date .ui-controlgroup-controls .ui-select {
+	width: 50%;
+}
 a.jquery-radiobutton {
 	background: transparent url('./images/radiobutton.png') repeat scroll 0px 0px;
 }
