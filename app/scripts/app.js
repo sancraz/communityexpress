@@ -5,7 +5,6 @@ var userController = require('./controllers/userController'),
     updateActions = require('./actions/updateActions'),
 	sessionActions = require('./actions/sessionActions'),
 	pageController = require('./pageController.js'),
-	Router = require('./router.js'),
 	config = require('./appConfig.js'),
 	h = require('./globalHelpers'),
 	Vent = require('./Vent.js'),
@@ -19,9 +18,9 @@ var hasUIDinQueryParams = function () {
 };
 
 var App = function() {
-    this.router = new Router();
     this.params = window.community;
     Vent.on('viewChange', this.goToPage, this);
+    Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
 };
 
 App.prototype = {
