@@ -72,10 +72,10 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>'
                     },
                     {
-						expand: true,
-						cwd: '<%= yeoman.app %>/no_sitelette',
-						src: '{,*/}*',
-						dest: '<%= yeoman.dist %>/no_sitelette'
+						                expand: true,
+						                cwd: '<%= yeoman.app %>/no_sitelette',
+						                src: '{,*/}*',
+						                dest: '<%= yeoman.dist %>/no_sitelette'
                     },
                     {
                         expand: true,
@@ -110,8 +110,8 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/parser_api_utility.php'
                     },
                     {
-						src: '<%= yeoman.app %>/sitelette-production.php',
-						dest: '<%= yeoman.dist %>/sitelette.php'
+					                  	src: '<%= yeoman.app %>/sitelette-production.php',
+						                  dest: '<%= yeoman.dist %>/sitelette.php'
                     },
                     {
                         src: '<%= yeoman.app %>/Mobile_Detect.php',

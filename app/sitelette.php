@@ -88,7 +88,7 @@ if (!is_null($saslJSON)) {
   window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
   window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
   window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
-
+  window.community.isTileViewDetails=<?php echo $tileViewDetails==TRUE?'true':'false'?>;
 </script>
 
 <?php
