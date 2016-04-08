@@ -3,23 +3,17 @@ body{
 	background: url("https://communitylive.co/apptsvc/static/communityexpress/chalkboards/chalkboards_blank.jpg");
 	background-repeat:no-repeat;
 	background-size: 100% 100%;
+	background-color: rgba(0, 255, 0, 0.5);
+	 
 }
 
-.saslName {
-	font-family: 'open sans', arial, sans-serif;
-	line-height: 1.2;
-	font-size: 18px;
-	font-weight: 600;
-	width: 100%;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	text-align: center;
-	background-color: #000;
-	color: #FFF;
+#cmtyx_landingView{ 
+	background-color: rgba(0, 0, 0, 0.5);
+	text-shadow:none;
 }
 
 .mediatile {
-	 background-color: rgba(0, 0, 0, 0.5);
+	 
 }
 
 .mediatileBlock table {
@@ -74,6 +68,7 @@ body{
 	padding: 5px;
 	font-style: italic;
 	width: 100%; 
+	 
 }
 
 .shareBlock img {
@@ -92,6 +87,7 @@ body{
 	padding: 5px;
 	font-style: italic;
 	width: 100%; 
+	 
 }
 
 .driveCallBlock img {

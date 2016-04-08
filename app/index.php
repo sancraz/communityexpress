@@ -6,9 +6,8 @@ include_once ('parser_api_utility.php');
 
 
 /* is this for chalkboards?  */
- if (validateParams('tileView')) {
-   $server = $_REQUEST['tileView'];
-   $tileViewDetails = TRUE;
+ if (validateParams('tileViewDetails')) {
+   $tileViewDetails = $_REQUEST['tileViewDetails']; 
  } else {
    $tileViewDetails = FALSE;
  } 
@@ -173,9 +172,9 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
 
  if ($directAccess || $publicAccess) {
   if ($publicAccess) {
-   $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteByURLkey?UID=&latitude=&longitude=&urlKey=" . $friendlyURL.'&tileViewDetails='.$tileViewDetails;
+   $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteByURLkey?UID=&latitude=&longitude=&urlKey=" . $friendlyURL.'&tileViewDetails='.($tileViewDetails ? 'true' : 'false');
   } else {
-   $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=" . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId.'&tileViewDetails='.$tileViewDetails;
+   $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=" . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId.'&tileViewDetails='.($tileViewDetails ? 'true' : 'false');
   }
 
   $siteletteJSON = makeApiCall($apiURL);
