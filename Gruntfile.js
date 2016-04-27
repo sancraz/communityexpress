@@ -1,16 +1,28 @@
-var webpackDevConfig = require('./webpack.config.js');
+// var webpackDevConfig = require('./webpack.config.js'),
+//     siteletteWebpackConfig = require('./webpack-sitelette.config.js'),
+//     chalkboardsWebpackConfig = require('./webpack-chalkboards.config.js'),
+//     config;
+var grunt = require('grunt');
+var argv = require('yargs').argv;
 
-// stop webpack watching and keepalive
-webpackDevConfig.watch = false;
-webpackDevConfig.keepalive = false;
+grunt.log.write(argv.project);
 
+if (argv.project == 'sitelette') {
+    var webpackConfig = require('./webpack-sitelette.config.js');
+} else if (argv.project == 'chalkboards') {
+    var webpackConfig = require('./webpack-chalkboards.config.js');
+};
+
+// stop webpack watch and keepalive
+webpackConfig.watch = false;
+webpackConfig.keepalive = false;
 
 // Creating multiple stylesheet's paths with diff themes (for cssmin task)
 var themes = function() {
     // Number of themes
     var themeNumber = 4;
     var distStyle = {};
-    for (var i = 1; i < themeNumber + 1; i++) {
+    for (var i = 1; i < themeNumber+1; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
             distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
             themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
@@ -29,18 +41,22 @@ module.exports = function (grunt) {
     var yeomanConfig = {
         app: 'app',
         dist: 'dist',
-        indexFile: 'prod-index.html'
+        indexFile: 'prod-index.html',
+        project: argv.project
     };
 
     grunt.initConfig({
         yeoman: yeomanConfig,
 
         webpack: {
-            options: webpackDevConfig,
+            options: webpackConfig,
             start: {
             }
         },
-        clean: ['<%= yeoman.dist %>'],
+        clean: [
+            '<%= yeoman.dist %>',
+            '<%= yeoman.app %>/build'
+        ],
         uglify: {
             options: {
                 compress: true,
@@ -72,10 +88,10 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>'
                     },
                     {
-						                expand: true,
-						                cwd: '<%= yeoman.app %>/no_sitelette',
-						                src: '{,*/}*',
-						                dest: '<%= yeoman.dist %>/no_sitelette'
+                        expand: true,
+                        cwd: '<%= yeoman.app %>/no_sitelette',
+                        src: '{,*/}*',
+                        dest: '<%= yeoman.dist %>/no_sitelette'
                     },
                     {
                         expand: true,
@@ -110,8 +126,8 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/parser_api_utility.php'
                     },
                     {
-					                  	src: '<%= yeoman.app %>/sitelette-production.php',
-						                  dest: '<%= yeoman.dist %>/sitelette.php'
+                        src: '<%= yeoman.app %>/<%= yeoman.project %>-production.php',
+                        dest: '<%= yeoman.dist %>/<%= yeoman.project %>.php'
                     },
                     {
                         src: '<%= yeoman.app %>/Mobile_Detect.php',
@@ -129,7 +145,16 @@ module.exports = function (grunt) {
             }
         }
     });
-    grunt.registerTask('default', ['webpack']);
+    grunt.registerTask('default', function() {
+        grunt.task.run([
+            'clean',
+            'webpack',
+            'copy',
+            'uglify',
+            'cssmin'
+        ]);
+    });
+
     grunt.registerTask('build', [
         'clean',
         'webpack',
@@ -137,4 +162,15 @@ module.exports = function (grunt) {
         'uglify',
         'cssmin'
     ]);
+
+    grunt.registerTask('sitelette', function() {
+        yeomanConfig.appName = 'sitelette';
+        grunt.task.run([
+            'clean',
+            'webpack',
+            'copy',
+            'uglify',
+            'cssmin'
+        ]);
+    })
 };

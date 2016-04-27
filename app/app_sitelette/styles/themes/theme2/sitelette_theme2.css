@@ -1,0 +1,1417 @@
+
+ main elements
+ */
+@font-face {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Open Sans'), local('OpenSans'), url('https://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff')format('woff');
+}
+
+#cmtyx_header {
+	height: 50px;
+	position: fixed;
+	z-index: 100;
+	width: 100%;
+}
+
+.theme2_banner {
+	background-color: #0D9CAC;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFF;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 24px;
+	font-weight: 400;
+	/* padding: 6px 24px; */
+	text-decoration: none;
+	text-shadow: none;
+	text-align: center;
+	width: 100%;
+	height: 50px;
+	line-height: 2;
+}
+.cmtyxnavbar { 
+	background-color: #0D9CAC;
+	display: table;
+	width: 100%;
+	height:85px;
+	text-decoration: none;
+	text-shadow: none;
+	padding: 0;
+	margin: 0;
+}
+.cmtyxnavbar li {
+	text-align: center;
+	text-shadow: none;
+	font-weight: 300;
+	display: table-cell;
+}
+
+.cmtyxnavbar li img {
+	width: 50px;
+	height: 50px;
+}
+
+.navbar_buttons_text{
+	line-height:140px;
+}
+/*
+ #cmtyx_navbar {
+ position: relative;
+ }
+
+ .theme2_navbar_buttons {
+ position: fixed;
+ position: -webkit-sticky; // required for Safari position : sticky;
+ bottom: 0;
+ z-index: 100;
+ background-color: #0D9CAC;
+ display: table;
+ width: 100%;
+ text-decoration: none;
+ text-shadow: none;
+ padding: 0;
+ margin: 0;
+
+ }
+
+ .theme2_navbar_buttons li {
+ text-align: center;
+ display: table-cell;
+ }
+
+ .theme2_navbar_buttons li img {
+ width: 50px;
+ height: 50px;
+ }
+ */
+#cmtyx_landingView {
+	top: 50px;
+	position: absolute;
+	width: 100%;
+}
+.theme2_drive_button {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	background-color: #0D9CAC;
+	border-radius: 2px;
+	border: 1px solid #000000;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 1.3em;
+	margin: 5px auto 5px auto;
+	padding: 5px;
+	text-shadow: none;
+	width: 90%;
+}
+
+.theme2_drive_button a:visited {
+	color: #ffffff;
+}
+
+.theme2_call_button {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	background-color: #0D9CAC;
+	border-radius: 2px;
+	border: 1px solid #000000;
+	color: #ffffff;
+	display: inline-block;
+	font-size: 1.3em;
+	margin: 5px auto 5px auto;
+	padding: 5px;
+	text-shadow: none;
+	width: 90%;
+}
+
+.theme2_call_button a:visited {
+	color: #ffffff;
+}
+
+.theme2_background .centered_button {
+	text-align: center;
+}
+
+.theme2_background a {
+	color: #FFF;
+	text-align: center;
+	font-weight: 0100;
+}
+
+.theme2_background a:visited {
+	color: #FFF;
+	text-align: center;
+	font-weight: 0100;
+}
+
+.theme2_short_description {
+	color: #0D9CAC;
+	text-align: center;
+	font-weight: 300;
+	font-size: 1em;
+	font-style: italic;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+}
+
+.theme2_long_description {
+	color: #0D9CAC;
+	text-align: center;
+	font-weight: 300;
+	font-size: 12px;
+	padding: 5px;
+}
+
+.theme2_promotion {
+	font-family: 'open sans', arial, sans-serif;
+	color: #ffffff;
+	text-align: left;
+	width: 100%;
+	padding: 0px;
+	text-shadow: none;
+}
+
+.theme2_promo_header {
+	font-family: 'open sans', arial, sans-serif;
+	padding-left: 10px;
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.theme2_promo_type {
+	font-family: 'open sans', arial, sans-serif;
+	color: #FFF;
+	font-weight: 700;
+	font-size: 12px;
+}
+
+.theme2_promotion .promo_title {
+	font-family: 'open sans', arial, sans-serif;
+	padding-left: 10px;
+	margin: 0px;
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.theme2_promotion .promo_description {
+	font-family: 'open sans', arial, sans-serif;
+	padding-left: 10px;
+	margin: 0px;
+	font-weight: 200;
+	font-size: 12px;
+}
+
+.theme2_promotion .promo_image {
+	text-align: right;
+	display: block;
+	padding: 0px;
+	margin-left: auto;
+	height: 100px;
+}
+
+.theme2_gallery_media {
+	position: relative;
+}
+
+.theme2_gallery_media_image {
+	width: 100%;
+	height: 100%;
+}
+
+.theme2_gallery_table {
+	position: absolute;
+	width: 100%;
+	bottom: 0px;
+	background-color: rgba(60, 60, 60, 0.4);
+}
+
+.theme2_gallery_media_title {
+	color: #FFF;
+	font-family: 'open sans', arial, sans-serif;
+	line-height: 1.4;
+	font-size: 20px;
+	font-weight: 200;
+}
+
+.theme2_gallery_media_message {
+	color: #FFF;
+	font-family: 'open sans', arial, sans-serif;
+	line-height: 1.2;
+	font-variant: small-caps;
+	font-size: 14px;
+	font-weight: 200;
+}
+
+.theme2_filler {
+	height: auto;
+}
+
+.theme2_gap {
+	height: 5px;
+	width: 100%;
+}
+
+.bottom_navbar_offset_gap {
+	height: 60px;
+	width: 100%;
+}
+
+.theme2_text {
+	color: #000000;
+	line-height: 1.2;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	padding-left: 5px;
+}
+
+.theme2_bold_text {
+	color: #000000;
+	line-height: 1.2;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 700;
+	padding-left: 5px;
+}
+
+.theme2_aboutuslong {
+	color: #000000;
+	line-height: 1.2;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	padding-left: 15px;
+}
+
+.theme2_pleasesigninforloyaltycard {
+	color: #F00;
+	line-height: 1.2;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+	text-align: center;
+}
+
+.theme2_table_center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.theme2_qrcodelines {
+	color: #0D9CAC;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 300;
+	text-align: center;
+	text-shadow: none;
+}
+
+.theme2_values {
+	color: #0D9CAC;
+	line-height: 1.2;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	padding-left: 5px;
+}
+
+.theme2_values_centered {
+	color: #0D9CAC;
+	line-height: 1.2;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	text-align: center;
+}
+
+.theme2_address {
+	color: #000;
+	line-height: 1.2;
+	text-align: left;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 300;
+	padding-left: 5px;
+}
+
+.theme2_notification {
+	background: #F00;
+	background-color: #F00;
+	color: #FFF;
+	line-height: 1.2;
+	text-align: center;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+	font-weight: 400;
+	text-shadow: none;
+	padding: 8px;
+}
+
+.theme2_event_banner_wrapper {
+	width: 100%;
+	margin: 0 auto;
+	background-color: #0A7C88;
+}
+
+.theme2_event_banner_inner {
+	text-align: center;
+	height: 0;
+	border-width: 0px 0 120px 50px;
+	border-style: solid;
+	border-color: transparent #0D9CAC #0D9CAC transparent;
+	padding-right: 50px;
+}
+
+.theme2_event_banner_table {
+	height: 120px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.theme2_event_banner_large_font {
+	color: #FFF;
+	font-size: 28px;
+	line-height: 24px;
+	font-family: 'open sans', arial, sans-serif;
+	font-style: normal;
+	font-weight: 300;
+	padding-top: 0px;
+	padding-bottom: 0;
+	vertical-align: bottom;
+	text-shadow: none;
+}
+
+.theme2_event_banner_small_font {
+	line-height: 28px;
+	font-size: 16px;
+	font-family: 'open sans', arial, sans-serif;
+	color: #000;
+	vertical-align: top;
+	text-shadow: none;
+	font-style: normal;
+	font-weight: 400;
+}
+
+.theme2_event_entry_wrapper {
+	width: 100%;
+	padding: 0px;
+	font-family: "Arial";
+	font-weight: 300;
+	color: #FFF;
+	text-shadow: none;
+}
+
+.theme2_event_entry_left {
+	width: 13%;
+	padding: 2px;
+	vertical-align: middle;
+}
+
+.theme2_event_entry_left_table {
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0px;
+}
+
+.theme2_event_entry_left_top_row {
+	margin-top: 0px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.theme2_event_entry_left_middle_row {
+	font-size: 36px;
+	text-align: center;
+}
+
+.theme2_event_entry_left_bottom_row {
+	font-size: 12px;
+	text-align: center;
+}
+
+.theme2_event_entry_img_right {
+	width: 87%;
+	padding: 0px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.theme2_event_entry_right {
+	width: 87%;
+	padding: 5px;
+	text-align: left;
+	vertical-align: top;
+}
+
+.theme2_event_entry_right_table {
+	color: #000;
+	margin-left: 5px;
+	margin-right: auto;
+	vertical-align: top;
+	table-layout: fixed;
+	width: 100%;
+}
+
+.theme2_event_entry_right_top_row_type {
+	margin-top: 0px;
+	font-size: 12px;
+	vertical-align: top;
+}
+
+.theme2_event_entry_right_top_row_calendar {
+	margin-top: 0px;
+	font-size: 12px;
+	vertical-align: top;
+	display: block;
+	background-color: #3498db;
+	padding: 3px;
+	text-align: center;
+}
+
+.theme2_event_entry_right_middle_row {
+	font-size: 18px;
+	vertical-align: top;
+}
+
+.theme2_event_entry_right_bottom_row {
+	font-size: 12px;
+	vertical-align: top;
+}
+
+.theme2_event_entry_img img {
+	padding: 0px;
+	height: 100px;
+	vertical-align: top;
+}
+
+.theme2_event_entry_wrapper {
+	border-width: 1px;
+	border-spacing: 0px;
+	padding: 1px;
+	border-style: inset;
+	border-color: gray;
+	/*-moz-border-radius:;*/
+}
+
+#theme2_map {
+	width: 100% x;
+	height: 240px;
+}
+
+/*
+ * photo contest related
+ */
+.photocontestblock {
+	color: #000;
+	font-family: 'open sans', arial, sans-serif;
+	background-color: #9C27B0;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	margin-top: -5px;
+	padding: 0px;
+	text-shadow: none;
+	width: 100%;
+}
+
+.photocontestblock img {
+	height: 100px;
+	width: 100px;
+	vertical-align: middle;
+}
+
+/*
+ * end photocontest related
+ */
+
+/*
+ * poll related
+ */
+.pollblock {
+	color: #000;
+	font-family: 'open sans', arial, sans-serif;
+	background-color: #FF9200;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	padding: 0px;
+	text-shadow: none;
+	width: 100%;
+}
+
+.pollblock img {
+	height: 100px;
+	width: 100px;
+	vertical-align: middle;
+}
+
+.theme2_poll {
+	font-family: 'open sans', arial, sans-serif;
+	color: #000;
+	text-align: left;
+	padding: 8px 9px 0px 9px;
+	text-shadow: none;
+}
+
+.theme2_poll_header {
+	font-family: 'open sans', arial, sans-serif;
+	padding-left: 10px;
+	font-size: 12px;
+	font-weight: 300;
+}
+
+.theme2_poll .poll_title {
+	font-family: 'open sans', arial, sans-serif;
+	padding-left: 10px;
+	margin: 0px;
+	font-weight: 400;
+	font-size: 18px;
+}
+
+.theme2_poll .poll_image {
+	text-align: right;
+	display: block;
+	padding: 0px;
+	margin-left: auto;
+	height: 100px;
+}
+
+.theme2_poll_choices {
+	padding: 0 9px 0 9px;
+	position: relative;
+	text-shadow: none;
+	text-align: left;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 12px;
+}
+
+.theme2_poll_choices ul {
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #bbbbbb;
+	width: 100%;
+	list-style: none;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.theme2_poll_choices ul li {
+	border-bottom: 1px solid #bbbbbb;
+	height: 43px;
+	line-height: 43px;
+	position: relative;
+}
+
+.theme2_poll_choices ul li.last {
+	border-bottom: 0px none;
+}
+
+.theme2_poll_choices ul li label {
+	display: block;
+	width: 87%;
+	height: 43px;
+	color: #000;
+	padding-left: 5px;
+}
+
+.theme2_poll_choices ul li input {
+	position: absolute;
+	top: 13px;
+	right: 17px;
+	z-index: 50;
+}
+
+.theme2_poll_choices.checkbox {
+	width: 100%;
+	position: relative;
+	height: 24px;
+	line-height: 24px;
+}
+
+.theme2_poll_choices ul li div.jquery-checkbox-wrapper {
+	position: absolute;
+	width: 16px;
+	height: 16px;
+	top: 14px;
+	right: 17px;
+	z-index: 50;
+}
+
+.theme2_poll_choices ul li div.jquery-checkbox-wrapper a.jquery-checkbox {
+	/*background: transparent url('../../images/checkbox.png') repeat scroll 0px 0px;*/
+	display: block;
+	width: 16px;
+	height: 16px;
+	cursor: default;
+	outline: none;
+}
+
+.theme2_poll_choices ul li div.jquery-checkbox-wrapper a.jquery-checkbox-on {
+	background-position: 16px 0px;
+}
+
+.theme2_poll_choices ul li div.jquery-switch-wrapper {
+	position: absolute;
+	width: 94px;
+	height: 27px;
+	top: 8px;
+	right: 17px;
+	z-index: 50;
+}
+
+.theme2_poll_choices ul li div.jquery-switch-wrapper a.jquery-switch {
+	/*background: transparent url('../../images/switches.png') repeat scroll 0px 27px;*/
+	display: block;
+	width: 94px;
+	height: 27px;
+	cursor: default;
+	outline: none;
+}
+
+.theme2_poll_choices ul li div.jquery-switch-wrapper a.jquery-switch-on {
+	background-position: 0px 0px;
+}
+
+.theme2_poll_choices ul li div.jquery-radiobutton-wrapper {
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	top: 12px;
+	right: 17px;
+	z-index: 50;
+}
+
+.theme2_poll_choices ul li div.jquery-radiobutton-wrapper a.jquery-radiobutton {
+	/*background: transparent url('../../images/radiobutton.png') repeat scroll 0px 0px;*/
+	display: block;
+	width: 21px;
+	height: 21px;
+	cursor: default;
+	outline: none;
+}
+
+.theme2_poll_choices ul li div.jquery-radiobutton-wrapper a.jquery-radiobutton-on {
+	background-position: 21px 0px;
+}
+
+.theme2_pollresultsplot {
+	width: 100%;
+	height: 140px;
+	display: none;
+}
+/*
+ * end poll related
+ */
+.theme2_generic_banner {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	margin: 0 auto;
+	background-color: #888;
+	text-align: center;
+	font-size: 28px;
+	font-family: 'open sans', arial, sans-serif;
+	color: #FFF;
+	text-shadow: none;
+	font-style: normal;
+	font-weight: 400;
+}
+/*
+ .theme2_embedded_videos {
+ position: relative;
+ padding-bottom: 56.25%;
+ padding-top: 25px;
+ height: 0;
+ text-align: center;
+ }
+
+ .theme2_embedded_videos iframe {
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ frameborder: 0;
+ }
+ */
+.theme2_embedded_videos {
+	display: block;
+	text-align: center;
+	padding-bottom: 250px;
+	padding-top: 0px;
+	height: 0;
+	text-align: center;
+	position: relative;
+	/*
+	 background: #000 url(icons/play.png) no-repeat
+	 center center;
+	 */
+	cursor: pointer;
+}
+
+.theme2_embedded_videos img {
+	padding-top: 100px;
+	width: 50px;
+	height: 50px;
+}
+
+.theme2_button {
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 14px;
+	background: #3498db;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+	text-shadow: none;
+	text-align: center;
+	margin: 5px 20px 5px auto;
+	width: 25%;
+}
+
+.outerdiv {
+	width: 330px;
+}
+
+.metadata {
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin: 0 0 0 20px;
+	color: #0098A6;
+	background-color: #FFF;
+	font-family: arial;
+	font-size: 12px;
+	width: 90%;
+	text-align: center;
+	text-shadow: none;
+}
+
+.metadata .namecol {
+	text-align: left;
+	margin-left: 2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.metadata .valuecol {
+	text-align: right;
+	margin-right: 2px;
+	font-weight: 700;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.menu_catalog_block {
+	background-color: #2CAE63;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	padding: 0px;
+	text-shadow: none;
+	width: 100%;
+}
+
+.menu_catalog_block img {
+	height: 100px;
+	width: 100px;
+	vertical-align: middle;
+}
+
+.appointments_block {
+	color: #1B2A00;
+	background-color: #CDDC39;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	padding: 0px;
+	text-shadow: none;
+	width: 100%;
+}
+
+.appointments_block img {
+	height: 100px;
+	width: 100px;
+	vertical-align: middle;
+}
+
+.loyaltyblock {
+	background-color: #0098A6;
+	border-spacing: 0px;
+	border-collapse: collapse;
+	padding: 0px;
+	text-shadow: none;
+	width: 100%;
+}
+
+.loyaltyblock img {
+	height: 100px;
+	width: 100px;
+	vertical-align: middle;
+}
+
+#qrCodeBlock {
+	display: none;
+	background-color: #FFF;
+	text-shadow: none;
+	font-family: 'open sans', arial, sans-serif;
+	color: #0098A6;
+	width: 100%;
+}
+
+.textblock {
+	width: 70%;
+	color: #FFF;
+	font-family: 'open sans', arial, sans-serif;
+	text-shadow: none;
+	font-weight: 400;
+}
+
+.textblock .textsmall {
+	font-size: 10px;
+	vertical-align: top;
+}
+
+.textblock .textmedium {
+	font-size: 14px;
+	vertical-align: bottom;
+}
+
+.textblock .textlarge {
+	font-size: 20px;
+	vertical-align: top;
+}
+
+.site_share_block {
+	position: relative;
+	width: 100%;
+	background-color: #545f55;
+	padding-bottom: 15px;
+	text-shadow: none;
+	font-family: 'open sans', arial, sans-serif;
+	color: #FFF;
+}
+
+.site_share_block .sharetext {
+	font-weight: 300;
+	font-size: 18px;
+	padding-left: 15px;
+	padding-top: 15px;
+}
+
+.share_block_table {
+	display: table; /* Allow the centering to work */
+	margin: 0 auto;
+}
+
+.site_share_block ul {
+	margin: 0;
+	padding: 0px;
+	list-style-type: none;
+	text-align: center;
+}
+
+.site_share_block li {
+	display: inline;
+	list-style-type: none;
+	float: left;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+#sms_sendResults {
+	text-align: center;
+	text-shadow: none;
+	font-family: 'open sans', arial, sans-serif;
+	font-weight: 600;
+	display: none;
+	margin-right: 20px;
+}
+
+#sms_send_button {
+	color: white;
+	text-shadow: none;
+	font-family: 'open sans', arial, sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+	background-color: blue;
+	padding: 5px 10px 5px 10px;
+	cursor: pointer;
+}
+
+#sms_input_block {
+	display: none;
+	text-shadow: none;
+	font-family: 'open sans', arial, sans-serif;
+	margin-left: auto;
+	margin-right: 10px;
+	text-align: center;
+	font-family: 'open sans', arial, sans-serif;
+}
+
+#sms_button {
+	cursor: pointer;
+	width: 60px;
+	height: 60px;
+}
+
+#sms_input {
+	font-family: arial;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	background-color: #FFF;
+}
+
+.theme2_calendar {
+	font-family: arial;
+	font-size: 18px;
+	background: #CDDC39;
+	margin: 4px 9px 0px 9px;
+	text-shadow: none;
+}
+
+#calendarWarning {
+	height: 40px;
+	text-align: center;
+	background: red;
+	color: white;
+	font-size: 16px;
+	display: none;
+}
+
+#calendarSuccess {
+	height: 40px;
+	text-align: center;
+	font-size: 16px;
+	display: none;
+}
+
+#calendarLoading {
+	height: 40px;
+	text-align: center;
+	font-size: 16px;
+	display: none;
+}
+
+#calendar {
+
+}
+
+.fc-widget-content {
+	background-color: #0f0;
+}
+
+.fc-axis {
+	background: #0f0;
+	color: black;
+}
+
+.fc-event {
+	font-size: 16px;
+}
+
+.fc-bgevent {
+	opacity: 0;
+}
+
+.fc-unthemed .fc-today {
+	background: #CDDC39;
+}
+
+.background_activity {
+	background-color: #689f38;
+}
+
+.background_dinner_deal {
+	background-color: #9c2780;
+}
+
+.background_discount {
+	background-color: #ff5252;
+}
+
+.background_entertainment {
+	background-color: #448aff;
+}
+
+.background_happy_hour {
+	background-color: #f57c00;
+}
+
+.background_other {
+	background-color: #795548;
+}
+
+/*added margin-bottom to see content behind navbar*/
+.page {
+	position: relative !important;
+	margin-bottom: 75px;
+}
+
+.sprite_navbar.back_small.back {
+	position: fixed;
+	top: 5px;
+	left: 15px;
+	zoom: 0.5;
+	z-index: 1000;
+}
+.sprite_navbar.navbutton_write_review {
+	position: fixed;
+    right: 20px;
+    top: 5px;
+    zoom: 0.65;
+    z-index: 1000;
+}
+.promotion_contact {
+	display: inline-block;
+	zoom: 0.6;
+}
+.sprite_navbar.sub_edit {
+	zoom: 0.7;
+	margin-top: 8px;
+}
+.sprite_navbar.sub_delete {
+	zoom: 0.35;
+}
+
+/*
+ * navbar sprite css
+ */
+
+.sprite_navbar { background: url('sprite_navbar_theme2.png') no-repeat top left; width: 100px; height: 100px;  } 
+.sprite_navbar.back_new { background-position: 0 0; width: 71px; height: 85px; } 
+.sprite_navbar.bookmarks-folder-black { background-position: 0 -95px; } 
+.sprite_navbar.bookmarks-folder-yellow { background-position: 0 -205px; } 
+.sprite_navbar.button0_1_0_0 { background-position: 0 -315px; } 
+.sprite_navbar.button0_2_0_0 { background-position: 0 -425px; } 
+.sprite_navbar.button0_3_0_0 { background-position: 0 -535px; } 
+.sprite_navbar.button0_4_0_0 { background-position: 0 -645px; } 
+.sprite_navbar.button0_5_0_0 { background-position: 0 -755px; } 
+.sprite_navbar.button0_6_0_0 { background-position: 0 -865px; } 
+.sprite_navbar.button0_8_0_0 { background-position: 0 -975px; } 
+.sprite_navbar.button0_9_0_0 { background-position: 0 -1085px; } 
+.sprite_navbar.button0_10_0_0 { background-position: 0 -1195px; } 
+.sprite_navbar.button0_11_0_0 { background-position: 0 -1305px; } 
+.sprite_navbar.button0_12_0_0 { background-position: 0 -1415px; } 
+.sprite_navbar.button0_13_0_0 { background-position: 0 -1525px; } 
+.sprite_navbar.button0_14_0_0 { background-position: 0 -1635px; } 
+.sprite_navbar.button0_15_0_0 { background-position: 0 -1745px; } 
+.sprite_navbar.button0_16_0_0 { background-position: 0 -1855px; } 
+.sprite_navbar.button0_17_0_0 { background-position: 0 -1965px; } 
+.sprite_navbar.button0_18_0_0 { background-position: 0 -2075px; width: 98px; } 
+.sprite_navbar.button0_19_0_0 { background-position: 0 -2185px; } 
+.sprite_navbar.button0_20_0_0 { background-position: 0 -2295px; } 
+.sprite_navbar.button0_21_0_0 { background-position: 0 -2405px; } 
+.sprite_navbar.button0_22_0_0 { background-position: 0 -2515px; } 
+.sprite_navbar.button0_23_0_0 { background-position: 0 -2625px; } 
+.sprite_navbar.button0_24_0_0 { background-position: 0 -2735px; } 
+.sprite_navbar.button0_25_0_0 { background-position: 0 -2845px; } 
+.sprite_navbar.button0_26_0_0 { background-position: 0 -2955px; } 
+.sprite_navbar.button0_27_0_0 { background-position: 0 -3065px; } 
+.sprite_navbar.button0_28_0_0 { background-position: 0 -3175px; } 
+.sprite_navbar.button0_29_0_0 { background-position: 0 -3285px; } 
+.sprite_navbar.button0_30_0_0 { background-position: 0 -3395px; } 
+.sprite_navbar.button0_31_0_0 { background-position: 0 -3505px; } 
+.sprite_navbar.button0_32_0_0 { background-position: 0 -3615px; } 
+.sprite_navbar.button0_33_0_0 { background-position: 0 -3725px; } 
+.sprite_navbar.button0_34_0_0 { background-position: 0 -3835px; } 
+.sprite_navbar.button0_35_0_0 { background-position: 0 -3945px; } 
+.sprite_navbar.button0_36_0_0 { background-position: 0 -4055px; } 
+.sprite_navbar.button0_37_0_0 { background-position: 0 -4165px; height: 103px; } 
+.sprite_navbar.button0_38_0_0 { background-position: 0 -4278px; height: 91px; } 
+.sprite_navbar.button0_39_0_0 { background-position: 0 -4379px; } 
+.sprite_navbar.button0_40_0_0 { background-position: 0 -4489px; width: 98px; } 
+.sprite_navbar.button0_41_0_0 { background-position: 0 -4599px; } 
+.sprite_navbar.button0_42_0_0 { background-position: 0 -4709px; } 
+.sprite_navbar.button0_43_0_0 { background-position: 0 -4819px; } 
+.sprite_navbar.button0_44_0_0 { background-position: 0 -4929px; } 
+.sprite_navbar.button0_45_0_0 { background-position: 0 -5039px; } 
+.sprite_navbar.button0_46_0_0 { background-position: 0 -5149px; } 
+.sprite_navbar.button0_47_0_0 { background-position: 0 -5259px; } 
+.sprite_navbar.button0_48_0_0 { background-position: 0 -5369px; } 
+.sprite_navbar.button0_49_0_0 { background-position: 0 -5479px; } 
+.sprite_navbar.button0_50_0_0 { background-position: 0 -5589px; } 
+.sprite_navbar.button0_51_0_0 { background-position: 0 -5699px; } 
+.sprite_navbar.button0_52_0_0 { background-position: 0 -5809px; height: 99px; } 
+.sprite_navbar.button0_53_0_0 { background-position: 0 -5918px; height: 99px; } 
+.sprite_navbar.button0_54_0_0 { background-position: 0 -6027px; } 
+.sprite_navbar.button0_55_0_0 { background-position: 0 -6137px; } 
+.sprite_navbar.button0_56_0_0 { background-position: 0 -6247px; } 
+.sprite_navbar.button0_57_0_0 { background-position: 0 -6357px; } 
+.sprite_navbar.button0_58_0_0 { background-position: 0 -6467px; } 
+.sprite_navbar.button0_59_0_0 { background-position: 0 -6577px; } 
+.sprite_navbar.button0_60_0_0 { background-position: 0 -6687px; } 
+.sprite_navbar.button0_61_0_0 { background-position: 0 -6797px; } 
+.sprite_navbar.button0_62_0_0 { background-position: 0 -6907px; } 
+.sprite_navbar.button0_63_0_0 { background-position: 0 -7017px; } 
+.sprite_navbar.button0_64_0_0 { background-position: 0 -7127px; } 
+.sprite_navbar.button0_65_0_0 { background-position: 0 -7237px; height: 75px; } 
+.sprite_navbar.button0_66_0_0 { background-position: 0 -7322px; } 
+.sprite_navbar.button12_1_0_0 { background-position: 0 -7432px; } 
+.sprite_navbar.button12_2_0_0 { background-position: 0 -7542px; } 
+.sprite_navbar.button12_3_0_0 { background-position: 0 -7652px; } 
+.sprite_navbar.button12_4_0_0 { background-position: 0 -7762px; } 
+.sprite_navbar.button12_5_0_0 { background-position: 0 -7872px; } 
+.sprite_navbar.button12_6_0_0 { background-position: 0 -7982px; } 
+.sprite_navbar.button12_7_0_0 { background-position: 0 -8092px; } 
+.sprite_navbar.button12_8_0_0 { background-position: 0 -8202px; } 
+.sprite_navbar.button12_9_0_0 { background-position: 0 -8312px; } 
+.sprite_navbar.button12_10_0_0 { background-position: 0 -8422px; } 
+.sprite_navbar.button12_11_0_0 { background-position: 0 -8532px; } 
+.sprite_navbar.button12_12_0_0 { background-position: 0 -8642px; } 
+.sprite_navbar.button12_13_0_0 { background-position: 0 -8752px; } 
+.sprite_navbar.button12_14_0_0 { background-position: 0 -8862px; } 
+.sprite_navbar.button12_15_0_0 { background-position: 0 -8972px; } 
+.sprite_navbar.button12_16_0_0 { background-position: 0 -9082px; } 
+.sprite_navbar.button12_17_0_0 { background-position: 0 -9192px; } 
+.sprite_navbar.button12_18_0_0 { background-position: 0 -9302px; width: 98px; } 
+.sprite_navbar.button12_19_0_0 { background-position: 0 -9412px; } 
+.sprite_navbar.button12_20_0_0 { background-position: 0 -9522px; } 
+.sprite_navbar.button12_21_0_0 { background-position: 0 -9632px; } 
+.sprite_navbar.button12_22_0_0 { background-position: 0 -9742px; } 
+.sprite_navbar.button12_23_0_0 { background-position: 0 -9852px; } 
+.sprite_navbar.button12_24_0_0 { background-position: 0 -9962px; } 
+.sprite_navbar.button12_25_0_0 { background-position: 0 -10072px; } 
+.sprite_navbar.button12_26_0_0 { background-position: 0 -10182px; } 
+.sprite_navbar.button12_27_0_0 { background-position: 0 -10292px; height: 102px; } 
+.sprite_navbar.button12_28_0_0 { background-position: 0 -10404px; } 
+.sprite_navbar.button12_29_0_0 { background-position: 0 -10514px; } 
+.sprite_navbar.button12_30_0_0 { background-position: 0 -10624px; } 
+.sprite_navbar.button12_31_0_0 { background-position: 0 -10734px; } 
+.sprite_navbar.button12_32_0_0 { background-position: 0 -10844px; } 
+.sprite_navbar.button12_33_0_0 { background-position: 0 -10954px; } 
+.sprite_navbar.button12_34_0_0 { background-position: 0 -11064px; } 
+.sprite_navbar.button12_35_0_0 { background-position: 0 -11174px; } 
+.sprite_navbar.button12_36_0_0 { background-position: 0 -11284px; } 
+.sprite_navbar.button12_37_0_0 { background-position: 0 -11394px; } 
+.sprite_navbar.button12_38_0_0 { background-position: 0 -11504px; } 
+.sprite_navbar.button12_39_0_0 { background-position: 0 -11614px; } 
+.sprite_navbar.button12_41_0_0 { background-position: 0 -11724px; } 
+.sprite_navbar.button12_42_0_0 { background-position: 0 -11834px; } 
+.sprite_navbar.button12_43_0_0 { background-position: 0 -11944px; } 
+.sprite_navbar.button12_44_0_0 { background-position: 0 -12054px; } 
+.sprite_navbar.button12_45_0_0 { background-position: 0 -12164px; } 
+.sprite_navbar.button12_46_0_0 { background-position: 0 -12274px; } 
+.sprite_navbar.button12_47_0_0 { background-position: 0 -12384px; } 
+.sprite_navbar.button12_48_0_0 { background-position: 0 -12494px; } 
+.sprite_navbar.button12_49_0_0 { background-position: 0 -12604px; } 
+.sprite_navbar.button12_50_0_0 { background-position: 0 -12714px; } 
+.sprite_navbar.button12_51_0_0 { background-position: 0 -12824px; } 
+.sprite_navbar.button12_52_0_0 { background-position: 0 -12934px; } 
+.sprite_navbar.button12_53_0_0 { background-position: 0 -13044px; } 
+.sprite_navbar.button12_54_0_0 { background-position: 0 -13154px; } 
+.sprite_navbar.button12_55_0_0 { background-position: 0 -13264px; } 
+.sprite_navbar.button12_56_0_0 { background-position: 0 -13374px; } 
+.sprite_navbar.button12_57_0_0 { background-position: 0 -13484px; } 
+.sprite_navbar.button12_58_0_0 { background-position: 0 -13594px; } 
+.sprite_navbar.button12_59_0_0 { background-position: 0 -13704px; } 
+.sprite_navbar.button12_60_0_0 { background-position: 0 -13814px; } 
+.sprite_navbar.button12_61_0_0 { background-position: 0 -13924px; } 
+.sprite_navbar.button12_62_0_0 { background-position: 0 -14034px; } 
+.sprite_navbar.button12_63_0_0 { background-position: 0 -14144px; } 
+.sprite_navbar.button12_64_0_0 { background-position: 0 -14254px; } 
+.sprite_navbar.button12_65_0_0 { background-position: 0 -14364px; } 
+.sprite_navbar.button12_66_0_0 { background-position: 0 -14474px; } 
+.sprite_navbar.gray_star { background-position: 0 -14584px; width: 15px; height: 15px; } 
+.sprite_navbar.half_star { background-position: 0 -14609px; width: 15px; height: 15px; } 
+.sprite_navbar.navbutton_aboutUs { background-position: 0 -14634px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_back { background-position: 0 -14704px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_contests { background-position: 0 -14774px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_deal { background-position: 0 -14844px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_email { background-position: 0 -14914px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_facebook { background-position: 0 -14984px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_favorite-gray { background-position: 0 -15054px; width: 30px; height: 30px; } 
+.sprite_navbar.navbutton_favorite-yellow { background-position: 0 -15094px; width: 30px; height: 30px; } 
+.sprite_navbar.navbutton_filter-icon { background-position: 0 -15134px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_forward { background-position: 0 -15204px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_list-of-favorites { background-position: 0 -15274px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_list-View { background-position: 0 -15344px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_map { background-position: 0 -15414px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_menu { background-position: 0 -15484px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_near_me { background-position: 0 -15554px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_promotion { background-position: 0 -15624px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_search { background-position: 0 -15694px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_share { background-position: 0 -15764px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_sign_in { background-position: 0 -15834px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_sign_out { background-position: 0 -15904px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_sms_button { background-position: 0 -15974px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_thumbs-up { background-position: 0 -16044px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_twitter { background-position: 0 -16114px; width: 60px; height: 60px; } 
+.sprite_navbar.navbutton_write_review { background-position: 0 -16184px; width: 60px; height: 60px; } 
+.sprite_navbar.play { background-position: 0 -16254px; } 
+.sprite_navbar.star { background-position: 0 -16364px; } 
+.sprite_navbar.star_gray { background-position: 0 -16474px; } 
+.sprite_navbar.star_half { background-position: 0 -16584px; } 
+.sprite_navbar.star_small { background-position: 0 -16694px; width: 15px; height: 15px; } 
+.sprite_navbar.sub_delete { background-position: 0 -16719px; width: 46px; height: 51px; } 
+.sprite_navbar.sub_edit { background-position: 0 -16780px; width: 48px; height: 55px; } 
+.sprite_navbar.thumbs-down { background-position: 0 -16845px; } 
+.sprite_navbar.thumbs-up { background-position: 0 -16955px; } 
+
+/*<div class='sprite_navbar back_new'></div>
+<div class='sprite_navbar bookmarks-folder-black'></div>
+<div class='sprite_navbar bookmarks-folder-yellow'></div>
+<div class='sprite_navbar button0_1_0_0'></div>
+<div class='sprite_navbar button0_2_0_0'></div>
+<div class='sprite_navbar button0_3_0_0'></div>
+<div class='sprite_navbar button0_4_0_0'></div>
+<div class='sprite_navbar button0_5_0_0'></div>
+<div class='sprite_navbar button0_6_0_0'></div>
+<div class='sprite_navbar button0_8_0_0'></div>
+<div class='sprite_navbar button0_9_0_0'></div>
+<div class='sprite_navbar button0_10_0_0'></div>
+<div class='sprite_navbar button0_11_0_0'></div>
+<div class='sprite_navbar button0_12_0_0'></div>
+<div class='sprite_navbar button0_13_0_0'></div>
+<div class='sprite_navbar button0_14_0_0'></div>
+<div class='sprite_navbar button0_15_0_0'></div>
+<div class='sprite_navbar button0_16_0_0'></div>
+<div class='sprite_navbar button0_17_0_0'></div>
+<div class='sprite_navbar button0_18_0_0'></div>
+<div class='sprite_navbar button0_19_0_0'></div>
+<div class='sprite_navbar button0_20_0_0'></div>
+<div class='sprite_navbar button0_21_0_0'></div>
+<div class='sprite_navbar button0_22_0_0'></div>
+<div class='sprite_navbar button0_23_0_0'></div>
+<div class='sprite_navbar button0_24_0_0'></div>
+<div class='sprite_navbar button0_25_0_0'></div>
+<div class='sprite_navbar button0_26_0_0'></div>
+<div class='sprite_navbar button0_27_0_0'></div>
+<div class='sprite_navbar button0_28_0_0'></div>
+<div class='sprite_navbar button0_29_0_0'></div>
+<div class='sprite_navbar button0_30_0_0'></div>
+<div class='sprite_navbar button0_31_0_0'></div>
+<div class='sprite_navbar button0_32_0_0'></div>
+<div class='sprite_navbar button0_33_0_0'></div>
+<div class='sprite_navbar button0_34_0_0'></div>
+<div class='sprite_navbar button0_35_0_0'></div>
+<div class='sprite_navbar button0_36_0_0'></div>
+<div class='sprite_navbar button0_37_0_0'></div>
+<div class='sprite_navbar button0_38_0_0'></div>
+<div class='sprite_navbar button0_39_0_0'></div>
+<div class='sprite_navbar button0_40_0_0'></div>
+<div class='sprite_navbar button0_41_0_0'></div>
+<div class='sprite_navbar button0_42_0_0'></div>
+<div class='sprite_navbar button0_43_0_0'></div>
+<div class='sprite_navbar button0_44_0_0'></div>
+<div class='sprite_navbar button0_45_0_0'></div>
+<div class='sprite_navbar button0_46_0_0'></div>
+<div class='sprite_navbar button0_47_0_0'></div>
+<div class='sprite_navbar button0_48_0_0'></div>
+<div class='sprite_navbar button0_49_0_0'></div>
+<div class='sprite_navbar button0_50_0_0'></div>
+<div class='sprite_navbar button0_51_0_0'></div>
+<div class='sprite_navbar button0_52_0_0'></div>
+<div class='sprite_navbar button0_53_0_0'></div>
+<div class='sprite_navbar button0_54_0_0'></div>
+<div class='sprite_navbar button0_55_0_0'></div>
+<div class='sprite_navbar button0_56_0_0'></div>
+<div class='sprite_navbar button0_57_0_0'></div>
+<div class='sprite_navbar button0_58_0_0'></div>
+<div class='sprite_navbar button0_59_0_0'></div>
+<div class='sprite_navbar button0_60_0_0'></div>
+<div class='sprite_navbar button0_61_0_0'></div>
+<div class='sprite_navbar button0_62_0_0'></div>
+<div class='sprite_navbar button0_63_0_0'></div>
+<div class='sprite_navbar button0_64_0_0'></div>
+<div class='sprite_navbar button0_65_0_0'></div>
+<div class='sprite_navbar button0_66_0_0'></div>
+<div class='sprite_navbar button12_1_0_0'></div>
+<div class='sprite_navbar button12_2_0_0'></div>
+<div class='sprite_navbar button12_3_0_0'></div>
+<div class='sprite_navbar button12_4_0_0'></div>
+<div class='sprite_navbar button12_5_0_0'></div>
+<div class='sprite_navbar button12_6_0_0'></div>
+<div class='sprite_navbar button12_7_0_0'></div>
+<div class='sprite_navbar button12_8_0_0'></div>
+<div class='sprite_navbar button12_9_0_0'></div>
+<div class='sprite_navbar button12_10_0_0'></div>
+<div class='sprite_navbar button12_11_0_0'></div>
+<div class='sprite_navbar button12_12_0_0'></div>
+<div class='sprite_navbar button12_13_0_0'></div>
+<div class='sprite_navbar button12_14_0_0'></div>
+<div class='sprite_navbar button12_15_0_0'></div>
+<div class='sprite_navbar button12_16_0_0'></div>
+<div class='sprite_navbar button12_17_0_0'></div>
+<div class='sprite_navbar button12_18_0_0'></div>
+<div class='sprite_navbar button12_19_0_0'></div>
+<div class='sprite_navbar button12_20_0_0'></div>
+<div class='sprite_navbar button12_21_0_0'></div>
+<div class='sprite_navbar button12_22_0_0'></div>
+<div class='sprite_navbar button12_23_0_0'></div>
+<div class='sprite_navbar button12_24_0_0'></div>
+<div class='sprite_navbar button12_25_0_0'></div>
+<div class='sprite_navbar button12_26_0_0'></div>
+<div class='sprite_navbar button12_27_0_0'></div>
+<div class='sprite_navbar button12_28_0_0'></div>
+<div class='sprite_navbar button12_29_0_0'></div>
+<div class='sprite_navbar button12_30_0_0'></div>
+<div class='sprite_navbar button12_31_0_0'></div>
+<div class='sprite_navbar button12_32_0_0'></div>
+<div class='sprite_navbar button12_33_0_0'></div>
+<div class='sprite_navbar button12_34_0_0'></div>
+<div class='sprite_navbar button12_35_0_0'></div>
+<div class='sprite_navbar button12_36_0_0'></div>
+<div class='sprite_navbar button12_37_0_0'></div>
+<div class='sprite_navbar button12_38_0_0'></div>
+<div class='sprite_navbar button12_39_0_0'></div>
+<div class='sprite_navbar button12_41_0_0'></div>
+<div class='sprite_navbar button12_42_0_0'></div>
+<div class='sprite_navbar button12_43_0_0'></div>
+<div class='sprite_navbar button12_44_0_0'></div>
+<div class='sprite_navbar button12_45_0_0'></div>
+<div class='sprite_navbar button12_46_0_0'></div>
+<div class='sprite_navbar button12_47_0_0'></div>
+<div class='sprite_navbar button12_48_0_0'></div>
+<div class='sprite_navbar button12_49_0_0'></div>
+<div class='sprite_navbar button12_50_0_0'></div>
+<div class='sprite_navbar button12_51_0_0'></div>
+<div class='sprite_navbar button12_52_0_0'></div>
+<div class='sprite_navbar button12_53_0_0'></div>
+<div class='sprite_navbar button12_54_0_0'></div>
+<div class='sprite_navbar button12_55_0_0'></div>
+<div class='sprite_navbar button12_56_0_0'></div>
+<div class='sprite_navbar button12_57_0_0'></div>
+<div class='sprite_navbar button12_58_0_0'></div>
+<div class='sprite_navbar button12_59_0_0'></div>
+<div class='sprite_navbar button12_60_0_0'></div>
+<div class='sprite_navbar button12_61_0_0'></div>
+<div class='sprite_navbar button12_62_0_0'></div>
+<div class='sprite_navbar button12_63_0_0'></div>
+<div class='sprite_navbar button12_64_0_0'></div>
+<div class='sprite_navbar button12_65_0_0'></div>
+<div class='sprite_navbar button12_66_0_0'></div>
+<div class='sprite_navbar gray_star'></div>
+<div class='sprite_navbar half_star'></div>
+<div class='sprite_navbar navbutton_aboutUs'></div>
+<div class='sprite_navbar navbutton_back'></div>
+<div class='sprite_navbar navbutton_contests'></div>
+<div class='sprite_navbar navbutton_deal'></div>
+<div class='sprite_navbar navbutton_email'></div>
+<div class='sprite_navbar navbutton_facebook'></div>
+<div class='sprite_navbar navbutton_favorite-gray'></div>
+<div class='sprite_navbar navbutton_favorite-yellow'></div>
+<div class='sprite_navbar navbutton_filter-icon'></div>
+<div class='sprite_navbar navbutton_forward'></div>
+<div class='sprite_navbar navbutton_list-of-favorites'></div>
+<div class='sprite_navbar navbutton_list-View'></div>
+<div class='sprite_navbar navbutton_map'></div>
+<div class='sprite_navbar navbutton_menu'></div>
+<div class='sprite_navbar navbutton_near_me'></div>
+<div class='sprite_navbar navbutton_promotion'></div>
+<div class='sprite_navbar navbutton_search'></div>
+<div class='sprite_navbar navbutton_share'></div>
+<div class='sprite_navbar navbutton_sign_in'></div>
+<div class='sprite_navbar navbutton_sign_out'></div>
+<div class='sprite_navbar navbutton_sms_button'></div>
+<div class='sprite_navbar navbutton_thumbs-up'></div>
+<div class='sprite_navbar navbutton_twitter'></div>
+<div class='sprite_navbar navbutton_write_review'></div>
+<div class='sprite_navbar play'></div>
+<div class='sprite_navbar star'></div>
+<div class='sprite_navbar star_gray'></div>
+<div class='sprite_navbar star_half'></div>
+<div class='sprite_navbar star_small'></div>
+<div class='sprite_navbar sub_delete'></div>
+<div class='sprite_navbar sub_edit'></div>
+<div class='sprite_navbar thumbs-down'></div>
+<div class='sprite_navbar thumbs-up'></div>*/

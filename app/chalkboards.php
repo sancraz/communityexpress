@@ -9,8 +9,7 @@
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
  
 <link rel="stylesheet" href="build/styles.css"> 
-<link rel="stylesheet" href="styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">
-<link rel="stylesheet" href="styles/tileViewDetails.css">
+<link rel="stylesheet" href="app_chalkboards/styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">
 <title><?php
 if (!is_null($saslName)) {
     echo $saslName;
@@ -103,6 +102,6 @@ if (!is_null($siteletteJSON)) {
 <script  src="build/bundle.js"></script>
 <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.min.js"></script>
-<script  src="scripts/tileViewDetails.js"></script>
+<script  src="app_chalkboards/scripts/tileViewDetails.js"></script>
 </body>
 </html>

@@ -3,13 +3,9 @@ var path = require('path'),
 	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-	entry: {
-		'bundle':'./app/main.js'
-	},
 	output: {
 		path: './app/build/', 
 		filename: '[name].js'
-		// publicPath: '/public/'
 	},
 	devtool: 'source-map',
 	watch: true,
