@@ -1,7 +1,6 @@
-// var webpackDevConfig = require('./webpack.config.js'),
-//     siteletteWebpackConfig = require('./webpack-sitelette.config.js'),
-//     chalkboardsWebpackConfig = require('./webpack-chalkboards.config.js'),
-//     config;
+// To build a project from console run commands with changed name (e.g sitelette)
+// grunt --project=sitelette
+// webpack --config webpack-sitelette.config.js
 var grunt = require('grunt');
 var argv = require('yargs').argv;
 
@@ -22,14 +21,16 @@ var themes = function() {
     // Number of themes
     var themeNumber = 4;
     var distStyle = {};
-    for (var i = 1; i < themeNumber+1; i++) {
+    for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
             distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
-            themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
+            themeName='<%= yeoman.app %>/app_<%= yeoman.project %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
         distStyle[distFile] = [styles, themeName];
     };
     return distStyle;
 };
+
+grunt.log.write(themes());
 
 module.exports = function (grunt) {
     'use strict';
@@ -113,7 +114,7 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/styles/icons',
+                        cwd: '<%= yeoman.app %>/<%= yeoman.project %>styles/icons',
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
                         dest: '<%= yeoman.dist %>/styles/icons/'
                     },
@@ -134,11 +135,11 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/Mobile_Detect.php'
                     },
                     {
-                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
+                        src: '<%= yeoman.app %>/app_<%= yeoman.project %>/styles/themes/theme2/sprite_navbar_theme2.png',
                         dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
                     },
                     {
-                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
+                        src: '<%= yeoman.app %>/app_<%= yeoman.project %>/styles/themes/theme2/sprite_buttons_theme9.png',
                         dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
                     }
                 ]
@@ -164,7 +165,6 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask('sitelette', function() {
-        yeomanConfig.appName = 'sitelette';
         grunt.task.run([
             'clean',
             'webpack',
