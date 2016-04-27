@@ -218,7 +218,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
       include_once ('chalkboards.php');
     }else{
       include_once ('sitelette.php');
-    } 
+    }
 
 
 
