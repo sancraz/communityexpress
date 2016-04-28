@@ -1,0 +1,14 @@
+<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+<div role="main" class="ui-content">
+    <div class='cmntyx-user_pictures swipe slider'>
+        <div class='swipe-wrap'>
+            <% _(models).each( function(model) { %>
+                <div>
+                    <img class="cmntyx-user_picture" src=<%= model.get('url')%>>
+                    <h3 class="cmntyx-user_picture_title"><%= model.get('title') %></h3>
+                    <p class="cmntyx-user_picture_title"><%= model.get('message')%></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>

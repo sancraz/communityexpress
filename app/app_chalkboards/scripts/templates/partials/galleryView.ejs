@@ -1,0 +1,13 @@
+<ul class="restaurant_gallery">
+    <% collection.each(function(image){ %>
+        <li class="cmntyex-gallery_item">
+            <h2 class="cmntyex-gallery_title"><%= image.get('title') %></h2>
+            <div class="cmntyex-gallery-image-container">
+	            <img width="<%= image.get('imagewidth') %>" height="<%= image.get('imageheight') %>" src="<%= image.get('url') %>">
+            </div>
+            <p class="cmntyex-gallery_description"><%= image.get('message') %></p>
+        </li>
+    <%})%>
+</ul>
+
+

@@ -1,0 +1,109 @@
+<div id="order_page" data-role="page" class="page">
+    <div class="sprite_navbar back_small back"></div>
+    <div data-role="content" class="content">
+
+        <div data-role="collapsible" data-inset="false">
+            <h3><%= count() %> items, $<%= getTotalPrice() %> + Taxes</h3>
+            <table class="cmntyex-order_table">
+                <thead>
+                    <th>QTY</th>
+                    <th>Item Name</th>
+                    <th>Price</th>
+                </thead>
+                <% _(models).each(function (item) { %>
+                    <tr>
+                        <td><%= item.get('quantity') %></td>
+                        <td><%= item.get('itemName') %></td>
+                        <td>$<%= (item.get('quantity') * item.get('price')).toFixed(2) %></td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+        <ul style="margin: 0 -1em;" data-role="listview" >
+            <li>From: <%= username %></li>
+        </ul>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <input type="radio" name="pickupSelected" id="delivery" value="false" <%= !allowDelivery ? "disabled" : "" %>>
+                <label for="delivery">Delivery</label>
+            </div>
+            <div class="ui-block-b">
+                <input type="radio" name="pickupSelected" id="pickup" value="true" checked="checked">
+                <label for="pickup">Pick Up</label>
+            </div>
+        </div>
+        <% if (allowDelivery) { %>
+            <div data-role="collapsible" data-inset="false">
+                <h3>Delivery Address</h3>
+                <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="zip" placeholder="Zip" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="email" placeholder="Email" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="phone" placeholder="Phone" data-corners="false"/>
+            </div>
+        <% } %>
+        <div class="ui-grid-a">
+            <div class="ui-block-a showPaymentInfo">
+                <input type="radio" name="creditCardSelected" id="credit" value="true" <%= !paymentOnlineAccepted ? "disabled" : "" %>>
+                <label for="credit">Credit</label>
+            </div>
+            <div class="ui-block-b hidePaymentInfo">
+                <input type="radio" name="creditCardSelected" id="cash" value="false" checked="checked">
+                <label for="cash">Cash</label>
+            </div>
+        </div>
+        <% if (paymentOnlineAccepted) { %>
+            <div data-role="collapsible" id="collapsible1" data-inset="false">
+                <h3>Payment Info</h3>
+                <select name="select-choice-1" class="country"  id="select-choice-1">
+                    <option><%= country %></option>
+                </select>
+                <input autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
+                <select name="select-choice-1" class="cardtype"  id="select-choice-1">
+                    <option>Card Type</option>
+                    <% _(cardTypes).each(function (cardType) { %>
+                        <option value="<%= cardType.enumText %>"><%= cardType.displayText %></option>
+                     <% }) %>
+                </select>
+                <fieldset class="expiration_date" data-role="controlgroup" data-type="horizontal">
+                    <select name="select-choice-month" class="month" id="select-choice-month">
+                        <option>Exp.Month</option>
+                        <% _(months).each(function (month) { %>
+                            <option value="<%= month %>"><%= month %></option>
+                         <% }) %>
+                    </select>
+                    <select name="select-choice-year" class="year" id="select-choice-year">
+                        <option>Exp.Year</option>
+                        <% _(years).each(function (year) { %>
+                            <option value="<%= year %>"><%= year %></option>
+                         <% }) %>
+                    </select>
+                </fieldset>
+                <input autocapitalize="off" type="text" name="cvv" placeholder="CVV." data-corners="false"/>
+                <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>
+                <select name="select-choice-1" class="state"  id="select-choice-1">
+                    <option>State</option>
+                    <% _(states).each(function (state, abbr) { %>
+                        <option value="<%= abbr %>"><%= state %></option>
+                    <% }) %>
+                </select>
+                <input autocapitalize="off" type="text" name="zip" placeholder="Zip" data-corners="false"/>
+                <fieldset class="save_credit_data" data-role="controlgroup">
+                   <input type="checkbox" name="checkbox-1" id="checkbox-1" class="custom" />
+                   <label for="checkbox-1">Save for future reference</label>
+                </fieldset>
+            </div>
+        <% } %>
+        <div class="ui-grid-a">
+            <div class="ui-block-a">
+                <a href="#" class="cancel_button" data-role="button" data-corners="false">Cancel</a>
+            </div>
+            <div class="ui-block-b">
+                <input type="submit" value="Send" class="submit_button" data-corners="false">
+            </div>
+        </div>
+    </div>
+</div>

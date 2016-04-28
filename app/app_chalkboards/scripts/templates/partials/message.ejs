@@ -1,0 +1,13 @@
+<div class="chat_message_time_created">
+    <%= timeStamp %>
+</div>
+<div class="chat_message_body">
+    <p><%= messageBody %></p>
+</div>
+<div class="chat_message_sender">
+    <% if(fromUser) { %>
+    <%= userName %>
+    <% }else{ %>
+    <%= saslName %>
+    <% } %>
+</div>

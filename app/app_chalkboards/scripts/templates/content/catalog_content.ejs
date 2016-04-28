@@ -1,0 +1,21 @@
+<div id="cmntyex_map" data-role="page" class="page">
+    <div class="sprite_navbar back_small back"></div>
+    <div data-role="content" class="content">
+        <div class="ui-grid-c cmntyex-basket">
+            <div class="ui-block-a">
+                <div class="edit_button sprite_navbar sub_edit"></div>
+            </div>
+            <div class="ui-block-b">
+                <p><span class="num-of-items"><%= basket.count() %></span> Items</p>
+            </div>
+            <div class="ui-block-c">
+                <p>$<span class="total-price"><%= basket.getTotalPrice() %></span></p>
+            </div>
+            <div class="ui-block-d">
+                <button class="order_button cmntyex-basket_order_button">order</button>
+            </div>
+        </div>
+        <div class="cmntyex-items_placeholder">
+        </div>
+    </div>
+</div>

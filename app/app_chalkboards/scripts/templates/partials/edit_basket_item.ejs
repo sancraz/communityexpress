@@ -1,0 +1,12 @@
+<% if (editable) { %>
+    <a class="cmntyex-remove-list-item ui-btn ui-shadow ui-corner-all
+        <% if (selected) { %>ui-icon-delete<%} else {%>ui-icon-none<% } %>
+        ui-btn-icon-left">
+        <%= quantity %>X <%= itemName %>
+        <span class="right sprite_navbar sub_delete"></span>
+    </a>
+<% } else { %>
+    <li class="cmntyex-remove-list-item">
+        <%= itemName %>
+    </li>
+<% } %>
