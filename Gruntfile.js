@@ -30,8 +30,6 @@ var themes = function() {
     return distStyle;
 };
 
-grunt.log.write(themes());
-
 module.exports = function (grunt) {
     'use strict';
 

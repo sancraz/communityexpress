@@ -1,0 +1,30 @@
+<div role="main" class="ui-content">
+    <form class="new_message_form" action="#" method="post">
+        <div class="ui-grid-solo">
+            <div class="ui-grid-a">
+                <div class="cmntyex-rating-placeholder"></div>
+            </div>
+        </div>
+        <div class="ui-grid-solo">
+            <div class="ui-grid-a">
+                <% if (!hideTitle) { %>
+                    <input type="text" placeholder="Title" autocapitalize="off" name="title" id="title" data-corners="false" />
+                <% } %>
+                <textarea autocapitalize="off" placeholder="Message" class="comntyex-upload_message_input" id="message" name="message" data-corners="false" />
+                <div class="preview-container">
+                    <img class="preview" src="">
+                </div>
+                <input class="file-selector" id="file" type="file" class="file_input" name="file" data-corners="false"/>
+            </div>
+        </div>
+        <div class="ui-grid-a">
+            <div style="color:#FF0000; display:none;" id="err_text"></div>
+            <div class="ui-block-a">
+                <a href="#" class="submit_button" data-role="button" data-corners="false">Submit</a>
+            </div>
+            <div class="ui-block-b">
+                <a href="#" class="close_button" data-role="button" data-corners="false">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

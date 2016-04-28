@@ -21,6 +21,10 @@ ul {
 	margin: 0;
 }
 
+#cmtyx_landingView {
+	height: 100%;
+}
+
 .ui-mobile-rendering>* {
 	visibility: visible;
 }
@@ -734,6 +738,12 @@ ul {
 	width: 100%;
 	margin-bottom: 50px;
 	display: block;
+}
+
+#cmntyex_menu_panel .sasl_menu_button img {
+	width: 100px;
+	height: 100px;
+	visibility: hidden;
 }
 
 #cmntyex_menu_panel .close_button {
