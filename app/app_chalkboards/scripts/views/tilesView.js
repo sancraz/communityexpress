@@ -14,6 +14,8 @@ var Vent = require('../Vent'),
     mediaActions = require('../actions/mediaActions'),
     updateActions = require('../actions/updateActions'),
     PageLayout = require('./components/pageLayout'),
+    ListView = require('./components/listView'),
+    TileView = require('./partials/tile_item'),
     h = require('../globalHelpers');
 
 var TilesView = PageLayout.extend({
@@ -22,8 +24,7 @@ var TilesView = PageLayout.extend({
 
     initialize: function(options) {
         options = options || {};
-        this.sasl = options.sasl;
-        this.contests = options.contests;
+        this.tiles = options.tiles;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
 
@@ -36,16 +37,12 @@ var TilesView = PageLayout.extend({
     },
 
     renderData: function(){
-        return _.extend( {}, this.model.attributes);
+        return _.extend( {});
     },
 
     onShow: function(){
-        this.addEvents({
-            'initialized.owl.carousel': 'showUUID',
-            'changed.owl.carousel': 'showUUID'
-        });
-
-        this.renderGallery();
+        this.addEvents();
+        this.renderTiles(this.tiles);
 
         try {
             addToHomescreen().show();
@@ -58,19 +55,14 @@ var TilesView = PageLayout.extend({
         this.$('.theme2_background').hide();
     },
 
-    renderGallery: function(password) {
-        this.$('.theme2_background').show();
-    },
-
-    showUUID: function(e) {
-        if (!e.namespace || e.type != 'initialized' && e.property.name != 'position') {
-            return;
-        };
-
-        var current = e.item.index;
-
-        var uuid = $(e.target).find('.owl-item').eq(current).find('.mediatile').attr('uuid');
-        console.log(uuid);
+    renderTiles: function(tiles) {
+        this.$('.cmntyex-tiles_placeholder').html( new ListView({
+            ItemView: TileView,
+            className: 'cmntyex-tile_list',
+            collection: tiles,
+            dataRole: 'none',
+            parent: this
+        }).render().el);
     }
 
 });
