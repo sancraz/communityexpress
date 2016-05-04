@@ -89,6 +89,20 @@ module.exports = {
             parseFloat( restaurant.get('longitude') ),
             true
         );
+    },
+
+    getSitelette: function(sa, sl) {
+        var lat = geolocation.getPreviousLocation.latitude,
+            long = geolocation.getPreviousLocation.longitude,
+            uid = window.community.UID;
+        return gateway.sendRequest('retrieveSiteletteBySASL', {
+            UID: uid,
+            latitude: lat,
+            longitude: long,
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            promotionsOnly: true
+        });
     }
 
 };

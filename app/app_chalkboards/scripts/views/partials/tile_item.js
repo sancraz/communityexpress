@@ -2,16 +2,21 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/message.ejs'),
+var template = require('ejs!../../templates/partials/tile.ejs'),
+    saslActions = require('../../actions/saslActions'),
     h = require('../../globalHelpers');
 
-var MessageView = Backbone.View.extend({
+var TileView = Backbone.View.extend({
 
     template: template,
 
     tagName: 'li',
 
-    className: 'chat_message',
+    className: 'tile_item',
+
+    events: {
+        'click': 'retrieveSitelette'
+    },
 
     initialize: function() {
         this.listenTo(this.model, 'destroy', this.remove, this );
@@ -31,8 +36,18 @@ var MessageView = Backbone.View.extend({
         }else{
             this.$el.addClass('user');
         }
+    },
+
+    retrieveSitelette: function() {
+        debugger;
+        var sa = this.model.attributes.serviceAccommodatorId,
+            sl = this.model.attributes.serviceLocationId;
+        saslActions.getSitelette(sa, sl)
+            .then(function(resp) {
+                console.log(resp);
+            });
     }
 
 });
 
-module.exports = MessageView;
+module.exports = TileView;

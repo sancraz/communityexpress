@@ -1,8 +1,8 @@
 'use strict';
 
-var gateway = require('../APIGateway/gateway.js'),
-    PromotionModel = require('../models/promotionModel.js'),
-    sessionActions = require('../actions/sessionActions.js');
+var gateway = require('../APIGateway/gateway'),
+    PromotionModel = require('../models/promotionModel'),
+    sessionActions = require('../actions/sessionActions');
 
 var getUID = function () {
     return sessionActions.getCurrentUser().getUID();
@@ -75,4 +75,18 @@ module.exports = {
             like: like
         });
     },
+
+    getTiles: function(coords) {
+        return gateway.sendRequest('getTilesByUIDAndLocation', {
+            domain: window.community.domain,
+            UID: window.community.UID,
+            latitude: coords.latitude,
+            longitude: coords.longitude,
+            simulate: false
+        }).then(function(tiles) {
+            return new Backbone.Collection(tiles, {
+                model: PromotionModel
+            })
+        });
+    }
 };
