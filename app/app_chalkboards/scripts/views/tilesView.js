@@ -27,13 +27,6 @@ var TilesView = PageLayout.extend({
         this.tiles = options.tiles;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
-
-        $('.owl-carousel').owlCarousel({
-            margin : 0,
-            loop : true,
-            autoWidth : false,
-            items : 1
-        });
     },
 
     renderData: function(){

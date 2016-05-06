@@ -60,13 +60,7 @@ if (!is_null($androidHomeScreenIconURL)) {
 
 
 <script>
-      window.saslData = <?php
-if (!is_null($saslJSON)) {
-    echo json_encode($saslJSON);
-} else {
-    echo '{"error":"null sasl"}';
-}
-?>;
+
   window.community={};
   window.community.themeId=<?php echo $themeId ?>;
   window.community.domain='<?php echo $domain ?>';
@@ -76,8 +70,8 @@ if (!is_null($saslJSON)) {
   window.community.uuidURL='<?php echo $uuidURL ?>';
   window.community.embedded=<?php echo  $embedded==TRUE?'true':'false'  ?>;
   window.community.desktop=<?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
-  window.community.publicAccess=<?php echo  $publicAccess==TRUE?'true':'false'?>;
-  window.community.directAccess=<?php echo  $directAccess==TRUE?'true':'false'?>;
+  window.community.publicAccess=<?php echo  $urlKeyAccess==TRUE?'true':'false'?>;
+  window.community.directAccess=<?php echo  $saslAccess==TRUE?'true':'false'?>;
   window.community.demo=<?php echo  $demo==TRUE?'true':'false'?>;
   window.community.server='<?php echo $server ?>';
   window.community.host='<?php echo $serverName ?>';
@@ -92,9 +86,9 @@ if (!is_null($saslJSON)) {
 
 <?php
 if (!is_null($siteletteJSON)) {
-   echo $siteletteJSON['headerDiv'];
-    
+   echo $siteletteJSON['headerDiv']; 
    echo $siteletteJSON['landingViewDiv'];
+   echo $siteletteJSON['navbarDiv'];
 }
 ?>
 

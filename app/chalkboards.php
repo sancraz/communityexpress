@@ -87,8 +87,7 @@ if (!is_null($androidHomeScreenIconURL)) {
 
 <?php
 if (!is_null($siteletteJSON)) {
-   echo $siteletteJSON['headerDiv'];
-    
+   echo $siteletteJSON['headerDiv']; 
    echo $siteletteJSON['landingViewDiv'];
    echo $siteletteJSON['navbarDiv'];
    
