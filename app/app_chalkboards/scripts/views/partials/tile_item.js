@@ -39,7 +39,6 @@ var TileView = Backbone.View.extend({
     },
 
     retrieveSitelette: function() {
-        debugger;
         var sa = this.model.attributes.serviceAccommodatorId,
             sl = this.model.attributes.serviceLocationId;
         saslActions.getSitelette(sa, sl)
