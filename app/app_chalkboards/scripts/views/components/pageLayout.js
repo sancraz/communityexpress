@@ -29,6 +29,11 @@ var PageView = function(options) {
     this.navbarView = new options.navbarView(_.extend(options.navbarData, {
         page: this
     }));
+    if (options.headerView) {
+        this.headerView = new options.headerView(_.extend(options.headerData, {
+            page: this
+        }));
+    };
 
     this.listenTo(this.contentView, 'show', this._onPageShow, this);
     this.listenTo(this.contentView, 'beforehide', this._onPageBeforeHide, this);
@@ -132,6 +137,9 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
 
     renderToolbars: function() {
         this.navbarView.render(this._data()).el;
+        if (this.headerView) {
+            this.headerView.render(this._data()).el;
+        };
     },
 
     openOverlay: function (name, options) {

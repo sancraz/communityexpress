@@ -91,10 +91,12 @@ module.exports = {
         );
     },
 
-    getSitelette: function(sa, sl) {
+    getSitelette: function(options) {
         var lat = geolocation.getPreviousLocation.latitude,
             long = geolocation.getPreviousLocation.longitude,
-            uid = window.community.UID;
+            uid = window.community.UID,
+            sa = options.sa,
+            sl = options.sl;
         return gateway.sendRequest('retrieveSiteletteBySASL', {
             UID: uid,
             latitude: lat,

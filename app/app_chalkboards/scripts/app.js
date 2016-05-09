@@ -79,7 +79,7 @@ App.prototype = {
     },
 
     initializePage: function(viewName, options) {
-        return pageController[viewName].call( pageController, options ).pipe(function(pageModel){
+        return pageController[viewName].call( pageController, options ).then(function(pageModel){
             return pageFactory.create( viewName, pageModel );
         }.bind(this));
     },
