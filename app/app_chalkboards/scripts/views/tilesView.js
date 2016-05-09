@@ -6,17 +6,10 @@ var Vent = require('../Vent'),
     config = require('../appConfig'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
-    saslActions = require('../actions/saslActions'),
-    promotionActions = require('../actions/promotionActions'),
-    configurationActions = require('../actions/configurationActions'),
-    promotionsController = require('../controllers/promotionsController'),
-    galleryActions = require('../actions/galleryActions'),
-    mediaActions = require('../actions/mediaActions'),
-    updateActions = require('../actions/updateActions'),
+    PromotionModel = require('../models/promotionModel'),
     PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
-    TileView = require('./partials/tile_item'),
-    h = require('../globalHelpers');
+    TileView = require('./partials/tile_item');
 
 var TilesView = PageLayout.extend({
 
@@ -35,7 +28,7 @@ var TilesView = PageLayout.extend({
 
     onShow: function(){
         this.addEvents();
-        this.renderTiles(this.tiles);
+        this.renderTiles();
 
         try {
             addToHomescreen().show();
@@ -48,14 +41,21 @@ var TilesView = PageLayout.extend({
         this.$('.theme2_background').hide();
     },
 
-    renderTiles: function(tiles) {
-        this.$('.cmntyex-tiles_placeholder').html( new ListView({
-            ItemView: TileView,
-            className: 'cmntyex-tile_list',
-            collection: tiles,
-            dataRole: 'none',
-            parent: this
-        }).render().el);
+    renderTiles: function() {
+        _(this.tiles).each(function (rest_tiles) {
+            this.rest_tiles = rest_tiles;
+            var el = new ListView({
+                ItemView: TileView,
+                className: 'cmntyex-tile_list',
+                collection: new Backbone.Collection(rest_tiles.tiles, {
+                    model: PromotionModel
+                }),
+                dataRole: 'none',
+                parent: this
+            }).render().el;
+
+            this.$('.cmntyex-tiles_placeholder').append(el);
+        }.bind(this));
     }
 
 });

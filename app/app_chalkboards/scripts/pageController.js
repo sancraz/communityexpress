@@ -3,6 +3,7 @@
 'use strict';
 
 var Vent = require('./Vent'),
+    saslActions = require('./actions/saslActions'),
     promotionActions = require('./actions/promotionActions');
 
 var visited = {
@@ -50,8 +51,17 @@ module.exports = {
         return promotionActions.getTiles(options)
             .then(function(response) {
                 return {
-                    tiles: response,
+                    tiles: response.tiles,
                     coords: coords
+                }
+            });
+    },
+
+    tileDetailed: function(options) {
+        return saslActions.getSitelette(options)
+            .then(function(resp) {
+                return {
+                    model: resp
                 }
             });
     }

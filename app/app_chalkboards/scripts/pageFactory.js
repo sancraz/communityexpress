@@ -4,7 +4,9 @@
 
 var TilesView = require('./views/tilesView'),
     LocationSelectView = require('./views/locationSelectView'),
-    NavbarView = require('./views/headers/navbarView');
+    TileDetailedView = require('./views/tileDetailedView'),
+    NavbarView = require('./views/headers/navbarView'),
+    HeaderView = require('./views/headers/headerView');
 
 module.exports = {
     create: function(viewName,options) {
@@ -24,6 +26,18 @@ module.exports = {
             view = new LocationSelectView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
+                    model: options.model
+                }
+            }));
+            break;
+        case 'tileDetailed':
+            view = new TileDetailedView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {
+                    model: options.model
+                },
+                headerView: HeaderView,
+                headerData: {
                     model: options.model
                 }
             }));

@@ -3,6 +3,7 @@
 'use strict';
 
 var template = require('ejs!../../templates/partials/tile.ejs'),
+    Vent = require('../../Vent'),
     saslActions = require('../../actions/saslActions'),
     h = require('../../globalHelpers');
 
@@ -18,14 +19,15 @@ var TileView = Backbone.View.extend({
         'click': 'retrieveSitelette'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+        this.tileOpts = options.parent.parent.rest_tiles;
         this.listenTo(this.model, 'destroy', this.remove, this );
     },
 
     render: function() {
         var viewModel = h().toViewModel( this.model.toJSON() );
         viewModel.timeStamp = h().toPrettyTime( viewModel.timeStamp );
-        this.$el.html(this.template( viewModel ));
+        this.$el.html(this.template(_.extend( viewModel, this.tileOpts )));
         this.addClasses();
         return this;
     },
@@ -39,12 +41,9 @@ var TileView = Backbone.View.extend({
     },
 
     retrieveSitelette: function() {
-        var sa = this.model.attributes.serviceAccommodatorId,
-            sl = this.model.attributes.serviceLocationId;
-        saslActions.getSitelette(sa, sl)
-            .then(function(resp) {
-                console.log(resp);
-            });
+        this.sa = this.tileOpts.serviceAccommodatorId;
+        this.sl = this.tileOpts.serviceLocationId;
+        Vent.trigger( 'viewChange', 'tileDetailed', { sa:this.sa, sl:this.sl });
     }
 
 });

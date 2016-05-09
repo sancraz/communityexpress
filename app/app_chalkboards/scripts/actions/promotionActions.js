@@ -84,9 +84,9 @@ module.exports = {
             longitude: coords.longitude,
             simulate: false
         }).then(function(tiles) {
-            return new Backbone.Collection(tiles, {
-                model: PromotionModel
-            })
+            return {
+                tiles: tiles
+            };
         });
     }
 };
