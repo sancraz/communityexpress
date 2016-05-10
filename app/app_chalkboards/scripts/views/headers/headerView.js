@@ -5,22 +5,23 @@ var Vent = require('../../Vent'),
 
 var HeaderView = Backbone.View.extend({
 
-	el: '#cmtyx_header',
-
 	initialize: function(options) {
 		this.options = options || {};
 		this.page = options.page;
 		this.options.text = 'Title';
-		this.listenTo(this.parent, 'hide', this.remove, this);
+		this.listenTo(this.page, 'hide', this.remove, this);
 	},
 
 	render: function() {
-		this.showHeaderTitle();
-        return this;
-    },
+		this.showHeader();
+		return this;
+	},
 
-	showHeaderTitle: function() {
-		this.$el.replaceWith(this.options.model.headerDiv);
+	showHeader: function() {
+		var header = $('#cmtyx_header');
+		this.setElement($(header[0].outerHTML));
+		this.$el.appendTo('body');
+		this.$el.find('.theme2_banner').text(this.model.name);
 	}
 });
 

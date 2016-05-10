@@ -58,11 +58,8 @@ module.exports = {
     },
 
     tileDetailed: function(options) {
-        return saslActions.getSitelette(options)
-            .then(function(resp) {
-                return {
-                    model: resp
-                }
-            });
+        return $.Deferred().resolve({
+            model: options
+        }).promise();
     }
 };

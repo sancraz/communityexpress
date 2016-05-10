@@ -21,6 +21,7 @@ var TileView = Backbone.View.extend({
 
     initialize: function(options) {
         this.tileOpts = options.parent.parent.rest_tiles;
+        this.coords = options.parent.parent.coords;
         this.listenTo(this.model, 'destroy', this.remove, this );
     },
 
@@ -43,7 +44,11 @@ var TileView = Backbone.View.extend({
     retrieveSitelette: function() {
         this.sa = this.tileOpts.serviceAccommodatorId;
         this.sl = this.tileOpts.serviceLocationId;
-        Vent.trigger( 'viewChange', 'tileDetailed', { sa:this.sa, sl:this.sl });
+        Vent.trigger( 'viewChange', 'tileDetailed', {
+            restaurant: this.tileOpts,
+            tile: this.model.attributes,
+            coords: this.coords
+        });
     }
 
 });

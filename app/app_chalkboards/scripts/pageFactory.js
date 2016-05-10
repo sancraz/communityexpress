@@ -38,7 +38,7 @@ module.exports = {
                 },
                 headerView: HeaderView,
                 headerData: {
-                    model: options.model
+                    model: options.model.restaurant
                 }
             }));
         }

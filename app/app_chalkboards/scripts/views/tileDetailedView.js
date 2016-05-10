@@ -11,23 +11,26 @@ var TileDetailedView = PageLayout.extend({
     name: 'tileDetailed',
 
     initialize: function(options) {
-        options = options || {};
-        this.element = options.model.landingViewDiv;
-        this.tiles = options.tiles;
+        this.options = options || {};
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
     },
 
-    // renderData: function(){
-    //     return _.extend({});
-    // },
+    renderData: function(){
+        return _.extend(this.model.tile);
+    },
 
     onShow: function(){
-        this.$el.append(this.element);
-        this.addEvents();
+        this.addEvents({
+            'click .back': 'triggerTilesView'
+        });
     },
 
     onHide: function() {
+    },
+
+    triggerTilesView: function() {
+        Vent.trigger('viewChange', 'tiles', this.model.coords);
     }
 
 });

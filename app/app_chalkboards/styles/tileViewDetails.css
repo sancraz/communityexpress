@@ -110,7 +110,8 @@ body{
 	list-style: none;
 }
 
-.tile_item {
+.tile_item,
+.cmntyex-tiles_placeholder {
 	position: relative;
 	font-size: 55%;
 	text-shadow: none;
