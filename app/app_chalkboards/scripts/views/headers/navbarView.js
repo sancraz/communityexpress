@@ -10,7 +10,11 @@ var NavbarView = Backbone.View.extend({
     el: '#cmtyx_navbar',
 
     events: {
-        'click .menu_button_1': 'selectLocation'
+        'click .menu_button_1': 'selectLocation',
+        'click .menu_button_2': 'showButtonUnavailable',
+        'click .menu_button_3': 'showButtonUnavailable',
+        'click .menu_button_4': 'showButtonUnavailable',
+        'click .menu_button_5': 'showButtonUnavailable'
     },
 
     initialize: function(options) {
@@ -26,6 +30,10 @@ var NavbarView = Backbone.View.extend({
 
     selectLocation: function() {
         this.page.openSubview('locationList', {}, this.options);
+    },
+
+    showButtonUnavailable: function() {
+        this.page.openSubview('buttonUnavailable');
     }
 
 });
