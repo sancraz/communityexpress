@@ -6,12 +6,12 @@
             	<a href="#" >
                     <div class="cmntyex_sasl_tile">
                         <div class="tile_left">
-                            <h2 class="tile_type"><%= tileType.displayText %></h2>
-                            <img class="tile_image" src="<%= tileURL %>" >
+                            <h2 class="tile_type"><%= tile.tileType.displayText %></h2>
+                            <img class="tile_image" src="<%= tile.tileURL %>" >
                         </div>
                         <div class="tile_right">
-                            <h2 class="tile_title"><%= tileTitle %></h2>
-                            <p class="tile_message"><%= tileMessage %></p>
+                            <h2 class="tile_title"><%= tile.tileTitle %></h2>
+                            <p class="tile_message"><%= tile.tileMessage %></p>
                         </div>
                     </div>
                 </a>
@@ -34,9 +34,10 @@
     </div>
     <div class="shareBlock">
         <div>
+            <div>Share</div>
             <div class="shareButtons">
                 <div id="tileviewdetails_twitterbutton">
-                    <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + tileUUID) %>">
+                    <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + restaurant.anchorURL.friendlyURL + '?t='+ tile.tileUUIDtype + '&u=' + tile.tileUUID) %>" target="_blank">
                         <div class="sprite_navbar navbutton_twitter"></div>
                     </a>
                 </div>
@@ -46,12 +47,12 @@
                     </a>
                 </div>
                 <div id="tileviewdetails_facebookbutton">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + tileUUID) %>">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + restaurant.anchorURL.friendlyURL + '?t='+ tile.tileUUIDtype + '&u=' + tile.tileUUID) %>" target="_blank">
                         <div class="sprite_navbar navbutton_facebook"></div>
                     </a>
                 </div>
                 <div id="tileviewdetails_emailbutton">
-                    <a href="mailto:?subject=&body=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + tileUUID) %>">
+                    <a href="mailto:?subject=&body=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + tile.tileUUID) %>">
                         <div class="sprite_navbar navbutton_email"></div>
                     </a>
                 </div>
