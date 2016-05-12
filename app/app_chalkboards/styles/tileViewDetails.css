@@ -87,6 +87,7 @@ body{
 	padding: 5px;
 	font-style: italic;
 	width: 100%; 
+	height: 90px;
 	 
 }
 
@@ -115,6 +116,10 @@ body{
 	position: relative;
 	font-size: 55%;
 	text-shadow: none;
+}
+
+.tile_item a {
+	text-decoration: none;
 }
 
 .tile_left {
@@ -168,7 +173,7 @@ body{
 }
 
 .tile_adAlert {
-	background: url('icons/newsflash_320X140.jpg') no-repeat top left;
+	background: url('icons/newsflash_320X140.jpg');
 	width: 100%;
 	height: 140px;
 }
@@ -179,4 +184,21 @@ body{
     color: #fff;
     text-align: center;
     font-weight: bold;
+}
+
+.shareButtons>div {
+	display: inline-block;
+	margin: 5px;
+}
+
+#tileviewdetails_callbutton {
+	float: left;
+	margin-left: 10%;
+	zoom: .7;
+}
+
+#tileviewdetails_drivebutton {
+	float: right;
+	margin-right: 10%;
+	zoom: .7;
 }
