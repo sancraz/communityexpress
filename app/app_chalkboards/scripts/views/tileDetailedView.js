@@ -22,7 +22,8 @@ var TileDetailedView = PageLayout.extend({
 
     onShow: function(){
         this.addEvents({
-            'click .back': 'triggerTilesView'
+            'click .back': 'triggerTilesView',
+            'click .mobile_button': 'sendMobile'
         });
     },
 
@@ -31,7 +32,16 @@ var TileDetailedView = PageLayout.extend({
 
     triggerTilesView: function() {
         Vent.trigger('viewChange', 'tiles', this.model.coords);
-    }
+    },
+
+    sendMobile: function () {
+        console.log('share with sms');
+        
+        var UUID = this.model.tile.tileUUID;
+        //     this.openSubview('mobilePopup', {}, {
+        //         tileUUID: UUID
+        //     });
+    },
 
 });
 

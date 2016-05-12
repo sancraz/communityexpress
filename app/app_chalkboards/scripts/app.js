@@ -13,7 +13,7 @@ var userController = require('./controllers/userController'),
     Geolocation = require('./Geolocation.js');
 
 var hasUIDinQueryParams = function () {
-    var params = location.search.match(/UID=/);
+    var params = location.search.match(/t=/);
     return (params && params.length);
 };
 

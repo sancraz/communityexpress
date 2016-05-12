@@ -18,33 +18,44 @@
             </div>
         </div>
     </div>
-    <table class="shareBlock">
-        <tbody>
-            <tr class="shareButtons">
-                <td id="tileviewdetails_twitterbutton">
-                    <div class="sprite_navbar navbutton_twitter"></div>
-                </td>
-                <td id="tileviewdetails_smsbutton">
-                    <div class="sprite_navbar navbutton_sms_button"></div>
-                </td>
-                <td id="tileviewdetails_facebookbutton">
-                    <div class="sprite_navbar navbutton_facebook"></div>
-                </td>
-                <td id="tileviewdetails_emailbutton">
-                    <div class="sprite_navbar navbutton_email"></div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="driveCallBlock">
-        <tbody>
-            <tr class="shareButtons">
-                <td colspan="2" id="tileviewdetails_callbutton">
+    <div class="driveCallBlock">
+        <div class="shareButtons">
+            <div colspan="2" id="tileviewdetails_callbutton">
+                <a href="">
                     <div class="sprite_navbar button12_60_0_0"></div>
-                </td>
-                <td colspan="2" id="tileviewdetails_drivebutton">
+                </a>
+            </div>
+            <div colspan="2" id="tileviewdetails_drivebutton">
+                <a href="">
                     <div class="sprite_navbar button12_28_0_0"></div>
-                </td></tr>
-        </tbody>
-    </table>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="shareBlock">
+        <div>
+            <div class="shareButtons">
+                <div id="tileviewdetails_twitterbutton">
+                    <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + tileUUID) %>">
+                        <div class="sprite_navbar navbutton_twitter"></div>
+                    </a>
+                </div>
+                <div id="tileviewdetails_smsbutton">
+                    <a href="" class="mobile_button">
+                        <div class="sprite_navbar navbutton_sms_button"></div>
+                    </a>
+                </div>
+                <div id="tileviewdetails_facebookbutton">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + tileUUID) %>">
+                        <div class="sprite_navbar navbutton_facebook"></div>
+                    </a>
+                </div>
+                <div id="tileviewdetails_emailbutton">
+                    <a href="mailto:?subject=&body=<%= window.encodeURIComponent(window.location.href + '?t=p&u=' + tileUUID) %>">
+                        <div class="sprite_navbar navbutton_email"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
