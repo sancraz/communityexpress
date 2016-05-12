@@ -16,12 +16,12 @@ var TileView = Backbone.View.extend({
     className: 'tile_item',
 
     events: {
-        'click': 'retrieveSitelette'
+        'click': 'triggerTileDetailedView'
     },
 
     initialize: function(options) {
-        this.tileOpts = options.parent.parent.rest_tiles;
-        this.coords = options.parent.parent.coords;
+        this.tileOpts = options.parent.parent;
+        this.coords = this.model.get('coords');
         this.listenTo(this.model, 'destroy', this.remove, this );
     },
 
@@ -29,7 +29,7 @@ var TileView = Backbone.View.extend({
         var viewModel = h().toViewModel( this.model.toJSON() );
         viewModel.timeStamp = h().toPrettyTime( viewModel.timeStamp );
         this.$el.html(this.template(_.extend( viewModel, this.tileOpts )));
-        this.addClasses();
+        // this.addClasses();
         return this;
     },
 
@@ -41,7 +41,7 @@ var TileView = Backbone.View.extend({
         }
     },
 
-    retrieveSitelette: function() {
+    triggerTileDetailedView: function() {
         this.sa = this.tileOpts.serviceAccommodatorId;
         this.sl = this.tileOpts.serviceLocationId;
         Vent.trigger( 'viewChange', 'tileDetailed', {

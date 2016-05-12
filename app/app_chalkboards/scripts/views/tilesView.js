@@ -44,7 +44,21 @@ var TilesView = PageLayout.extend({
 
     renderTiles: function() {
         _(this.tiles).each(function (rest_tiles) {
+
             this.rest_tiles = rest_tiles;
+
+            _(rest_tiles.tiles).each(function(tile) {
+                tile.showAdAlert = false;
+                tile.coords = this.coords;
+            }.bind(this));
+
+            if (rest_tiles.hasAdAlert) {
+                rest_tiles.tiles[0].showAdAlert = true;
+                rest_tiles.tiles[0].adAlertMessage = rest_tiles.adAlertMessage;
+            } else {
+                rest_tiles.tiles[0].showAdAlert = false;
+            };
+
             var el = new ListView({
                 ItemView: TileView,
                 className: 'cmntyex-tile_list',
@@ -52,7 +66,7 @@ var TilesView = PageLayout.extend({
                     model: PromotionModel
                 }),
                 dataRole: 'none',
-                parent: this
+                parent: rest_tiles
             }).render().el;
 
             this.$('.cmntyex-tiles_placeholder').append(el);
