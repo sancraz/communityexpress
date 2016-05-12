@@ -110,7 +110,7 @@ body{
 	list-style: none;
 }
 
-.tile_item,
+.cmntyex_sasl_tile,
 .cmntyex-tiles_placeholder {
 	position: relative;
 	font-size: 55%;
@@ -167,7 +167,16 @@ body{
     right: 0;
 }
 
-.shareButtons>div {
-	display: inline-block;
-	margin: 20px;
+.tile_adAlert {
+	background: url('icons/newsflash_320X140.jpg') no-repeat top left;
+	width: 100%;
+	height: 140px;
+}
+
+.tile_adAlert_message {
+	font-size: 200%;
+    text-shadow: none;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
 }

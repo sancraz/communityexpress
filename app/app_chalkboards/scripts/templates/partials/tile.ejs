@@ -1,4 +1,9 @@
 <a href="#" >
+    <% if (showAdAlert) { %>
+        <div class="tile_adAlert">
+            <h2 class="tile_adAlert_message"><%= adAlertMessage %></h2>
+        </div>
+    <% } %>
     <div class="cmntyex_sasl_tile">
         <div class="tile_left">
             <h1 class="tile_name"><%= name %></h1>
