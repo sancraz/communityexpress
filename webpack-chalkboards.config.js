@@ -1,7 +1,7 @@
 var config = require('./webpack.config.js');
 
 config.entry = {
-	'bundle':'./app/chalkboards.js'
+	'bundle':'./app/app_chalkboards/chalkboards.js'
 };
 
 module.exports = config;

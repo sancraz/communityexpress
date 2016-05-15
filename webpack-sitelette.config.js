@@ -1,7 +1,7 @@
 var config = require('./webpack.config.js');
 
 config.entry = {
-	'bundle':'./app/sitelette.js'
+	'bundle':'./app/app_sitelettes/sitelette.js'
 };
 
 module.exports = config;
