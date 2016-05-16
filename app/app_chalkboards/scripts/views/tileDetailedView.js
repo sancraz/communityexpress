@@ -11,7 +11,6 @@ var TileDetailedView = PageLayout.extend({
     name: 'tileDetailed',
 
     initialize: function(options) {
-        debugger;
         this.options = options || {};
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
@@ -27,7 +26,7 @@ var TileDetailedView = PageLayout.extend({
     onShow: function(){
         this.addEvents({
             'click .back': 'triggerTilesView',
-            'click .mobile_button': 'sendMobile'
+            'click #tileviewdetails_smsbutton': 'toggleSMSinput'
         });
     },
 
@@ -38,10 +37,11 @@ var TileDetailedView = PageLayout.extend({
         Vent.trigger('viewChange', 'tiles', this.model.coords);
     },
 
-    sendMobile: function () {
+    toggleSMSinput: function () {
         console.log('share with sms');
         
         var UUID = this.model.tile.tileUUID;
+        $("#sms_input_block").slideToggle('1000');
         //     this.openSubview('mobilePopup', {}, {
         //         tileUUID: UUID
         //     });

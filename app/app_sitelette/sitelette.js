@@ -1,31 +1,31 @@
 'use strict';
 
-require('./vendor/jquery-mobile/jquery.mobile-1.4.5.css');
-require('./app_sitelette/styles/sitelette_icons.css');
-require('./vendor/styles/jquery.jqplot.min.css');
-require('./vendor/add-to-homescreen/style/addtohomescreen.css');
-require('./vendor/styles/owl.carousel.css');
-require('./vendor/styles/fullcalendar.min.css');
-require('./app_sitelette/styles/sitelette.css');
+require('../vendor/jquery-mobile/jquery.mobile-1.4.5.css');
+require('../app_sitelette/styles/sitelette_icons.css');
+require('../vendor/styles/jquery.jqplot.min.css');
+require('../vendor/add-to-homescreen/style/addtohomescreen.css');
+require('../vendor/styles/owl.carousel.css');
+require('../vendor/styles/fullcalendar.min.css');
+require('./styles/sitelette.css');
 
-require('./vendor/add-to-homescreen/src/addtohomescreen.min');
-require('./app_sitelette/scripts/jquerymobile_config');
-require('./vendor/jquery-mobile/jquery.mobile-1.4.5');
-require('./vendor/scripts/owl.carousel.min');
-require('./vendor/scripts/jquery.jqplot.min');
-require('./vendor/scripts/jqplot.barRenderer.min');
-require('./vendor/scripts/jqplot.categoryAxisRenderer.min');
-require('./vendor/scripts/jqplot.pointLabels.min');
-require('./vendor/scripts/jquery-radiobutton.min');
-require('./vendor/swipe/swipe');
-require('./vendor/canvasResize/canvasResize');
+require('../vendor/add-to-homescreen/src/addtohomescreen.min');
+require('./scripts/jquerymobile_config');
+require('../vendor/jquery-mobile/jquery.mobile-1.4.5');
+require('../vendor/scripts/owl.carousel.min');
+require('../vendor/scripts/jquery.jqplot.min');
+require('../vendor/scripts/jqplot.barRenderer.min');
+require('../vendor/scripts/jqplot.categoryAxisRenderer.min');
+require('../vendor/scripts/jqplot.pointLabels.min');
+require('../vendor/scripts/jquery-radiobutton.min');
+require('../vendor/swipe/swipe');
+require('../vendor/canvasResize/canvasResize');
 require('jquery-mask-plugin');
 require('moment');
 require('fullcalendar');
 
-var App = require('./app_sitelette/scripts/app.js'),
-    h = require('./app_sitelette/scripts/globalHelpers.js'),
-    updateActions = require('./app_sitelette/scripts/actions/updateActions'),
+var App = require('./scripts/app.js'),
+    h = require('./scripts/globalHelpers.js'),
+    updateActions = require('./scripts/actions/updateActions'),
     FastClick = require('fastclick');
 
     addToHomescreen({

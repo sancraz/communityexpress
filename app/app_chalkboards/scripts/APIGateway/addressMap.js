@@ -32,6 +32,7 @@ module.exports = {
             retrievePromotionsBySASL: ['GET', '/promotions/retrievePromotionSATiersMetaDataBySASL'],
             activatePromotion: ['PUT', '/promotions/activatePromotionSATier'],
             deActivatePromotion: ['PUT', '/promotions/deActivatePromotionSATier'],
+            
             getTilesByUIDAndLocation: ['GET', '/sasl/getPromotionsSummaryByUIDAndLocation'],
             retrieveSiteletteBySASL: ['GET', '/html/retrieveSiteletteBySASL'],
 

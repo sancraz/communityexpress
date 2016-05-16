@@ -202,3 +202,11 @@ body{
 	margin-right: 10%;
 	zoom: .7;
 }
+
+#sms_input_block {
+	display: none;
+}
+
+#sms_input_block div {
+	display: inline-block;
+}
