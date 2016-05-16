@@ -88,20 +88,20 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/no_sitelette',
-                        src: '{,*/}*',
+                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>/no_sitelette',
+                        src: ['{,*/}*', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/no_sitelette'
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/desktop',
-                        src: ['**'],
+                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>/desktop',
+                        src: ['**', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/desktop'
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/error_page',
-                        src: '{,*/}*',
+                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>/error_page',
+                        src: ['{,*/}*', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/error_page'
                     },
                     {
@@ -112,12 +112,12 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/<%= yeoman.project %>styles/icons',
+                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>styles/icons',
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
                         dest: '<%= yeoman.dist %>/styles/icons/'
                     },
                     {
-                        src: '<%= yeoman.app %>/index.php',
+                        src: '<%= yeoman.app %>/production-index.php',
                         dest: '<%= yeoman.dist %>/index.php'
                     },
                     {
@@ -125,7 +125,7 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/parser_api_utility.php'
                     },
                     {
-                        src: '<%= yeoman.app %>/<%= yeoman.project %>-production.php',
+                        src: '<%= yeoman.app %>/app_<%= yeoman.project %>/<%= yeoman.project %>-production.php',
                         dest: '<%= yeoman.dist %>/<%= yeoman.project %>.php'
                     },
                     {
@@ -154,21 +154,11 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('build', [
-        'clean',
-        'webpack',
-        'copy',
-        'uglify',
-        'cssmin'
-    ]);
-
-    grunt.registerTask('sitelette', function() {
-        grunt.task.run([
-            'clean',
-            'webpack',
-            'copy',
-            'uglify',
-            'cssmin'
-        ]);
-    })
+    // grunt.registerTask('build', [
+    //     'clean',
+    //     'webpack',
+    //     'copy',
+    //     'uglify',
+    //     'cssmin'
+    // ]);
 };

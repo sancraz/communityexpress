@@ -37,9 +37,9 @@ if (validateParams('desktopiframe')) {
 // not mobile or tablet and not already in the iframe
 if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
  if ($tileViewDetails) {
-  include_once ('app_chalkboards/desktop/index.php');
+  include_once ('app_chalkboards/desktop/dev-index.php');
  } else {
-  include_once ('app_sitelettes/desktop/index.php');
+  include_once ('app_sitelette/desktop/dev-index.php');
  }
 
 } else {
@@ -183,13 +183,13 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
    $errorMessage = $siteletteJSON['curl_error'];
    $errorMessage = 'Service unavailable.';
 
-   include_once ('app_sitelettes/error_page/index.php');
+   include_once ('app_sitelette/error_page/dev-index.php');
 
   } else {
    if (isset($siteletteJSON['error'])) {
     $errorMessage = $siteletteJSON['error']['message'];
 
-    include_once ('app_sitelettes/error_page/index.php');
+    include_once ('app_sitelette/error_page/dev-index.php');
 
    } else {
 
@@ -216,7 +216,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
       $friendlyURL = NULL;
     }
 
-    include_once ('app_sitelettes/sitelette.php');
+    include_once ('app_sitelette/sitelette.php');
 
    }/*end valid sitelette*/
   }/*end can reach server */
@@ -243,9 +243,9 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
    //
   } else {
    if ($tileViewDetails) {
-    include_once ('app_chalkboards/no_sitelette/index.php');
+    include_once ('app_chalkboards/no_sitelette/dev-index.php');
    } else {
-    include_once ('app_sitelettes/no_sitelette/index.php');
+    include_once ('app_sitelette/no_sitelette/dev-index.php');
    }
   }
  }/* end no url supplied*/

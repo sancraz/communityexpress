@@ -7,12 +7,12 @@
   <meta name="keywords" content="">
   <title>Sitelettes</title>
 
-  <link href="/no_sitelette/bootstrap.min.css" rel="stylesheet">
-  <link href="/no_sitelette/style.css" rel="stylesheet">
+  <link href="no_sitelette/bootstrap.min.css" rel="stylesheet">
+  <link href="no_sitelette/style.css" rel="stylesheet">
 
-  <script src="/no_sitelette/jquery.js"></script>
-  <script src="/no_sitelette/bootstrap.min.js"></script>
-  <script src="/no_sitelette/script.js"></script>
+  <script src="no_sitelette/jquery.js"></script>
+  <script src="no_sitelette/bootstrap.min.js"></script>
+  <script src="no_sitelette/script.js"></script>
  
  </head>
  <body>
