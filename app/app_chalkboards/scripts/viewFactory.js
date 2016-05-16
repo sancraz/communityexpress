@@ -3,11 +3,15 @@
 'use strict';
 
 var LocationList = require('./views/panels/locationList'),
-    ButtonUnavailable = require('./views/popups/buttonUnavailable');
+    ButtonUnavailable = require('./views/popups/buttonUnavailable'),
+    MobilePopup = require('./views/popups/mobilePopup'),
+    EmailPopup = require('./views/popups/emailPopup');
 
 var viewMap = {
     locationList: LocationList,
-    buttonUnavailable: ButtonUnavailable
+    buttonUnavailable: ButtonUnavailable,
+    mobilePopup: MobilePopup,
+    emailPopup: EmailPopup
 };
 
 module.exports = {

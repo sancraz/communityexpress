@@ -3,8 +3,7 @@
 'use strict';
 
 var Vent = require('./Vent'),
-    saslActions = require('./actions/saslActions'),
-    promotionActions = require('./actions/promotionActions');
+    tileActions = require('./actions/tileActions');
 
 var visited = {
     sasl: false,
@@ -48,7 +47,7 @@ module.exports = {
 
     tiles: function(options) {
         var coords = options;
-        return promotionActions.getTiles(options)
+        return tileActions.getTiles(options)
             .then(function(response) {
                 return {
                     tiles: response.tiles,
