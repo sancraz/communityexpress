@@ -210,3 +210,7 @@ body{
 #sms_input_block div {
 	display: inline-block;
 }
+
+.share_title {
+	color: #333;
+}
