@@ -214,3 +214,13 @@ body{
 .share_title {
 	color: #333;
 }
+
+.business_item_name {
+	float: left;
+	width: 55%;
+}
+
+.business_item_marker {
+	float: right;
+	margin-right: 15%;
+}

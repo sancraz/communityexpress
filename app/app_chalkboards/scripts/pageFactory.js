@@ -5,8 +5,10 @@
 var TilesView = require('./views/tilesView'),
     LocationSelectView = require('./views/locationSelectView'),
     TileDetailedView = require('./views/tileDetailedView'),
+    BusinessListView = require('./views/businessListView'),
     NavbarView = require('./views/headers/navbarView'),
-    HeaderView = require('./views/headers/headerView');
+    HeaderView = require('./views/headers/headerView'),
+    BusinessListHeaderView = require('./views/headers/businessListHeaderView');
 
 module.exports = {
     create: function(viewName,options) {
@@ -40,6 +42,16 @@ module.exports = {
                 headerData: {
                     model: options.model.restaurant
                 }
+            }));
+            break;
+        case 'businessList':
+            view = new BusinessListView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {},
+                // headerView: BusinessListHeaderView,
+                // headerData: {
+                //     model: options.tiles
+                // }
             }));
         }
         return view;

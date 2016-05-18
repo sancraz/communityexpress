@@ -8,7 +8,6 @@ var HeaderView = Backbone.View.extend({
 	initialize: function(options) {
 		this.options = options || {};
 		this.page = options.page;
-		this.options.text = 'Title';
 		this.listenTo(this.page, 'hide', this.remove, this);
 	},
 

@@ -28,14 +28,7 @@ var TilesView = PageLayout.extend({
     },
 
     onShow: function(){
-        this.addEvents();
         this.renderTiles();
-
-        try {
-            addToHomescreen().show();
-        } catch (e) {
-            console.warn(' failed showing addToHomescreen');
-        }
     },
 
     onHide: function() {
@@ -52,11 +45,13 @@ var TilesView = PageLayout.extend({
                 tile.coords = this.coords;
             }.bind(this));
 
-            if (rest_tiles.hasAdAlert) {
-                rest_tiles.tiles[0].showAdAlert = true;
-                rest_tiles.tiles[0].adAlertMessage = rest_tiles.adAlertMessage;
-            } else {
-                rest_tiles.tiles[0].showAdAlert = false;
+            if (rest_tiles.tiles.length > 0) {
+                if (rest_tiles.hasAdAlert) {
+                    rest_tiles.tiles[0].showAdAlert = true;
+                    rest_tiles.tiles[0].adAlertMessage = rest_tiles.adAlertMessage;
+                } else {
+                    rest_tiles.tiles[0].showAdAlert = false;
+                };
             };
 
             var el = new ListView({
@@ -69,7 +64,7 @@ var TilesView = PageLayout.extend({
                 parent: rest_tiles
             }).render().el;
 
-            this.$('.cmntyex-tiles_placeholder').append(el);
+            this.$('.cmntyex-content_placeholder').append(el);
         }.bind(this));
     }
 

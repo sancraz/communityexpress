@@ -1,7 +1,9 @@
 <div >
 	<select name="select-choice" class="choose-location"  id="select-choice">
         <option>Choose your location</option>
-        <option class="location current-location" value="current location">current location</option>
+        <% _(locations).each(function (location) { %>
+        	<option class="location" lat="<%= location.latitude %>" long="<%= location.longitude %>"><%= location.displayText %></option>
+        <% }) %>
     </select>
     <button class="select-location">submit</button>
 </div>
