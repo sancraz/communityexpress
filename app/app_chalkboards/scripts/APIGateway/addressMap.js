@@ -34,6 +34,7 @@ module.exports = {
             deActivatePromotion: ['PUT', '/promotions/deActivatePromotionSATier'],
             
             getTilesByUIDAndLocation: ['GET', '/sasl/getPromotionsSummaryByUIDAndLocation'],
+            getLocations: ['GET', '/sasl/retrieveClusterLatLongs'],
 
             createWNewPictureNewMetaData: ['POST', '/usersasl/createWNewPictureNewMetaData'],
 

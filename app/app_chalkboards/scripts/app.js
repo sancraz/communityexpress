@@ -27,12 +27,18 @@ App.prototype = {
 
     init: function() {
 
-        // if (window.saslData.error) {
-        //     loader.showFlashMessage(window.saslData.error.message);
-        //     return;
-        // }
-
         Geolocation.startWatching();
+
+        setTimeout(function() {
+            var coordinates = Geolocation.getPreviousLocation();
+            window.community.coords = coordinates;
+            if (window.community.coords.latitude.length || window.community.coords.longitude.length == 0) {
+                window.community.coords = {
+                    latitude: '37.772099',
+                    longitude: '-122.415656'
+                };
+            };
+        },1000);
 
         var conf = configurationActions.getConfigurations();
         
@@ -62,10 +68,6 @@ App.prototype = {
     goToPage: function( viewName, id, options ) {
 
         this.setGlobalConfigurations(options);
-
-        if ( viewName === 'chat') { // redirect to restaurant view if user is not signed in
-            viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
-        }
 
         loader.show('loading');
 

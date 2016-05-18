@@ -11,6 +11,15 @@ var getUID = function () {
 
 module.exports = {
 
+    getLocations: function() {
+         return gateway.sendRequest('getLocations')
+            .then(function(resp) {
+                return {
+                    locations: resp
+                };
+            });
+    },
+
     getTiles: function(coords) {
         return gateway.sendRequest('getTilesByUIDAndLocation', {
             domain: window.community.domain,

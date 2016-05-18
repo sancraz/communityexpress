@@ -52,7 +52,7 @@ module.exports = {
                 return {
                     tiles: response.tiles,
                     coords: coords
-                }
+                };
             });
     },
 
@@ -60,5 +60,16 @@ module.exports = {
         return $.Deferred().resolve({
             model: options
         }).promise();
+    },
+
+    businessList: function(options) {
+        var coords = options;
+        return tileActions.getTiles(coords)
+            .then(function(response) {
+                return {
+                    tiles: response.tiles,
+                    coords: coords
+                };
+            });
     }
 };

@@ -5,7 +5,6 @@
 var PanelView = require('../components/panelView'),
     Vent = require('../../Vent'),
     template = require('ejs!../../templates/locationList.ejs'),
-    geolocation = require('../../Geolocation'),
     config = require('../../appConfig');
 
 var LocationListView = PanelView.extend({
@@ -14,30 +13,32 @@ var LocationListView = PanelView.extend({
 
     initialize: function(options) {
         this.options = options || {};
-        this.$el.attr('id', 'cmntyex_menu_panel');
+        this.$el.attr('id', 'cmntyex_locations_panel');
         this.addEvents({
             'change #select-choice': 'selectLocation',
             'click .select-location': 'triggerTilesView'
         });
-        // this.options.coords = geolocation.getPreviousLocation();
-        this.options.coords = {
-            latitude: '37.772099',
-            longitude: '-122.415656'
-        };
-        
+        this.coords = window.community.coords;   
     },
 
     render: function() {
-        this.$el.html(this.template({model: this.model}));
+        this.$el.html(this.template(this.model));
         return this;
     },
 
     selectLocation: function() {
-        // console.log($('.choose-location').find('option:selected').val());
+        var selected = $('.choose-location').find('option:selected');
+        if (selected.val() !== 'Choose your location') {
+            this.coords = {
+                latitude: selected.attr('lat'),
+                longitude: selected.attr('long')
+            };
+            window.community.coords = this.coords;
+        }
     },
 
     triggerTilesView: function() {
-        Vent.trigger('viewChange', 'tiles', this.options.coords);
+        Vent.trigger('viewChange', 'tiles', this.coords);
     }
 });
 
