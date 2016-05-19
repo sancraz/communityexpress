@@ -1,185 +1,197 @@
 
 body{
-	background: url("https://communitylive.co/apptsvc/static/communityexpress/chalkboards/chalkboards_blank.jpg");
-	background-repeat:repeat;
-	background-size: 100% 100%;
-	background-color: rgba(0, 255, 0, 0.5);
-	 
+    background: url("https://communitylive.co/apptsvc/static/communityexpress/chalkboards/chalkboards_blank.jpg");
+    background-repeat:repeat;
+    background-size: 100% 100%;
+    background-color: rgba(0, 255, 0, 0.5);
+     
 }
 
 #cmtyx_landingView{ 
-	background-color: rgba(0, 0, 0, 0.5);
-	text-shadow:none;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-shadow:none;
 }
 
 .mediatile {
-	 
+     
 }
 
 .mediatileBlock table {
-	display: table;
-	border-collapse: collapse;
-	border-spacing: 0px;
-	border-color: yellow;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    border-color: yellow;
 }
 .mediatileBlock  .type {
-	padding: 5px;
-	color: #FFF;
-	font-family: 'open sans', arial, sans-serif;
-	line-height: 1.2;
-	font-variant: small-caps;
-	font-size: 10px;
-	font-style: italic;
-	font-weight: 200;
-	text-align: center;
+    padding: 5px;
+    color: #FFF;
+    font-family: 'open sans', arial, sans-serif;
+    line-height: 1.2;
+    font-variant: small-caps;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: 200;
+    text-align: center;
 }
 .mediatileBlock .title {
-	padding-top: 5px;
-	padding-left: 5px;
-	color: #FFF;
-	font-family: 'open sans', arial, sans-serif;
-	line-height: 1;
-	font-size: 14px;
-	font-weight: 600;
-	text-align: center;
+    padding-top: 5px;
+    padding-left: 5px;
+    color: #FFF;
+    font-family: 'open sans', arial, sans-serif;
+    line-height: 1;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
 }
 
 .mediatileBlock img {
-	width: 100%;
-	height: auto;
+    width: 100%;
+    height: auto;
 }
 
 .mediatileBlock .message {
-	color: #FFF;
-	font-family: 'open sans', arial, sans-serif;
-	line-height: 1.1;
-	font-size: 12px;
-	font-weight: 400;
-	padding: 5px;
+    color: #FFF;
+    font-family: 'open sans', arial, sans-serif;
+    line-height: 1.1;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 5px;
 }
 
 .shareBlock {
-	text-align: center;
-	color: #FFF;
-	font-family: 'open sans', arial, sans-serif;
-	line-height: 1.1;
-	font-size: 12px;
-	font-weight: 400;
-	padding: 5px;
-	font-style: italic;
-	width: 100%; 
-	 
+    text-align: center;
+    color: #FFF;
+    font-family: 'open sans', arial, sans-serif;
+    line-height: 1.1;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 5px;
+    font-style: italic;
+    width: 100%; 
+     
 }
 
 .shareBlock img {
-	width: 80%;
-	padding: 5px;
-	height: auto;
+    width: 80%;
+    padding: 5px;
+    height: auto;
 }
 
 .driveCallBlock {
-	text-align: center;
-	color: #FFF;
-	font-family: 'open sans', arial, sans-serif;
-	line-height: 1.1;
-	font-size: 12px;
-	font-weight: 400;
-	padding: 5px;
-	font-style: italic;
-	width: 100%; 
-	height: 90px;
-	 
+    text-align: center;
+    color: #FFF;
+    font-family: 'open sans', arial, sans-serif;
+    line-height: 1.1;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 5px;
+    font-style: italic;
+    width: 100%; 
+    height: 90px;
+     
 }
 
 .driveCallBlock img {
-	width: 40%;
-	padding: 5px;
-	height: auto;
+    width: 40%;
+    padding: 5px;
+    height: auto;
 }
 
 .tileviewdetails_gap{
-	height:20px;
+    height:20px;
 }
 
 .content {
-	padding: 0;
+    padding: 0;
 }
 
 .cmntyex-tile_list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .cmntyex_sasl_tile,
 .cmntyex-tiles_placeholder {
-	position: relative;
-	font-size: 55%;
-	text-shadow: none;
+    position: relative;
+    font-size: 70%;
+    text-shadow: none;
 }
 
 .tile_item a {
-	text-decoration: none;
+    text-decoration: none;
 }
 
 .tile_left {
-	width: 100%;
-}
-
-.tile_name {
-	position: absolute;
-	background-color: #000;
-	color: #fff;
-	padding: 10px;
-	margin: 0px;
-	left: 25%;
-	top: 0;
-	text-align: center;
-	width: 50%;
-	opacity: 0.7;
+    width: 100%;
 }
 
 .tile_rating {
-	position: absolute;
-	left: 10px;
-	bottom: 25px;
+    position: absolute;
+    left: 10px;
+    bottom: 25px;
 }
 
 .tile_type {
-	position: absolute;
-	left: 20px;
-	bottom: 40px;
-	padding: 10px;
-	margin: 0;
-	color: #ec8009;
+    position: absolute;
+    left: 20px;
+    bottom: 40px;
+    padding: 10px;
+    margin: 0;
+    color: #ec8009;
 }
 
 .tile_image {
-	width: 100%;
+    width: 100%;
+}
+
+.tile_right,
+.create_promotion,
+.more_detailes,
+.tile_name {
+    border: 1px solid #333;
+    border-radius: 2px;
+    color: #fff;
+    background-color: #000;
+    padding: 0 10px;
+    position: absolute;
+    opacity: .7;
+}
+
+.tile_name {
+    padding: 10px;
+    margin: 0px;
+    min-width: 150px;
+    left: 25%;
+    top: 0;
+    text-align: center;
 }
 
 .tile_right {
-	border: 1px solid #333;
-	border-radius: 2px;
-	color: #fff;
-    background-color: #000;
-    padding: 0 10px;
     width: 50%;
     min-width: 150px;
-    position: absolute;
     bottom: 15px;
-    opacity: 0.7;
     right: 0;
 }
 
+.create_promotion {
+    top: 40px;
+    right: 0;
+}
+
+.more_detailes {
+    top: 50px;
+    left: 0;
+}
+
 .tile_adAlert {
-	background: url('icons/newsflash_320X140.jpg');
-	width: 100%;
-	height: 140px;
+    background: url('icons/newsflash_320X140.jpg');
+    width: 100%;
+    height: 140px;
 }
 
 .tile_adAlert_message {
-	font-size: 200%;
+    font-size: 200%;
     text-shadow: none;
     color: #fff;
     text-align: center;
@@ -187,64 +199,66 @@ body{
 }
 
 .shareButtons>div {
-	display: inline-block;
-	margin: 5px;
+    display: inline-block;
+    margin: 5px;
 }
 
 #tileviewdetails_callbutton {
-	float: left;
-	margin-left: 10%;
-	zoom: .7;
+    float: left;
+    margin-left: 10%;
+    zoom: .7;
 }
 
 #tileviewdetails_drivebutton {
-	float: right;
-	margin-right: 10%;
-	zoom: .7;
+    float: right;
+    margin-right: 10%;
+    zoom: .7;
 }
 
 #sms_input_block {
-	display: none;
+    display: none;
 }
 
 #sms_input_block div {
-	display: inline-block;
+    display: inline-block;
 }
 
 .share_title {
-	color: #333;
+    color: #333;
 }
 
 #cmntyex_business .ui-content {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .business_container {
-	background-color: #333;
-	padding: 10px;
-	border-top: 1px solid black;
-	color: white;
+    background-color: #333;
+    padding: 10px;
+    border-top: 1px solid black;
+    color: white;
 }
 
 .business_item_name,
 .business_item_distance {
-	font-size: 16px;
-	font-weight: bold;
-	padding-left: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 10px;
+    margin-top: 10px;
 }
 
 .business_item_distance {
-	text-align: center;
+    text-align: center;
 }
 
 .business_title_name,
 .business_title_distance {
-	text-align: left;
-	padding: 10px;
-	background-color: transparent!important;
+    text-align: left;
+    padding: 10px;
+    background-color: transparent!important;
 }
 
 .business_item_marker {
-	float: right;
-	padding-right: 20px;
+    float: right;
+    padding-right: 20px;
+    margin-top: -6px;
 }

@@ -19,7 +19,7 @@ var TileDetailedView = PageLayout.extend({
 
     renderData: function(){
         return _.extend({
-            tile: this.model.tile,
+            tile: this.tile,
             restaurant: this.model.restaurant
         });
     },
