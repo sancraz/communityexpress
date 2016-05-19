@@ -18,24 +18,41 @@ var BusinessListView = PageLayout.extend({
     },
 
     onShow: function(){
+        this.addEvents({
+            'click .business_title_name': 'sortByName',
+            'click .business_title_distance': 'sortByDistance'
+        });
         this.renderBusinesses();
     },
 
     onHide: function() {
     },
 
-    renderBusinesses: function() {
+    sortByName: function() {
+        this.$('.cmntyex-content_placeholder ul').remove();
+        this.renderBusinesses('name');
+    },
+
+    sortByDistance: function() {
+        this.$('.cmntyex-content_placeholder ul').remove();
+        this.renderBusinesses('distanceInMiles');
+    },
+
+    renderBusinesses: function(sort_key) {
         var el = new ListView({
             ItemView: BusinessItemView,
-            className: 'cmntyex-tile_list ui-listview',
+            className: 'cmntyex-business_list ui-listview',
             collection: new Backbone.Collection(this.businesses, {
-                model: PromotionModel
+                model: PromotionModel,
+                comparator: function(model) {
+                    return model.get(sort_key);
+                }
             }),
             dataRole: 'list-view',
             parent: this
         }).render().el;
 
-        this.$('.cmntyex-content_placeholder').append(el);
+        this.$('.cmntyex-content_placeholder').css('margin-top', '20px').append(el);
     }
 });
 
