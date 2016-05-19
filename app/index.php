@@ -65,7 +65,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
   if (strcmp($server, 'localhost') === 0)
    $server = $server . ':8080';
  } else {
-  if (!$demo) {
+  if ($demo) {
    $server = "simfel.com";
   } else {
    $server = "communitylive.ws";
