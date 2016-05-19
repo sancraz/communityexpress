@@ -5,9 +5,21 @@
         </div>
     <% } %>
     <div class="cmntyex_sasl_tile">
+        <% if (showURL) { %>
+            <div class="more_detailes">
+                <a href="<%= onClickURL %>">
+                    <h2>For more detailes click here</h2>
+                </a>
+            </div>
+        <% } %>
+        <% if (tileType.enumText == 'CAMPAIGN_PROMOTION') { %>
+            <div class="create_promotion">
+                <h2>Create Promotion</h2>
+            </div>
+        <% } %>
         <div class="tile_left">
             <h1 class="tile_name"><%= name %></h1>
-            <h2 class="tile_type"><%= promoType.displayText %></h2>
+            <h2 class="tile_type"><%= tileType.enumText %></h2>
             <img class="tile_rating" src="<%= rating_img_url %>">
             <img class="tile_image" src="<%= url %>" >
         </div>
