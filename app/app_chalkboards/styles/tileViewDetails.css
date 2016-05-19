@@ -215,12 +215,36 @@ body{
 	color: #333;
 }
 
-.business_item_name {
-	float: left;
-	width: 55%;
+#cmntyex_business .ui-content {
+	margin-bottom: 10px;
+}
+
+.business_container {
+	background-color: #333;
+	padding: 10px;
+	border-top: 1px solid black;
+	color: white;
+}
+
+.business_item_name,
+.business_item_distance {
+	font-size: 16px;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.business_item_distance {
+	text-align: center;
+}
+
+.business_title_name,
+.business_title_distance {
+	text-align: left;
+	padding: 10px;
+	background-color: transparent!important;
 }
 
 .business_item_marker {
 	float: right;
-	margin-right: 15%;
+	padding-right: 20px;
 }
