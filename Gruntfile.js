@@ -142,6 +142,21 @@ module.exports = function (grunt) {
                     }
                 ]
             }
+        },
+        // Here will be replacements for production files
+        replace: {
+            dist: {
+                src: ['<%= yeoman.dist %>/index.php'],
+                dest: '<%= yeoman.dist %>/',
+                replacements: [{
+                    from: 'app_chalkboards/',
+                    to: ''
+                },
+                {
+                    from: 'app_sitelette/',
+                    to: 'hello/'
+                }]
+            }
         }
     });
     grunt.registerTask('default', function() {
@@ -149,6 +164,7 @@ module.exports = function (grunt) {
             'clean',
             'webpack',
             'copy',
+            'replace',
             'uglify',
             'cssmin'
         ]);
