@@ -20,7 +20,7 @@ var HeaderView = Backbone.View.extend({
 		var header = $('#cmtyx_header');
 		this.setElement($(header[0].outerHTML));
 		this.$el.appendTo('body');
-		this.$el.find('.theme2_banner').text(this.model.name);
+		this.$el.find('.theme2_banner').text(this.model.saslName);
 	}
 });
 

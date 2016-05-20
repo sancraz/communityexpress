@@ -6,12 +6,12 @@
             	<a href="#" >
                     <div class="cmntyex_sasl_tile">
                         <div class="tile_left">
-                            <h2 class="tile_type"><%= tile.tileType.enumText %></h2>
-                            <img class="tile_image" src="<%= tile.url %>" >
+                            <h2 class="tile_type"><%= promoType.enumText %></h2>
+                            <img class="tile_image" src="<%= url %>" >
                         </div>
                         <div class="tile_right">
-                            <h2 class="tile_title"><%= tile.title %></h2>
-                            <p class="tile_message"><%= tile.message %></p>
+                            <h2 class="tile_title"><%= title %></h2>
+                            <p class="tile_message"><%= message %></p>
                         </div>
                     </div>
                 </a>
@@ -37,7 +37,7 @@
             <div class="share_title">Share</div>
             <div class="shareButtons">
                 <div id="tileviewdetails_twitterbutton">
-                    <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + restaurant.anchorURL.friendlyURL + '?t='+ tile.uuidtype + '&u=' + tile.uuid) %>" target="_blank">
+                    <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + saslName + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
                         <div class="sprite_navbar navbutton_twitter"></div>
                     </a>
                 </div>
@@ -47,7 +47,7 @@
                     </a>
                 </div>
                 <div id="tileviewdetails_facebookbutton">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + restaurant.anchorURL.friendlyURL + '?t='+ tile.uuidtype + '&u=' + tile.tileUUID) %>" target="_blank">
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + saslName + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
                         <div class="sprite_navbar navbutton_facebook"></div>
                     </a>
                 </div>

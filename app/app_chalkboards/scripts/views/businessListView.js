@@ -12,7 +12,7 @@ var BusinessListView = PageLayout.extend({
     name: 'businessList',
 
     initialize: function(options) {
-        this.businesses = options.tiles;
+        this.sasls = options.sasls;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
     },
@@ -42,7 +42,7 @@ var BusinessListView = PageLayout.extend({
         var el = new ListView({
             ItemView: BusinessItemView,
             className: 'cmntyex-business_list ui-listview',
-            collection: new Backbone.Collection(this.businesses, {
+            collection: new Backbone.Collection(this.sasls, {
                 model: PromotionModel,
                 comparator: function(model) {
                     return model.get(sort_key);

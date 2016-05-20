@@ -12,16 +12,12 @@ var TileDetailedView = PageLayout.extend({
 
     initialize: function(options) {
         this.options = options || {};
-        this.tile = this.model.tile;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
     },
 
     renderData: function(){
-        return _.extend({
-            tile: this.tile,
-            restaurant: this.model.restaurant
-        });
+        return _.extend(this.model);
     },
 
     onShow: function(){

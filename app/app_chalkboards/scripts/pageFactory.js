@@ -40,7 +40,7 @@ module.exports = {
                 },
                 headerView: HeaderView,
                 headerData: {
-                    model: options.model.restaurant
+                    model: options.model
                 }
             }));
             break;

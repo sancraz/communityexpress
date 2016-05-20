@@ -67,8 +67,7 @@ module.exports = {
         return tileActions.getTiles(coords)
             .then(function(response) {
                 return {
-                    tiles: response.tiles,
-                    coords: coords
+                    sasls: response.sasls,
                 };
             });
     }

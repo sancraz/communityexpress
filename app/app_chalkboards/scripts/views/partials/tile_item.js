@@ -28,7 +28,7 @@ var TileView = Backbone.View.extend({
     render: function() {
         var viewModel = h().toViewModel( this.model.toJSON() );
         viewModel.timeStamp = h().toPrettyTime( viewModel.timeStamp );
-        this.$el.html(this.template(_.extend( this.tileOpts, viewModel )));
+        this.$el.html(this.template(_.extend( viewModel )));
         // this.addClasses();
         return this;
     },
@@ -42,14 +42,10 @@ var TileView = Backbone.View.extend({
     },
 
     triggerTileDetailedView: function() {
-        this.sa = this.tileOpts.serviceAccommodatorId;
-        this.sl = this.tileOpts.serviceLocationId;
-        if (this.model.attributes.tileType.enumText !== 'CAMPAIGN_SUBSCRIBE_FOR_NOTIFICATION') {
-            Vent.trigger( 'viewChange', 'tileDetailed', {
-                restaurant: this.tileOpts,
-                tile: this.model.attributes,
-                coords: this.coords
-            });
+        this.sa = this.model.get('serviceAccommodatorId');
+        this.sl = this.model.get('serviceLocationId');
+        if (this.model.attributes.promoType.enumText !== 'CAMPAIGN_SUBSCRIBE_FOR_NOTIFICATION') {
+            Vent.trigger( 'viewChange', 'tileDetailed', this.model.attributes );
         };
     }
 
