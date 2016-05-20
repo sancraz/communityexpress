@@ -16,7 +16,7 @@ var BusinessItemView = Backbone.View.extend({
 
     initialize: function(options) {
         var self = this;
-        _(this.model.attributes.mapmarkers).each(function(marker) {
+        _(this.model.get('mapmarkers')).each(function(marker) {
             if (marker.category == 'UNDEFINED') {
                 self.markerURL = marker.apiMarkerURL;
             };

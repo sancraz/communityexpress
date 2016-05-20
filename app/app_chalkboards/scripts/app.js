@@ -19,8 +19,12 @@ var hasUIDinQueryParams = function () {
 
 var App = function() {
     this.params = window.community;
+    window.community.coords = {
+        latitude: '37.772099',
+        longitude: '-122.415656'
+    };
     Vent.on('viewChange', this.goToPage, this);
-    Vent.trigger('viewChange', 'locationSelect', window.community.friendlyURL);
+    Vent.trigger('viewChange', 'tiles', window.community.coords);
 };
 
 App.prototype = {
@@ -38,7 +42,8 @@ App.prototype = {
                     longitude: '-122.415656'
                 };
             };
-        },1000);
+        },500);
+        console.log(window.community.coords);
 
         var conf = configurationActions.getConfigurations();
         

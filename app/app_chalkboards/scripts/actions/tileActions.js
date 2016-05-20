@@ -27,10 +27,8 @@ module.exports = {
             latitude: coords.latitude,
             longitude: coords.longitude,
             simulate: false
-        }).then(function(tiles) {
-            return {
-                tiles: tiles
-            };
+        }).then(function(resp) {
+            return resp;
         });
     },
 
