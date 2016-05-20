@@ -32,15 +32,15 @@ var TileDetailedView = PageLayout.extend({
     },
 
     triggerTilesView: function() {
-        Vent.trigger('viewChange', 'tiles', this.model.coords);
+        Vent.trigger('viewChange', 'tiles', window.community.coords);
     },
 
     sendMobile: function () {
-        this.openSubview('mobilePopup', this.tile);
+        this.openSubview('mobilePopup', this.model);
     },
 
     sendEmail: function() {
-        this.openSubview('emailPopup', this.tile);
+        this.openSubview('emailPopup', this.model);
     }
 
 });
