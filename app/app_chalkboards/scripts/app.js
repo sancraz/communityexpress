@@ -43,8 +43,6 @@ App.prototype = {
                 };
             };
         },500);
-        console.log(window.community.coords);
-
         var conf = configurationActions.getConfigurations();
         
 

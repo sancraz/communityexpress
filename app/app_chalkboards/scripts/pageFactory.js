@@ -6,6 +6,7 @@ var TilesView = require('./views/tilesView'),
     LocationSelectView = require('./views/locationSelectView'),
     TileDetailedView = require('./views/tileDetailedView'),
     BusinessListView = require('./views/businessListView'),
+    SaslDetailedView = require('./views/saslDetailedView'),
     NavbarView = require('./views/headers/navbarView'),
     HeaderView = require('./views/headers/headerView'),
     BusinessListHeaderView = require('./views/headers/businessListHeaderView');
@@ -40,19 +41,31 @@ module.exports = {
                 },
                 headerView: HeaderView,
                 headerData: {
-                    model: options.model
+                    model: options.model,
+                    restaurant: options.model.saslName
                 }
             }));
             break;
         case 'businessList':
             view = new BusinessListView(_.extend(options, {
                 navbarView: NavbarView,
-                navbarData: {},
+                navbarData: {}
                 // headerView: BusinessListHeaderView,
                 // headerData: {
                 //     model: options.tiles
                 // }
             }));
+            break;
+        case 'saslDetailed':
+            view = new SaslDetailedView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {},
+                headerView: HeaderView,
+                headerData: {
+                    model: options.model,
+                    restaurant: options.model.name
+                }
+            }))
         }
         return view;
     }

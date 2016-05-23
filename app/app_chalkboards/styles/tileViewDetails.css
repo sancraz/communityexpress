@@ -262,3 +262,18 @@ body{
     padding-right: 20px;
     margin-top: -6px;
 }
+
+.cmntyex-business_location,
+.cmntyex-business_phone {
+    padding: 20px 20px 10px;
+    display: inline-block;
+    float: left;
+    width: 50%;
+}
+
+#sasldetails_drivebutton,
+#sasldetails_callbutton {
+    float: right;
+    margin-right: 10%;
+    zoom: .7;
+}
