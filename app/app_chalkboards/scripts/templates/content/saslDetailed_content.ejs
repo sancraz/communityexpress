@@ -1,0 +1,26 @@
+<div id="cmntyex_sasl_detailed" data-role="page" class="page">
+    <div class="sprite_navbar back_small back"></div>
+    <div data-role="content" class="content">
+        <div class="cmntyex-business_placeholder">
+            <div class="cmntyex-content_placeholder">
+                <div class="cmntyex_sasl_address">
+                    <div class="cmntyex-business_location"><%= address.street + ' ' + address.number + ' ' + address.city + ' ' + address.zip + ' ' + address.state + ' ' + address.country %></div>
+                    <div id="sasldetails_drivebutton">
+                        <a href="https://maps.apple.com/?daddr=37.775413,-122.417701&saddr=current%20location" target="_blank">
+                            <div class="sprite_navbar button12_28_0_0"></div>
+                        </a>
+                    </div>
+                    <div>
+                    <div class="cmntyex-business_phone">
+                        <%= contact.telephoneMain %>
+                    </div>
+                    <div id="sasldetails_callbutton">
+                        <a href="tel:">
+                            <div class="sprite_navbar button12_60_0_0"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

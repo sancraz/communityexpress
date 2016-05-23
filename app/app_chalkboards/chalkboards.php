@@ -6,7 +6,8 @@
 
 <meta charset="utf-8">
 <link rel="apple-touch-startup-image" href="styles/splash/Default-portrait@2x~iphone5.jpg"> 
-<link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
+<!-- <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet"> -->
+<link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
  
 <link rel="stylesheet" href="build/styles.css"> 
 <link rel="stylesheet" href="app_chalkboards/styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">

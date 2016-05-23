@@ -70,5 +70,11 @@ module.exports = {
                     sasls: response.sasls,
                 };
             });
+    },
+
+    saslDetailed: function(options) {
+        return $.Deferred().resolve({
+            model: options
+        }).promise();
     }
 };

@@ -4,7 +4,7 @@
 var grunt = require('grunt');
 var argv = require('yargs').argv;
 
-grunt.log.write(argv.project);
+grunt.log.write('compiling ',argv.project);
 
 if (argv.project == 'sitelette') {
     var webpackConfig = require('./webpack-sitelette.config.js');
@@ -116,10 +116,10 @@ module.exports = function (grunt) {
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
                         dest: '<%= yeoman.dist %>/styles/icons/'
                     },
-                    {
-                        src: '<%= yeoman.app %>/production-index.php',
-                        dest: '<%= yeoman.dist %>/index.php'
-                    },
+                    // {
+                    //     src: '<%= yeoman.app %>/index.php',
+                    //     dest: '<%= yeoman.dist %>/index.php'
+                    // },
                     {
                         src: '<%= yeoman.app %>/parser_api_utility.php',
                         dest: '<%= yeoman.dist %>/parser_api_utility.php'
@@ -146,15 +146,14 @@ module.exports = function (grunt) {
         // Here will be replacements for production files
         replace: {
             dist: {
-                src: ['<%= yeoman.dist %>/index.php'],
+                src: ['<%= yeoman.app %>/index.php'],
                 dest: '<%= yeoman.dist %>/',
                 replacements: [{
                     from: 'app_chalkboards/',
                     to: ''
-                },
-                {
+                },{
                     from: 'app_sitelette/',
-                    to: 'hello/'
+                    to: ''
                 }]
             }
         }

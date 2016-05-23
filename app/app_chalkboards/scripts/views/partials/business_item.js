@@ -14,6 +14,10 @@ var BusinessItemView = Backbone.View.extend({
 
     className: 'business_item',
 
+    events: {
+        'click': 'openSASLDetailesView'
+    },
+
     initialize: function(options) {
         var self = this;
         _(this.model.get('mapmarkers')).each(function(marker) {
@@ -29,6 +33,10 @@ var BusinessItemView = Backbone.View.extend({
         viewModel.timeStamp = h().toPrettyTime( viewModel.timeStamp );
         this.$el.html(this.template(_.extend( viewModel, { markerURL: this.markerURL } )));
         return this;
+    },
+
+    openSASLDetailesView: function() {
+        Vent.trigger('viewChange', 'saslDetailed', this.model.attributes);
     }
 
 });
