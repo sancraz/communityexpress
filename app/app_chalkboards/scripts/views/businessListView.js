@@ -19,8 +19,10 @@ var BusinessListView = PageLayout.extend({
 
     onShow: function(){
         this.addEvents({
-            'click .business_title_name': 'sortByName',
-            'click .business_title_distance': 'sortByDistance'
+            'click .business_title_name.ui-icon-carat-d': 'sortByName',
+            'click .business_title_distance.ui-icon-carat-d': 'sortByDistance',
+            'click .business_title_name.ui-icon-carat-u': 'sortByNameReverse',
+            'click .business_title_distance.ui-icon-carat-u': 'sortByDistanceReverse'
         });
         this.renderBusinesses();
     },
@@ -30,22 +32,52 @@ var BusinessListView = PageLayout.extend({
 
     sortByName: function() {
         this.$('.cmntyex-content_placeholder ul').remove();
-        this.renderBusinesses('name');
+        this.$('.business_title_name')
+            .removeClass('ui-icon-carat-d')
+            .addClass('ui-icon-carat-u');
+        var reverse = false;
+        this.renderBusinesses('name', reverse);
     },
 
     sortByDistance: function() {
         this.$('.cmntyex-content_placeholder ul').remove();
-        this.renderBusinesses('distanceInMiles');
+        this.$('.business_title_distance')
+            .removeClass('ui-icon-carat-d')
+            .addClass('ui-icon-carat-u');
+        var reverse = false;
+        this.renderBusinesses('distanceInMiles', reverse);
     },
 
-    renderBusinesses: function(sort_key) {
+    sortByNameReverse: function() {
+        this.$('.cmntyex-content_placeholder ul').remove();
+        this.$('.business_title_name')
+            .removeClass('ui-icon-carat-u')
+            .addClass('ui-icon-carat-d');
+        var reverse = true;
+        this.renderBusinesses('name', reverse);
+    },
+
+    sortByDistanceReverse: function() {
+        this.$('.cmntyex-content_placeholder ul').remove();
+        this.$('.business_title_distance')
+            .removeClass('ui-icon-carat-u')
+            .addClass('ui-icon-carat-d');
+        var reverse = true;
+        this.renderBusinesses('distanceInMiles', reverse);
+    },
+
+    renderBusinesses: function(sort_key, reverse) {
         var el = new ListView({
             ItemView: BusinessItemView,
             className: 'cmntyex-business_list ui-listview',
             collection: new Backbone.Collection(this.sasls, {
                 model: PromotionModel,
                 comparator: function(model) {
-                    return model.get(sort_key);
+                    if (reverse) {
+                        return model.get(sort_key);
+                    } else {
+                        return -model.get(sort_key);
+                    }
                 }
             }),
             dataRole: 'list-view',

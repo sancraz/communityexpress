@@ -20,12 +20,21 @@ module.exports = {
             });
     },
 
-    getTiles: function(coords) {
+    getSASLFilters: function() {
+        return gateway.sendRequest('getSASLFilterOptions')
+            .then(function(resp) {
+                return {
+                    filters: resp
+                };
+            });
+    },
+
+    getTiles: function(options) {
         return gateway.sendRequest('getTilesByUIDAndLocation', {
-            domain: window.community.domain,
+            domain: options.domain,
             UID: getUID(),
-            latitude: coords.latitude,
-            longitude: coords.longitude,
+            latitude: options.coords.latitude,
+            longitude: options.coords.longitude,
             simulate: false
         }).then(function(resp) {
             return resp;

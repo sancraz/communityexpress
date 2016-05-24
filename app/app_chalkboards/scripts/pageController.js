@@ -46,7 +46,7 @@ module.exports = {
     },
 
     tiles: function(options) {
-        var coords = options;
+        var coords = options.coords;
         return tileActions.getTiles(options)
             .then(function(response) {
                 return {
