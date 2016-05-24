@@ -154,6 +154,9 @@ module.exports = function (grunt) {
                 },{
                     from: 'app_sitelette/',
                     to: ''
+                },{
+                    from: 'dev-',
+                    to: ''
                 }]
             }
         }
