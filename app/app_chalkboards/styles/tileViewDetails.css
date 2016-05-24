@@ -277,3 +277,28 @@ body{
     margin-right: 10%;
     zoom: .7;
 }
+
+.city_selector {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.choose-city {
+    height: 50px;
+    width: 45%;
+    margin-left: 15px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.choose-city:focus {
+    outline: none;
+}
+
+.choose-city option {
+    background-color: #333;
+}
