@@ -17,7 +17,7 @@ var TilesView = PageLayout.extend({
 
     initialize: function(options) {
         options = options || {};
-        this.coords = options.coords;
+        window.community.coords = options.coords;
         this.tiles = options.tiles;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);

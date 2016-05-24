@@ -2,6 +2,7 @@
 
 var Vent = require('../../Vent'),
     CitySelectButton = require('../partials/citySelectButton'),
+    FilterButton = require('../partials/filterButton'),
     tileActions = require('../../actions/tileActions'),
     loader = require('../../loader');
 
@@ -30,7 +31,7 @@ var MainHeaderView = Backbone.View.extend({
         var self = this;
         tileActions.getLocations()
             .then(function(locations) {
-                self.$('.city_selector').html( new CitySelectButton({
+                self.$('.city_selector').html(new CitySelectButton({
                     parent: self.page,
                     model: locations
                 }).render().el);
@@ -38,7 +39,14 @@ var MainHeaderView = Backbone.View.extend({
     },
 
     renderFilterSelector: function() {
-        console.log('show filters');
+        var self = this;
+        tileActions.getSASLFilters()
+            .then(function(filters) {
+                self.$('.filter_selector').html(new FilterButton({
+                    parent: self.page,
+                    model: filters
+                }).render().el);
+            });
     }
 });
 

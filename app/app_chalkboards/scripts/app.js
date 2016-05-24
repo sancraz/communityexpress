@@ -24,7 +24,10 @@ var App = function() {
         longitude: '-122.415656'
     };
     Vent.on('viewChange', this.goToPage, this);
-    Vent.trigger('viewChange', 'tiles', window.community.coords);
+    Vent.trigger('viewChange', 'tiles', {
+        coords: window.community.coords,
+        domain: 'ALL'
+    });
 };
 
 App.prototype = {
