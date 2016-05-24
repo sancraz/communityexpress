@@ -1,0 +1,10 @@
+<select name="select-choice" class="choose-city"  id="select-choice">
+    <% if (window.community.city) { %>
+    	<option><%= window.community.city %></option>
+    <% } else { %>
+    	<option>Choose city</option>
+    <% } %>
+    <% _(locations).each(function (location) { %>
+        <option class="location" lat="<%= location.latitude %>" long="<%= location.longitude %>"><%= location.displayText %></option>
+    <% }) %>
+</select>

@@ -8,7 +8,8 @@ var TilesView = require('./views/tilesView'),
     BusinessListView = require('./views/businessListView'),
     SaslDetailedView = require('./views/saslDetailedView'),
     NavbarView = require('./views/headers/navbarView'),
-    HeaderView = require('./views/headers/headerView'),
+    MainHeaderView = require('./views/headers/mainHeaderView'),
+    TileHeaderView = require('./views/headers/tileHeaderView'),
     BusinessListHeaderView = require('./views/headers/businessListHeaderView');
 
 module.exports = {
@@ -22,7 +23,9 @@ module.exports = {
                 navbarData: {
                     restaurant: options.model,
                     back: false
-                }
+                },
+                headerView: MainHeaderView,
+                headerData: {}
             }));
             break;
         case 'locationSelect':
@@ -39,7 +42,7 @@ module.exports = {
                 navbarData: {
                     model: options.model
                 },
-                headerView: HeaderView,
+                headerView: TileHeaderView,
                 headerData: {
                     model: options.model,
                     restaurant: options.model.saslName
