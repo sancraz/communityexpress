@@ -5,13 +5,15 @@
 var PageLayout = require('./components/pageLayout'),
     ListView = require('./components/listView'),
     PromotionModel = require('../models/promotionModel'),
-    BusinessItemView = require('./partials/business_item');
+    BusinessItemView = require('./partials/business_item'),
+    Vent = require('../Vent');
 
 var BusinessListView = PageLayout.extend({
 
     name: 'businessList',
 
     initialize: function(options) {
+        this.options = options || {};
         this.sasls = options.sasls;
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
@@ -22,7 +24,8 @@ var BusinessListView = PageLayout.extend({
             'click .business_title_name.ui-icon-carat-d': 'sortByName',
             'click .business_title_distance.ui-icon-carat-d': 'sortByDistance',
             'click .business_title_name.ui-icon-carat-u': 'sortByNameReverse',
-            'click .business_title_distance.ui-icon-carat-u': 'sortByDistanceReverse'
+            'click .business_title_distance.ui-icon-carat-u': 'sortByDistanceReverse',
+            'click .back': 'triggerTilesView'
         });
         this.renderBusinesses();
     },
@@ -85,6 +88,10 @@ var BusinessListView = PageLayout.extend({
         }).render().el;
 
         this.$('.cmntyex-content_placeholder').css('margin-top', '20px').append(el);
+    },
+
+    triggerTilesView: function() {
+        Vent.trigger('viewChange', 'tiles', this.options);
     }
 });
 

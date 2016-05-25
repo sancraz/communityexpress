@@ -20,7 +20,7 @@ var TileView = Backbone.View.extend({
     },
 
     initialize: function(options) {
-        this.tileOpts = options.parent.parent;
+        this.options = options.parent.parent.options;
         this.coords = this.model.get('coords');
         this.listenTo(this.model, 'destroy', this.remove, this );
     },
@@ -45,7 +45,10 @@ var TileView = Backbone.View.extend({
         this.sa = this.model.get('serviceAccommodatorId');
         this.sl = this.model.get('serviceLocationId');
         if (this.model.attributes.promoType.enumText !== 'CAMPAIGN_SUBSCRIBE_FOR_NOTIFICATION') {
-            Vent.trigger( 'viewChange', 'tileDetailed', this.model.attributes );
+            Vent.trigger( 'viewChange', 'tileDetailed', {
+                model: this.model,
+                options: this.options
+            });
         };
     }
 

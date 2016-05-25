@@ -114,7 +114,6 @@ body{
 .cmntyex_sasl_tile,
 .cmntyex-tiles_placeholder {
     position: relative;
-    font-size: 70%;
     text-shadow: none;
 }
 
@@ -126,19 +125,64 @@ body{
     width: 100%;
 }
 
-.tile_rating {
+.tile_marker {
     position: absolute;
-    left: 10px;
-    bottom: 25px;
+    left: 30px;
+    bottom: 30px;
 }
 
 .tile_type {
     position: absolute;
-    left: 20px;
-    bottom: 40px;
+    right: 20px;
+    top: 20px;
     padding: 10px;
+    color: #fff;
     margin: 0;
-    color: #ec8009;
+}
+
+.tile_type div {
+    float: left;
+    margin-top: -15px;
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+}
+
+.DISCOUNT {
+    background: url('icons/DISCOUNT.png') no-repeat top left;
+}
+
+.NOTIFICATION {
+    background: url('icons/NOTIFICATION.png') no-repeat top left;
+}
+
+.DINING_DEAL {
+    background: url('icons/DINING_DEAL.png') no-repeat top left;
+}
+
+.ACTIVITY {
+    background: url('icons/ACTIVITY.png') no-repeat top left;
+}
+
+.ENTERTAINMENT {
+    background: url('icons/ENTERTAINMENT.png') no-repeat top left;
+}
+
+.HAPPYHOUR {
+    background: url('icons/HAPPYHOUR.png') no-repeat top left;
+}
+
+.CAMPAIGN_PROMOTION {
+    background: url('icons/CAMPAIGN_PROMOTION.png') no-repeat top left;
+}
+
+.AD_ALERT {
+    background: url('icons/AD_ALERT.png') no-repeat top left;
+}
+
+.OTHER {
+    background: url('icons/OTHER.png') no-repeat top left;
 }
 
 .tile_image {
@@ -149,13 +193,15 @@ body{
 .create_promotion,
 .more_detailes,
 .tile_name {
-    border: 1px solid #333;
-    border-radius: 2px;
     color: #fff;
-    background-color: #000;
+    background-color: rgba(0,0,0,.5);
     padding: 0 10px;
     position: absolute;
-    opacity: .7;
+}
+
+.tile_title,
+.tile_message {
+    margin: 10px 0;
 }
 
 .tile_name {
@@ -168,9 +214,9 @@ body{
 }
 
 .tile_right {
-    width: 50%;
+    width: 65%;
     min-width: 150px;
-    bottom: 15px;
+    bottom: 5px;
     right: 0;
 }
 
@@ -198,33 +244,31 @@ body{
     font-weight: bold;
 }
 
+.shareButtons {
+    margin-top: -45px;
+    padding: 5px;
+}
+
 .shareButtons>div {
     display: inline-block;
     margin: 5px;
 }
 
-#tileviewdetails_callbutton {
-    float: left;
-    margin-left: 10%;
-    zoom: .7;
+.textBlock {
+    padding: 10px;
 }
 
-#tileviewdetails_drivebutton {
-    float: right;
-    margin-right: 10%;
-    zoom: .7;
-}
-
-#sms_input_block {
-    display: none;
-}
-
-#sms_input_block div {
+.tileviewdetails_location,
+.tileviewdetails_phone {
     display: inline-block;
+    width: 50%;
+    padding: 10px;
 }
 
-.share_title {
-    color: #333;
+.location_title,
+.phone_title {
+    color: #999;
+    font-style: italic;
 }
 
 #cmntyex_business .ui-content {
@@ -314,4 +358,13 @@ body{
 .choose-city option,
 .choose-filter option {
     background-color: #333;
+}
+
+.chalkboards_icon {
+    background: url(icons/ChalkboardsIcon.png) no-repeat top left;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
 }

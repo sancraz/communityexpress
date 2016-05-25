@@ -16,9 +16,10 @@ var TilesView = PageLayout.extend({
     name: 'tiles',
 
     initialize: function(options) {
-        options = options || {};
-        window.community.coords = options.coords;
-        this.tiles = options.tiles;
+        this.options = options || {};
+        if (options.coords) {
+            window.community.coords = options.coords;
+        };
         this.on('show', this.onShow, this);
         this.on('hide', this.onHide, this);
     },
@@ -44,7 +45,7 @@ var TilesView = PageLayout.extend({
             var el = new ListView({
                 ItemView: TileView,
                 className: 'cmntyex-tile_list',
-                collection: new Backbone.Collection(this.tiles, {
+                collection: new Backbone.Collection(this.options.tiles, {
                     model: PromotionModel
                 }),
                 dataRole: 'none',

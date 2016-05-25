@@ -17,7 +17,7 @@ var TileDetailedView = PageLayout.extend({
     },
 
     renderData: function(){
-        return _.extend(this.model);
+        return _.extend(this.model.attributes);
     },
 
     onShow: function(){
@@ -32,15 +32,15 @@ var TileDetailedView = PageLayout.extend({
     },
 
     triggerTilesView: function() {
-        Vent.trigger('viewChange', 'tiles', window.community.coords);
+        Vent.trigger('viewChange', 'tiles', this.options);
     },
 
     sendMobile: function () {
-        this.openSubview('mobilePopup', this.model);
+        this.openSubview('mobilePopup', this.model.attributes);
     },
 
     sendEmail: function() {
-        this.openSubview('emailPopup', this.model);
+        this.openSubview('emailPopup', this.model.attributes);
     }
 
 });

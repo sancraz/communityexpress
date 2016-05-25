@@ -3,7 +3,7 @@
 var Vent = require('../../Vent'),
     loader = require('../../loader');
 
-var BusinessListHeaderView = Backbone.View.extend({
+var SaslHeaderView = Backbone.View.extend({
 
     initialize: function(options) {
         this.options = options || {};
@@ -20,8 +20,8 @@ var BusinessListHeaderView = Backbone.View.extend({
         var header = $('#cmtyx_header');
         this.setElement($(header[0].outerHTML));
         this.$el.appendTo('body');
-        this.$el.find('.theme2_banner').text(this.model.name);
+        this.$el.find('.theme2_banner').text(this.options.restaurant);
     }
 });
 
-module.exports = BusinessListHeaderView;
+module.exports = SaslHeaderView;

@@ -38,7 +38,7 @@ var NavbarView = Backbone.View.extend({
     },
 
     triggerBusinessListView: function() {
-        Vent.trigger('viewChange', 'businessList', window.community.coords)
+        Vent.trigger('viewChange', 'businessList', this.options);
     },
 
     showButtonUnavailable: function() {

@@ -46,35 +46,44 @@ module.exports = {
     },
 
     tiles: function(options) {
-        var coords = options.coords;
-        return tileActions.getTiles(options)
-            .then(function(response) {
-                return {
-                    tiles: response.tiles,
-                    coords: coords
-                };
-            });
+        if (options.tiles) {
+            return $.Deferred().resolve({
+                sasls: options.sasls,
+                tiles: options.tiles
+            }).promise();
+        } else {
+            var coords = options.coords;
+            return tileActions.getTiles(options)
+                .then(function(response) {
+                    return {
+                        tiles: response.tiles,
+                        sasls: response.sasls,
+                        coords: coords
+                    };
+                });
+        }
     },
 
     tileDetailed: function(options) {
         return $.Deferred().resolve({
-            model: options
+            model: options.model,
+            sasls: options.options.sasls,
+            tiles: options.options.tiles
         }).promise();
     },
 
     businessList: function(options) {
-        var coords = options;
-        return tileActions.getTiles(coords)
-            .then(function(response) {
-                return {
-                    sasls: response.sasls,
-                };
-            });
+        return $.Deferred().resolve({
+            sasls: options.sasls,
+            tiles: options.tiles
+        }).promise();
     },
 
     saslDetailed: function(options) {
         return $.Deferred().resolve({
-            model: options
+            model: options.model,
+            sasls: options.sasls,
+            tiles: options.tiles
         }).promise();
     }
 };

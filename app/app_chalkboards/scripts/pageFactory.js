@@ -10,7 +10,7 @@ var TilesView = require('./views/tilesView'),
     NavbarView = require('./views/headers/navbarView'),
     MainHeaderView = require('./views/headers/mainHeaderView'),
     TileHeaderView = require('./views/headers/tileHeaderView'),
-    BusinessListHeaderView = require('./views/headers/businessListHeaderView');
+    SaslHeaderView = require('./views/headers/saslHeaderView');
 
 module.exports = {
     create: function(viewName,options) {
@@ -21,7 +21,8 @@ module.exports = {
             view = new TilesView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
-                    restaurant: options.model,
+                    tiles: options.tiles,
+                    sasls: options.sasls,
                     back: false
                 },
                 headerView: MainHeaderView,
@@ -40,7 +41,8 @@ module.exports = {
             view = new TileDetailedView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
-                    model: options.model
+                    tiles: options.tiles,
+                    sasls: options.sasls,
                 },
                 headerView: TileHeaderView,
                 headerData: {
@@ -52,18 +54,20 @@ module.exports = {
         case 'businessList':
             view = new BusinessListView(_.extend(options, {
                 navbarView: NavbarView,
-                navbarData: {}
-                // headerView: BusinessListHeaderView,
-                // headerData: {
-                //     model: options.tiles
-                // }
+                navbarData: {
+                    tiles: options.tiles,
+                    sasls: options.sasls,
+                }
             }));
             break;
         case 'saslDetailed':
             view = new SaslDetailedView(_.extend(options, {
                 navbarView: NavbarView,
-                navbarData: {},
-                headerView: HeaderView,
+                navbarData: {
+                    tiles: options.tiles,
+                    sasls: options.sasls,
+                },
+                headerView: SaslHeaderView,
                 headerData: {
                     model: options.model,
                     restaurant: options.model.name
