@@ -133,8 +133,8 @@ body{
 
 .tile_type {
     position: absolute;
-    right: 20px;
-    top: 20px;
+    left: 0;
+    top: 40px;
     padding: 10px;
     color: #fff;
     margin: 0;
@@ -173,7 +173,7 @@ body{
     background: url('icons/HAPPYHOUR.png') no-repeat top left;
 }
 
-.CAMPAIGN_PROMOTION {
+.CAMPAIGN_SUBSCRIBE_FOR_NOTIFICATION {
     background: url('icons/CAMPAIGN_PROMOTION.png') no-repeat top left;
 }
 
@@ -221,8 +221,13 @@ body{
 }
 
 .create_promotion {
-    top: 40px;
-    right: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.create_promotion p {
+    margin: 5px;
 }
 
 .more_detailes {
@@ -245,6 +250,7 @@ body{
 }
 
 .shareButtons {
+    text-align: center;
     margin-top: -45px;
     padding: 5px;
 }
@@ -256,6 +262,11 @@ body{
 
 .textBlock {
     padding: 10px;
+}
+
+#tileviewdetails_drivebutton a,
+#tileviewdetails_callbutton a {
+    display: inline-block;
 }
 
 .tileviewdetails_location,
@@ -325,14 +336,14 @@ body{
 .city_selector {
     position: absolute;
     top: 0;
-    left: 5px;
+    left: 10px;
 }
 
 .filter_selector {
     position: absolute;
     top: 0;
-    right: 5px;
-    width: 75px;
+    right: 10px;
+    width: 110px;
 }
 
 .choose-city,

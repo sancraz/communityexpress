@@ -34,19 +34,19 @@
                 <div class="driveCallButtons">
                     <div id="tileviewdetails_drivebutton">
                         <div class="tileviewdetails_location">
-                            <p class="location_title">Location</p>
-                            <p><%= address.street+' '+address.number+' '+address.city+' '+address.state+' '+address.country %></p>
+                            <p class="location_title">Drive to</p>
+                            <p><%= address.number+' '+address.street+' '+address.city+' '+address.state+' '+address.country %></p>
                         </div>
-                        <a style="display:inline-block;" href="https://maps.apple.com/?daddr=<%= address.street+' '+address.number+' '+address.city+' '+address.state %>&saddr=current%20location" target="_blank">
+                        <a href="https://maps.apple.com/?daddr=<%= address.number+' '+address.street+' '+address.city+' '+address.country %>&saddr=current%20location" target="_blank">
                             <div class="sprite_navbar button12_28_0_0"></div>
                         </a>
                     </div>
                     <div id="tileviewdetails_callbutton">
                         <div class="tileviewdetails_phone">
-                            <p class="phone_title">Phone number</p>
+                            <p class="phone_title">Call</p>
                             <p><%= contact.telephoneMain %></p>
                         </div>
-                        <a style="display:inline-block;" href="tel:">
+                        <a href="tel:<%= contact.telephoneMain %>">
                             <div class="sprite_navbar button12_60_0_0"></div>
                         </a>
                     </div>

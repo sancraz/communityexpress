@@ -7,9 +7,9 @@
                 </a>
             </div>
         <% } %>
-        <% if (promoType.enumText == 'CAMPAIGN_PROMOTION') { %>
+        <% if (promoType.enumText == 'CAMPAIGN_SUBSCRIBE_FOR_NOTIFICATION') { %>
             <div class="create_promotion">
-                <h2>Create Promotion</h2>
+                <p>For more detailes click here</p>
             </div>
         <% } %>
         <div class="tile_left">
@@ -22,7 +22,7 @@
             <img class="tile_image" src="<%= url %>" >
         </div>
         <div class="tile_right">
-            <h2 class="tile_title"><%= saslName %></h2>
+            <h3 class="tile_title"><%= saslName %></h3>
             <p class="tile_message"><%= title %></p>
         </div>
     </div>

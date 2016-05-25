@@ -77,9 +77,13 @@ var BusinessListView = PageLayout.extend({
                 model: PromotionModel,
                 comparator: function(model) {
                     if (reverse) {
-                        return model.get(sort_key);
+                        if (sort_key == 'name') {
+                            return -model.get(sort_key).charCodeAt(0);
+                        } else {
+                            return -model.get(sort_key);
+                        }
                     } else {
-                        return -model.get(sort_key);
+                        return model.get(sort_key);
                     }
                 }
             }),

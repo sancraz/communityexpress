@@ -6,7 +6,7 @@
                 <div class="cmntyex_sasl_address">
                     <div class="cmntyex-business_location"><%= address.street + ' ' + address.number + ' ' + address.city + ' ' + address.zip + ' ' + address.state + ' ' + address.country %></div>
                     <div id="sasldetails_drivebutton">
-                        <a href="https://maps.apple.com/?daddr=37.775413,-122.417701&saddr=current%20location" target="_blank">
+                        <a href="https://maps.apple.com/?daddr=<%= address.number+' '+address.street+' '+address.city+' '+address.country %>&saddr=current%20location" target="_blank">
                             <div class="sprite_navbar button12_28_0_0"></div>
                         </a>
                     </div>
@@ -15,7 +15,7 @@
                         <%= contact.telephoneMain %>
                     </div>
                     <div id="sasldetails_callbutton">
-                        <a href="tel:">
+                        <a href="tel:<%= contact.telephoneMain %>">
                             <div class="sprite_navbar button12_60_0_0"></div>
                         </a>
                     </div>

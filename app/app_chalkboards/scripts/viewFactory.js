@@ -5,13 +5,19 @@
 var LocationList = require('./views/panels/locationList'),
     ButtonUnavailable = require('./views/popups/buttonUnavailable'),
     MobilePopup = require('./views/popups/mobilePopup'),
-    EmailPopup = require('./views/popups/emailPopup');
+    EmailPopup = require('./views/popups/emailPopup'),
+    SigninView = require('./views/panels/signinView'),
+    SignupView = require('./views/panels/signupView'),
+    ConfirmationPopup = require('./views/popups/confirmationPopup');
 
 var viewMap = {
     locationList: LocationList,
     buttonUnavailable: ButtonUnavailable,
     mobilePopup: MobilePopup,
-    emailPopup: EmailPopup
+    emailPopup: EmailPopup,
+    signin: SigninView,
+    signup: SignupView,
+    confirmationPopup: ConfirmationPopup
 };
 
 module.exports = {

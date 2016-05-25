@@ -23,7 +23,7 @@ var BusinessItemView = Backbone.View.extend({
         var self = this;
         _(this.model.get('mapmarkers')).each(function(marker) {
             if (marker.category == 'UNDEFINED') {
-                self.markerURL = marker.apiMarkerURL;
+                self.markerURL = marker.markerURL;
             };
         });
         this.listenTo(this.model, 'destroy', this.remove, this );

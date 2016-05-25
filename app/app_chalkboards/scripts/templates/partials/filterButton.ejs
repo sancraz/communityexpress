@@ -1,6 +1,6 @@
 <select name="select-choice" class="choose-filter"  id="select-choice">
-	<option>Filter</option>
+	<option>Category</option>
     <% _(filters).each(function (filter) { %>
-        <option class="tiles_filter"><%= filter.domain %></option>
+        <option class="tiles_filter"><%= filter.displayText %></option>
     <% }) %>
 </select>
