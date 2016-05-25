@@ -19,6 +19,7 @@ var BusinessItemView = Backbone.View.extend({
     },
 
     initialize: function(options) {
+        this.options = options.parent.parent.options || {};
         var self = this;
         _(this.model.get('mapmarkers')).each(function(marker) {
             if (marker.category == 'UNDEFINED') {
@@ -36,7 +37,11 @@ var BusinessItemView = Backbone.View.extend({
     },
 
     openSASLDetailesView: function() {
-        Vent.trigger('viewChange', 'saslDetailed', this.model.attributes);
+        Vent.trigger('viewChange', 'saslDetailed', {
+            model: this.model.attributes,
+            sasls: this.options.sasls,
+            tiles: this.options.tiles
+        });
     }
 
 });

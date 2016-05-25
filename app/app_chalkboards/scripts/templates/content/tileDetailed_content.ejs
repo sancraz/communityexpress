@@ -3,58 +3,53 @@
     <div data-role="content" class="content">
         <div class="cmntyex-tiles_placeholder">
             <div class="cmntyex-content_placeholder">
-            	<a href="#" >
-                    <div class="cmntyex_sasl_tile">
-                        <div class="tile_left">
-                            <h2 class="tile_type"><%= promoType.enumText %></h2>
-                            <img class="tile_image" src="<%= url %>" >
-                        </div>
-                        <div class="tile_right">
-                            <h2 class="tile_title"><%= title %></h2>
-                            <p class="tile_message"><%= message %></p>
-                        </div>
+                <img class="tile_image" src="<%= url %>" >
+                <div class="shareButtons">
+                    <div id="tileviewdetails_twitterbutton">
+                        <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
+                            <div class="sprite_navbar navbutton_twitter"></div>
+                        </a>
                     </div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="driveCallBlock">
-        <div class="shareButtons">
-            <div id="tileviewdetails_callbutton">
-                <a href="tel:">
-                    <div class="sprite_navbar button12_60_0_0"></div>
-                </a>
-            </div>
-            <div id="tileviewdetails_drivebutton">
-                <a href="https://maps.apple.com/?daddr=37.775413,-122.417701&saddr=current%20location" target="_blank">
-                    <div class="sprite_navbar button12_28_0_0"></div>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="shareBlock">
-        <div>
-            <div class="share_title">Share</div>
-            <div class="shareButtons">
-                <div id="tileviewdetails_twitterbutton">
-                    <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
-                        <div class="sprite_navbar navbutton_twitter"></div>
-                    </a>
+                    <div id="tileviewdetails_smsbutton">
+                        <a href="" class="mobile_button">
+                            <div class="sprite_navbar navbutton_sms_button"></div>
+                        </a>
+                    </div>
+                    <div id="tileviewdetails_facebookbutton">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
+                            <div class="sprite_navbar navbutton_facebook"></div>
+                        </a>
+                    </div>
+                    <div id="tileviewdetails_emailbutton">
+                        <a href="">
+                            <div class="sprite_navbar navbutton_email"></div>
+                        </a>
+                    </div>
                 </div>
-                <div id="tileviewdetails_smsbutton">
-                    <a href="" class="mobile_button">
-                        <div class="sprite_navbar navbutton_sms_button"></div>
-                    </a>
+                <div class="textBlock">
+                    <h1><%= saslName %></h1>
+                    <h3><%= title %></h3>
+                    <p><%= message %></p>
                 </div>
-                <div id="tileviewdetails_facebookbutton">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
-                        <div class="sprite_navbar navbutton_facebook"></div>
-                    </a>
-                </div>
-                <div id="tileviewdetails_emailbutton">
-                    <a href="">
-                        <div class="sprite_navbar navbutton_email"></div>
-                    </a>
+                <div class="driveCallButtons">
+                    <div id="tileviewdetails_drivebutton">
+                        <div class="tileviewdetails_location">
+                            <p class="location_title">Location</p>
+                            <p><%= address.street+' '+address.number+' '+address.city+' '+address.state+' '+address.country %></p>
+                        </div>
+                        <a style="display:inline-block;" href="https://maps.apple.com/?daddr=<%= address.street+' '+address.number+' '+address.city+' '+address.state %>&saddr=current%20location" target="_blank">
+                            <div class="sprite_navbar button12_28_0_0"></div>
+                        </a>
+                    </div>
+                    <div id="tileviewdetails_callbutton">
+                        <div class="tileviewdetails_phone">
+                            <p class="phone_title">Phone number</p>
+                            <p><%= contact.telephoneMain %></p>
+                        </div>
+                        <a style="display:inline-block;" href="tel:">
+                            <div class="sprite_navbar button12_60_0_0"></div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

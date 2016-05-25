@@ -13,14 +13,17 @@
             </div>
         <% } %>
         <div class="tile_left">
-            <h1 class="tile_name"><%= saslName %></h1>
-            <h2 class="tile_type"><%= promoType.enumText %></h2>
-            <img class="tile_rating" src="">
+            <h3 class="tile_type"><div class="<%= promoType.enumText %>"></div><%= promoType.enumText %></h3>
+            <% _(mapmarkers).each(function (marker) { %>
+                <% if (marker.category == 'UNDEFINED') { %>
+                    <img class="tile_marker" src="<%= marker.markerURL %>">
+                <% } %>
+            <% }) %>
             <img class="tile_image" src="<%= url %>" >
         </div>
         <div class="tile_right">
-            <h2 class="tile_title"><%= title %></h2>
-            <p class="tile_message"><%= message %></p>
+            <h2 class="tile_title"><%= saslName %></h2>
+            <p class="tile_message"><%= title %></p>
         </div>
     </div>
 </a>
