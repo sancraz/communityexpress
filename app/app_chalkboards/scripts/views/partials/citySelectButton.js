@@ -33,7 +33,10 @@ var CitySelectButton = Backbone.View.extend({
             };
             window.community.coords = this.coords;
             window.community.city = selected.val();
-            Vent.trigger('viewChange', 'tiles', this.coords);
+            Vent.trigger('viewChange', 'tiles', {
+                coords: this.coords,
+                domain: window.community.domain
+            });
         }
     }
 
