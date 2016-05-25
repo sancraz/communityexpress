@@ -281,13 +281,20 @@ body{
 .city_selector {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 5px;
 }
 
-.choose-city {
+.filter_selector {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    width: 75px;
+}
+
+.choose-city,
+.choose-filter {
     height: 50px;
-    width: 45%;
-    margin-left: 15px;
+    width: 100%;
     background: none;
     border: none;
     font-size: 20px;
@@ -295,10 +302,16 @@ body{
     color: #fff;
 }
 
-.choose-city:focus {
+.choose-city {
+    width: 45%;
+}
+
+.choose-city:focus,
+.choose-filter:focus {
     outline: none;
 }
 
-.choose-city option {
+.choose-city option,
+.choose-filter option {
     background-color: #333;
 }

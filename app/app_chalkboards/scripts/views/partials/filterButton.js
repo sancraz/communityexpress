@@ -28,6 +28,7 @@ var FilterButton = Backbone.View.extend({
         var selected = $('.choose-filter').find('option:selected');
         if (selected.val() !== 'Filter') {
             this.domain = selected.val();
+            window.community.domain = this.domain;
             this.coords = window.community.coords;
             Vent.trigger('viewChange', 'tiles', {
                 coords: this.coords,
