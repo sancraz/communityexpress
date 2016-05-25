@@ -28,25 +28,43 @@ var MainHeaderView = Backbone.View.extend({
     },
 
     renderCitySelector: function() {
-        var self = this;
-        tileActions.getLocations()
-            .then(function(locations) {
-                self.$('.city_selector').html(new CitySelectButton({
-                    parent: self.page,
-                    model: locations
-                }).render().el);
-            });
+        if (window.community.locations) {
+            this.renderCities();
+        } else {
+            var self = this;
+            tileActions.getLocations()
+                .then(function(locations) {
+                    window.community.locations = locations;
+                    self.renderCities();
+                });
+        }
+    },
+
+    renderCities: function(locations) {
+        this.$('.city_selector').html(new CitySelectButton({
+            parent: this.page,
+            model: window.community.locations
+        }).render().el);
     },
 
     renderFilterSelector: function() {
-        var self = this;
-        tileActions.getSASLFilters()
-            .then(function(filters) {
-                self.$('.filter_selector').html(new FilterButton({
-                    parent: self.page,
-                    model: filters
-                }).render().el);
-            });
+        if (window.community.categories) {
+            this.renderCategories();
+        } else {
+            var self = this;
+            tileActions.getSASLFilters()
+                .then(function(categories) {
+                    window.community.categories = categories;
+                    self.renderCategories();
+                });
+        }
+    },
+
+    renderCategories: function() {
+        this.$('.filter_selector').html(new FilterButton({
+            parent: this.page,
+            model: window.community.categories
+        }).render().el);
     }
 });
 
