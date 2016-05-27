@@ -9,7 +9,7 @@
 <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin" rel="stylesheet">
  
 <link rel="stylesheet" href="build/styles.css"> 
-<link rel="stylesheet" href="app_sitelette/styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">
+<link rel="stylesheet" href="styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">
 
 <title><?php
 if (!is_null($saslName)) {
@@ -88,7 +88,7 @@ if (!is_null($saslJSON)) {
   window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
   window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
   window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
-  window.community.isTileViewDetails=<?php echo $tileViewDetails==TRUE?'true':'false'?>;
+
 </script>
 
 <?php
