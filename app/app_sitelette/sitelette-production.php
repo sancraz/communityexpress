@@ -77,8 +77,6 @@ if (!is_null($saslJSON)) {
   window.community.uuidURL='<?php echo $uuidURL ?>';
   window.community.embedded=<?php echo  $embedded==TRUE?'true':'false'  ?>;
   window.community.desktop=<?php echo  $desktopIFrame==TRUE?'true':'false' ?>;
-  window.community.publicAccess=<?php echo  $publicAccess==TRUE?'true':'false'?>;
-  window.community.directAccess=<?php echo  $directAccess==TRUE?'true':'false'?>;
   window.community.demo=<?php echo  $demo==TRUE?'true':'false'?>;
   window.community.server='<?php echo $server ?>';
   window.community.host='<?php echo $serverName ?>';

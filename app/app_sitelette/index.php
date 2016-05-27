@@ -4,6 +4,8 @@ ini_set('display_errors', 1);
 include_once ('Mobile_Detect.php');
 include_once ('parser_api_utility.php');
 
+$tileViewDetails = FALSE;
+
 $detect = new Mobile_Detect;
 /* is desktopiframe=true
  *
@@ -19,7 +21,7 @@ if (validateParams('desktopiframe')) {
 // not mobile or tablet and not already in the iframe
 if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
 
- include_once ('desktop/dev-index.php');
+ include_once ('desktop/index.php');
 
 } else {
 
@@ -162,13 +164,13 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
    $errorMessage = $siteletteJSON['curl_error'];
    $errorMessage = 'Service unavailable.';
 
-   include_once ('error_page/dev-index.php');
+   include_once ('error_page/index.php');
 
   } else {
    if (isset($siteletteJSON['error'])) {
     $errorMessage = $siteletteJSON['error']['message'];
 
-    include_once ('error_page/dev-index.php');
+    include_once ('error_page/index.php');
 
    } else {
 
@@ -206,7 +208,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
    * neither URL nor sa,sl provided
    */
 
-  include_once ('no_sitelette/dev-index.php');
+  include_once ('no_sitelette/index.php');
 
  }/* end no url supplied*/
 }
