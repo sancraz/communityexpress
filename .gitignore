@@ -1,4 +1,6 @@
 node_modules/*
 app/build/*
+app/app_chalkboards/build/*
+app/app_sitelette/build/*
 dist/*
 .project
