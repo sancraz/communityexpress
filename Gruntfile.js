@@ -24,7 +24,7 @@ var themes = function() {
     for (var i = 1; i <= themeNumber; i++) {
         var styles='<%= yeoman.app %>/build/styles.css',
             distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
-            themeName='<%= yeoman.app %>/app_<%= yeoman.project %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
+            themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
         distStyle[distFile] = [styles, themeName];
     };
     return distStyle;
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
     var webpack = require('webpack');
 
     var yeomanConfig = {
-        app: 'app',
+        app: 'app/app_'+argv.project,
         dist: 'dist',
         indexFile: 'prod-index.html',
         project: argv.project
@@ -88,19 +88,19 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>/no_sitelette',
+                        cwd: '<%= yeoman.app %>/no_sitelette',
                         src: ['{,*/}*', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/no_sitelette'
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>/desktop',
+                        cwd: '<%= yeoman.app %>/desktop',
                         src: ['**', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/desktop'
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>/error_page',
+                        cwd: '<%= yeoman.app %>/error_page',
                         src: ['{,*/}*', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/error_page'
                     },
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
-                        cwd: '<%= yeoman.app %>/app_<%= yeoman.project %>styles/icons',
+                        cwd: '<%= yeoman.app %>/icons',
                         src: '{,*/}*.{png,jpg,jpeg,gif}',
                         dest: '<%= yeoman.dist %>/styles/icons/'
                     },
@@ -125,7 +125,7 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/parser_api_utility.php'
                     },
                     {
-                        src: '<%= yeoman.app %>/app_<%= yeoman.project %>/<%= yeoman.project %>-production.php',
+                        src: '<%= yeoman.app %>/<%= yeoman.project %>-production.php',
                         dest: '<%= yeoman.dist %>/<%= yeoman.project %>.php'
                     },
                     {
@@ -133,11 +133,11 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.dist %>/Mobile_Detect.php'
                     },
                     {
-                        src: '<%= yeoman.app %>/app_<%= yeoman.project %>/styles/themes/theme2/sprite_navbar_theme2.png',
+                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
                         dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
                     },
                     {
-                        src: '<%= yeoman.app %>/app_<%= yeoman.project %>/styles/themes/theme2/sprite_buttons_theme9.png',
+                        src: '<%= yeoman.app %>/styles/themes/theme2/sprite_buttons_theme9.png',
                         dest: '<%= yeoman.dist %>/build/sprite_buttons_theme9.png'
                     }
                 ]

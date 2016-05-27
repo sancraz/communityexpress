@@ -10,7 +10,7 @@
 <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
  
 <link rel="stylesheet" href="build/styles.css"> 
-<link rel="stylesheet" href="app_chalkboards/styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">
+<link rel="stylesheet" href="styles/themes/theme<?php echo $themeId ?>/sitelette_theme<?php echo $themeId ?>.css">
 <title><?php
 if (!is_null($saslName)) {
     echo $saslName;
@@ -82,7 +82,7 @@ if (!is_null($androidHomeScreenIconURL)) {
   window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
   window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
   window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
-  window.community.isTileViewDetails=<?php echo $tileViewDetails==TRUE?'true':'false'?>;
+
 
 </script>
 

@@ -1,0 +1,20 @@
+Options +FollowSymlinks -MultiViews
+
+ErrorDocument 404 /common_error.php
+
+RewriteEngine On    
+RewriteBase /
+
+#RewriteCond %{HTTP_USER_AGENT} !iphone [NC]
+#RewriteRule ^m/(.+)$ /d/#$1 [R=302,NE,L,NC]
+
+#RewriteRule ^[dm]/(.+)$ /m/#$1 [R=302,NE,L,NC]
+
+## hide .php extension
+RewriteCond %{THE_REQUEST} \s/+common_([^.]+)\.php[\s?] [NC]
+RewriteRule ^ %1 [R=302,L,NE]
+
+## To internally forward
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{DOCUMENT_ROOT}/common_$1.php -f
+RewriteRule ^(.+?)/?$ common_$1.php [L]
