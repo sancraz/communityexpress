@@ -57,7 +57,9 @@ module.exports = {
                 navbarData: {
                     tiles: options.tiles,
                     sasls: options.sasls,
-                }
+                },
+                headerView: MainHeaderView,
+                headerData: {}
             }));
             break;
         case 'saslDetailed':
