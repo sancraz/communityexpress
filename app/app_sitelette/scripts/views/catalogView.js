@@ -30,7 +30,8 @@ var CatalogView = PageLayout.extend({
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
         this.on('show', this.onShow, this);
         this.basket = options.basket;
-        this.backToCatalog = options.backToCatalogs;
+        this.backToCatalogs = options.backToCatalogs;
+        this.catalogId = options.catalogId;
     },
 
     renderData: function () {
@@ -38,7 +39,7 @@ var CatalogView = PageLayout.extend({
     },
 
     goBack: function() {
-        if (this.backToCatalog) {
+        if (this.backToCatalogs) {
             this.triggerCatalogsView();
         } else {
             this.triggerRestaurantView()
@@ -59,7 +60,11 @@ var CatalogView = PageLayout.extend({
 
     triggerOrder: function () {
         this.withLogIn(function () {
-            Vent.trigger( 'viewChange', 'order', this.sasl.getUrlKey(), { reverse: true } );
+            Vent.trigger( 'viewChange', 'order', {
+                id: this.sasl.getUrlKey(),
+                catalogId: this.catalogId,
+                backToCatalogs: this.backToCatalogs
+            }, { reverse: true } );
         }.bind(this));
     },
 

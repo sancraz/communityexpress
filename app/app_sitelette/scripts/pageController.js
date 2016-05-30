@@ -152,6 +152,8 @@ module.exports = {
 
     catalog: function (options) { // options is an array with either sasl or urlKey
         var sasl;
+            catalogId = options.catalogId,
+            backToCatalogs = options.backToCatalogs;
         var backToCatalogs = options.backToCatalogs;
         var catalogId = options.catalogId;
         return saslActions.getSasl(options.id)
@@ -165,7 +167,8 @@ module.exports = {
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
                     basket: catalogActions.getBasket(sasl.sa(), sasl.sl()),
-                    backToCatalogs: backToCatalogs
+                    backToCatalogs: backToCatalogs,
+                    catalogId: catalogId
                 };
             });
     },
@@ -179,7 +182,6 @@ module.exports = {
                 return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
             }).then(function (options) {
                 if (options.data.length === 1) {
-                    console.log('hello');
                     Vent.trigger('viewChange', 'catalog', {
                         id: id,
                         catalogId: options.data.catalogId,
@@ -293,8 +295,10 @@ module.exports = {
     },
 
     order: function (options) {
-        var sasl;
-        return saslActions.getSasl(options)
+        var sasl,
+            catalogId = options.catalogId,
+            backToCatalogs = options.backToCatalogs;
+        return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
                 return orderActions.getCreditInfo();
@@ -304,7 +308,9 @@ module.exports = {
                     cardType: cardType,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
-                    basket: catalogActions.getBasket(sasl.sa(), sasl.sl())
+                    basket: catalogActions.getBasket(sasl.sa(), sasl.sl()),
+                    catalogId: catalogId,
+                    backToCatalogs: backToCatalogs
                 };
             });
     },
