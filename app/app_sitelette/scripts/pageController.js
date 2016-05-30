@@ -172,14 +172,24 @@ module.exports = {
 
     catalogs: function(options) {
         var sasl;
+        var id = options;
         return saslActions.getSasl(options)
             .then(function(ret) {
                 sasl = ret;
                 return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
-            }).then(function (catalogs) {
-                return {
-                    sasl: sasl,
-                    catalogs: catalogs
+            }).then(function (options) {
+                if (options.data.length === 1) {
+                    console.log('hello');
+                    Vent.trigger('viewChange', 'catalog', {
+                        id: id,
+                        catalogId: options.data.catalogId,
+                        backToCatalogs: false
+                    });
+                } else {
+                    return {
+                        sasl: sasl,
+                        catalogs: options
+                    };
                 };
             });
     },

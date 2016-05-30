@@ -357,10 +357,6 @@ body{
     color: #fff;
 }
 
-.choose-city {
-    width: 45%;
-}
-
 .choose-city:focus,
 .choose-filter:focus {
     outline: none;

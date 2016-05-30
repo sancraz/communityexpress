@@ -15,9 +15,6 @@ var CatalogsView = PageLayout.extend({
     initialize: function (options) {
         this.sasl = options.sasl;
         this.catalogs = options.catalogs.collection;
-        if (this.catalogs.length === 1) {
-            this.triggerCatalogView();
-        };
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);
     },
@@ -44,15 +41,6 @@ var CatalogsView = PageLayout.extend({
 
         this.$('.cmntyex-items_placeholder').append(el);
 
-    },
-
-    triggerCatalogView: function() {
-        console.log('trigger catalog');
-        Vent.trigger('viewChange', 'catalog', {
-            id: this.sasl.id,
-            catalogId: this.catalogs[0].catalogId,
-            backToCatalogs: false
-        });
     }
 
 });
