@@ -10,12 +10,25 @@ var getUID = function () {
 };
 
 module.exports = {
-    getCatalog: function (sa, sl) {
+    getCatalog: function (sa, sl, catalogId) {
         return gateway.sendRequest('getCatalog', {
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
-            UID: getUID()
+            catalogId: catalogId
         }).then(function (response) {
+            return {
+                data: response,
+                collection: response
+            };
+        });
+    },
+
+    getCatalogs: function(sa, sl) {
+        return gateway.sendRequest('getCatalogs', {
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            UID: getUID()
+        }).then(function(response) {
             return {
                 data: response,
                 collection: response
