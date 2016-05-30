@@ -44,8 +44,6 @@ var onLoginSuccess = function (response) {
                 console.log("anonymous user created");
             }
 
-            updateActions.attachSharingButtons(); 
-
         } else {
             console.log("no api url");
         }

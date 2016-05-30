@@ -7,6 +7,7 @@ var Vent = require('../Vent'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
     saslActions = require('../actions/saslActions'),
+    contactActions = require('../actions/contactActions'),
     promotionActions = require('../actions/promotionActions'),
     configurationActions = require('../actions/configurationActions'),
     promotionsController = require('../controllers/promotionsController'),
@@ -64,6 +65,8 @@ var LandingView = PageLayout.extend({
             'click .embedded_video': 'activateVideoPlayer',
             'click .theme2_generic_banner': 'triggerAboutUsView',
             'click .theme2_event_entry_right_top_row_calendar a': 'triggerEventView',
+            'click #sms_button': 'openSMSInput',
+            'click #sms_send_button': 'sendSMSToMobile',
 
             'click .promotionService': 'openPromotions',
             'click .userPictures': 'openUserPictures',
@@ -291,6 +294,37 @@ var LandingView = PageLayout.extend({
     showOutOfNetworkText: function () {
         var text = "To see live updates and content from this business, please ask them to signup. It is easy and free.";
         this.openSubview('text', {}, {text: text});
+    },
+
+    openSMSInput: function() {
+        $('.phone_us').mask('(000) 000-0000');
+        $("#sms_input_block").slideToggle('1000');
+        $('#sms_input').val('').focus();
+    },
+
+    sendSMSToMobile: function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        var mobile = $('.phone_us').val();
+
+        contactActions.sendAppURLForSASLToMobileviaSMS(this.model.sa(), this.model.sl(), mobile)
+            .then(function(response, status){
+                loader.showFlashMessage( 'Sending message... ' + mobile);
+                this.shut();
+            }.bind(this), function(jqXHR, status) {
+                var errorMessage = "Operation failed";
+                if (status === "timeout") {
+                    errorMessage = 'Service Unavailable';
+                } else {
+                    if (typeof jqXHR.responseJSON !== 'undefined') {
+                        if (typeof jqXHR.responseJSON.error !== 'undefined') {
+                            errorMessage = jqXHR.responseJSON.error.message;
+                        }
+                    }
+                };
+                loader.showFlashMessage(errorMessage);
+            }.bind(this));
     }
 
 });

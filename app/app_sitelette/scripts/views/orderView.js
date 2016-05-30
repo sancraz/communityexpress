@@ -25,6 +25,8 @@ var OrderView = PageLayout.extend({
         this.years = this.getYears();
         this.months = this.getMonths();
         this.states = this.getStates();
+        this.catalogId = options.catalogId;
+        this.backToCatalogs = options.backToCatalogs;
         this.on('show', this.onShow, this);
     },
 
@@ -50,7 +52,11 @@ var OrderView = PageLayout.extend({
     },
 
     triggerCatalogView: function() {
-        Vent.trigger('viewChange', 'catalog', this.sasl.getUrlKey(), { reverse: true });
+        Vent.trigger('viewChange', 'catalog', {
+            id: this.sasl.id,
+            catalogId: this.catalogId,
+            backToCatalogs: this.backToCatalogs
+        }, { reverse: true });
     },
 
     onSubmitClick: function (e) {

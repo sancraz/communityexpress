@@ -40,5 +40,14 @@ module.exports = {
             serviceLocationId: sl,
             promoUUID: promoUUID
         });
+    },
+
+    sendAppURLForSASLToMobileviaSMS: function(sa, sl, phone) {
+        return gateway.sendRequest('sendAppURLForSASLToMobileviaSMS', {
+            UID: getUID(),
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            toTelephoneNumber: phone
+        });
     }
 };

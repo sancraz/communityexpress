@@ -192,66 +192,6 @@ module.exports = {
         });
     },
 
-    attachSharingButtons: function() {
-        $("#sms_button").click(function() {
-            $("#sms_input_block").slideToggle('1000');
-            $('#sms_input').val('').focus();
-        });
-
-        $("#sms_send_button").click(function() {
-            var urlPrefix = $("#apiURLprefix").text();
-            var smsURL = urlPrefix + "html/sendAppURLForSASLToMobileviaSMS";
-            smsURL = this.buildUrl(smsURL, 'UID', 'user.anonymous');
-            smsURL = this.buildUrl(smsURL, "serviceAccommodatorId",
-            window.saslData.serviceAccommodatorId);
-            smsURL = this.buildUrl(smsURL, "serviceLocationId",
-            window.saslData.serviceLocationId);
-            smsURL = this.buildUrl(smsURL, "toTelephoneNumber", $('#sms_input').val());
-
-            $("#sms_input_block").slideUp('1000');
-            $('#sms_sendResults').slideDown('1000').html("Sending message...");
-
-            var request = $.ajax({
-                headers : {
-                    Accept : 'application/json;charset=utf-8'
-                },
-                type : 'GET',
-                url : smsURL,
-                contentType : "application/json;charset=utf-8",
-                dataType : 'json',
-                timeout : 3000
-            });
-
-            request.done(function(jqXHR) {
-                console.log("results:" + jqXHR);
-                $('#sms_sendResults').slideDown('1000').html(jqXHR.explanation);
-            });
-
-            request.fail(function(jqXHR, textStatus) {
-                var errorMessage = "Operation failed";
-                if (textStatus === "timeout") {
-                    errorMessage = 'Service Unavailable';
-                } else {
-                    if (typeof jqXHR.responseJSON !== 'undefined') {
-                        if (typeof jqXHR.responseJSON.error !== 'undefined') {
-                            errorMessage = jqXHR.responseJSON.error.message;
-                        }
-                    }
-                }
-                $('#sms_sendResults').slideDown('1000').html(errorMessage);
-            });
-
-            request.always(function() {
-                setTimeout(function() {
-                    $('#sms_sendResults').slideUp('1000');
-                }, 4000);
-            });
-        });
-
-        $('.phone_us').mask('(000) 000-0000');
-
-    },
-
     openCustomURLinIFrame: function(a) {
         var b = document.documentElement;
         var c = document.createElement("IFRAME");

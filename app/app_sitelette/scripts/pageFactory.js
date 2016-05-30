@@ -71,7 +71,7 @@ module.exports = {
             view = new CatalogsView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
-                    restaurant: options.model
+                    sasl: options.sasl
                 }
             }));
             break;
