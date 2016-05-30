@@ -152,17 +152,34 @@ module.exports = {
 
     catalog: function (options) { // options is an array with either sasl or urlKey
         var sasl;
-        return saslActions.getSasl(options)
+        var backToCatalogs = options.backToCatalogs;
+        var catalogId = options.catalogId;
+        return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
-                return catalogActions.getCatalog(sasl.sa(), sasl.sl());
+                return catalogActions.getCatalog(sasl.sa(), sasl.sl(), catalogId);
             }).then(function (catalog) {
                 return {
                     sasl: sasl,
                     catalog: catalog,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
-                    basket: catalogActions.getBasket(sasl.sa(), sasl.sl())
+                    basket: catalogActions.getBasket(sasl.sa(), sasl.sl()),
+                    backToCatalogs: backToCatalogs
+                };
+            });
+    },
+
+    catalogs: function(options) {
+        var sasl;
+        return saslActions.getSasl(options)
+            .then(function(ret) {
+                sasl = ret;
+                return catalogActions.getCatalogs(sasl.sa(), sasl.sl());
+            }).then(function (catalogs) {
+                return {
+                    sasl: sasl,
+                    catalogs: catalogs
                 };
             });
     },

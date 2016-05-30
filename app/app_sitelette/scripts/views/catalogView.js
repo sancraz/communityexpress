@@ -16,7 +16,7 @@ var CatalogView = PageLayout.extend({
 
     onShow:  function () {
         this.addEvents({
-            'click .back': 'triggerRestaurantView',
+            'click .back': 'goBack',
             'click .order_button': 'triggerOrder',
             'click .edit_button': 'openEditPanel'
         });
@@ -30,10 +30,23 @@ var CatalogView = PageLayout.extend({
         this.allowPickup = this.sasl.attributes.services.catalog.paymentOnlineAccepted;
         this.on('show', this.onShow, this);
         this.basket = options.basket;
+        this.backToCatalog = options.backToCatalogs;
     },
 
     renderData: function () {
         return { basket: this.basket };
+    },
+
+    goBack: function() {
+        if (this.backToCatalog) {
+            this.triggerCatalogsView();
+        } else {
+            this.triggerRestaurantView()
+        };
+    },
+
+    triggerCatalogsView: function() {
+        Vent.trigger('viewChange', 'catalogs', this.sasl.getUrlKey());
     },
 
     triggerRestaurantView: function() {

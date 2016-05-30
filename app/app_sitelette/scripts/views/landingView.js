@@ -11,6 +11,7 @@ var Vent = require('../Vent'),
     configurationActions = require('../actions/configurationActions'),
     promotionsController = require('../controllers/promotionsController'),
     galleryActions = require('../actions/galleryActions'),
+    catalogActions = require('../actions/catalogActions'),
     mediaActions = require('../actions/mediaActions'),
     updateActions = require('../actions/updateActions'),
     PageLayout = require('./components/pageLayout'),
@@ -55,7 +56,7 @@ var LandingView = PageLayout.extend({
             'click .userMediaService': 'openUpload',
             'click .userReviewsService': 'triggerReviewsView',
             'click .messagingService': 'triggerChatView',
-            'click .catalog': 'triggerCatalogView',
+            'click .catalog': 'triggerCatalogsView',
             'click .appointmentService': 'triggerAppointmentView',
             'click .wallService': 'triggerPostsView',
             'click .lVphotoContestButton': 'triggerPhotoContestView',
@@ -179,8 +180,8 @@ var LandingView = PageLayout.extend({
         }.bind(this));
     },
 
-    triggerCatalogView: function() {
-        Vent.trigger('viewChange', 'catalog', this.model.getUrlKey() );
+    triggerCatalogsView: function() {
+        Vent.trigger('viewChange', 'catalogs', this.model.getUrlKey() );
     },
 
     triggerAppointmentView: function() {

@@ -7,6 +7,7 @@ var LandingView = require('./views/landingView'),
     ReviewsView = require('./views/reviewsView'),
     EditView = require('./views/editView'),
     CatalogView = require('./views/catalogView'),
+    CatalogsView = require('./views/catalogsView'),
     PostsView = require('./views/postsView'),
     ContestsView = require('./views/contestsView'),
     PhotoContestView = require('./views/photoContestView'),
@@ -60,6 +61,14 @@ module.exports = {
             break;
         case 'catalog':
             view = new CatalogView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {
+                    restaurant: options.model
+                }
+            }));
+            break;
+        case 'catalogs':
+            view = new CatalogsView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
                     restaurant: options.model
