@@ -1148,3 +1148,7 @@ a.jquery-switch {
 a.jquery-checkbox {
 	background: transparent url('./images/checkbox.png') repeat scroll 0px 0px;
 }
+
+#landing {
+	min-height: 0!important;
+}

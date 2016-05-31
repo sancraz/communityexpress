@@ -49,9 +49,10 @@ App.prototype = {
                 Backbone.history.start({pushState: true});
             });
         } else if (this.params.canCreateAnonymousUser) {
-            updateActions.createAnonymousUser();
-            sessionActions.getSessionFromLocalStorage().then(function () {
-                Backbone.history.start({pushState: true});
+            $.when(sessionActions.createAnonymousUser()).done(function() {
+                sessionActions.getSessionFromLocalStorage().then(function () {
+                    Backbone.history.start({pushState: true});
+                });
             });
         } else {
             return
