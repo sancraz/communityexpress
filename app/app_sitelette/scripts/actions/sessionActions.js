@@ -5,6 +5,7 @@
 var userController = require('../controllers/userController.js'),
     favoriteActions = require('./favoriteActions.js'),
     communicationActions = require('./communicationActions.js'),
+    loyaltyActions = require('./loyaltyActions'),
     Vent = require('../Vent.js'),
     appCache = require('../appCache.js'),
     gateway = require('../APIGateway/gateway'),
@@ -15,6 +16,7 @@ var onLoginSuccess = function (response) {
 
     var user = appCache.fetch('user', new User());
     user.initiate(response.uid, response.userName);
+    $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
 
     favoriteActions.getFavoritesForCurrentUser();
 
@@ -26,21 +28,21 @@ var onLoginSuccess = function (response) {
     if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
          var a = localStorage.getItem("cmxUID");
          if ("undefined" !== typeof a && null !== a) {
-             updateActions.updateLoyaltyStatus(a);
+             loyaltyActions.updateLoyaltyStatus(a);
          }
     };
 
     if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
             var a = localStorage.getItem("cmxUID");
             if ("undefined" !== typeof a && null !== a) {
-                updateActions.updateLoyaltyStatus(a);
-                updateActions.retrieveCalendar(a);
+                loyaltyActions.updateLoyaltyStatus(a);
+                loyaltyActions.retrieveCalendar(a);
             } else {
                 console.log("1. NO cmxUID, try to create one");
                 /*
                 * create user
                 */
-                updateActions.createAnonymousUser();
+                loyaltyActions.createAnonymousUser();
                 console.log("anonymous user created");
             }
 
@@ -124,6 +126,29 @@ module.exports = {
             password: password,
             email: email
         }).then(onLoginSuccess);
+    },
+
+    createAnonymousUser: function() {
+        var self = this;
+        return gateway.sendRequest('createAnonymousUser', {
+            serviceAccommodatorId: window.saslData.serviceAccommodatorId,
+            serviceLocationId: window.saslData.serviceLocationId
+        }).then(function(userRegistrationDetails) {
+            if (typeof userRegistrationDetails.uid !== 'undefined') {
+
+                /*
+                * save it in localstorage
+                * 
+                */
+                console.log(" saving to local storage cmxUID:"
+                + userRegistrationDetails.uid)
+                localStorage.setItem("cmxUID", userRegistrationDetails.uid);
+
+                self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
+                loyaltyActions.updateLoyaltyStatus(userRegistrationDetails.uid);
+                loyaltyActions.retrieveCalendar(userRegistrationDetails.uid);
+            }
+        })
     }
 
 };
