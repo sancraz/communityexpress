@@ -98,6 +98,5 @@ if (!is_null($siteletteJSON)) {
 <script  src="build/bundle.js"></script>
 <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script  src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.0.0-beta.3/owl.carousel.min.js"></script>
-<script  src="app_chalkboards/scripts/tileViewDetails.js"></script>
 </body>
 </html>
