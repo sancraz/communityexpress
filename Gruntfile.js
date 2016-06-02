@@ -89,6 +89,16 @@ module.exports = function (grunt) {
                     },
                     {
                         expand: true,
+                        cwd: '<%= yeoman.app %>',
+                        src: [
+                            '*.php', 
+                            '!<%= yeoman.project %>-production.php',
+                            '!production-index.php'
+                        ],
+                        dest: '<%= yeoman.dist %>'
+                    },
+                    {
+                        expand: true,
                         cwd: '<%= yeoman.app %>/no_sitelette',
                         src: ['{,*/}*', '!dev-index.php'],
                         dest: '<%= yeoman.dist %>/no_sitelette'
@@ -121,18 +131,18 @@ module.exports = function (grunt) {
                     //     src: '<%= yeoman.app %>/index.php',
                     //     dest: '<%= yeoman.dist %>/index.php'
                     // },
-                    {
-                        src: '<%= yeoman.app %>/parser_api_utility.php',
-                        dest: '<%= yeoman.dist %>/parser_api_utility.php'
-                    },
+                    // {
+                    //     src: '<%= yeoman.app %>/parser_api_utility.php',
+                    //     dest: '<%= yeoman.dist %>/parser_api_utility.php'
+                    // },
                     {
                         src: '<%= yeoman.app %>/<%= yeoman.project %>-production.php',
                         dest: '<%= yeoman.dist %>/<%= yeoman.project %>.php'
                     },
-                    {
-                        src: '<%= yeoman.app %>/Mobile_Detect.php',
-                        dest: '<%= yeoman.dist %>/Mobile_Detect.php'
-                    },
+                    // {
+                    //     src: '<%= yeoman.app %>/Mobile_Detect.php',
+                    //     dest: '<%= yeoman.dist %>/Mobile_Detect.php'
+                    // },
                     {
                         src: '<%= yeoman.app %>/styles/themes/theme2/sprite_navbar_theme2.png',
                         dest: '<%= yeoman.dist %>/build/sprite_navbar_theme2.png'
