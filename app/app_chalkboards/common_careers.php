@@ -20,7 +20,7 @@ include ('desktop/includes/navbar.php');
   <!-- Header end -->
 
   <?php
-include ('pages/content_careers.php');
+include ('desktop/pages/content_careers.php');
   ?>
  
    <?php

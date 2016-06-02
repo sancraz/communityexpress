@@ -8,7 +8,7 @@
        <a>chalkboards.today</a>
       </li>
       <li>
-       <a href="desktop/common_about.php">About Us</a>
+       <a href="common_about.php">About Us</a>
       </li>
       <li>
        <a href="desktop_index.php#contact">Contact Us</a>
@@ -22,10 +22,10 @@
     <div class="menu-footer2-container">
      <ul class="menu">
       <li>
-       <a href="/developer">Developer </a>
+       <a href="common_developer.php">Developer </a>
       </li>
       <li>
-       <a href="/apiLicensing">API Licensing</a>
+       <a href="common_apiLicensing.php">API Licensing</a>
       </li>
      </ul>
     </div>
