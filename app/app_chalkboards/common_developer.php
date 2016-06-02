@@ -19,7 +19,7 @@ include ('desktop/includes/navbar.php');
 include ('desktop/pages/content_developer.php');
   ?>
   <?php
-include ('includes/scriptfiles.html');
+include ('desktop/includes/scriptfiles.html');
   ?>
 
   <!--<script type="text/javascript" src="pages_js/content_signup.js"></script>-->

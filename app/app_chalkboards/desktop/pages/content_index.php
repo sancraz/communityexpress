@@ -13,7 +13,7 @@
 
 					<div class="btn-container">
 
-						<a  class="btn btn-default featured" style="color:#FFF;" href="/signup">Get Started</a>
+						<a  class="btn btn-default featured" style="color:#FFF;" href="common_signup.php">Get Started</a>
 
 						<!--
 						<button class="btn btn-default">
@@ -160,7 +160,7 @@
 				</ul>
 				<div class="btn-container">
 
-					<a  class="btn btn-default featured" style="color:#FFF;" href="/signup">Get Started</a>
+					<a  class="btn btn-default featured" style="color:#FFF;" href="common_signup.php">Get Started</a>
 
 					<!--
 					<button class="btn btn-default">
