@@ -3,4 +3,5 @@ app/build/*
 app/app_chalkboards/build/*
 app/app_sitelette/build/*
 dist/*
+dist.zip
 .project
