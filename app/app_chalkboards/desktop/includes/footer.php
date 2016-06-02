@@ -8,10 +8,10 @@
        <a>chalkboards.today</a>
       </li>
       <li>
-       <a href="/common_about.php">About Us</a>
+       <a href="desktop/common_about.php">About Us</a>
       </li>
       <li>
-       <a href="/index.php#contact">Contact Us</a>
+       <a href="desktop_index.php#contact">Contact Us</a>
       </li>
      </ul>
     </div>
@@ -58,7 +58,7 @@
  <section class="footbot">
   <div class="container">
    <div style="text-align: left;" class="col-md-12">
-    <a href="/"> <img id="footer-logo" src="images/logo1.png" alt="orinoco logo"> &#0169 &nbsp;2016. All
+    <a href="/"> <img id="footer-logo" src="desktop/images/logo1.png" alt="orinoco logo"> &#0169 &nbsp;2016. All
     rights reserved.&nbsp; |  orinoco.us, by Orinoco Inc.</a>
    </div>
   </div>

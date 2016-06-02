@@ -19,7 +19,7 @@ if (validateParams('desktopiframe')) {
 // not mobile or tablet and not already in the iframe
 if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
 
- include_once ('desktop/index.php');
+ include_once ('desktop_index.php');
 
 } else {
 

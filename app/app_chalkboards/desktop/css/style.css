@@ -40,11 +40,11 @@
 
 @font-face {
 	font-family: 'ElegantIcons';
-	src:url('fonts/ElegantIcons.eot');
-	src:url('fonts/ElegantIcons.eot?#iefix') format('embedded-opentype'),
-		url('fonts/ElegantIcons.woff') format('woff'),
-		url('fonts/ElegantIcons.ttf') format('truetype'),
-		url('fonts/ElegantIcons.svg#ElegantIcons') format('svg');
+	src:url('desktop/fonts/ElegantIcons.eot');
+	src:url('desktop/fonts/ElegantIcons.eot?#iefix') format('embedded-opentype'),
+		url('desktop/fonts/ElegantIcons.woff') format('woff'),
+		url('desktop/fonts/ElegantIcons.ttf') format('truetype'),
+		url('desktop/fonts/ElegantIcons.svg#ElegantIcons') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -575,7 +575,7 @@ h5{
 	padding: 80px 0px;
 }
 .parallax2{
-	background: url("../images/parallax/bg1.jpg") fixed 50% 50%;
+	background: url("../desktop/images/parallax/bg1.jpg") fixed 50% 50%;
 	-webkit-background-size: cover;
 	background-size: cover;
 }
@@ -672,7 +672,7 @@ h5{
 ===========================================================*/
 #benefit{
 	position: relative;
-	background-image: url("../images/bg/features-bg.jpg");
+	background-image: url("../desktop/images/bg/features-bg.jpg");
 	background-attachment: fixed !important;
 	background-size: cover;
 	background-repeat: repeat;
@@ -887,7 +887,7 @@ h5{
 
 #pricing{
 	padding: 80px 0px;
-	background: url("../images/bg/news_bg.jpg") fixed 50% 50%;
+	background: url("../desktop/images/bg/news_bg.jpg") fixed 50% 50%;
 	-webkit-background-size: cover;
 	background-size: cover;
 }

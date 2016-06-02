@@ -1,11 +1,11 @@
-<?php include 'php/detecturl.php'
+<?php include 'desktop/php/detecturl.php'
 ?>
 <?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
  <head>
   <?php
-include ('includes/stylesheets.html');
+include ('desktop/includes/stylesheets.html');
   ?>
   <title>Chalkboards </title>
 <style type="text/css">
@@ -29,26 +29,26 @@ include ('includes/stylesheets.html');
 
   <!-- Header start -->
   <?php
-include ('includes/navbar.php');
+include ('desktop/includes/navbar.php');
   ?>
   <!-- Header end -->
 
   <?php
-include ('pages/content_index.php');
+include ('desktop/pages/content_index.php');
   ?>
 
   <?php
-include ('includes/footer.php');
+include ('desktop/includes/footer.php');
   ?>
 
   <?php
-include ('includes/scriptfiles.html');
+include ('desktop/includes/scriptfiles.html');
   ?>
   <script>
 	new WOW().init();
   </script>
   <script>
-	$.backstretch(["images/bg/bg1.jpg", "images/bg/bg2.jpg", "images/bg/bg3.jpg"], {
+	$.backstretch(["desktop/images/bg/bg1.jpg", "desktop/images/bg/bg2.jpg", "desktop/images/bg/bg3.jpg"], {
 		fade : 950,
 		duration : 10000
 	});
@@ -60,6 +60,6 @@ include ('includes/scriptfiles.html');
 		time : 2000
 	});
   </script>
-     <script type="text/javascript" src="/pages_js/content_contactUs.js"></script>
+     <script type="text/javascript" src="desktop/pages_js/content_contactUs.js"></script>
  </body>
 </html>

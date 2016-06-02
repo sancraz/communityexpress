@@ -111,8 +111,8 @@ $(document).ready(
 			 * ============================================== Bactstretch js
 			 * ===============================================
 			 */
-			$.backstretch([ "images/bg/bg1.jpg", "images/bg/bg2.jpg",
-					"images/bg/bg3.jpg" ], {
+			$.backstretch([ "desktop/images/bg/bg1.jpg", "desktop/images/bg/bg2.jpg",
+					"desktop/images/bg/bg3.jpg" ], {
 				fade : 950,
 				duration : 10000
 			});

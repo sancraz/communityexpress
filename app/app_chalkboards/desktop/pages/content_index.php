@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 wow fadeInLeft">
 				<div class="slider-content text-center">
-				        <img class="text-center" src="images/logo_text.png" alt-text="Chalkboards" />  
+				        <img class="text-center" src="desktop/images/logo_text.png" alt-text="Chalkboards" />  
 					<!-- <h2 class="slider-title"> Chalkboards </h2> -->
 					<h4 class="slider-title">The ad-network for small businesses</h4>
 					<!--
@@ -47,7 +47,7 @@
 					<div class="col-md-12 wow slideInLeft" data-wow-delay=".3s">
 						<div class="about-inner ">
 							<!-- <i class="icon icon-adjustments"></i> -->
-							<img src="images/member_promo.png" />
+							<img src="desktop/images/member_promo.png" />
 							<div class="about-content">
 								<h4>Let patrons create promos</h4>
 								<p>
@@ -58,7 +58,7 @@
 					</div>
 					<div class="col-md-12  wow slideInLeft" data-wow-delay=".5s">
 						<div class="about-inner ">
-							<img src="images/news_flash.png" />
+							<img src="desktop/images/news_flash.png" />
 							<div class="about-content">
 								<h4>Broadcast a Newsflash</h4>
 								<p>
@@ -72,14 +72,14 @@
 			</div>
 
 			<div class="col-md-4 col-sm-4 col-xs-4 visible-md visible-lg wow fadeInDown" data-wow-delay=".3s">
-				<img src="images/standup_map_tile.png" alt="" class="img-responsive">
+				<img src="desktop/images/standup_map_tile.png" alt="" class="img-responsive">
 			</div>
 
 			<div class="col-md-4 col-sm-6">
 				<div class="row">
 					<div class="col-md-12 wow slideInRight" data-wow-delay=".3s">
 						<div class="about-inner ">
-							<img src="images/event.png" />
+							<img src="desktop/images/event.png" />
 							<div class="about-content">
 								<h4>Announce events</h4>
 								<p>
@@ -90,7 +90,7 @@
 					</div>
 					<div class="col-md-12 wow slideInRight" data-wow-delay=".5s">
 						<div class="about-inner ">
-							<img src="images/poll-contest.png" />
+							<img src="desktop/images/poll-contest.png" />
 							<div class="about-content">
 								<h4>Interactive Promotions</h4>
 								<p>
@@ -126,7 +126,7 @@
 				</p>
 
 				<!-- heading row end -->
-				<img src="images/projects/liveAds/liveAds_user_dude.png" width="800" />
+				<img src="desktop/images/projects/liveAds/liveAds_user_dude.png" width="800" />
 			</div>
 		</div>
 	</div><!-- container end -->

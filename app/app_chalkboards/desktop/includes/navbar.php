@@ -11,7 +11,7 @@
       <span class="icon-bar"></span>
      </button>
      <div class="navbar-brand">
-      <a href="/" class="page-scroll"> <img class="img-responsive" src="images/logo1.png" alt="logo"> </a>
+      <a href="/" class="page-scroll"> <img class="img-responsive" src="desktop/images/logo1.png" alt="logo"> </a>
      </div>
     </div><!--/ Logo end -->
     <div class="collapse navbar-collapse clearfix navMenu" role="navigation">
@@ -29,7 +29,7 @@
        <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","projects") ?>>Projects</a>
       </li>
       <li>
-       <a class="page-scroll" href="careers.php" >Careers</a>
+       <a class="page-scroll" href="common_careers.php" >Careers</a>
       </li>
       <li>
        <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","contact") ?>>Contact</a>
@@ -44,17 +44,17 @@
        <a class="page-scroll" href=<?php echoActiveClassIfRequestMatches("index","features") ?>>Features</a>
       </li>
       <li  <?php modifyUrlAndClass("signup") ?> >
-       <a href="signup" >Sign Up</a>
+       <a href="common_signup.php" >Sign Up</a>
       </li>
       <li <?php modifyUrlAndClass("portalexpress") ?>>
-       <a  href="portalexpress" >Login</a>
+       <a  href="common_portalexpress.php" >Login</a>
       </li>
            <li <?php modifyUrlAndClass("Invitation") ?>>
-       <a  href="signup" >Invitation</a>
+       <a  href="common_signup.php" >Invitation</a>
       </li>
       <!--
       <li  <?php modifyUrlAndClass("services") ?>>
-       <a href="services" >Services</a>
+       <a href="common_services.php" >Services</a>
       </li>
       -->
       <li>

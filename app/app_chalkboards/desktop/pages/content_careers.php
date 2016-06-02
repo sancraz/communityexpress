@@ -12,5 +12,5 @@
 
 </section>
 <?php
-include ('includes/scriptfiles.html');
+include ('desktop/includes/scriptfiles.html');
 ?>
