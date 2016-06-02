@@ -53,6 +53,7 @@ module.exports = function (grunt) {
             }
         },
         clean: [
+            './dist.zip',
             '<%= yeoman.dist %>',
             '<%= yeoman.app %>/build'
         ],
@@ -143,6 +144,17 @@ module.exports = function (grunt) {
                 ]
             }
         },
+        compress: {
+            dist: {
+                options: {
+                    archive: './dist.zip',
+                    mode: 'zip'
+                },
+                files: [
+                    { src: './dist/**' }
+                ]
+            }
+        },
         // Here will be replacements for production files
         replace: {
             dist: {
@@ -168,15 +180,8 @@ module.exports = function (grunt) {
             'copy',
             'replace',
             'uglify',
-            'cssmin'
+            'cssmin',
+            'compress'
         ]);
     });
-
-    // grunt.registerTask('build', [
-    //     'clean',
-    //     'webpack',
-    //     'copy',
-    //     'uglify',
-    //     'cssmin'
-    // ]);
 };
