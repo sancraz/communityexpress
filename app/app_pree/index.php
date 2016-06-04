@@ -2,17 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include_once ('parser_api_utility.php');
-
-/* is desktopiframe=true
- *
- * if this is true, we load normally even when we detect
- * desktop. This means the iframe src will not try to load
- * the desktop wrapper and thus prevent a re-entrant loop*/
-if (validateParams('desktopiframe')) {
- $desktopIFrame = TRUE;
-} else {
- $desktopIFrame = FALSE;
-}
+ 
 
 $completeURL = full_url($_SERVER, true);
 $serverName = $_SERVER['SERVER_NAME'];
@@ -42,32 +32,7 @@ if ($demo) {
 }
 }
 
-/* is IOS embedded specified?*/
-if (validateParams('embedded')) {
-$embedded = TRUE;
-} else {
-$embedded = FALSE;
-}
-
-/* is serviceAccomodatorId specified (only from Portal) */
-if (validateParams('serviceAccommodatorId')) {
-$serviceAccommodatorId = $_REQUEST['serviceAccommodatorId'];
-} else {
-$serviceAccommodatorId = NULL;
-}
-
-if (validateParams('serviceLocationId')) {
-$serviceLocationId = $_REQUEST['serviceLocationId'];
-} else {
-$serviceLocationId = NULL;
-}
-
-if (validateParams('friendlyURL')) {
-$friendlyURL = $_REQUEST['friendlyURL'];
-} else {
-$friendlyURL = NULL;
-}
-
+    
 if (validateParams('UID')) {
 $UID = $_REQUEST['UID'];
 } else {
@@ -93,63 +58,30 @@ $debug = TRUE;
 $debug = FALSE;
 }
 
-if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
-$saslAccess = TRUE;
-} else {
-$saslAccess = FALSE;
-}
-
-if (!is_null($friendlyURL)) {
-$urlKeyAccess = TRUE;
-} else {
-$urlKeyAccess = FALSE;
-}
-
+  
 if ($debug) {
 echo '$completeURL=' . $completeURL . "</br>";
 echo '$serverName=' . $serverName . "</br>";
-
-echo '$friendlyURL=' . $friendlyURL . "</br>";
+ 
 echo '$server=' . $server . "</br>";
 echo '$embedded=' . ($embedded ? 'true' : 'false') . "</br>";
-echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
-echo '$serviceAccommodatorId=' . $serviceAccommodatorId . "</br>";
-echo '$serviceLocationId=' . $serviceLocationId . "</br>";
+echo '$demo=' . ($demo ? 'true' : 'false') . "</br>"; 
 
-echo '$UID=' . $UID . "</br>";
-echo '$saslAccess=' . $saslAccess . "</br>";
-echo '$urlKeyAccess=' . $urlKeyAccess . "</br>";
-echo '$desktopIFrame=' . $desktopIFrame . "</br>";
-if (!is_null($friendlyURL)) {
- echo '$friendlyURL is ' . $friendlyURL . "</br>";
- ;
-} else if ((!is_null($serviceAccommodatorId)) && (!is_null($serviceLocationId))) {
- echo '$serviceAccommodatorId is ' . $serviceAccommodatorId . ' and $serviceLocationId is ' . $serviceLocationId;
-} else {
- echo ' root case ';
-}
+echo '$UID=' . $UID . "</br>"; 
+ 
 
 return;
 }
 
-$errorMessage = NULL;
-$saslName = NULL;
+$errorMessage = NULL; 
 $appleTouchIcon60URL = NULL;
 
 $isPrivate = FALSE;
 $canCreateAnonymousUser = TRUE;
 
-/*
-* make api call for retrieving chalkboards divs
-*/
-
-$apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveTileView";
-
-$siteletteJSON = makeApiCall($apiURL);
-$themeId = '2';
-$domain = 'UNDEFINED';
+     
 $themeCSS = 'styles.css';
 
-include_once ('pree.php');
+include_once ('static/pree.php');
 
 ?>
