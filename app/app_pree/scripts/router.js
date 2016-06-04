@@ -5,7 +5,7 @@ define(['jquery','backbone','../views/hello'],function($,Backbone, HelloView){
       'about': 'about'
     },
 
-    initialize() {
+    initialize: function() {
       $('#app-content').append('<div id="js-app"></div>').ready(
         function(){
           $('#js-app').hide();
@@ -14,7 +14,7 @@ define(['jquery','backbone','../views/hello'],function($,Backbone, HelloView){
 
     },
 
-    dashboard() {
+    dashboard: function() {
       var helloView = new HelloView().render();
 
       $('#js-app').empty().append(helloView.$el).ready(
@@ -24,7 +24,7 @@ define(['jquery','backbone','../views/hello'],function($,Backbone, HelloView){
       )
     },
 
-    about() {
+    about: function() {
       var helloView = new HelloView({
         template: _.template('Im the about page')
       }).render();
