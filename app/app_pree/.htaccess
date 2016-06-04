@@ -1,11 +1,11 @@
 # rewrite /folder as ?friendlyURL=folder
-<ifmodule mod_rewrite.c>
- RewriteEngine on
- RewriteBase / 
- RewriteCond %{REQUEST_FILENAME} !-f
- RewriteCond %{REQUEST_FILENAME} !-d
- RewriteRule ^([^/]*)/?$ index.php?friendlyURL=$1 [L,QSA]
-</ifmodule>
+#<ifmodule mod_rewrite.c>
+# RewriteEngine on
+# RewriteBase / 
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^([^/]*)/?$ index.php?friendlyURL=$1 [L,QSA]
+#</ifmodule>
 
 
 
