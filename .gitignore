@@ -2,6 +2,7 @@ node_modules/*
 app/build/*
 app/app_chalkboards/build/*
 app/app_sitelette/build/*
+app/app_pree/build/*
 dist/*
 dist.zip
 .project

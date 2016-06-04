@@ -6,11 +6,7 @@ var argv = require('yargs').argv;
 
 grunt.log.write('compiling ',argv.project);
 
-if (argv.project == 'sitelette') {
-    var webpackConfig = require('./webpack-sitelette.config.js');
-} else if (argv.project == 'chalkboards') {
-    var webpackConfig = require('./webpack-chalkboards.config.js');
-};
+var webpackConfig = require('./webpack-'+argv.project+'.config.js');
 
 // stop webpack watch and keepalive
 webpackConfig.watch = false;
@@ -21,11 +17,13 @@ var themes = function() {
     // Number of themes
     var themeNumber = 4;
     var distStyle = {};
-    for (var i = 1; i <= themeNumber; i++) {
-        var styles='<%= yeoman.app %>/build/styles.css',
-            distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
-            themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
-        distStyle[distFile] = [styles, themeName];
+    if (argv.project !== 'pree') {
+        for (var i = 1; i <= themeNumber; i++) {
+            var styles='<%= yeoman.app %>/build/styles.css',
+                distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
+                themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
+            distStyle[distFile] = [styles, themeName];
+        };
     };
     return distStyle;
 };
