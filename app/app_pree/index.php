@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 include_once ('parser_api_utility.php');
- 
+
 
 $completeURL = full_url($_SERVER, true);
 $serverName = $_SERVER['SERVER_NAME'];
@@ -32,7 +32,7 @@ if ($demo) {
 }
 }
 
-    
+
 if (validateParams('UID')) {
 $UID = $_REQUEST['UID'];
 } else {
@@ -58,30 +58,30 @@ $debug = TRUE;
 $debug = FALSE;
 }
 
-  
+
 if ($debug) {
 echo '$completeURL=' . $completeURL . "</br>";
 echo '$serverName=' . $serverName . "</br>";
- 
+
 echo '$server=' . $server . "</br>";
 echo '$embedded=' . ($embedded ? 'true' : 'false') . "</br>";
-echo '$demo=' . ($demo ? 'true' : 'false') . "</br>"; 
+echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
 
-echo '$UID=' . $UID . "</br>"; 
- 
+echo '$UID=' . $UID . "</br>";
+
 
 return;
 }
 
-$errorMessage = NULL; 
+$errorMessage = NULL;
 $appleTouchIcon60URL = NULL;
 
 $isPrivate = FALSE;
 $canCreateAnonymousUser = TRUE;
 
-     
+
 $themeCSS = 'styles.css';
 
-include_once ('static/pree.php');
+include_once ('pree.php');
 
 ?>
