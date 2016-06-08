@@ -111,7 +111,7 @@ module.exports = function (grunt) {
           },  // copy the bootstrap files
           { expand: true,
             cwd: '<%= yeoman.app %>',
-            src: ['build/bundle.js'],
+            src: ['build/*'],
             dest: '<%= yeoman.dist %>'
           },
           { expand: true,
