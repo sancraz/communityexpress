@@ -43,11 +43,12 @@ module.exports = {
 			jQuery: 'jquery',
 			'window.jQuery': 'jquery',
 			'_': 'underscore',
-			'Backbone': 'backbone'
+			'Backbone': 'backbone',
+			'Marionette': 'backbone.marionette'
 		}),
 	],
 	resolve: {
 		modulesDirectories: ['node_modules'],
-		extensions: ['', '.js', '.es6']
+		extensions: ['', '.js', '.es6', '.jsx']
 	},
 }

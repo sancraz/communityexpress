@@ -113,6 +113,11 @@ module.exports = function (grunt) {
             cwd: '<%= yeoman.app %>',
             src: ['build/bundle.js'],
             dest: '<%= yeoman.dist %>'
+          },
+          { expand: true,
+            cwd: '<%= yeoman.app %>',
+            src: ['scripts/custom.js', 'scripts/filter.js'],
+            dest: '<%= yeoman.dist %>'
           }
         ]
       }
@@ -150,12 +155,12 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean',
       'webpack',
-      'copy'
+      'copy',
 
       //  'replace',
       //  'uglify',
       //  'cssmin',
-      //  'compress'
+       'compress'
     ]);
   });
 };

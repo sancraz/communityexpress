@@ -2,8 +2,7 @@ define([ "jquery", "lodash", "backbone" ], function($, _, Backbone) {
  var feedView = Backbone.View.extend({
 
   initialize : function() {
-   console.log("feedView initialized");
-   this.listenTo(this.model, "change", this.modelEventHandler);
+    this.listenTo(this.model, "change", this.modelEventHandler);
   },
 
   modelEventHandler : function() {
