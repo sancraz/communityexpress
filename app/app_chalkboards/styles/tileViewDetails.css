@@ -4,7 +4,7 @@ body{
     background-repeat:repeat;
     background-size: 100% 100%;
     background-color: rgba(0, 255, 0, 0.5);
-     
+    -webkit-overflow-scrolling: touch;
 }
 
 #cmtyx_landingView{ 
