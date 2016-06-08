@@ -1,0 +1,13 @@
+ul.pree_feed_questions {
+	list-style: none;
+}
+
+.pree-question-container {
+	height: 100%;
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
+
+.pree-question-container p {
+	display: inline-block;
+}

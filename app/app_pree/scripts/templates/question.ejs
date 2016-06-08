@@ -1,0 +1,40 @@
+<div class="col-xs-12 col-lg-8 col-lg-offset-2 pree-question-container">
+	<p><%= pollType.displayText %></p>
+	<% _(categories).each(function(category) { %>
+		<p><%= category.displayText %></p>
+	<% }) %>
+	<% _(tags).each(function(tag) { %>
+		<p class="question-tag"><%= tag.displayText %></p>
+	<% }) %>
+	<div><%= displayText %></div>
+	<div>
+		<p><%= likes %></p>
+		<p><%= messages %></p>
+		<p><%= answers.length %></p>
+	</div>
+</div>
+<!-- activationDate:"2016-05-11T07:00:00:UTC"
+additionalInformation:null
+anotatation:null
+answers:Array[3]
+categories:Array[2]
+choices:Array[2]
+communicationState:Object
+currentAnswerChecked:0
+displayText:"The Atlantic Ocean is the biggest ocean on Earth."
+expandResults:false
+expirationDate:null
+img_url:null
+index:0
+isAnswered:false
+likes:0
+messages:0
+options:null
+points:null
+pollType:Object
+showInformation:false
+tags:Array[0]
+title:"na"
+totalAnswers:0
+userStatus:Object
+uuid:"XDGxborrTtKFQsxhZ-gMwg" -->

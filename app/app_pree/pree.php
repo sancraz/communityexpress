@@ -32,7 +32,7 @@
   <!-- Widgets stylesheet -->
   <link href="vendor/styles/widgets.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <link href="styles/style.css" rel="stylesheet">
+  <link href="build/styles.css" rel="stylesheet">
   <!-- Favicon -->
   <link rel="shortcut icon" href="#">
 </head>
@@ -323,7 +323,8 @@
         </div>
         <div class="row" >
           <div id="pree_feed" class="col-md-6">
-            <img  width=100% src="img/preefeed.png">
+            <ul class="pree_feed_questions"></ul>
+            <!-- <img  width=100% src="img/preefeed.png"> -->
           </div>
         </div>
 

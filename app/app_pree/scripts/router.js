@@ -1,38 +1,45 @@
-var HelloView = require('./views/hello');
+var HelloView = require('./views/hello'),
+    preeController = require('./controllers/preeController'),
+    FeedView = require('./views/FeedView'),
+    FeedSelectorView = require('./views/FeedSelectorView');
 
 var AppRouter=Backbone.Router.extend({
 
-  routes: {
-    '': 'dashboard',
-    'about': 'about'
-  },
+    routes: {
+        '': 'dashboard',
+        'about': 'about'
+    },
 
-  initialize: function() {
-    $('#app-content').append('<div id="js-app"></div>').ready(
-      function(){
-        $('#js-app').hide();
-      }
-    );
+    initialize: function() {
+        $('#app-content').append('<div id="js-app"></div>').ready(
+            function(){
+                $('#js-app').hide();
+            }
+        );
 
-  },
+    },
 
-  dashboard: function() {
-    var helloView = new HelloView().render();
+    dashboard: function() {
+        var helloView = new HelloView().render();
+        preeController.getQuestions()
+            .then(function(model) {
+                console.log(model);
+                var feedView = new FeedView({
+                    el: $("#pree_feed").find('ul'),
+                    collection: model.questionCollection,
+                    model: model
+                });
+                var feedSelectorView = new FeedSelectorView({ el: $("#pree_feed_tabs"), model: model });
+            });
+    },
 
-    $('#js-app').empty().append(helloView.$el).ready(
-      function(){
-        $('#js-app').fadeIn('slow');
-      }
-    )
-  },
+    about: function() {
+        var helloView = new HelloView({
+            template: _.template('Im the about page')
+        }).render();
 
-  about: function() {
-    var helloView = new HelloView({
-      template: _.template('Im the about page')
-    }).render();
-
-    $('#js-app').empty().append(helloView.$el);
-  }
+        $('#js-app').empty().append(helloView.$el);
+    }
 
 });
 

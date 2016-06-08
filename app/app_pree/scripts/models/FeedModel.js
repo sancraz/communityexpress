@@ -15,7 +15,7 @@ var FeedModel = Backbone.Model.extend({
 	},
 
 	initialize : function(attributes, options) {
-		this.questionCollection = new PreeQuestionCollectionModel();
+		this.questionCollection = new PreeQuestionCollectionModel(this.attributes.questions);
 	},
 
 	feedSelectorClicked : function(attributes) {

@@ -1,42 +1,46 @@
-define([ "jquery", "lodash", "backbone" ], function($, _, Backbone) {
- var feedView = Backbone.View.extend({
+'use strict';
 
-  initialize : function() {
-    this.listenTo(this.model, "change", this.modelEventHandler);
-  },
+var QuestionItem = require('./QuestionItem');
 
-  modelEventHandler : function() {
-   console.log(" Model event received");
-   this.render();
-  },
+var feedView = Marionette.CollectionView.extend({
 
-  render : function() {
+    childView: QuestionItem,
 
-   var ul;
+    initialize : function() {
+        this.render();
+        this.listenTo(this.model, "change", this.modelEventHandler);
+    },
 
-   if (this.$el.has('ul').length) {
-    console.log('ul found');
-   } else {
-    console.log('ul not found');
-    this.$el.empty();
-    this.$el.append("<ul></ul>");
+    modelEventHandler : function() {
+     console.log(" Model event received");
+     this.render();
+    }
 
-   }
-   ul = this.$el.find('ul');
+    // render: function() {
+    //     // var ul;
 
-   $(ul[0]).empty();
+    //     // if (this.$el.has('ul').length) {
+    //     //     console.log('ul found');
+    //     // } else {
+    //     //     console.log('ul not found');
+    //     //     this.$el.empty();
+    //     //     this.$el.append("<ul></ul>");
+    //     // };
 
-   this.model.questionCollection.each(function(questionModel) {
-    console.log(questionModel.get('title'));
-    $(ul[0]).append('<li style="color:red;"> ' + questionModel.get('title') + "</li>")
-   });
+    //     // ul = this.$el.find('ul');
 
-   /*
-    * if there is no ul, then create one. then, for each item, add a new li from
-    * model. Create a pqv with li as el.
-    */
-  }
- });
+    //     // $(ul[0]).empty();
 
- return feedView;
+    //     // this.model.questionCollection.each(function(questionModel) {
+    //     //     console.log(questionModel.get('title'));
+    //     //     $(ul[0]).append('<li style="color:red;"> ' + questionModel.get('title') + "</li>")
+    //     // });
+
+    //     /*
+    //     * if there is no ul, then create one. then, for each item, add a new li from
+    //     * model. Create a pqv with li as el.
+    //     */
+    // }
 });
+
+module.exports = feedView;
