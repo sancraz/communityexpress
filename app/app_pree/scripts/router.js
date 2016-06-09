@@ -23,10 +23,8 @@ var AppRouter=Backbone.Router.extend({
         var helloView = new HelloView().render();
         preeController.getQuestions()
             .then(function(model) {
-                console.log(model);
                 var feedView = new FeedView({
-                    el: $("#pree_feed").find('ul'),
-                    collection: model.questionCollection,
+                    el: $("#pree_feed"),
                     model: model
                 });
                 var feedSelectorView = new FeedSelectorView({ el: $("#pree_feed_tabs"), model: model });

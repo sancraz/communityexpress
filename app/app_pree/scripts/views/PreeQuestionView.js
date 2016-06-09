@@ -1,16 +1,22 @@
-define([ "jquery", "lodash", "backbone", "../models/FeedModel" ], function($,
-  _, Backbone, feedModel) {
- var FeedSelectorView = Backbone.View.extend({
+'use strict';
 
-  initialize : function() {
-   console.log("FeedSelectorView initialized");
-   this.render();
-  },
+var template = require('ejs!../templates/preeQuestion.html');
 
-  render : function() {
-    
-  }
- });
+var FeedSelectorView = Backbone.View.extend({
 
- return FeedSelectorView;
+    template: template,
+
+    tagName: 'li',
+
+    initialize : function() {
+        console.log("FeedSelectorView initialized");
+        this.render();
+    },
+
+    render: function() {
+        this.$el.html(this.template(_.extend({}, this.model.attributes)));
+        return this;
+    }
 });
+
+module.exports = FeedSelectorView;
