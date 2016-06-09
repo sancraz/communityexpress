@@ -12,22 +12,6 @@ var webpackConfig = require('./webpack-pree.config.js');
 webpackConfig.watch = false;
 webpackConfig.keepalive = false;
 
-// Creating multiple stylesheet's paths with diff themes (for cssmin task)
-var themes = function() {
-  // Number of themes
-  var themeNumber = 4;
-  var distStyle = {};
-
-  for (var i = 1; i <= themeNumber; i++) {
-    var styles='<%= yeoman.app %>/build/styles.css',
-    distFile='<%= yeoman.dist %>/build/styles'+i+'.css',
-    themeName='<%= yeoman.app %>/styles/themes/theme'+i+'/sitelette_theme'+i+'.css';
-    distStyle[distFile] = [styles, themeName];
-  };
-
-  return distStyle;
-};
-
 module.exports = function (grunt) {
   'use strict';
 
@@ -67,7 +51,9 @@ module.exports = function (grunt) {
     },
     cssmin: {
       target: {
-        files: themes()
+        files: {
+          '<%= yeoman.dist %>/build/styles.css': '<%= yeoman.dist %>/build/styles.css'
+        }
       },
       options: {
         report: 'min'
@@ -158,8 +144,8 @@ module.exports = function (grunt) {
       'copy',
 
       //  'replace',
-      //  'uglify',
-      //  'cssmin',
+       'uglify',
+       'cssmin',
        'compress'
     ]);
   });
