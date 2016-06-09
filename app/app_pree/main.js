@@ -4,6 +4,8 @@ require('./styles/pree_styles.css');
 require('./styles/style.css');
 
 var Router = require('./scripts/router'),
+    h = require('./scripts/globalHelpers'),
+    loader = require('./scripts/loader'),
     FeedModel = require('./scripts/models/FeedModel'),
     FeedView = require('./scripts/views/FeedView'),
     FeedSelectorView = require('./scripts/views/FeedSelectorView');
@@ -21,3 +23,4 @@ var App = {
 };
 
 App.initialize();
+h().startLogger();
