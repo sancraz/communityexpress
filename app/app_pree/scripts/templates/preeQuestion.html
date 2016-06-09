@@ -1,0 +1,56 @@
+<div class="pree_question">
+ <header>
+  <div class="pree_question_user">
+   <div class="pree_question_user_avatar">
+    <img src="img/avatar.png">
+   </div>
+   <div class="pree_question_user_username">
+    username
+   </div>
+  </div>
+  <div class="pree_question_title">
+   <div class="pree_question_title_name">
+    <%= pollType.displayText %>
+   </div>
+   <div class="pree_question_title_date"></div>
+  </div>
+  <div class="pree_question_categories_button">
+   <div class="pree_question_categories_name">
+    <% _(categories).each(function(category) { %>
+    <p>
+     <%= category.displayText %>
+    </p>
+    <% }) %>
+   </div>
+   <div class="pree_question_categories_count"></div>
+  </div>
+  <div class="pree_question_tags_button">
+   <div class="pree_question_tags_icon"></div>
+   <div class="pree_question_tags_count">
+    <% _(tags).each(function(tag) { %>
+    <p class="question-tag">
+     <%= tag.displayText %>
+    </p>
+    <% }) %>
+   </div>
+  </div>
+ </header>
+ <section>
+  <div class="pree_question_block">
+   <div class="pree_question_image">
+    <img src="img/avatar.png">
+   </div>
+   <div class="pree_question_text pree_question_text_with_image">
+    <%= displayText %>
+   </div>
+  </div>
+  <div class="pree_question_answer pree_question_answer_a">
+   <input type="checkbox">
+   Yes
+  </div>
+  <div class="pree_question_answer pree_question_answer_b">
+   <input type="checkbox">
+   No
+  </div>
+ </section>
+</div>

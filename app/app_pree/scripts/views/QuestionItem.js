@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!../templates/question.ejs');
+var template = require('ejs!../templates/preeQuestion.html');
 
 var QuestionItem = Marionette.ItemView.extend({
 
