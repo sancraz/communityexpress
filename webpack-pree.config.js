@@ -1,17 +1,63 @@
 'use strict';
 
-var config = require('./webpack.config.js'),
-    handlebars = { test: /\.hbs$/, loader: "handlebars-loader" };
+var path = require('path'),
+	webpack = require('webpack'),
+	ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-config.entry = {
-    'bundle':'./app/app_pree/main.js'
+module.exports = {
+	entry: {
+		'bundle': './app/app_pree/main.js'
+	},
+	output: {
+		path: './app/app_pree/build/', 
+		filename: '[name].js'
+	},
+	devtool: 'source-map',
+	watch: true,
+	keepalive: true,
+	module: {
+		loaders: [
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				loaders: [
+					'file?hash=sha512&digest=hex&name=[hash].[ext]',
+					'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+				]
+			},
+			{
+				test: /\.scss$/,
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader!sass-loader?sourceMap'),
+				exclude: /node_modules/
+			},
+			{
+				test: /\.css$/,
+				loader: ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap'),
+				exclude: /node_modules/
+			},
+			{
+				test: /vendor\/.+\.(jsx|js)$/,
+				loader: 'imports?jQuery=jquery,$=jquery,this=>window',
+				exclude: /node_modules/
+			},
+			{
+				test: /\.hbs$/,
+				loader: "handlebars-loader"
+			}
+		]
+	},
+	plugins: [
+		new ExtractTextPlugin('styles.css'),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery',
+			'window.jQuery': 'jquery',
+			'_': 'underscore',
+			'Backbone': 'backbone',
+			'Marionette': 'backbone.marionette'
+		}),
+	],
+	resolve: {
+		modulesDirectories: ['node_modules'],
+		extensions: ['', '.js', '.es6', '.jsx']
+	},
 };
-
-config.output = {
-    path: './app/app_pree/build/', 
-    filename: '[name].js'
-};
-
-config.module.loaders.push(handlebars);
-
-module.exports = config;
