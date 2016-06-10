@@ -1,6 +1,6 @@
-// To build a project from console run commands with changed name (e.g sitelette)
-// grunt --project=sitelette
-// webpack --config webpack-sitelette.config.js
+// grunt --gruntfile=Gruntfile-pree.js
+'use strict';
+
 var grunt = require('grunt');
 var argv = require('yargs').argv;
 
@@ -118,23 +118,6 @@ module.exports = function (grunt) {
           { src: './dist/**' }
         ]
       }
-    },
-    // Here will be replacements for production files
-    replace: {
-      dist: {
-        src: ['<%= yeoman.app %>/index.php'],
-        dest: '<%= yeoman.dist %>/',
-        replacements: [{
-          from: 'app_chalkboards/',
-          to: ''
-        },{
-          from: 'app_sitelette/',
-          to: ''
-        },{
-          from: 'dev-',
-          to: ''
-        }]
-      }
     }
   });
   grunt.registerTask('default', function() {
@@ -142,11 +125,9 @@ module.exports = function (grunt) {
       'clean',
       'webpack',
       'copy',
-
-      //  'replace',
-       'uglify',
-       'cssmin',
-       'compress'
+      'uglify',
+      'cssmin',
+      'compress'
     ]);
   });
 };
