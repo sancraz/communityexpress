@@ -128,8 +128,8 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
   echo '$serviceLocationId=' . $serviceLocationId . "</br>";
 
   echo '$UID=' . $UID . "</br>";
-  echo '$saslAccess=' . $saslAccess . "</br>";
-  echo '$urlKeyAccess=' . $urlKeyAccess . "</br>";
+  echo '$saslAccess=' . ($saslAccess ? 'true' : 'false')  . "</br>";
+  echo '$urlKeyAccess=' .($urlKeyAccess ? 'true' : 'false')   . "</br>";
   echo '$desktopIFrame=' . $desktopIFrame . "</br>";
   if (!is_null($friendlyURL)) {
    echo '$friendlyURL is ' . $friendlyURL . "</br>";
@@ -157,7 +157,6 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
   } else {
    $apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=" . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId . '&tileViewDetails=' . ($tileViewDetails ? 'true' : 'false');
   }
-
   $siteletteJSON = makeApiCall($apiURL);
 
   if ($siteletteJSON['curl_error']) {
