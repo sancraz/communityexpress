@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!../templates/preeQuestion.html'),
+var template = require('ejs!../templates/preeQuestion.ejs'),
     preeQuestionCategoriesView = require('./PreeQuestionCategories'),
     preeQuestionTagsView = require('./PreeQuestionTags'),
     answerCountView = require('./AnswerCountView');
