@@ -53,7 +53,8 @@ module.exports = {
 			'window.jQuery': 'jquery',
 			'_': 'underscore',
 			'Backbone': 'backbone',
-			'Marionette': 'backbone.marionette'
+			'Marionette': 'backbone.marionette',
+			'Mn': 'backbone.marionette'
 		}),
 	],
 	resolve: {
