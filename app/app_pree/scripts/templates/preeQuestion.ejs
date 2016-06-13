@@ -1,0 +1,84 @@
+<div class="pree_question">
+    <header>
+      <div class="pree_question_user">
+        <div class="pree_question_user_avatar">
+          <img src="http://faralam.com/ext/img/avatar.png">
+        </div>
+        <div class="pree_question_user_username">username</div>
+      </div>
+      <div class="pree_question_title">
+        <div class="pree_question_title_name">
+          <%= pollType.displayText.toUpperCase() %>
+        </div>
+        <div class="pree_question_title_date">1 week ago</div>
+      </div>
+      <div class="pree_question_categories_button">
+        <div class="pree_question_categories_name">
+          <!-- Politics -->
+          <%= categories[0].displayText %>
+        </div>
+        <div class="pree_question_categories_count">
+          <%= categories.length %>
+        </div>
+      </div>
+      <div class="pree_question_tags_button">
+        <div class="pree_question_tags_icon"></div>
+        <div class="pree_question_tags_count">
+          <%= tags.length %>
+        </div>
+      </div>
+    </header>
+
+    <div class="pree_question_expanded_menu"></div>
+<!--     <div class="pree_question_categories">
+      <div class="pree_question_categories_title">CATEGORIES</div>
+      <div class="pree_question_categories_close">X</div>
+      <div class="pree_question_categories_block">
+        <% _(categories).each(function(category) { %>
+          <div class="pree_question_categories_item">
+           <%= category.displayText %>
+          </div>
+        <% }) %>
+      </div>
+    </div> -->
+
+<!--     <div class="pree_question_tags">
+      <div class="pree_question_tags_title">TAGS</div>
+      <div class="pree_question_tags_close">X</div>
+      <div class="pree_question_tags_icon_wrapper">
+        <div class="pree_question_tags_icon"></div>
+      </div>
+      <div class="pree_question_tags_block">
+        <div class="pree_question_tags_item">tag</div>
+        <div class="pree_question_tags_item">tag</div>
+        <div class="pree_question_tags_item">tag</div>
+      </div>
+    </div> -->
+
+    <section>
+      <div class="pree_question_text pree_question_text">
+        <%= displayText %>
+      </div>
+      <div class="pree_question_answer pree_question_answer_a">
+        <input type="checkbox"> Yes
+      </div>
+      <div class="pree_question_answer pree_question_answer_b">
+        <input type="checkbox"> No
+      </div>
+      <div class="pree_question_answer pree_question_answer_c">
+        <input type="checkbox"> Not sure
+      </div>
+    </section>
+    <footer>
+      <div class="pree_question_likes_button">
+        <div class="pree_question_likes_icon"></div>
+        <div class="pree_question_likes_count">
+          <%= likes %>
+        </div>
+      </div>
+      <div class="pree_question_comment_button"></div>
+      <div class="pree_question_share_button"></div>
+      <div class="pree_question_answers"></div>
+      <div class="pree_question_more"></div>
+    </footer>
+  </div>

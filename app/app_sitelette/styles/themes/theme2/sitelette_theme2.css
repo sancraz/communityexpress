@@ -1053,6 +1053,8 @@
 	left: 15px;
 	zoom: 0.5;
 	z-index: 10000;
+	-moz-transform: scale(0.5);
+	transform-origin: top left;
 }
 .sprite_navbar.navbutton_write_review {
 	position: fixed;
@@ -1060,17 +1062,25 @@
     top: 5px;
     zoom: 0.65;
     z-index: 1000;
+    -moz-transform: scale(0.65);
+    transform-origin: top left;
 }
 .promotion_contact {
 	display: inline-block;
 	zoom: 0.6;
+	-moz-transform: scale(0.6);
+	transform-origin: top left;
 }
 .sprite_navbar.sub_edit {
 	zoom: 0.7;
+	-moz-transform: scale(0.7);
+	transform-origin: top left;
 	margin-top: 8px;
 }
 .sprite_navbar.sub_delete {
 	zoom: 0.35;
+	-moz-transform: scale(0.35);
+	transform-origin: top left;
 }
 
 /*
