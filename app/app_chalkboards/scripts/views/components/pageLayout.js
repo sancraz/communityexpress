@@ -15,7 +15,7 @@ var sessionActions = require('../../actions/sessionActions'),
 
 var T_PATH = '../../templates/';
 
-var PageView = function(options) {
+var PageLayout = function(options) {
 
     options = options || {};
     this.user = options.user;
@@ -41,7 +41,7 @@ var PageView = function(options) {
 
 };
 
-_.extend(PageView.prototype, Backbone.View.prototype, {
+_.extend(PageLayout.prototype, Backbone.View.prototype, {
 
     pageEvents: {
         // 'click .poll_image': 'openSettings'
@@ -201,6 +201,6 @@ _.extend(PageView.prototype, Backbone.View.prototype, {
 
 });
 
-PageView.extend = Backbone.View.extend;
+PageLayout.extend = Backbone.View.extend;
 
-module.exports = PageView;
+module.exports = PageLayout;
