@@ -11,6 +11,7 @@ module.exports = {
 		}).then(function(resp) {
 			return new FeedModel(resp);
 		}, function(e) {
+			loader.hide();
 			loader.showErrorMessage(e, 'unable to load questions')
 		});
 	}

@@ -15,7 +15,7 @@ var NavbarView = Backbone.View.extend({
     events: {
         'click .menu_button_1': 'openMenu',
         'click .menu_button_2': 'openPromotion',
-        'click .menu_button_3': 'triggerContestsView',
+        'click .menu_button_3': 'triggerCatalogsView',
         'click .menu_button_4': 'triggerAboutUsView',
         'click .menu_button_5': 'toggle'
     },
@@ -48,6 +48,10 @@ var NavbarView = Backbone.View.extend({
         if (!this.page) {
             throw new Error('MapHeader::Expected a page');
         }
+    },
+
+    triggerCatalogsView: function() {
+        Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
     },
 
     openPromotion: function(pid) {

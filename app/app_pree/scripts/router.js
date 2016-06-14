@@ -1,5 +1,5 @@
-var HelloView = require('./views/hello'),
-    preeController = require('./controllers/preeController'),
+var preeController = require('./controllers/preeController'),
+    loader = require('./loader'),
     FeedView = require('./views/FeedView'),
     FeedSelectorView = require('./views/FeedSelectorView');
 
@@ -20,6 +20,7 @@ var AppRouter=Backbone.Router.extend({
     },
 
     dashboard: function() {
+        loader.show('questions');
         preeController.getQuestions()
             .then(function(model) {
                 var feedView = new FeedView({
@@ -32,11 +33,11 @@ var AppRouter=Backbone.Router.extend({
     },
 
     about: function() {
-        var helloView = new HelloView({
-            template: _.template('Im the about page')
-        }).render();
+        // var helloView = new HelloView({
+        //     template: _.template('Im the about page')
+        // }).render();
 
-        $('#js-app').empty().append(helloView.$el);
+        // $('#js-app').empty().append(helloView.$el);
     }
 
 });
