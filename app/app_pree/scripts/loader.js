@@ -15,7 +15,7 @@ module.exports = {
     show: function(text) {
         this.init();
         $('.loader').css('display', 'block');
-        $('.loader-text').text(text);
+        $('.loader-text').text('loading ' + text);
     },
 
     showErrorMessage: function(err, msg) {

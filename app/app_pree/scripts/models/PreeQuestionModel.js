@@ -15,6 +15,10 @@ var PreeQuestionModel = Backbone.Model.extend({
 
     initialize : function(attributes, options) {
         console.log("PreeQuestionModel instantiated");
+    },
+
+    changedAttribute: function() {
+        console.log('changed');
     }
 });
 

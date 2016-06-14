@@ -1,0 +1,138 @@
+<div class="pree_question">
+  <div class="pree_question_answer_close">X</div>
+  <header>
+    <div class="pree_question_user">
+      <div class="pree_question_user_avatar">
+        <img src="img/avatar.png">
+      </div>
+      <div class="pree_question_user_username">username</div>
+    </div>
+    <div class="pree_question_title">
+      <div class="pree_question_title_name"><%= pollType.displayText.toUpperCase() %></div>
+      <div class="pree_question_title_date">1 week ago</div>
+    </div>
+    <div class="pree_question_categories_button">
+      <div class="pree_question_categories_name"><%= categories[0].displayText %></div>
+      <div class="pree_question_categories_count"><%= categories.length %></div>
+    </div>
+    <div class="pree_question_tags_button">
+      <div class="pree_question_tags_icon"></div>
+      <div class="pree_question_tags_count"><%= tags.length %></div>
+    </div>
+  </header>
+  <section>
+    <div class="pree_question_block">
+      <div class="pree_question_image">
+        <img src="img/avatar.png">
+      </div>
+      <div class="pree_question_text pree_question_text_with_image">
+        <%= displayText %> 
+      </div>
+    </div>
+    <div class="pree_question_answer pree_question_answer_a">
+      <input type="checkbox"> Yes
+    </div>
+    <div class="pree_question_answer pree_question_answer_b">
+      <input type="checkbox"> No
+    </div>
+  </section>
+
+  <div class="pree_question_answer">
+    <header>
+      <b>Thank you for answering</b><br>
+      <b>You've been awarded <span class="pree_question_answer_points">100</span> points.</b><br>
+      Your new score is 18,450
+    </header>
+    <section>
+      RESULTS<br>
+      <span class="pree_question_answer_percent">64.8%</span>: A: Yes - <span class="pree_question_answer_you">YOU</span> <br>
+      <span class="pree_question_answer_percent">37%</span>: B: No <br>
+      <span class="pree_question_answer_percent">8.2%</span>: C: No Opinion <br>
+      <img class="pree_question_answer_graph" src="img/graph.png">
+    </section>
+  </div>
+
+  <footer>
+    <div class="pree_question_likes_button">
+      <div class="pree_question_likes_icon"></div>
+      <div class="pree_question_likes_count"><%= likes %></div>
+    </div>
+    <div class="pree_question_comment_button"></div>
+    <div class="pree_question_share_button"></div>
+    <div class="pree_question_answers">
+      Answers: <span>1860</span>
+    </div>
+    <div class="pree_question_more"></div>
+  </footer>
+  
+  <div class="pree_question_comments">
+    <div class="pree_question_comments_block">
+      <img class="pree_question_comments_avatar" src="img/avatar.png">
+      <input type="text" placeholder="Write a comment...">
+    </div>
+    <div class="pree_question_comments_feed">
+      <div class="pree_question_comments_item">
+        <img class="pree_question_comments_avatar" src="img/avatar.png">
+        <div class="pree_question_comments_item_info">
+          <span class="pree_question_comments_item_username">@John Doe</span>
+          <span class="pree_question_comments_item_text">Lorem ipsum</span><br>
+          <span class="pree_question_comments_item_details">Like &#183; an hour ago</span>
+        </div>
+      </div>
+      <div class="pree_question_comments_item">
+        <img class="pree_question_comments_avatar" src="img/avatar.png">
+        <div class="pree_question_comments_item_info">
+          <span class="pree_question_comments_item_username">@Jane Doe</span>
+          <span class="pree_question_comments_item_text">Lorem ipsum sit dolorem</span><br>
+          <span class="pree_question_comments_item_details">Like &#183; an hour ago</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pree_question_share">
+    <div class="pree_question_share_title">Share This Question</div>
+    <div class="pree_question_share_item pree_question_share_item_fb">
+      <div class="pree_question_share_icon"></div>
+      Facebook
+    </div>
+    <div class="pree_question_share_item pree_question_share_item_twitter">
+      <div class="pree_question_share_icon"></div>
+      Twitter
+    </div>
+    <div class="pree_question_share_item pree_question_share_item_email">
+      <div class="pree_question_share_icon"></div>
+      Email
+    </div>
+    <div class="pree_question_share_item pree_question_share_item_link">
+      <div class="pree_question_share_icon"></div>
+      Copy link
+    </div>
+    <div class="pree_question_share_item pree_question_share_item_gmail">
+      <div class="pree_question_share_icon"></div>
+      Gmail
+    </div>
+  </div>
+
+  <div class="pree_user_info">
+    <header>
+      <div class="pree_user_info_avatar">
+        <img src="img/avatar.png">
+      </div>
+      <div class="pree_user_info_username">username</div>
+      <div class="pree_user_info_profile">View Profile</div>
+    </header>
+    <section>
+      <div class="pree_user_info_block">
+        Founder at Favorize<br>
+        Passionate about crossfit, cooking and self-improvement
+      </div>
+      <div class="pree_user_info_panel">Followers #nnn</div>
+      <div class="pree_user_info_panel">Following #nnn</div>
+      <div class="pree_user_info_panel">Answers #nnnnn</div>
+      <div class="pree_user_info_panel">Questions Asked #nnn</div>
+      <div class="pree_user_info_panel">Points Total #nnnnn</div>
+    </section>
+  </div>
+
+</div>
