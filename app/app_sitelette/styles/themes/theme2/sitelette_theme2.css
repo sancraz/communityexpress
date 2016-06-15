@@ -1045,7 +1045,7 @@
 .page {
 	position: relative !important;
 	margin-bottom: 75px;
-	-webkit-overflow-scrolling: touch;
+	/*-webkit-overflow-scrolling: touch;*/
 }
 
 .sprite_navbar.navbutton_back.back {
