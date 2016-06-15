@@ -1021,15 +1021,15 @@ ul {
 	color: black;
 }
 
-.cmntyex-subcatalog .ui-collapsible-content {
+.cmntyex-group .ui-collapsible-content {
 	padding: 0 .5em;
 }
 
-.cmntyex-subcatalog_title .ui-btn {
+.cmntyex-group_title .ui-btn {
 	background: transparent;
 }
 
-.cmntyex-subcatalog_title:before {
+.cmntyex-group_title:before {
 	content: "";
 	position: absolute;
 	width: 100%;

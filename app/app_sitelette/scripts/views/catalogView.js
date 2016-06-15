@@ -7,7 +7,7 @@ var Vent = require('../Vent'),
     Basket = require('../models/BasketModel'),
     orderActions = require('../actions/orderActions'),
     PageLayout = require('./components/pageLayout'),
-    SubCatalogView = require('./partials/subCatalogView'),
+    GroupView = require('./partials/groupView'),
     ListView = require('./components/listView');
 
 var CatalogView = PageLayout.extend({
@@ -32,6 +32,8 @@ var CatalogView = PageLayout.extend({
         this.basket = options.basket;
         this.backToCatalogs = options.backToCatalogs;
         this.catalogId = options.catalogId;
+        this.catalogType = 'UNDEFINED';// options.catalog.catalogType;
+        console.log("catalogType:"+this.catalogType);
     },
 
     renderData: function () {
@@ -97,10 +99,15 @@ var CatalogView = PageLayout.extend({
     },
 
     renderItems: function() {
+      switch(this.catalogType){
+      case 'COMBO':
+           console.log("Ignoring catalog")
+      break;
+      case 'UNDEFINED':
         _(this.items.groups).each(function (group, i) {
             if (group.unSubgroupedItems.length === 0) return;
 
-            var el = new SubCatalogView({
+            var el = new GroupView({
                 onClick: function (model) {
                     this.openAddToBasketView(model);
                 }.bind(this),
@@ -112,6 +119,7 @@ var CatalogView = PageLayout.extend({
             this.$('.cmntyex-items_placeholder').append(el);
 
         }.bind(this));
+      }
     }
 
 });

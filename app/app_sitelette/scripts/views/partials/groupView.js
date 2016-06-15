@@ -2,12 +2,12 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/subCatalog.ejs'),
+var template = require('ejs!../../templates/partials/group.ejs'),
     Vent = require('../../Vent'),
     CatalogItemView = require('./catalog_item'),
     ListView = require('../components/listView');
 
-var SubCatalogView = Backbone.View.extend({
+var GroupView = Backbone.View.extend({
 
     template: template,
 
@@ -48,4 +48,4 @@ var SubCatalogView = Backbone.View.extend({
 
 });
 
-module.exports = SubCatalogView;
+module.exports = GroupView;
