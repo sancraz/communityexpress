@@ -2,9 +2,9 @@ body, html {
 	background: #222;
 }
 
-body {
-    -webkit-overflow-scrolling: touch;    
-}
+/*body {
+    -webkit-overflow-scrolling: touch;
+}*/
 
 @font-face {
 	font-family: 'Open Sans';
