@@ -1053,7 +1053,7 @@
 	top: 5px;
 	left: 15px;
 	zoom: 0.7;
-	z-index: 10000;
+	z-index: 1000;
 	-moz-transform: scale(0.5);
 	transform-origin: top left;
 	-webkit-backface-visibility: hidden;
