@@ -26,29 +26,22 @@ var onLoginSuccess = function (response) {
     Vent.trigger('login_success');
 
     if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-         var a = localStorage.getItem("cmxUID");
-         if ("undefined" !== typeof a && null !== a) {
-             loyaltyActions.updateLoyaltyStatus(a);
-         }
-    };
-
-    if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-            var a = localStorage.getItem("cmxUID");
-            if ("undefined" !== typeof a && null !== a) {
-                loyaltyActions.updateLoyaltyStatus(a);
-                loyaltyActions.retrieveCalendar(a);
-            } else {
-                console.log("1. NO cmxUID, try to create one");
-                /*
-                * create user
-                */
-                loyaltyActions.createAnonymousUser();
-                console.log("anonymous user created");
-            }
-
+        var a = localStorage.getItem("cmxUID");
+        if ("undefined" !== typeof a && null !== a) {
+            loyaltyActions.updateLoyaltyStatus(a);
+            loyaltyActions.retrieveCalendar(a);
         } else {
-            console.log("no api url");
+            console.log("1. NO cmxUID, try to create one");
+            /*
+            * create user
+            */
+            loyaltyActions.createAnonymousUser();
+            console.log("anonymous user created");
         }
+
+    } else {
+        console.log("no api url");
+    }
 
     return {
         uid: response.uid,
@@ -145,8 +138,6 @@ module.exports = {
                 localStorage.setItem("cmxUID", userRegistrationDetails.uid);
 
                 self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
-                loyaltyActions.updateLoyaltyStatus(userRegistrationDetails.uid);
-                loyaltyActions.retrieveCalendar(userRegistrationDetails.uid);
             }
         })
     }

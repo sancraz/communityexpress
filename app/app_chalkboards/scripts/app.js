@@ -51,7 +51,27 @@ App.prototype = {
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
         if (this.params.embedded) { conf.set('embedded', true) };
-        Backbone.history.start({pushState: true});
+        
+        if (this.params.UID) {
+            localStorage.setItem("cmxUID", this.params.UID);
+            sessionActions.authenticate(this.params.UID)
+                .always(function() {
+                    Backbone.history.start({pushState: true});
+                });
+        } else if (localStorage.cmxUID) {
+            sessionActions.getSessionFromLocalStorage().then(function () {
+                Backbone.history.start({pushState: true});
+            });
+        } else if (this.params.canCreateAnonymousUser) {
+            $.when(sessionActions.createAnonymousUser()).done(function() {
+                sessionActions.getSessionFromLocalStorage().then(function () {
+                    Backbone.history.start({pushState: true});
+                });
+            });
+        } else {
+            return
+        }
+        // Backbone.history.start({pushState: true});
     },
 
     isEmbedded: function () {

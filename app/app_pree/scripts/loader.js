@@ -4,7 +4,7 @@ module.exports = {
 
     init: function() {
         $('<div/>', {
-            class: 'loader col-xs-4 col-xs-offset-4'
+            class: 'loader'
         }).appendTo('body');
         $('<div/>', {
             class: 'loader-img'
