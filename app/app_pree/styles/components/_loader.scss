@@ -1,0 +1,25 @@
+.loader {
+  margin: 40% 35%;
+  width: 30%;
+  top: 0;
+  background-color: #000;
+  border-radius: 10px;
+  color: #fff;
+  display: none;
+  height: 110px;
+  opacity: .7;
+  padding-bottom: 40px;
+  position: fixed;
+  text-align: center;
+  z-index: 10000;
+
+  .loader-img {
+    background: url('ajax-loader.gif') no-repeat center top;
+    height: 100%;
+    margin-top: 10px;
+  }
+
+  .loader-text {
+    color: #fff;
+  }
+}

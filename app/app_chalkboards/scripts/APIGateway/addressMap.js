@@ -72,6 +72,9 @@ module.exports = {
             registerNewMember: ['POST', '/authentication/registerNewMember'],
             getAuthenticationStatus: ['GET', '/authentication/getAuthenticationStatus'],
             registerNewMemberWithInvitationCode: ['POST', '/authentication/registerNewMemberWithInvitationCode'],
+            createAnonymousUser: ['POST', '/authentication/registerAnonymousAdhocMember'],
+
+            retrieveLoyaltyStatus: ['GET', '/retail/retrieveLoyaltyStatus'],
 
             getDomainAndFilterOptions: ['GET', '/sasl/getDomainAndFilterOptions'],
             getDomainOptions: ['GET', '/sasl/getDomainOptions'],

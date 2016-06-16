@@ -3,9 +3,7 @@
 'use strict';
 
 var userController = require('../controllers/userController.js'),
-    favoriteActions = require('./favoriteActions.js'),
-    communicationActions = require('./communicationActions.js'),
-    Vent = require('../Vent.js'),
+    Vent = require('../Vent'),
     appCache = require('../appCache.js'),
     gateway = require('../APIGateway/gateway'),
     User = require('../models/user.js');
@@ -15,8 +13,6 @@ var onLoginSuccess = function (response) {
     var user = appCache.fetch('user', new User());
     user.initiate(response.uid, response.userName);
     $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
-
-    favoriteActions.getFavoritesForCurrentUser();
 
     if (response.localStorage !== false) {
         localStorage.setItem('cmxUID', response.uid);
@@ -104,8 +100,8 @@ module.exports = {
     createAnonymousUser: function() {
         var self = this;
         return gateway.sendRequest('createAnonymousUser', {
-            serviceAccommodatorId: window.community.serviceAccommodatorId,
-            serviceLocationId: window.community.serviceLocationId
+            serviceAccommodatorId: '',
+            serviceLocationId: ''
         }).then(function(userRegistrationDetails) {
             if (typeof userRegistrationDetails.uid !== 'undefined') {
 

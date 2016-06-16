@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600');
 
 *{
-	border-radius: 0 !important;
+	border-radius: 0;
 	box-shadow: none !important;
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false) !important;
 	text-shadow: none !important;
