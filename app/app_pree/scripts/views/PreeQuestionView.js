@@ -5,7 +5,8 @@ var template = require('ejs!../templates/preeQuestion.ejs'),
     preeQuestionCategoriesView = require('./PreeQuestionCategories'),
     preeQuestionTagsView = require('./PreeQuestionTags'),
     answerCountView = require('./AnswerCountView'),
-    preeAnswerView = require('./PreeAnswerView');
+    preeAnswerView = require('./PreeAnswerView'),
+    preeQuestionCreateView = require('./PreeQuestionCreateView');
 
 var FeedSelectorView = Mn.LayoutView.extend({
 
@@ -15,7 +16,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         pree_question_expanded_menu: '.pree_question_expanded_menu',
         pree_question_answers: '.pree_question_answers',
         pree_question_likes_count: '.pree_question_likes_count',
-        pree_question_answer_details: '.pree_question_answer_details'
+        popup_region: '.pree_question_answer_details'
     },
 
     tagName: 'li',
@@ -27,14 +28,16 @@ var FeedSelectorView = Mn.LayoutView.extend({
         closeTags: '.pree_question_tags_close',
         answer: '.pree_question_answer',
         likesButton: '.pree_question_likes_button',
-        likeCount: '.pree_question_likes_count'
+        likeCount: '.pree_question_likes_count',
+        createNewQuestion: '.pree_question_user_avatar'
     },
 
     events: {
         'click @ui.preeQuestionCategories': 'expandCategories',
         'click @ui.preeQuestionTags': 'expandTags',
         'click @ui.likesButton': 'addLike',
-        'click @ui.answer': 'openAnswerView'
+        'click @ui.answer': 'openAnswerView',
+        'click @ui.createNewQuestion': 'openQuestionCreateView'
     },
 
     initialize : function() {
@@ -72,7 +75,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         if (alreadyAnswered) {
             loader.show('already answered');
         } else {
-            this.pree_question_answer_details.show(new preeAnswerView({
+            this.popup_region.show(new preeAnswerView({
                 model: this.model
             }));
         }
@@ -91,12 +94,12 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 alreadyLiked: false
             });
         };
-    }
+    },
 
-    // render: function() {
-    //     this.$el.html(this.template(_.extend({}, this.model.attributes)));
-    //     return this;
-    // }
+    openQuestionCreateView: function() {
+        console.log('create question');
+        this.popup_region.show(new preeQuestionCreateView());
+    }
 });
 
 module.exports = FeedSelectorView;

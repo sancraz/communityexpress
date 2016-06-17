@@ -3,7 +3,7 @@ var preeController = require('./controllers/preeController'),
     FeedView = require('./views/FeedView'),
     FeedSelectorView = require('./views/FeedSelectorView');
 
-var AppRouter=Backbone.Router.extend({
+var AppRouter = Backbone.Router.extend({
 
     routes: {
         '': 'dashboard',
@@ -21,24 +21,21 @@ var AppRouter=Backbone.Router.extend({
 
     dashboard: function() {
         loader.show('questions');
-        preeController.getQuestions()
-            .then(function(model) {
-                var feedView = new FeedView({
-                    el: $("#pree_feed").find('ul'),
-                    model: model,
-                    collection: model.questionCollection
-                });
-                var feedSelectorView = new FeedSelectorView({ el: $("#pree_feed_tabs"), model: model });
-            });
+        var feedView = new FeedView({
+            el: $('#pree_feed')
+        });
+        // preeController.getQuestions()
+        //     .then(function(model) {
+        //         var feedView = new FeedView({
+        //             el: $("#pree_feed"),
+        //             model: model,
+        //             collection: model.questionCollection
+        //         });
+        //         var feedSelectorView = new FeedSelectorView({ el: $("#pree_feed_tabs"), model: model });
+        //     });
     },
 
-    about: function() {
-        // var helloView = new HelloView({
-        //     template: _.template('Im the about page')
-        // }).render();
-
-        // $('#js-app').empty().append(helloView.$el);
-    }
+    about: function() {}
 
 });
 

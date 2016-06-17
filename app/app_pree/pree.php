@@ -459,6 +459,7 @@
     </div>
 
    </div>
+   <div id="popup-region"></div>
 
    <!-- Notification box ends -->
 
