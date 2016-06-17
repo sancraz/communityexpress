@@ -28,8 +28,8 @@ var GroupView = Backbone.View.extend({
 
     renderItems: function (el) {
         $(el).find('.cmntyex-list_placeholder').html(new ListView({
-            ItemView: CatalogItemView,
-            ItemViewOptions: {
+            ListItemView: CatalogItemView,
+            ListItemViewOptions: {
                 onClick: function (model) {
                     this.onClick(model);
                 }.bind(this),

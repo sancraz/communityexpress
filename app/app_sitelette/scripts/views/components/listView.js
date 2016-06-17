@@ -9,8 +9,8 @@ var ListView = Backbone.View.extend({
     initialize: function(options) {
         options = options || {};
         this.parent = options.parent;
-        this.ItemView = options.ItemView;
-        this.ItemViewOptions = options.ItemViewOptions || {};
+        this.ListItemView = options.ListItemView;
+        this.ListItemViewOptions = options.ListItemViewOptions || {};
 
         this.$el.attr({
             'data-role': options.dataRole || 'listview',
@@ -28,7 +28,7 @@ var ListView = Backbone.View.extend({
         this.$el.empty();
         var frg = document.createDocumentFragment();
         this.collection.each(function (item) {
-            $(frg).append( new this.ItemView($.extend(this.ItemViewOptions, {
+            $(frg).append( new this.ListItemView($.extend(this.ListItemViewOptions, {
                 model: item,
                 parent: this
             })).render().el);

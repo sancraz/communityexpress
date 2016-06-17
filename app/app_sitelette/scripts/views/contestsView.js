@@ -29,8 +29,8 @@ var ContestsView = PageLayout.extend({
 
     renderContests: function() {
         this.$('.cmntyex-contests_placeholder').html(new ListView({
-            ItemView: ContestView,
-            ItemViewOptions: {
+            ListItemView: ContestView,
+            ListItemViewOptions: {
                 onClick: this.goToContest.bind(this)
             },
             className: 'ui-listview',

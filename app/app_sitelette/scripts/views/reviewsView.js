@@ -83,7 +83,7 @@ var ReviewsView = PageLayout.extend({
 
     renderReviews: function() {
         this.$('.cmntyex-reviews_placeholder').html(new ListView({
-            ItemView: ReviewView,
+            ListItemView: ReviewView,
             className: 'cmntyex-review_list',
             collection: this.collection,
             dataRole: 'none',

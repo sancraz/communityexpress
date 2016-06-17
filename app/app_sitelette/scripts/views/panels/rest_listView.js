@@ -5,7 +5,7 @@
 var template = require('ejs!../../templates/rest_list.ejs'),
     PanelView = require('../components/panelView'),
     ListView = require('../components/listView'),
-    ListItemView = require('../partials/rest_list_item'),
+    RestListItemView = require('../partials/rest_list_item'),
     saslActions = require('../../actions/saslActions');
 
 var RestListView = PanelView.extend({
@@ -42,8 +42,8 @@ var RestListView = PanelView.extend({
         this.$('.cmntyex-list_container').append(new ListView({
             collection: this._sortByDistance(this.collection),
             update: false,
-            ItemView: ListItemView,
-            ItemViewOptions: {domains: this.domains},
+            ListItemView: RestListItemView,
+            ListItemViewOptions: {domains: this.domains},
             parent: this
         }).render().el);
         return this;

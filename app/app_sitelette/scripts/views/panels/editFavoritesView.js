@@ -48,8 +48,8 @@ var EditFavoritesView = PanelView.extend({
         container.html(this.template({ editable: editable }));
         container.find('.cmntyex-list_container').html(new ListView({
             collection: this.collection,
-            ItemView: EditFavoriteItem,
-            ItemViewOptions: {
+            ListItemView: EditFavoriteItem,
+            ListItemViewOptions: {
                 template: this.itemTemplate
             },
             parent: this

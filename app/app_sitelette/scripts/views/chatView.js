@@ -43,7 +43,7 @@ var ChatView = PageLayout.extend({
         communicationActions.getConversation(this.restaurant.sa(), this.restaurant.sl(), this.user.getUID())
             .then( function (messages) {
                 this.$('.cmntyex-messages_placeholder').html( new ListView({
-                    ItemView: MessageView,
+                    ListItemView: MessageView,
                     className: 'cmntyex-message_list',
                     collection: messages,
                     dataRole: 'none',

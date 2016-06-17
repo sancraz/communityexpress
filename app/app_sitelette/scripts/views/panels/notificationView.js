@@ -28,7 +28,7 @@ var NotificationsView = PanelView.extend({
         this.$('.cmntyex-list_container').append(new ListView({
             collection: this.collection,
             update: false,
-            ItemView: NotificationView,
+            ListItemView: NotificationView,
             parent: this
         }).render().el);
         return this;

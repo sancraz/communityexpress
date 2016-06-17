@@ -43,7 +43,7 @@ module.exports = PageLayout.extend({
     renderPrizes: function () {
         this.$('.cmntyex_prizes_placeholder').html(
             new ListView({
-                ItemView: PrizeView,
+                ListItemView: PrizeView,
                 collection: new Backbone.Collection(this.model.prizes),
                 update: false,
                 dataRole: 'none',
@@ -55,8 +55,8 @@ module.exports = PageLayout.extend({
     renderOptions: function () {
         this.$('.cmntyex_options_placeholder').html(
             new ListView({
-                ItemView: PollOptionView,
-                ItemViewOptions: {
+                ListItemView: PollOptionView,
+                ListItemViewOptions: {
                     onClick: this.onPollClick.bind(this)
                 },
                 collection: new Backbone.Collection(this.model.choices),

@@ -32,7 +32,7 @@ var CatalogsView = PageLayout.extend({
 
     renderCatalogs: function() {
         var el = new ListView({
-            ItemView: CatalogItemView,
+            ListItemView: CatalogItemView,
             className: 'cmntyex-catalog_list ui-listview',
             collection: new Backbone.Collection(this.catalogs),
             dataRole: 'list-view',

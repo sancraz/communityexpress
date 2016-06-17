@@ -38,8 +38,8 @@ var EditView = PageLayout.extend({
 
     renderItems: function() {
         this.$('.cmntyex-items_placeholder').html( new ListView({
-            ItemView: EditableView,
-            ItemViewOptions: {
+            ListItemView: EditableView,
+            ListItemViewOptions: {
                 action: this.action,
                 actionfn: this.actionfn,
             },

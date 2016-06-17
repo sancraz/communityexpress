@@ -67,8 +67,8 @@ var PostsView = PageLayout.extend({
 
     renderPosts: function() {
         this.$('.cmntyex-reviews_placeholder').html(new ListView({
-            ItemView: PostView,
-            ItemViewOptions: {
+            ListItemView: PostView,
+            ListItemViewOptions: {
                 onComment: this.openCommentPopup.bind(this),
                 onLike: this.likePost.bind(this)
             },
