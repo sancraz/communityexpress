@@ -8,5 +8,5 @@ var App = require('./scripts/app');
 
 var h = require('./scripts/globalHelpers');
 
-App.init();
+App.start();
 h().startLogger();

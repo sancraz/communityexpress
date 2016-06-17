@@ -8,11 +8,11 @@ var PreeAnswerView = Mn.LayoutView.extend({
 	template: template,
 
 	ui: {
-		close: '.pree_question_answer_close'
+		closeButton: '.pree_question_answer_close'
 	},
 
 	events: {
-		'click @ui.close': 'closeQuestionAnswer'
+		'click @ui.closeButton': 'close'
 	},
 
 	initialize: function() {
@@ -23,7 +23,7 @@ var PreeAnswerView = Mn.LayoutView.extend({
 		loader.hide();
 	},
 
-	closeQuestionAnswer: function() {
+	close: function() {
 		this.destroy();
 	}
 });

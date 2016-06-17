@@ -8,33 +8,32 @@ var Router = require('./router'),
 //     this.params.canCreateAnonymousUser = true;
 // };
 
-var App = {
+var App = new Mn.Application();
 
-    init: function() {
-        this.params = {};
-        // this.params.canCreateAnonymousUser = true;
-        var router = new Router;
+App.on('start',function() {
+    this.params = {};
+    // this.params.canCreateAnonymousUser = true;
+    var router = new Router;
 
-        if (this.params.UID) {
-            localStorage.setItem("cmxUID", this.params.UID);
-            sessionActions.authenticate(this.params.UID)
-                .always(function() {
-                    Backbone.history.start({pushState: true});
-                });
-        } else if (localStorage.cmxUID) {
+    if (this.params.UID) {
+        localStorage.setItem("cmxUID", this.params.UID);
+        sessionActions.authenticate(this.params.UID)
+            .always(function() {
+                Backbone.history.start({pushState: true});
+            });
+    } else if (localStorage.cmxUID) {
+        sessionActions.getSessionFromLocalStorage().then(function () {
+            Backbone.history.start({pushState: true});
+        });
+    } else if (this.params.canCreateAnonymousUser) {
+        $.when(sessionActions.createAnonymousUser()).done(function() {
             sessionActions.getSessionFromLocalStorage().then(function () {
                 Backbone.history.start({pushState: true});
             });
-        } else if (this.params.canCreateAnonymousUser) {
-            $.when(sessionActions.createAnonymousUser()).done(function() {
-                sessionActions.getSessionFromLocalStorage().then(function () {
-                    Backbone.history.start({pushState: true});
-                });
-            });
-        } else {
-            Backbone.history.start();
-        }
+        });
+    } else {
+        Backbone.history.start();
     }
-};
+});
 
 module.exports = App;
