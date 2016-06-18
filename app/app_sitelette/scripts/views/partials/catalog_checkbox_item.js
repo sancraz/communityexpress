@@ -6,7 +6,7 @@ var template = require('ejs!../../templates/partials/catalog-item.ejs'),
     h = require('../../globalHelpers'),
     Vent = require('../../Vent');
 
-var CatalogItemView = Backbone.View.extend({
+var CatalogCheckboxItemView = Backbone.View.extend({
 
     tagName: 'li',
 
@@ -37,4 +37,4 @@ var CatalogItemView = Backbone.View.extend({
     }
 });
 
-module.exports = CatalogItemView;
+module.exports = CatalogCheckboxItemView;

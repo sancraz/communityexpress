@@ -1163,3 +1163,103 @@ a.jquery-checkbox {
 #landing {
 	min-height: 0!important;
 }
+
+/* ---- styled radio and checkboxes */
+/* 
+      Radio button 
+    */
+
+.catalog-radio-button {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.catalog-radio-button__label {
+  line-height: 30px;
+  padding:10px;
+  font-weight:700;
+}
+
+.catalog-radio-button__input {
+  display: none;
+}
+
+
+/* unchecked state */
+
+.catalog-radio-button__icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  float: right;
+  border-radius: 15px;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+
+/* checked state */
+
+.catalog-radio-button__input:checked + .catalog-radio-button__icon {
+  background-color: #0f0;
+}
+
+
+/* 
+      Checkbox 
+    */
+
+.catalog-checkbox {
+  display: block;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.catalog-checkbox__label {
+  line-height: 30px;
+}
+
+.catalog-checkbox__input {
+  display: none;
+}
+
+
+/* unchecked state */
+
+.catalog-checkbox__icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  float: right;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+
+/* checked state */
+
+.catalog-checkbox__input:checked + .catalog-checkbox__icon {
+  background-color: #0f0;
+}
+
+
+/* unchecked state */
+
+.catalog-checkbox__icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  float: right;
+  border: 1px solid #000;
+  background-color: #fff;
+}
+
+
+/* checked state */
+
+.catalog-checkbox__input:checked + .catalog-checkbox__icon {
+  background-color: #0f0;
+}

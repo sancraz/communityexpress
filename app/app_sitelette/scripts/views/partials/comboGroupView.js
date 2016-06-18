@@ -2,10 +2,14 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/group.ejs'),
+var template = require('ejs!../../templates/partials/comboGroup.ejs'),
     Vent = require('../../Vent'),
     CatalogItemView = require('./catalog_item'),
-    ListView = require('../components/listView');
+    CatalogRadioItemView = require('./catalog_radio_item'),  
+    CatalogCheckboxItemView = require('./catalog_checkbox_item'),
+    ListView = require('../components/listView'),
+    ListCheckboxView = require('../components/listCheckboxView'),
+    ListRadioView = require('../components/listRadioView');
 
 var ComboGroupView = Backbone.View.extend({
 
@@ -20,22 +24,25 @@ var ComboGroupView = Backbone.View.extend({
     render: function () {
         var el = document.createElement('div');
         el.innerHTML = this.template(_.extend({}, this.model, {color: this.color}));
-        this.renderItems(el);
         $(el).enhanceWithin();
+        this.renderItems(el);
         this.el = el;
         return this;
     },
-
+ 
     renderItems: function (el) {
-        $(el).find('.cmntyex-list_placeholder').html(new ListView({
-            ListItemView: CatalogItemView,
+        $(el).find('.cmntyex-list_placeholder').html(new ListRadioView({
+            ListItemView: CatalogRadioItemView, 
             ListItemViewOptions: {
                 onClick: function (model) {
                     this.onClick(model);
                 }.bind(this),
-                color: this.color
+                color: this.color,
+                radio_group_name:'groupname',
+                dataRole:'listview',
+                icon:true
             },
-            className: 'ui-listview cmntyex-catalog',
+            className: 'cmntyex-catalog',
             collection: new Backbone.Collection(this.model.unSubgroupedItems),
             update: false,
             parent: this

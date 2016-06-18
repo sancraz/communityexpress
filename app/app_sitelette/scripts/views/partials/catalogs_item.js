@@ -6,7 +6,7 @@ var template = require('ejs!../../templates/partials/catalogs-item.ejs'),
     Vent = require('../../Vent'),
     h = require('../../globalHelpers');
 
-var CatalogItemView = Backbone.View.extend({
+var CatalogsItemView = Backbone.View.extend({
 
     template: template,
 
@@ -39,4 +39,4 @@ var CatalogItemView = Backbone.View.extend({
 
 });
 
-module.exports = CatalogItemView;
+module.exports = CatalogsItemView;
