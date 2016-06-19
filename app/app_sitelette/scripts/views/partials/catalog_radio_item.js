@@ -12,16 +12,27 @@ var CatalogRadioItemView = Backbone.View.extend({
     template : template,
       
     events : {
-        'click' : 'changeInBusketView'
+        //'click' : 'clickOnItemInList',
+        'change': 'changeOfItemSelectionInList'
     },
 
-    changeInBusketView : function() {
-        this.onClick();
+//    clickOnItemInList : function(event) {
+//        // this.onClick();
+//    	console.log("CatalogRadioItemView:clickOnItemInList"+event);
+//    },
+    changeOfItemSelectionInList : function(event) {
+        console.log("CatalogRadioItemView:changeOfItemSelectionInList"+event);
+    	
+    	this.onChange();
     },
-
+    
+    
     initialize : function(options) {
-        this.onClick = function() {
-            options.onClick(this.model);
+    	/* we set the 'onClick' handler to the function that was
+    	 * passed on from the comboGoupView where the construction started. 
+    	 */
+        this.onChange = function() {
+            options.onChange(this.model);
         }.bind(this);
         
         this.color = options.color;

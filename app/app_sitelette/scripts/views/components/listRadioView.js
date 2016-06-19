@@ -38,9 +38,9 @@ var ListRadioView = Backbone.View.extend({
         return this;
     },
 
-    enhance: function () {
-        this.$el.enhanceWithin();
-    },
+    //enhance: function () {
+    //    this.$el.enhanceWithin();
+    //},
 
     close: function () {
         this.trigger('close:all');

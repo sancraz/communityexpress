@@ -8,6 +8,8 @@ var template = require('ejs!../../templates/addToBasket.ejs'),
 var AddToBasketView = PanelView.extend({
 
     template: template,
+    catalogId : null,
+    groupId:null,
 
     initialize: function(options) {
         options = options || {};
@@ -16,7 +18,9 @@ var AddToBasketView = PanelView.extend({
             value: 1
         });
         this.basket = options.basket;
-
+        this.catalogId = options.catalogId;
+        this.groupId = options.groupId;
+        
         this.addEvents({
             'click .plus_button': 'incrementQuantity',
             'click .minus_button': 'decrementQuantity',
@@ -43,7 +47,8 @@ var AddToBasketView = PanelView.extend({
     },
 
     addToBasket: function () {
-        this.basket.addItem(this.model, this.quantity.get('value'));
+    	var count=this.quantity.get('value');
+        this.basket.addItem(this.model, count, this.groupId,this.catalogId);
         this.shut();
     },
 

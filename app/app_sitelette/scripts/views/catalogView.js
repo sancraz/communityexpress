@@ -33,8 +33,7 @@ var CatalogView = PageLayout.extend({
         this.basket = options.basket;
         this.backToCatalogs = options.backToCatalogs;
         this.catalogId = options.catalog.data.catalogId;
-        this.catalogType = options.catalog.data.catalogType;
-        console.log("catalogType:" + this.catalogType);
+        this.catalogType = options.catalog.data.catalogType;        
     },
 
     renderData : function() {
@@ -47,7 +46,7 @@ var CatalogView = PageLayout.extend({
         if (this.backToCatalogs) {
             this.triggerCatalogsView();
         } else {
-            this.triggerRestaurantView()
+            this.triggerRestaurantView();
         }
         ;
     },
@@ -62,12 +61,23 @@ var CatalogView = PageLayout.extend({
         });
     },
 
-    openAddToBasketView : function(model) {
+    openAddToBasketView : function(model, groupId, catalogId) {
+    	console.log("CatalogView:openAddToBasketView :"+model.attributes.itemName+", "+groupId+", "+catalogId);
+
         this.openSubview('addToBasket', model, {
-            basket : this.basket
+            basket : this.basket,
+            groupId : groupId,
+            catalogId : catalogId
         });
     },
 
+    
+    toggleBasketComboEntry : function(model, groupId, catalogId) {
+    	console.log("CatalogView:toggleBasketComboEntry :"+model.attributes.itemName+", "+groupId+", "+catalogId);
+        this.basket.changeItemInCombo(model,groupId,catalogId);
+    },
+    
+    
     triggerOrder : function() {
         this.withLogIn(function() {
             Vent.trigger('viewChange', 'order', {
@@ -104,20 +114,26 @@ var CatalogView = PageLayout.extend({
     },
 
     renderItems : function() {
-        switch (this.catalogType.enumText) {
+    	var catalogType=this.catalogType.enumText;
+    	var catalogId=this.catalogId;
+    	
+        switch (catalogType) {
         case 'COMBO':
             _(this.items.groups).each(function(group, i) {
                 if (group.unSubgroupedItems.length === 0)
                     return;
-                console.log("catalogView::renderItems: groupType:" + group.groupType);
-                switch (group.groupType.enumText) {
+                
+                var groupType=group.groupType.enumText; 
+                var groupId=group.groupId;
+                
+                switch (groupType) {
                 case 'COMBO':
                     /*
                      * use radio boxes
                      */
                     var el = new ComboGroupView({
-                        onClick : function(model) {
-                            this.openAddToBasketView(model);
+                    	onChange : function(model) {
+                            this.toggleBasketComboEntry(model,groupId, catalogId);
                         }.bind(this),
                         color : this.generateColor(i),
                         model : group,
@@ -133,7 +149,7 @@ var CatalogView = PageLayout.extend({
                      */
                     var el = new GroupView({
                         onClick : function(model) {
-                            this.openAddToBasketView(model);
+                            this.openAddToBasketView(model,groupId,catalogId);
                         }.bind(this),
                         color : this.generateColor(i),
                         model : group,
@@ -149,9 +165,13 @@ var CatalogView = PageLayout.extend({
             _(this.items.groups).each(function(group, i) {
                 if (group.unSubgroupedItems.length === 0)
                     return;
+                
+                var groupType=group.groupType.enumText;
+                var groupName=group.enumText;
+                
                 var el = new GroupView({
                     onClick : function(model) {
-                        this.openAddToBasketView(model);
+                        this.openAddToBasketView(model,groupId,catalogId);
                     }.bind(this),
                     color : this.generateColor(i),
                     model : group,

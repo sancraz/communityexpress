@@ -17,7 +17,7 @@ var ComboGroupView = Backbone.View.extend({
 
     initialize: function (options) {
         this.color = options.color;
-        this.onClick = options.onClick;
+        this.onChange = options.onChange;
         this.listenTo(options.parent, 'close:all', this.onClose, this);
     },
 
@@ -34,8 +34,8 @@ var ComboGroupView = Backbone.View.extend({
         $(el).find('.cmntyex-list_placeholder').html(new ListRadioView({
             ListItemView: CatalogRadioItemView, 
             ListItemViewOptions: {
-                onClick: function (model) {
-                    this.onClick(model);
+            	onChange: function (model) { 
+                    this.onChange(model);
                 }.bind(this),
                 color: this.color,
                 radio_group_name:'groupname',
