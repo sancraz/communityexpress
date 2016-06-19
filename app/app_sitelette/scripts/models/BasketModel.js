@@ -3,36 +3,38 @@
 'use strict';
 
 var BasketItem = Backbone.Model.extend({
-/* what is id, cid and idAttribute? 
- * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
- * 
- * So, we are telling backbone to use the 'uUID' value as the id value for this item.
- * for 
- */
+	/*
+	 * what is id, cid and idAttribute?
+	 * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
+	 * 
+	 * So, we are telling backbone to use the 'uUID' value as the id value for
+	 * this item. for
+	 */
 	idAttribute : 'uUID',
-	
+
 	groupId : null,
 	catalogId : null,
-	itemId:null,
+	itemId : null,
 	/*
 	 * we save the uUID also, so that we can scan by groupId and find the uUID
 	 * maybe we can just use the 'id'?
 	 */
-	uUID:null,
-	itemName:null,
+	uUID : null,
+	itemName : null,
 
 	add : function(n) {
 		var curr = this.get('quantity');
 		this.set('quantity', curr + (n || 1));
-	}, 
-	
-	initialize:function(options){
-		this.groupId=options.groupId;
-		this.catalogId=options.catalogId;
-		this.itemId=options.itemId;
-		this.uUID=options.uUID;
-		this.itemName=options.itemName;
-		console.log("BasketItem:initialize::"+this.itemName+", "+this.groupId+", "+this.catalogId);
+	},
+
+	initialize : function(options) {
+		this.groupId = options.groupId;
+		this.catalogId = options.catalogId;
+		this.itemId = options.itemId;
+		this.uUID = options.uUID;
+		this.itemName = options.itemName;
+		// console.log("BasketItem:initialize::"+this.itemName+",
+		// "+this.groupId+", "+this.catalogId);
 	}
 
 });
@@ -40,21 +42,60 @@ var BasketItem = Backbone.Model.extend({
 var Basket = Backbone.Collection.extend({
 
 	model : BasketItem,
-	
+
 	initialize : function(options) {
 		this.prices = new Backbone.Model();
 	},
 
-	changeItemInCombo:function(item,groupId,catalogId){
-		console.log("BasketModel:changeItemInCombo::"+item.get('itemName')+", "+groupId+", "+catalogId);
-		
-		
+	changeItemInCombo : function(item, groupId, catalogId) {
+		// console.log("BasketModel:changeItemInCombo::"+item.get('itemName')+",
+		// "+groupId+", "+catalogId);
+		/*
+		 * find item with same group in this. remove it. add new item.
+		 */
+		var self = this;
+		var foundElementToRemove = false;
+		this.each(function(itemInCart, index, list) {
+			if (typeof itemInCart === 'undefined') {
+				console.log("itemInCart undefined, ignoring");
+			} else {
+				var quantity = itemInCart.get('quantity');
+				var itemName = itemInCart.itemName;
+				var group = itemInCart.groupId;
+				if (group === groupId && foundElementToRemove === false) {
+					foundElementToRemove = true;
+					self.remove(itemInCart.get('uUID'));
+				}
+			}
+		});
+		/*
+		 * add the new item
+		 */
+		var itemOptions = _.extend({}, item.attributes, {
+			quantity : 1,
+			groupId : groupId,
+			catalogId : catalogId
+		});
+
+		/*
+		 * create basketItem model
+		 */
+
+		var itemModel = new BasketItem(itemOptions);
+
+		/*
+		 * add the itemModel to the collection
+		 */
+		this.add(itemModel);
+
+		this.dumpCartToConsole();
+
 	},
-	
+
 	addItem : function(item, count, groupId, catalogId) {
-		console.log("BasketModel:addItem::"+item.get('itemName')+", "+groupId+", "+catalogId);
-		
-		
+		// console.log("BasketModel:addItem::"+item.get('itemName')+",
+		// "+groupId+", "+catalogId);
+
 		var itemModel = this.get(item.get('uUID'));
 		if (itemModel) {
 			itemModel.add(count);
@@ -64,37 +105,47 @@ var Basket = Backbone.Collection.extend({
 			 */
 			var itemOptions = _.extend({}, item.attributes, {
 				quantity : count || 1,
-				groupId:groupId,
-				catalogId: catalogId
+				groupId : groupId,
+				catalogId : catalogId
 			});
-			
+
 			/*
 			 * create basketItem model
 			 */
-			
+
 			var itemModel = new BasketItem(itemOptions);
-			
+
 			/*
 			 * add the itemModel to the collection
 			 */
 			this.add(itemModel);
 		}
-		
-		/*
-		 * dump basket to console
-		 */
-		console.log("----- current cart --------");
-		this.each(function(item, index, list)
-		  {
-			var quantity=item.get('quantity');
-			var itemName=item.itemName;
-			var group=item.groupId;
-			
-		     console.log(itemName+":["+quantity+"] from Group:"+group);
-		  });
-		console.log("---------------------------");
+		this.dumpCartToConsole();
 	},
+	addItemRaw : function(itemRaw, count, groupId, catalogId) {
 
+		/*
+		 * create item options, pass groupId, catalogId
+		 */
+		var itemOptions = _.extend({}, itemRaw, {
+			quantity : count || 1,
+			groupId : groupId,
+			catalogId : catalogId
+		});
+
+		/*
+		 * create basketItem model
+		 */
+
+		var itemModel = new BasketItem(itemOptions);
+
+		/*
+		 * add the itemModel to the collection
+		 */
+		this.add(itemModel);
+
+		this.dumpCartToConsole();
+	},
 	removeItem : function(item) {
 		this.remove(item.get('uUID'));
 	},
@@ -119,6 +170,23 @@ var Basket = Backbone.Collection.extend({
 			return sum += item.get('quantity');
 		}.bind(this), 0);
 	},
+
+	dumpCartToConsole : function() {
+		console.log("************----- current cart --------");
+		this.each(function(item, index, list) {
+			var quantity = item.get('quantity');
+			var itemName = item.itemName;
+			var group = item.groupId;
+
+			console.log("*** " + itemName + ":[" + quantity + "] from Group:"
+					+ group);
+		});
+		console.log("*************---------------------------");
+	},
+
+	removeAllItems : function() {
+		this.reset();
+	}
 
 });
 

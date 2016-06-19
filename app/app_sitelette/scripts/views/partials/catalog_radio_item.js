@@ -12,17 +12,11 @@ var CatalogRadioItemView = Backbone.View.extend({
     template : template,
       
     events : {
-        //'click' : 'clickOnItemInList',
         'change': 'changeOfItemSelectionInList'
     },
 
-//    clickOnItemInList : function(event) {
-//        // this.onClick();
-//    	console.log("CatalogRadioItemView:clickOnItemInList"+event);
-//    },
-    changeOfItemSelectionInList : function(event) {
-        console.log("CatalogRadioItemView:changeOfItemSelectionInList"+event);
-    	
+
+    changeOfItemSelectionInList : function(event) { 
     	this.onChange();
     },
     

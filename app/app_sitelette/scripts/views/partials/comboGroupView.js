@@ -31,6 +31,7 @@ var ComboGroupView = Backbone.View.extend({
     },
  
     renderItems: function (el) {
+     
         $(el).find('.cmntyex-list_placeholder').html(new ListRadioView({
             ListItemView: CatalogRadioItemView, 
             ListItemViewOptions: {

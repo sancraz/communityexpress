@@ -32,7 +32,7 @@ App.prototype = {
             return;
         }
 
-        Geolocation.startWatching();
+        //Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
         
 

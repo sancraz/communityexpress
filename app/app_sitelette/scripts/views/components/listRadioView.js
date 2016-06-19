@@ -26,14 +26,21 @@ var ListRadioView = Backbone.View.extend({
     render: function () {
         this.$el.empty();
         var frg = document.createDocumentFragment();
+        var isFirstItem=true;
         this.collection.each(function (item) {
             var html=new this.ListRadioItemView($.extend(this.ListRadioItemViewOptions, {
                 model: item,
                 parent: this
             })).render().el ; 
+            if(isFirstItem){ 
+               $(html).find('input').prop('checked','checked'); 
+               isFirstItem=false;
+            }
             $(frg).append(html); 
+               
         }, this);
         this.$el.append(frg);
+        
         //this.enhance();
         return this;
     },

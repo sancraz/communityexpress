@@ -62,7 +62,7 @@ var CatalogView = PageLayout.extend({
     },
 
     openAddToBasketView : function(model, groupId, catalogId) {
-    	console.log("CatalogView:openAddToBasketView :"+model.attributes.itemName+", "+groupId+", "+catalogId);
+    	//console.log("CatalogView:openAddToBasketView :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
         this.openSubview('addToBasket', model, {
             basket : this.basket,
@@ -73,7 +73,7 @@ var CatalogView = PageLayout.extend({
 
     
     toggleBasketComboEntry : function(model, groupId, catalogId) {
-    	console.log("CatalogView:toggleBasketComboEntry :"+model.attributes.itemName+", "+groupId+", "+catalogId);
+    	//console.log("CatalogView:toggleBasketComboEntry :"+model.attributes.itemName+", "+groupId+", "+catalogId);
         this.basket.changeItemInCombo(model,groupId,catalogId);
     },
     
@@ -114,11 +114,19 @@ var CatalogView = PageLayout.extend({
     },
 
     renderItems : function() {
+    	/*
+    	 * we must clear basket
+    	 */
+    	this.basket.removeAllItems();
+        this.updateBasket();
+        
+        
     	var catalogType=this.catalogType.enumText;
     	var catalogId=this.catalogId;
     	
         switch (catalogType) {
         case 'COMBO':
+        	 
             _(this.items.groups).each(function(group, i) {
                 if (group.unSubgroupedItems.length === 0)
                     return;
@@ -140,12 +148,18 @@ var CatalogView = PageLayout.extend({
                         parent : this
                     }).render().el;
                     this.$('.cmntyex-items_placeholder').append(el);
+                    /*
+                     * now add the first item
+                     */
+                    var firstItem=group.unSubgroupedItems[0];
+                    this.basket.addItemRaw(firstItem,1,groupId,catalogId);
+                    this.updateBasket();
                     break;
                 case 'ITEMIZED':
                 case 'UNDEFINED':
                 default:
                     /*
-                     * else use regular menu but with check boxes
+                     * TODO: Convert these to check boxes. 
                      */
                     var el = new GroupView({
                         onClick : function(model) {
