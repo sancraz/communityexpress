@@ -22,6 +22,7 @@
         <ul style="margin: 0 -1em;" data-role="listview" >
             <li>From: <%= username %></li>
         </ul>
+        <p class="order_wishes">How do you want to receive it?</p>
         <div class="ui-grid-a">
             <div class="ui-block-a">
                 <input type="radio" name="pickupSelected" id="delivery" value="false" <%= !allowDelivery ? "disabled" : "" %>>
@@ -42,6 +43,7 @@
                 <input autocapitalize="off" type="text" name="phone" placeholder="Phone" data-corners="false"/>
             </div>
         <% } %>
+        <p class="order_wishes">How do you want to pay?</p>
         <div class="ui-grid-a">
             <div class="ui-block-a showPaymentInfo">
                 <input type="radio" name="creditCardSelected" id="credit" value="true" <%= !paymentOnlineAccepted ? "disabled" : "" %>>
@@ -101,8 +103,8 @@
             <div class="ui-block-a">
                 <a href="#" class="cancel_button" data-role="button" data-corners="false">Cancel</a>
             </div>
-            <div class="ui-block-b">
-                <input type="submit" value="Send" class="submit_button" data-corners="false">
+            <div class="ui-block-b place_order">
+                <input type="submit" value="Place order" class="submit_button" data-corners="false">
             </div>
         </div>
     </div>

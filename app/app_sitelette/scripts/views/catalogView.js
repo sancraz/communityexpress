@@ -33,7 +33,7 @@ var CatalogView = PageLayout.extend({
         this.basket = options.basket;
         this.backToCatalogs = options.backToCatalogs;
         this.catalogId = options.catalog.data.catalogId;
-        this.catalogType = options.catalog.data.catalogType;        
+        this.catalogType = options.catalog.data.catalogType;
     },
 
     renderData : function() {
@@ -71,13 +71,13 @@ var CatalogView = PageLayout.extend({
         });
     },
 
-    
+
     toggleBasketComboEntry : function(model, groupId, catalogId) {
     	//console.log("CatalogView:toggleBasketComboEntry :"+model.attributes.itemName+", "+groupId+", "+catalogId);
         this.basket.changeItemInCombo(model,groupId,catalogId);
     },
-    
-    
+
+
     triggerOrder : function() {
         this.withLogIn(function() {
             Vent.trigger('viewChange', 'order', {
@@ -119,21 +119,21 @@ var CatalogView = PageLayout.extend({
     	 */
     	this.basket.removeAllItems();
         this.updateBasket();
-        
-        
+
+
     	var catalogType=this.catalogType.enumText;
     	var catalogId=this.catalogId;
-    	
+
         switch (catalogType) {
         case 'COMBO':
-        	 
+
             _(this.items.groups).each(function(group, i) {
                 if (group.unSubgroupedItems.length === 0)
                     return;
-                
-                var groupType=group.groupType.enumText; 
+
+                var groupType=group.groupType.enumText;
                 var groupId=group.groupId;
-                
+
                 switch (groupType) {
                 case 'COMBO':
                     /*
@@ -159,7 +159,7 @@ var CatalogView = PageLayout.extend({
                 case 'UNDEFINED':
                 default:
                     /*
-                     * TODO: Convert these to check boxes. 
+                     * TODO: Convert these to check boxes.
                      */
                     var el = new GroupView({
                         onClick : function(model) {
@@ -179,10 +179,11 @@ var CatalogView = PageLayout.extend({
             _(this.items.groups).each(function(group, i) {
                 if (group.unSubgroupedItems.length === 0)
                     return;
-                
+
                 var groupType=group.groupType.enumText;
                 var groupName=group.enumText;
-                
+                var groupId=group.groupId;
+
                 var el = new GroupView({
                     onClick : function(model) {
                         this.openAddToBasketView(model,groupId,catalogId);
