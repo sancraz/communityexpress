@@ -9,6 +9,7 @@ require('../vendor/styles/fullcalendar.min.css');
 require('./styles/sitelette.css');
 
 require('../vendor/add-to-homescreen/src/addtohomescreen.min');
+// require('jqm');
 require('./scripts/jquerymobile_config');
 require('../vendor/jquery-mobile/jquery.mobile-1.4.5');
 require('../vendor/scripts/owl.carousel.min');

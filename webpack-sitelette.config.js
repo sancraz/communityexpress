@@ -54,6 +54,9 @@ module.exports = {
 	],
 	resolve: {
 		modulesDirectories: ['node_modules'],
-		extensions: ['', '.js', '.es6', '.jsx']
+		extensions: ['', '.js', '.es6', '.jsx'],
+		alias: {
+			'jqm': 'jquery-mobile/dist/jquery.mobile'
+		},
 	},
 };

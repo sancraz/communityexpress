@@ -1263,3 +1263,11 @@ a.jquery-checkbox {
 .catalog-checkbox__input:checked + .catalog-checkbox__icon {
   background-color: #0f0;
 }
+
+.order_wishes {
+	text-align: center;
+}
+
+.place_order div {
+	white-space: normal;
+}
