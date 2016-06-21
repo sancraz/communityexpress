@@ -1,13 +1,18 @@
-var preeController = require('./controllers/preeController'),
-    loader = require('./loader'),
-    FeedView = require('./views/FeedView'),
-    FeedSelectorView = require('./views/FeedSelectorView');
+var loader = require('./loader');
 
-var AppRouter = Backbone.Router.extend({
+var API = {
+    dashboard: function() {
+        var centralPartController = require('./controllers/centralPartController');
+        centralPartController.showLayout();
+    }
+};
 
-    routes: {
-        '': 'dashboard',
-        'about': 'about'
+var AppRouter = Mn.AppRouter.extend({
+
+    controller: API,
+
+    appRoutes: {
+        '': 'dashboard'
     },
 
     initialize: function() {

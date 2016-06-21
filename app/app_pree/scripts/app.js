@@ -1,19 +1,43 @@
 'use strict';
 
 var Router = require('./router'),
-    sessionActions = require('./actions/sessionActions');
-
-// var App = function() {
-//     debugger;
-//     this.params.canCreateAnonymousUser = true;
-// };
+    sessionActions = require('./actions/sessionActions'),
+    HeaderView = require('./views/HeaderView');
 
 var App = new Mn.Application();
+
+App.on('before:start', function() {
+
+    var AppLayoutView = Mn.LayoutView.extend({
+
+        template: require('ejs!./templates/appLayout.ejs'),
+
+        el: '#app-container',
+
+        regions: {
+            headerRegion: '#header-region',
+            leftRegion: '#left-region',
+            centralRegion: '#central-region',
+            rightRegion: '#right-region'
+        },
+
+        initialize: function() {
+            this.render();
+        },
+
+        showViews: function() {
+            App.regions.getRegion('headerRegion').show(new HeaderView());
+        }
+    });
+
+    App.regions = new AppLayoutView();
+    App.regions.showViews();
+});
 
 App.on('start',function() {
     this.params = {};
     // this.params.canCreateAnonymousUser = true;
-    var router = new Router;
+    var router = new Router();
 
     if (this.params.UID) {
         localStorage.setItem("cmxUID", this.params.UID);

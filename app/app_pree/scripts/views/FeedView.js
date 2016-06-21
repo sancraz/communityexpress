@@ -4,7 +4,6 @@ var PreeQuestionView = require('./PreeQuestionView'),
     preeController = require('../controllers/preeController'),
     loader = require('../loader');
 
-// var feedView = Backbone.View.extend({
 var feedView = Mn.CollectionView.extend({
 
     childView: PreeQuestionView,
