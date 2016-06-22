@@ -998,7 +998,7 @@ ul {
 }
 
 .cmntyex-basket {
-	height: 60px;
+	height: 55px;
 	background: rgb(202, 196, 184);
 	margin-top: -17px;
 	margin-left: -16px;
@@ -1014,8 +1014,7 @@ ul {
 	margin: 10px 5px;
 }
 
-.cmntyex-basket_order_button,
-.edit_button {
+.cmntyex-basket_order_button {
 	padding: 8px;
 }
 
@@ -1067,7 +1066,7 @@ ul {
 
 .total_price {
 	padding: 5px 0;
-	border-top: 2px solid black;
+	border-top: 2px solid #999;
 }
 
 /* posts styles */
