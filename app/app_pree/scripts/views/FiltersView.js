@@ -1,7 +1,8 @@
 'use strict';
 
-var template = require('ejs!../templates/filters.ejs'),
-	AutocompleteView = require('./autocomplete/AutocompleteView');
+var gateway = require('../APIGateway/gateway'),
+	template = require('ejs!../templates/filters.ejs'),
+	TagsView = require('./autocomplete/TagsView');
 
 var FiltersView = Mn.LayoutView.extend({
 
@@ -16,36 +17,20 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
-		var categoriesAutocompleteView = new AutocompleteView(this._getCategoriesAutocompleteOptions());
-		this.categoriesRegion.show(categoriesAutocompleteView);
+
+		gateway.sendRequest('getPreeCategories', {
+      	}).then(_.bind(function(resp) {
+     		this.showCategories(resp);
+        }, this), function(e) {
+
+        });
 	},
 
-	_getCategoriesAutocompleteOptions: function() {
-
-		var categories = [
-			{
-			  'id': 1,
-		      'name':'Politics'
-			},
-			{
-			  'id': 2,
-		      'name':'Animals'
-			},
-			{
-			  'id': 3,
-		      'name':'Artists'
-			}
-		];
-      return {
-        data: categories,
-        valueKey: 'name',
-        apiKey: 'id',
-        limit: 10,
-   		name: 'categories',
-        callback: function(name, model){
-        	// debugger;
-        }
-      };
+	showCategories: function(categories) {
+		var categoriesView = new TagsView({
+			items: categories
+		});
+		this.getRegion('categoriesRegion').show(categoriesView);
 	}
 });
 
