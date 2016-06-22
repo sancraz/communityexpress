@@ -8,19 +8,10 @@ var feedView = Mn.CollectionView.extend({
 
     childView: PreeQuestionView,
 
-    childViewContainer: '.pree_feed_questions',
+    // childViewContainer: '.pree_feed_questions',
 
     initialize : function() {
-        this.getQuestions();
         this.listenTo(this.model, "change", this.modelEventHandler);
-    },
-
-    getQuestions: function() {
-        preeController.getQuestions().then(function(model) {
-            this.model = model;
-            this.collection = model.questionCollection;
-            this.render();
-        }.bind(this));
     },
 
     onRender: function() {

@@ -24,16 +24,6 @@ module.exports = {
           loader.hide();
           loader.showErrorMessage(e, 'unable to load questions')
         });
-
-      // preeController.getQuestions()
-      //     .then(function(model) {
-      //         var feedView = new FeedView({
-      //             el: $("#pree_feed"),
-      //             model: model,
-      //             collection: model.questionCollection
-      //         });
-      //         var feedSelectorView = new FeedSelectorView({ el: $("#pree_feed_tabs"), model: model });
-      //     });
     },
 
     showQuestions: function(model) {
@@ -41,7 +31,7 @@ module.exports = {
         //     model: model
         // });
         var feedView = new FeedView({
-            // el: $('#pree_feed')
+            el: $('.pree_feed_questions'),
             collection: model.questionCollection
         });
         this.centralLayoutView.showQuestionsView(feedView)

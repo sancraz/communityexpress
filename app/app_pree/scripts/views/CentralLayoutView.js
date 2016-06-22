@@ -7,6 +7,8 @@ var CentralLayoutView = Mn.LayoutView.extend({
 
     template: template,
 
+    className: 'container-fluid',
+
     regions: {
         filtersRegion: '#filters-region',
         questionsRegion: '#questions-region'
@@ -17,7 +19,6 @@ var CentralLayoutView = Mn.LayoutView.extend({
     },
 
     showQuestionsView: function(view) {
-        debugger;
         this.questionsRegion.show(view);
     }
 });
