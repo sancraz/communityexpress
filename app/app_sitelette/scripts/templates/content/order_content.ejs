@@ -3,7 +3,7 @@
     <div data-role="content" class="content">
 
         <div data-role="collapsible" data-inset="false">
-            <h3><%= count() %> items, $<%= getTotalPrice() %> + Taxes</h3>
+            <h3><%= count() %> items, $<%= getTotalPrice() %> + $<%= taxes %> = $<%= totalPriceWithTax %></h3>
             <table class="cmntyex-order_table">
                 <thead>
                     <th>QTY</th>
@@ -17,6 +17,21 @@
                         <td>$<%= (item.get('quantity') * item.get('price')).toFixed(2) %></td>
                     </tr>
                 <% }) %>
+                <tr>
+                    <td></td>
+                    <td>Subtotal</td>
+                    <td class="subtotal">$<%= getTotalPrice() %></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>Tax</td>
+                    <td>$<%= taxes %></td>
+                </tr>
+                <thead>
+                    <th></th>
+                    <th class="total_price">Total</th>
+                    <th class="total_price">$<%= totalPriceWithTax %></th>
+                </thead>
             </table>
         </div>
         <ul style="margin: 0 -1em;" data-role="listview" >

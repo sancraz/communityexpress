@@ -998,7 +998,7 @@ ul {
 }
 
 .cmntyex-basket {
-	height: 54px;
+	height: 60px;
 	background: rgb(202, 196, 184);
 	margin-top: -17px;
 	margin-left: -16px;
@@ -1006,7 +1006,16 @@ ul {
 	padding: 0 16px;
 }
 
-.cmntyex-basket_order_button {
+.cmntyex-basket .ui-block-b {
+	width: 50%;
+}
+
+.cmntyex-basket p {
+	margin: 10px 5px;
+}
+
+.cmntyex-basket_order_button,
+.edit_button {
 	padding: 8px;
 }
 
@@ -1050,6 +1059,15 @@ ul {
 
 .cmntyex-order_table th {
 	text-align: left;
+}
+
+.subtotal {
+	border-top: 1px solid #999;
+}
+
+.total_price {
+	padding: 5px 0;
+	border-top: 2px solid black;
 }
 
 /* posts styles */
