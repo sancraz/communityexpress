@@ -4,6 +4,7 @@ var App = require('../app'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../views/CentralLayoutView'),
     FeedView = require('../views/FeedView'),
+    FiltersView = require('../views/FiltersView'),
     FeedModel = require('../models/FeedModel');
 
 module.exports = {
@@ -11,7 +12,13 @@ module.exports = {
     showLayout: function() {
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
+        this.showFilters();
         this.getQuestions();
+    },
+
+    showFilters: function() {
+        var filtersView = new FiltersView({});
+        this.centralLayoutView.showFiltersView(filtersView)
     },
 
     getQuestions: function() {
