@@ -39,7 +39,7 @@ var ComboGroupView = Backbone.View.extend({
                     this.onChange(model);
                 }.bind(this),
                 color: this.color,
-                radio_group_name:'groupname',
+                radio_group_name:this.model.groupId,//'groupname',
                 dataRole:'listview',
                 icon:true
             },
