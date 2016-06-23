@@ -1,85 +1,75 @@
 <div class="pree_question">
-  <header>
-    <div class="pree_question_user">
-      <div class="pree_question_user_avatar">
-        <img src="img/avatar.png">
-      </div>
-      <div class="pree_question_user_username">username</div>
-    </div>
-    <div class="pree_question_title">
-      <div class="pree_question_title_name">
-        <%= pollType.displayText.toUpperCase() %>
-      </div>
-      <div class="pree_question_title_date">1 week ago</div>
-    </div>
-    <div class="pree_question_categories_button">
-      <div class="pree_question_categories_name">
-        <!-- Politics -->
-        <%= categories[0].displayText %>
-      </div>
-      <div class="pree_question_categories_count">
-        <%= categories.length %>
-      </div>
-    </div>
-    <div class="pree_question_tags_button">
-      <div class="pree_question_tags_icon"></div>
-      <div class="pree_question_tags_count">
-        <%= tags.length %>
-      </div>
-    </div>
-  </header>
-
-  <div class="pree_question_expanded_menu"></div>
-<!--     <div class="pree_question_categories">
-    <div class="pree_question_categories_title">CATEGORIES</div>
-    <div class="pree_question_categories_close">X</div>
-    <div class="pree_question_categories_block">
-      <% _(categories).each(function(category) { %>
-        <div class="pree_question_categories_item">
-         <%= category.displayText %>
+    <header class="questionHeader">
+        <div class="pree_question_user">
+            <div class="pree_question_user_avatar">
+                <img src="images/Layer-4-copy-3.png" alt="">
+            </div>
+            <div class="pree_question_user_username">username</div>
         </div>
-      <% }) %>
-    </div>
-  </div> -->
-
-<!--     <div class="pree_question_tags">
-    <div class="pree_question_tags_title">TAGS</div>
-    <div class="pree_question_tags_close">X</div>
-    <div class="pree_question_tags_icon_wrapper">
-      <div class="pree_question_tags_icon"></div>
-    </div>
-    <div class="pree_question_tags_block">
-      <div class="pree_question_tags_item">tag</div>
-      <div class="pree_question_tags_item">tag</div>
-      <div class="pree_question_tags_item">tag</div>
-    </div>
-  </div> -->
-
-  <section>
-    <div class="pree_question_text pree_question_text">
-      <%= displayText %>
-    </div>
-    <div class="pree_question_answer pree_question_answer_a">
-      <input type="checkbox"> Yes
-    </div>
-    <div class="pree_question_answer pree_question_answer_b">
-      <input type="checkbox"> No
-    </div>
-    <div class="pree_question_answer pree_question_answer_c">
-      <input type="checkbox"> Not sure
-    </div>
-  </section>
-  <footer>
-    <div class="pree_question_likes_button">
-      <div class="pree_question_likes_icon"></div>
-      <div class="pree_question_likes_count">
-        <%= likes %>
-      </div>
-    </div>
-    <div class="pree_question_comment_button"></div>
-    <div class="pree_question_share_button"></div>
-    <div class="pree_question_answers"></div>
-    <div class="pree_question_more"></div>
-  </footer>
-  <div class="pree_question_answer_details"></div>
+        <div class="pree_question_title">
+            <div class="pree_question_title_date">
+                &bull; 1 week ago
+            </div>
+            <div class="pree_question_title_name"><%= pollType.displayText.toUpperCase() %></div>
+        </div>
+    </header>
+    <section class="questionBody">
+        <div class="pree_question_text"><%= displayText %></div>
+        <div class="pree_question_answer pree_question_answer_a answer">
+            <input type="radio" name="answer"> <span class="ansLetter">A:</span>Agree
+        </div>
+        <div class="pree_question_answer pree_question_answer_b answer">
+            <input type="radio" name="answer"><span class="ansLetter">B:</span >Disagree
+        </div>
+        <div class="pree_question_answer pree_question_answer_c answer">
+            <input type="radio" name="answer"><span class="ansLetter">C:</span >Not sure
+        </div>
+    </section>
+    <footer class="questionFooter">
+        <div class="row tagsAndCategories">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <ul class="pree_question_categories" style="display:inline-block; margin-bottom:10px">
+                    <% _(categories).each(function(category) { %>
+                      <li class="pree_question_categories_item">
+                           <%= category.displayText %>
+                       </li>
+                    <% }) %>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <ul class="pree_question_tags" style="display:inline-block">
+                    <% _(tags).each(function(tag) { %>
+                        <li class="pree_question_categories_item">
+                            <%= tag.displayText %>
+                        </li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+        <div class="pree_question_likes_button">
+            <div class="pree_question_likes_icon">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </div>
+            <div class="pree_question_likes_count"><%= likes %></div>
+        </div>
+        <div class="pree_question_comment_button">
+            <div class="pree_question_comment_icon">
+                <i class="fa fa-comment-o" aria-hidden="true"></i>
+            </div>
+            <div class="pree_question_comment_count"><%= messages %></div>
+        </div>
+        <div class="pree_question_share_button">
+           <img src="images/share.png" alt="">
+        </div>
+        <div class="pree_question_answers">
+            <span><span style="font-weight:400">Answers</span>: <%= totalAnswers %></span>
+        </div>
+        <div class="pree_question_more">
+            <img src="images/Ellipse-5-copy-4.png" alt="">
+            <img src="images/Ellipse-5-copy-3.png" alt="">
+            <img src="images/Ellipse-5-copy-2.png" alt="">
+            <img src="images/Ellipse-5-copy.png" alt="">
+        </div>
+    </footer>
+    <div class="pree_question_answer_details"></div>
 </div>
