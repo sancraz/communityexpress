@@ -13,14 +13,13 @@ module.exports = {
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
         this.showFilters();
-        this.getQuestions();
     },
 
     showFilters: function() {
         var filtersView = new FiltersView({});
-        filtersView.listenTo(filtersView, 'getCategories', this.getCategories, this);
-        filtersView.listenTo(filtersView, 'getTags', this.getTags, this);
-        filtersView.listenTo(filtersView, 'getQuestionsByFilters', this.getQuestionsByFilters, this);
+        filtersView.listenTo(filtersView, 'getCategories', _.bind(this.getCategories, this));
+        filtersView.listenTo(filtersView, 'getTags', _.bind(this.getTags, this));
+        filtersView.listenTo(filtersView, 'getQuestions', _.bind(this.getQuestions, this));
         this.centralLayoutView.showFiltersView(filtersView);
     },
 
@@ -42,14 +41,9 @@ module.exports = {
         });
     },
 
-    getQuestionsByFilters: function(filters) {
-        console.log(filters);
-    },
-
-    getQuestions: function() {
-        gateway.sendRequest('getPreeQuestions', {
-          // throw: true
-      }).then(_.bind(function(resp) {
+    getQuestions: function(params) {
+        gateway.sendRequest('getPreeQuestions', params)
+        .then(_.bind(function(resp) {
             var model = new FeedModel(resp);
             this.showQuestions(model);
         }, this), function(e) {

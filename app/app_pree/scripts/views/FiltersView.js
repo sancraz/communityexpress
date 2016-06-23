@@ -14,11 +14,11 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	ui: {
-		'trending': '.trending-tab'
+		'filtersTabs': '#pree_feed_tabs_items li'
 	},
 
 	events: {
-		'click @ui.trending': 'onGetTrending' 
+		'click @ui.filtersTabs': 'onSelectFiltersTab'
 	},
 
 	serializeData: function() {
@@ -26,14 +26,51 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
-		this.getCategories();
+		this.onGetTrending();
+	},
+
+	onSelectFiltersTab: function(e) {
+		var $target = $(e.currentTarget),
+			filter = $target.data('filtertype');
+
+		this.ui.filtersTabs.find('a').removeClass('active');
+		$target.find('a').addClass('active');
+		switch(filter) {
+			case 'FOLLOWING':
+				this.onGetFollowing();
+				break;
+			case 'CATEGORIES':
+				this.onGetCategories();
+				break;
+			case 'TAGS':
+				this.onGetTags();
+				break;
+			default: 
+				this.onGetTrending();
+				break;
+		}
 	},
 
 	onGetTrending: function() {
-
+		console.log('trending');
+		this.getRegion('tagsRegion').$el.hide();
+		this.getRegion('categoriesRegion').$el.hide();
+		this.updateFilters();
 	},
 
-	getCategories: function() {
+	onGetFollowing: function() {
+		console.log('following');
+		this.getRegion('tagsRegion').$el.hide();
+		this.getRegion('categoriesRegion').$el.hide();
+		this.updateFilters();
+	},
+
+	onGetTags: function() {
+		console.log('tags');
+		this.trigger('getTags', _.bind(this.showTags, this));
+	},
+
+	onGetCategories: function() {
 		this.trigger('getCategories', _.bind(this.showCategories, this));
 	},
 
@@ -43,10 +80,22 @@ var FiltersView = Mn.LayoutView.extend({
 			updateFilters: _.bind(this.updateFilters, this)
 		});
 		this.getRegion('categoriesRegion').show(categoriesView);
+		this.getRegion('tagsRegion').$el.hide();
+		this.getRegion('categoriesRegion').$el.show();
+	},
+
+	showTags: function(tags) {
+		var tagsView = new TagsView({
+			items: tags,
+			updateFilters: _.bind(this.updateFilters, this)
+		});
+		this.getRegion('tagsRegion').show(tagsView);
+		this.getRegion('categoriesRegion').$el.hide();
+		this.getRegion('tagsRegion').$el.show();
 	},
 
 	updateFilters: function(filters) {
-		this.trigger('getQuestionsByFilters', filters);
+		this.trigger('getQuestions', null); //temporary null
 	}
 });
 
