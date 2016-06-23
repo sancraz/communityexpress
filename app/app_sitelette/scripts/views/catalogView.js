@@ -34,6 +34,7 @@ var CatalogView = PageLayout.extend({
         this.backToCatalogs = options.backToCatalogs;
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
+        this.colors= options.catalog.data.colors;//[ '#444444', '#00ffB1', '#ffB2FD', '#FFCCCC' ];
     },
 
     renderData : function() {
@@ -109,8 +110,8 @@ var CatalogView = PageLayout.extend({
     },
 
     generateColor : function(index) {
-        var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
-        return colors[index % colors.length];
+        //var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
+        return this.colors[index % this.colors.length];
     },
 
     renderItems : function() {
