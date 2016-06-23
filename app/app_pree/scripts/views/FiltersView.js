@@ -1,14 +1,24 @@
 'use strict';
 
-var template = require('ejs!../templates/filters.ejs'),
-	AutocompleteView = require('./autocomplete/AutocompleteView');
+var gateway = require('../APIGateway/gateway'),
+	template = require('ejs!../templates/filters.ejs'),
+	TagsView = require('./autocomplete/TagsView');
 
 var FiltersView = Mn.LayoutView.extend({
 
 	template: template,
 
 	regions: {
-		categoriesRegion: '.js-select-categories-region'
+		categoriesRegion: '.js-select-categories-region',
+		tagsRegion: '.js-select-tags-region'
+	},
+
+	ui: {
+		'trending': '.trending-tab'
+	},
+
+	events: {
+		'click @ui.trending': 'onGetTrending' 
 	},
 
 	serializeData: function() {
@@ -16,36 +26,27 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
-		var categoriesAutocompleteView = new AutocompleteView(this._getCategoriesAutocompleteOptions());
-		this.categoriesRegion.show(categoriesAutocompleteView);
+		this.getCategories();
 	},
 
-	_getCategoriesAutocompleteOptions: function() {
+	onGetTrending: function() {
 
-		var categories = [
-			{
-			  'id': 1,
-		      'name':'Politics'
-			},
-			{
-			  'id': 2,
-		      'name':'Animals'
-			},
-			{
-			  'id': 3,
-		      'name':'Artists'
-			}
-		];
-      return {
-        data: categories,
-        valueKey: 'name',
-        apiKey: 'id',
-        limit: 10,
-   		name: 'categories',
-        callback: function(name, model){
-        	// debugger;
-        }
-      };
+	},
+
+	getCategories: function() {
+		this.trigger('getCategories', _.bind(this.showCategories, this));
+	},
+
+	showCategories: function(categories) {
+		var categoriesView = new TagsView({
+			items: categories,
+			updateFilters: _.bind(this.updateFilters, this)
+		});
+		this.getRegion('categoriesRegion').show(categoriesView);
+	},
+
+	updateFilters: function(filters) {
+		this.trigger('getQuestionsByFilters', filters);
 	}
 });
 

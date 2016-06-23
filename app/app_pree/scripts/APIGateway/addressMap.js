@@ -5,6 +5,8 @@ module.exports = {
     getAddressMap: function(){
         return {
             getPreeQuestions: ['GET', '/pree/retrieveFeed'],
+            getPreeCategories: ['GET', '/pree/retrieveCategories'],
+            getPreeTags: ['GET', '/pree/retrieveHashTags'],
 
 
             login: ['POST', '/authentication/login'],
