@@ -85,7 +85,9 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	updateFilters: function() {
-		console.log(this.tagsCollection.toJSON());
+		if (typeof this.options.updateFilters === 'function') {
+			this.options.updateFilters(this.tagsCollection.toJSON());
+		}
 		//App.trigger('filtersChanged')
 	}
 	

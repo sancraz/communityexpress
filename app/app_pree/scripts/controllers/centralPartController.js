@@ -18,7 +18,32 @@ module.exports = {
 
     showFilters: function() {
         var filtersView = new FiltersView({});
-        this.centralLayoutView.showFiltersView(filtersView)
+        filtersView.listenTo(filtersView, 'getCategories', this.getCategories, this);
+        filtersView.listenTo(filtersView, 'getTags', this.getTags, this);
+        filtersView.listenTo(filtersView, 'getQuestionsByFilters', this.getQuestionsByFilters, this);
+        this.centralLayoutView.showFiltersView(filtersView);
+    },
+
+    getCategories: function(callback) {
+        gateway.sendRequest('getPreeCategories', {
+        }).then(_.bind(function(resp) {
+            callback(resp);
+        }, this), function(e) {
+
+        });
+    },
+
+    getTags: function(callback) {
+        gateway.sendRequest('getPreeTags', {
+        }).then(_.bind(function(resp) {
+            callback(resp);
+        }, this), function(e) {
+
+        });
+    },
+
+    getQuestionsByFilters: function(filters) {
+        console.log(filters);
     },
 
     getQuestions: function() {

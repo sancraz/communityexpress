@@ -17,20 +17,23 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
+		this.getCategories();
+	},
 
-		gateway.sendRequest('getPreeCategories', {
-      	}).then(_.bind(function(resp) {
-     		this.showCategories(resp);
-        }, this), function(e) {
-
-        });
+	getCategories: function() {
+		this.trigger('getCategories', _.bind(this.showCategories, this));
 	},
 
 	showCategories: function(categories) {
 		var categoriesView = new TagsView({
-			items: categories
+			items: categories,
+			updateFilters: _.bind(this.updateFilters, this)
 		});
 		this.getRegion('categoriesRegion').show(categoriesView);
+	},
+
+	updateFilters: function(filters) {
+		this.trigger('getQuestionsByFilters', filters);
 	}
 });
 
