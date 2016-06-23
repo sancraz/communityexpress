@@ -9,7 +9,16 @@ var FiltersView = Mn.LayoutView.extend({
 	template: template,
 
 	regions: {
-		categoriesRegion: '.js-select-categories-region'
+		categoriesRegion: '.js-select-categories-region',
+		tagsRegion: '.js-select-tags-region'
+	},
+
+	ui: {
+		'trending': '.trending-tab'
+	},
+
+	events: {
+		'click @ui.trending': 'onGetTrending' 
 	},
 
 	serializeData: function() {
@@ -18,6 +27,10 @@ var FiltersView = Mn.LayoutView.extend({
 
 	onShow: function() {
 		this.getCategories();
+	},
+
+	onGetTrending: function() {
+
 	},
 
 	getCategories: function() {

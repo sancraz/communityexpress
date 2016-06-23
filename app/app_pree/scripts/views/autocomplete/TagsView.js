@@ -52,6 +52,14 @@ var TagsView = Mn.LayoutView.extend({
 		tagsRegion: '.js-tags-region'
 	},
 
+	ui: {
+		'go' : '.go-button'
+	},
+
+	events: {
+		'click @ui.go': 'updateFilters'
+	},
+
 	serializeData: function() {
 		return {};
 	},
@@ -62,7 +70,7 @@ var TagsView = Mn.LayoutView.extend({
 
 		this.tagsCollection = new Backbone.Collection();
 
-		this.listenTo(this.tagsCollection, 'change reset add remove', this.updateFilters, this);
+		// this.listenTo(this.tagsCollection, 'change reset add remove', this.updateFilters, this);
 
 		var tagsCollectionView = new TagsCollectionView({
 			collection: this.tagsCollection
