@@ -1,6 +1,6 @@
 'use strict';
 
-require('./styles/pree_styles.css');
+// require('./styles/pree_styles.css');
 require('./styles/style.css');
 require('./styles/main.scss');
 

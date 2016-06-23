@@ -1,3 +1,181 @@
 .pree_feed_questions {
     padding: 0;
+    list-style: none;
+
+    .pree_question {
+        padding: 20px;
+        background-color: $white;
+        border: solid 1px $input;
+        margin-bottom: 5px;
+    }
+
+    .questionHeader {
+        display: block;
+        height: 50px;
+    }
+
+    .pree_question_user_avatar {
+        float: left;
+        position: relative;
+        top: 2px;
+        height: 50px;
+    }
+
+    .pree_question_user_username {
+        float: left;
+        color: $main;
+        padding-left: 15px;
+        font: 400 13px / 50px Ubuntu;
+    }
+
+    .pree_question_title_date {
+        float: left;
+        color: $grey;
+        font: 400 11px / 50px Ubuntu;
+        padding-left: 5px;
+    }
+
+    .pree_question_title_name {
+        float: right;
+        padding-left: 15px;
+        margin-right: 5px;
+        color: $grey;
+        font: 400 11px / 50px Ubuntu;
+    }
+
+    .pree_question_text {
+        color: $text;
+        font: 400 14px / 21px Ubuntu;
+        display: inline-block;
+        margin-top: 15px;
+        margin-bottom: 25px;
+    }
+
+    .answer {
+        display: inline-block;
+        background-color: $input;
+        width: calc(100% - 0px);
+        color: $text;
+        font: 400 14px / 35px Ubuntu;
+        margin-bottom: 3px;
+        padding-left: 15px;
+    }
+
+    .ansLetter {
+        color: $grey;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    input[type="radio"] {
+        display: inline-block;
+        float: left;
+        position: relative;
+        bottom: -7px;
+    }
+
+    .tagsAndCategories {
+        margin-top: 20px;
+        margin-bottom: 25px;
+    }
+
+    .pree_question_tags_item {
+        float: left;
+        width: auto;
+        background-color: $light-grey;
+        padding: 6px 9px;
+        margin-right: 5px;
+        color: $main;
+        font: 400 11px / 15px Ubuntu;
+    }
+
+    .pree_question_categories {
+        list-style: none;
+
+        .pree_question_categories_item {
+            float: left;
+            width: auto;
+            color: $main;
+            background-color: $white;
+            border: solid 1px ;
+            padding: 5px 9px;
+            margin-right: 5px;
+            font: 400 11px / 15px Ubuntu;
+        }
+    }
+
+    .pree_question_likes_icon,
+    .pree_question_comment_icon {
+        display: block;
+        line-height: 21px;
+        float: left;
+        color: $grey;
+        font-size: 20px;
+    }
+
+    .pree_question_likes_icon:hover,
+    .pree_question_comment_icon:hover {
+        float: left;
+        color: $main;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    .pree_question_likes_count,
+    .pree_question_comment_count {
+        float: left;
+        padding-left: 8px;
+        padding-right: 32px;
+        color: $grey;
+        font: 400 14px / 21px Ubuntu;
+    }
+
+    .pree_question_share_button {
+        float: left;
+        line-height: 18px;
+        font-size: 20px;
+        margin-right: 10px;
+        opacity: 0.8;
+    }
+
+    .pree_question_share_button:hover {
+        float: left;
+        line-height: 18px;
+        font-size: 20px;
+        margin-right: 10px;
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    .pree_question_answers {
+        color: $text;
+        font: 14px / 21px Ubuntu;
+        display: block;
+        float: left;
+        font-weight: 700;
+    }
+
+    .questionFooter {
+        padding-bottom: 20px;
+    }
+
+    .pree_question_more {
+        float: right;
+        opacity: 0.8;
+    }
+
+    .pree_question_more:hover {
+        float: right;
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    @media only screen and (max-width: 370px) {
+        #pree_feed_tabs_items li a {
+            font: 400 12px / 48px Ubuntu;
+        }
+        .questionFooter {
+            padding-bottom: 55px;
+        }
+    }
 }
