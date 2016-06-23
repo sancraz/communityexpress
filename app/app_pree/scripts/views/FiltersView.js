@@ -33,6 +33,7 @@ var FiltersView = Mn.LayoutView.extend({
 		var $target = $(e.currentTarget),
 			filter = $target.data('filtertype');
 
+		if ($target.find('a').hasClass('active')) return;
 		this.ui.filtersTabs.find('a').removeClass('active');
 		$target.find('a').addClass('active');
 		switch(filter) {
@@ -52,21 +53,21 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	onGetTrending: function() {
-		console.log('trending');
 		this.getRegion('tagsRegion').$el.hide();
 		this.getRegion('categoriesRegion').$el.hide();
-		this.updateFilters();
+		this.trigger('getQuestions');
 	},
 
 	onGetFollowing: function() {
-		console.log('following');
 		this.getRegion('tagsRegion').$el.hide();
 		this.getRegion('categoriesRegion').$el.hide();
-		this.updateFilters();
+		this.trigger('getQuestions', {
+			UID: null,
+			filterType:'FOLLOWING'
+		});
 	},
 
 	onGetTags: function() {
-		console.log('tags');
 		this.trigger('getTags', _.bind(this.showTags, this));
 	},
 
@@ -76,6 +77,7 @@ var FiltersView = Mn.LayoutView.extend({
 
 	showCategories: function(categories) {
 		var categoriesView = new TagsView({
+			type: 'categories',
 			items: categories,
 			updateFilters: _.bind(this.updateFilters, this)
 		});
@@ -86,6 +88,7 @@ var FiltersView = Mn.LayoutView.extend({
 
 	showTags: function(tags) {
 		var tagsView = new TagsView({
+			type: 'tags',
 			items: tags,
 			updateFilters: _.bind(this.updateFilters, this)
 		});
@@ -94,8 +97,13 @@ var FiltersView = Mn.LayoutView.extend({
 		this.getRegion('tagsRegion').$el.show();
 	},
 
-	updateFilters: function(filters) {
-		this.trigger('getQuestions', null); //temporary null
+	updateFilters: function(filters, type) {
+		var names = _.pluck(filters, 'value'),
+			tags = names.join(',').replace(/\s/g, ''),
+			queryName = type === 'tags' ? 'tag' : 'cat',
+			params = {};
+		params[queryName] = tags;
+		this.trigger('getQuestions', params);
 	}
 });
 
