@@ -2,7 +2,8 @@
 
 var template = require('ejs!./tagsTpl.ejs'),
 	itemTemplate = require('ejs!./itemTpl.ejs'),
-	AutocompleteView = require('./AutocompleteView');
+	AutocompleteView = require('./AutocompleteView'),
+	TagsCollection = require('./../../models/PreeTagsCollection');
 
 var TagsItemView = Mn.ItemView.extend({
 	template: itemTemplate,
@@ -70,8 +71,8 @@ var TagsView = Mn.LayoutView.extend({
 		var categoriesAutocompleteView = new AutocompleteView(this.getCategoriesAutocompleteOptions());
 		this.getRegion('inputRegion').show(categoriesAutocompleteView);
 
-		this.tagsCollection = new Backbone.Collection();
-
+		this.tagsCollection = new TagsCollection();
+	
 		// this.listenTo(this.tagsCollection, 'change reset add remove', this.updateFilters, this);
 
 		var tagsCollectionView = new TagsCollectionView({
@@ -96,9 +97,9 @@ var TagsView = Mn.LayoutView.extend({
 
 	updateFilters: function() {
 		if (typeof this.options.updateFilters === 'function') {
-			this.options.updateFilters(this.tagsCollection.toJSON());
+			this.options.updateFilters(
+				this.tagsCollection.createQueryParams(this.options.type));
 		}
-		//App.trigger('filtersChanged')
 	}
 
 });
