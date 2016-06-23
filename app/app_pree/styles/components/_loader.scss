@@ -2,9 +2,9 @@
   margin: 40% 35%;
   width: 30%;
   top: 0;
-  background-color: #000;
+  background-color: $black;
   border-radius: 10px;
-  color: #fff;
+  color: $white;
   display: none;
   height: 110px;
   opacity: .7;
@@ -20,7 +20,7 @@
   }
 
   .loader-text {
-    color: #fff;
+    color: $white;
     font-size: 16px;
     font-weight: 800;
   }
