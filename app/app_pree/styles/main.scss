@@ -1,8 +1,13 @@
 @import 'base/colors';
 @import 'components/loader';
 @import 'components/questionsRegion';
+@import 'components/filters';
 
 body {
 	margin: 0;
 	padding: 0;
+}
+
+.central-region {
+	margin-top: 50px;
 }
