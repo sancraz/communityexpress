@@ -45,11 +45,11 @@ var Basket = Backbone.Collection.extend({
 
 	initialize : function(options) {
 		this.prices = new Backbone.Model();
+		this.catalogName="";
 	},
 
 	changeItemInCombo : function(item, groupId, catalogId) {
-		// console.log("BasketModel:changeItemInCombo::"+item.get('itemName')+",
-		// "+groupId+", "+catalogId);
+		 
 		/*
 		 * find item with same group in this. remove it. add new item.
 		 */

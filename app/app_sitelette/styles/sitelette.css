@@ -998,7 +998,7 @@ ul {
 }
 
 .cmntyex-basket {
-	height: 55px;
+	height: 75px;
 	background: rgb(202, 196, 184);
 	margin-top: -17px;
 	margin-left: -16px;
@@ -1015,7 +1015,7 @@ ul {
 }
 
 .cmntyex-basket_order_button {
-	padding: 8px;
+	padding: 10px;
 }
 
 .cmntyex-catalog_header {

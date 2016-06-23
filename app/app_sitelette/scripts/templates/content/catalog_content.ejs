@@ -2,11 +2,12 @@
     <div class="sprite_navbar navbutton_back back"></div>
     <div data-role="content" class="content">
         <div class="ui-grid-c cmntyex-basket">
+        <div style="text-align: center;"><%=basket.catalogName%></div>
             <div class="ui-block-a">
                 <div class="edit_button sprite_navbar sub_edit"></div>
             </div>
             <div class="ui-block-b">
-                <p>Please select <span class="num-of-items"><%= basket.count() %></span> Items - $<span class="total-price"><%= basket.getTotalPrice() %></span></p>
+                <p>Items <span class="num-of-items"><%= basket.count() %></span> - $<span class="total-price"><%= basket.getTotalPrice() %></span></p>
             </div>
             <div class="ui-block-d">
                 <button class="order_button cmntyex-basket_order_button">order</button>

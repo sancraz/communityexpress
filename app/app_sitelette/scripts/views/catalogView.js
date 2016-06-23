@@ -35,6 +35,8 @@ var CatalogView = PageLayout.extend({
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
         this.colors= options.catalog.data.colors;//[ '#444444', '#00ffB1', '#ffB2FD', '#FFCCCC' ];
+        /*add catalog name to basket */
+        this.basket.catalogName=options.catalog.collection.displayText;
     },
 
     renderData : function() {
