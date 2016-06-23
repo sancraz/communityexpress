@@ -95,9 +95,9 @@ var TagsView = Mn.LayoutView.extend({
 
 	updateFilters: function() {
 		if (typeof this.options.updateFilters === 'function') {
-			this.options.updateFilters(this.tagsCollection.toJSON(), this.options.type);
+			this.options.updateFilters(
+				this.tagsCollection.createQueryParams(this.options.type));
 		}
-		//App.trigger('filtersChanged')
 	}
 	
 });

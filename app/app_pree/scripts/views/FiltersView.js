@@ -97,12 +97,7 @@ var FiltersView = Mn.LayoutView.extend({
 		this.getRegion('tagsRegion').$el.show();
 	},
 
-	updateFilters: function(filters, type) {
-		var names = _.pluck(filters, 'value'),
-			tags = names.join(',').replace(/\s/g, ''),
-			queryName = type === 'tags' ? 'tag' : 'cat',
-			params = {};
-		params[queryName] = tags;
+	updateFilters: function(params) {
 		this.trigger('getQuestions', params);
 	}
 });
