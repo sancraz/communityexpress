@@ -57,12 +57,14 @@ var TagsView = Mn.LayoutView.extend({
 
 	ui: {
 		'go' : '.go-button',
+		'discard' : '.discard-button',
 		'collapsibleContent': '#tags-filter-expanded',
 		'toggle': '.pree_tags_close'
 	},
 
 	events: {
-		'click @ui.go': 'updateFilters'
+		'click @ui.go': 'updateFilters',
+		'click @ui.discard': 'discardChanges'
 	},
 
 	serializeData: function() {
@@ -110,6 +112,11 @@ var TagsView = Mn.LayoutView.extend({
 				this.tagsCollection.add(model);
 			}, this)
 		};
+	},
+
+	discardChanges: function() {
+		this.tagsCollection.reset();
+		this.updateFilters();
 	},
 
 	updateFilters: function() {
