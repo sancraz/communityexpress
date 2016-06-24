@@ -157,7 +157,7 @@ var LandingView = PageLayout.extend({
         Vent.trigger('viewChange', 'eventActive', {
             sasl: this.model.id,
             id: uuid
-        })
+        });
     },
 
     // Clicked poll_submit_button on mediascreen

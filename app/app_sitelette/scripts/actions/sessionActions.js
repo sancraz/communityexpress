@@ -134,12 +134,12 @@ module.exports = {
                 * 
                 */
                 console.log(" saving to local storage cmxUID:"
-                + userRegistrationDetails.uid)
+                + userRegistrationDetails.uid);
                 localStorage.setItem("cmxUID", userRegistrationDetails.uid);
 
                 self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
             }
-        })
+        });
     }
 
 };
