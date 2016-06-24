@@ -57,9 +57,8 @@ var TagsView = Mn.LayoutView.extend({
 
 	ui: {
 		'go' : '.go-button',
-		'viewContent': '.tags-container',
-		'collapsibleContent': '.tags-filter-expanded'
-
+		'collapsibleContent': '#tags-filter-expanded',
+		'toggle': '.pree_tags_close'
 	},
 
 	events: {
@@ -72,13 +71,9 @@ var TagsView = Mn.LayoutView.extend({
 		};
 	},
 
-	onShow: function() {
+	onRender: function() {
 		var categoriesAutocompleteView = new AutocompleteView(this.getCategoriesAutocompleteOptions());
-		this.ui.viewContent.on('shown.bs.collapse', function() {
-			console.log('hello');
-			this.collapsibleContent.collapse('show');
-		}, this);
-		this.ui.viewContent.collapse('toggle');
+
 		this.getRegion('inputRegion').show(categoriesAutocompleteView);
 
 		this.tagsCollection = new TagsCollection();
@@ -89,6 +84,18 @@ var TagsView = Mn.LayoutView.extend({
 			collection: this.tagsCollection
 		});
 		this.getRegion('tagsRegion').show(tagsCollectionView);
+	},
+
+	onShow: function() {
+		this.toggleCollapsible();
+	},
+
+	toggleCollapsible: function() {
+		// this.ui.collapsibleContent.collapse('show');
+		//looks much better with timeout
+		setTimeout(_.bind(function() {
+			this.ui.toggle.click();
+		}, this), 10);
 	},
 
 	getCategoriesAutocompleteOptions: function() {
@@ -106,6 +113,7 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	updateFilters: function() {
+		this.toggleCollapsible();
 		if (typeof this.options.updateFilters === 'function') {
 			this.options.updateFilters(
 				this.tagsCollection.createQueryParams(this.options.type));

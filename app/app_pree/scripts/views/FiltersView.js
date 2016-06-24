@@ -9,7 +9,6 @@ var FiltersView = Mn.LayoutView.extend({
 	template: template,
 
 	regions: {
-		categoriesRegion: '.js-select-categories-region',
 		tagsRegion: '.js-select-tags-region'
 	},
 
@@ -54,13 +53,11 @@ var FiltersView = Mn.LayoutView.extend({
 
 	onGetTrending: function() {
 		this.getRegion('tagsRegion').$el.hide();
-		this.getRegion('categoriesRegion').$el.hide();
 		this.trigger('getQuestions');
 	},
 
 	onGetFollowing: function() {
 		this.getRegion('tagsRegion').$el.hide();
-		this.getRegion('categoriesRegion').$el.hide();
 		this.trigger('getQuestions', {
 			UID: null,
 			filterType:'FOLLOWING'
@@ -81,9 +78,8 @@ var FiltersView = Mn.LayoutView.extend({
 			items: categories,
 			updateFilters: _.bind(this.updateFilters, this)
 		});
-		this.getRegion('categoriesRegion').show(categoriesView);
-		this.getRegion('tagsRegion').$el.hide();
-		this.getRegion('categoriesRegion').$el.show();
+		this.getRegion('tagsRegion').$el.show();
+		this.getRegion('tagsRegion').show(categoriesView);
 	},
 
 	showTags: function(tags) {
@@ -92,9 +88,8 @@ var FiltersView = Mn.LayoutView.extend({
 			items: tags,
 			updateFilters: _.bind(this.updateFilters, this)
 		});
-		this.getRegion('tagsRegion').show(tagsView);
-		this.getRegion('categoriesRegion').$el.hide();
 		this.getRegion('tagsRegion').$el.show();
+		this.getRegion('tagsRegion').show(tagsView);
 	},
 
 	updateFilters: function(params) {
