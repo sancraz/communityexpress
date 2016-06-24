@@ -31,7 +31,7 @@
 	height: 50px;
 	line-height: 2;
 }
-.cmtyxnavbar { 
+.cmtyxnavbar {
 	background-color: #000;
 	display: table;
 	width: 100%;
@@ -396,7 +396,7 @@
 }
 
 .theme2_event_entry_wrapper {
-	width: 100%;
+	width: 98%;
 	padding: 0px;
 	font-family: "Arial";
 	font-weight: 300;
@@ -484,7 +484,7 @@
 
 .theme2_event_entry_img img {
 	padding: 0px;
-	height: 100px;
+    width: 100%;
 	vertical-align: top;
 }
 
@@ -1096,170 +1096,170 @@
  */
 
 
-.sprite_navbar { background: url('sprite_navbar_theme2.png') no-repeat top left; width: 100px; height: 100px;  } 
-.sprite_navbar.button0_1_0_0 { background-position: 0 0; } 
-.sprite_navbar.button12_1_0_0 { background-position: 0 -110px; } 
-.sprite_navbar.button12_39_0_0 { background-position: 0 -220px; } 
-.sprite_navbar.button0_2_0_0 { background-position: 0 -330px; } 
-.sprite_navbar.button0_39_0_0 { background-position: 0 -440px; } 
-.sprite_navbar.button12_2_0_0 { background-position: 0 -550px; } 
-.sprite_navbar.button0_3_0_0 { background-position: 0 -660px; } 
-.sprite_navbar.button12_3_0_0 { background-position: 0 -770px; } 
-.sprite_navbar.button12_4_0_0 { background-position: 0 -880px; } 
-.sprite_navbar.button12_5_0_0 { background-position: 0 -990px; } 
-.sprite_navbar.button0_4_0_0 { background-position: 0 -1100px; } 
-.sprite_navbar.button0_5_0_0 { background-position: 0 -1210px; } 
-.sprite_navbar.button12_7_0_0 { background-position: 0 -1320px; } 
-.sprite_navbar.button12_6_0_0 { background-position: 0 -1430px; } 
-.sprite_navbar.button0_6_0_0 { background-position: 0 -1540px; } 
-.sprite_navbar.button0_7_0_0 { background-position: 0 -1650px; } 
-.sprite_navbar.button0_8_0_0 { background-position: 0 -1760px; } 
-.sprite_navbar.button12_8_0_0 { background-position: 0 -1870px; } 
-.sprite_navbar.button12_9_0_0 { background-position: 0 -1980px; } 
-.sprite_navbar.button12_10_0_0 { background-position: 0 -2090px; } 
-.sprite_navbar.button0_9_0_0 { background-position: 0 -2200px; } 
-.sprite_navbar.button0_10_0_0 { background-position: 0 -2310px; } 
-.sprite_navbar.button12_11_0_0 { background-position: 0 -2420px; } 
-.sprite_navbar.button0_11_0_0 { background-position: 0 -2530px; } 
-.sprite_navbar.button0_12_0_0 { background-position: 0 -2640px; } 
-.sprite_navbar.button12_12_0_0 { background-position: 0 -2750px; } 
-.sprite_navbar.button0_14_0_0 { background-position: 0 -2860px; } 
-.sprite_navbar.button0_13_0_0 { background-position: 0 -2970px; } 
-.sprite_navbar.button12_14_0_0 { background-position: 0 -3080px; } 
-.sprite_navbar.button12_13_0_0 { background-position: 0 -3190px; } 
-.sprite_navbar.button0_15_0_0 { background-position: 0 -3300px; } 
-.sprite_navbar.button12_15_0_0 { background-position: 0 -3410px; } 
-.sprite_navbar.button0_16_0_0 { background-position: 0 -3520px; } 
-.sprite_navbar.button12_16_0_0 { background-position: 0 -3630px; } 
-.sprite_navbar.button12_17_0_0 { background-position: 0 -3740px; } 
-.sprite_navbar.button0_17_0_0 { background-position: 0 -3850px; } 
-.sprite_navbar.button0_25_0_0 { background-position: 0 -3960px; } 
-.sprite_navbar.button12_25_0_0 { background-position: 0 -4070px; } 
-.sprite_navbar.button0_18_0_0 { background-position: 0 -4180px; } 
-.sprite_navbar.button12_40_0_0 { background-position: 0 -4290px; } 
-.sprite_navbar.button12_18_0_0 { background-position: 0 -4400px; } 
-.sprite_navbar.button0_19_0_0 { background-position: 0 -4510px; } 
-.sprite_navbar.button12_19_0_0 { background-position: 0 -4620px; } 
-.sprite_navbar.button12_20_0_0 { background-position: 0 -4730px; } 
-.sprite_navbar.button0_20_0_0 { background-position: 0 -4840px; } 
-.sprite_navbar.button0_21_0_0 { background-position: 0 -4950px; } 
-.sprite_navbar.button12_21_0_0 { background-position: 0 -5060px; } 
-.sprite_navbar.button0_22_0_0 { background-position: 0 -5170px; } 
-.sprite_navbar.button12_22_0_0 { background-position: 0 -5280px; } 
-.sprite_navbar.button12_23_0_0 { background-position: 0 -5390px; } 
-.sprite_navbar.button0_23_0_0 { background-position: 0 -5500px; } 
-.sprite_navbar.button0_24_0_0 { background-position: 0 -5610px; } 
-.sprite_navbar.button12_24_0_0 { background-position: 0 -5720px; } 
-.sprite_navbar.button12_26_0_0 { background-position: 0 -5830px; } 
-.sprite_navbar.button0_26_0_0 { background-position: 0 -5940px; } 
-.sprite_navbar.button12_28_0_0 { background-position: 0 -6050px; } 
-.sprite_navbar.button0_28_0_0 { background-position: 0 -6160px; } 
-.sprite_navbar.button12_29_0_0 { background-position: 0 -6270px; } 
-.sprite_navbar.button0_29_0_0 { background-position: 0 -6380px; } 
-.sprite_navbar.button0_27_0_0 { background-position: 0 -6490px; } 
-.sprite_navbar.button12_27_0_0 { background-position: 0 -6600px; } 
-.sprite_navbar.button12_30_0_0 { background-position: 0 -6710px; } 
-.sprite_navbar.button0_30_0_0 { background-position: 0 -6820px; } 
-.sprite_navbar.button0_31_0_0 { background-position: 0 -6930px; } 
-.sprite_navbar.button12_31_0_0 { background-position: 0 -7040px; } 
-.sprite_navbar.button12_32_0_0 { background-position: 0 -7150px; } 
-.sprite_navbar.button0_32_0_0 { background-position: 0 -7260px; } 
-.sprite_navbar.button12_33_0_0 { background-position: 0 -7370px; } 
-.sprite_navbar.button0_33_0_0 { background-position: 0 -7480px; } 
-.sprite_navbar.button0_34_0_0 { background-position: 0 -7590px; } 
-.sprite_navbar.button12_34_0_0 { background-position: 0 -7700px; } 
-.sprite_navbar.button12_35_0_0 { background-position: 0 -7810px; } 
-.sprite_navbar.button0_35_0_0 { background-position: 0 -7920px; } 
-.sprite_navbar.button12_36_0_0 { background-position: 0 -8030px; } 
-.sprite_navbar.button0_36_0_0 { background-position: 0 -8140px; } 
-.sprite_navbar.button0_37_0_0 { background-position: 0 -8250px; } 
-.sprite_navbar.button12_37_0_0 { background-position: 0 -8360px; } 
-.sprite_navbar.button0_38_0_0 { background-position: 0 -8470px; } 
-.sprite_navbar.button12_38_0_0 { background-position: 0 -8580px; } 
-.sprite_navbar.button0_40_0_0 { background-position: 0 -8690px; width: 98px; } 
-.sprite_navbar.button12_41_0_0 { background-position: 0 -8800px; } 
-.sprite_navbar.button0_41_0_0 { background-position: 0 -8910px; } 
-.sprite_navbar.button12_42_0_0 { background-position: 0 -9020px; } 
-.sprite_navbar.button0_42_0_0 { background-position: 0 -9130px; } 
-.sprite_navbar.button0_43_0_0 { background-position: 0 -9240px; } 
-.sprite_navbar.button12_43_0_0 { background-position: 0 -9350px; } 
-.sprite_navbar.button12_44_0_0 { background-position: 0 -9460px; } 
-.sprite_navbar.button0_44_0_0 { background-position: 0 -9570px; } 
-.sprite_navbar.button12_45_0_0 { background-position: 0 -9680px; } 
-.sprite_navbar.button0_45_0_0 { background-position: 0 -9790px; } 
-.sprite_navbar.button12_46_0_0 { background-position: 0 -9900px; } 
-.sprite_navbar.button0_47_0_0 { background-position: 0 -10010px; } 
-.sprite_navbar.button12_47_0_0 { background-position: 0 -10120px; } 
-.sprite_navbar.button0_46_0_0 { background-position: 0 -10230px; } 
-.sprite_navbar.button0_49_0_0 { background-position: 0 -10340px; } 
-.sprite_navbar.button0_48_0_0 { background-position: 0 -10450px; } 
-.sprite_navbar.button12_49_0_0 { background-position: 0 -10560px; } 
-.sprite_navbar.button12_48_0_0 { background-position: 0 -10670px; } 
-.sprite_navbar.button12_50_0_0 { background-position: 0 -10780px; } 
-.sprite_navbar.button0_50_0_0 { background-position: 0 -10890px; } 
-.sprite_navbar.button0_51_0_0 { background-position: 0 -11000px; } 
-.sprite_navbar.button12_51_0_0 { background-position: 0 -11110px; } 
-.sprite_navbar.button12_53_0_0 { background-position: 0 -11220px; } 
-.sprite_navbar.button12_52_0_0 { background-position: 0 -11330px; } 
-.sprite_navbar.button0_53_0_0 { background-position: 0 -11440px; } 
-.sprite_navbar.button0_52_0_0 { background-position: 0 -11550px; } 
-.sprite_navbar.button0_54_0_0 { background-position: 0 -11660px; } 
-.sprite_navbar.button12_55_0_0 { background-position: 0 -11770px; } 
-.sprite_navbar.button0_55_0_0 { background-position: 0 -11880px; } 
-.sprite_navbar.button12_54_0_0 { background-position: 0 -11990px; } 
-.sprite_navbar.button12_57_0_0 { background-position: 0 -12100px; } 
-.sprite_navbar.button0_57_0_0 { background-position: 0 -12210px; } 
-.sprite_navbar.button12_56_0_0 { background-position: 0 -12320px; } 
-.sprite_navbar.button0_56_0_0 { background-position: 0 -12430px; } 
-.sprite_navbar.button0_58_0_0 { background-position: 0 -12540px; } 
-.sprite_navbar.button12_58_0_0 { background-position: 0 -12650px; } 
-.sprite_navbar.button0_59_0_0 { background-position: 0 -12760px; } 
-.sprite_navbar.button12_59_0_0 { background-position: 0 -12870px; } 
-.sprite_navbar.button12_60_0_0 { background-position: 0 -12980px; } 
-.sprite_navbar.button12_61_0_0 { background-position: 0 -13090px; } 
-.sprite_navbar.button0_60_0_0 { background-position: 0 -13200px; } 
-.sprite_navbar.button0_61_0_0 { background-position: 0 -13310px; } 
-.sprite_navbar.button0_62_0_0 { background-position: 0 -13420px; } 
-.sprite_navbar.button12_62_0_0 { background-position: 0 -13530px; } 
-.sprite_navbar.button0_63_0_0 { background-position: 0 -13640px; } 
-.sprite_navbar.button12_63_0_0 { background-position: 0 -13750px; } 
-.sprite_navbar.button12_64_0_0 { background-position: 0 -13860px; } 
-.sprite_navbar.button0_64_0_0 { background-position: 0 -13970px; } 
-.sprite_navbar.button12_65_0_0 { background-position: 0 -14080px; } 
-.sprite_navbar.button0_65_0_0 { background-position: 0 -14190px; } 
-.sprite_navbar.button0_66_0_0 { background-position: 0 -14300px; } 
-.sprite_navbar.button12_66_0_0 { background-position: 0 -14410px; } 
-.sprite_navbar.navbutton_aboutUs { background-position: 0 -14520px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_back { background-position: 0 -14590px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_catalog { background-position: 0 -14660px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_contests { background-position: 0 -14730px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_deal { background-position: 0 -14800px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_email { background-position: 0 -14870px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_facebook { background-position: 0 -14940px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_favorite-gray { background-position: 0 -15010px; width: 30px; height: 30px; } 
-.sprite_navbar.navbutton_favorite-yellow { background-position: 0 -15050px; width: 30px; height: 30px; } 
-.sprite_navbar.navbutton_filter-icon { background-position: 0 -15090px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_forward { background-position: 0 -15160px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_list-of-favorites { background-position: 0 -15230px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_list-View { background-position: 0 -15300px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_menu { background-position: 0 -15370px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_map { background-position: 0 -15440px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_near_me { background-position: 0 -15510px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_search { background-position: 0 -15580px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_promotion { background-position: 0 -15650px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_share { background-position: 0 -15720px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_sign_in { background-position: 0 -15790px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_write_review { background-position: 0 -15860px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_sign_out { background-position: 0 -15930px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_twitter { background-position: 0 -16000px; width: 60px; height: 60px; } 
-.sprite_navbar.navbutton_sms_button { background-position: 0 -16070px; width: 60px; height: 60px; } 
-.sprite_navbar.star { background-position: 0 -16140px; } 
-.sprite_navbar.play { background-position: 0 -16250px; } 
-.sprite_navbar.star_gray { background-position: 0 -16360px; } 
-.sprite_navbar.sub_delete { background-position: 0 -16470px; width: 46px; height: 51px; } 
-.sprite_navbar.star_half { background-position: 0 -16531px; } 
-.sprite_navbar.sub_edit { background-position: 0 -16641px; width: 48px; height: 55px; } 
-.sprite_navbar.thumbs-down { background-position: 0 -16706px; } 
+.sprite_navbar { background: url('sprite_navbar_theme2.png') no-repeat top left; width: 100px; height: 100px;  }
+.sprite_navbar.button0_1_0_0 { background-position: 0 0; }
+.sprite_navbar.button12_1_0_0 { background-position: 0 -110px; }
+.sprite_navbar.button12_39_0_0 { background-position: 0 -220px; }
+.sprite_navbar.button0_2_0_0 { background-position: 0 -330px; }
+.sprite_navbar.button0_39_0_0 { background-position: 0 -440px; }
+.sprite_navbar.button12_2_0_0 { background-position: 0 -550px; }
+.sprite_navbar.button0_3_0_0 { background-position: 0 -660px; }
+.sprite_navbar.button12_3_0_0 { background-position: 0 -770px; }
+.sprite_navbar.button12_4_0_0 { background-position: 0 -880px; }
+.sprite_navbar.button12_5_0_0 { background-position: 0 -990px; }
+.sprite_navbar.button0_4_0_0 { background-position: 0 -1100px; }
+.sprite_navbar.button0_5_0_0 { background-position: 0 -1210px; }
+.sprite_navbar.button12_7_0_0 { background-position: 0 -1320px; }
+.sprite_navbar.button12_6_0_0 { background-position: 0 -1430px; }
+.sprite_navbar.button0_6_0_0 { background-position: 0 -1540px; }
+.sprite_navbar.button0_7_0_0 { background-position: 0 -1650px; }
+.sprite_navbar.button0_8_0_0 { background-position: 0 -1760px; }
+.sprite_navbar.button12_8_0_0 { background-position: 0 -1870px; }
+.sprite_navbar.button12_9_0_0 { background-position: 0 -1980px; }
+.sprite_navbar.button12_10_0_0 { background-position: 0 -2090px; }
+.sprite_navbar.button0_9_0_0 { background-position: 0 -2200px; }
+.sprite_navbar.button0_10_0_0 { background-position: 0 -2310px; }
+.sprite_navbar.button12_11_0_0 { background-position: 0 -2420px; }
+.sprite_navbar.button0_11_0_0 { background-position: 0 -2530px; }
+.sprite_navbar.button0_12_0_0 { background-position: 0 -2640px; }
+.sprite_navbar.button12_12_0_0 { background-position: 0 -2750px; }
+.sprite_navbar.button0_14_0_0 { background-position: 0 -2860px; }
+.sprite_navbar.button0_13_0_0 { background-position: 0 -2970px; }
+.sprite_navbar.button12_14_0_0 { background-position: 0 -3080px; }
+.sprite_navbar.button12_13_0_0 { background-position: 0 -3190px; }
+.sprite_navbar.button0_15_0_0 { background-position: 0 -3300px; }
+.sprite_navbar.button12_15_0_0 { background-position: 0 -3410px; }
+.sprite_navbar.button0_16_0_0 { background-position: 0 -3520px; }
+.sprite_navbar.button12_16_0_0 { background-position: 0 -3630px; }
+.sprite_navbar.button12_17_0_0 { background-position: 0 -3740px; }
+.sprite_navbar.button0_17_0_0 { background-position: 0 -3850px; }
+.sprite_navbar.button0_25_0_0 { background-position: 0 -3960px; }
+.sprite_navbar.button12_25_0_0 { background-position: 0 -4070px; }
+.sprite_navbar.button0_18_0_0 { background-position: 0 -4180px; }
+.sprite_navbar.button12_40_0_0 { background-position: 0 -4290px; }
+.sprite_navbar.button12_18_0_0 { background-position: 0 -4400px; }
+.sprite_navbar.button0_19_0_0 { background-position: 0 -4510px; }
+.sprite_navbar.button12_19_0_0 { background-position: 0 -4620px; }
+.sprite_navbar.button12_20_0_0 { background-position: 0 -4730px; }
+.sprite_navbar.button0_20_0_0 { background-position: 0 -4840px; }
+.sprite_navbar.button0_21_0_0 { background-position: 0 -4950px; }
+.sprite_navbar.button12_21_0_0 { background-position: 0 -5060px; }
+.sprite_navbar.button0_22_0_0 { background-position: 0 -5170px; }
+.sprite_navbar.button12_22_0_0 { background-position: 0 -5280px; }
+.sprite_navbar.button12_23_0_0 { background-position: 0 -5390px; }
+.sprite_navbar.button0_23_0_0 { background-position: 0 -5500px; }
+.sprite_navbar.button0_24_0_0 { background-position: 0 -5610px; }
+.sprite_navbar.button12_24_0_0 { background-position: 0 -5720px; }
+.sprite_navbar.button12_26_0_0 { background-position: 0 -5830px; }
+.sprite_navbar.button0_26_0_0 { background-position: 0 -5940px; }
+.sprite_navbar.button12_28_0_0 { background-position: 0 -6050px; }
+.sprite_navbar.button0_28_0_0 { background-position: 0 -6160px; }
+.sprite_navbar.button12_29_0_0 { background-position: 0 -6270px; }
+.sprite_navbar.button0_29_0_0 { background-position: 0 -6380px; }
+.sprite_navbar.button0_27_0_0 { background-position: 0 -6490px; }
+.sprite_navbar.button12_27_0_0 { background-position: 0 -6600px; }
+.sprite_navbar.button12_30_0_0 { background-position: 0 -6710px; }
+.sprite_navbar.button0_30_0_0 { background-position: 0 -6820px; }
+.sprite_navbar.button0_31_0_0 { background-position: 0 -6930px; }
+.sprite_navbar.button12_31_0_0 { background-position: 0 -7040px; }
+.sprite_navbar.button12_32_0_0 { background-position: 0 -7150px; }
+.sprite_navbar.button0_32_0_0 { background-position: 0 -7260px; }
+.sprite_navbar.button12_33_0_0 { background-position: 0 -7370px; }
+.sprite_navbar.button0_33_0_0 { background-position: 0 -7480px; }
+.sprite_navbar.button0_34_0_0 { background-position: 0 -7590px; }
+.sprite_navbar.button12_34_0_0 { background-position: 0 -7700px; }
+.sprite_navbar.button12_35_0_0 { background-position: 0 -7810px; }
+.sprite_navbar.button0_35_0_0 { background-position: 0 -7920px; }
+.sprite_navbar.button12_36_0_0 { background-position: 0 -8030px; }
+.sprite_navbar.button0_36_0_0 { background-position: 0 -8140px; }
+.sprite_navbar.button0_37_0_0 { background-position: 0 -8250px; }
+.sprite_navbar.button12_37_0_0 { background-position: 0 -8360px; }
+.sprite_navbar.button0_38_0_0 { background-position: 0 -8470px; }
+.sprite_navbar.button12_38_0_0 { background-position: 0 -8580px; }
+.sprite_navbar.button0_40_0_0 { background-position: 0 -8690px; width: 98px; }
+.sprite_navbar.button12_41_0_0 { background-position: 0 -8800px; }
+.sprite_navbar.button0_41_0_0 { background-position: 0 -8910px; }
+.sprite_navbar.button12_42_0_0 { background-position: 0 -9020px; }
+.sprite_navbar.button0_42_0_0 { background-position: 0 -9130px; }
+.sprite_navbar.button0_43_0_0 { background-position: 0 -9240px; }
+.sprite_navbar.button12_43_0_0 { background-position: 0 -9350px; }
+.sprite_navbar.button12_44_0_0 { background-position: 0 -9460px; }
+.sprite_navbar.button0_44_0_0 { background-position: 0 -9570px; }
+.sprite_navbar.button12_45_0_0 { background-position: 0 -9680px; }
+.sprite_navbar.button0_45_0_0 { background-position: 0 -9790px; }
+.sprite_navbar.button12_46_0_0 { background-position: 0 -9900px; }
+.sprite_navbar.button0_47_0_0 { background-position: 0 -10010px; }
+.sprite_navbar.button12_47_0_0 { background-position: 0 -10120px; }
+.sprite_navbar.button0_46_0_0 { background-position: 0 -10230px; }
+.sprite_navbar.button0_49_0_0 { background-position: 0 -10340px; }
+.sprite_navbar.button0_48_0_0 { background-position: 0 -10450px; }
+.sprite_navbar.button12_49_0_0 { background-position: 0 -10560px; }
+.sprite_navbar.button12_48_0_0 { background-position: 0 -10670px; }
+.sprite_navbar.button12_50_0_0 { background-position: 0 -10780px; }
+.sprite_navbar.button0_50_0_0 { background-position: 0 -10890px; }
+.sprite_navbar.button0_51_0_0 { background-position: 0 -11000px; }
+.sprite_navbar.button12_51_0_0 { background-position: 0 -11110px; }
+.sprite_navbar.button12_53_0_0 { background-position: 0 -11220px; }
+.sprite_navbar.button12_52_0_0 { background-position: 0 -11330px; }
+.sprite_navbar.button0_53_0_0 { background-position: 0 -11440px; }
+.sprite_navbar.button0_52_0_0 { background-position: 0 -11550px; }
+.sprite_navbar.button0_54_0_0 { background-position: 0 -11660px; }
+.sprite_navbar.button12_55_0_0 { background-position: 0 -11770px; }
+.sprite_navbar.button0_55_0_0 { background-position: 0 -11880px; }
+.sprite_navbar.button12_54_0_0 { background-position: 0 -11990px; }
+.sprite_navbar.button12_57_0_0 { background-position: 0 -12100px; }
+.sprite_navbar.button0_57_0_0 { background-position: 0 -12210px; }
+.sprite_navbar.button12_56_0_0 { background-position: 0 -12320px; }
+.sprite_navbar.button0_56_0_0 { background-position: 0 -12430px; }
+.sprite_navbar.button0_58_0_0 { background-position: 0 -12540px; }
+.sprite_navbar.button12_58_0_0 { background-position: 0 -12650px; }
+.sprite_navbar.button0_59_0_0 { background-position: 0 -12760px; }
+.sprite_navbar.button12_59_0_0 { background-position: 0 -12870px; }
+.sprite_navbar.button12_60_0_0 { background-position: 0 -12980px; }
+.sprite_navbar.button12_61_0_0 { background-position: 0 -13090px; }
+.sprite_navbar.button0_60_0_0 { background-position: 0 -13200px; }
+.sprite_navbar.button0_61_0_0 { background-position: 0 -13310px; }
+.sprite_navbar.button0_62_0_0 { background-position: 0 -13420px; }
+.sprite_navbar.button12_62_0_0 { background-position: 0 -13530px; }
+.sprite_navbar.button0_63_0_0 { background-position: 0 -13640px; }
+.sprite_navbar.button12_63_0_0 { background-position: 0 -13750px; }
+.sprite_navbar.button12_64_0_0 { background-position: 0 -13860px; }
+.sprite_navbar.button0_64_0_0 { background-position: 0 -13970px; }
+.sprite_navbar.button12_65_0_0 { background-position: 0 -14080px; }
+.sprite_navbar.button0_65_0_0 { background-position: 0 -14190px; }
+.sprite_navbar.button0_66_0_0 { background-position: 0 -14300px; }
+.sprite_navbar.button12_66_0_0 { background-position: 0 -14410px; }
+.sprite_navbar.navbutton_aboutUs { background-position: 0 -14520px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_back { background-position: 0 -14590px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_catalog { background-position: 0 -14660px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_contests { background-position: 0 -14730px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_deal { background-position: 0 -14800px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_email { background-position: 0 -14870px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_facebook { background-position: 0 -14940px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_favorite-gray { background-position: 0 -15010px; width: 30px; height: 30px; }
+.sprite_navbar.navbutton_favorite-yellow { background-position: 0 -15050px; width: 30px; height: 30px; }
+.sprite_navbar.navbutton_filter-icon { background-position: 0 -15090px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_forward { background-position: 0 -15160px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_list-of-favorites { background-position: 0 -15230px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_list-View { background-position: 0 -15300px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_menu { background-position: 0 -15370px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_map { background-position: 0 -15440px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_near_me { background-position: 0 -15510px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_search { background-position: 0 -15580px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_promotion { background-position: 0 -15650px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_share { background-position: 0 -15720px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_sign_in { background-position: 0 -15790px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_write_review { background-position: 0 -15860px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_sign_out { background-position: 0 -15930px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_twitter { background-position: 0 -16000px; width: 60px; height: 60px; }
+.sprite_navbar.navbutton_sms_button { background-position: 0 -16070px; width: 60px; height: 60px; }
+.sprite_navbar.star { background-position: 0 -16140px; }
+.sprite_navbar.play { background-position: 0 -16250px; }
+.sprite_navbar.star_gray { background-position: 0 -16360px; }
+.sprite_navbar.sub_delete { background-position: 0 -16470px; width: 46px; height: 51px; }
+.sprite_navbar.star_half { background-position: 0 -16531px; }
+.sprite_navbar.sub_edit { background-position: 0 -16641px; width: 48px; height: 55px; }
+.sprite_navbar.thumbs-down { background-position: 0 -16706px; }
 .sprite_navbar.thumbs-up { background-position: 0 -16816px; }
 
 
