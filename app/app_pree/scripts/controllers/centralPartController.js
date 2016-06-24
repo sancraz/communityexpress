@@ -1,6 +1,7 @@
 'use strict';
 
 var App = require('../app'),
+    appCache = require('../appCache'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../views/CentralLayoutView'),
     FeedView = require('../views/FeedView'),
@@ -42,6 +43,11 @@ module.exports = {
     },
 
     getQuestions: function(params) {
+        var UID = '';
+        if ( appCache.get('user') && appCache.get('user').getUID ) {
+            UID = appCache.get('user').getUID();
+        }
+        params['UID'] = UID;
         gateway.sendRequest('getPreeQuestions', params)
         .then(_.bind(function(resp) {
             var model = new FeedModel(resp);

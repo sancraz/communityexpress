@@ -14,7 +14,9 @@ var PreeTagsCollection = Backbone.Collection.extend({
 			names = _.pluck(filters, 'value'),
 			tags = names.join(',').replace(/\s/g, ''),
 			queryName = type === 'tags' ? 'tag' : 'cat',
-			params = {};
+			params = {
+				filterType: ''
+			};
 		params[queryName] = tags;
 		return params;
 	}

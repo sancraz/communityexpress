@@ -53,13 +53,14 @@ var FiltersView = Mn.LayoutView.extend({
 
 	onGetTrending: function() {
 		this.getRegion('tagsRegion').$el.hide();
-		this.trigger('getQuestions');
+		this.trigger('getQuestions', {
+			filterType: ''
+		});
 	},
 
 	onGetFollowing: function() {
 		this.getRegion('tagsRegion').$el.hide();
 		this.trigger('getQuestions', {
-			UID: null,
 			filterType:'FOLLOWING'
 		});
 	},
