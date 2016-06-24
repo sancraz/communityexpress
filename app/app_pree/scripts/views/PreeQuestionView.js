@@ -24,6 +24,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     ui: {
         preeQuestionCategories: '.pree_question_categories_button',
         preeQuestionTags: '.pree_question_tags_button',
+        preeQuestionDetailed: '.pree_question_detailed',
         closeCategories: '.pree_question_categories_close',
         closeTags: '.pree_question_tags_close',
         answer: '.pree_question_answer',
@@ -69,16 +70,17 @@ var FeedSelectorView = Mn.LayoutView.extend({
         }));
     },
 
-    openAnswerView: function() {
-        loader.show('ANSWER');
-        var alreadyAnswered = this.model.get('alreadyAnswered');
-        if (alreadyAnswered) {
-            loader.show('already answered');
-        } else {
-            this.popup_region.show(new preeAnswerView({
-                model: this.model
-            }));
-        }
+    openAnswerView: function(e) {
+        var input = $(e.currentTarget).find('input');
+        input.attr('checked','checked');
+        this.trigger('collapseDetails');
+        this.ui.answer.css('pointer-events', 'none');
+        this.ui.preeQuestionDetailed.collapse('show');
+        // loader.show('ANSWER');
+    },
+
+    onCollapseDetailsInChild: function() {
+        this.ui.preeQuestionDetailed.collapse('hide');
     },
 
     addLike: function() {

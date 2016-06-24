@@ -15,17 +15,14 @@
     </header>
     <section class="questionBody">
         <div class="pree_question_text"><%= displayText %></div>
-        <div class="pree_question_answer pree_question_answer_a answer">
-            <input type="radio" name="answer"> <span class="ansLetter">A:</span>Agree
-        </div>
-        <div class="pree_question_answer pree_question_answer_b answer">
-            <input type="radio" name="answer"><span class="ansLetter">B:</span >Disagree
-        </div>
-        <div class="pree_question_answer pree_question_answer_c answer">
-            <input type="radio" name="answer"><span class="ansLetter">C:</span >Not sure
-        </div>
+        <% _.each(choices, function(choice){ %>
+            <div class="pree_question_answer pree_question_answer_a answer">
+                <input type="radio" name="<%= choice.contestUUID %>"> <span class="ansLetter"><%= choice.choiceIndex %>:</span><%= choice.displayText %>
+            </div>
+
+        <% }) %>
     </section>
-    <div class="pree_question_detailed">
+    <div class="pree_question_detailed collapse">
         <div class="pree_question_answer">
             <header class="answerHeader">
             <span class="thanksText">Thank you! You’ve been awarded 100 points!</span>
