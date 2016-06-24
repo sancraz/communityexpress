@@ -22,6 +22,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     tagName: 'li',
 
     ui: {
+        preeQuestion: '.pree_question',
         preeQuestionCategories: '.pree_question_categories_button',
         preeQuestionTags: '.pree_question_tags_button',
         preeQuestionDetailed: '.pree_question_detailed',
@@ -73,6 +74,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     openAnswerView: function(e) {
         var input = $(e.currentTarget).find('input');
         input.attr('checked','checked');
+        this.ui.preeQuestion.addClass('active');
         this.trigger('collapseDetails');
         this.ui.answer.css('pointer-events', 'none');
         this.ui.preeQuestionDetailed.collapse('show');
@@ -80,6 +82,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onCollapseDetailsInChild: function() {
+        this.ui.preeQuestion.removeClass('active');
         this.ui.preeQuestionDetailed.collapse('hide');
     },
 

@@ -7,6 +7,9 @@
         background-color: $white;
         border: solid 1px $input;
         margin-bottom: 5px;
+        &.active {
+            border: 2px solid $active;
+        }
     }
 
     .questionHeader {
