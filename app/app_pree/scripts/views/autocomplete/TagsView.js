@@ -80,8 +80,6 @@ var TagsView = Mn.LayoutView.extend({
 
 		this.tagsCollection = new TagsCollection();
 
-		// this.listenTo(this.tagsCollection, 'change reset add remove', this.updateFilters, this);
-
 		var tagsCollectionView = new TagsCollectionView({
 			collection: this.tagsCollection
 		});
@@ -93,10 +91,9 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	toggleCollapsible: function() {
-		// this.ui.collapsibleContent.collapse('show');
 		//looks much better with timeout
 		setTimeout(_.bind(function() {
-			this.ui.toggle.click();
+			this.ui.collapsibleContent.collapse('toggle');
 		}, this), 10);
 	},
 
