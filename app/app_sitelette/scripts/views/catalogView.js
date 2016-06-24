@@ -23,7 +23,7 @@ var CatalogView = PageLayout.extend({
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        $('#cmtyx_navbar').fadeOut('slow');
+        this.navbarView.hide();//$('#cmtyx_navbar').fadeOut('slow');
     
     },
 
@@ -39,6 +39,7 @@ var CatalogView = PageLayout.extend({
         this.colors= options.catalog.data.colors;//[ '#444444', '#00ffB1', '#ffB2FD', '#FFCCCC' ];
         /*add catalog name to basket */
         this.basket.catalogName=options.catalog.collection.displayText;
+        this.navbarView=options.navbarView;
     },
 
     renderData : function() {
@@ -54,7 +55,7 @@ var CatalogView = PageLayout.extend({
             this.triggerRestaurantView();
         }
         ;
-        $('#cmtyx_navbar').fadeIn('slow');
+        this.navbarView.show();//$('#cmtyx_navbar').fadeIn('slow');
     },
     
 

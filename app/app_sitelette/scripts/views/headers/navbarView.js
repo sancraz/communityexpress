@@ -26,6 +26,7 @@ var NavbarView = Backbone.View.extend({
         this.page = options.page;
         this.sa = community.serviceAccommodatorId;
         this.sl = community.serviceLocationId;
+        this.visible=true;
 
         this.user = sessionActions.getCurrentUser();
         if (this.user.getUID()) {
@@ -114,6 +115,16 @@ var NavbarView = Backbone.View.extend({
         } else {
             this.confirmSignout();
         }
+    },
+    
+    hide : function(){
+    	$(this.el).slideUp('slow');
+    	this.visible=false;
+    },
+    
+    show : function(){
+    	$(this.el).slideDown('slow');
+    	this.visible=true;
     }
 
 });
