@@ -73,6 +73,7 @@ var TagsView = Mn.LayoutView.extend({
 	onShow: function() {
 		var categoriesAutocompleteView = new AutocompleteView(this.getCategoriesAutocompleteOptions());
 		this.ui.viewContent.on('shown.bs.collapse', function() {
+			console.log('hello');
 			this.collapsibleContent.collapse('show');
 		}, this);
 		this.ui.viewContent.collapse('toggle');
@@ -108,7 +109,7 @@ var TagsView = Mn.LayoutView.extend({
 				this.tagsCollection.createQueryParams(this.options.type));
 		}
 	}
-	
+
 });
 
 module.exports = TagsView;
