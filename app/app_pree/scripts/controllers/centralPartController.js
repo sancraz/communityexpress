@@ -1,6 +1,7 @@
 'use strict';
 
 var App = require('../app'),
+    loader = require('../loader'),
     appCache = require('../appCache'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../views/CentralLayoutView'),
@@ -44,6 +45,7 @@ module.exports = {
 
     getQuestions: function(params) {
         var UID = '';
+        loader.show('questions');
         if ( appCache.get('user') && appCache.get('user').getUID ) {
             UID = appCache.get('user').getUID();
         }

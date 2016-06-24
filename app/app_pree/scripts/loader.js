@@ -4,12 +4,15 @@ module.exports = {
 
     init: function() {
         $('<div/>', {
-            class: 'loader'
-        }).appendTo('body');
+            class: 'loader wrapper'
+        }).append(
+        $('<div/>', {
+            class: 'loader message col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4'
+        })).appendTo('body');
         $('<div/>', {
             class: 'loader-img'
-        }).appendTo('.loader');
-        $('<p/>', {class: 'loader-text'}).appendTo('.loader');
+        }).appendTo('.loader.message');
+        $('<p/>', {class: 'loader-text'}).appendTo('.loader.message');
     },
 
     show: function(text) {
