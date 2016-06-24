@@ -33,12 +33,27 @@
     .js-tags-region {
         .tag-item {
             display: inline-block;
+            background-color: $main;
+            border-radius: 3px;
+            margin-right: 3px;
+            margin-bottom: 3px;
 
             span {
                 background-color: $main;
 
                 i {
                     padding: 5px;
+                }
+            }
+        }
+        &.categories {
+            .tag-item {
+                border: 1px solid $main;
+                border-radius: 0;
+                background-color: $white;
+                span {
+                    color: $main;
+                    background-color: $white;
                 }
             }
         }
