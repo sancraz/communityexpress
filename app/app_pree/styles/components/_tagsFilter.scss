@@ -46,8 +46,24 @@
 
     .go-buttons-container {
         button {
+            float: right;
+            margin-left: 10px;
+        }
+
+        .go-button {
             background-color: $main;
             border-color: $main;
+        }
+
+        .discard-button {
+            background-color: $white;
+            border-color: $main;
+            color: $main;
+
+            &:hover {
+                background-color: $main;
+                color: $white;
+            }
         }
     }
 }

@@ -1,0 +1,47 @@
+.info-region {
+    .infoPanel {
+        background-color: $main;
+        height: 44px;
+        margin-bottom: 20px;
+    }
+
+    .pree_user_info_panel {
+        margin-left: 15px;
+    }
+
+    li.pree_user_info_panel_item {
+        display: inline-block;
+        float: left;
+        margin-right: 55px;
+    }
+
+    li.stats:last-child {
+        margin-right: 0;
+    }
+
+    .statName {
+        font: 400 11px / 48px Ubuntu;
+        color: $white;
+        text-transform: uppercase;
+        margin-right: 15px;
+    }
+
+    .statNumber {
+        font: 700 13px / 48px Ubuntu;
+        color: $light-grey;
+        text-transform: uppercase;
+    }
+
+    @media only screen and (max-width: 830px) {
+        .pree_user_info_panel li {
+            margin-right: 40px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .infoPanel
+        {
+            display:none;
+        }
+    }
+}

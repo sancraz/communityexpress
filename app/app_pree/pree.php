@@ -80,7 +80,7 @@
    <!-- Script for this page -->
    <script src="vendor/scripts/sparkline-index.js"></script>
    <!-- Custom JS -->
-   <script src="scripts/custom.js"></script>
+   <!-- <script src="scripts/custom.js"></script> -->
 
    <script src="build/bundle.js"></script>
 
