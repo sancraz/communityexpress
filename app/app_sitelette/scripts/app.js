@@ -37,7 +37,7 @@ App.prototype = {
         
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
-        if (this.params.embedded) { conf.set('embedded', true) };
+        if (this.params.embedded) { conf.set('embedded', true); };
         if (this.params.UID) {
             localStorage.setItem("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
@@ -55,7 +55,7 @@ App.prototype = {
                 });
             });
         } else {
-            return
+            return;
         }
     },
 
