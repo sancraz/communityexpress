@@ -1,11 +1,11 @@
 define([
   "jquery",
-  "../../../vendor/bootstrap/js/bootstrap.min.js",
+  // "../../../vendor/bootstrap/js/bootstrap.min.js",
   "./autocomplete", 
   "ejs!./autocompleteTpl.ejs" ]
   , function( 
   $,
-  bootstrap,
+  // bootstrap,
   MarionetteAutocomplete, 
   template) {
   'use strict';
@@ -55,7 +55,7 @@ define([
     },
 
     onShow: function() {
-      this.ui.autocomplete.dropdown();
+      // this.ui.autocomplete.dropdown();
     },
 
     onCheckFillQuery: function() {
