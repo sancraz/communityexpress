@@ -1,11 +1,18 @@
-<div class="tags-container">
+<div class="tags-container collapse">
 	<div class="pree_tagsHeader">
 		<span class="panelHeaderTitle">Please choose tags below</span>
-		<span class="pree_tags_close">&times;</span>
+		<span
+			class="pree_tags_close"
+			data-toggle="collapse"
+			data-target="#tags-filter-expanded"
+			aria-expanded="false"
+			aria-controls="tags-filter-expanded">&#x25BC;</span>
 	</div>
-	<div class="js-input-region"></div>
-	<div class="js-tags-region"></div>
-	<div class="go-buttons-container">
-		<button type="button" class="btn btn-primary go-button">Go</button>
+	<div id="tags-filter-expanded" class="collapse">
+		<div class="js-input-region"></div>
+		<div class="js-tags-region"></div>
+		<div class="go-buttons-container">
+			<button type="button" class="btn btn-primary go-button">Go</button>
+		</div>
 	</div>
 </div>

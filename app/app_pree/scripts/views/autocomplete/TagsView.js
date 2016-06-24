@@ -56,7 +56,10 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	ui: {
-		'go' : '.go-button'
+		'go' : '.go-button',
+		'viewContent': '.tags-container',
+		'collapsibleContent': '.tags-filter-expanded'
+
 	},
 
 	events: {
@@ -69,10 +72,14 @@ var TagsView = Mn.LayoutView.extend({
 
 	onShow: function() {
 		var categoriesAutocompleteView = new AutocompleteView(this.getCategoriesAutocompleteOptions());
+		this.ui.viewContent.on('shown.bs.collapse', function() {
+			this.collapsibleContent.collapse('show');
+		}, this);
+		this.ui.viewContent.collapse('toggle');
 		this.getRegion('inputRegion').show(categoriesAutocompleteView);
 
 		this.tagsCollection = new TagsCollection();
-	
+
 		// this.listenTo(this.tagsCollection, 'change reset add remove', this.updateFilters, this);
 
 		var tagsCollectionView = new TagsCollectionView({
