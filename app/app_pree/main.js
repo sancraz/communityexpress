@@ -1,6 +1,7 @@
 'use strict';
 
 require('./styles/main.scss');
+require('bootstrap-webpack');
 
 var App = require('./scripts/app');
 

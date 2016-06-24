@@ -9,7 +9,7 @@ module.exports = {
 		'bundle': './app/app_pree/main.js'
 	},
 	output: {
-		path: './app/app_pree/build/', 
+		path: './app/app_pree/build/',
 		filename: '[name].js'
 	},
 	devtool: 'source-map',
@@ -42,7 +42,15 @@ module.exports = {
 			{
 				test: /\.hbs$/,
 				loader: "handlebars-loader"
-			}
+			},
+			{
+                test: /bootstrap\/js\//,
+                loader: 'imports?jQuery=jquery'
+            },
+			{ test: /\.(woff|woff2)$/,  loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+			{ test: /\.ttf$/,    loader: "file-loader" },
+			{ test: /\.eot$/,    loader: "file-loader" },
+			{ test: /\.svg$/,    loader: "file-loader" }
 		]
 	},
 	plugins: [

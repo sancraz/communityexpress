@@ -59,7 +59,7 @@
    <!-- jQuery -->
    <script src="vendor/scripts/jquery.js"></script>
    <!-- Bootstrap JS -->
-   <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+   <!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
    <!-- jQuery UI -->
    <script src="vendor/scripts/jquery-ui.min.js"></script>
    <!-- jQuery Flot -->

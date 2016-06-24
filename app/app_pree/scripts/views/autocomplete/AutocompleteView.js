@@ -1,12 +1,12 @@
 define([
   "jquery",
   "../../../vendor/bootstrap/js/bootstrap.min.js",
-  "./autocomplete", 
+  "./autocomplete",
   "ejs!./autocompleteTpl.ejs" ]
-  , function( 
+  , function(
   $,
   bootstrap,
-  MarionetteAutocomplete, 
+  MarionetteAutocomplete,
   template) {
   'use strict';
   var KEY_ENTER = 13, KEY_DOWN = 40, KEY_UP = 38, KEY_ESC = 27;

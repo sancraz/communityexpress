@@ -1,0 +1,102 @@
+.pree_question_detailed {
+    border: 1px solid #input;
+    display: none;
+
+    input[type="radio"] {
+        display: inline-block;
+        float: left;
+        position: relative;
+        bottom: -12px;
+    }
+
+    input[type=radio]:not(old){
+      width: 28px;
+      margin: 0;
+      padding: 0;
+      opacity: 0;
+    }
+
+    input[type=radio]:not(old) + span{
+      display: inline-block;
+      margin-left: -28px;
+      padding-left: 20px;
+      background: url(images/Ellipse-4.png) no-repeat 0;
+      line-height: 24px;
+    }
+
+    input[type=radio]:not(old):checked + span{
+        background: url(images/Ellipse-4-copy.png) no-repeat 0;
+    }
+
+    .informationIcon {
+        float: right;
+        position: relative;
+        top: 7px;
+        right: 10px;
+    }
+
+    .answerHeader {
+        background-color: $main;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top: 15px;
+    }
+
+    .thanksText {
+        display: block;
+        color: $white;
+        font: 700 12px / 12px Ubuntu;
+        margin-bottom: 5px;
+    }
+
+    .score {
+        display: block;
+        color: $input;
+        font: 400 10px / 12px Ubuntu;
+    }
+
+    .answerBody, .answerInfoBody {
+        background-color: $light-grey;
+        border-bottom-left-radius: 2px;
+        border-bottom-right-radius: 2px;
+        padding: 20px;
+    }
+
+    .resultsText {
+        color: $text;
+        font: 400 14px / 21px Ubuntu;
+        margin-bottom: 5px;
+    }
+
+    .answerResultLetter {
+        color: $text-hover;
+        font: 400 12px / 21px Ubuntu;
+        display: block;
+    }
+
+    .answerInfoHeader {
+        background-color: $main;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        padding: 20px;
+        margin-top: 15px;
+    }
+
+    .answerInfoHeaderTitle {
+        display: block;
+        color: $white;
+        font: 700 12px / 12px Ubuntu;
+    }
+
+    .answerInfoText {
+        color: $text-hover;
+        font: 400 10px / 15px Ubuntu;
+    }
+
+    .answerInfoText.last {
+        margin-bottom: 0px;
+    }
+}
