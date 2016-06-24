@@ -8,7 +8,9 @@ var feedView = Mn.CollectionView.extend({
 
     childView: PreeQuestionView,
 
-    // childViewContainer: '.pree_feed_questions',
+    childEvents: {
+        'collapseDetails': 'collapseDetails'
+    },
 
     initialize : function() {
         this.listenTo(this.model, "change", this.modelEventHandler);
@@ -21,6 +23,13 @@ var feedView = Mn.CollectionView.extend({
     modelEventHandler : function() {
         console.log(" Model event received");
         this.render();
+    },
+
+    collapseDetails: function(view) {
+        if (this.viewWithExpandedDetails) {
+            this.viewWithExpandedDetails.triggerMethod('collapseDetailsInChild');
+        }
+        this.viewWithExpandedDetails = view;
     }
 });
 
