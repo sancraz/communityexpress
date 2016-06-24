@@ -1,25 +1,30 @@
-#pree_feed_tabs_items {
+.pree_feed_tabs_items {
     height: 42px;
     margin-bottom: 15px;
-}
 
-#pree_feed_tabs_items li a {
-    font: 400 14px Ubuntu;
-    color: rgba(51, 51, 51, 0.8);
-    text-decoration: none;
-    display: inline-block;
-    float: left;
-    color: #6E6E6E;
-    text-align: center;
-    border: solid 1px #EBEBEB;
-    width: 25%;
-    line-height: 40px;
-    height: 42px;
-    background-color: #ffffff;
-}
+    li {
+        a {
+            font: 400 14px Ubuntu;
+            text-decoration: none;
+            display: inline-block;
+            float: left;
+            color: $text-hover;
+            text-align: center;
+            border: solid 1px $input;
+            width: 25%;
+            line-height: 40px;
+            height: 42px;
+            background-color: $white;
 
-#pree_feed_tabs_items li a:hover,
-#pree_feed_tabs_items li a.active {
-    color: #333333;
-    border-bottom: solid 3px #2573d0;
+            &:hover {
+                color: $text;
+                border-bottom: solid 3px $main;
+            }
+        }
+
+        .active {
+            color: $text;
+            border-bottom: solid 3px $main;
+        }
+    }
 }

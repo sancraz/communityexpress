@@ -2,12 +2,10 @@
 @import 'components/loader';
 @import 'components/questionsRegion';
 @import 'components/filters';
+@import 'components/tagsFilter';
+@import 'components/header';
 
 body {
 	margin: 0;
 	padding: 0;
-}
-
-.central-region {
-	margin-top: 50px;
 }

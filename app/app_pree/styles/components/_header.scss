@@ -1,0 +1,46 @@
+.header {
+    background-color: $light-grey;
+    margin-bottom: 0px;
+    padding-bottom: 3px;
+    border: none;
+
+    .navbar-brand {
+        padding: 0;
+
+        img {
+            height: 50px;
+        }
+    }
+
+    .menuItemText {
+        color: $text-hover;
+        font: 400 14px Ubuntu;
+        margin-right: 20px;
+    }
+
+    .menuItemText.last {
+        margin-right: 0px;
+    }
+
+    .headerUserAvatar {
+        position: relative;
+        height: 46px;
+        width: 46px;
+    }
+
+    .dropdown-toggle.last {
+        padding-bottom: 0px;
+        padding-top: 3px;
+    }
+
+
+    @media only screen and (max-width: 768px) {
+        .navbar-brand {
+            padding-left: 0px;;
+        }
+
+        .navbar-toggle {
+            margin-right: 0px;
+        }
+    }
+}

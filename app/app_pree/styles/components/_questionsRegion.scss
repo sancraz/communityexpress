@@ -79,14 +79,17 @@
         margin-bottom: 25px;
     }
 
-    .pree_question_tags_item {
-        float: left;
-        width: auto;
-        background-color: $light-grey;
-        padding: 6px 9px;
-        margin-right: 5px;
-        color: $main;
-        font: 400 11px / 15px Ubuntu;
+    .pree_question_tags {
+        list-style: none;
+        .pree_question_tags_item {
+            float: left;
+            width: auto;
+            background-color: $light-grey;
+            padding: 6px 9px;
+            margin-right: 5px;
+            color: $main;
+            font: 400 11px / 15px Ubuntu;
+        }
     }
 
     .pree_question_categories {

@@ -1,0 +1,53 @@
+.tags-container {
+    border: 1px solid $input;
+    margin-bottom: 10px;
+
+    .pree_tagsHeader {
+        height: 40px;
+        background-color: $main;
+        border: 1px solid $main;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        .panelHeaderTitle {
+            display: inline-block;
+            color: $white;
+            font: 400 12px / 40px Ubuntu;
+        }
+
+        .pree_tags_close {
+            float: right;
+            padding: 8px;
+            color: $white;
+        }
+    }
+
+    .js-input-region,
+    .js-tags-region,
+    .go-buttons-container {
+        margin: 15px;
+    }
+
+    .js-tags-region {
+        .tag-item {
+            display: inline-block;
+
+            span {
+                background-color: $main;
+
+                i {
+                    padding: 5px;
+                }
+            }
+        }
+    }
+
+    .go-buttons-container {
+        button {
+            background-color: $main;
+            border-color: $main;
+        }
+    }
+}

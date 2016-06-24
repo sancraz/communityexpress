@@ -8,6 +8,8 @@ var template = require('ejs!./tagsTpl.ejs'),
 var TagsItemView = Mn.ItemView.extend({
 	template: itemTemplate,
 
+	className: 'tag-item',
+
 	ui: {
 		tag: '.remove-tag'
 	},
@@ -99,7 +101,7 @@ var TagsView = Mn.LayoutView.extend({
 				this.tagsCollection.createQueryParams(this.options.type));
 		}
 	}
-	
+
 });
 
 module.exports = TagsView;

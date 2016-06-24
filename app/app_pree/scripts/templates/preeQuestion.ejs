@@ -36,15 +36,17 @@
                     <% }) %>
                 </ul>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <ul class="pree_question_tags" style="display:inline-block">
-                    <% _(tags).each(function(tag) { %>
-                        <li class="pree_question_categories_item">
-                            <%= tag.displayText %>
-                        </li>
-                    <% }) %>
-                </ul>
-            </div>
+            <% if (tags.length !== 0) { %>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <ul class="pree_question_tags" style="display:inline-block">
+                        <% _(tags).each(function(tag) { %>
+                            <li class="pree_question_tags_item">
+                                <%= tag.displayText %>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            <% } %>
         </div>
         <div class="pree_question_likes_button">
             <div class="pree_question_likes_icon">
