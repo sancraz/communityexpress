@@ -67,6 +67,11 @@ var TagsView = Mn.LayoutView.extend({
 		'click @ui.discard': 'discardChanges'
 	},
 
+	arrows: {
+		down: '&#x25BC;',
+		up: '&#x25B2;'
+	},
+
 	serializeData: function() {
 		return {
 			type: this.options.type
@@ -88,6 +93,13 @@ var TagsView = Mn.LayoutView.extend({
 
 	onShow: function() {
 		this.toggleCollapsible();
+		//change collapse/expande arrow
+		this.ui.collapsibleContent.on('shown.bs.collapse', _.bind(function() {
+			this.ui.toggle.html(this.arrows.up);
+		}, this));
+		this.ui.collapsibleContent.on('hidden.bs.collapse', _.bind(function() {
+			this.ui.toggle.html(this.arrows.down);
+		}, this));
 	},
 
 	toggleCollapsible: function() {
