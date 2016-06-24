@@ -159,7 +159,7 @@ App.prototype = {
         var content = view.renderContent().$el;
 
         // hide initial html content
-        $('.theme2_background').hide();
+        $('#cmtyx_staticView').hide();
 
         $.mobile.initializePage();
         $($.mobile.pageContainer).pagecontainer('change', content, settings);

@@ -91,11 +91,11 @@ var LandingView = PageLayout.extend({
     },
 
     onHide: function() {
-        this.$('.theme2_background').hide();
+        this.$('#cmtyx_staticView').hide();
     },
 
     renderGallery: function(password) {
-        this.$('.theme2_background').show();
+        this.$('#cmtyx_staticView').show();
     },
 
     triggerAboutUsView: function() {
