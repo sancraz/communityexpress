@@ -27,6 +27,9 @@ var OrderView = PageLayout.extend({
         this.states = this.getStates();
         this.catalogId = options.catalogId;
         this.backToCatalogs = options.backToCatalogs;
+        this.priceAddons = options.priceAddons;
+        this.calculateTaxes();
+        this.getTotalPriceWithTax();
         this.on('show', this.onShow, this);
     },
 
@@ -47,8 +50,20 @@ var OrderView = PageLayout.extend({
             country: this.country,
             years: this.years,
             months: this.months,
-            states: this.states
+            states: this.states,
+            priceAddons: this.priceAddons,
+            taxes: this.taxes,
+            totalPriceWithTax: this.totalPriceWithTax
         });
+    },
+
+    calculateTaxes: function() {
+        this.taxes = parseInt(this.basket.getTotalPrice()*this.priceAddons.taxState)/100;
+    },
+
+    getTotalPriceWithTax: function() {
+        var priceWithoutTaxes = parseFloat(this.basket.getTotalPrice());
+        this.totalPriceWithTax = parseFloat((this.taxes + priceWithoutTaxes).toFixed(2));
     },
 
     triggerCatalogView: function() {
@@ -60,6 +75,11 @@ var OrderView = PageLayout.extend({
     },
 
     onSubmitClick: function (e) {
+        if (this.$('.save_credit_data').find('input').is(':checked')) {
+            this.saveCreditCardForFutureReference = true;
+        } else {
+            this.saveCreditCardForFutureReference = false;
+        };
         e.preventDefault();
         var cardType = this.$('select.cardtype').val();
         var country = this.$('select.country').val();
@@ -99,6 +119,10 @@ var OrderView = PageLayout.extend({
             cashSelected: !creditCard,
             creditCardSelected: creditCard,
             items: items,
+            taxAmount: this.taxes,
+            totalAmount: this.totalPriceWithTax,
+            currencyCode: this.priceAddons.currencyCode,
+            saveCreditCardForFutureReference: this.saveCreditCardForFutureReference,
             billingAddress: {
                 zip: zip,
                 street: street,

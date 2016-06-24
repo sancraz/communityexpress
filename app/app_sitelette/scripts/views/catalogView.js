@@ -23,6 +23,8 @@ var CatalogView = PageLayout.extend({
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
+        this.navbarView.hide();//$('#cmtyx_navbar').fadeOut('slow');
+    
     },
 
     initialize : function(options) {
@@ -34,6 +36,10 @@ var CatalogView = PageLayout.extend({
         this.backToCatalogs = options.backToCatalogs;
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
+        this.colors= options.catalog.data.colors;//[ '#444444', '#00ffB1', '#ffB2FD', '#FFCCCC' ];
+        /*add catalog name to basket */
+        this.basket.catalogName=options.catalog.collection.displayText;
+        this.navbarView=options.navbarView;
     },
 
     renderData : function() {
@@ -49,7 +55,9 @@ var CatalogView = PageLayout.extend({
             this.triggerRestaurantView();
         }
         ;
+        this.navbarView.show();//$('#cmtyx_navbar').fadeIn('slow');
     },
+    
 
     triggerCatalogsView : function() {
         Vent.trigger('viewChange', 'catalogs', this.sasl.getUrlKey());
@@ -109,8 +117,8 @@ var CatalogView = PageLayout.extend({
     },
 
     generateColor : function(index) {
-        var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
-        return colors[index % colors.length];
+        //var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
+        return this.colors[index % this.colors.length];
     },
 
     renderItems : function() {

@@ -37,7 +37,7 @@
     width: 60px;
 }
 
-.ui-icon-cmntyex_map:after {
+.ui-icon-cmtyx_generatedView:after {
     background-image: url("icons/map_small.png");
     margin-top: 0 !important;
     height: 32px !important;
@@ -45,7 +45,7 @@
     background-size: 32px 32px !important;
 }
 
-.ui-icon-cmntyex_map-bottom:after {
+.ui-icon-cmtyx_generatedView-bottom:after {
     background-image: url("icons/map_small.png");
 }
 

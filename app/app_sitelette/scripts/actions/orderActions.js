@@ -21,5 +21,13 @@ module.exports = {
 
     getCreditInfo: function() {
         return gateway.sendRequest('getCreditCardTypes');
+    },
+
+    getPriceAddons: function(sa, sl) {
+        return gateway.sendRequest('getPriceAddons', {
+            UID: getUser().getUID(),
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl
+        });
     }
 };

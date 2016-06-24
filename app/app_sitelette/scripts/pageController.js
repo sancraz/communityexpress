@@ -296,16 +296,23 @@ module.exports = {
 
     order: function (options) {
         var sasl,
+            cardType,
             catalogId = options.catalogId,
             backToCatalogs = options.backToCatalogs;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
                 return orderActions.getCreditInfo();
-            }).then(function (cardType) {
+            }).then(function (ret) {
+                cardType = ret;
+                var sa = sasl.get('serviceAccommodatorId'),
+                    sl = sasl.get('serviceLocationId');
+                return orderActions.getPriceAddons(sa, sl);
+            }).then(function(ret) {
                 return {
                     sasl: sasl,
                     cardType: cardType,
+                    priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
                     basket: catalogActions.getBasket(sasl.sa(), sasl.sl()),
