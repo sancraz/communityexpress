@@ -1,11 +1,9 @@
 define([
   "jquery",
-  // "../../../vendor/bootstrap/js/bootstrap.min.js",
   "./autocomplete",
   "ejs!./autocompleteTpl.ejs" ]
   , function(
   $,
-  // bootstrap,
   MarionetteAutocomplete,
   template) {
   'use strict';
@@ -52,10 +50,6 @@ define([
       this.ui.autocomplete.parent().on('hide.bs.dropdown', function() {
         that.ui.autocomplete.parent().next('ul').hide();
       });
-    },
-
-    onShow: function() {
-      // this.ui.autocomplete.dropdown();
     },
 
     onCheckFillQuery: function() {
