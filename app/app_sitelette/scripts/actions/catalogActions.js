@@ -3,7 +3,7 @@
 var gateway = require('../APIGateway/gateway.js'),
     sessionActions = require('../actions/sessionActions.js'),
     appCache = require('../appCache.js'),
-    Basket = require('../models/BasketModel.js');
+    CatalogBasketModel = require('../models/CatalogBasketModel.js');
 
 var getUID = function () {
     return sessionActions.getCurrentUser().getUID();
@@ -37,6 +37,6 @@ module.exports = {
     },
 
     getBasket: function (sa, sl) {
-        return appCache.fetch(sa + ':' + sl + ':basket', new Basket());
+        return appCache.fetch(sa + ':' + sl + ':basket', new CatalogBasketModel());
     }
 };

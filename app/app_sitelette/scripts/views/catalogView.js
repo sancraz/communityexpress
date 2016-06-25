@@ -4,7 +4,7 @@
 
 var Vent = require('../Vent'),//
 loader = require('../loader'), //
-Basket = require('../models/BasketModel'),//
+CatalogBasketModel = require('../models/CatalogBasketModel'),//
 orderActions = require('../actions/orderActions'),//
 PageLayout = require('./components/pageLayout'),//
 GroupView = require('./partials/groupView'), //

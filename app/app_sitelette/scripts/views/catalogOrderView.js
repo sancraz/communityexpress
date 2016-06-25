@@ -10,7 +10,7 @@ var Vent = require('../Vent'),
     states = require('../states'),
     h = require('../globalHelpers');
 
-var OrderView = PageLayout.extend({
+var CatalogOrderView = PageLayout.extend({
 
     name: 'order',
 
@@ -104,6 +104,8 @@ var OrderView = PageLayout.extend({
                 serviceLocationId: this.sasl.sl(),
                 priceId: item.get('priceId'),
                 itemId: item.get('itemId'),
+                groupId:item.get('groupId'),
+                catalogId:item.get('catalogId'),
                 itemVersion: item.get('itemVersion'),
                 quantity: item.get('quantity')
             };
@@ -198,4 +200,4 @@ var OrderView = PageLayout.extend({
     }
 });
 
-module.exports = OrderView;
+module.exports = CatalogOrderView;

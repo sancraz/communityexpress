@@ -14,7 +14,7 @@ var LandingView = require('./views/landingView'),
     PollContestView = require('./views/pollContestView'),
     RootView = require('./views/rootView'),
     AboutUsView = require('./views/aboutUsView'),
-    OrderView = require('./views/orderView'),
+    CatalogOrderView = require('./views/catalogOrderView'),
     EventActiveView = require('./views/eventActiveView'),
     NavbarView = require('./views/headers/navbarView');
 
@@ -133,7 +133,7 @@ module.exports = {
             }));
             break;
         case 'order':
-            view = new OrderView(_.extend(options, {
+            view = new CatalogOrderView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
                     sasl: options.sasl,

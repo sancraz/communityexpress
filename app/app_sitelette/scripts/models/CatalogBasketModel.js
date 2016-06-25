@@ -2,7 +2,7 @@
 
 'use strict';
 
-var BasketItem = Backbone.Model.extend({
+var CatalogBasketItem = Backbone.Model.extend({
 	/*
 	 * what is id, cid and idAttribute?
 	 * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
@@ -33,15 +33,15 @@ var BasketItem = Backbone.Model.extend({
 		this.itemId = options.itemId;
 		this.uUID = options.uUID;
 		this.itemName = options.itemName;
-		// console.log("BasketItem:initialize::"+this.itemName+",
+		// console.log("CatalogBasketItem:initialize::"+this.itemName+",
 		// "+this.groupId+", "+this.catalogId);
 	}
 
 });
 
-var Basket = Backbone.Collection.extend({
+var CatalogBasketModel = Backbone.Collection.extend({
 
-	model : BasketItem,
+	model : CatalogBasketItem,
 
 	initialize : function(options) {
 		this.prices = new Backbone.Model();
@@ -81,7 +81,7 @@ var Basket = Backbone.Collection.extend({
 		 * create basketItem model
 		 */
 
-		var itemModel = new BasketItem(itemOptions);
+		var itemModel = new CatalogBasketItem(itemOptions);
 
 		/*
 		 * add the itemModel to the collection
@@ -113,7 +113,7 @@ var Basket = Backbone.Collection.extend({
 			 * create basketItem model
 			 */
 
-			var itemModel = new BasketItem(itemOptions);
+			var itemModel = new CatalogBasketItem(itemOptions);
 
 			/*
 			 * add the itemModel to the collection
@@ -137,7 +137,7 @@ var Basket = Backbone.Collection.extend({
 		 * create basketItem model
 		 */
 
-		var itemModel = new BasketItem(itemOptions);
+		var itemModel = new CatalogBasketItem(itemOptions);
 
 		/*
 		 * add the itemModel to the collection
@@ -190,4 +190,4 @@ var Basket = Backbone.Collection.extend({
 
 });
 
-module.exports = Basket;
+module.exports = CatalogBasketModel;
