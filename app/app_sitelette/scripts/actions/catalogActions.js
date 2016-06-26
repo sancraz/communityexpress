@@ -35,8 +35,17 @@ module.exports = {
             };
         });
     },
-
-    //getBasket: function (sa, sl) {
-    //    return appCache.fetch(sa + ':' + sl + ':basket', new CatalogBasketModel());
-    //}
+    
+    getRoster: function(sa, sl) {
+        return gateway.sendRequest('getRoster', {
+            serviceAccommodatorId: sa,
+            serviceLocationId: sl,
+            UID: getUID()
+        }).then(function(response) {
+            return {
+                data: response,
+                collection: response
+            };
+        });
+    },
 };

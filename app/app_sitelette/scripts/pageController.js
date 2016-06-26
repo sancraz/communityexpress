@@ -211,7 +211,28 @@ module.exports = {
                 };
             });
     },
-
+    roster: function(options) {
+        var sasl;
+        var id = options.sasl;
+        return saslActions.getSasl(id)
+            .then(function(ret) {
+                sasl = ret;
+                return catalogActions.getRoster(sasl.sa(), sasl.sl());
+            }).then(function (options) {
+                if (options.data.length === 1) {
+                    Vent.trigger('viewChange', 'roster', {
+                        id: id,
+                        catalogId: options.data.catalogId,
+                        backToCatalogs: false
+                    });
+                } else {
+                    return {
+                        sasl: sasl,
+                        catalogs: options
+                    };
+                };
+            });
+    },
     posts: function (options) { // options is an array with either sasl or urlKey
         return saslActions.getSasl(options)
             .then(function (sasl) {
@@ -326,6 +347,9 @@ module.exports = {
                     sl = sasl.get('serviceLocationId');
                 return orderActions.getPriceAddons(sa, sl);
             }).then(function(ret) {
+                /*
+                 * pull up the basket for this sasl
+                 */
                 var basket =  appCache.get(sasl.sa() + ':' + sasl.sl() + ':basket');
                 return {
                     sasl: sasl,
@@ -333,7 +357,7 @@ module.exports = {
                     priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
-                    basket: basket,//catalogActions.getBasket(sasl.sa(), sasl.sl()),
+                    basket: basket, 
                     catalogId: catalogId,
                     backToCatalog: backToCatalog,
                     backToCatalogs:backToCatalogs

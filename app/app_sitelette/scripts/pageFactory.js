@@ -8,6 +8,7 @@ var LandingView = require('./views/landingView'),
     EditView = require('./views/editView'),
     CatalogView = require('./views/catalogView'),
     CatalogsView = require('./views/catalogsView'),
+    RosterView = require('./views/rosterView'),
     PostsView = require('./views/postsView'),
     ContestsView = require('./views/contestsView'),
     PhotoContestView = require('./views/photoContestView'),
@@ -69,6 +70,14 @@ module.exports = {
             break;
         case 'catalogs':
             view = new CatalogsView(_.extend(options, {
+                navbarView: NavbarView,
+                navbarData: {
+                    sasl: options.sasl
+                }
+            }));
+            break;
+        case 'roster':
+            view = new RosterView(_.extend(options, {
                 navbarView: NavbarView,
                 navbarData: {
                     sasl: options.sasl

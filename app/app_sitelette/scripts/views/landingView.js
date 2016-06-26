@@ -42,6 +42,10 @@ var LandingView = PageLayout.extend({
             break;
             case 'h':
                 this.triggerPhotoContestView();
+            break;
+            case 'r':
+                this.triggerRosterView();
+            break;
         };
     },
 
@@ -102,7 +106,26 @@ var LandingView = PageLayout.extend({
     triggerAboutUsView: function() {
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
     },
-
+    
+    triggerRosterView: function() {
+        
+        var uuid;
+        if (community.type == 'r') {
+            uuid = community.uuidURL;
+            delete community.type;
+            delete community.uuidURL;
+        } else {
+            uuid = $(e.target).attr('uuid');
+        };
+        
+        Vent.trigger('viewChange', 'roster', {
+            sasl: this.model.id,
+            id: uuid,
+            backToCatalog: true,
+            backToRoster:true,
+            navbarView:this.navbarView
+         }, { reverse: false });
+    },
     openHours: function() {
         loader.show('retrieving opening hours');
         saslActions.getOpeningHours(this.model.sa(), this.model.sl())
