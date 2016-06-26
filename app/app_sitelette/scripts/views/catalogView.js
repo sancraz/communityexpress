@@ -24,7 +24,7 @@ var CatalogView = PageLayout.extend({
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.navbarView.hide();//$('#cmtyx_navbar').fadeOut('slow');
-    
+        
     },
 
     initialize : function(options) {
@@ -53,9 +53,10 @@ var CatalogView = PageLayout.extend({
             this.triggerCatalogsView();
         } else {
             this.triggerRestaurantView();
+            this.navbarView.show();
         }
         ;
-        this.navbarView.show();//$('#cmtyx_navbar').fadeIn('slow');
+        
     },
     
 
@@ -91,7 +92,9 @@ var CatalogView = PageLayout.extend({
             Vent.trigger('viewChange', 'order', {
                 id : this.sasl.getUrlKey(),
                 catalogId : this.catalogId,
-                backToCatalogs : this.backToCatalogs
+                backToCatalog : true,// /* This should always be true */ 
+                backToCatalogs :this.backToCatalogs, /*not used by order, but passed back to catalog view */
+                navbarView :this.navbarView
             }, {
                 reverse : true
             });
@@ -125,8 +128,8 @@ var CatalogView = PageLayout.extend({
     	/*
     	 * we must clear basket
     	 */
-    	this.basket.removeAllItems();
-        this.updateBasket();
+    	//this.basket.removeAllItems();
+      //this.updateBasket();
 
 
     	var catalogType=this.catalogType.enumText;

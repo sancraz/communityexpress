@@ -77,13 +77,23 @@ App.prototype = {
     },
 
     goToPage: function( viewName, id, options ) {
-
+        console.log("app.js:gotoPage: "+viewName);
         this.setGlobalConfigurations(options);
 
         if ( viewName === 'chat') { // redirect to restaurant view if user is not signed in
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
         }
 
+        if ( viewName === 'catalog') { //  
+             if(typeof options==='undefined'){
+               var sa=window.community.serviceAccommodatorId;  
+               var sl=window.community.serviceLocationId;
+               
+
+             }
+        }
+
+       
         loader.show('loading');
 
         this.initializePage(viewName, id, options).then(function(page){

@@ -3,6 +3,7 @@
 'use strict';
 
 var Vent = require('../Vent'),
+    appCache = require('../appCache.js'),
     config = require('../appConfig'),
     loader = require('../loader'),
     viewFactory = require('../viewFactory'),
@@ -184,7 +185,10 @@ var LandingView = PageLayout.extend({
     },
 
     triggerCatalogsView: function() {
+        console.log("landingview firing viewchange into catalog");
+        var x=appCache;
         Vent.trigger('viewChange', 'catalogs', this.model.getUrlKey() );
+       
     },
 
     triggerAppointmentView: function() {

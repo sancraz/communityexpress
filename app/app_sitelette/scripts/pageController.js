@@ -3,6 +3,8 @@
 'use strict';
 
 var Vent = require('./Vent'),
+    appCache = require('./appCache.js'),
+    CatalogBasketModel = require('./models/CatalogBasketModel.js'),
     communicationActions = require('./actions/communicationActions'),
     filterActions = require('./actions/filterActions'),
     saslActions = require('./actions/saslActions'),
@@ -152,23 +154,37 @@ module.exports = {
 
     catalog: function (options) { // options is an array with either sasl or urlKey
         var sasl;
-            catalogId = options.catalogId,
-            backToCatalogs = options.backToCatalogs;
-        var backToCatalogs = options.backToCatalogs;
+        
+        var  catalogId = options.catalogId;
+        var  backToCatalogs = options.backToCatalogs;
+        var  backToCatalog = options.backToCatalog;
         var catalogId = options.catalogId;
+        var navbarView  = options.navbarView;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
                 return catalogActions.getCatalog(sasl.sa(), sasl.sl(), catalogId);
             }).then(function (catalog) {
+                /* check if we are going back to catalogs. If yes, 
+                 * pull up old catalog, else create new.
+                 */
+                
+                var basket;
+                if(backToCatalog===true){
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':basket', new CatalogBasketModel());
+                }else{
+                    var basket=new CatalogBasketModel();
+                    appCache.set(sasl.sa() + ':' + sasl.sl() + ':basket', basket);     
+                }
                 return {
                     sasl: sasl,
                     catalog: catalog,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
-                    basket: catalogActions.getBasket(sasl.sa(), sasl.sl()),
+                    basket: basket,//catalogActions.getBasket(sasl.sa(), sasl.sl()),
                     backToCatalogs: backToCatalogs,
-                    catalogId: catalogId
+                    catalogId: catalogId,
+                    navbarView:navbarView
                 };
             });
     },
@@ -298,7 +314,8 @@ module.exports = {
         var sasl,
             cardType,
             catalogId = options.catalogId,
-            backToCatalogs = options.backToCatalogs;
+            backToCatalog = true,//options.backToCatalogs;
+            backToCatalogs=options.backToCatalogs;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -309,15 +326,17 @@ module.exports = {
                     sl = sasl.get('serviceLocationId');
                 return orderActions.getPriceAddons(sa, sl);
             }).then(function(ret) {
+                var basket =  appCache.get(sasl.sa() + ':' + sasl.sl() + ':basket');
                 return {
                     sasl: sasl,
                     cardType: cardType,
                     priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
-                    basket: catalogActions.getBasket(sasl.sa(), sasl.sl()),
+                    basket: basket,//catalogActions.getBasket(sasl.sa(), sasl.sl()),
                     catalogId: catalogId,
-                    backToCatalogs: backToCatalogs
+                    backToCatalog: backToCatalog,
+                    backToCatalogs:backToCatalogs
                 };
             });
     },

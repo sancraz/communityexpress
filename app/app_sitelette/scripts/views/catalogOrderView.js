@@ -26,11 +26,13 @@ var CatalogOrderView = PageLayout.extend({
         this.months = this.getMonths();
         this.states = this.getStates();
         this.catalogId = options.catalogId;
-        this.backToCatalogs = options.backToCatalogs;
+        this.backToCatalog = options.backToCatalog;
+        this.backToCatalogs = options.backToCatalogs; /* this is passed on to catalogview, for its' decision-making */
         this.priceAddons = options.priceAddons;
         this.calculateTaxes();
         this.getTotalPriceWithTax();
         this.on('show', this.onShow, this);
+        this.navbarView=options.navbarView;
     },
 
     onShow: function(){
@@ -70,8 +72,10 @@ var CatalogOrderView = PageLayout.extend({
         Vent.trigger('viewChange', 'catalog', {
             id: this.sasl.id,
             catalogId: this.catalogId,
-            backToCatalogs: this.backToCatalogs
-        }, { reverse: true });
+            backToCatalog: this.backToCatalog,
+            backToCatalogs:this.backToCatalogs,
+            navbarView:this.navbarView
+         }, { reverse: true });
     },
 
     onSubmitClick: function (e) {

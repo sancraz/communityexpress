@@ -36,7 +36,7 @@ module.exports = {
         });
     },
 
-    getBasket: function (sa, sl) {
-        return appCache.fetch(sa + ':' + sl + ':basket', new CatalogBasketModel());
-    }
+    //getBasket: function (sa, sl) {
+    //    return appCache.fetch(sa + ':' + sl + ':basket', new CatalogBasketModel());
+    //}
 };

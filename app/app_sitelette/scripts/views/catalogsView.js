@@ -17,6 +17,7 @@ var CatalogsView = PageLayout.extend({
         this.catalogs = options.catalogs.collection;
         this.sasl = options.sasl;
         this.on('show', this.onShow, this);
+        this.navbarView=options.navbarView;
     },
 
     onShow:  function () {
@@ -24,10 +25,12 @@ var CatalogsView = PageLayout.extend({
             'click .back': 'triggerRestaurantView'
         });
         this.renderCatalogs();
+        this.navbarView.hide();
     },
 
     triggerRestaurantView: function() {
         Vent.trigger( 'viewChange', 'restaurant', this.sasl.getUrlKey(), { reverse: true } );
+        this.navbarView.show();
     },
 
     renderCatalogs: function() {
