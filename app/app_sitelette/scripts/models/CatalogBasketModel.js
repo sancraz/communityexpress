@@ -45,10 +45,17 @@ var CatalogBasketModel = Backbone.Collection.extend({
   /* catalog uuid */
 	idAttribute : 'uUID',
 
-	initialize : function(options) {
+	initialize : function() {
 		this.prices = new Backbone.Model();
+	
 	},
 
+	setCatalogDetails(catalogDetails){
+	    this.idAttribute=catalogDetails.catalogUUID;
+	    this.catalogName=catalogDetails.catalogName; 
+	    this.catalogType=catalogDetails.catalogType;
+	},
+	
 	changeItemInCombo : function(item, groupId, catalogId) {
 		 
 		/*
@@ -174,6 +181,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
 	dumpCartToConsole : function() {
 		console.log("************----- current cart --------");
+		console.log(" CatalogBasket for catalog:"+this.catalogName);
 		this.each(function(item, index, list) {
 			var quantity = item.get('quantity');
 			var itemName = item.itemName;
