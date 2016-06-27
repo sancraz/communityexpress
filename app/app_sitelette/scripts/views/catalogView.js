@@ -2,11 +2,11 @@
 
 'use strict';
 
-var Vent = require('../Vent'),//
+var Vent = require('../Vent'), //
 loader = require('../loader'), //
-CatalogBasketModel = require('../models/CatalogBasketModel'),//
-orderActions = require('../actions/orderActions'),//
-PageLayout = require('./components/pageLayout'),//
+CatalogBasketModel = require('../models/CatalogBasketModel'), //
+orderActions = require('../actions/orderActions'), //
+PageLayout = require('./components/pageLayout'), //
 GroupView = require('./partials/groupView'), //
 ComboGroupView = require('./partials/comboGroupView'), //
 ListView = require('./components/listView');
@@ -23,8 +23,8 @@ var CatalogView = PageLayout.extend({
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        this.navbarView.hide();//$('#cmtyx_navbar').fadeOut('slow');
-        
+        this.navbarView.hide();// $('#cmtyx_navbar').fadeOut('slow');
+
     },
 
     initialize : function(options) {
@@ -36,10 +36,11 @@ var CatalogView = PageLayout.extend({
         this.backToCatalogs = options.backToCatalogs;
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
-        this.colors= options.catalog.data.colors;//[ '#444444', '#00ffB1', '#ffB2FD', '#FFCCCC' ];
-        /*add catalog name to basket */
-        this.basket.catalogName=options.catalog.collection.displayText;
-        this.navbarView=options.navbarView;
+        this.colors = options.catalog.data.colors;// [ '#444444', '#00ffB1',
+        // '#ffB2FD', '#FFCCCC' ];
+        /* add catalog name to basket */
+        this.basket.catalogName = options.catalog.collection.displayText;
+        this.navbarView = options.navbarView;
     },
 
     renderData : function() {
@@ -56,9 +57,8 @@ var CatalogView = PageLayout.extend({
             this.navbarView.show();
         }
         ;
-        
+
     },
-    
 
     triggerCatalogsView : function() {
         Vent.trigger('viewChange', 'catalogs', this.sasl.getUrlKey());
@@ -71,7 +71,8 @@ var CatalogView = PageLayout.extend({
     },
 
     openAddToBasketView : function(model, groupId, catalogId) {
-    	//console.log("CatalogView:openAddToBasketView :"+model.attributes.itemName+", "+groupId+", "+catalogId);
+        // console.log("CatalogView:openAddToBasketView
+        // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
         this.openSubview('addToBasket', model, {
             basket : this.basket,
@@ -80,21 +81,24 @@ var CatalogView = PageLayout.extend({
         });
     },
 
-
     toggleBasketComboEntry : function(model, groupId, catalogId) {
-    	//console.log("CatalogView:toggleBasketComboEntry :"+model.attributes.itemName+", "+groupId+", "+catalogId);
-        this.basket.changeItemInCombo(model,groupId,catalogId);
+        // console.log("CatalogView:toggleBasketComboEntry
+        // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
+        this.basket.changeItemInCombo(model, groupId, catalogId);
     },
-
 
     triggerOrder : function() {
         this.withLogIn(function() {
             Vent.trigger('viewChange', 'order', {
                 id : this.sasl.getUrlKey(),
                 catalogId : this.catalogId,
-                backToCatalog : true,// /* This will always be true */ 
-                backToCatalogs :this.backToCatalogs, /*not used by order, but passed back to catalog view */
-                navbarView :this.navbarView
+                backToCatalog : true,// /* This will always be true */
+                backToCatalogs : this.backToCatalogs, /*
+                                                         * not used by order,
+                                                         * but passed back to
+                                                         * catalog view
+                                                         */
+                navbarView : this.navbarView
             }, {
                 reverse : true
             });
@@ -113,24 +117,29 @@ var CatalogView = PageLayout.extend({
             template : require('ejs!../templates/partials/edit_basket_item.ejs')
         });
     },
-
+ 
     updateBasket : function() {
-        $('.num-of-items').text(this.basket.count());
-        $('.total-price').text(this.basket.getTotalPrice());
+        if (this.basket.hasCombo()) {
+            $('.num-of-items').text(this.basket.nonComboItemCount());
+            $('.total-price').text(this.basket.getNonComboPrice());
+        } else {
+            $('.num-of-items').text(this.basket.count());
+            $('.total-price').text(this.basket.getTotalPrice());
+        }
+
     },
 
     generateColor : function(index) {
-        //var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
+        // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
         return this.colors[index % this.colors.length];
     },
 
     renderItems : function() {
- 
-      this.updateBasket();
 
+        this.updateBasket();
 
-    	var catalogType=this.catalogType.enumText;
-    	var catalogId=this.catalogId;
+        var catalogType = this.catalogType.enumText;
+        var catalogId = this.catalogId;
 
         switch (catalogType) {
         case 'COMBO':
@@ -139,8 +148,8 @@ var CatalogView = PageLayout.extend({
                 if (group.unSubgroupedItems.length === 0)
                     return;
 
-                var groupType=group.groupType.enumText;
-                var groupId=group.groupId;
+                var groupType = group.groupType.enumText;
+                var groupId = group.groupId;
 
                 switch (groupType) {
                 case 'COMBO':
@@ -148,8 +157,8 @@ var CatalogView = PageLayout.extend({
                      * use radio boxes
                      */
                     var el = new ComboGroupView({
-                    	onChange : function(model) {
-                            this.toggleBasketComboEntry(model,groupId, catalogId);
+                        onChange : function(model) {
+                            this.toggleBasketComboEntry(model, groupId, catalogId);
                         }.bind(this),
                         color : this.generateColor(i),
                         model : group,
@@ -159,8 +168,8 @@ var CatalogView = PageLayout.extend({
                     /*
                      * now add the first item
                      */
-                    var firstItem=group.unSubgroupedItems[0];
-                    this.basket.addItemRaw(firstItem,1,groupId,catalogId);
+                    var firstItem = group.unSubgroupedItems[0];
+                    this.basket.addItemRaw(firstItem, 1, groupId, catalogId);
                     this.updateBasket();
                     break;
                 case 'ITEMIZED':
@@ -171,7 +180,7 @@ var CatalogView = PageLayout.extend({
                      */
                     var el = new GroupView({
                         onClick : function(model) {
-                            this.openAddToBasketView(model,groupId,catalogId);
+                            this.openAddToBasketView(model, groupId, catalogId);
                         }.bind(this),
                         color : this.generateColor(i),
                         model : group,
@@ -188,13 +197,13 @@ var CatalogView = PageLayout.extend({
                 if (group.unSubgroupedItems.length === 0)
                     return;
 
-                var groupType=group.groupType.enumText;
-                var groupName=group.enumText;
-                var groupId=group.groupId;
+                var groupType = group.groupType.enumText;
+                var groupName = group.enumText;
+                var groupId = group.groupId;
 
                 var el = new GroupView({
                     onClick : function(model) {
-                        this.openAddToBasketView(model,groupId,catalogId);
+                        this.openAddToBasketView(model, groupId, catalogId);
                     }.bind(this),
                     color : this.generateColor(i),
                     model : group,

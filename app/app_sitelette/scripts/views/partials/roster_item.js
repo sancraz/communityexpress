@@ -2,7 +2,7 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/roster-item.ejs'),
+var template = require('ejs!../../templates/partials/roster_item.ejs'),
     Vent = require('../../Vent'),
     h = require('../../globalHelpers');
 

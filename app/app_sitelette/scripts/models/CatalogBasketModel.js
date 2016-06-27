@@ -154,6 +154,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
 		this.dumpCartToConsole();
 	},
+	
 	removeItem : function(item) {
 		this.remove(item.get('uUID'));
 	},
@@ -195,8 +196,28 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
 	removeAllItems : function() {
 		this.reset();
-	}
+	},
+	
+	hasCombo : function(){
+	  return false;
+	},
+	
+	getComboCount : function(){
+	  return 1;  
+	},
+	
+	getComboPrice : function(){
+	  return "44.00";
+	},
+  
+	nonComboItemCount : function(){
+      return 99;
+  },
 
+  getNonComboPrice:function(){
+      return "0.00";
+  }
+	
 });
 
 module.exports = CatalogBasketModel;

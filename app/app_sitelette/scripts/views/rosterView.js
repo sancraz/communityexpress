@@ -36,7 +36,6 @@ var RosterView = PageLayout.extend({
     renderCatalogs: function() {
         var el = new ListView({
             ListItemView: RosterItemView,
-            className: 'cmntyex-catalog_list ui-listview',
             collection: new Backbone.Collection(this.catalogs),
             dataRole: 'list-view',
             parent: this
