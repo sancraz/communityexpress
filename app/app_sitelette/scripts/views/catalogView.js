@@ -92,7 +92,7 @@ var CatalogView = PageLayout.extend({
             Vent.trigger('viewChange', 'order', {
                 id : this.sasl.getUrlKey(),
                 catalogId : this.catalogId,
-                backToCatalog : true,// /* This should always be true */ 
+                backToCatalog : true,// /* This will always be true */ 
                 backToCatalogs :this.backToCatalogs, /*not used by order, but passed back to catalog view */
                 navbarView :this.navbarView
             }, {
@@ -125,10 +125,7 @@ var CatalogView = PageLayout.extend({
     },
 
     renderItems : function() {
-    	/*
-    	 * we must clear basket
-    	 */
-    	//this.basket.removeAllItems();
+ 
       this.updateBasket();
 
 
