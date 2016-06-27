@@ -183,11 +183,11 @@ module.exports = {
                 if(backToCatalog===true){
                     var tempBasket=new CatalogBasketModel( );
                     tempBasket.setCatalogDetails(catalogDetails);
-                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':basket',tempBasket );
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+catalog.data.catalogId+ ':basket',tempBasket );
                 }else{
                     var basket=new CatalogBasketModel( );
                     basket.setCatalogDetails(catalogDetails);
-                    appCache.set(sasl.sa() + ':' + sasl.sl() + ':basket', basket);     
+                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+catalog.data.catalogId+ ':basket', basket);     
                 }
                 return {
                     sasl: sasl,
@@ -365,7 +365,7 @@ module.exports = {
                 /*
                  * pull up the basket for this sasl
                  */
-                var basket =  appCache.get(sasl.sa() + ':' + sasl.sl() + ':basket');
+                var basket =  appCache.get(sasl.sa() + ':' + sasl.sl() +':'+catalogId+ ':basket');
                 return {
                     sasl: sasl,
                     cardType: cardType,

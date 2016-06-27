@@ -15,7 +15,7 @@ var RosterItemView = Backbone.View.extend({
     className: 'roster_item',
 
     events: {
-        'click': 'triggerCatalogView'
+        'click': 'addToCartOrTriggerCatalog'
     },
 
     initialize: function(options) {
@@ -29,12 +29,16 @@ var RosterItemView = Backbone.View.extend({
         return this;
     },
 
-    triggerCatalogView: function() {
+    addToCartOrTriggerCatalog: function() {
+        if(this.model){
+            console.log(" adding to cart");
+        }else{ 
         Vent.trigger('viewChange', 'catalog', {
             id: this.sasl.id,
             catalogId: this.model.get('catalogId'),
             backToCatalogs: true
         });
+        }
     }
 
 });
