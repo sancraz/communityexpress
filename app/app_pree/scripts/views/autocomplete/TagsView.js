@@ -21,7 +21,8 @@ var TagsItemView = Mn.ItemView.extend({
 	serializeData: function() {
 
 		return {
-			tag: this.model.get('value')
+			tag: this.model.get('value'),
+			hash: this.options.tagType === 'tags' ? '#' : ''
 		};
 	},
 
@@ -41,7 +42,7 @@ var TagsCollectionView = Mn.CollectionView.extend({
 
 	childViewOptions: function() {
       return {
-        tagInfo: {}
+        tagType: this.options.type
       };
     }
 });
@@ -86,7 +87,8 @@ var TagsView = Mn.LayoutView.extend({
 		this.tagsCollection = new TagsCollection();
 
 		var tagsCollectionView = new TagsCollectionView({
-			collection: this.tagsCollection
+			collection: this.tagsCollection,
+			type: this.options.type
 		});
 		this.getRegion('tagsRegion').show(tagsCollectionView);
 	},
