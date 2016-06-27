@@ -126,6 +126,7 @@ var TagsView = Mn.LayoutView.extend({
 	discardChanges: function() {
 		this.tagsCollection.reset();
 		this.updateFilters();
+		//new branch
 	},
 
 	updateFilters: function() {
