@@ -119,6 +119,19 @@ var CatalogView = PageLayout.extend({
     },
  
     updateBasket : function() {
+        if(this.basket.hasCombo()){
+            /* update combo count */
+            $('#catalog_combo_count_div').show();
+            $('.num-of-combo-items').text(this.basket.getComboCount());
+            $('.combo-total-price').text(this.basket.getComboPrice());
+        }else{
+            /* hide the combo line */
+            $('#catalog_combo_count_div').hide();
+        }
+        
+        /*
+         * update the items
+         */
         if (this.basket.hasCombo()) {
             $('.num-of-items').text(this.basket.nonComboItemCount());
             $('.total-price').text(this.basket.getNonComboPrice());
