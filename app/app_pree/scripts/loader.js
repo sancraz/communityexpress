@@ -15,10 +15,16 @@ module.exports = {
         $('<p/>', {class: 'loader-text'}).appendTo('.loader.message');
     },
 
-    show: function(text) {
+    show: function(text, flash) {
         this.init();
-        $('.loader').css('display', 'block');
-        $('.loader-text').text('loading ' + text);
+        $('.loader').show();
+        if (!flash) {
+            $('.loader-text').text('loading ' + text);
+        } else {
+            $('.loader-img').hide();
+            $('.loader.message').css('padding-top', '40px')
+            $('.loader-text').text(text);
+        }
     },
 
     showErrorMessage: function(err, msg) {
@@ -30,8 +36,9 @@ module.exports = {
     },
 
     showFlashMessage: function(msg, options){
-
         var self = this;
+        var flash = true;
+        this.hide();
 
         if( _(msg).isObject() ){
             options = msg;
@@ -42,7 +49,7 @@ module.exports = {
 
         var text = msg || options.msg || 'finished loading';
 
-        this.show(text);
+        this.show(text, flash);
         setTimeout(self.hide, 3000);
     },
 
