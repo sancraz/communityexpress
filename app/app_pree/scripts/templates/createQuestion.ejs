@@ -1,0 +1,121 @@
+<!--CREATE QUESTION-->
+<div class="pree_question_edit create-question-container collapse">
+    <header>
+        <div class="modal-header">
+            <!-- <button type="button" class="close pree_question_edit_close" data-dismiss="modal" aria-label="Close"><img src="images/close.png" alt=""></button> -->
+            <div class="modal_header_title">
+                Create a new question
+            </div>
+        </div>
+    </header>
+    <section>
+        <div class="modal-body">
+            <ul class="pree_question_edit_type">Question type:
+                <li class="pree_question_edit_type_item">
+                    <input type="checkbox"><span>Fact</span>
+                </li>
+                <li class="pree_question_edit_type_item">
+                    <input type="checkbox"><span>Opinion</span>
+                </li>
+                <li class="pree_question_edit_type_item">
+                    <input type="checkbox"><span>Prediction</span>
+                </li>
+            </ul>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a class="collapsed predictDetails" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Prediction Details</a>
+                        <a class="collapsed predictDetails collapseBtn" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><img src="images/download.png" alt=""></a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="pree_question_edit_text">
+                <textarea id="textarea" class="form-control" maxlength="120" placeholder="Add your question here"></textarea>
+                <div id="textAreaOptionsBlock">
+                    <img src="images/camera-outline.png" alt="" class="pree_question_edit_text_photo">
+                    <span id="pree_question_edit_text_note"></span>
+                </div>
+            </div>
+
+            <div >
+               <span class="answersWordSpan">Answers:</span>
+                <ul class="pree_question_edit_answers"> 
+                    <li>
+                        <div class="pree_question_edit_answers_item">
+                            <input type="radio" name="answer" class="radioCreateAnswer">
+                            <div class="inputRadioImg"></div>
+                            <div class="input-group">
+                                <div class="input-group-addon">A</div>
+                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Answer 1">
+                            </div>
+                        </div>            
+                    </li>
+                    <li>
+                        <div class="pree_question_edit_answers_item">
+                            <input type="radio" name="answer" class="radioCreateAnswer">
+                            <div class="inputRadioImg"></div>
+                            <div class="input-group">
+                                <div class="input-group-addon">B</div>
+                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Answer 2">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="pree_question_edit_answers_item">
+                   <span class="selectAnswerText">Select the correct answer</span>
+                    <a href="" class="addAnswerBtn"><img src="images/add2.png" alt="" class="miniPlusBtn"><span>Add an answer</span></a>
+                </div>
+            </div>
+
+            <div class="pree_question_info">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed predictDetails" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Answer info</a>
+                            <a class="collapsed predictDetails collapseBtn" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><img src="images/download.png" alt=""></a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <div class="answerInfoBlock">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce a tortor nisl. Proin ut nibh sapien. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group pree_question_edit_atribution_link">
+                <label for="atributionLinkInput" class="pree_question_edit_atribution_link_label">Attribution link</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="atributionLinkInput" placeholder="Answer 1">
+                    <div class="input-group-addon bigPlusBtn">
+                        <a><img src="images/add-copy.png" alt=""></a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group pree_question_edit_categories">
+                <label for="categoriesInput" class="pree_question_edit_categories_label">Categories</label>
+                <input type="text" class="form-control" id="categoriesInput">
+            </div>
+            <div class="form-group pree_question_edit_tags">
+                <label for="tagsInput" class="pree_question_edit_tags_label">Tags</label>
+                <input type="text" class="form-control" id="tagsInput">
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="modal-footer">
+            <div class="pree_question_edit_buttons">
+                <span class="pree_question_edit_save">Save</span>
+                <span class="pree_question_edit_post">Post</span>
+                <span class="pree_question_edit_discard discard-btn">Discard</span>
+            </div>
+        </div>
+    </footer>
+</div>

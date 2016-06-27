@@ -11,11 +11,16 @@ var CentralLayoutView = Mn.LayoutView.extend({
 
     regions: {
         filtersRegion: '#filters-region',
+        newQuestionRegion: '#new-question-region',
         questionsRegion: '#questions-region'
     },
 
     showFiltersView: function(view){
         this.filtersRegion.show(view);
+    },
+
+    showNewQuestionView: function(view) {
+        this.newQuestionRegion.show(view);
     },
 
     showQuestionsView: function(view) {

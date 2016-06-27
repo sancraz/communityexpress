@@ -1,7 +1,9 @@
 var API = {
     dashboard: function() {
-        var centralPartController = require('./controllers/centralPartController');
+        var centralPartController = require('./controllers/centralPartController'),
+        	rightPartController = require('./controllers/rightPartController');
         centralPartController.showLayout();
+        rightPartController.showLayout();
     }
 };
 

@@ -5,6 +5,7 @@ var App = require('../app'),
     appCache = require('../appCache'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../views/CentralLayoutView'),
+    CreateQuestionView = require('../views/CreateQuestionView'),
     FeedView = require('../views/FeedView'),
     FiltersView = require('../views/FiltersView'),
     FeedModel = require('../models/FeedModel');
@@ -15,6 +16,7 @@ module.exports = {
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
         this.showFilters();
+        App.on('createNewQuestion:show', _.bind(this.showCreateNewQuestion, this));
     },
 
     showFilters: function() {
@@ -23,6 +25,11 @@ module.exports = {
         filtersView.listenTo(filtersView, 'getTags', _.bind(this.getTags, this));
         filtersView.listenTo(filtersView, 'getQuestions', _.bind(this.getQuestions, this));
         this.centralLayoutView.showFiltersView(filtersView);
+    },
+
+    showCreateNewQuestion: function() {
+        var createQuestion = new CreateQuestionView();
+        this.centralLayoutView.showNewQuestionView(createQuestion);
     },
 
     getCategories: function(callback) {
