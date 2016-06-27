@@ -12,13 +12,13 @@
         <div class="modal-body">
             <ul class="pree_question_edit_type">Question type:
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox"><span>Fact</span>
+                    <input type="checkbox" <% if (model.subType === 0) { %>checked<% } %>><span>Fact</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox"><span>Opinion</span>
+                    <input type="checkbox" <% if (model.subType === 1) { %>checked<% } %>><span>Opinion</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox"><span>Prediction</span>
+                    <input type="checkbox" <% if (model.subType === 2) { %>checked<% } %>><span>Prediction</span>
                 </li>
             </ul>
 
@@ -31,13 +31,18 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
-
+                        <div>
+                            <span class="expiration-date">Expiration date:<%= model.expirationDate %></span>
+                        </div>
+                        <div>
+                            <span class="notification-date">Notification date:<%= model.activationDate %></span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="pree_question_edit_text">
-                <textarea id="textarea" class="form-control" maxlength="120" placeholder="Add your question here"></textarea>
+                <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here"><%= model.displayText %>?</textarea>
                 <div id="textAreaOptionsBlock">
                     <img src="images/camera-outline.png" alt="" class="pree_question_edit_text_photo">
                     <span id="pree_question_edit_text_note"></span>
@@ -46,27 +51,19 @@
 
             <div >
                <span class="answersWordSpan">Answers:</span>
-                <ul class="pree_question_edit_answers"> 
-                    <li>
-                        <div class="pree_question_edit_answers_item">
-                            <input type="radio" name="answer" class="radioCreateAnswer">
-                            <div class="inputRadioImg"></div>
-                            <div class="input-group">
-                                <div class="input-group-addon">A</div>
-                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Answer 1">
-                            </div>
-                        </div>            
-                    </li>
-                    <li>
-                        <div class="pree_question_edit_answers_item">
-                            <input type="radio" name="answer" class="radioCreateAnswer">
-                            <div class="inputRadioImg"></div>
-                            <div class="input-group">
-                                <div class="input-group-addon">B</div>
-                                <input type="text" class="form-control" id="exampleInputAmount" placeholder="Answer 2">
-                            </div>
-                        </div>
-                    </li>
+                <ul class="pree_question_edit_answers">
+                    <% _.each(model.choices, function(choice, index){ %>
+                        <li>
+                            <div class="pree_question_edit_answers_item">
+                                <input type="radio" name="answer" data-index="<%= index %>" class="radioCreateAnswer answer-choice" <% if (choice.isCorrect) { %>checked<% } %>>
+                                <div class="inputRadioImg"></div>
+                                <div class="input-group">
+                                    <div class="input-group-addon"><%= index + 1 %></div>
+                                    <input type="text" data-index="<%= index %>" class="form-control answer-example" id="exampleInputAmount" placeholder="Answer <%= index + 1 %>" value="<%= choice.displayText %>">
+                                </div>
+                            </div>            
+                        </li>
+                    <% }) %>
                 </ul>
                 <div class="pree_question_edit_answers_item">
                    <span class="selectAnswerText">Select the correct answer</span>
@@ -112,8 +109,8 @@
     <footer>
         <div class="modal-footer">
             <div class="pree_question_edit_buttons">
-                <span class="pree_question_edit_save">Save</span>
-                <span class="pree_question_edit_post">Post</span>
+                <span class="pree_question_edit_save save-btn">Save</span>
+                <span class="pree_question_edit_post post-btn">Post</span>
                 <span class="pree_question_edit_discard discard-btn">Discard</span>
             </div>
         </div>
