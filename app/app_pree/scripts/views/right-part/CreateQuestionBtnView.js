@@ -1,6 +1,7 @@
 'use strict';
 
-var template = require('ejs!./createQuestionBtn.ejs');
+var App = require('../../app'),
+	template = require('ejs!./createQuestionBtn.ejs');
 
 var CreateQuestionBtnView = Mn.ItemView.extend({
 
@@ -16,6 +17,7 @@ var CreateQuestionBtnView = Mn.ItemView.extend({
 
     createQuestion: function() {
     	console.log('create question');
+    	App.trigger('createNewQuestion:show');
     }
 
 });

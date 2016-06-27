@@ -1,0 +1,317 @@
+.pree_question_edit {
+    background-color: #fff;
+    margin-bottom: 15px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border: 1px solid #eee;
+}
+
+.modal-header {
+    height: 40px;
+    background-color: #388e3c;
+    border: 1px solid #388e3c;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.close {
+    opacity: 1;
+    line-height: 10px;
+    outline: none;
+}
+
+.modal_header_title {
+    color: #ffffff;
+    font: 400 12px / 12px Ubuntu;
+}
+
+.modal-body {
+    padding: 15px 20px 5px 20px;
+}
+
+.pree_question_edit_type {
+    display: inline-block;
+    color: #333333;
+    font: 400 11px / 15px Ubuntu;
+}
+
+.pree_question_edit_type_item {
+    display: inline-block;
+    margin-left: 15px;
+    color: #777777;
+    font: 400 11px Ubuntu;
+}
+
+input[type=checkbox]:not(old) {
+    height: 12px;
+    width: 15px;
+    margin-right: 15px;
+    padding: 0;
+    opacity: 0;
+}
+
+input[type=checkbox]:not(old) + span {
+    display: inline-block;
+    margin-left: -28px;
+    padding-left: 20px;
+    background: url(images/checkbox.png) no-repeat 0;
+    line-height: 24px;
+}
+
+input[type=checkbox]:not(old):checked + span {
+    background: url(images/checkbox_active.png) no-repeat 0;
+}
+
+.panel-heading {
+    border-bottom: none;
+    background-color: #f5f5f5;
+}
+
+.panel-body {
+    padding-top: 0;
+    background-color: #f5f5f5;
+    
+}
+
+.panel-default {
+    margin-bottom: 10px;
+}
+
+.collapseBtn {
+    float: right;
+}
+
+a.predictDetails {
+    text-decoration: none;
+    color: #555555;
+    font: 400 11px / 15px Ubuntu;
+}
+
+textarea {
+    resize: none;
+}
+
+textarea.form-control {
+    border: none;
+    border-radius: 0px;
+    font: 400 11px / 15px Ubuntu;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+#textAreaOptionsBlock {
+    color: #777777;
+    font: 400 9px / 20px Ubuntu;
+    background-color: #f5f5f5;
+    padding: 5px 10px;
+}
+
+.pree_question_edit_text {
+    border: solid 1px #e1e1e1;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+#pree_question_edit_text_note {
+    float: right;
+}
+
+.pree_question_edit_text_photo {
+    opacity: 0.8;
+}
+
+.pree_question_edit_text_photo:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.pree_question_edit_answers {
+    display: block;
+    margin-bottom: -5px;
+    color: #333333;
+    font: 400 11px / 15px Ubuntu;
+}
+
+.answersWordSpan {
+    display: inline-block;
+    margin-bottom: 5px;
+    color: #333333;
+    font: 400 11px / 15px Ubuntu;
+}
+
+.inputRadioImg {
+    display: inline-block;
+    height: 14px;
+}
+
+input[type="radio"].radioCreateAnswer {
+    display: inline-block;
+    float: left;
+    position: relative;
+    bottom: -8px;
+}
+
+input[type=radio].radioCreateAnswer:not(old) {
+    width: 28px;
+    margin: 0;
+    padding: 0;
+    opacity: 0;
+}
+
+input[type=radio].radioCreateAnswer:not(old) + div.inputRadioImg {
+    float: left;
+    display: inline-block;
+    margin-top: 7px;
+    margin-left: -28px;
+    padding-left: 20px;
+    background: url(images/Ellipse-4.png) no-repeat 0;
+    line-height: 24px;
+}
+
+input[type=radio].radioCreateAnswer:not(old):checked + div.inputRadioImg {
+    background: url(images/Ellipse-4-copy.png) no-repeat 0;
+}
+
+.input-group {
+    margin-bottom: 10px;
+    line-height: 10px;
+    height: 10px;
+}
+
+.input-group .input-group-addon {
+    font: 400 11px / 15px Ubuntu;
+}
+
+.input-group .form-control {
+    font: 400 11px / 15px Ubuntu;
+    height: 30px;
+}
+
+.form-group .form-control {
+    font: 400 11px / 15px Ubuntu;
+    height: 30px;
+}
+
+.selectAnswerText {
+    position: relative;
+    bottom: 5px;
+    color: #777777;
+    font: 400 9px Ubuntu;
+    margin-left: 26px;
+}
+
+a.addAnswerBtn {
+    text-decoration: none;
+    float: right;
+    color: #777777;
+    font: 400 9px / 15px Ubuntu;
+}
+
+.miniPlusBtn {
+    margin-right: 5px;
+    position: relative;
+    bottom: 1px;
+}
+
+.pree_question_info {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.answerInfoBlock {
+    background-color: #ffffff;
+    padding: 10px;
+    border: solid 1px #e1e1e1;
+    color: rgba(119, 119, 119, 0.7);
+    font: 400 11px / 15px Ubuntu;
+}
+
+.pree_question_edit_atribution_link .input-group, .pree_question_edit_categories .form-control, .pree_question_edit_tags .form-control {
+    float: right;
+    max-width: 90%;
+}
+
+.pree_question_edit_categories_label,
+.pree_question_edit_tags_label,
+.pree_question_edit_atribution_link_label {
+    color: #333333;
+    font: 400 11px / 30px Ubuntu;
+}
+
+.pree_question_edit_atribution_link, .pree_question_edit_categories, .pree_question_edit_tags {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.bigPlusBtn:hover {
+    cursor: pointer;
+}
+
+.modal-footer {
+    border-top: none;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.pree_question_edit_save {
+    display: inline-block;
+    float: left;
+    color: #777777;
+    font: 400 12px / 12px Ubuntu;
+    background-color: #ffffff;
+    border-color: #d7d7d7;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.pree_question_edit_discard {
+    display: inline-block;
+    float: right;
+    background-color: #ffffff;
+    padding: 8px 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: #777777;
+    font: 400 12px / 12px Ubuntu;
+    position: relative;
+    top: 1px;
+}
+
+.pree_question_edit_post {
+    display: inline-block;
+    float: right;
+    color: #388e3c;
+    font: 400 12px / 12px Ubuntu;
+    background-color: #ffffff;
+    border-color: #388e3c;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .pree_question_edit_atribution_link .input-group, .pree_question_edit_categories .form-control, .pree_question_edit_tags .form-control {
+        max-width: 100%;
+        float: none;
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
