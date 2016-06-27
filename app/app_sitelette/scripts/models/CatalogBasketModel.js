@@ -50,7 +50,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
 	
 	},
 
-	setCatalogDetails(catalogDetails){
+	setCatalogDetails: function (catalogDetails){
 	    this.idAttribute=catalogDetails.catalogUUID;
 	    this.catalogName=catalogDetails.catalogName; 
 	    this.catalogType=catalogDetails.catalogType;
