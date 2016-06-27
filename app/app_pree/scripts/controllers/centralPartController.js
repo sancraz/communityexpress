@@ -6,6 +6,7 @@ var App = require('../app'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../views/CentralLayoutView'),
     CreateQuestionView = require('../views/CreateQuestionView'),
+    CreateQuestionModel = require('../models/PreeNewQuestionModel'),
     FeedView = require('../views/FeedView'),
     FiltersView = require('../views/FiltersView'),
     FeedModel = require('../models/FeedModel');
@@ -28,11 +29,41 @@ module.exports = {
     },
 
     showCreateNewQuestion: function() {
-        var createQuestion = new CreateQuestionView();
-        this.centralLayoutView.showNewQuestionView(createQuestion);
+        if (this.createNewQuestion) return;
+        var model = new CreateQuestionModel();
+
+        this.createNewQuestion = new CreateQuestionView({
+                model: model
+            });
+
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:discarded', _.bind(function(){
+            this.createNewQuestion = null;
+        }, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:post', _.bind(this.postNewQuestion, this));
+        this.centralLayoutView.showNewQuestionView(this.createNewQuestion);
+    },
+
+    hideCreateNewQuestion: function() {
+        if (this.createNewQuestion) {
+            this.createNewQuestion.triggerMethod('discardQuestion');
+        }
+    },
+
+    postNewQuestion: function(model, callback) {
+        console.log(model.toJSON());
+
+        gateway.sendRequest('createQuestion', {
+            UID: 'user20.781305772384780045',
+            payload: model.toJSON()
+        }).then(_.bind(function(resp) {
+            callback();
+        }, this), function(e) {
+            callback();
+        });
     },
 
     getCategories: function(callback) {
+        this.hideCreateNewQuestion();
         gateway.sendRequest('getPreeCategories', {
         }).then(_.bind(function(resp) {
             callback(resp);
@@ -42,6 +73,7 @@ module.exports = {
     },
 
     getTags: function(callback) {
+        this.hideCreateNewQuestion();
         gateway.sendRequest('getPreeTags', {
         }).then(_.bind(function(resp) {
             callback(resp);
@@ -51,6 +83,7 @@ module.exports = {
     },
 
     getQuestions: function(params) {
+        this.hideCreateNewQuestion();
         var UID = '';
         loader.show('questions');
         if ( appCache.get('user') && appCache.get('user').getUID ) {
