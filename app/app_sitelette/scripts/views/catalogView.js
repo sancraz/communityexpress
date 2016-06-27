@@ -129,7 +129,7 @@ var CatalogView = PageLayout.extend({
     	 * we must clear basket
     	 */
     	//this.basket.removeAllItems();
-      //this.updateBasket();
+      this.updateBasket();
 
 
     	var catalogType=this.catalogType.enumText;

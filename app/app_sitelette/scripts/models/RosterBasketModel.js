@@ -2,46 +2,11 @@
 
 'use strict';
 
-var RosterBasketItem = Backbone.Model.extend({
-	/*
-	 * what is id, cid and idAttribute?
-	 * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
-	 * 
-	 * So, we are telling backbone to use the 'uUID' value as the id value for
-	 * this item. for
-	 */
-	idAttribute : 'uUID',
-
-	groupId : null,
-	catalogId : null,
-	itemId : null,
-	/*
-	 * we save the uUID also, so that we can scan by groupId and find the uUID
-	 * maybe we can just use the 'id'?
-	 */
-	uUID : null,
-	itemName : null,
-
-	add : function(n) {
-		var curr = this.get('quantity');
-		this.set('quantity', curr + (n || 1));
-	},
-
-	initialize : function(options) {
-		this.groupId = options.groupId;
-		this.catalogId = options.catalogId;
-		this.itemId = options.itemId;
-		this.uUID = options.uUID;
-		this.itemName = options.itemName;
-		// console.log("CatalogBasketItem:initialize::"+this.itemName+",
-		// "+this.groupId+", "+this.catalogId);
-	}
-
-});
-
+var  CatalogBasketModel = require('../models/CatalogBasketModel'),//
+ 
 var RosterBasketModel = Backbone.Collection.extend({
 
-	model : RosterBasketItem,
+	model : CatalogBasketModel,
 
 	initialize : function(options) {
 		this.prices = new Backbone.Model();
@@ -81,7 +46,7 @@ var RosterBasketModel = Backbone.Collection.extend({
 		 * create basketItem model
 		 */
 
-		var itemModel = new CatalogBasketItem(itemOptions);
+		var itemModel = new CatalogBasketModel(itemOptions);
 
 		/*
 		 * add the itemModel to the collection
@@ -113,7 +78,7 @@ var RosterBasketModel = Backbone.Collection.extend({
 			 * create basketItem model
 			 */
 
-			var itemModel = new CatalogBasketItem(itemOptions);
+			var itemModel = new CatalogBasketModel(itemOptions);
 
 			/*
 			 * add the itemModel to the collection
@@ -137,7 +102,7 @@ var RosterBasketModel = Backbone.Collection.extend({
 		 * create basketItem model
 		 */
 
-		var itemModel = new CatalogBasketItem(itemOptions);
+		var itemModel = new CatalogBasketModel(itemOptions);
 
 		/*
 		 * add the itemModel to the collection
@@ -172,14 +137,15 @@ var RosterBasketModel = Backbone.Collection.extend({
 	},
 
 	dumpCartToConsole : function() {
-		console.log("************----- current cart --------");
+		console.log("************----- current rosterCart --------");
 		this.each(function(item, index, list) {
-			var quantity = item.get('quantity');
-			var itemName = item.itemName;
-			var group = item.groupId;
-
-			console.log("*** " + itemName + ":[" + quantity + "] from Group:"
-					+ group);
+		    item.dumpCartToConsole();
+//			var quantity = item.get('quantity');
+//			var itemName = item.itemName;
+//			var group = item.groupId;
+//
+//			console.log("*** " + itemName + ":[" + quantity + "] from Group:"
+//					+ group);
 		});
 		console.log("*************---------------------------");
 	},

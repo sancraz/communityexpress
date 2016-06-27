@@ -8,7 +8,7 @@ var CatalogBasketItem = Backbone.Model.extend({
 	 * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
 	 * 
 	 * So, we are telling backbone to use the 'uUID' value as the id value for
-	 * this item. for
+	 * this item.  
 	 */
 	idAttribute : 'uUID',
 
@@ -42,10 +42,11 @@ var CatalogBasketItem = Backbone.Model.extend({
 var CatalogBasketModel = Backbone.Collection.extend({
 
 	model : CatalogBasketItem,
+  /* catalog uuid */
+	idAttribute : 'uUID',
 
 	initialize : function(options) {
 		this.prices = new Backbone.Model();
-		this.catalogName="";
 	},
 
 	changeItemInCombo : function(item, groupId, catalogId) {

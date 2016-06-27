@@ -50,7 +50,8 @@ module.exports = {
         }).promise();
     },
 
-    restaurant: function(options, pid) { // options is an array with either sasl or urlKey
+    restaurant: function(options, pid) { // options is an array with either
+                                            // sasl or urlKey
 
         return saslActions.getSasl(options)
             .then(function(response) {
@@ -67,7 +68,8 @@ module.exports = {
 
     },
 
-    chat: function( options ) { // options is an array with either sasl or urlKey
+    chat: function( options ) { // options is an array with either sasl or
+                                // urlKey
 
         return saslActions.getSasl(options)
             .then(function(response) {
@@ -82,7 +84,8 @@ module.exports = {
 
     },
 
-    reviews: function( options ) { // options is an array with either sasl or urlKey
+    reviews: function( options ) { // options is an array with either sasl or
+                                    // urlKey
 
         return saslActions.getSasl(options)
             .then(function(response) {
@@ -152,7 +155,8 @@ module.exports = {
         });
     },
 
-    catalog: function (options) { // options is an array with either sasl or urlKey
+    catalog: function (options) { // options is an array with either sasl or
+                                    // urlKey
         var sasl;
         
         var  catalogId = options.catalogId;
@@ -165,15 +169,24 @@ module.exports = {
                 sasl = ret;
                 return catalogActions.getCatalog(sasl.sa(), sasl.sl(), catalogId);
             }).then(function (catalog) {
-                /* check if we are going back to catalogs. If yes, 
-                 * pull up old catalog, else create new.
+                /*
+                 * check if we are going back to catalogs. If yes, pull up old
+                 * catalog, else create new.
                  */
                 
                 var basket;
+                var catalogDetails={
+                        catalogUUID:catalog.data.catalogId,
+                        catalogName:catalog.data.displayText, 
+                        catalogType:catalog.data.catalogType.enumText
+                       };
                 if(backToCatalog===true){
-                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':basket', new CatalogBasketModel());
+                    var tempBasket=new CatalogBasketModel( );
+                    tempBasket.setCatalogDetails(catalogDetails);
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':basket',tempBasket );
                 }else{
-                    var basket=new CatalogBasketModel();
+                    var basket=new CatalogBasketModel( );
+                    basket.setCatalogDetails(catalogDetails);
                     appCache.set(sasl.sa() + ':' + sasl.sl() + ':basket', basket);     
                 }
                 return {
@@ -181,7 +194,8 @@ module.exports = {
                     catalog: catalog,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
-                    basket: basket,//catalogActions.getBasket(sasl.sa(), sasl.sl()),
+                    basket: basket,// catalogActions.getBasket(sasl.sa(),
+                                    // sasl.sl()),
                     backToCatalogs: backToCatalogs,
                     catalogId: catalogId,
                     navbarView:navbarView
@@ -233,7 +247,8 @@ module.exports = {
                 };
             });
     },
-    posts: function (options) { // options is an array with either sasl or urlKey
+    posts: function (options) { // options is an array with either sasl or
+                                // urlKey
         return saslActions.getSasl(options)
             .then(function (sasl) {
                 return {
@@ -335,7 +350,7 @@ module.exports = {
         var sasl,
             cardType,
             catalogId = options.catalogId,
-            backToCatalog = true,//options.backToCatalogs;
+            backToCatalog = true,// options.backToCatalogs;
             backToCatalogs=options.backToCatalogs;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
