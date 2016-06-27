@@ -74,7 +74,26 @@
         display: inline-block;
         float: left;
         position: relative;
-        bottom: -7px;
+        bottom: -12px;
+    }
+
+    input[type=radio]:not(old){
+      width: 28px;
+      margin: 0;
+      padding: 0;
+      opacity: 0;
+    }
+
+    input[type=radio]:not(old) + span{
+      display: inline-block;
+      margin-left: -28px;
+      padding-left: 20px;
+      background: url(images/Ellipse-4.png) no-repeat 0;
+      line-height: 24px;
+    }
+
+    input[type=radio]:not(old):checked + span{
+        background: url(images/Ellipse-4-green.png) no-repeat 0;
     }
 
     .tagsAndCategories {
@@ -84,6 +103,8 @@
 
     .pree_question_tags {
         list-style: none;
+        padding: 0;
+        
         .pree_question_tags_item {
             float: left;
             width: auto;
@@ -92,11 +113,13 @@
             margin-right: 5px;
             color: $main;
             font: 400 11px / 15px Ubuntu;
+            border-radius: 3px;
         }
     }
 
     .pree_question_categories {
         list-style: none;
+        padding: 0;
 
         .pree_question_categories_item {
             float: left;
@@ -104,6 +127,7 @@
             color: $main;
             background-color: $white;
             border: solid 1px ;
+            border-radius: 3px;
             padding: 5px 9px;
             margin-right: 5px;
             font: 400 11px / 15px Ubuntu;

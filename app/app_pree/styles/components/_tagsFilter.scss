@@ -42,14 +42,23 @@
                 background-color: $main;
 
                 i {
+                    visibility: hidden;
                     padding: 5px;
+                }
+            }
+
+            &:hover {
+                span {
+                    i {
+                        visibility: visible;
+                    }
                 }
             }
         }
         &.categories {
             .tag-item {
                 border: 1px solid $main;
-                border-radius: 0;
+                border-radius: 3px;
                 background-color: $white;
                 span {
                     color: $main;
