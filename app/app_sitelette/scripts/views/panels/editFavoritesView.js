@@ -44,8 +44,8 @@ var EditFavoritesView = PanelView.extend({
 
             model.set({
                 'editable' : editable,
-                'selected' : combo,
-                'combo' : true
+                'selected' : false,
+                'combo' : combo
             });
         });
 
@@ -54,7 +54,9 @@ var EditFavoritesView = PanelView.extend({
     render : function(update) {
         // prevent jqm panel widget from breaking when updated
         var container = update ? this.$('.ui-panel-inner') : this.$el;
-        var editable = this.collection.length > 0 ? this.collection.at(0).get('editable') : false;
+        //var editable = this.collection.length > 0 ? this.collection.at(0).get('editable') : false;
+        var editable = true;
+        
         container.html(this.template({
             editable : editable
         }));
