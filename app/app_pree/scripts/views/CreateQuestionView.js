@@ -20,7 +20,9 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		question: '.question-text',
 		answers: '.pree_question_edit_answers li',
 		answerChoice: '.pree_question_edit_answers li .answer-choice',
-		answerExample: '.pree_question_edit_answers li .answer-example'
+		answerExample: '.pree_question_edit_answers li .answer-example',
+		atributionBtn: '.atribution-link-btn',
+		atributionInput: '#atributionLinkInput'
 	},
 
 	events: {
@@ -30,7 +32,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		'change @ui.type': 'onTypeChanged',
 		'change @ui.answerChoice': 'onChoiceChanged',
 		'change @ui.answerExample': 'onExampleChanged',
-		'change @ui.question': 'onQuestionChanged'
+		'change @ui.question': 'onQuestionChanged',
+		'click @ui.atributionBtn': 'onAddAtributionUrl'
 	},
 
 	serializeData: function() {
@@ -107,7 +110,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	onValidationError: function(errors) {
-		console.log(errors);
+		console.log('fields error: ', errors);
 	},
 
 	onQuestionPost: function() {
@@ -119,6 +122,17 @@ var CreateQuestionView = Mn.LayoutView.extend({
 			//on error
 			this.onValidationError(this.model.validationError);
 		}
+	},
+
+	onAddAtributionUrl: function(){
+		var url = this.ui.atributionInput.val(),
+			expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
+  	 		regex = new RegExp(expression);
+
+  		if (url.match(regex) ) {
+  			console.log('add url ',url);
+  			this.ui.atributionInput.val('');
+  		}
 	}
 
 });

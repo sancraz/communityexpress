@@ -24,7 +24,8 @@ var PreeNewQuestionModel = Backbone.Model.extend({
                 displayText: 'Its a Joshua Tree in Australia',
                 isCorrect: true
             }
-        ]
+        ],
+        //answerInfo: null //this field makes an error 
     },
 
     requiredFields: {
