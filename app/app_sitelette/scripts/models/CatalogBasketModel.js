@@ -14,6 +14,8 @@ var CatalogBasketItem = Backbone.Model.extend({
 
     groupId : null,
     catalogId : null,
+    groupDisplayText:null,
+    catalogDisplayText:null,
     itemId : null,
     /*
      * we save the uUID also, so that we can scan by groupId and find the uUID
@@ -31,6 +33,8 @@ var CatalogBasketItem = Backbone.Model.extend({
     initialize : function(options) {
         this.groupId = options.groupId;
         this.catalogId = options.catalogId;
+        this.groupDisplayText= options.groupDisplayText;
+        this.catalogDisplayText= options.catalogDisplayText;
         this.itemId = options.itemId;
         this.uUID = options.uUID;
         this.itemName = options.itemName;
@@ -52,13 +56,13 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
     },
 
-    setCatalogDetails : function(catalogDetails) {
+    setCatalogDetails : function(catalogDetails) { 
         this.idAttribute = catalogDetails.catalogUUID;
-        this.catalogName = catalogDetails.catalogName;
+        this.catalogDisplayText = catalogDetails.catalogDisplayText;
         this.catalogType = catalogDetails.catalogType;
     },
 
-    changeItemInCombo : function(item, groupId, catalogId) {
+    changeItemInCombo : function(item, groupId, groupDisplayText,catalogId,catalogDisplayText) {
 
         /*
          * find item with same group in this. remove it. add new item.
@@ -84,7 +88,9 @@ var CatalogBasketModel = Backbone.Collection.extend({
         var itemOptions = _.extend({}, item.attributes, {
             quantity : 1,
             groupId : groupId,
-            catalogId : catalogId
+            catalogId : catalogId,
+            groupDisplayText:groupDisplayText,
+            catalogDisplayText:catalogDisplayText
         });
 
         /*
@@ -102,7 +108,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
 
     },
 
-    addItem : function(item, count, groupId, catalogId) {
+    addItem : function(item, count, groupId, groupDisplayText,catalogId,catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
 
@@ -116,7 +122,9 @@ var CatalogBasketModel = Backbone.Collection.extend({
             var itemOptions = _.extend({}, item.attributes, {
                 quantity : count || 1,
                 groupId : groupId,
-                catalogId : catalogId
+                groupDisplayText:groupDisplayText,
+                catalogId : catalogId,
+                catalogDisplayText:catalogDisplayText
             });
 
             /*
@@ -132,7 +140,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         }
         this.dumpCartToConsole();
     },
-    addItemRaw : function(itemRaw, count, groupId, catalogId) {
+    addItemRaw : function(itemRaw, count, groupId,groupDisplayText, catalogId,catalogDisplayText) {
 
         /*
          * create item options, pass groupId, catalogId
@@ -140,7 +148,10 @@ var CatalogBasketModel = Backbone.Collection.extend({
         var itemOptions = _.extend({}, itemRaw, {
             quantity : count || 1,
             groupId : groupId,
-            catalogId : catalogId
+            groupDisplayText:groupDisplayText,
+            catalogId : catalogId,
+            catalogDisplayText:catalogDisplayText
+            
         });
 
         /*
@@ -198,9 +209,22 @@ var CatalogBasketModel = Backbone.Collection.extend({
     removeAllItems : function() {
         this.reset();
     },
-
+    
+    isComboGroupRepresented:function(groupId){
+        
+        var itemId;
+        this.each(function(item, index, list) {
+            if (item.itemType === 'COMBO') {
+                 if(item.groupId===groupId){
+                     itemId=item.id;
+                 }
+            }
+        });
+        return itemId;
+    },
+    
     hasCombo : function() {
-        var comboCount=this.getComboCount();
+        var comboCount= _(this.getComboCatalogs()).size(); 
         if(comboCount>0){
             return true;
         }else{
@@ -216,19 +240,27 @@ var CatalogBasketModel = Backbone.Collection.extend({
 //        return hasCombo;
     },
 
-    getComboCount : function() {
-      
-        var comboCatalogsArray=[ ];
+    getComboCatalogs : function(){
+        var comboCatalogsArray={};
         this.each(function(item, index, list) {
             if (item.itemType === 'COMBO') {
-                if(! _.contains(comboCatalogsArray, item.catalogId)){ 
-                  comboCatalogsArray.push(item.catalogId);  
+                if(! _(comboCatalogsArray).has(item.catalogId)){ 
+                  comboCatalogsArray[item.catalogId]={catalogDisplayText:item.catalogDisplayText,price:item.get('price')};  
+                }else{
+                    /* update the price */
+                    var tmpObj=  comboCatalogsArray[item.catalogId];
+                    var tmpPrice=tmpObj.price;
+                    var newPrice=tmpPrice+item.get('price');
+                    tmpObj.price=newPrice;
+                    comboCatalogsArray[item.catalogId]=tmpObj;
                 }
             }
             ;
         });
-        return comboCatalogsArray.length;
-
+        return comboCatalogsArray;
+    },
+    getComboCount : function() { 
+        return  _(this.getComboCatalogs()).size();
     },
 
     getComboPrice : function() {
@@ -246,7 +278,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         var nonComboCount=0;
         this.each(function(item, index, list) {
             if (item.itemType !== 'COMBO') {
-                nonComboCount++;
+                nonComboCount=nonComboCount+item.get('quantity');
             }
             ;
         });
@@ -262,7 +294,17 @@ var CatalogBasketModel = Backbone.Collection.extend({
             ;
         });
         return nonComboPrice;
-    }
+    },
+    getNonComboItems : function() {
+        var nonComboItems=[];
+        this.each(function(item, index, list) {
+            if (item.itemType !== 'COMBO') {
+                nonComboItems.push({itemName:item.itemName, quantity:item.get('quantity'), price:item.get('price')});
+            }
+            ;
+        });
+        return nonComboItems;
+    },
 
 });
 

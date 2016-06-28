@@ -36,10 +36,11 @@ var CatalogView = PageLayout.extend({
         this.backToCatalogs = options.backToCatalogs;
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
+        this.catalogDisplayText = options.catalog.data.displayText;
         this.colors = options.catalog.data.colors;// [ '#444444', '#00ffB1',
         // '#ffB2FD', '#FFCCCC' ];
         /* add catalog name to basket */
-        this.basket.catalogName = options.catalog.collection.displayText;
+        this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.navbarView = options.navbarView;
     },
 
@@ -70,21 +71,23 @@ var CatalogView = PageLayout.extend({
         });
     },
 
-    openAddToBasketView : function(model, groupId, catalogId) {
+    openAddToBasketView : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText) {
         // console.log("CatalogView:openAddToBasketView
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
         this.openSubview('addToBasket', model, {
             basket : this.basket,
             groupId : groupId,
-            catalogId : catalogId
+            groupDisplayText : groupDisplayText,
+            catalogId : catalogId,
+            catalogDisplayText : catalogDisplayText
         });
     },
 
-    toggleBasketComboEntry : function(model, groupId, catalogId) {
+    toggleBasketComboEntry : function(model, groupId, groupDisplayText,catalogId,catalogDisplayText) {
         // console.log("CatalogView:toggleBasketComboEntry
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
-        this.basket.changeItemInCombo(model, groupId, catalogId);
+        this.basket.changeItemInCombo(model, groupId, groupDisplayText,catalogId,catalogDisplayText);
     },
 
     triggerOrder : function() {
@@ -117,18 +120,18 @@ var CatalogView = PageLayout.extend({
             template : require('ejs!../templates/partials/edit_basket_item.ejs')
         });
     },
- 
+
     updateBasket : function() {
-        if(this.basket.hasCombo()){
+        if (this.basket.hasCombo()) {
             /* update combo count */
             $('#catalog_combo_count_div').show();
             $('.num-of-combo-items').text(this.basket.getComboCount());
             $('.combo-total-price').text(this.basket.getComboPrice());
-        }else{
+        } else {
             /* hide the combo line */
             $('#catalog_combo_count_div').hide();
         }
-        
+
         /*
          * update the items
          */
@@ -153,6 +156,7 @@ var CatalogView = PageLayout.extend({
 
         var catalogType = this.catalogType.enumText;
         var catalogId = this.catalogId;
+        var catalogDisplayText = this.catalogDisplayText;
 
         switch (catalogType) {
         case 'COMBO':
@@ -163,6 +167,7 @@ var CatalogView = PageLayout.extend({
 
                 var groupType = group.groupType.enumText;
                 var groupId = group.groupId;
+                var groupDisplayText = group.groupDisplayText;
 
                 switch (groupType) {
                 case 'COMBO':
@@ -171,7 +176,7 @@ var CatalogView = PageLayout.extend({
                      */
                     var el = new ComboGroupView({
                         onChange : function(model) {
-                            this.toggleBasketComboEntry(model, groupId, catalogId);
+                            this.toggleBasketComboEntry(model, groupId, groupDisplayText,catalogId,catalogDisplayText);
                         }.bind(this),
                         color : this.generateColor(i),
                         model : group,
@@ -179,11 +184,22 @@ var CatalogView = PageLayout.extend({
                     }).render().el;
                     this.$('.cmntyex-items_placeholder').append(el);
                     /*
-                     * now add the first item
+                     * now add the first item for combos, but only if basket
+                     * does not already have an item from this group. (remember,
+                     * back button results in view being built again with
+                     * existing basket).
                      */
-                    var firstItem = group.unSubgroupedItems[0];
-                    this.basket.addItemRaw(firstItem, 1, groupId, catalogId);
-                    this.updateBasket();
+                    var currentItemId=this.basket.isComboGroupRepresented(groupId);
+                    if (typeof currentItemId==='undefined') {
+                        var firstItem = group.unSubgroupedItems[0];
+                        this.basket.addItemRaw(firstItem, 1, groupId, groupDisplayText, catalogId, catalogDisplayText);
+                        this.updateBasket();
+                    }else{
+                        /*
+                         * highlight that radio button then
+                         */
+                        $(el).find('#'+currentItemId).prop("checked", true)
+                    }
                     break;
                 case 'ITEMIZED':
                 case 'UNDEFINED':
@@ -193,7 +209,7 @@ var CatalogView = PageLayout.extend({
                      */
                     var el = new GroupView({
                         onClick : function(model) {
-                            this.openAddToBasketView(model, groupId, catalogId);
+                            this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
                         }.bind(this),
                         color : this.generateColor(i),
                         model : group,
@@ -211,12 +227,12 @@ var CatalogView = PageLayout.extend({
                     return;
 
                 var groupType = group.groupType.enumText;
-                var groupName = group.enumText;
+                var groupDisplayText = group.groupDisplayText;
                 var groupId = group.groupId;
 
                 var el = new GroupView({
                     onClick : function(model) {
-                        this.openAddToBasketView(model, groupId, catalogId);
+                        this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
                     }.bind(this),
                     color : this.generateColor(i),
                     model : group,

@@ -175,9 +175,9 @@ module.exports = {
                  */
                 
                 var basket;
-                var catalogDetails={
+                var catalogDetails={ 
                         catalogUUID:catalog.data.catalogId,
-                        catalogName:catalog.data.displayText, 
+                        catalogDisplayText:catalog.data.displayText, 
                         catalogType:catalog.data.catalogType.enumText
                        };
                 if(backToCatalog===true){

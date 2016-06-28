@@ -3,24 +3,43 @@
     <div data-role="content" class="content">
 
         <div data-role="collapsible" data-inset="false">
-            <h3><%= count() %> items, $<%= getTotalPrice() %> + $<%= taxes %> = $<%= totalPriceWithTax %></h3>
+            <h3><%= basket.count() %> items, $<%= basket.getTotalPrice() %> + $<%= taxes %> = $<%= totalPriceWithTax %></h3>
             <table class="cmntyex-order_table">
                 <thead>
                     <th>QTY</th>
                     <th>Item Name</th>
                     <th>Price</th>
                 </thead>
-                <% _(models).each(function (item) { %>
+                
+                 <% if(basket.hasCombo()){ %>
+                  <% _(basket.getComboCatalogs()).each(function (item) { %>
+                    <tr>
+                        <td><%= 1 %></td>
+                        <td><%= item.catalogDisplayText%></td>
+                        <td>$<%=item.price.toFixed(2) %></td>
+                    </tr> 
+                  <% }) %>  
+                  <% _(basket.getNonComboItems()).each(function (item) { %>
+                    <tr>
+                        <td><%= item.quantity %></td>
+                        <td><%= item.itemName %></td>
+                        <td>$<%= (item.quantity * item.price).toFixed(2) %></td>
+                    </tr>
+                  <% }) %> 
+                <% } else { %>
+                  <% _(basket.models).each(function (item) { %>
                     <tr>
                         <td><%= item.get('quantity') %></td>
                         <td><%= item.get('itemName') %></td>
                         <td>$<%= (item.get('quantity') * item.get('price')).toFixed(2) %></td>
                     </tr>
-                <% }) %>
+                  <% }) %>                    
+                <% } %>
+                 
                 <tr>
                     <td></td>
                     <td>Subtotal</td>
-                    <td class="subtotal">$<%= getTotalPrice() %></td>
+                    <td class="subtotal">$<%= basket.getTotalPrice() %></td>
                 </tr>
                 <tr>
                     <td></td>
