@@ -19,6 +19,9 @@ var hasUIDinQueryParams = function () {
 
 var App = function() {
     this.params = window.community;
+    /*
+     * .on([eventkey], function(model, value, options), [context]);
+     */
     Vent.on('viewChange', this.goToPage, this);
     Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
 };
@@ -76,6 +79,9 @@ App.prototype = {
         }
     },
 
+    /*
+     * 'roster', options, {reverse:false}
+     */
     goToPage: function( viewName, id, options ) {
         console.log("app.js:gotoPage: "+viewName);
         this.setGlobalConfigurations(options);
@@ -84,14 +90,12 @@ App.prototype = {
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
         }
 
-        if ( viewName === 'catalog') { //  
-             if(typeof options==='undefined'){
-               var sa=window.community.serviceAccommodatorId;  
-               var sl=window.community.serviceLocationId;
-               
-
-             }
-        }
+       // if ( viewName === 'catalog') { //  
+             //if(typeof options==='undefined'){
+             //  var sa=window.community.serviceAccommodatorId;  
+             //  var sl=window.community.serviceLocationId; 
+             //}
+       // }
 
        
         loader.show('loading');
@@ -106,7 +110,8 @@ App.prototype = {
     },
 
     initializePage: function(viewName, options) {
-        return pageController[viewName].call( pageController, options ).pipe(function(pageModel){
+        return pageController[viewName].call( //
+                pageController, options ).pipe(function(pageModel){
             // this.updateTitle(viewName, pageModel);
             // this.updateTouchIcon(viewName, pageModel);
             return pageFactory.create( viewName, pageModel );

@@ -120,10 +120,10 @@ var LandingView = PageLayout.extend({
         
         Vent.trigger('viewChange', 'roster', {
             sasl: this.model.id,
-            id: uuid,
-            backToCatalog: true,
+            id: uuid, 
             backToRoster:true,
-            navbarView:this.navbarView
+            navbarView:this.navbarView,
+            rosterId:uuid,
          }, { reverse: false });
     },
     openHours: function() {

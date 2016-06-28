@@ -5,6 +5,7 @@
 var Vent = require('./Vent'),
     appCache = require('./appCache.js'),
     CatalogBasketModel = require('./models/CatalogBasketModel.js'),
+    RosterBasketModel = require('./models/RosterBasketModel'), //
     communicationActions = require('./actions/communicationActions'),
     filterActions = require('./actions/filterActions'),
     saslActions = require('./actions/saslActions'),
@@ -228,23 +229,54 @@ module.exports = {
     roster: function(options) {
         var sasl;
         var id = options.sasl;
+        var rosterId = options.id;
+        var roster; 
+        var backToRoster = options.backToRoster;  
+        var navbarView  = options.navbarView;  
         return saslActions.getSasl(id)
             .then(function(ret) {
                 sasl = ret;
-                return catalogActions.getRoster(sasl.sa(), sasl.sl());
-            }).then(function (options) {
-                if (options.data.length === 1) {
-                    Vent.trigger('viewChange', 'roster', {
-                        id: id,
-                        catalogId: options.data.catalogId,
-                        backToCatalogs: false
-                    });
-                } else {
-                    return {
-                        sasl: sasl,
-                        catalogs: options
-                    };
+                return catalogActions.getRoster(sasl.sa(), sasl.sl(), rosterId);
+            }).then(function (roster) { 
+                /*
+                 * check if we are going back to catalogs. If yes, pull up old
+                 * catalog, else create new.
+                 */
+                /*
+                 * we cannot pass anything to basket constructur because it expects
+                 * collection entris only. So we set properties separately. 
+                 */
+                var basket;
+                var rosterDetails={ 
+                        rosterUUID:roster.data.rosterId,
+                        rosterDisplayText:roster.data.displayText, 
+                        rosterType:roster.data.rosterType.enumText
+                       };
+                if(backToRoster===true){
+                    var tempBasket=new RosterBasketModel( );
+                    tempBasket.setRosterDetails(rosterDetails);
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+roster.data.rosterId+ ':basket',tempBasket );
+                }else{
+                    var basket=new RosterBasketModel( );
+                    basket.setRosterDetails(rosterDetails);
+                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+roster.data.rosterId+ ':basket', basket);     
+                }
+                /*
+                 * this is the argument for the RosterView constructor (initialize)
+                 *  this.catalogs = options.roster.collection;
+                 */
+                return {
+                    sasl: sasl, 
+                    roster:roster,
+                    user: sessionActions.getCurrentUser(),
+                    basket: basket,
+                    rosterId: roster.data.rosterId, 
+                    rosterDisplayText:roster.data.displayText, 
+                    rosterType:roster.data.rosterType.enumText,
+                    backToRoster: false,
+                    navbarView:navbarView
                 };
+           
             });
     },
     posts: function (options) { // options is an array with either sasl or
