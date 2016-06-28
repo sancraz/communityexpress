@@ -52,6 +52,7 @@ var SignInView = Mn.ItemView.extend({
                 loader.showFlashMessage( 'successfully signed in as ' + response.username );
                 setTimeout(this.callback, 1000);
                 this.$el.modal('hide');
+                $('.modal-backdrop').remove();
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
                     this.showLoginError();

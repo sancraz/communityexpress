@@ -2,8 +2,11 @@
 
 var template = require('ejs!./header.ejs'),
     loader = require('../../loader'),
+    Vent = require('../../Vent'),
     sessionActions = require('../../actions/sessionActions'),
+    userController = require('../../controllers/userController'),
     SignInView = require('./SignInView'),
+    SignOutView = require('./SignOutView'),
     InfoView = require('./infoView');
 
 var HeaderView = Mn.LayoutView.extend({
@@ -21,12 +24,19 @@ var HeaderView = Mn.LayoutView.extend({
     },
 
     events: {
-        'click @ui.signin': 'signin',
+        'click @ui.signin': 'toggle',
         'click @ui.signout': 'confirmSignout'
     },
 
     initialize: function() {
         this.user = sessionActions.getCurrentUser();
+        this.listenTo(Vent, 'login_success logout_success', this.render, this);
+    },
+
+    serializeData: function() {
+        return {
+            user: this.user
+        };
     },
 
     onShow: function() {
@@ -44,7 +54,6 @@ var HeaderView = Mn.LayoutView.extend({
         loader.show();
         userController.logout(this.user.getUID()).then(function(){
             loader.showFlashMessage( 'signed out' );
-            // $('.menu_button_5').removeClass('navbutton_sign_out').addClass('navbutton_sign_in');
         }, function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });
@@ -55,6 +64,14 @@ var HeaderView = Mn.LayoutView.extend({
             parent: this
         }));
     },
+
+    toggle: function () {
+        if ( !this.user.getUID()) {
+            this.signin();
+        } else {
+            this.confirmSignout();
+        }
+    }
 });
 
 module.exports = HeaderView;

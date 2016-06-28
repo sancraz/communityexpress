@@ -7,10 +7,6 @@ var SignUpView = Mn.ItemView.extend({
 
     className: 'modal fade signup',
 
-    initialize: function() {
-        debugger;
-    },
-
     onShow: function() {
         this.$el.modal();
     },
