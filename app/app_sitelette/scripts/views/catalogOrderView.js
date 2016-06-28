@@ -12,7 +12,7 @@ var Vent = require('../Vent'),
 
 var CatalogOrderView = PageLayout.extend({
 
-    name: 'order',
+    name: 'catalog_order',
 
     initialize: function(options) {
         this.cardType = options.cardType;

@@ -92,7 +92,7 @@ var CatalogView = PageLayout.extend({
 
     triggerOrder : function() {
         this.withLogIn(function() {
-            Vent.trigger('viewChange', 'order', {
+            Vent.trigger('viewChange', 'catalog_order', {
                 id : this.sasl.getUrlKey(),
                 catalogId : this.catalogId,
                 backToCatalog : true,// /* This will always be true */

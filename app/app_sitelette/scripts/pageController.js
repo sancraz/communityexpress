@@ -346,7 +346,7 @@ module.exports = {
             });
     },
 
-    order: function (options) {
+    catalog_order: function (options) {
         var sasl,
             cardType,
             catalogId = options.catalogId,

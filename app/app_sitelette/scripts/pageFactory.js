@@ -151,7 +151,7 @@ module.exports = {
                 }
             }));
             break;
-        case 'order':
+        case 'catalog_order':
             view = new CatalogOrderView(_.extend(options, {
                 navbarView : NavbarView,
                 navbarData : {
