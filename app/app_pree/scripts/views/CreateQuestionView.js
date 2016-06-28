@@ -81,9 +81,9 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onExampleChanged: function(e) {
 		var $target = $(e.currentTarget),
 			cIndex = $target.data('index'),
-			choice = this.model.get('choices')[cIndex];
+			choices = this.model.get('choices');
 
-		choice.displayText = $target.val();
+		choices[cIndex].displayText = $target.val();
 
 		this.model.set('choices', choices);
 	},
@@ -97,12 +97,28 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	onQuestionSave: function() {
 		console.log('on save question');
+		if (this.model.isValid()) {
+			// save model
+		} else {
+			//on error
+			this.onValidationError(this.model.validationError);
+		}
 		//I don't know where we save question on local storage or on backend
+	},
+
+	onValidationError: function(errors) {
+		console.log(errors);
 	},
 
 	onQuestionPost: function() {
 		console.log('on post question');
-		this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
+		if (this.model.isValid()) {
+			// post model
+			this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
+		} else {
+			//on error
+			this.onValidationError(this.model.validationError);
+		}
 	}
 
 });

@@ -10,7 +10,7 @@ var PreeNewQuestionModel = Backbone.Model.extend({
         isAnonymous : false,
         contestUUID: 'wwwwwwww3',
         // userPointsEarned: 10, //this field makes an error 
-        subType: 2,
+        subType: null,
         categories: ['Nature'],
         hashTags: ['SaveWhales'],
         choices: [
@@ -25,6 +25,71 @@ var PreeNewQuestionModel = Backbone.Model.extend({
                 isCorrect: true
             }
         ]
+    },
+
+    requiredFields: {
+        displayText: {
+            length: 1
+        },
+        subType: {
+            type: 'number'
+        },
+        choices: {
+            length: 2,
+            fields: {
+                displayText: {
+                    length: 1
+                },
+                isCorrect: {
+                    type: 'boolean'
+                }
+            }
+        }
+    },
+
+    validate: function(attrs) {
+        var fails = [],
+            validated = this._validator(attrs, this.requiredFields, fails);
+
+        return validated ? false : fails;
+    },
+
+    _validator: function (attrs, fieldValidator, fails) {
+        for (var field in fieldValidator) {
+            var options = fieldValidator[field];
+            for (var option in options) {
+                var value = options[option];
+                switch (option) {
+                    case 'length':
+                        if (!attrs[field] || attrs[field].length < value) {
+                            fails.push(field);
+                        }
+                        break;
+                    case 'type':
+                        if (typeof attrs[field] === 'undefined' || attrs[field] === null || 
+                            typeof attrs[field] !== value) {
+                            fails.push(field);
+                        }
+                        break;
+                    case 'fields':
+                        if (!attrs[field]) {
+                            fails.push(field);
+                        } else {
+                            var filtered = _.filter(attrs[field], _.bind(function(field){
+                                var fails = [];
+                                return this._validator(field, value, fails);
+                            }, this));
+                            if (filtered.length !== attrs[field].length) {
+                                fails.push(field);
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        return fails.length === 0;
     }
 
 });
