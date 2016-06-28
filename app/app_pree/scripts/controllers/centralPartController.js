@@ -2,7 +2,7 @@
 
 var App = require('../app'),
     loader = require('../loader'),
-    appCache = require('../appCache'),
+    sessionActions = require('../actions/sessionActions'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../views/CentralLayoutView'),
     CreateQuestionView = require('../views/CreateQuestionView'),
@@ -14,6 +14,8 @@ var App = require('../app'),
 module.exports = {
 
     showLayout: function() {
+        this.user = sessionActions.getCurrentUser();
+        this.UID = this.user && this.user.UID ? this.user.UID : '';
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
         this.showFilters();
@@ -40,6 +42,8 @@ module.exports = {
             this.createNewQuestion = null;
         }, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:post', _.bind(this.postNewQuestion, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'getCategories', _.bind(this.getCategories, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'getTags', _.bind(this.getTags, this));
         this.centralLayoutView.showNewQuestionView(this.createNewQuestion);
     },
 
@@ -53,7 +57,7 @@ module.exports = {
         console.log(model.toJSON());
 
         gateway.sendRequest('createQuestion', {
-            UID: 'user20.781305772384780045',
+            UID: this.UID,
             payload: model.toJSON()
         }).then(_.bind(function(resp) {
             callback();
@@ -62,9 +66,12 @@ module.exports = {
         });
     },
 
-    getCategories: function(callback) {
-        this.hideCreateNewQuestion();
+    getCategories: function(callback, silent) {
+        if (!silent) {
+            this.hideCreateNewQuestion();
+        }
         gateway.sendRequest('getPreeCategories', {
+            UID: this.UID
         }).then(_.bind(function(resp) {
             callback(resp);
         }, this), function(e) {
@@ -72,9 +79,12 @@ module.exports = {
         });
     },
 
-    getTags: function(callback) {
-        this.hideCreateNewQuestion();
+    getTags: function(callback, silent) {
+        if (!silent) {
+            this.hideCreateNewQuestion();
+        }
         gateway.sendRequest('getPreeTags', {
+            UID: this.UID
         }).then(_.bind(function(resp) {
             callback(resp);
         }, this), function(e) {
@@ -84,12 +94,8 @@ module.exports = {
 
     getQuestions: function(params) {
         this.hideCreateNewQuestion();
-        var UID = '';
         loader.show('questions');
-        if ( appCache.get('user') && appCache.get('user').getUID ) {
-            UID = appCache.get('user').getUID();
-        }
-        params['UID'] = UID;
+        params['UID'] = this.UID;
         gateway.sendRequest('getPreeQuestions', params)
         .then(_.bind(function(resp) {
             var model = new FeedModel(resp);

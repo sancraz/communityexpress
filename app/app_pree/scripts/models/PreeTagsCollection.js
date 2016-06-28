@@ -19,6 +19,10 @@ var PreeTagsCollection = Backbone.Collection.extend({
 			};
 		params[queryName] = tags;
 		return params;
+	},
+
+	getTagsArray: function() {
+		return _.pluck(this.toJSON(), 'displayText');
 	}
 });
     

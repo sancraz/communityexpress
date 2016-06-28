@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!./tagsTpl.ejs'),
+var template = require('ejs!./newQuestionTagsTpl.ejs'),
 	AutocompleteView = require('./AutocompleteView'),
 	TagsCollection = require('./../../models/PreeTagsCollection'),
 	TagsCollectionView = require('./TagsCollectionView');
@@ -15,21 +15,9 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	ui: {
-		'go' : '.go-button',
-		'discard' : '.discard-button',
-		'collapsibleContent': '#tags-filter-expanded',
-		'toggle': '.pree_tags_close'
+		
 	},
 
-	events: {
-		'click @ui.go': 'updateFilters',
-		'click @ui.discard': 'discardChanges'
-	},
-
-	arrows: {
-		down: '&#x25BC;',
-		up: '&#x25B2;'
-	},
 
 	serializeData: function() {
 		return {
@@ -44,6 +32,9 @@ var TagsView = Mn.LayoutView.extend({
 
 		this.tagsCollection = new TagsCollection();
 
+		this.tagsCollection.off('change add remove reset')
+			.on('change add remove reset', _.bind(this.updateFilters, this));
+
 		var tagsCollectionView = new TagsCollectionView({
 			collection: this.tagsCollection,
 			type: this.options.type
@@ -52,21 +43,27 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
-		this.toggleCollapsible();
-		//change collapse/expande arrow
-		this.ui.collapsibleContent.on('shown.bs.collapse', _.bind(function() {
-			this.ui.toggle.html(this.arrows.up);
-		}, this));
-		this.ui.collapsibleContent.on('hidden.bs.collapse', _.bind(function() {
-			this.ui.toggle.html(this.arrows.down);
-		}, this));
+		this.preselectItems();
 	},
 
-	toggleCollapsible: function() {
-		//looks much better with timeout
-		setTimeout(_.bind(function() {
-			this.ui.collapsibleContent.collapse('toggle');
-		}, this), 10);
+	preselectItems: function() {
+		var items = this.options.items;
+		if (this.options.preselected) {
+			_.each(this.options.preselected, _.bind(function(preselected){
+				var item = _.findWhere(items, {displayText: preselected});
+				if (item) {
+					item.value = item.displayText;
+					this.tagsCollection.add(new Backbone.Model(item));
+				} else if (this.options.type === 'tags') {
+					item = {
+						value: preselected,
+						displayText: preselected,
+						domainId: 29 // temporary for testing
+					}
+					this.tagsCollection.add(new Backbone.Model(item));
+				}
+			}, this));
+		}
 	},
 
 	getCategoriesAutocompleteOptions: function() {
@@ -83,16 +80,9 @@ var TagsView = Mn.LayoutView.extend({
 		};
 	},
 
-	discardChanges: function() {
-		this.tagsCollection.reset();
-		this.updateFilters();
-	},
-
 	updateFilters: function() {
-		this.toggleCollapsible();
 		if (typeof this.options.updateFilters === 'function') {
-			this.options.updateFilters(
-				this.tagsCollection.createQueryParams(this.options.type));
+			this.options.updateFilters(this.tagsCollection.getTagsArray());
 		}
 	}
 

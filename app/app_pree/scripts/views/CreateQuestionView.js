@@ -2,13 +2,15 @@
 
 var gateway = require('../APIGateway/gateway'),
 	template = require('ejs!../templates/createQuestion.ejs'),
-	TagsView = require('./autocomplete/TagsView');
+	TagsView = require('./autocomplete/NewQuestionTagsView');
 
 var CreateQuestionView = Mn.LayoutView.extend({
 
 	template: template,
 
 	regions: {
+		categoriesRegion: '#new-question-categories-region',
+		tagsRegion: '#new-question-tags-region'
 	},
 
 	ui: {
@@ -45,6 +47,39 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	onShow: function() {
 		this.ui.container.collapse('show');
+
+		this.trigger('getTags', _.bind(this.showTags, this), true); // true means silent
+		this.trigger('getCategories', _.bind(this.showCategories, this), true); // true means silent
+	},
+
+	showCategories: function(categories) {
+		var categoriesView = new TagsView({
+			type: 'categories',
+			items: categories,
+			preselected: this.model.get('categories'),
+			updateFilters: _.bind(this.setCategories, this)
+		});
+		this.getRegion('categoriesRegion').$el.show();
+		this.getRegion('categoriesRegion').show(categoriesView);
+	},
+
+	showTags: function(tags) {
+		var tagsView = new TagsView({
+			type: 'tags',
+			items: tags,
+			preselected: this.model.get('hashTags'),
+			updateFilters: _.bind(this.setTags, this)
+		});
+		this.getRegion('tagsRegion').$el.show();
+		this.getRegion('tagsRegion').show(tagsView);
+	},
+
+	setCategories: function(categories) {
+		this.model.set('categories', categories);
+	},
+
+	setTags: function(tags) {
+		this.model.set('hashTags', tags);
 	},
 
 	onDiscardQuestion: function() {

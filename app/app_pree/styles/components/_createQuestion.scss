@@ -244,8 +244,40 @@ a.addAnswerBtn {
     font: 400 11px / 30px Ubuntu;
 }
 
+/* TODO:; temporary quick version, should be fixed */
+.pree_question_edit_tags,
+.pree_question_edit_categories {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0!important;
+    label {
+        float: left;
+    }
+    .tags-container {
+        border: none;
+        ul {
+            width: 93% !important;
+            margin-left: 55px;
+            margin-top: 30px;
+        }
+        .js-tags-region {
+            margin-left: 85px;
+            .tag-item {
+                margin-top: 5px;
+            }
+        }
+        .ac-container {
+            margin-top: -14px;
+            margin-left: 13px;
+            input.autocomplete {
+                max-width: 93%;
+            }
+        }
+    }
+}
+
 .pree_question_edit_atribution_link, .pree_question_edit_categories, .pree_question_edit_tags {
-    display: block;
+    /*display: block;*/
     margin-bottom: 5px;
 }
 
