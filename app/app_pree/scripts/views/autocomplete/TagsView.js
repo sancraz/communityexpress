@@ -18,7 +18,7 @@ var TagsView = Mn.LayoutView.extend({
 		'go' : '.go-button',
 		'discard' : '.discard-button',
 		'collapsibleContent': '#tags-filter-expanded',
-		'toggle': '.pree_tags_close'
+		'toggle': '.pree_tags_close img'
 	},
 
 	events: {
@@ -27,8 +27,8 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	arrows: {
-		down: '&#x25BC;',
-		up: '&#x25B2;'
+		down: 'images/arrow_down.png',
+		up: 'images/arrow_up.png'
 	},
 
 	serializeData: function() {
@@ -62,10 +62,10 @@ var TagsView = Mn.LayoutView.extend({
 		this.toggleCollapsible();
 		//change collapse/expande arrow
 		this.ui.collapsibleContent.on('shown.bs.collapse', _.bind(function() {
-			this.ui.toggle.html(this.arrows.up);
+			this.ui.toggle.attr('src', this.arrows.up);
 		}, this));
 		this.ui.collapsibleContent.on('hidden.bs.collapse', _.bind(function() {
-			this.ui.toggle.html(this.arrows.down);
+			this.ui.toggle.attr('src', this.arrows.down);
 		}, this));
 	},
 
