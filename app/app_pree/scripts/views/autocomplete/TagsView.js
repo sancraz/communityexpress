@@ -38,17 +38,24 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	onRender: function() {
-		var tagsAutocompleteView = new AutocompleteView(this.getTagsAutocompleteOptions());
+		this.tagsAutocompleteView = new AutocompleteView(this.getTagsAutocompleteOptions());
 
-		this.getRegion('inputRegion').show(tagsAutocompleteView);
+		this.getRegion('inputRegion').show(this.tagsAutocompleteView);
 
 		this.tagsCollection = new TagsCollection();
+
+		this.tagsCollection.off('change add remove reset')
+			.on('change add remove reset', _.bind(this.onChange, this));
 
 		var tagsCollectionView = new TagsCollectionView({
 			collection: this.tagsCollection,
 			type: this.options.type
 		});
 		this.getRegion('tagsRegion').show(tagsCollectionView);
+	},
+
+	onChange: function(model, viev, action) {
+		this.tagsAutocompleteView.changeDataSet(action, model);
 	},
 
 	onShow: function() {

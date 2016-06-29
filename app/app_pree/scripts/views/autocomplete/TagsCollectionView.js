@@ -33,7 +33,7 @@ var TagsCollectionView = Mn.CollectionView.extend({
 
 	childEvents: {
     	removeTag: function(tagView) {
-    		this.collection.remove(tagView.model);
+    		this.collection.remove(tagView.model, {remove: true});
     	}
     },
 

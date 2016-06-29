@@ -154,6 +154,25 @@
         return this.set(matches);
       };
 
+      Collection.prototype.removeFromDataSet = function(suggestion) {
+        var equal = _.findWhere(this.dataset, {value: suggestion.get('value')}),
+            index = this.dataset.indexOf(equal);
+        if (index > -1) {
+          this.dataset.splice(index, 1);
+        }
+      };
+
+      Collection.prototype.addToDataSet = function(suggestion) {
+        this.dataset.unshift(suggestion.toJSON());
+      };
+
+      Collection.prototype.changeDataSet = function(action, suggestion) {
+        if (action.add) {
+          this.removeFromDataSet(suggestion);
+        } else if (action.remove) {
+          this.addToDataSet(suggestion);
+        }
+      };
 
       /**
        * Check to see if the query matches the suggestion.
@@ -188,7 +207,7 @@
        */
 
       Collection.prototype.select = function() {
-        return this.trigger('selected', this.at(this.isStarted() ? this.index : 0));
+        this.trigger('selected', this.at(this.isStarted() ? this.index : 0));
       };
 
       Collection.prototype.checkIfNewTag = function(query) {
@@ -508,6 +527,9 @@
         this.options = $.extend(true, {}, this.defaults, options);
         this.suggestions = new this.options.collection["class"]([], this.options.collection.options);
         this.updateQuery = _.throttle(this._updateQuery, this.options.rateLimit);
+        if (typeof this.options.getChangeDataSet === 'function') {
+          this.options.getChangeDataSet(_.bind(this.onChangeDataSet, this));
+        }
         return this._startListening();
       };
 
@@ -738,6 +760,10 @@
 
       Behavior.prototype.onDestroy = function() {
         return this.collectionView.destroy();
+      };
+
+      Behavior.prototype.onChangeDataSet = function(actions, suggestion) {
+        return this.suggestions.changeDataSet(actions, suggestion);
       };
 
       return Behavior;
