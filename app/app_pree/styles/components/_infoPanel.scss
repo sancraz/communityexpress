@@ -6,13 +6,17 @@
     }
 
     .pree_user_info_panel {
-        margin-left: 15px;
+        margin-left: 10px;
     }
 
     li.pree_user_info_panel_item {
         display: inline-block;
         float: left;
         margin-right: 55px;
+    }
+
+    li.pree_user_info_panel_item.last {
+        margin-right: 0px;
     }
 
     li.stats:last-child {
@@ -30,12 +34,6 @@
         font: 700 13px / 48px Ubuntu;
         color: $light-grey;
         text-transform: uppercase;
-    }
-
-    @media only screen and (max-width: 830px) {
-        .pree_user_info_panel li {
-            margin-right: 40px;
-        }
     }
 
     @media only screen and (max-width: 768px) {

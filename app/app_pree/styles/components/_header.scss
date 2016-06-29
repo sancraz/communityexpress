@@ -4,9 +4,12 @@
     padding-bottom: 3px;
     border: none;
 
+    .p-r-0 {
+        padding-right: 0px;
+    }
+
     .navbar-brand {
         padding: 0;
-
         img {
             height: 50px;
         }
@@ -16,6 +19,8 @@
         color: $text-hover;
         font: 400 14px Ubuntu;
         margin-right: 20px;
+        position: relative;
+        top: 1px;
     }
 
     .menuItemText.last {

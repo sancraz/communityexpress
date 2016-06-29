@@ -12,61 +12,124 @@
         <div class="modal-body">
             <ul class="pree_question_edit_type">Question type:
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox" <% if (model.subType === 0) { %>checked<% } %>><span>Fact</span>
+                    <input type="checkbox" <% if (model.subType===0 ) { %>checked
+                    <% } %>><span>Fact</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox" <% if (model.subType === 1) { %>checked<% } %>><span>Opinion</span>
+                    <input type="checkbox" <% if (model.subType===1 ) { %>checked
+                    <% } %>><span>Opinion</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox" <% if (model.subType === 2) { %>checked<% } %>><span>Prediction</span>
+                    <input type="checkbox" <% if (model.subType===2 ) { %>checked
+                    <% } %>><span>Prediction</span>
                 </li>
             </ul>
 
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
-                        <a class="collapsed predictDetails" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Prediction Details</a>
-                        <a class="collapsed predictDetails collapseBtn" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><img src="images/download.png" alt=""></a>
+                        <a class="collapsed panelTitle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Prediction Details</a>
+                        <a class="collapsed panelTitle collapseBtn" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><img src="images/download.png" alt=""></a>
                     </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
-                        <div>
-                            <span class="expiration-date">Expiration date:<%= model.expirationDate %></span>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><span class="expiration-date">Expiration date:</span></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <input type='text' class="form-control datetimepicker" id='datetimepicker1' />
+                                        <script type="text/javascript">
+                                            $(function() {
+                                                $('#datetimepicker1').datetimepicker();
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><span class="expiration-date">Time:</span></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <input type='text' class="form-control datetimepicker" id='datetimepicker2' />
+                                        <script type="text/javascript">
+                                            $(function() {
+                                                $('#datetimepicker2').datetimepicker({
+                                                    format: 'LT'
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <span class="expiration-date">Expiration date:<%= model.expirationDate %></span> -->
                         </div>
-                        <div>
-                            <span class="notification-date">Notification date:<%= model.activationDate %></span>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><span class="expiration-date">Notification date:</span></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <input type='text' class="form-control datetimepicker" id='datetimepicker3' />
+                                        <script type="text/javascript">
+                                            $(function() {
+                                                $('#datetimepicker3').datetimepicker();
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><span class="expiration-date">Time:</span></div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                                        <input type='text' class="form-control datetimepicker" id='datetimepicker4' />
+                                        <script type="text/javascript">
+                                            $(function() {
+                                                $('#datetimepicker4').datetimepicker({
+                                                    format: 'LT'
+                                                });
+                                            });
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <span class="notification-date">Notification date:<%= model.activationDate %></span> -->
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="pree_question_edit_text">
-                <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here"><%= model.displayText %>?</textarea>
+                <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here">
+                    <%= model.displayText %>?</textarea>
                 <div id="textAreaOptionsBlock">
                     <img src="images/camera-outline.png" alt="" class="pree_question_edit_text_photo">
                     <span id="pree_question_edit_text_note"></span>
                 </div>
             </div>
 
-            <div >
-               <span class="answersWordSpan">Answers:</span>
+            <div>
+                <span class="answersWordSpan">Answers:</span>
                 <ul class="pree_question_edit_answers">
                     <% _.each(model.choices, function(choice, index){ %>
                         <li>
                             <div class="pree_question_edit_answers_item">
-                                <input type="radio" name="answer" data-index="<%= index %>" class="radioCreateAnswer answer-choice" <% if (choice.isCorrect) { %>checked<% } %>>
-                                <div class="inputRadioImg"></div>
-                                <div class="input-group">
-                                    <div class="input-group-addon"><%= index + 1 %></div>
-                                    <input type="text" data-index="<%= index %>" class="form-control answer-example" id="exampleInputAmount" placeholder="Answer <%= index + 1 %>" value="<%= choice.displayText %>">
-                                </div>
-                            </div>            
+                                <input type="radio" name="answer" data-index="<%= index %>" class="radioCreateAnswer answer-choice" <% if (choice.isCorrect) { %>checked
+                                <% } %>>
+                                    <div class="inputRadioImg"></div>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <%= index + 1 %>
+                                        </div>
+                                        <input type="text" data-index="<%= index %>" class="form-control answer-example" id="exampleInputAmount" placeholder="Answer <%= index + 1 %>" value="<%= choice.displayText %>">
+                                    </div>
+                            </div>
                         </li>
-                    <% }) %>
+                        <% }) %>
                 </ul>
                 <div class="pree_question_edit_answers_item">
-                   <span class="selectAnswerText">Select the correct answer</span>
+                    <span class="selectAnswerText">Select the correct answer</span>
                     <a href="" class="addAnswerBtn"><img src="images/add2.png" alt="" class="miniPlusBtn"><span>Add an answer</span></a>
                 </div>
             </div>
@@ -75,8 +138,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingTwo">
                         <h4 class="panel-title">
-                            <a class="collapsed predictDetails" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Answer info</a>
-                            <a class="collapsed predictDetails collapseBtn" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><img src="images/download.png" alt=""></a>
+                            <a class="collapsed panelTitle" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Answer info</a>
+                            <a class="collapsed panelTitle collapseBtn" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"><img src="images/download.png" alt=""></a>
                         </h4>
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
@@ -86,25 +149,46 @@
                     </div>
                 </div>
             </div>
-            
-            <div class="form-group pree_question_edit_atribution_link">
-                <label for="atributionLinkInput" class="pree_question_edit_atribution_link_label">Attribution link</label>
-                <div class="input-group">
-                    <input type="text" class="form-control" id="atributionLinkInput" placeholder="Answer 1">
-                    <div class="input-group-addon bigPlusBtn atribution-link-btn">
-                        <a><img src="images/add-copy.png" alt=""></a>
+
+            <div class="createQuestionInputs">
+                <div class="row">
+                    <div class="form-group pree_question_edit_atribution_link">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label for="atributionLinkInput" class="pree_question_edit_atribution_link_label">Attribution link</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="atributionLinkInput" placeholder="Answer 1">
+                                <div class="input-group-addon bigPlusBtn atribution-link-btn">
+                                    <a><img src="images/add-copy.png" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group pree_question_edit_categories">
-                <label for="categoriesInput" class="pree_question_edit_categories_label">Categories</label>
-                <!-- <input type="text" class="form-control" id="categoriesInput"> -->
-                <div id="new-question-categories-region"></div>
-            </div>
-            <div class="form-group pree_question_edit_tags">
-                <label for="tagsInput" class="pree_question_edit_tags_label">Tags</label>
-                <div id="new-question-tags-region"></div>
-                <!-- <input type="text" class="form-control" id="tagsInput"> -->
+
+                <div class="row">
+                    <div class="form-group pree_question_edit_categories">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label for="categoriesInput" class="pree_question_edit_categories_label">Categories</label>
+                        </div>
+                        <!-- <input type="text" class="form-control" id="categoriesInput"> -->
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <div id="new-question-categories-region"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group pree_question_edit_tags">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label for="tagsInput" class="pree_question_edit_tags_label">Tags</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <div id="new-question-tags-region"></div>
+                        </div>
+                        <!-- <input type="text" class="form-control" id="tagsInput"> -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
