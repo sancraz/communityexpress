@@ -86,10 +86,8 @@ module.exports = {
             .then(onLoginSuccess);
     },
 
-    registerNewMember: function (sa, sl, username, password, email) {
+    registerNewMember: function (username, password, email) {
         return gateway.sendRequest('registerNewMember', {
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
             username: username,
             password: password,
             email: email
