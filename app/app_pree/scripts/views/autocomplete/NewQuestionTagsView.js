@@ -26,9 +26,9 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	onRender: function() {
-		var tagsAutocompleteView = new AutocompleteView(this.getTagsAutocompleteOptions());
+		this.tagsAutocompleteView = new AutocompleteView(this.getTagsAutocompleteOptions());
 
-		this.getRegion('inputRegion').show(tagsAutocompleteView);
+		this.getRegion('inputRegion').show(this.tagsAutocompleteView);
 
 		this.tagsCollection = new TagsCollection();
 
@@ -84,7 +84,8 @@ var TagsView = Mn.LayoutView.extend({
 		};
 	},
 
-	updateFilters: function() {
+	updateFilters: function(model, view, actions) {
+		this.tagsAutocompleteView.changeDataSet(actions, model);
 		if (typeof this.options.updateFilters === 'function') {
 			this.options.updateFilters(this.tagsCollection.getTagsArray());
 		}

@@ -147,7 +147,10 @@ define([
                 limit: limit
               }
             }
-          }
+          },
+          getChangeDataSet: _.bind( function(changeDataSet) {
+            this.changeDataSet = changeDataSet;
+          }, this)
         }
       };
 
