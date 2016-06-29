@@ -42,6 +42,7 @@
         this.listenTo(this, 'select', this.select);
         this.listenTo(this, 'highlight:next', this.highlightNext);
         this.listenTo(this, 'highlight:previous', this.highlightPrevious);
+        this.listenTo(this, 'checkIfNewTag', this.checkIfNewTag);
         return this.listenTo(this, 'clear', this.reset);
       };
 
@@ -188,6 +189,17 @@
 
       Collection.prototype.select = function() {
         return this.trigger('selected', this.at(this.isStarted() ? this.index : 0));
+      };
+
+      Collection.prototype.checkIfNewTag = function(query) {
+        if(!this.find({value: query}) && query.length > 2) {
+          var newModel = new Backbone.Model({
+            value: query,
+            displayText: query,
+            domainId: '#newId'
+          });
+          this.trigger('selected', newModel);
+        }
       };
 
 
@@ -596,6 +608,7 @@
               }
               break;
             case 'enter':
+              this.checkIfNewTag();
               return this.suggestions.trigger('select');
             case 'down':
               return this.suggestions.trigger('highlight:next');
@@ -604,9 +617,19 @@
             case 'esc':
               return this.trigger(this.eventPrefix + ":close");
           }
+        } else {
+          if (this.actionKeysMap[keycode] === 'enter') {
+            this.checkIfNewTag();
+          }
         }
       };
 
+      Behavior.prototype.checkIfNewTag = function() {
+        if (this.view.options.name === 'tags' && 
+          this.view.options.additionalParam === 'newQuestion') {
+          this.suggestions.trigger('checkIfNewTag', this.ui.autocomplete.val());
+        }
+      },
 
       /**
        * If the dropdown is visible stop propagation, so we can keep the dropdown visible.
