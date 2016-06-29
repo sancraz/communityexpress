@@ -160,9 +160,8 @@ var RosterView = PageLayout.extend({
                              * use radio boxes
                              */
                             var li = new RosterComboItemView({
-                                onChange : function(model) {
-                                    this.toggleBasketComboEntry(model, catalogId, catalogDisplayText, rosterId,
-                                            rosterDisplayText);
+                                addComboToCart : function(model) {
+                                    this.addComboToCart(model, catalogId, catalogDisplayText );
                                 }.bind(this),
                                 model : catalog,
                                 parent : this
@@ -183,6 +182,11 @@ var RosterView = PageLayout.extend({
         case 'UNDEFINED':
         default:
         }
+    }, 
+    
+    addComboToCart:function(catalog, catalogId, catalogDisplayText ){
+        console.log("added "+catalogDisplayText+" to cart");
+        this.$('#cmtyex_roster_cart_summary').fadeIn('slow');
     }
 
 });
