@@ -211,7 +211,10 @@
       };
 
       Collection.prototype.checkIfNewTag = function(query) {
-        if(!this.find({value: query}) && query.length > 2) {
+        var expresion = /^([a-zA-Z\d]){3,20}$/g;
+            match = query.match(expresion);
+
+        if(!this.find({value: query}) && match) {
           var newModel = new Backbone.Model({
             value: query,
             displayText: query,
