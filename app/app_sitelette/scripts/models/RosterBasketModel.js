@@ -173,14 +173,19 @@ var RosterBasketModel = Backbone.Collection.extend({
     },
 
     dumpCartToConsole : function() {
-        console.log("************----- current cart --------");
+        console.log("************----- current RosterBasketModel --------");
         console.log(" CatalogBasket for catalog:" + this.catalogName);
-        this.each(function(item, index, list) {
-            var quantity = item.get('quantity');
-            var itemName = item.itemName;
-            var group = item.groupId;
-
-            console.log("*** " + itemName + ":[" + quantity + "] from Group:" + group);
+        this.each(function(catalog, index, list) {
+            if(catalog.catalogyType==='COMBO'){ 
+                var quantity = catalog.get('quantity');
+                var catalog = catalog.itemName;
+                var group = item.groupId;
+                console.log("*** A La Cart: " + itemName + ":[" + quantity + "] from Group:" + group);
+              
+            }else{ 
+               catalog.dumpCartToConsole();
+                
+            }
         });
         console.log("*************---------------------------");
     },
