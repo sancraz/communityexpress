@@ -52,8 +52,8 @@ var HeaderView = Mn.LayoutView.extend({
                     this.render();
                 }, this));
                 break;
-            case 'fromLocalstorage',
-                'loggedOut':
+            case 'fromLocalstorage':
+            case 'loggedOut':
                 this.render();
                 break;
             default:

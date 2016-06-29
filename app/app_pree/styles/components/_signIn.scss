@@ -1,6 +1,11 @@
 .signin {
     .login_error {
         display: none;
+        color: $red;
+
+        span {
+            color: $text;
+        }
     }
 
     input {

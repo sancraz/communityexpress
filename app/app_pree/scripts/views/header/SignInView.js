@@ -12,18 +12,19 @@ var SignInView = Mn.ItemView.extend({
 
     className: 'modal fade signin',
 
-    username: 'input[name="username"]',
-    password: 'input[name="password"]',
-
     ui: {
+        username: 'input[name="username"]',
+        password: 'input[name="password"]',
         submit: '.submit_button',
         signup: '.signup_button',
-        close: '.close_button'
+        close: '.close_button',
+        recoveryPassword: '.recovery_password'
     },
 
     events: {
         'click @ui.submit': 'submitForm',
         'click @ui.signup': 'openSignupView',
+        'click @ui.recoveryPassword': 'recoveryPassword',
         'click @ui.close': 'close'
     },
 
@@ -75,9 +76,13 @@ var SignInView = Mn.ItemView.extend({
 
     val: function () {
         return {
-            username: $(this.username).val(),
-            password: $(this.password).val()
+            username: this.ui.username.val(),
+            password: this.ui.password.val()
         };
+    },
+
+    recoveryPassword: function() {
+        console.log('start password recovery');
     },
 
     close: function() {
