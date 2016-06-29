@@ -7,7 +7,9 @@ loader = require('../loader'), //
 RosterBasketModel = require('../models/RosterBasketModel'), //
 orderActions = require('../actions/orderActions'), //
 PageLayout = require('./components/pageLayout'), // 
-RosterComboItemView = require('./partials/roster_combo_item.js'), ListView = require('./components/listView');
+RosterComboItemView = require('./partials/roster_combo_item.js'), //
+RosterCatalogItemView = require('./partials/roster_catalog_item.js'), //
+ListView = require('./components/listView');
 
 var RosterView = PageLayout.extend({
 
@@ -170,9 +172,20 @@ var RosterView = PageLayout.extend({
 
                             break;
                         case 'ITEMIZED':
-                        case 'UNDEFINED':
+                        case 'UNDEFINED': 
                         default:
-
+                            /*
+                             * use radio boxes
+                             */
+                            var li = new RosterCatalogItemView({
+                                showCatalog : function(model) {
+                                    this.showCatalog(model, catalogId, catalogDisplayText );
+                                }.bind(this),
+                                model : catalog,
+                                parent : this
+                            }).render().el;
+                            $ul.append(li);
+ 
                         }
 
                     }.bind(this));
@@ -187,8 +200,10 @@ var RosterView = PageLayout.extend({
     addComboToCart:function(catalog, catalogId, catalogDisplayText ){
         console.log("added "+catalogDisplayText+" to cart");
         this.$('#cmtyex_roster_cart_summary').fadeIn('slow');
+    },
+    showCatalog:function(catalog, catalogId, catalogDisplayText){
+        console.log("added "+catalogDisplayText+" to cart");
     }
-
 });
 
 module.exports = RosterView;
