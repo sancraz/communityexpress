@@ -2,6 +2,7 @@
 
 var template = require('ejs!./signIn.ejs'),
     loader = require('../../loader'),
+    Vent = require('../../Vent'),
     sessionActions = require('../../actions/sessionActions'),
     h = require('../../globalHelpers'),
     SignUpView = require('./SignUpView');
@@ -32,6 +33,8 @@ var SignInView = Mn.ItemView.extend({
             'tabindex': '-1',
             'role': 'dialog'
         });
+
+        this.listenTo(Vent, 'login_success logout_success', this.close, this);
     },
 
     onShow: function() {
@@ -39,7 +42,7 @@ var SignInView = Mn.ItemView.extend({
     },
 
     openSignupView: function(e) {
-        this.$el.modal('hide');
+        this.close();
         this.$el.on('hidden.bs.modal', function () {
             this.parent.popupRegion.show(new SignUpView());
         }.bind(this));
@@ -50,9 +53,7 @@ var SignInView = Mn.ItemView.extend({
         sessionActions.startSession(this.val().username, this.val().password)
             .then(function(response) {
                 loader.showFlashMessage( 'successfully signed in as ' + response.username );
-                setTimeout(this.callback, 1000);
-                this.$el.modal('hide');
-                $('.modal-backdrop').remove();
+                // $('.modal-backdrop').remove();
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
                     this.showLoginError();
@@ -80,7 +81,7 @@ var SignInView = Mn.ItemView.extend({
     },
 
     close: function() {
-        this.hide();
+        this.$el.modal('hide');
     }
 });
 

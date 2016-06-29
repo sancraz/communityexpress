@@ -18,7 +18,7 @@ var initUser = function(response) {
 var killUser = function(response) {
     appCache.get('user').kill();
     localStorage.removeItem('cmxUID');
-    Vent.trigger('logout_success');
+    Vent.trigger('logout_success', 'loggedOut');
     return response;
 };
 
