@@ -6,10 +6,8 @@ var Vent = require('../Vent'), //
 loader = require('../loader'), //
 RosterBasketModel = require('../models/RosterBasketModel'), //
 orderActions = require('../actions/orderActions'), //
-PageLayout = require('./components/pageLayout'), //
-GroupView = require('./partials/groupView'), //
-ComboCatalogView = require('./partials/comboCatalogView'), //
-ListView = require('./components/listView');
+PageLayout = require('./components/pageLayout'), // 
+RosterComboItemView = require('./partials/roster_combo_item.js'), ListView = require('./components/listView');
 
 var RosterView = PageLayout.extend({
 
@@ -28,15 +26,15 @@ var RosterView = PageLayout.extend({
     },
 
     initialize : function(options) {
-        this.catalogs = options.roster.collection;
+        this.roster = options.roster.collection;
         this.sasl = options.sasl;
         this.basket = options.basket;
-        this.backToRoster= options.backToRoster;
+        this.backToRoster = options.backToRoster;
         this.rosterId = options.rosterId;
         this.rosterType = options.roster.data.rosterType.enumText;
-        this.rosterDisplayText = options.roster.data.displayText; 
+        this.rosterDisplayText = options.roster.data.displayText;
         this.navbarView = options.navbarView;
-        
+
         this.on('show', this.onShow, this);
     },
 
@@ -57,14 +55,14 @@ var RosterView = PageLayout.extend({
 
     },
 
-     
     triggerRestaurantView : function() {
         Vent.trigger('viewChange', 'restaurant', this.sasl.getUrlKey(), {
             reverse : true
         });
     },
 
-    openAddToBasketView : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText, rosterId, rosterDisplayText) {
+    openAddToBasketView : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText, rosterId,
+            rosterDisplayText) {
         // console.log("CatalogView:openAddToBasketView
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
@@ -77,10 +75,10 @@ var RosterView = PageLayout.extend({
         });
     },
 
-    toggleBasketComboEntry : function(model, groupId, groupDisplayText,catalogId,catalogDisplayText) {
+    toggleBasketComboEntry : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText) {
         // console.log("CatalogView:toggleBasketComboEntry
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
-        this.basket.changeItemInCombo(model, groupId, groupDisplayText,catalogId,catalogDisplayText);
+        this.basket.changeItemInCombo(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
     },
 
     triggerOrder : function() {
@@ -145,13 +143,45 @@ var RosterView = PageLayout.extend({
 
     renderItems : function() {
 
-        this.updateBasket(); 
+        switch (this.rosterType) {
+        case 'COMBO':
+            /*
+             * add the ul
+             */
+            var $ul=$('<ul></ul>');
+            _(this.roster.catalogs).each(
+                    function(catalog, i) {
+                        var catalogType = catalog.catalogType.enumText;
+                        var catalogId = catalog.catalogId;
+                        var catalogDisplayText = catalog.displayText;
+                        switch (catalogType) {
+                        case 'COMBO':
+                            /*
+                             * use radio boxes
+                             */
+                            var li = new RosterComboItemView({
+                                onChange : function(model) {
+                                    this.toggleBasketComboEntry(model, catalogId, catalogDisplayText, rosterId,
+                                            rosterDisplayText);
+                                }.bind(this),
+                                model : catalog,
+                                parent : this
+                            }).render().el;
+                            $ul.append(li);
 
-        switch (this.rosterType) { 
-        /*
-         * TODO
-         */
- 
+                            break;
+                        case 'ITEMIZED':
+                        case 'UNDEFINED':
+                        default:
+
+                        }
+
+                    }.bind(this));
+            this.$('.cmntyex-items_placeholder').append($ul);
+            break;
+        case 'ITEMIZED':
+        case 'UNDEFINED':
+        default:
         }
     }
 

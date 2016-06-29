@@ -2,30 +2,30 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/partials/roster_item.ejs'),
+var template = require('ejs!../../templates/partials/roster_combo_item.ejs'),
     Vent = require('../../Vent'),
     h = require('../../globalHelpers');
 
-var RosterItemView = Backbone.View.extend({
+var RosterComboItemView = Backbone.View.extend({
 
     template: template,
 
     tagName: 'li',
 
-    className: 'roster_item',
+    className: 'cmtyex_roster_combo_item',
 
     events: {
         'click': 'addToCartOrTriggerCatalog'
     },
 
     initialize: function(options) {
-        this.sasl = options.parent.parent.sasl;
+        this.sasl = options.parent.sasl;
         this.listenTo(this.model, 'destroy', this.remove, this );
     },
 
     render: function() {
-        var viewModel = h().toViewModel( this.model.toJSON() );
-        this.$el.html(this.template(_.extend( viewModel )));
+        //var viewModel = h().toViewModel( this.model  );
+        this.$el.html(this.template( {combo:this.model}  ));
         return this;
     },
 
@@ -43,4 +43,4 @@ var RosterItemView = Backbone.View.extend({
 
 });
 
-module.exports = RosterItemView;
+module.exports = RosterComboItemView;

@@ -23,7 +23,7 @@ var CatalogView = PageLayout.extend({
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        this.navbarView.hide();// $('#cmtyx_navbar').fadeOut('slow');
+        this.navbarView.hide(); 
 
     },
 
