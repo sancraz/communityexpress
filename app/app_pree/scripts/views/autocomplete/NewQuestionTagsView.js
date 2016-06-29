@@ -26,9 +26,9 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	onRender: function() {
-		var categoriesAutocompleteView = new AutocompleteView(this.getCategoriesAutocompleteOptions());
+		this.tagsAutocompleteView = new AutocompleteView(this.getTagsAutocompleteOptions());
 
-		this.getRegion('inputRegion').show(categoriesAutocompleteView);
+		this.getRegion('inputRegion').show(this.tagsAutocompleteView);
 
 		this.tagsCollection = new TagsCollection();
 
@@ -66,21 +66,26 @@ var TagsView = Mn.LayoutView.extend({
 		}
 	},
 
-	getCategoriesAutocompleteOptions: function() {
-		var categories = this.options.items;
+	getTagsAutocompleteOptions: function() {
+		var tags = this.options.items;
 		return {
-			data: categories,
+			data: tags,
 			valueKey: 'displayText',
 			apiKey: 'domainId',
 			limit: 10,
-			name: 'categories',
+			name: this.options.type,
+			additionalParam: 'newQuestion',
 			callback: _.bind(function(name, model){
 				this.tagsCollection.add(model);
+				if (model.get('domainId') === '#newId') {
+					//new tag creation handler
+				}
 			}, this)
 		};
 	},
 
-	updateFilters: function() {
+	updateFilters: function(model, view, actions) {
+		this.tagsAutocompleteView.changeDataSet(actions, model);
 		if (typeof this.options.updateFilters === 'function') {
 			this.options.updateFilters(this.tagsCollection.getTagsArray());
 		}

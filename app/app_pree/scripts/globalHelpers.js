@@ -45,6 +45,14 @@ var helpers = function() {
             default:
                 console.log('HTTP status=' + jqXHR.status + ',' + textStatus + ',' + errorThrown + ',' + jqXHR.responseText);
             }
+        },
+
+        getErrorMessage: function(e, msg) {
+            if (e && e.statusText === 'timeout') {
+                return config.timeoutErrorMessage;
+            } else {
+                return msg;
+            }
         }
 
     };

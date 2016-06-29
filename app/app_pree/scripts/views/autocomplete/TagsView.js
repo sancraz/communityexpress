@@ -18,7 +18,7 @@ var TagsView = Mn.LayoutView.extend({
 		'go' : '.go-button',
 		'discard' : '.discard-button',
 		'collapsibleContent': '#tags-filter-expanded',
-		'toggle': '.pree_tags_close'
+		'toggle': '.pree_tags_close img'
 	},
 
 	events: {
@@ -27,8 +27,8 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	arrows: {
-		down: '&#x25BC;',
-		up: '&#x25B2;'
+		down: 'images/arrow_down.png',
+		up: 'images/arrow_up.png'
 	},
 
 	serializeData: function() {
@@ -38,11 +38,14 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	onRender: function() {
-		var categoriesAutocompleteView = new AutocompleteView(this.getCategoriesAutocompleteOptions());
+		this.tagsAutocompleteView = new AutocompleteView(this.getTagsAutocompleteOptions());
 
-		this.getRegion('inputRegion').show(categoriesAutocompleteView);
+		this.getRegion('inputRegion').show(this.tagsAutocompleteView);
 
 		this.tagsCollection = new TagsCollection();
+
+		this.tagsCollection.off('change add remove reset')
+			.on('change add remove reset', _.bind(this.onChange, this));
 
 		var tagsCollectionView = new TagsCollectionView({
 			collection: this.tagsCollection,
@@ -51,14 +54,18 @@ var TagsView = Mn.LayoutView.extend({
 		this.getRegion('tagsRegion').show(tagsCollectionView);
 	},
 
+	onChange: function(model, viev, action) {
+		this.tagsAutocompleteView.changeDataSet(action, model);
+	},
+
 	onShow: function() {
 		this.toggleCollapsible();
 		//change collapse/expande arrow
 		this.ui.collapsibleContent.on('shown.bs.collapse', _.bind(function() {
-			this.ui.toggle.html(this.arrows.up);
+			this.ui.toggle.attr('src', this.arrows.up);
 		}, this));
 		this.ui.collapsibleContent.on('hidden.bs.collapse', _.bind(function() {
-			this.ui.toggle.html(this.arrows.down);
+			this.ui.toggle.attr('src', this.arrows.down);
 		}, this));
 	},
 
@@ -69,14 +76,14 @@ var TagsView = Mn.LayoutView.extend({
 		}, this), 10);
 	},
 
-	getCategoriesAutocompleteOptions: function() {
-		var categories = this.options.items;
+	getTagsAutocompleteOptions: function() {
+		var tags = this.options.items;
 		return {
-			data: categories,
+			data: tags,
 			valueKey: 'displayText',
 			apiKey: 'domainId',
 			limit: 10,
-			name: 'categories',
+			name: this.options.type,
 			callback: _.bind(function(name, model){
 				this.tagsCollection.add(model);
 			}, this)
