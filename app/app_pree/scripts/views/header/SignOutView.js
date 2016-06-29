@@ -8,11 +8,13 @@ var SignOutView = Mn.ItemView.extend({
     className: 'modal fade signout',
 
     ui: {
-        signout: '.confirmation_button'
+        signout: '.confirmation_button',
+        close: '.close_button'
     },
 
     events: {
-        'click @ui.signout': 'performAction'
+        'click @ui.signout': 'performAction',
+        'click @ui.close': 'close'
     },
 
     serializeData: function() {
@@ -30,6 +32,10 @@ var SignOutView = Mn.ItemView.extend({
         this.$el.on('hidden.bs.modal', function() {
             this.options.action();
         }.bind(this));
+    },
+
+    close: function() {
+        this.$el.modal('hide');
     }
 });
 

@@ -2,21 +2,23 @@
     <div class="modal-content">
         <div class="modal-header signin_alert_header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Header</h4>
+            <h4 class="modal-title">Sign up</h4>
         </div>
         <div class="modal-body">
             <form action="#" method="post">
-                <p class="login_error hidden error">Incorrect username / email or password</p>
-                    <label for="username">Username / Email:</label>
-                    <input class="form-control" autocapitalize="off" type="text" name="username" placeholder="Username / Email"/>
-                    <label for="password">Password:</label>
-                    <input class="form-control" autocapitalize="off" type="password" name="password" placeholder="Password"/>
-                <a href="#" class="btn close_button">Cancel</a>
-                <a href="#" class="btn submit_button">Sign in</a>
+                <label for="username">Username:</label>
+                <input class="form-control" type="text" autocapitalize="off" name="username" placeholder="Username" />
+                <label for="email">Email:</label>
+                <input class="form-control" type="text" autocapitalize="off" name="email" placeholder="Email" />
+                <label for="password">Password:</label>
+                <input class="form-control" type="password" autocapitalize="off" name="password" placeholder="Password" />
+                <label for="password_confirmation">Password Confirmation:</label>
+                <input class="form-control" type="password" autocapitalize="off" name="password_confirmation" placeholder="Password Confirmation" />
             </form>
         </div>
       <div class="modal-footer">
-          <a class="btn signup_button">Sign Up</a>
+          <a href="#" class="btn btn-default close_button">Cancel</a>
+          <a class="btn btn-default submit_button">Sign Up</a>
       </div>
     </div><!-- /.modal-content -->
 </div><!-- /.modal-dialog -->

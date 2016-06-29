@@ -3,6 +3,8 @@
 var template = require('ejs!./header.ejs'),
     loader = require('../../loader'),
     Vent = require('../../Vent'),
+    h = require('../../globalHelpers'),
+    config = require('../../appConfig'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
     SignInView = require('./SignInView'),
@@ -30,7 +32,7 @@ var HeaderView = Mn.LayoutView.extend({
 
     initialize: function() {
         this.user = sessionActions.getCurrentUser();
-        this.listenTo(Vent, 'login_success logout_success', this.render, this);
+        this.listenTo(Vent, 'login_success logout_success', this.changeStatus, this);
     },
 
     serializeData: function() {
@@ -39,8 +41,24 @@ var HeaderView = Mn.LayoutView.extend({
         };
     },
 
-    onShow: function() {
+    onRender: function() {
         this.infoRegion.show(new InfoView());
+    },
+
+    changeStatus: function(loginMethod) {
+        switch (loginMethod) {
+            case 'success':
+                this.$el.find('.modal').modal('hide').on('hidden.bs.modal', _.bind(function() {
+                    this.render();
+                }, this));
+                break;
+            case 'fromLocalstorage':
+            case 'loggedOut':
+                this.render();
+                break;
+            default:
+        }
+
     },
 
     confirmSignout: function () {

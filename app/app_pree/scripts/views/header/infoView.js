@@ -8,7 +8,7 @@ var InfoView = Mn.ItemView.extend({
     className: 'infoPanel',
 
     initialize: function() {
-        console.log('hello');
+        console.log('Show user info here');
     }
 });
 

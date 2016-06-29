@@ -8,7 +8,7 @@ var userController = require('../controllers/userController.js'),
     gateway = require('../APIGateway/gateway'),
     User = require('../models/user.js');
 
-var onLoginSuccess = function (response) {
+var onLoginSuccess = function (response, loginMethod) {
 
     var user = appCache.fetch('user', new User());
     user.initiate(response.uid, response.userName);
@@ -16,7 +16,7 @@ var onLoginSuccess = function (response) {
     if (response.localStorage !== false) {
         localStorage.setItem('cmxUID', response.uid);
     };
-    Vent.trigger('login_success');
+    Vent.trigger('login_success', loginMethod);
 
     return {
         uid: response.uid,
@@ -49,7 +49,7 @@ module.exports = {
                 onLoginSuccess({
                     uid: uid,
                     userName: response.userName
-                });
+                }, 'fromSignInForm');
             }
         });
     },
@@ -66,7 +66,7 @@ module.exports = {
                     onLoginSuccess({
                         uid: persistedUID,
                         userName: response.userName
-                    });
+                    }, 'fromLocalstorage');
                 } else {
                     localStorage.removeItem('cmxUID');
                 }
