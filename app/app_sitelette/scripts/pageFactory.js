@@ -2,7 +2,22 @@
 
 'use strict';
 
-var LandingView = require('./views/landingView'), ChatView = require('./views/chatView'), ReviewsView = require('./views/reviewsView'), EditView = require('./views/editView'), CatalogView = require('./views/catalogView'), CatalogsView = require('./views/catalogsView'), RosterView = require('./views/rosterView'), PostsView = require('./views/postsView'), ContestsView = require('./views/contestsView'), PhotoContestView = require('./views/photoContestView'), PollContestView = require('./views/pollContestView'), RootView = require('./views/rootView'), AboutUsView = require('./views/aboutUsView'), CatalogOrderView = require('./views/catalogOrderView'), EventActiveView = require('./views/eventActiveView'), NavbarView = require('./views/headers/navbarView');
+var LandingView = require('./views/landingView'), //
+    ChatView = require('./views/chatView'), //
+    ReviewsView = require('./views/reviewsView'), //
+    EditView = require('./views/editView'),//
+    CatalogView = require('./views/catalogView'),//
+    CatalogsView = require('./views/catalogsView'),//
+    RosterView = require('./views/rosterView'),//
+    PostsView = require('./views/postsView'),//
+    ContestsView = require('./views/contestsView'),//
+    PhotoContestView = require('./views/photoContestView'), //
+    PollContestView = require('./views/pollContestView'), //
+    RootView = require('./views/rootView'),//
+    AboutUsView = require('./views/aboutUsView'), //
+    CatalogOrderView = require('./views/catalogOrderView'),//
+    EventActiveView = require('./views/eventActiveView'),//
+    NavbarView = require('./views/headers/navbarView');
 
 module.exports = {
     create : function(viewName, options) {
@@ -136,7 +151,7 @@ module.exports = {
                 }
             }));
             break;
-        case 'order':
+        case 'catalog_order':
             view = new CatalogOrderView(_.extend(options, {
                 navbarView : NavbarView,
                 navbarData : {

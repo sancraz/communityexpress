@@ -12,7 +12,7 @@ var Vent = require('../Vent'),
 
 var CatalogOrderView = PageLayout.extend({
 
-    name: 'order',
+    name: 'catalog_order',
 
     initialize: function(options) {
         this.cardType = options.cardType;
@@ -46,7 +46,8 @@ var CatalogOrderView = PageLayout.extend({
     },
 
     renderData: function () {
-        return _.extend({}, this.basket, this.catalogOptions, {
+        
+        var tmpData = _.extend({},  this.catalogOptions, {
             username: this.user.userName,
             cardTypes: this.cardType,
             country: this.country,
@@ -55,8 +56,11 @@ var CatalogOrderView = PageLayout.extend({
             states: this.states,
             priceAddons: this.priceAddons,
             taxes: this.taxes,
-            totalPriceWithTax: this.totalPriceWithTax
+            totalPriceWithTax: this.totalPriceWithTax,
+            basket:this.basket
         });
+        
+        return tmpData;
     },
 
     calculateTaxes: function() {
@@ -143,7 +147,7 @@ var CatalogOrderView = PageLayout.extend({
                 zip: zip,
             },
             creditCard: {
-                cardType: cardType,
+                cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
                 firstName: firstName,
                 lastName: lastName,
                 cardNumber: cardNumber,

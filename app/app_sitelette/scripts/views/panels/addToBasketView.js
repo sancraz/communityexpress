@@ -10,7 +10,10 @@ var AddToBasketView = PanelView.extend({
     template: template,
     catalogId : null,
     groupId:null,
-
+    groupDisplayText:null,
+    catalogDisplayText:null,
+    
+    
     initialize: function(options) {
         options = options || {};
         this.$el.attr('id', 'cmntyex_add-to-basket_panel' );
@@ -20,6 +23,8 @@ var AddToBasketView = PanelView.extend({
         this.basket = options.basket;
         this.catalogId = options.catalogId;
         this.groupId = options.groupId;
+        this.groupDisplayText=options.groupDisplayText;
+        this.catalogDisplayText=options.catalogDisplayText;
         
         this.addEvents({
             'click .plus_button': 'incrementQuantity',
@@ -48,7 +53,7 @@ var AddToBasketView = PanelView.extend({
 
     addToBasket: function () {
     	var count=this.quantity.get('value');
-        this.basket.addItem(this.model, count, this.groupId,this.catalogId);
+        this.basket.addItem(this.model, count, this.groupId,this.groupDisplayText,this.catalogId,this.catalogDisplayText);
         this.shut();
     },
 

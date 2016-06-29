@@ -97,10 +97,10 @@ var EditFavoritesView = PanelView.extend({
             selected : true
         });
         $.when(this.actions.removeItem(selected)).then(function() {
-            this.toggleEditable();
+            //this.toggleEditable(); /* why do we need this? AF */
             loader.hide();
         }.bind(this), function() {
-            loader.showFlashMessage(h().getErrorMessage(e, 'error deleting favorites'));
+            loader.showFlashMessage(h().getErrorMessage(e, 'error deleting'));
         });
     },
 
