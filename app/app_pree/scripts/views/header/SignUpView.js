@@ -30,8 +30,6 @@ var SignUpView = Mn.ItemView.extend({
 
         loader.show('');
         sessionActions.registerNewMember(
-            'hello',
-            'hello',
             data.username,
             data.password,
             data.email,
@@ -51,7 +49,7 @@ var SignUpView = Mn.ItemView.extend({
 
     _onSignupSuccess: function(response) {
         loader.showFlashMessage( 'successfully signed up as ' + response.username );
-        this.shut();
+        this.close();
     },
 
     _onSignupError: function(e) {
