@@ -147,7 +147,7 @@ var CatalogOrderView = PageLayout.extend({
                 zip: zip,
             },
             creditCard: {
-                cardType: cardType,
+                cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
                 firstName: firstName,
                 lastName: lastName,
                 cardNumber: cardNumber,
