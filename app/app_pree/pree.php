@@ -22,6 +22,8 @@
   <!-- Styles -->
   <!-- Bootstrap CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap datetimepicker -->
+  <link href="vendor/styles/bootstrap-datetimepicker.css" rel="stylesheet">
   <!-- jQuery UI -->
   <link rel="stylesheet" href="vendor/styles/jquery-ui.css">
   <!-- jQuery Gritter -->

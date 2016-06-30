@@ -29,7 +29,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		atributionBtn: '.atribution-link-btn',
 		atributionInput: '#atributionLinkInput',
 		bonusPoints: '#bonusPointsInput',
-		basePoints: '#basePointsInput'
+		basePoints: '#basePointsInput',
+		expirationDate: '#expirationDatePicker',
+		expirationTime: '#expirationTimePicker',
+		notificationDate: '#notificationDatePicker',
+		notificationTime: '#notificationTimePicker'
 	},
 
 	events: {
@@ -46,7 +50,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		'keydown @ui.bonusPoints': 'onKeyDownBonusPoints',
 		'keydown @ui.basePoints': 'onKeyDownBasePoints',
 		'change @ui.bonusPoints': 'onChangeBonusPoints',
-		'change @ui.basePoints': 'onChangeBasePoints',
+		'change @ui.basePoints': 'onChangeBasePoints'
 	},
 
 	serializeData: function() {
@@ -61,6 +65,18 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 		this.trigger('getTags', _.bind(this.showTags, this), true); // true means silent
 		this.trigger('getCategories', _.bind(this.showCategories, this), true); // true means silent
+		this.onInitDatepickers();
+	},
+
+	onInitDatepickers: function() {
+		this.ui.expirationDate.datetimepicker({});
+		this.ui.expirationTime.datetimepicker({
+			format: 'LT'
+		});
+		this.ui.notificationDate.datetimepicker({});
+		this.ui.notificationTime.datetimepicker({
+			format: 'LT'
+		});
 	},
 
 	showCategories: function(categories) {
@@ -275,6 +291,10 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		value = testValue < min ? min : testValue > max ? max : testValue;
 		$target.val(value);
 		return value;
+	},
+
+	checkDatepickersDate: function() {
+		//check datepickers
 	}
 
 });

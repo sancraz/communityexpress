@@ -44,12 +44,7 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><span class="expiration-date">Expiration date:</span></div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <input type='text' class="form-control datetimepicker" id='datetimepicker1' />
-                                        <script type="text/javascript">
-                                            $(function() {
-                                                $('#datetimepicker1').datetimepicker();
-                                            });
-                                        </script>
+                                        <input type='text' class="form-control datetimepicker" id='expirationDatePicker' />
                                     </div>
                                 </div>
                             </div>
@@ -57,30 +52,17 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><span class="expiration-date">Time:</span></div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <input type='text' class="form-control datetimepicker" id='datetimepicker2' />
-                                        <script type="text/javascript">
-                                            $(function() {
-                                                $('#datetimepicker2').datetimepicker({
-                                                    format: 'LT'
-                                                });
-                                            });
-                                        </script>
+                                        <input type='text' class="form-control datetimepicker" id='expirationTimePicker' />
                                     </div>
                                 </div>
                             </div>
-                            <!-- <span class="expiration-date">Expiration date:<%= model.expirationDate %></span> -->
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"><span class="expiration-date">Notification date:</span></div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <input type='text' class="form-control datetimepicker" id='datetimepicker3' />
-                                        <script type="text/javascript">
-                                            $(function() {
-                                                $('#datetimepicker3').datetimepicker();
-                                            });
-                                        </script>
+                                        <input type='text' class="form-control datetimepicker" id='notificationDatePicker' />
                                     </div>
                                 </div>
                             </div>
@@ -88,18 +70,10 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-2 col-lg-2"><span class="expiration-date">Time:</span></div>
                                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                                        <input type='text' class="form-control datetimepicker" id='datetimepicker4' />
-                                        <script type="text/javascript">
-                                            $(function() {
-                                                $('#datetimepicker4').datetimepicker({
-                                                    format: 'LT'
-                                                });
-                                            });
-                                        </script>
+                                        <input type='text' class="form-control datetimepicker" id='notificationTimePicker' />
                                     </div>
                                 </div>
                             </div>
-                            <!-- <span class="notification-date">Notification date:<%= model.activationDate %></span> -->
                         </div>
                     </div>
                 </div>
