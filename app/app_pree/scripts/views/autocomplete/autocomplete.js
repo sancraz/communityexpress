@@ -221,6 +221,7 @@
             domainId: '#newId'
           });
           this.trigger('selected', newModel);
+          
         }
       };
 
@@ -650,8 +651,7 @@
       };
 
       Behavior.prototype.checkIfNewTag = function() {
-        if (this.view.options.name === 'tags' && 
-          this.view.options.additionalParam === 'newQuestion') {
+        if (this.view.options.additionalParam === 'newQuestion') {
           this.suggestions.trigger('checkIfNewTag', this.ui.autocomplete.val());
         }
       },

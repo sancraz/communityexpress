@@ -55,7 +55,7 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	onChange: function(model, viev, action) {
-		this.tagsAutocompleteView.changeDataSet(action, model);
+		this.tagsAutocompleteView.triggerMethod('changeDataSet',action, model);
 	},
 
 	onShow: function() {

@@ -3,29 +3,36 @@
 var PreeNewQuestionModel = Backbone.Model.extend({
 
     defaults : {
-        activationDate:'2016-05-01T09:45:00.000+02',
-        expirationDate : '2016-11-01T09:45:00.000+02',
-        contestName : 'Oldest tree',
+        activationDate: null,
+        expirationDate : null, //'2016-11-01T09:45:00.000+02',
+        notifyAuthorDaysAfterExpiration: 0,
+        contestName : 'N/A',
         displayText : 'What is the oldest tree in the world',
+        hiddenText : '',
+        contestCustomerId : null,
         isAnonymous : false,
-        contestUUID: 'wwwwwwww3',
-        // userPointsEarned: 10, //this field makes an error 
-        subType: null,
+        contestUUID: null,
+        subType: 0,
+        url: '',
+        infoURL1: '',
+        infoURL2: '',
         categories: ['Nature'],
         hashTags: ['SaveWhales'],
         choices: [
             {
-                choiceName: 'A Redwood',
+                choiceName: null,
                 displayText: 'It is a Redwood somewhere in California',
                 isCorrect: false
             },
             {
-                choiceName: 'A Joshua Tree',
+                choiceName: null,
                 displayText: 'Its a Joshua Tree in Australia',
                 isCorrect: true
             }
-        ]//,
-        //answerInfo: null //this field makes an error 
+        ],
+        additionalInformation: null, //this field makes an error
+        bonusPoints: null,
+        basePoints: null
     },
 
     requiredFields: {

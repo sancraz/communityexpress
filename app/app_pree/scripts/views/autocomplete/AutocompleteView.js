@@ -149,7 +149,7 @@ define([
             }
           },
           getChangeDataSet: _.bind( function(changeDataSet) {
-            this.changeDataSet = changeDataSet;
+            this.onChangeDataSet = changeDataSet;
           }, this)
         }
       };
