@@ -12,7 +12,7 @@ var RosterBasketModel = Backbone.Model.extend({
          * options must be null, otherwise, it will try to add items in the
          * collection from option
          */
-       this.prices = new Backbone.Model(); 
+       this.prices = new Backbone.Model();
        this.catalogs={};
     },
 
@@ -42,9 +42,9 @@ var RosterBasketModel = Backbone.Model.extend({
         this.rosterType = rosterDetails.rosterType;
     },
 
-     
-    
-    
+
+
+
     addCatalog : function(catalog, count,  catalogId,catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
@@ -58,7 +58,7 @@ var RosterBasketModel = Backbone.Model.extend({
             /*
              * create item options, pass groupId, catalogId
              */
-            var catalogDetails = _.extend({},   { 
+            var catalogDetails = _.extend({},   {
                 catalogUUID : catalog.catalogId,
                 catalogDisplayText:catalog.displayText,
                 catalogType:catalog.catalogType.enumText,
@@ -69,18 +69,19 @@ var RosterBasketModel = Backbone.Model.extend({
             /*
              * create basketItem model
              * REMEMBER: This is a collection, so no arguments. set them later.
-             */ 
+             */
 
             var catalogModel = new CatalogBasketModel( );
             catalogModel.setCatalogDetails(catalogDetails);
-            
+
             /*
              * add the itemModel to the collection
              */
-            
+
         }
         this.catalogs[catalogId]=catalogModel;
         this.dumpCartToConsole();
+        this.trigger('change');
     },
 
     removeCatalog : function(catalog) {
@@ -96,7 +97,7 @@ var RosterBasketModel = Backbone.Model.extend({
         }
     },
 
-    
+
     count : function() {
         return this.reduce(function(sum, catalog) {
             return sum += catalog.get('quantity');
@@ -104,17 +105,17 @@ var RosterBasketModel = Backbone.Model.extend({
     },
 
     dumpCartToConsole : function() {
-        console.log("************----- current RosterBasketModel --------"); 
+        console.log("************----- current RosterBasketModel --------");
         _(this.catalogs).each(function(catalog, index, list) {
-            if(catalog.catalogType==='COMBO'){ 
+            if(catalog.catalogType==='COMBO'){
                 var quantity = catalog.quantity;
                 var catalogName = catalog.catalogDisplayText;
                 var catalogId = catalog.catalogId;
                 console.log("*** Combo " + catalogName + ":[" + quantity + "] @ "+catalog.price);
-              
-            }else{ 
+
+            }else{
                catalog.dumpCartToConsole();
-                
+
             }
         });
         console.log("*************---------------------------");
@@ -191,41 +192,21 @@ var RosterBasketModel = Backbone.Model.extend({
         return comboPrice;
     },
 
-    nonComboItemCount : function() {
-        var nonComboCount = 0;
-        this.each(function(item, index, list) {
-            if (item.itemType !== 'COMBO') {
-                nonComboCount = nonComboCount + item.get('quantity');
-            }
-            ;
-        });
-        return nonComboCount;
-    },
 
-    getNonComboPrice : function() {
-        var nonComboPrice = 0;
-        this.each(function(item, index, list) {
-            if (item.itemType !== 'COMBO') {
-                nonComboPrice = nonComboPrice + item.get('price');
-            }
-            ;
-        });
-        return nonComboPrice;
+
+    /*-------*/
+    getComboCount:function(){
+      var count=0;
+      _(this.catalogs).each(function(catalog,index,list){
+        count=count+catalog.quantity;
+      });
+      return count;
     },
-    getNonComboItems : function() {
-        var nonComboItems = [];
-        this.each(function(item, index, list) {
-            if (item.itemType !== 'COMBO') {
-                nonComboItems.push({
-                    itemName : item.itemName,
-                    quantity : item.get('quantity'),
-                    price : item.get('price')
-                });
-            }
-            ;
-        });
-        return nonComboItems;
-    },
+    getNonComboItemCount:function(){
+      return 0;//return _(this.catalogs).size();
+    }
+
+
 
 });
 

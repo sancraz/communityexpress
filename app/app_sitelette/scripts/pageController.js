@@ -159,7 +159,7 @@ module.exports = {
     catalog: function (options) { // options is an array with either sasl or
                                     // urlKey
         var sasl;
-        
+
         var  catalogId = options.catalogId;
         var  backToCatalogs = options.backToCatalogs;
         var  backToCatalog = options.backToCatalog;
@@ -174,11 +174,11 @@ module.exports = {
                  * check if we are going back to catalogs. If yes, pull up old
                  * catalog, else create new.
                  */
-                
+
                 var basket;
-                var catalogDetails={ 
+                var catalogDetails={
                         catalogUUID:catalog.data.catalogId,
-                        catalogDisplayText:catalog.data.displayText, 
+                        catalogDisplayText:catalog.data.displayText,
                         catalogType:catalog.data.catalogType.enumText
                        };
                 if(backToCatalog===true){
@@ -188,7 +188,7 @@ module.exports = {
                 }else{
                     var basket=new CatalogBasketModel( );
                     basket.setCatalogDetails(catalogDetails);
-                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+catalog.data.catalogId+ ':basket', basket);     
+                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+catalog.data.catalogId+ ':basket', basket);
                 }
                 return {
                     sasl: sasl,
@@ -230,26 +230,26 @@ module.exports = {
         var sasl;
         var id = options.sasl;
         var rosterId = options.id;
-        var roster; 
-        var backToRoster = options.backToRoster;  
-        var navbarView  = options.navbarView;  
+        var roster;
+        var backToRoster = options.backToRoster;
+
         return saslActions.getSasl(id)
             .then(function(ret) {
                 sasl = ret;
                 return catalogActions.getRoster(sasl.sa(), sasl.sl(), rosterId);
-            }).then(function (roster) { 
+            }).then(function (roster) {
                 /*
                  * check if we are going back to catalogs. If yes, pull up old
                  * catalog, else create new.
                  */
                 /*
                  * we cannot pass anything to basket constructur because it expects
-                 * collection entris only. So we set properties separately. 
+                 * collection entris only. So we set properties separately.
                  */
                 var basket;
-                var rosterDetails={ 
+                var rosterDetails={
                         rosterUUID:roster.data.rosterId,
-                        rosterDisplayText:roster.data.displayText, 
+                        rosterDisplayText:roster.data.displayText,
                         rosterType:roster.data.rosterType.enumText
                        };
                 if(backToRoster===true){
@@ -259,24 +259,23 @@ module.exports = {
                 }else{
                     var basket=new RosterBasketModel( );
                     basket.setRosterDetails(rosterDetails);
-                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+roster.data.rosterId+ ':basket', basket);     
+                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+roster.data.rosterId+ ':basket', basket);
                 }
                 /*
                  * this is the argument for the RosterView constructor (initialize)
                  *  this.catalogs = options.roster.collection;
                  */
                 return {
-                    sasl: sasl, 
+                    sasl: sasl,
                     roster:roster,
                     user: sessionActions.getCurrentUser(),
                     basket: basket,
-                    rosterId: roster.data.rosterId, 
-                    rosterDisplayText:roster.data.displayText, 
+                    rosterId: roster.data.rosterId,
+                    rosterDisplayText:roster.data.displayText,
                     rosterType:roster.data.rosterType.enumText,
-                    backToRoster: false,
-                    navbarView:navbarView
+                    backToRoster: false 
                 };
-           
+
             });
     },
     posts: function (options) { // options is an array with either sasl or
@@ -404,7 +403,7 @@ module.exports = {
                     priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
-                    basket: basket, 
+                    basket: basket,
                     catalogId: catalogId,
                     backToCatalog: backToCatalog,
                     backToCatalogs:backToCatalogs

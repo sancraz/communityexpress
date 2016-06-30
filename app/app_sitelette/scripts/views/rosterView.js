@@ -6,7 +6,7 @@ var Vent = require('../Vent'), //
 loader = require('../loader'), //
 RosterBasketModel = require('../models/RosterBasketModel'), //
 orderActions = require('../actions/orderActions'), //
-PageLayout = require('./components/pageLayout'), // 
+PageLayout = require('./components/pageLayout'), //
 RosterComboItemView = require('./partials/roster_combo_item.js'), //
 RosterCatalogItemView = require('./partials/roster_catalog_item.js'), //
 ListView = require('./components/listView');
@@ -38,6 +38,7 @@ var RosterView = PageLayout.extend({
         this.navbarView = options.navbarView;
 
         this.on('show', this.onShow, this);
+        this.basket.on('change', this.updateBasket, this);
     },
 
     renderData : function() {
@@ -68,7 +69,7 @@ var RosterView = PageLayout.extend({
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
         this.openSubview('addToRosterBasket', model, {
-            basket : this.basket, 
+            basket : this.basket,
             catalogId : catalogId,
             catalogDisplayText : catalogDisplayText
         });
@@ -112,26 +113,8 @@ var RosterView = PageLayout.extend({
     },
 
     updateBasket : function() {
-        if (this.basket.hasCombo()) {
-            /* update combo count */
-            $('#catalog_combo_count_div').show();
-            $('.num-of-combo-items').text(this.basket.getComboCount());
-            $('.combo-total-price').text(this.basket.getComboPrice());
-        } else {
-            /* hide the combo line */
-            $('#catalog_combo_count_div').hide();
-        }
-
-        /*
-         * update the items
-         */
-        if (this.basket.hasCombo()) {
-            $('.num-of-items').text(this.basket.nonComboItemCount());
-            $('.total-price').text(this.basket.getNonComboPrice());
-        } else {
-            $('.num-of-items').text(this.basket.count());
-            $('.total-price').text(this.basket.getTotalPrice());
-        }
+         this.$('#cmtyex_roster_cart_comboCount').text(this.basket.getComboCount());
+         this.$('#cmtyex_roster_cart_nonComboCount').text(this.basket.getNonComboItemCount());
 
     },
 
@@ -178,7 +161,7 @@ var RosterView = PageLayout.extend({
 
                             break;
                         case 'ITEMIZED':
-                        case 'UNDEFINED': 
+                        case 'UNDEFINED':
                         default:
                             /*
                              * use radio boxes
@@ -191,7 +174,7 @@ var RosterView = PageLayout.extend({
                                 parent : this
                             }).render().el;
                             $ul.append(li);
- 
+
                         }
 
                     }.bind(this));
@@ -201,9 +184,9 @@ var RosterView = PageLayout.extend({
         case 'UNDEFINED':
         default:
         }
-    }, 
-    
-     
+    },
+
+
     showCatalog:function(catalog, catalogId, catalogDisplayText){
         console.log("added "+catalogDisplayText+" to cart");
     }
