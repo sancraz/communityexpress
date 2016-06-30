@@ -268,10 +268,17 @@
 
     .answerInfoBlock {
         background-color: $white;
-        padding: 10px;
+        // padding: 10px;
         border: solid 1px $active;
         color: $grey;
         font: 400 11px / 15px Ubuntu;
+        .additional-links-container {
+            padding: 6px 12px;
+            .remove-link {
+                margin-left: 5px;
+                cursor: pointer;
+            }
+        }
     }
 
     .createQuestionInputs{

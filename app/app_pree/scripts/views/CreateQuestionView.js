@@ -219,8 +219,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		if (!url.match(expresion)) {
 			link = 'http://' + url;
 		}
-		return '<a href="' + link + '">' + url 	
-			+ '</a><span class="remove-link">-</span>';
+		return '<a href="' + link + '">' + url
+			+ '</a><i class="remove-link fa fa-times remove-tag"></i>';
 	},
 
 	removeLink: function(e) {
@@ -254,7 +254,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onChangeBonusPoints: function(e) {
 		var $target = $(e.currentTarget),
 			value = this.checkCorrectValue($target);
-		
+
 		this.model.set('bonusPoints', value);
 	},
 
