@@ -27,6 +27,6 @@ module.exports = {
     },
 
     signin: function() {
-        App.trigger('signinForm:show');
+        App.trigger('signinForm:show', 'createNewQuestion:show');
     }
 }
