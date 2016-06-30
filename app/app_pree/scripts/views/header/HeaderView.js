@@ -3,6 +3,7 @@
 var template = require('ejs!./header.ejs'),
     loader = require('../../loader'),
     Vent = require('../../Vent'),
+    App = require('../../app'),
     h = require('../../globalHelpers'),
     config = require('../../appConfig'),
     sessionActions = require('../../actions/sessionActions'),
@@ -33,6 +34,7 @@ var HeaderView = Mn.LayoutView.extend({
     initialize: function() {
         this.user = sessionActions.getCurrentUser();
         this.listenTo(Vent, 'login_success logout_success', this.changeStatus, this);
+        // App.on('signinForm:show', _.bind(this.signin, this));
     },
 
     serializeData: function() {
