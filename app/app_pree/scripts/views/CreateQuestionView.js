@@ -22,6 +22,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		anonymous: '.pree_question_is_anonymous_item input',
 		question: '.question-text',
 		answerInfo: '.answer-info-text',
+		additionalLinks: '.additional-links-container',
 		answers: '.pree_question_edit_answers li',
 		answerChoice: '.pree_question_edit_answers li .answer-choice',
 		answerExample: '.pree_question_edit_answers li .answer-example',
@@ -185,12 +186,42 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onAddAtributionUrl: function(){
 		var url = this.ui.atributionInput.val(),
 			expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,
-  	 		regex = new RegExp(expression);
+  	 		regex = new RegExp(expression),
+  	 		links = this.ui.additionalLinks.find('div'),
+  	 		available,
+  	 		template;
 
-  		if (url.match(regex) ) {
-  			console.log('add url ',url);
-  			this.ui.atributionInput.val('');
+  		if (url.match(regex)) {
+  			template = '<a href="' + url + '">' + url + '</a><span class="remove-link">-</span>';
+  			if (!this.model.get('infoURL1')) {
+  				available = links.eq(0);
+  				this.model.set('infoURL1', url);
+  			} else if (!this.model.get('infoURL2')) {
+  				available = links.eq(1);
+  				this.model.set('infoURL2', url);
+  			}
+
+  			if (available) {
+  				console.log('add url ', url);
+  				available.html(template);
+  				available.find('.remove-link').on('click', _.bind(this.removeLink, this));
+  				this.ui.atributionInput.val('');
+  			} else {
+  				//show message
+  			}
   		}
+	},
+
+	removeLink: function(e) {
+		var $target = $(e.currentTarget),
+			parent = $target.parent();
+
+		parent.html('');
+		if (parent.hasClass('first-link')) {
+			this.model.set('infoURL1', '');
+		} else {
+			this.model.set('infoURL2', '');
+		}
 	},
 
 	onKeyDownBonusPoints: function(e) {
@@ -229,7 +260,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 			max = $target.attr('max') || 1000,
 			testValue = parseInt(value, 10);
 
-		testValue = isNaN(testValue) ? 1 : testValue;
+		testValue = isNaN(testValue) ? 0 : testValue;
 		value = testValue < min ? min : testValue > max ? max : testValue;
 		$target.val(value);
 		return value;

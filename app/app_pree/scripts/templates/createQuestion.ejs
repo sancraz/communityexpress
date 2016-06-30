@@ -106,8 +106,7 @@
             </div>
 
             <div class="pree_question_edit_text">
-                <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here">
-                    <%= model.displayText %>?</textarea>
+                <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here"><%= model.displayText %>?</textarea>
                 <div id="textAreaOptionsBlock">
                     <img src="images/camera-outline.png" alt="" class="pree_question_edit_text_photo">
                     <span id="pree_question_edit_text_note"></span>
@@ -151,6 +150,10 @@
                         <div class="panel-body">
                             <div class="answerInfoBlock">
                                 <textarea id="textarea" class="form-control answer-info-text" maxlength="120" placeholder="Add additional info here"><%= model.additionalInformation %></textarea>
+                                <div class="additional-links-container">
+                                    <div class="first-link"></div>
+                                    <div class="second-link"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
