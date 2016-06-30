@@ -192,7 +192,6 @@ var CreateQuestionView = Mn.LayoutView.extend({
   	 		template;
 
   		if (url.match(regex)) {
-  			template = '<a href="' + url + '">' + url + '</a><span class="remove-link">-</span>';
   			if (!this.model.get('infoURL1')) {
   				available = links.eq(0);
   				this.model.set('infoURL1', url);
@@ -203,6 +202,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
   			if (available) {
   				console.log('add url ', url);
+  				template = this.createTemplate(url);
   				available.html(template);
   				available.find('.remove-link').on('click', _.bind(this.removeLink, this));
   				this.ui.atributionInput.val('');
@@ -210,6 +210,17 @@ var CreateQuestionView = Mn.LayoutView.extend({
   				//show message
   			}
   		}
+	},
+
+	createTemplate: function(url) {
+		var expresion = /^(http:\/\/)|(https:\/\/)/g,
+			link;
+
+		if (!url.match(expresion)) {
+			link = 'http://' + url;
+		}
+		return '<a href="' + link + '">' + url 	
+			+ '</a><span class="remove-link">-</span>';
 	},
 
 	removeLink: function(e) {
