@@ -31,8 +31,8 @@ var PreeNewQuestionModel = Backbone.Model.extend({
             }
         ],
         additionalInformation: null, //this field makes an error
-        bonusPoints: null,
-        basePoints: null
+        bonusPoints: 0,
+        basePoints: 0
     },
 
     requiredFields: {

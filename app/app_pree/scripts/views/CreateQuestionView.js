@@ -21,6 +21,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		type: '.pree_question_edit_type input',
 		anonymous: '.pree_question_is_anonymous_item input',
 		question: '.question-text',
+		answerInfo: '.answer-info-text',
 		answers: '.pree_question_edit_answers li',
 		answerChoice: '.pree_question_edit_answers li .answer-choice',
 		answerExample: '.pree_question_edit_answers li .answer-example',
@@ -39,11 +40,12 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		'change @ui.answerChoice': 'onChoiceChanged',
 		'change @ui.answerExample': 'onExampleChanged',
 		'change @ui.question': 'onQuestionChanged',
+		'change @ui.answerInfo': 'onAnswerInfoChanged',
 		'click @ui.atributionBtn': 'onAddAtributionUrl',
 		'keydown @ui.bonusPoints': 'onKeyDownBonusPoints',
 		'keydown @ui.basePoints': 'onKeyDownBasePoints',
 		'change @ui.bonusPoints': 'onChangeBonusPoints',
-		'change @ui.basePoints': 'onChangeBasePoints'
+		'change @ui.basePoints': 'onChangeBasePoints',
 	},
 
 	serializeData: function() {
@@ -145,6 +147,13 @@ var CreateQuestionView = Mn.LayoutView.extend({
 			text = $target.val();
 
 		this.model.set('displayText', text);
+	},
+
+	onAnswerInfoChanged: function(e) {
+		var $target = $(e.currentTarget),
+			text = $target.val();
+
+		this.model.set('additionalInformation', text);
 	},
 
 	onQuestionSave: function() {
