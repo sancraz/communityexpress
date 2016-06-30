@@ -42,6 +42,21 @@
         margin-bottom: 10px;
     }
 
+    .pree_question_is_anonymous {
+        color: $text;
+        font: 400 11px / 15px Ubuntu;
+        .pree_question_is_anonymous_item {
+            display: inline-block;
+            margin-left: 15px;
+            color: $text-hover;
+            font: 400 11px Ubuntu;
+            input[type=checkbox] {
+                display: inline-block;
+                background: url(images/checkbox.png) no-repeat 0;
+                line-height: 24px;
+            }
+        }
+    }
     .pree_question_edit_type {
         display: inline-block;
         color: $text;

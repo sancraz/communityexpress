@@ -24,7 +24,11 @@
                     <% } %>><span>Prediction</span>
                 </li>
             </ul>
-
+            <ul class="pree_question_is_anonymous">Is anonymous:
+                <li class="pree_question_is_anonymous_item">
+                    <input type="checkbox" <% if (model.isAnonymous) { %>checked<% } %>><span>&nbsp</span>
+                </li>
+            </ul>
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="headingOne">
                     <h4 class="panel-title">
@@ -101,8 +105,7 @@
             </div>
 
             <div class="pree_question_edit_text">
-                <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here">
-                    <%= model.displayText %>?</textarea>
+                <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here"><%= model.displayText %>?</textarea>
                 <div id="textAreaOptionsBlock">
                     <img src="images/camera-outline.png" alt="" class="pree_question_edit_text_photo">
                     <span id="pree_question_edit_text_note"></span>
@@ -189,14 +192,34 @@
                         <!-- <input type="text" class="form-control" id="tagsInput"> -->
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group pree_question_edit_tags">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label for="tagsInput" class="pree_question_edit_tags_label">Bonus points</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="number" class="form-control" min="1" max="1000" id="bonusPointsInput">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group pree_question_edit_tags">
+                        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-2">
+                            <label for="tagsInput" class="pree_question_edit_tags_label">Base points</label>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-10">
+                            <input type="number" class="form-control" min="1" max="999" id="basePointsInput">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
     <footer>
         <div class="modal-footer">
             <div class="pree_question_edit_buttons">
-                <span class="pree_question_edit_save save-btn">Save</span>
-                <span class="pree_question_edit_post post-btn">Post</span>
+                <!-- <span class="pree_question_edit_save save-btn">Save</span> -->
+                <span class="pree_question_edit_post post-btn">Submit</span>
                 <span class="pree_question_edit_discard discard-btn">Discard</span>
             </div>
         </div>

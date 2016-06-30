@@ -85,7 +85,7 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	updateFilters: function(model, view, actions) {
-		this.tagsAutocompleteView.changeDataSet(actions, model);
+		this.tagsAutocompleteView.triggerMethod('changeDataSet',actions, model);
 		if (typeof this.options.updateFilters === 'function') {
 			this.options.updateFilters(this.tagsCollection.getTagsArray());
 		}
