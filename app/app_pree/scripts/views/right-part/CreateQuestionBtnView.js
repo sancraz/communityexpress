@@ -1,7 +1,8 @@
 'use strict';
 
 var App = require('../../app'),
-	template = require('ejs!./createQuestionBtn.ejs');
+	template = require('ejs!./createQuestionBtn.ejs'),
+	sessionActions = require('../../actions/sessionActions');
 
 var CreateQuestionBtnView = Mn.ItemView.extend({
 
@@ -15,9 +16,17 @@ var CreateQuestionBtnView = Mn.ItemView.extend({
     	'click @ui.create' : 'createQuestion'
     },
 
+	initialize: function() {
+		this.user = sessionActions.getCurrentUser();
+	},
+
     createQuestion: function() {
     	console.log('create question');
-    	App.trigger('createNewQuestion:show');
+		if (this.user.getUID()) {
+	    	App.trigger('createNewQuestion:show');
+		} else {
+			App.trigger('signinForm:show');
+		}
     }
 
 });

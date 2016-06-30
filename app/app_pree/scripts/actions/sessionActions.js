@@ -96,10 +96,7 @@ module.exports = {
 
     createAnonymousUser: function() {
         var self = this;
-        return gateway.sendRequest('createAnonymousUser', {
-            serviceAccommodatorId: '',
-            serviceLocationId: ''
-        }).then(function(userRegistrationDetails) {
+        return gateway.sendRequest('createAnonymousUser', {}).then(function(userRegistrationDetails) {
             if (typeof userRegistrationDetails.uid !== 'undefined') {
 
                 /*
