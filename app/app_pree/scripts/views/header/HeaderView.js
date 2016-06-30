@@ -8,7 +8,7 @@ var template = require('ejs!./header.ejs'),
     config = require('../../appConfig'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
-    SignInView = require('./SignInView'),
+    // SignInView = require('./SignInView'),
     SignOutView = require('./SignOutView'),
     InfoView = require('./infoView');
 
@@ -77,10 +77,12 @@ var HeaderView = Mn.LayoutView.extend({
         });
     },
 
-    signin: function() {
-        this.getRegion('popupRegion').show(new SignInView({
-            parent: this
-        }));
+    signin: function(triggerEvent) {
+        this.trigger('signin', triggerEvent);
+        // this.getRegion('popupRegion').show(new SignInView({
+        //     parent: this,
+        //     event: triggerEvent
+        // }));
     },
 
     toggle: function () {

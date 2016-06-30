@@ -52,6 +52,9 @@ var SignInView = Mn.ItemView.extend({
         sessionActions.startSession(this.val().username, this.val().password)
             .then(function(response) {
                 loader.showFlashMessage( 'successfully signed in as ' + response.username );
+                if (this.options.event) {
+                    this.trigger('openView', this.options.event);
+                };
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
                     this.showLoginError();
