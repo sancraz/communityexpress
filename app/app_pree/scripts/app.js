@@ -23,15 +23,10 @@ App.on('before:start', function() {
 
         initialize: function() {
             this.render();
-        },
-
-        showViews: function() {
-            App.regions.getRegion('headerRegion').show(new HeaderView());
         }
     });
 
     App.regions = new AppLayoutView();
-    App.regions.showViews();
 });
 
 App.on('start',function() {
