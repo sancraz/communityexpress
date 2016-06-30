@@ -19,12 +19,15 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		save: '.save-btn',
 		post: '.post-btn',
 		type: '.pree_question_edit_type input',
+		anonymous: '.pree_question_is_anonymous_item input',
 		question: '.question-text',
 		answers: '.pree_question_edit_answers li',
 		answerChoice: '.pree_question_edit_answers li .answer-choice',
 		answerExample: '.pree_question_edit_answers li .answer-example',
 		atributionBtn: '.atribution-link-btn',
-		atributionInput: '#atributionLinkInput'
+		atributionInput: '#atributionLinkInput',
+		bonusPoints: '#bonusPointsInput',
+		basePoints: '#basePointsInput'
 	},
 
 	events: {
@@ -32,10 +35,15 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		'click @ui.save': 'onQuestionSave',
 		'click @ui.post': 'onQuestionPost',
 		'change @ui.type': 'onTypeChanged',
+		'change @ui.anonymous': 'onIsAnonymousChanged',
 		'change @ui.answerChoice': 'onChoiceChanged',
 		'change @ui.answerExample': 'onExampleChanged',
 		'change @ui.question': 'onQuestionChanged',
-		'click @ui.atributionBtn': 'onAddAtributionUrl'
+		'click @ui.atributionBtn': 'onAddAtributionUrl',
+		'keydown @ui.bonusPoints': 'onKeyDownBonusPoints',
+		'keydown @ui.basePoints': 'onKeyDownBasePoints',
+		'change @ui.bonusPoints': 'onChangeBonusPoints',
+		'change @ui.basePoints': 'onChangeBasePoints'
 	},
 
 	serializeData: function() {
@@ -98,6 +106,12 @@ var CreateQuestionView = Mn.LayoutView.extend({
 				this.model.set('subType', index);
 			}
 		}, this));
+	},
+
+	onIsAnonymousChanged: function(e) {
+		var $target = $(e.currentTarget),
+			checked = $target.is(':checked');
+		this.model.set('isAnonymous', checked);
 	},
 
 	onChoiceChanged: function(e) {
@@ -168,6 +182,48 @@ var CreateQuestionView = Mn.LayoutView.extend({
   			console.log('add url ',url);
   			this.ui.atributionInput.val('');
   		}
+	},
+
+	onKeyDownBonusPoints: function(e) {
+		this.testKeyPressed(e);
+	},
+
+	onKeyDownBasePoints: function(e) {
+		this.testKeyPressed(e);
+	},
+
+	testKeyPressed: function(e) {
+		if (e.keyCode === 190) {
+			e.preventDefault();
+			e.stopPropagation();
+			return false;
+		}
+	},
+
+	onChangeBonusPoints: function(e) {
+		var $target = $(e.currentTarget),
+			value = this.checkCorrectValue($target);
+		
+		this.model.set('bonusPoints', value);
+	},
+
+	onChangeBasePoints: function(e) {
+		var $target = $(e.currentTarget),
+			value = this.checkCorrectValue($target);
+
+		this.model.set('basePoints', value);
+	},
+
+	checkCorrectValue: function($target) {
+		var value = $target.val(),
+			min = $target.attr('min') || 0,
+			max = $target.attr('max') || 1000,
+			testValue = parseInt(value, 10);
+
+		testValue = isNaN(testValue) ? 1 : testValue;
+		value = testValue < min ? min : testValue > max ? max : testValue;
+		$target.val(value);
+		return value;
 	}
 
 });
