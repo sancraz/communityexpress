@@ -34,8 +34,6 @@ var SignInView = Mn.ItemView.extend({
             'tabindex': '-1',
             'role': 'dialog'
         });
-
-        this.listenTo(Vent, 'login_success logout_success', this.close, this);
     },
 
     onShow: function() {
@@ -54,7 +52,6 @@ var SignInView = Mn.ItemView.extend({
         sessionActions.startSession(this.val().username, this.val().password)
             .then(function(response) {
                 loader.showFlashMessage( 'successfully signed in as ' + response.username );
-                // $('.modal-backdrop').remove();
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
                     this.showLoginError();

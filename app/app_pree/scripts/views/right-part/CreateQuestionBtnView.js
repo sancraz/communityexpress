@@ -21,11 +21,10 @@ var CreateQuestionBtnView = Mn.ItemView.extend({
 	},
 
     createQuestion: function() {
-    	console.log('create question');
 		if (this.user.getUID()) {
-	    	App.trigger('createNewQuestion:show');
+			this.trigger('createQuestion');
 		} else {
-			App.trigger('signinForm:show');
+			this.trigger('signin');
 		}
     }
 

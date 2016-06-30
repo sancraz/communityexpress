@@ -33,8 +33,6 @@ var HeaderView = Mn.LayoutView.extend({
 
     initialize: function() {
         this.user = sessionActions.getCurrentUser();
-        this.listenTo(Vent, 'login_success logout_success', this.changeStatus, this);
-        // App.on('signinForm:show', _.bind(this.signin, this));
     },
 
     serializeData: function() {
@@ -80,7 +78,7 @@ var HeaderView = Mn.LayoutView.extend({
     },
 
     signin: function() {
-        this.popupRegion.show(new SignInView({
+        this.getRegion('popupRegion').show(new SignInView({
             parent: this
         }));
     },

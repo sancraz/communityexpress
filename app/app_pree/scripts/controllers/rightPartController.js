@@ -18,5 +18,15 @@ module.exports = {
             whoToFollow = new WhoToFollowView();
         this.rightLayoutView.showCreateQuestionBtn(createQuestion);
         this.rightLayoutView.showWhoToFollow(whoToFollow);
+        createQuestion.listenTo(createQuestion, 'createQuestion', _.bind(this.createQuestion, this));
+        createQuestion.listenTo(createQuestion, 'signin', _.bind(this.signin, this))
+    },
+
+    createQuestion: function(options) {
+        App.trigger('createNewQuestion:show');
+    },
+
+    signin: function() {
+        App.trigger('signinForm:show');
     }
 }
