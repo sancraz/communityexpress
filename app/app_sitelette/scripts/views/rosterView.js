@@ -63,15 +63,12 @@ var RosterView = PageLayout.extend({
         });
     },
 
-    openAddToBasketView : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText, rosterId,
-            rosterDisplayText) {
+    openAddToBasketView : function(model,  catalogId, catalogDisplayText ) {
         // console.log("CatalogView:openAddToBasketView
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
-        this.openSubview('addToBasket', model, {
-            basket : this.basket,
-            groupId : groupId,
-            groupDisplayText : groupDisplayText,
+        this.openSubview('addToRosterBasket', model, {
+            basket : this.basket, 
             catalogId : catalogId,
             catalogDisplayText : catalogDisplayText
         });
@@ -159,12 +156,21 @@ var RosterView = PageLayout.extend({
                         switch (catalogType) {
                         case 'COMBO':
                             /*
-                             * use radio boxes
+                         onClick : function(model) {
+                            this.openAddToBasketView(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
+                        }.bind(this),
+                        color : this.generateColor(i),
+                        model : group,
+                        parent : this
                              */
                             var li = new RosterComboItemView({
-                                addComboToCart : function(model) {
-                                    this.addComboToCart(model, catalogId, catalogDisplayText );
+                            	onClick : function(model) {
+                             		 //this.$('#cmtyex_roster_cart_summary').fadeIn('slow');
+                                     this.openAddToBasketView(model, catalogId, catalogDisplayText);
                                 }.bind(this),
+                                //addComboToCart : function(model) {
+                                //    this.addComboToCart(model, catalogId, catalogDisplayText );
+                                //}.bind(this),
                                 model : catalog,
                                 parent : this
                             }).render().el;
@@ -197,10 +203,7 @@ var RosterView = PageLayout.extend({
         }
     }, 
     
-    addComboToCart:function(catalog, catalogId, catalogDisplayText ){
-        console.log("added "+catalogDisplayText+" to cart");
-        this.$('#cmtyex_roster_cart_summary').fadeIn('slow');
-    },
+     
     showCatalog:function(catalog, catalogId, catalogDisplayText){
         console.log("added "+catalogDisplayText+" to cart");
     }

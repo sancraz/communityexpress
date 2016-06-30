@@ -13,13 +13,20 @@ var RosterComboItemView = Backbone.View.extend({
     className : 'cmtyex_roster_combo_item',
 
     events : {
-        'click .roster_combo_item_add_button' : 'addComboToCartLocal'
+        'click .roster_combo_item_add_button' : 'showAddToBusketView'
     },
+     
 
+    showAddToBusketView: function() {
+        this.onClick();
+    },
     initialize : function(options) {
         this.sasl = options.parent.sasl;
         this.listenTo(this.model, 'destroy', this.remove, this);
-        this.addComboToCart = options.addComboToCart;
+        this.onClick = function () {
+            options.onClick(this.model);
+        }.bind(this);
+        this.color = options.color;
     },
 
     render : function() {
@@ -28,12 +35,7 @@ var RosterComboItemView = Backbone.View.extend({
             combo : this.model
         }));
         return this;
-    },
-
-    addComboToCartLocal : function() {
-        this.addComboToCart();
-
-    }
+    } 
 
 });
 

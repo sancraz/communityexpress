@@ -75,7 +75,7 @@ var CatalogView = PageLayout.extend({
         // console.log("CatalogView:openAddToBasketView
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
-        this.openSubview('addToBasket', model, {
+        this.openSubview('addToCatalogBasket', model, {
             basket : this.basket,
             groupId : groupId,
             groupDisplayText : groupDisplayText,
