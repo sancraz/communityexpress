@@ -121,7 +121,7 @@ var LandingView = PageLayout.extend({
         Vent.trigger('viewChange', 'roster', {
             sasl: this.model.id,
             id: uuid,
-            backToRoster:true,
+            backToRoster:false,
             rosterId:uuid,
          }, { reverse: false });
     },

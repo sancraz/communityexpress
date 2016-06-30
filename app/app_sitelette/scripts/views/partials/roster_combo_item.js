@@ -7,19 +7,12 @@ var template = require('ejs!../../templates/partials/roster_combo_item.ejs'), Ve
 var RosterComboItemView = Backbone.View.extend({
 
     template : template,
-
     tagName : 'li',
-
     className : 'cmtyex_roster_combo_item',
-
     events : {
         'click .roster_combo_item_add_button' : 'showAddToBusketView'
     },
-     
 
-    showAddToBusketView: function() {
-        this.onClick();
-    },
     initialize : function(options) {
         this.sasl = options.parent.sasl;
         this.listenTo(this.model, 'destroy', this.remove, this);
@@ -29,14 +22,17 @@ var RosterComboItemView = Backbone.View.extend({
         this.color = options.color;
     },
 
-    render : function() {
+    /* we delegate to the method set via the initializer */
+    showAddToBusketView: function() {
+        this.onClick();
+    },
 
+    render : function() {
         this.$el.html(this.template({
             combo : this.model
         }));
         return this;
-    } 
-
+    }
 });
 
 module.exports = RosterComboItemView;

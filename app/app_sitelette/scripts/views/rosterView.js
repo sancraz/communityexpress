@@ -4,7 +4,9 @@
 
 var Vent = require('../Vent'), //
 loader = require('../loader'), //
+appCache = require('../appCache.js'),
 RosterBasketModel = require('../models/RosterBasketModel'), //
+CatalogBasketModel = require('../models/CatalogBasketModel'), //
 orderActions = require('../actions/orderActions'), //
 PageLayout = require('./components/pageLayout'), //
 RosterComboItemView = require('./partials/roster_combo_item.js'), //
@@ -41,21 +43,22 @@ var RosterView = PageLayout.extend({
         this.basket.on('change', this.updateBasket, this);
     },
 
+    /*used to initialie roster_content.ejs template */
     renderData : function() {
         return {
             basket : this.basket
         };
     },
 
+    /* used to update the roster view created originally */
+    updateBasket : function() {
+         this.$('#cmtyex_roster_cart_comboCount').text(this.basket.getComboCount()+" x");
+         this.$('#cmtyex_roster_cart_nonComboCount').text(this.basket.getNonComboItemCount()+" x");
+    },
+
     goBack : function() {
-        if (this.backToCatalogs) {
-            this.triggerCatalogsView();
-        } else {
             this.triggerRestaurantView();
             this.navbarView.show();
-        }
-        ;
-
     },
 
     triggerRestaurantView : function() {
@@ -64,10 +67,8 @@ var RosterView = PageLayout.extend({
         });
     },
 
+    /* used for showing the flyout for combo items */
     openAddToBasketView : function(model,  catalogId, catalogDisplayText ) {
-        // console.log("CatalogView:openAddToBasketView
-        // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
-
         this.openSubview('addToRosterBasket', model, {
             basket : this.basket,
             catalogId : catalogId,
@@ -75,11 +76,6 @@ var RosterView = PageLayout.extend({
         });
     },
 
-    toggleBasketComboEntry : function(model, groupId, groupDisplayText, catalogId, catalogDisplayText) {
-        // console.log("CatalogView:toggleBasketComboEntry
-        // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
-        this.basket.changeItemInCombo(model, groupId, groupDisplayText, catalogId, catalogDisplayText);
-    },
 
     triggerOrder : function() {
         this.withLogIn(function() {
@@ -92,6 +88,7 @@ var RosterView = PageLayout.extend({
                                                          * but passed back to
                                                          * catalog view
                                                          */
+                backToRoster : true,
                 navbarView : this.navbarView
             }, {
                 reverse : true
@@ -112,16 +109,6 @@ var RosterView = PageLayout.extend({
         });
     },
 
-    updateBasket : function() {
-         this.$('#cmtyex_roster_cart_comboCount').text(this.basket.getComboCount());
-         this.$('#cmtyex_roster_cart_nonComboCount').text(this.basket.getNonComboItemCount());
-
-    },
-
-    generateColor : function(index) {
-        // var colors = [ '#FFC4AA', '#AEE5B1', '#B2B2FD', '#FFEC8A' ];
-        return this.colors[index % this.colors.length];
-    },
 
     renderItems : function() {
 
@@ -151,9 +138,6 @@ var RosterView = PageLayout.extend({
                              		 //this.$('#cmtyex_roster_cart_summary').fadeIn('slow');
                                      this.openAddToBasketView(model, catalogId, catalogDisplayText);
                                 }.bind(this),
-                                //addComboToCart : function(model) {
-                                //    this.addComboToCart(model, catalogId, catalogDisplayText );
-                                //}.bind(this),
                                 model : catalog,
                                 parent : this
                             }).render().el;
@@ -163,12 +147,10 @@ var RosterView = PageLayout.extend({
                         case 'ITEMIZED':
                         case 'UNDEFINED':
                         default:
-                            /*
-                             * use radio boxes
-                             */
+
                             var li = new RosterCatalogItemView({
                                 showCatalog : function(model) {
-                                    this.showCatalog(model, catalogId, catalogDisplayText );
+                                    this.triggerCatalogView(catalog, catalogId, catalogDisplayText );
                                 }.bind(this),
                                 model : catalog,
                                 parent : this
@@ -186,10 +168,39 @@ var RosterView = PageLayout.extend({
         }
     },
 
+    triggerCatalogView: function(catalog, catalogId, catalogDisplayText ) {
+        /*
+         did we create the catalog in our basket already? If not create it now, and set it
+         in appcache for catalog dialog to fine.
+         */
+         var tempCatalogBasket= this.basket[catalogId];
+         if(typeof tempCatalogBasket==='undefined'){
+           var catalogDetails= {
+                catalogUUID:catalog.catalogId,
+                catalogDisplayText:catalog.displayText,
+                catalogType : catalog.catalogType.enumText,
+                price:catalog.price,
+                quantity:0
+           };
+           tempCatalogBasket=new CatalogBasketModel();
+           tempCatalogBasket.setCatalogDetails(catalogDetails);
+           this.basket[catalogId]=tempCatalogBasket;
+             /* push this specific catalog model to app cache */
+           appCache.set(this.sasl.sa() + ':' + this.sasl.sl() +':'+catalogId+ ':catalogbasket', this.basket[catalogId]);
+         }
 
-    showCatalog:function(catalog, catalogId, catalogDisplayText){
-        console.log("added "+catalogDisplayText+" to cart");
+
+        Vent.trigger('viewChange', 'catalog', {
+            id: this.sasl.id,
+            catalogId: catalogId,
+            backToCatalog: true,
+            backToCatalogs: false,
+            backToRoster:true,
+            rosterId:this.rosterId,
+            navbarView:this.navbarView
+        }, { reverse: false });
     }
+
 });
 
 module.exports = RosterView;

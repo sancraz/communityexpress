@@ -161,6 +161,8 @@ module.exports = {
         var sasl;
 
         var  catalogId = options.catalogId;
+        var backToRoster=options.backToRoster;
+        var rosterId=options.rosterId;
         var  backToCatalogs = options.backToCatalogs;
         var  backToCatalog = options.backToCatalog;
         var catalogId = options.catalogId;
@@ -184,17 +186,19 @@ module.exports = {
                 if(backToCatalog===true){
                     var tempBasket=new CatalogBasketModel( );
                     tempBasket.setCatalogDetails(catalogDetails);
-                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+catalog.data.catalogId+ ':basket',tempBasket );
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+catalog.data.catalogId+ ':catalogbasket',tempBasket );
                 }else{
                     var basket=new CatalogBasketModel( );
                     basket.setCatalogDetails(catalogDetails);
-                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+catalog.data.catalogId+ ':basket', basket);
+                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+catalog.data.catalogId+ ':catalogbasket', basket);
                 }
                 return {
                     sasl: sasl,
                     catalog: catalog,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/catalog',
+                    rosterId:rosterId,
+                    backToRoster:backToRoster,
                     basket: basket,// catalogActions.getBasket(sasl.sa(),
                                     // sasl.sl()),
                     backToCatalogs: backToCatalogs,
@@ -216,7 +220,8 @@ module.exports = {
                     Vent.trigger('viewChange', 'catalog', {
                         id: id,
                         catalogId: options.data.catalogId,
-                        backToCatalogs: false
+                        backToCatalogs: false,
+                        backToRoster:false
                     });
                 } else {
                     return {
@@ -255,11 +260,11 @@ module.exports = {
                 if(backToRoster===true){
                     var tempBasket=new RosterBasketModel( );
                     tempBasket.setRosterDetails(rosterDetails);
-                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+roster.data.rosterId+ ':basket',tempBasket );
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+roster.data.rosterId+ ':rosterbasket',tempBasket );
                 }else{
                     var basket=new RosterBasketModel( );
                     basket.setRosterDetails(rosterDetails);
-                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+roster.data.rosterId+ ':basket', basket);
+                    appCache.set(sasl.sa() + ':' + sasl.sl() +':'+roster.data.rosterId+ ':rosterbasket', basket);
                 }
                 /*
                  * this is the argument for the RosterView constructor (initialize)
@@ -273,7 +278,7 @@ module.exports = {
                     rosterId: roster.data.rosterId,
                     rosterDisplayText:roster.data.displayText,
                     rosterType:roster.data.rosterType.enumText,
-                    backToRoster: false 
+                    backToRoster: false
                 };
 
             });
@@ -396,7 +401,7 @@ module.exports = {
                 /*
                  * pull up the basket for this sasl
                  */
-                var basket =  appCache.get(sasl.sa() + ':' + sasl.sl() +':'+catalogId+ ':basket');
+                var basket =  appCache.get(sasl.sa() + ':' + sasl.sl() +':'+catalogId+ ':catalogbasket');
                 return {
                     sasl: sasl,
                     cardType: cardType,
