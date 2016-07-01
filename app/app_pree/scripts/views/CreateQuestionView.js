@@ -57,8 +57,22 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	serializeData: function() {
-		console.log(this.model.toJSON());
+		//TODO moment
+		var activationDate = '',
+			expirationDate = '';
+
+		try {
+			activationDate = this.moment(this.model.get('activationDate'))
+				.format('MM/DD/YYYY h:mm:ss');
+			expirationDate = this.moment(this.model.get('expirationDate'))
+				.format('MM/DD/YYYY h:mm:ss');
+		} catch (e) {
+			//TODO
+		}
+
 		return {
+			activationDate: activationDate,
+			expirationDate: expirationDate,
 			model: this.model.toJSON()
 		};
 	},
