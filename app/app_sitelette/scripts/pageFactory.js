@@ -16,6 +16,7 @@ var LandingView = require('./views/landingView'), //
     RootView = require('./views/rootView'),//
     AboutUsView = require('./views/aboutUsView'), //
     CatalogOrderView = require('./views/catalogOrderView'),//
+    RosterOrderView = require('./views/rosterOrderView'),//
     EventActiveView = require('./views/eventActiveView'),//
     NavbarView = require('./views/headers/navbarView');
 
@@ -153,6 +154,15 @@ module.exports = {
             break;
         case 'catalog_order':
             view = new CatalogOrderView(_.extend(options, {
+                navbarView : NavbarView,
+                navbarData : {
+                    sasl : options.sasl,
+                    title : 'Order'
+                }
+            }));
+            break;
+         case 'roster_order':
+            view = new RosterOrderView(_.extend(options, {
                 navbarView : NavbarView,
                 navbarData : {
                     sasl : options.sasl,
