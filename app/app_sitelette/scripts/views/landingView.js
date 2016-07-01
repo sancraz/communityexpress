@@ -106,9 +106,9 @@ var LandingView = PageLayout.extend({
     triggerAboutUsView: function() {
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
     },
-    
+
     triggerRosterView: function() {
-        
+
         var uuid;
         if (community.type == 'r') {
             uuid = community.uuidURL;
@@ -117,12 +117,11 @@ var LandingView = PageLayout.extend({
         } else {
             uuid = $(e.target).attr('uuid');
         };
-        
+
         Vent.trigger('viewChange', 'roster', {
             sasl: this.model.id,
-            id: uuid, 
-            backToRoster:true,
-            navbarView:this.navbarView,
+            id: uuid,
+            backToRoster:false,
             rosterId:uuid,
          }, { reverse: false });
     },
@@ -211,7 +210,7 @@ var LandingView = PageLayout.extend({
         console.log("landingview firing viewchange into catalog");
         var x=appCache;
         Vent.trigger('viewChange', 'catalogs', this.model.getUrlKey() );
-       
+
     },
 
     triggerAppointmentView: function() {

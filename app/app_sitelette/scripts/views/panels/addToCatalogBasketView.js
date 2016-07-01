@@ -2,10 +2,10 @@
 
 'use strict';
 
-var template = require('ejs!../../templates/addToBasket.ejs'),
+var template = require('ejs!../../templates/addToCatalogBasket.ejs'),
     PanelView = require('../components/panelView');
 
-var AddToBasketView = PanelView.extend({
+var AddToCatalogBasketView = PanelView.extend({
 
     template: template,
     catalogId : null,
@@ -64,4 +64,4 @@ var AddToBasketView = PanelView.extend({
 
 });
 
-module.exports = AddToBasketView;
+module.exports = AddToCatalogBasketView;

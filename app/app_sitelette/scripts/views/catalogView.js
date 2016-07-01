@@ -23,7 +23,7 @@ var CatalogView = PageLayout.extend({
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
-        this.navbarView.hide(); 
+        this.navbarView.hide();
 
     },
 
@@ -34,6 +34,8 @@ var CatalogView = PageLayout.extend({
         this.on('show', this.onShow, this);
         this.basket = options.basket;
         this.backToCatalogs = options.backToCatalogs;
+        this.backToRoster=options.backToRoster;
+        this.rosterId=options.rosterId;
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
         this.catalogDisplayText = options.catalog.data.displayText;
@@ -51,16 +53,25 @@ var CatalogView = PageLayout.extend({
     },
 
     goBack : function() {
-        if (this.backToCatalogs) {
+        if( this.backToRoster){
+          this.triggerRosterView();
+        }else if(this.backToCatalogs) {
             this.triggerCatalogsView();
         } else {
             this.triggerRestaurantView();
             this.navbarView.show();
         }
-        ;
-
     },
 
+    triggerRosterView : function() {
+      Vent.trigger('viewChange', 'roster', {
+          sasl: this.sasl.id,
+          id: this.rosterId,
+          backToRoster:true, /* bad design: should be using reverse true */
+          rosterId:this.rosterId
+       }, { reverse: true });
+
+    },
     triggerCatalogsView : function() {
         Vent.trigger('viewChange', 'catalogs', this.sasl.getUrlKey());
     },
@@ -75,7 +86,7 @@ var CatalogView = PageLayout.extend({
         // console.log("CatalogView:openAddToBasketView
         // :"+model.attributes.itemName+", "+groupId+", "+catalogId);
 
-        this.openSubview('addToBasket', model, {
+        this.openSubview('addToCatalogBasket', model, {
             basket : this.basket,
             groupId : groupId,
             groupDisplayText : groupDisplayText,

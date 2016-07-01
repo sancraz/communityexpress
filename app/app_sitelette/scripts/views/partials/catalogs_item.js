@@ -33,7 +33,8 @@ var CatalogsItemView = Backbone.View.extend({
         Vent.trigger('viewChange', 'catalog', {
             id: this.sasl.id,
             catalogId: this.model.get('catalogId'),
-            backToCatalogs: true
+            backToCatalogs: true,
+            backToRoster:false
         });
     }
 

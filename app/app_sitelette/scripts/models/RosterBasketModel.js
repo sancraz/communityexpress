@@ -3,16 +3,17 @@
 'use strict';
 var CatalogBasketModel = require('../models/CatalogBasketModel'); //
 
-var RosterBasketModel = Backbone.Collection.extend({
+var RosterBasketModel = Backbone.Model.extend({
 
-    model : CatalogBasketModel,
+   // model : CatalogBasketModel,
 
     initialize : function(options) {
         /*
          * options must be null, otherwise, it will try to add items in the
          * collection from option
          */
-        this.prices = new Backbone.Model(); 
+       this.prices = new Backbone.Model();
+       this.catalogs={};
     },
 
     rosterId : null,
@@ -26,10 +27,10 @@ var RosterBasketModel = Backbone.Collection.extend({
     uUID : null,
     rosterType : null,
 
-    add : function(n) {
-        var curr = this.get('quantity');
-        this.set('quantity', curr + (n || 1));
-    },
+//    add : function(n) {
+//        var curr = this.get('quantity');
+//        this.set('quantity', curr + (n || 1));
+//    },
 
     /* catalog uuid */
     idAttribute : 'uUID',
@@ -41,118 +42,54 @@ var RosterBasketModel = Backbone.Collection.extend({
         this.rosterType = rosterDetails.rosterType;
     },
 
-    changeItemInCombo : function(item, groupId, groupDisplayText, catalogId, catalogDisplayText) {
 
-        /*
-         * find item with same group in this. remove it. add new item.
-         */
-        var self = this;
-        var foundElementToRemove = false;
-        this.each(function(itemInCart, index, list) {
-            if (typeof itemInCart === 'undefined') {
-                console.log("itemInCart undefined, ignoring");
-            } else {
-                var quantity = itemInCart.get('quantity');
-                var itemName = itemInCart.itemName;
-                var group = itemInCart.groupId;
-                if (group === groupId && foundElementToRemove === false) {
-                    foundElementToRemove = true;
-                    self.remove(itemInCart.get('uUID'));
-                }
-            }
-        });
-        /*
-         * add the new item
-         */
-        var itemOptions = _.extend({}, item.attributes, {
-            quantity : 1,
-            groupId : groupId,
-            catalogId : catalogId,
-            groupDisplayText : groupDisplayText,
-            catalogDisplayText : catalogDisplayText
-        });
 
-        /*
-         * create basketItem model
-         */
 
-        var itemModel = new CatalogBasketItem(itemOptions);
-
-        /*
-         * add the itemModel to the collection
-         */
-        this.add(itemModel);
-
-        this.dumpCartToConsole();
-
-    },
-
-    addItem : function(item, count, groupId, groupDisplayText, catalogId, catalogDisplayText) {
+    addCatalog : function(catalog, count,  catalogId,catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
 
-        var itemModel = this.get(item.get('uUID'));
-        if (itemModel) {
-            itemModel.add(count);
+        var catalogModel = this.catalogs[(catalog.catalogId)];
+        if (catalogModel) {
+        	var quantity=catalogModel.quantity;
+        	quantity=quantity+count;
+        	catalogModel.quantity=quantity;
         } else {
             /*
              * create item options, pass groupId, catalogId
              */
-            var itemOptions = _.extend({}, item.attributes, {
-                quantity : count || 1,
-                groupId : groupId,
-                groupDisplayText : groupDisplayText,
-                catalogId : catalogId,
-                catalogDisplayText : catalogDisplayText
+            var catalogDetails = _.extend({},   {
+                catalogUUID : catalog.catalogId,
+                catalogDisplayText:catalog.displayText,
+                catalogType:catalog.catalogType.enumText,
+                quantity:count||1,
+                price:catalog.price
             });
 
             /*
              * create basketItem model
+             * REMEMBER: This is a collection, so no arguments. set them later.
              */
 
-            var itemModel = new CatalogBasketItem(itemOptions);
+            var catalogModel = new CatalogBasketModel( );
+            catalogModel.setCatalogDetails(catalogDetails);
 
             /*
              * add the itemModel to the collection
              */
-            this.add(itemModel);
+
         }
+        this.catalogs[catalogId]=catalogModel;
         this.dumpCartToConsole();
-    },
-    addItemRaw : function(itemRaw, count, groupId, groupDisplayText, catalogId, catalogDisplayText) {
-
-        /*
-         * create item options, pass groupId, catalogId
-         */
-        var itemOptions = _.extend({}, itemRaw, {
-            quantity : count || 1,
-            groupId : groupId,
-            groupDisplayText : groupDisplayText,
-            catalogId : catalogId,
-            catalogDisplayText : catalogDisplayText
-
-        });
-
-        /*
-         * create basketItem model
-         */
-
-        var itemModel = new CatalogBasketItem(itemOptions);
-
-        /*
-         * add the itemModel to the collection
-         */
-        this.add(itemModel);
-
-        this.dumpCartToConsole();
+        this.trigger('change');
     },
 
-    removeItem : function(item) {
-        this.remove(item.get('uUID'));
+    removeCatalog : function(catalog) {
+        this.remove(catalog.get('uUID'));
     },
 
-    getNumOf : function(item) {
-        var model = this.get(item.get('uUID'));
+    getNumOf : function(catalog) {
+        var model = this.get(catalog.get('uUID'));
         if (model) {
             return model.get('quantity');
         } else {
@@ -160,27 +97,26 @@ var RosterBasketModel = Backbone.Collection.extend({
         }
     },
 
-    getTotalPrice : function() {
-        return this.reduce(function(sum, item, id) {
-            return sum += item.get('quantity') * item.get('price');
-        }.bind(this), 0).toFixed(2);
-    },
 
     count : function() {
-        return this.reduce(function(sum, item) {
-            return sum += item.get('quantity');
+        return this.reduce(function(sum, catalog) {
+            return sum += catalog.get('quantity');
         }.bind(this), 0);
     },
 
     dumpCartToConsole : function() {
-        console.log("************----- current cart --------");
-        console.log(" CatalogBasket for catalog:" + this.catalogName);
-        this.each(function(item, index, list) {
-            var quantity = item.get('quantity');
-            var itemName = item.itemName;
-            var group = item.groupId;
+        console.log("************----- current RosterBasketModel --------");
+        _(this.catalogs).each(function(catalog, index, list) {
+            if(catalog.catalogType==='COMBO'){
+                var quantity = catalog.quantity;
+                var catalogName = catalog.catalogDisplayText;
+                var catalogId = catalog.catalogId;
+                console.log("*** Combo " + catalogName + ":[" + quantity + "] @ "+catalog.price);
 
-            console.log("*** " + itemName + ":[" + quantity + "] from Group:" + group);
+            }else{
+               catalog.dumpCartToConsole();
+
+            }
         });
         console.log("*************---------------------------");
     },
@@ -256,41 +192,21 @@ var RosterBasketModel = Backbone.Collection.extend({
         return comboPrice;
     },
 
-    nonComboItemCount : function() {
-        var nonComboCount = 0;
-        this.each(function(item, index, list) {
-            if (item.itemType !== 'COMBO') {
-                nonComboCount = nonComboCount + item.get('quantity');
-            }
-            ;
-        });
-        return nonComboCount;
-    },
 
-    getNonComboPrice : function() {
-        var nonComboPrice = 0;
-        this.each(function(item, index, list) {
-            if (item.itemType !== 'COMBO') {
-                nonComboPrice = nonComboPrice + item.get('price');
-            }
-            ;
-        });
-        return nonComboPrice;
+
+    /*-------*/
+    getComboCount:function(){
+      var count=0;
+      _(this.catalogs).each(function(catalog,index,list){
+        count=count+catalog.quantity;
+      });
+      return count;
     },
-    getNonComboItems : function() {
-        var nonComboItems = [];
-        this.each(function(item, index, list) {
-            if (item.itemType !== 'COMBO') {
-                nonComboItems.push({
-                    itemName : item.itemName,
-                    quantity : item.get('quantity'),
-                    price : item.get('price')
-                });
-            }
-            ;
-        });
-        return nonComboItems;
-    },
+    getNonComboItemCount:function(){
+      return 0;//return _(this.catalogs).size();
+    }
+
+
 
 });
 

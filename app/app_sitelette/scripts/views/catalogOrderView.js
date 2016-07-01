@@ -46,7 +46,7 @@ var CatalogOrderView = PageLayout.extend({
     },
 
     renderData: function () {
-        
+
         var tmpData = _.extend({},  this.catalogOptions, {
             username: this.user.userName,
             cardTypes: this.cardType,
@@ -59,7 +59,7 @@ var CatalogOrderView = PageLayout.extend({
             totalPriceWithTax: this.totalPriceWithTax,
             basket:this.basket
         });
-        
+
         return tmpData;
     },
 
@@ -78,6 +78,7 @@ var CatalogOrderView = PageLayout.extend({
             catalogId: this.catalogId,
             backToCatalog: this.backToCatalog,
             backToCatalogs:this.backToCatalogs,
+            backToRoster:false,
             navbarView:this.navbarView
          }, { reverse: true });
     },

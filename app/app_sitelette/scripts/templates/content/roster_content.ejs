@@ -1,37 +1,25 @@
 <div style="background-color:#444;color:#EEE; text-shadow:none" id="cmtyx_generatedView" data-role="page" class="page">
   <div class="sprite_navbar navbutton_back back"></div>
   <div data-role="content" class="content">
-    <table id="cmtyex_roster_cart_summary"  style="display:none; margin:0;padding:0; border-collapse: collapse;">
+    <table id="cmtyex_roster_cart_summary"  style=" width:100%; margin:0;padding:0; border-collapse: collapse;">
       <tbody>
-        <tr style="background-color: #555">
-          <td  style ="width:70%; ">Combos:  </td>
-          <td  style ="width:10%;">(2)</td>
-          <td  style=" text-align:right;">$239.44</td>
+        <tr  >
+          <td   > </td>
+          <td id="cmtyex_roster_cart_comboCount"   ><%=basket.getComboCount()%> x</td>
+          <td   >Combos  </td>
+          <td   > </td>
         </tr>
         <tr >
-          <td  style ="width:70%; ">Extras</td>
-          <td  style ="width:10%; ">(4)</td>
-          <td  style="text-align:right;">$23.44</td>
+          <td   > </td>
+          <td id="cmtyex_roster_cart_nonComboCount"  ><%=basket.getNonComboItemCount()%> x</td>
+          <td   >Extras</td>
+          <td   > </td>
         </tr>
-        <tr style="background-color: #555">
-          <td  style ="width:70%; ">Tax</td>
-          <td  style ="width:10%; "> </td>
-          <td  style="  text-align:right;">$3.44</td>
-        </tr>
-        <tr style="border-bottom:2px solid black;">
-          <td style ="width:70%; "></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr style="font-weight:700; color:yellow;">
-          <td  style ="width:70%; ">Total</td>
-          <td  style ="width:10%; "> </td>
-          <td  style="text-align:right; ">$343.44</td>
-        </tr>
-        <tr style=" margin-top:20px; ">
-          <td  style ="width:70%; "></td>
-          <td  style ="width:10%; "> </td>
-          <td  style="padding-left:20px;"><button>Order</button></td>
+        <tr style=" margin-top:10px; ">
+          <td   ><button data-role="button" data-inline="true" data-theme="b" > &nbsp;Edit</button></td>
+          <td   ></td>
+          <td   ></td>
+          <td   ><button data-role="button" data-inline="true" data-theme="b" >Order</button></td>
         </tr>
       </tbody>
     </table>
