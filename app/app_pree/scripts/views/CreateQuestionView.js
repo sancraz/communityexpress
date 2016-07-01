@@ -1,12 +1,15 @@
 'use strict';
 
-var gateway = require('../APIGateway/gateway'),
+var moment = require('moment'),
+	gateway = require('../APIGateway/gateway'),
 	template = require('ejs!../templates/createQuestion.ejs'),
 	TagsView = require('./autocomplete/NewQuestionTagsView');
 
 var CreateQuestionView = Mn.LayoutView.extend({
 
 	template: template,
+
+	moment: moment, // temporary hack
 
 	regions: {
 		categoriesRegion: '#new-question-categories-region',
@@ -31,9 +34,9 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		bonusPoints: '#bonusPointsInput',
 		basePoints: '#basePointsInput',
 		expirationDate: '#expirationDatePicker',
-		expirationTime: '#expirationTimePicker',
+		// expirationTime: '#expirationTimePicker',
 		notificationDate: '#notificationDatePicker',
-		notificationTime: '#notificationTimePicker'
+		// notificationTime: '#notificationTimePicker'
 	},
 
 	events: {
@@ -69,14 +72,19 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	onInitDatepickers: function() {
-		this.ui.expirationDate.datetimepicker({});
-		this.ui.expirationTime.datetimepicker({
-			format: 'LT'
+
+		this.ui.expirationDate.datetimepicker({
+			format: 'MM/DD/YYYY h:mm:ss'
 		});
-		this.ui.notificationDate.datetimepicker({});
-		this.ui.notificationTime.datetimepicker({
-			format: 'LT'
+		// this.ui.expirationTime.datetimepicker({
+		// 	format: 'LT'
+		// });
+		this.ui.notificationDate.datetimepicker({
+			format: 'MM/DD/YYYY h:mm:ss'
 		});
+		// this.ui.notificationTime.datetimepicker({
+		// 	format: 'LT'
+		// });
 	},
 
 	showCategories: function(categories) {
@@ -190,6 +198,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	onQuestionPost: function() {
 		console.log('on post question');
+		this.checkDatepickersDate();
 		if (this.model.isValid()) {
 			// post model
 			this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
@@ -293,8 +302,26 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		return value;
 	},
 
+	//TODO not completely working
 	checkDatepickersDate: function() {
 		//check datepickers
+		var expiration = this.ui.expirationDate.val(),
+			notification = this.ui.notificationDate.val(),
+			convertedExpire,
+			convertedNotify;
+
+		try {
+			convertedExpire = this.moment(expiration).format();
+			convertedNotify = this.moment(notification).format();
+		} catch (e) {
+			//error
+		}
+		if (convertedExpire) {
+			this.model.set('expirationDate', convertedExpire);
+		}
+		if (convertedNotify) {
+			this.model.set('activationDate', convertedNotify);
+		}
 	}
 
 });
