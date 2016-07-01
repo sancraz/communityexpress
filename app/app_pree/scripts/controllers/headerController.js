@@ -2,17 +2,36 @@
 
 var App = require('../app'),
     Vent = require('../Vent'),
+    loader = require('../loader'),
+    h = require('../globalHelpers'),
+    config = require('../appConfig'),
+    sessionActions = require('../actions/sessionActions'),
+    userController = require('./userController'),
     HeaderView = require('../views/header/HeaderView'),
-    SignInView = require('../views/header/SignInView');
+    InfoView = require('../views/header/infoView'),
+    SignInView = require('../views/header/SignInView'),
+    SignUpView = require('../views/header/SignUpView'),
+    SignOutView = require('../views/header/SignOutView');
 
 module.exports = {
 
     showLayout: function() {
-        this.headerView = new HeaderView();
+        this.user = sessionActions.getCurrentUser();
+        this.headerView = new HeaderView({
+            user: this.user
+        });
         App.regions.getRegion('headerRegion').show(this.headerView);
+        this.showInfoView();
         App.on('signinForm:show', _.bind(this.headerView.signin, this.headerView));
-        this.headerView.listenTo(Vent, 'login_success logout_success', this.headerView.changeStatus, this.headerView);
+        this.headerView.listenTo(this.headerView, 'infoView:show', _.bind(this.showInfoView, this));
+        this.headerView.listenTo(Vent, 'login_success logout_success', this.changeStatus, this);
         this.headerView.listenTo(this.headerView, 'signin', _.bind(this.signin, this));
+        this.headerView.listenTo(this.headerView, 'confirmSignout', _.bind(this.confirmSignout, this));
+    },
+
+    showInfoView: function() {
+        var infoView = new InfoView();
+        this.headerView.getRegion('infoRegion').show(infoView);
     },
 
     signin: function(triggerEvent) {
@@ -20,11 +39,54 @@ module.exports = {
             parent: this.headerView,
             event: triggerEvent
         });
-        signInView.listenTo(signInView, 'openView', _.bind(this.openViewAfterSignIn, this))
         this.headerView.getRegion('popupRegion').show(signInView);
+        signInView.listenTo(signInView, 'signUpView:show', _.bind(this.openSignupView, this));
+        signInView.listenTo(signInView, 'openView', _.bind(this.openViewAfterSignIn, this));
+        signInView.listenTo(signInView, 'passwordRecovery', _.bind(this.passwordRecovery, this));
+    },
+
+    openSignupView: function() {
+        var signUpView = new SignUpView();
+        this.headerView.getRegion('popupRegion').show(signUpView);
+    },
+
+    confirmSignout: function() {
+        var signOutView = new SignOutView({
+            text: 'Are you sure you want to sign out?',
+            action: this.signout.bind(this)
+        });
+        this.headerView.getRegion('popupRegion').show(signOutView);
+    },
+
+    signout: function() {
+        loader.show('');
+        userController.logout(this.user.getUID()).then(function(){
+            loader.showFlashMessage( 'signed out' );
+        }, function(e){
+            loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
+        });
+    },
+
+    changeStatus: function(loginMethod) {
+        switch (loginMethod) {
+            case 'success':
+                this.$el.find('.modal').modal('hide').on('hidden.bs.modal', _.bind(function() {
+                    this.render();
+                }, this));
+                break;
+            case 'fromLocalstorage':
+            case 'loggedOut':
+                this.render();
+                break;
+            default:
+        }
     },
 
     openViewAfterSignIn: function(triggerEvent) {
         App.trigger(triggerEvent);
+    },
+
+    passwordRecovery: function() {
+        console.log('start password recovery');
     }
 }
