@@ -96,7 +96,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             if (logged) {
                 this.openAnswerView(e);
             } else {
-                this.model.set('isAnonymous', true);
+                // this.model.set('isAnonymous', true);
                 if (this.model.get('isAnonymous')) {
                     this.openAnswerView(e);
                 } else {
@@ -107,7 +107,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onUserShouldLogin: function() {
-        debugger;
         loader.showFlashMessage('Please, sign in to answer.');
     },
 
