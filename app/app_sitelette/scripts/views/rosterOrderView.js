@@ -27,6 +27,7 @@ var RosterOrderView = PageLayout.extend({
         this.states = this.getStates();
         this.rosterId = options.rosterId;
         this.backToCatalog = options.backToCatalog;
+        this.launchedViaURL=options.launchedViaURL;
         this.backToCatalogs = options.backToCatalogs; /* this is passed on to catalogview, for its' decision-making */
         this.priceAddons = options.priceAddons;
         this.calculateTaxes();
@@ -80,6 +81,7 @@ var RosterOrderView = PageLayout.extend({
           id: this.rosterId,
           backToRoster:false,
           rosterId:this.rosterId,
+          launchedViaURL:this.launchedViaURL,
        }, { reverse: false });
 
 

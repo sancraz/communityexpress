@@ -28,7 +28,7 @@ var CatalogView = PageLayout.extend({
           /* hide the order button */
           this.$('.order_button').hide();
         }else{
-          this.$('.order_button').show();    
+          this.$('.order_button').show();
         }
 
     },
@@ -49,6 +49,7 @@ var CatalogView = PageLayout.extend({
         // '#ffB2FD', '#FFCCCC' ];
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
+        this.launchedViaURL=options.launchedViaURL;
         this.navbarView = options.navbarView;
     },
 
@@ -118,6 +119,7 @@ var CatalogView = PageLayout.extend({
                                                          * but passed back to
                                                          * catalog view
                                                          */
+                launchedViaURL:this.launchedViaURL,
                 navbarView : this.navbarView
             }, {
                 reverse : true

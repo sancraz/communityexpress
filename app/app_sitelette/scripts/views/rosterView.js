@@ -98,6 +98,7 @@ var RosterView = PageLayout.extend({
                                                          * catalog view
                                                          */
                 backToRoster : true,
+                launchedViaURL:this.launchedViaURL,
                 navbarView : this.navbarView
             }, {
                 reverse : true
@@ -208,6 +209,7 @@ var RosterView = PageLayout.extend({
             backToCatalogs: false,
             backToRoster:true,
             rosterId:this.rosterId,
+            launchedViaURL:this.launchedViaURL,
             navbarView:this.navbarView
         }, { reverse: false });
     }
