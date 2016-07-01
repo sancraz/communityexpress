@@ -57,7 +57,7 @@ module.exports = {
         console.log(model.toJSON());
 
         gateway.sendRequest('createQuestion', {
-            UID: this.UID,
+            UID: this.user.getUID(),
             payload: model.toJSON()
         }).then(_.bind(function(resp) {
             callback();
@@ -133,9 +133,9 @@ module.exports = {
             uuid: uuid,
             choice: choiceId
         }).then(_.bind(function(resp) {
-            
+
         }, this), function(e) {
-          
+
         });
     }
 
