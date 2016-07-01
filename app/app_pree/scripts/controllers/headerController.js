@@ -32,6 +32,7 @@ module.exports = {
     showInfoView: function() {
         var infoView = new InfoView();
         this.headerView.getRegion('infoRegion').show(infoView);
+        infoView.listenTo(infoView, 'refreshFeed', _.bind(this.refreshFeed, this));
     },
 
     signin: function(triggerEvent) {
@@ -88,5 +89,11 @@ module.exports = {
 
     passwordRecovery: function() {
         console.log('start password recovery');
+    },
+
+    refreshFeed: function() {
+        App.trigger('refreshFeed', {
+			filterType: ''
+		});
     }
 }

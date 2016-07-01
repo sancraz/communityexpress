@@ -9,17 +9,30 @@
         margin-left: 10px;
     }
 
-    li.pree_user_info_panel_item {
+    .pree_user_info_panel_item {
         display: inline-block;
         float: left;
         margin-right: 55px;
     }
 
-    li.pree_user_info_panel_item.last {
-        margin-right: 0px;
+    .pree_user_info_panel_item.last {
+        margin-right: 0;
+        margin-top: 14px;
+        float: right;
+        cursor: pointer;
+
+        a {
+            margin: 0;
+            padding: 18px 4px;
+            color: $white;
+
+            span {
+                margin-left: 5px;
+            }
+        }
     }
 
-    li.stats:last-child {
+    .stats:last-child {
         margin-right: 0;
     }
 
@@ -40,6 +53,12 @@
         .infoPanel
         {
             display:none;
+        }
+    }
+
+    @media only screen and (max-width: 920px) {
+        .pree_user_info_panel_item {
+            margin-right: 30px;
         }
     }
 }

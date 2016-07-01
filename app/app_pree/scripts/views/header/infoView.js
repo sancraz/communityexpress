@@ -7,8 +7,16 @@ var InfoView = Mn.ItemView.extend({
 
     className: 'infoPanel',
 
-    initialize: function() {
-        console.log('Show user info here');
+    ui: {
+        refreshFeed: '.refresh-feed'
+    },
+
+    events: {
+        'click @ui.refreshFeed': 'onRefreshFeed'
+    },
+
+    onRefreshFeed: function() {
+        this.trigger('refreshFeed');
     }
 });
 

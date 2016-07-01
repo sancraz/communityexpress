@@ -45,7 +45,7 @@ var FiltersView = Mn.LayoutView.extend({
 			case 'TAGS':
 				this.onGetTags();
 				break;
-			default: 
+			default:
 				this.onGetTrending();
 				break;
 		}
