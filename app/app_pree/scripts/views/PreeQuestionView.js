@@ -35,6 +35,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     events: {
+        'click': 'checkIfAnswered',
         'click @ui.preeQuestionCategories': 'expandCategories',
         'click @ui.preeQuestionTags': 'expandTags',
         'click @ui.likesButton': 'addLike',
@@ -45,12 +46,25 @@ var FeedSelectorView = Mn.LayoutView.extend({
     initialize : function() {
         console.log("FeedSelectorView initialized");
         this.listenTo(this.model, "change", this.modelEventHandler);
+        this.isAnswered = this.model.get('userStatus').enumText === 'ANSWERED' ? true : false;
+        // this.isAnswered = true;
     },
 
     onRender: function() {
         this.pree_question_answers.show(new answerCountView({
             answers: this.model.get('totalAnswers')
         }));
+        if (this.isAnswered) {
+            this.onIsAnswered();
+        }
+    },
+
+    onIsAnswered: function() {
+        // TODO we dont have answered from server and choice id ???
+        var choiceId = this.model.get('userStatus').id,
+            answer = this.ui.answer.find('input[data-id="' + choiceId + '"]');
+        answer.prop('checked', true);
+        this.ui.answer.css('pointer-events', 'none');
     },
 
     modelEventHandler : function() {
@@ -71,8 +85,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
         }));
     },
 
-
-
     openAnswerView: function(e) {
         var input = $(e.currentTarget).find('input'),
             choiceId = input.data('id'),
@@ -82,14 +94,19 @@ var FeedSelectorView = Mn.LayoutView.extend({
         input.prop('checked', true);
         input.addClass('checked');
         this.trigger('answerQuestion', choiceId, uuid);
-        this.ui.preeQuestion.addClass('active');
-        this.trigger('collapseDetails');
-        this.ui.answer.css('pointer-events', 'none');
-        this.ui.preeQuestionDetailed.collapse('show');
+        this.showAnswerInfo();
         // loader.show('ANSWER');
     },
 
+    showAnswerInfo: function() {
+        this.ui.preeQuestion.addClass('active');
+        this.trigger('collapseDetails');
+        this.ui.preeQuestionDetailed.collapse('show');
+        this.ui.answer.css('pointer-events', 'none');
+    },
+
     checkIfUserCanAnswer: function(e) {
+        if (this.isAnswered) return;
         var input = $(e.currentTarget).find('input');
         input.prop('checked', false);
         this.trigger('checkIfUserLogged', _.bind(function(logged){
@@ -104,6 +121,12 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 }
             }
         }, this));
+    },
+
+    checkIfAnswered: function() {
+        if (this.isAnswered) {
+            this.showAnswerInfo();
+        }
     },
 
     onUserShouldLogin: function() {

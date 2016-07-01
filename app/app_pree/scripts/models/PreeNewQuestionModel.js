@@ -52,6 +52,12 @@ var PreeNewQuestionModel = Backbone.Model.extend({
                     type: 'boolean'
                 }
             }
+        },
+        activationDate: { //TODO date validation
+            length: 15
+        },
+        expirationDate: {
+            length: 15
         }
     },
 
