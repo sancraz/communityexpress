@@ -1,16 +1,6 @@
 'use strict';
 
-var template = require('ejs!./header.ejs'),
-    loader = require('../../loader'),
-    Vent = require('../../Vent'),
-    App = require('../../app'),
-    h = require('../../globalHelpers'),
-    config = require('../../appConfig'),
-    sessionActions = require('../../actions/sessionActions'),
-    userController = require('../../controllers/userController'),
-    // SignInView = require('./SignInView'),
-    SignOutView = require('./SignOutView'),
-    InfoView = require('./infoView');
+var template = require('ejs!./header.ejs');
 
 var HeaderView = Mn.LayoutView.extend({
 
@@ -27,12 +17,12 @@ var HeaderView = Mn.LayoutView.extend({
     },
 
     events: {
-        'click @ui.signin': 'toggle',
+        'click @ui.signin': 'signin',
         'click @ui.signout': 'confirmSignout'
     },
 
-    initialize: function() {
-        this.user = sessionActions.getCurrentUser();
+    initialize: function(options) {
+        this.user = options.user;
     },
 
     serializeData: function() {
@@ -42,55 +32,15 @@ var HeaderView = Mn.LayoutView.extend({
     },
 
     onRender: function() {
-        this.infoRegion.show(new InfoView());
-    },
-
-    changeStatus: function(loginMethod) {
-        switch (loginMethod) {
-            case 'success':
-                this.$el.find('.modal').modal('hide').on('hidden.bs.modal', _.bind(function() {
-                    this.render();
-                }, this));
-                break;
-            case 'fromLocalstorage':
-            case 'loggedOut':
-                this.render();
-                break;
-            default:
-        }
-
+        this.trigger('infoView:show');
     },
 
     confirmSignout: function () {
-        this.popupRegion.show(new SignOutView({
-            text: 'Are you sure you want to sign out?',
-            action: this.signout.bind(this)
-        }))
-    },
-
-    signout: function() {
-        loader.show();
-        userController.logout(this.user.getUID()).then(function(){
-            loader.showFlashMessage( 'signed out' );
-        }, function(e){
-            loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
-        });
+        this.trigger('confirmSignout');
     },
 
     signin: function(triggerEvent) {
         this.trigger('signin', triggerEvent);
-        // this.getRegion('popupRegion').show(new SignInView({
-        //     parent: this,
-        //     event: triggerEvent
-        // }));
-    },
-
-    toggle: function () {
-        if ( !this.user.getUID()) {
-            this.signin();
-        } else {
-            this.confirmSignout();
-        }
     }
 });
 

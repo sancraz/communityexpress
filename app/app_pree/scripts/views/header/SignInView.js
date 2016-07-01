@@ -43,7 +43,7 @@ var SignInView = Mn.ItemView.extend({
     openSignupView: function(e) {
         this.close();
         this.$el.on('hidden.bs.modal', function () {
-            this.parent.popupRegion.show(new SignUpView());
+            this.trigger('signUpView:show');
         }.bind(this));
     },
 
@@ -82,7 +82,7 @@ var SignInView = Mn.ItemView.extend({
     },
 
     recoveryPassword: function() {
-        console.log('start password recovery');
+        this.trigger('passwordRecovery');
     },
 
     close: function() {
