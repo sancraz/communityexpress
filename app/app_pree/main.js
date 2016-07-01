@@ -2,7 +2,8 @@
 
 require('./styles/main.scss');
 require('bootstrap-webpack');
-require('./vendor/scripts/bootstrap-datetimepicker.min');
+require('./vendor/scripts/bootstrap-datetimepicker');
+var moment = require('moment');
 
 var App = require('./scripts/app');
 

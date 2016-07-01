@@ -3,8 +3,8 @@
 var PreeNewQuestionModel = Backbone.Model.extend({
 
     defaults : {
-        activationDate: null,
-        expirationDate : null, //'2016-11-01T09:45:00.000+02',
+        activationDate: null,  // 07/27/2016 12:00 AM
+        expirationDate : null, // '2016-11-01T09:45:00.000+02',
         notifyAuthorDaysAfterExpiration: 0,
         contestName : 'N/A',
         displayText : 'What is the oldest tree in the world',
