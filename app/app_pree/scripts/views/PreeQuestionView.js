@@ -38,7 +38,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         'click @ui.preeQuestionCategories': 'expandCategories',
         'click @ui.preeQuestionTags': 'expandTags',
         'click @ui.likesButton': 'addLike',
-        'click @ui.answer': 'openAnswerView',
+        'click @ui.answer': 'checkIfUserCanAnswer',
         'click @ui.createNewQuestion': 'openQuestionCreateView'
     },
 
@@ -71,14 +71,44 @@ var FeedSelectorView = Mn.LayoutView.extend({
         }));
     },
 
+
+
     openAnswerView: function(e) {
-        var input = $(e.currentTarget).find('input');
-        input.attr('checked','checked');
+        var input = $(e.currentTarget).find('input'),
+            choiceId = input.data('id'),
+            uuid = input.attr('name');
+
+        input.prop('checked', true);
+        input.addClass('checked');
+        //TODO bug with radio input
+        this.trigger('answerQuestion', choiceId, uuid);
         this.ui.preeQuestion.addClass('active');
         this.trigger('collapseDetails');
         this.ui.answer.css('pointer-events', 'none');
         this.ui.preeQuestionDetailed.collapse('show');
         // loader.show('ANSWER');
+    },
+
+    checkIfUserCanAnswer: function(e) {
+        var input = $(e.currentTarget).find('input');
+        input.prop('checked', false);
+        this.trigger('checkIfUserLogged', _.bind(function(logged){
+            if (logged) {
+                this.openAnswerView(e);
+            } else {
+                this.model.set('isAnonymous', true);
+                if (this.model.get('isAnonymous')) {
+                    this.openAnswerView(e);
+                } else {
+                    this.onUserShouldLogin();
+                }
+            }
+        }, this));
+    },
+
+    onUserShouldLogin: function() {
+        debugger;
+        loader.showFlashMessage('Please, sign in to answer.');
     },
 
     onCollapseDetailsInChild: function() {

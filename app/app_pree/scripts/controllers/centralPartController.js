@@ -110,10 +110,34 @@ module.exports = {
         // var infoView = new InfoView({
         //     model: model
         // });
+        model.questionCollection.each(function(model) {
+            model.set('isAnonymous', !!Math.floor(Math.random()*2));
+        });
         var feedView = new FeedView({
             el: $('.pree_feed_questions'),
             collection: model.questionCollection
         });
-        this.centralLayoutView.showQuestionsView(feedView)
+        feedView.listenTo(feedView, 'answerQuestion', _.bind(this.onAnswerQuestion, this));
+        feedView.listenTo(feedView, 'checkIfUserLogged', _.bind(this.onCheckIfUserLogged, this));
+        this.centralLayoutView.showQuestionsView(feedView);
+    },
+
+    onCheckIfUserLogged: function(callback) {
+        var logged = this.UID ? true : false;
+        callback(logged);
+    },
+
+    onAnswerQuestion: function(choiceId, uuid) {
+        console.log(choiceId, uuid);
+        gateway.sendRequest('answerQuestion', {
+            UID: this.UID,
+            uuid: uuid,
+            choice: choiceId
+        }).then(_.bind(function(resp) {
+            
+        }, this), function(e) {
+          
+        });
     }
+
 }

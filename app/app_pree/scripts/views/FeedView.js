@@ -9,7 +9,9 @@ var feedView = Mn.CollectionView.extend({
     childView: PreeQuestionView,
 
     childEvents: {
-        'collapseDetails': 'collapseDetails'
+        'collapseDetails': 'collapseDetails',
+        'answerQuestion' : 'onAnswerQuestion',
+        'checkIfUserLogged': 'onCheckIfUserLogged'
     },
 
     initialize : function() {
@@ -30,7 +32,16 @@ var feedView = Mn.CollectionView.extend({
             this.viewWithExpandedDetails.triggerMethod('collapseDetailsInChild');
         }
         this.viewWithExpandedDetails = view;
+    },
+
+    onAnswerQuestion: function(view, choiceId, uuid) {
+        this.trigger('answerQuestion', choiceId, uuid);
+    },
+
+    onCheckIfUserLogged: function(view, callback) {
+        this.trigger('checkIfUserLogged', callback);
     }
+
 });
 
 module.exports = feedView;

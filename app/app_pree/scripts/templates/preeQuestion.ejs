@@ -17,7 +17,7 @@
         <div class="pree_question_text"><%= displayText %></div>
         <% _.each(choices, function(choice){ %>
             <div class="pree_question_answer pree_question_answer_a answer">
-                <input type="radio" name="<%= choice.contestUUID %>"> <span class="ansLetter"><%= choice.choiceIndex %>:</span><%= choice.displayText %>
+                <input type="radio" name="<%= choice.contestUUID %>" data-id="<%= choice.choiceId %>"> <span class="ansLetter"><%= choice.choiceIndex %>:</span><%= choice.displayText %>
             </div>
 
         <% }) %>
@@ -41,8 +41,7 @@
             </span>
             </header>
             <section class="answerInfoBody">
-                <p class="answerInfoText">Recently, at the end of a busy day of usability testing, I looked at the list of participants we had recruited for another client’s usability test the following week.
-                Attribution Links
+                <p class="answerInfoText"><%= additionalInformation %>
                 </p>
                  <p class="answerInfoText last">Attribution Links
                   <a href="http://goo.gl/xne1Bj">http://goo.gl/xne1Bj</a>

@@ -8,6 +8,7 @@ module.exports = {
             getPreeCategories: ['GET', '/pree/retrieveCategories'],
             getPreeTags: ['GET', '/pree/retrieveHashTags'],
             createQuestion: ['POST', '/pree/createPoll'],
+            answerQuestion: ['POST', '/pree/answerQuestion'],
 
             login: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],
