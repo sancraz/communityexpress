@@ -26,6 +26,12 @@ var RosterView = PageLayout.extend({
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.navbarView.hide();// $('#cmtyx_navbar').fadeOut('slow');
+        /* if launched from URL, hide back button*/
+        if(typeof this.launchedViaURL !=='undefined' && this.launchedViaURL===true){
+          $(this.el).find('.navbutton_back').hide();
+        }else{
+          $(this.el).find('.navbutton_back').show();
+        }
 
     },
 
@@ -38,9 +44,10 @@ var RosterView = PageLayout.extend({
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
         this.navbarView = options.navbarView;
-
+        this.launchedViaURL=options.launchedViaURL;
         this.on('show', this.onShow, this);
         this.basket.on('change', this.updateBasket, this);
+
     },
 
     /*used to initialie roster_content.ejs template */
@@ -83,7 +90,7 @@ var RosterView = PageLayout.extend({
         this.withLogIn(function() {
             Vent.trigger('viewChange', 'roster_order', {
                 id : this.sasl.getUrlKey(),
-                rosterId : this.rosterId, 
+                rosterId : this.rosterId,
                 backToCatalog : true,// /* This will always be true */
                 backToCatalogs : this.backToCatalogs, /*
                                                          * not used by order,

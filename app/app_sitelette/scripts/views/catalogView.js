@@ -24,6 +24,12 @@ var CatalogView = PageLayout.extend({
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.navbarView.hide();
+        if(this.backToRoster){
+          /* hide the order button */
+          this.$('.order_button').hide();
+        }else{
+          this.$('.order_button').show();    
+        }
 
     },
 

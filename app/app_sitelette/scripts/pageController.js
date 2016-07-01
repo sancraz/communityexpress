@@ -254,6 +254,7 @@ module.exports = {
         var rosterId = options.id;
         var roster;
         var backToRoster = options.backToRoster;
+        var launchedViaURL=options.launchedViaURL;
 
         return saslActions.getSasl(id)
             .then(function(ret) {
@@ -295,7 +296,8 @@ module.exports = {
                     rosterId: roster.data.rosterId,
                     rosterDisplayText:roster.data.displayText,
                     rosterType:roster.data.rosterType.enumText,
-                    backToRoster: false
+                    backToRoster: false,
+                    launchedViaURL:launchedViaURL
                 };
 
             });

@@ -123,6 +123,7 @@ var LandingView = PageLayout.extend({
             id: uuid,
             backToRoster:false,
             rosterId:uuid,
+            launchedViaURL:true
          }, { reverse: false });
     },
     openHours: function() {
