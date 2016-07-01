@@ -107,12 +107,11 @@ module.exports = {
     },
 
     showQuestions: function(model) {
-        // var infoView = new InfoView({
-        //     model: model
-        // });
+        //!!! hardcoded isAnonymous
         model.questionCollection.each(function(model) {
             model.set('isAnonymous', !!Math.floor(Math.random()*2));
         });
+
         var feedView = new FeedView({
             el: $('.pree_feed_questions'),
             collection: model.questionCollection

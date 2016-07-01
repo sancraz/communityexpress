@@ -78,9 +78,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
             choiceId = input.data('id'),
             uuid = input.attr('name');
 
+        //TODO bug with radio input !!!!!!
         input.prop('checked', true);
         input.addClass('checked');
-        //TODO bug with radio input
         this.trigger('answerQuestion', choiceId, uuid);
         this.ui.preeQuestion.addClass('active');
         this.trigger('collapseDetails');
