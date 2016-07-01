@@ -13,8 +13,11 @@ var RosterBasketModel = Backbone.Model.extend({
          * collection from option
          */
        this.prices = new Backbone.Model();
-       this.catalogs={};
+       //this.collection={};
+       this.catalogs=  new Backbone.Collection( );
     },
+
+
 
     rosterId : null,
 
@@ -45,15 +48,19 @@ var RosterBasketModel = Backbone.Model.extend({
 
 
 
-    addCatalog : function(catalog, count,  catalogId,catalogDisplayText) {
+    addCatalog : function(catalog, count,  catalogId, catalogDisplayText) {
         // console.log("BasketModel:addItem::"+item.get('itemName')+",
         // "+groupId+", "+catalogId);
+        //var xxx=
+        //this.catalogs.add(catalog);
+        //his.catalogs.remove(catalogId);
 
-        var catalogModel = this.catalogs[(catalog.catalogId)];
+
+        var catalogModel = this.catalogs.get(catalog.catalogId);
         if (catalogModel) {
-        	var quantity=catalogModel.quantity;
+        	var quantity=catalogModel.get('quantity');
         	quantity=quantity+count;
-        	catalogModel.quantity=quantity;
+        	catalogModel.set('quantity', quantity);
         } else {
             /*
              * create item options, pass groupId, catalogId
@@ -63,7 +70,10 @@ var RosterBasketModel = Backbone.Model.extend({
                 catalogDisplayText:catalog.displayText,
                 catalogType:catalog.catalogType.enumText,
                 quantity:count||1,
-                price:catalog.price
+                price:catalog.price,
+                catalog:catalog,
+                itemName:"",
+                itemType:'COMBO'
             });
 
             /*
@@ -73,25 +83,23 @@ var RosterBasketModel = Backbone.Model.extend({
 
             var catalogModel = new CatalogBasketModel( );
             catalogModel.setCatalogDetails(catalogDetails);
-
             /*
              * add the itemModel to the collection
              */
-
+            this.catalogs.add(catalogModel);
         }
-        this.catalogs[catalogId]=catalogModel;
         this.dumpCartToConsole();
         this.trigger('change');
     },
 
     removeCatalog : function(catalog) {
-        this.remove(catalog.get('uUID'));
+        this.remove(catalogs.get(catalog.catalogId));
     },
 
     getNumOf : function(catalog) {
         var model = this.get(catalog.get('uUID'));
         if (model) {
-            return model.get('quantity');
+            return model. quantity ;
         } else {
             return 0;
         }
@@ -99,30 +107,59 @@ var RosterBasketModel = Backbone.Model.extend({
 
 
     count : function() {
-        return this.reduce(function(sum, catalog) {
-            return sum += catalog.get('quantity');
-        }.bind(this), 0);
+      return 44;
+//        return this.reduce(function(sum, catalog) {
+//            return sum += catalog.get('quantity');
+//        }.bind(this), 0);
     },
+    reset : function(){
 
+    },
+    getItems:function(sasl){
+
+      return [ {
+          serviceAccommodatorId:  sasl.sa(),
+          serviceLocationId:  sasl.sl(),
+          priceId: 1,//item.get('priceId'),
+          itemId: 13,//item.get('itemId'),
+          groupId:'SIDES',//item.get('groupId'),
+          catalogId:'ITEMIZEDCOMBO',//item.get('catalogId'),
+          itemVersion: 1,//item.get('itemVersion'),
+          quantity: 4,//item.get('quantity')
+      }];
+          /*
+          return {
+              serviceAccommodatorId: this.sasl.sa(),
+              serviceLocationId: this.sasl.sl(),
+              priceId: item.get('priceId'),
+              itemId: item.get('itemId'),
+              groupId:item.get('groupId'),
+              catalogId:item.get('catalogId'),
+              itemVersion: item.get('itemVersion'),
+              quantity: item.get('quantity')
+          };
+          */
+
+    },
     dumpCartToConsole : function() {
         console.log("************----- current RosterBasketModel --------");
-        _(this.catalogs).each(function(catalog, index, list) {
-            if(catalog.catalogType==='COMBO'){
-                var quantity = catalog.quantity;
-                var catalogName = catalog.catalogDisplayText;
-                var catalogId = catalog.catalogId;
-                console.log("*** Combo " + catalogName + ":[" + quantity + "] @ "+catalog.price);
-
-            }else{
+         this.catalogs.each(function(catalog, index, list) {
+            if(typeof catalog.catalogType!=='undefined'){//catalog.get('catalogType')==='COMBO'){
                catalog.dumpCartToConsole();
-
+            }else{
+               var quantity = catalog.get('quantity');
+               var catalogName = catalog.get('catalogDisplayText');
+               var catalogId = catalog.get('catalogId');
+               console.log("*** Combo " + catalogName + ":[" + quantity + "] @ "+catalog.get('price'));
             }
         });
         console.log("*************---------------------------");
     },
-
+    removeItem  : function(catalogId) {
+        console.log("removeItem:"+catalogId);
+    },
     removeAllItems : function() {
-        this.reset();
+        this.catalogs.reset();
     },
 
     isComboGroupRepresented : function(groupId) {
@@ -157,7 +194,7 @@ var RosterBasketModel = Backbone.Model.extend({
 
     getComboCatalogs : function() {
         var comboCatalogsArray = {};
-        this.each(function(item, index, list) {
+        this.catalogs.each(function(item, index, list) {
             if (item.itemType === 'COMBO') {
                 if (!_(comboCatalogsArray).has(item.catalogId)) {
                     comboCatalogsArray[item.catalogId] = {
@@ -177,10 +214,8 @@ var RosterBasketModel = Backbone.Model.extend({
         });
         return comboCatalogsArray;
     },
-    getComboCount : function() {
-        return _(this.getComboCatalogs()).size();
-    },
 
+    /* TODO */
     getComboPrice : function() {
         var comboPrice = 0;
         this.each(function(item, index, list) {
@@ -192,21 +227,38 @@ var RosterBasketModel = Backbone.Model.extend({
         return comboPrice;
     },
 
+    getTotalPrice : function(){
+      return 99.99;
+    },
 
-
-    /*-------*/
     getComboCount:function(){
       var count=0;
-      _(this.catalogs).each(function(catalog,index,list){
-        count=count+catalog.quantity;
+       this.catalogs.each(function(catalog,index,list){
+        /* is this added as the hacked catalog model? */
+        if(typeof catalog.quantity!=='undefined') {
+          ;// ignore, since it is ala carte.
+        }else{
+         //console.log(" catalog in basket "+catalog.get('catalogDisplayText'));
+         count=count+catalog.get('quantity') ;
+        }
       });
       return count;
     },
+
     getNonComboItemCount:function(){
-      return 0;//return _(this.catalogs).size();
+      var count=0;
+       this.catalogs.each(function(catalog,index,list){
+        if(catalog.get('catalogType')!=='COMBO'){
+
+           catalog.each(function(item,index,list){
+              count=count+item.get('quantity');
+              //console.log('item: '+item.itemName+" quantity["+item.get('quantity')+"]");
+           });
+        }
+       });
+
+      return count;
     }
-
-
 
 });
 

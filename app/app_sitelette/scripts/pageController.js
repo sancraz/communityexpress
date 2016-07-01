@@ -183,15 +183,32 @@ module.exports = {
                         catalogDisplayText:catalog.data.displayText,
                         catalogType:catalog.data.catalogType.enumText
                        };
+                var basket;
                 if(backToCatalog===true){
-                    var tempBasket=new CatalogBasketModel( );
-                    tempBasket.setCatalogDetails(catalogDetails);
-                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+catalog.data.catalogId+ ':catalogbasket',tempBasket );
+                    basket=new CatalogBasketModel( );
+                    basket.setCatalogDetails(catalogDetails);
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+catalog.data.catalogId+ ':catalogbasket',basket );
                 }else{
                     var basket=new CatalogBasketModel( );
                     basket.setCatalogDetails(catalogDetails);
                     appCache.set(sasl.sa() + ':' + sasl.sl() +':'+catalog.data.catalogId+ ':catalogbasket', basket);
                 }
+                /*if rosterid is valid, then make sure this
+                model is part of the roster model */
+                var rosterBasket=  appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+rosterId+ ':rosterbasket' );
+                if(rosterBasket && !rosterBasket.catalogs.get(catalogId)){
+                  rosterBasket.catalogs.models.push(basket);
+                }
+                basket.each(function(item, index, list) {
+                    var quantity = item.get('quantity');
+                    var itemName = item.itemName;
+                    var group = item.groupId;
+
+                    console.log("### " + itemName + ":[" + quantity + "] from Group:" + group);
+                });
+
+
+
                 return {
                     sasl: sasl,
                     catalog: catalog,
@@ -415,7 +432,41 @@ module.exports = {
                 };
             });
     },
-
+    roster_order: function (options) {
+        var sasl,
+            cardType,
+            rosterId = options.rosterId,
+            backToCatalog = true,// options.backToCatalogs;
+            backToRoster=true,
+            backToCatalogs=options.backToCatalogs;
+        return saslActions.getSasl(options.id)
+            .then(function(ret) {
+                sasl = ret;
+                return orderActions.getCreditInfo();
+            }).then(function (ret) {
+                cardType = ret;
+                var sa = sasl.get('serviceAccommodatorId'),
+                    sl = sasl.get('serviceLocationId');
+                return orderActions.getPriceAddons(sa, sl);
+            }).then(function(ret) {
+                /*
+                 * pull up the basket for this sasl
+                 */
+                var basket =  appCache.get(sasl.sa() + ':' + sasl.sl() +':'+rosterId+ ':rosterbasket');
+                return {
+                    sasl: sasl,
+                    cardType: cardType,
+                    priceAddons: ret,
+                    user: sessionActions.getCurrentUser(),
+                    url: getUrl(sasl) + '/roster',
+                    basket: basket,
+                    rosterId: rosterId,
+                    backToRoster:true,
+                    backToCatalog: backToCatalog,
+                    backToCatalogs:backToCatalogs
+                };
+            });
+    },
     eventActive: function(options) {
         var sasl = options.sasl;
         return saslActions.getSasl(sasl)

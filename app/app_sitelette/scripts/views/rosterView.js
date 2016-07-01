@@ -52,8 +52,10 @@ var RosterView = PageLayout.extend({
 
     /* used to update the roster view created originally */
     updateBasket : function() {
-         this.$('#cmtyex_roster_cart_comboCount').text(this.basket.getComboCount()+" x");
-         this.$('#cmtyex_roster_cart_nonComboCount').text(this.basket.getNonComboItemCount()+" x");
+         var comboCount=this.basket.getComboCount();
+         var nonComboCount=this.basket.getNonComboItemCount();
+         this.$('#cmtyex_roster_cart_comboCount').text(comboCount+" x");
+         this.$('#cmtyex_roster_cart_nonComboCount').text(nonComboCount+" x");
     },
 
     goBack : function() {
@@ -79,9 +81,9 @@ var RosterView = PageLayout.extend({
 
     triggerOrder : function() {
         this.withLogIn(function() {
-            Vent.trigger('viewChange', 'catalog_order', {
+            Vent.trigger('viewChange', 'roster_order', {
                 id : this.sasl.getUrlKey(),
-                catalogId : this.catalogId,
+                rosterId : this.rosterId, 
                 backToCatalog : true,// /* This will always be true */
                 backToCatalogs : this.backToCatalogs, /*
                                                          * not used by order,
@@ -97,7 +99,9 @@ var RosterView = PageLayout.extend({
     },
 
     openEditPanel : function() {
-        this.openSubview('editFavorites', this.basket, {
+
+
+        this.openSubview('editRosterView',  this.basket.catalogs, {
             actions : {
                 removeItem : function(selected) {
                     _(selected).each(function(item) {
@@ -105,7 +109,7 @@ var RosterView = PageLayout.extend({
                     }.bind(this));
                 }.bind(this)
             },
-            template : require('ejs!../templates/partials/edit_basket_item.ejs')
+            template : require('ejs!../templates/partials/edit_roster_view_item.ejs')
         });
     },
 
