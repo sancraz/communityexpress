@@ -276,9 +276,12 @@ module.exports = {
                         rosterType:roster.data.rosterType.enumText
                        };
                 if(backToRoster===true){
-                    var tempBasket=new RosterBasketModel( );
-                    tempBasket.setRosterDetails(rosterDetails);
-                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+roster.data.rosterId+ ':rosterbasket',tempBasket );
+                    //var tempBasket=new RosterBasketModel( );
+                    //tempBasket.setRosterDetails(rosterDetails);
+                    basket= appCache.fetch(sasl.sa() + ':' + sasl.sl() + ':'+roster.data.rosterId+ ':rosterbasket' );
+                    if(typeof basket === 'undefined'){
+                      console.log("***** WARNING: No basket where expected");
+                    }
                 }else{
                     var basket=new RosterBasketModel( );
                     basket.setRosterDetails(rosterDetails);

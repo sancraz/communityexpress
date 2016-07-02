@@ -107,10 +107,10 @@ var RosterBasketModel = Backbone.Model.extend({
 
 
     count : function() {
-      return 44;
-//        return this.reduce(function(sum, catalog) {
-//            return sum += catalog.get('quantity');
-//        }.bind(this), 0);
+      /* we return the sum of combos and ala-la-care items */
+      var comboCount=this.getComboCount();
+      var nonComboCount = this.getNonComboItemCount();
+      return comboCount+nonComboCount;
     },
     reset : function(){
 
@@ -228,7 +228,21 @@ var RosterBasketModel = Backbone.Model.extend({
     },
 
     getTotalPrice : function(){
-      return 99.99;
+      var totalPrice=0;
+
+      this.catalogs.each(function(catalog,index,list){
+        if(typeof catalog.quantity!=='undefined') {
+          /* A la carte (ITEMZIED) catalog items */
+          _(catalog.models).each(function(model,index,list){
+            console.log(model.itemName+" : "+model.get('quantity')+ ' at $ '+model.get('price' ));
+            totalPrice=totalPrice+(model.get('quantity')*model.get('price' ));
+          });
+        }else{
+         /* COMBO orders, just get the catalog price */
+         totalPrice=totalPrice+(catalog.get('price')*catalog.get('quantity')) ;
+        }
+      });
+      return totalPrice;
     },
 
     getComboCount:function(){

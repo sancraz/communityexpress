@@ -79,25 +79,11 @@ var RosterOrderView = PageLayout.extend({
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
-          backToRoster:false,
+          backToRoster:true,
           rosterId:this.rosterId,
           launchedViaURL:this.launchedViaURL,
        }, { reverse: false });
 
-
-
-
-      /*
-
-        Vent.trigger('viewChange', 'roster', {
-            id: this.sasl.id,
-            rosterId:this.rosterId,
-            backToCatalog: this.backToCatalog,
-            backToCatalogs:this.backToCatalogs,
-            backToRoster:true,
-            navbarView:this.navbarView
-         }, { reverse: true });
-         */
     },
 
     onSubmitClick: function (e) {
