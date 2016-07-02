@@ -119,73 +119,52 @@ var RosterBasketModel = Backbone.Model.extend({
     },
     getItems: function(sasl) {
         var orderItems = [];
+
+
         this.catalogs.each(function(catalog, tt, ee) {
-            if (typeof catalog.quantity !== 'undefined') {
-                /* A la carte (ITEMZIED) catalog items. NOTE: model = item */
-                _(catalog.models).each(function(item, index, list) {
-                    var orderItem = {
-                        serviceAccommodatorId: sasl.sa(),
-                        serviceLocationId: sasl.sl(),
-                        priceId: item.get('priceId'),
-                        itemId: item.get('itemId'),
-                        groupId: item.get('groupId'),
-                        catalogId: item.get('catalogId'),
-                        itemVersion: item.get('itemVersion'),
-                        quantity: item.get('quantity')
-                    };
-
-                    orderItems.push(orderItem);
-                    console.log('orderItems : '+_(orderItems).size());
-                });
+            if (typeof catalog.quantity === 'undefined') {
+              /* COMBO orders, just get the catalog price */
+              //totalPrice=totalPrice+(catalog.get('price')*catalog.get('quantity')) ;
+              _(catalog.get('groups')).each(function(group, indexd, listd) {
+                  _(group.unSubgroupedItems).each(function(item, index, list) {
+                      var orderItem = {
+                          serviceAccommodatorId: sasl.sa(),
+                          serviceLocationId: sasl.sl(),
+                          priceId: item.priceId,
+                          itemId: item.itemId,
+                          groupId: item.groupId,
+                          catalogId: item.catalogId,
+                          itemVersion: item.itemVersion,
+                          quantity: catalog.get('quantity') //item.quantity,
+                      };
+                      orderItems.push(orderItem);
+                      //console.log('orderItems : '+_(orderItems).size());
+                  });
+              });
             } else {
-                /* COMBO orders, just get the catalog price */
-                //totalPrice=totalPrice+(catalog.get('price')*catalog.get('quantity')) ;
-                _(catalog.get('groups')).each(function(group, indexd, listd) {
-                    _(group.unSubgroupedItems).each(function(item, index, list) {
-                        var orderItem = {
-                            serviceAccommodatorId: sasl.sa(),
-                            serviceLocationId: sasl.sl(),
-                            priceId: item.priceId,
-                            itemId: item.itemId,
-                            groupId: item.groupId,
-                            catalogId: item.catalogId,
-                            itemVersion: item.itemVersion,
-                            quantity: catalog.get('quantity'), //item.quantity,
-                        };
-                        orderItems.push(orderItem);
-                        console.log('orderItems : '+_(orderItems).size());
-                    });
-
-                });
+              console.log("From "+catalog.catalogUUID+", type:"+catalog.catalogType);
+              /* A la carte (ITEMZIED) catalog items. NOTE: model = item */
+              _(catalog.models).each(function(item, index, list) {
+                  var orderItem = {
+                      serviceAccommodatorId: sasl.sa(),
+                      serviceLocationId: sasl.sl(),
+                      priceId: item.get('priceId'),
+                      itemId: item.get('itemId'),
+                      //groupId: item.get('groupId'),
+                      //catalogId: item.get('catalogId'),
+                      itemVersion: item.get('itemVersion'),
+                      quantity: item.get('quantity')
+                  };
+                  orderItems.push(orderItem);
+                  //console.log('orderItems : '+_(orderItems).size());
+              });
             }
         });
-        console.log('FINAL: orderItems : '+_(orderItems).size());
+        //console.log('FINAL: orderItems : '+_(orderItems).size());
         return orderItems;
-        /*
-        return [ {
-            serviceAccommodatorId:  sasl.sa(),
-            serviceLocationId:  sasl.sl(),
-            priceId: 1,//item.get('priceId'),
-            itemId: 13,//item.get('itemId'),
-            groupId:'SIDES',//item.get('groupId'),
-            catalogId:'ITEMIZEDCOMBO',//item.get('catalogId'),
-            itemVersion: 1,//item.get('itemVersion'),
-            quantity: 4,//item.get('quantity')
-        }];
-            /*
-            return {
-                serviceAccommodatorId: this.sasl.sa(),
-                serviceLocationId: this.sasl.sl(),
-                priceId: item.get('priceId'),
-                itemId: item.get('itemId'),
-                groupId:item.get('groupId'),
-                catalogId:item.get('catalogId'),
-                itemVersion: item.get('itemVersion'),
-                quantity: item.get('quantity')
-            };
-            */
-
     },
+
+
     dumpCartToConsole: function() {
         console.log("************----- current RosterBasketModel --------");
         this.catalogs.each(function(catalog, index, list) {
