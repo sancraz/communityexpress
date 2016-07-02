@@ -1,9 +1,14 @@
 <div class="cmtyx_roster_catalog_item" style="text-align:center; ">
     <table>
         <tr style="font-weight: 700; text-align: left; font-style: italic; font-size: 18px;">
-            <td colspan="1">Extras </td>
+            <td colspan="1"><%=catalog.displayText%></td>
+            <td style="text-align: right; padding-right: 25px;" colspan="4">
+            <% if(catalog.price>0){ %>
+                 <%=catalog.price%>
+            <% }else{ %>
 
-            <td style="text-align: right; padding-right: 25px;" colspan="4" colspan="4">
+            <% } %>
+            </td>
         </tr>
         <tr>
             <td><img width="100%" src="<%=catalog.url%>"></td>
