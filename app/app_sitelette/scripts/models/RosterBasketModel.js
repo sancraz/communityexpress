@@ -125,15 +125,17 @@ var RosterBasketModel = Backbone.Model.extend({
             if (typeof catalog.quantity === 'undefined') {
               /* COMBO orders, just get the catalog price */
               //totalPrice=totalPrice+(catalog.get('price')*catalog.get('quantity')) ;
+                var catalogId=catalog.id;
               _(catalog.get('groups')).each(function(group, indexd, listd) {
+                  var groupId=group.groupId;
                   _(group.unSubgroupedItems).each(function(item, index, list) {
                       var orderItem = {
                           serviceAccommodatorId: sasl.sa(),
                           serviceLocationId: sasl.sl(),
                           priceId: item.priceId,
                           itemId: item.itemId,
-                          groupId: item.groupId,
-                          catalogId: item.catalogId,
+                          groupId: groupId,
+                          catalogId: catalogId,
                           itemVersion: item.itemVersion,
                           quantity: catalog.get('quantity') //item.quantity,
                       };
@@ -150,8 +152,8 @@ var RosterBasketModel = Backbone.Model.extend({
                       serviceLocationId: sasl.sl(),
                       priceId: item.get('priceId'),
                       itemId: item.get('itemId'),
-                      //groupId: item.get('groupId'),
-                      //catalogId: item.get('catalogId'),
+                      groupId: item.get('groupId'),
+                      catalogId: item.get('catalogId'),
                       itemVersion: item.get('itemVersion'),
                       quantity: item.get('quantity')
                   };
