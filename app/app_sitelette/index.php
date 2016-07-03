@@ -148,7 +148,7 @@ if ((!$detect -> isMobile() || $detect -> isTablet()) && !$desktopIFrame) {
  $appleTouchIcon60URL = NULL;
 
  $isPrivate = FALSE;
- $canCreateAnonymousUser = TRUE;
+ $canCreateAnonymousUser = FALSE;
 
  if ($saslAccess || $urlKeyAccess) {
 
