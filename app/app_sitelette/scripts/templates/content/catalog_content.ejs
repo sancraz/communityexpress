@@ -11,7 +11,7 @@
                 <div class="edit_button sprite_navbar sub_edit"></div>
             </div>
         <% if(basket.hasCombo()) { %>
-            <div class="ui-block-b">
+            <div id="catalog_extras_row" class="ui-block-b">
                 <p>Extra: <span class="num-of-items"><%= basket.nonComboItemCount() %></span>  $<span class="total-price"><%= basket.getNonComboPrice() %></span></p>
             </div>
         <% } else { %>

@@ -31,6 +31,7 @@ var CatalogView = PageLayout.extend({
           if(this.catalogType.enumText==='COMBO'||this.catalogType==='COMBO'){
             this.$('.add_combo_button').show();
             $("#catalog_items_row").css("visibility", "hidden");
+            $("#catalog_extras_row").css("visibility", "hidden");
           }else{
             this.$('.add_combo_button').hide();
           }
