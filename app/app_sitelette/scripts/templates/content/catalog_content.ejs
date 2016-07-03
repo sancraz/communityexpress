@@ -15,12 +15,12 @@
                 <p>Extra: <span class="num-of-items"><%= basket.nonComboItemCount() %></span>  $<span class="total-price"><%= basket.getNonComboPrice() %></span></p>
             </div>
         <% } else { %>
-            <div class="ui-block-b">
+            <div id="catalog_items_row" class="ui-block-b">
                 <p>Items <span class="num-of-items"><%= basket.count() %></span> - $<span class="total-price"><%= basket.getTotalPrice() %></span></p>
             </div>
         <% } %>
           <div  class="ui-block-d">
-             <button class="add_button cmntyex-basket_add_button">Add</button>
+             <button class="add_combo_button cmntyex-basket_add_button">Add</button>
           </div>
            <div class="ui-block-d">
                <button class="order_button cmntyex-basket_order_button">Order</button>

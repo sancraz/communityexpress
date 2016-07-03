@@ -252,26 +252,12 @@ module.exports = {
         var catalogType = options.catalogType;
         var catalogDisplayText=options.catalogDisplayText;
 
-        /*
-        if (typeof cloneCatalogAndAdd !== 'undefined' && cloneCatalogAndAdd === true) {
-            console.log("Must clone and add:" + cloneCatalogAndAdd + " " + catalogId);
-        } else {
-            console.log("did not return from catalog, so no cloning to do");
-        }
-        */
         return saslActions.getSasl(id)
             .then(function(ret) {
                 sasl = ret;
                 return catalogActions.getRoster(sasl.sa(), sasl.sl(), rosterId);
             }).then(function(roster) {
-                /*
-                 * check if we are going back to catalogs. If yes, pull up old
-                 * catalog, else create new.
-                 */
-                /*
-                 * we cannot pass anything to basket constructur because it expects
-                 * collection entris only. So we set properties separately.
-                 */
+
                 var rosterBasket;
                 var rosterDetails = {
                     rosterUUID: roster.data.rosterId,
@@ -319,14 +305,21 @@ module.exports = {
                     } else {
                         console.log("Roster already has catalog: " + catalogId );
                     }
+                }else if(typeof cloneCatalogAndAdd !== 'undefined' && cloneCatalogAndAdd === false){
+
+                  var itemizedCatalogAlreadyAdded = false;
+                  _(rosterBasket.catalogs.models).each(function(model, index, list) {
+                      if (model.id === catalogId) {
+                          itemizedCatalogAlreadyAdded = true;
+                      }
+                  });
+                  if ((!itemizedCatalogAlreadyAdded) && catalogType !== 'COMBO') {
+                    /* this is an itemized catalog and we have to add it once only */
+                      var catalog = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + catalogId + ':catalogbasket');
+                      rosterBasket.catalogs.models.push(catalog);
+                  }
+
                 }
-
-
-
-
-
-
-
 
 
                 return {

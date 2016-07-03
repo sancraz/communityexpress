@@ -69,7 +69,7 @@ var RosterOrderView = PageLayout.extend({
     },
 
     getTotalPriceWithTax: function() {
-        var priceWithoutTaxes = parseFloat(this.basket.getTotalPrice());
+        var priceWithoutTaxes = parseFloat(this.basket.getTotalPrice().toFixed(2));
         this.totalPriceWithTax = parseFloat((this.taxes + priceWithoutTaxes).toFixed(2));
     },
 

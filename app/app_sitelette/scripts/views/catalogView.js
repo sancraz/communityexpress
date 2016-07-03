@@ -19,23 +19,24 @@ var CatalogView = PageLayout.extend({
         this.addEvents({
             'click .back' : 'goBack',
             'click .order_button' : 'triggerOrder',
-            'click .add_button' : 'goBackAndSendCatalogInfo',
+            'click .add_combo_button' : 'goBackAndSendCatalogInfo',
             'click .edit_button' : 'openEditPanel'
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.navbarView.hide();
         if(this.backToRoster===true){
-          console.log(" catalogview:backtoRoster="+this.backToRoster);
           /* hide the order button */
           this.$('.order_button').hide();
-          if(this.catalogType==='COMBO'){
-            this.$('.add_button').show();
+          if(this.catalogType.enumText==='COMBO'||this.catalogType==='COMBO'){
+            this.$('.add_combo_button').show();
+            $("#catalog_items_row").css("visibility", "hidden");
+          }else{
+            this.$('.add_combo_button').hide();
           }
         }else{
-          console.log(" catalogview:backtoRoster="+this.backToRoster);
           this.$('.order_button').show();
-          this.$('.add_button').hide();
+          this.$('.add_combo_button').hide();
         }
 
     },
@@ -85,7 +86,10 @@ var CatalogView = PageLayout.extend({
           id: this.rosterId,
           backToRoster:true, /* bad design: should be using reverse true */
           rosterId:this.rosterId,
-          cloneCatalogAndAdd:false
+          cloneCatalogAndAdd:false,
+          catalogId:this.catalogId,
+          catalogType:this.catalogType.enumText,
+          catalogDisplayText:this.catalogDisplayText
        }, { reverse: true });
     },
     triggerRosterViewWithCatalog : function() {
