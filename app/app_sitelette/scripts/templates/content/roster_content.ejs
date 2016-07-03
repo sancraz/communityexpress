@@ -5,30 +5,30 @@
     <table id="cmtyex_roster_cart_summary"  style=" width:100%; margin:0;padding:0; border-collapse: collapse;">
       <tbody>
         <tr  >
-          <td   > </td>
-          <td id="cmtyex_roster_cart_comboCount"   ><%=basket.getComboCount()%> x</td>
-          <td   >Combos  </td>
-          <td   > </td>
-        </tr>
-        <tr >
-          <td   > </td>
-          <td id="cmtyex_roster_cart_nonComboCount"  ><%=basket.getNonComboItemCount()%> x</td>
-          <td   >Extras</td>
-          <td   > </td>
-        </tr>
-        <tr style=" margin-top:10px; ">
-          <td   >  <div class="ui-block-a">
-                <div class="edit_button sprite_navbar sub_edit"></div>
-            </div></td>
-          <td   ></td>
-          <td   ></td>
-          <td  style="text-align: right;" ><button class="order_button" data-role="button" data-inline="true" data-theme="b" >Order</button></td>
+          <td>
+             <div class="ui-block-a">
+               <div class="edit_button sprite_navbar sub_edit"></div>
+             </div>
+          </td>
+          <td>
+            <table><tbody>
+              <tr>
+                <td id="cmtyex_roster_cart_comboCount"   ><%=basket.getComboCount()%> x</td>
+                <td   >Combos  </td>
+              </tr>
+              <tr >
+                <td id="cmtyex_roster_cart_nonComboCount"  ><%=basket.getNonComboItemCount()%> x</td>
+                <td>Extras</td>
+              </tr>
+            </tbody></table>
+          </td>
+          <td style="text-align:right;" ><button style="  font-size:16px;" id="roster_order_button" class="order_button" data-role="button" data-inline="true" data-theme="b" >Order</button></td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <div style="clear:both; position:relative; margin-top:120px; " data-role="content" class="content">
+  <div style="clear:both; position:relative; margin-top:100px; " data-role="content" class="content">
 
     <div class="cmntyex-items_placeholder">
     </div>
