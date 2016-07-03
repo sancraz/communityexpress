@@ -123,43 +123,43 @@ var RosterBasketModel = Backbone.Model.extend({
 
         this.catalogs.each(function(catalog, tt, ee) {
             if (typeof catalog.quantity === 'undefined') {
-              /* COMBO orders, just get the catalog price */
-              //totalPrice=totalPrice+(catalog.get('price')*catalog.get('quantity')) ;
-                var catalogId=catalog.id;
-              _(catalog.get('groups')).each(function(group, indexd, listd) {
-                  var groupId=group.groupId;
-                  _(group.unSubgroupedItems).each(function(item, index, list) {
-                      var orderItem = {
-                          serviceAccommodatorId: sasl.sa(),
-                          serviceLocationId: sasl.sl(),
-                          priceId: item.priceId,
-                          itemId: item.itemId,
-                          groupId: groupId,
-                          catalogId: catalogId,
-                          itemVersion: item.itemVersion,
-                          quantity: catalog.get('quantity') //item.quantity,
-                      };
-                      orderItems.push(orderItem);
-                      //console.log('orderItems : '+_(orderItems).size());
-                  });
-              });
+                /* COMBO orders, just get the catalog price */
+                //totalPrice=totalPrice+(catalog.get('price')*catalog.get('quantity')) ;
+                var catalogId = catalog.id;
+                _(catalog.get('groups')).each(function(group, indexd, listd) {
+                    var groupId = group.groupId;
+                    _(group.unSubgroupedItems).each(function(item, index, list) {
+                        var orderItem = {
+                            serviceAccommodatorId: sasl.sa(),
+                            serviceLocationId: sasl.sl(),
+                            priceId: item.priceId,
+                            itemId: item.itemId,
+                            groupId: groupId,
+                            catalogId: catalogId,
+                            itemVersion: item.itemVersion,
+                            quantity: catalog.get('quantity') //item.quantity,
+                        };
+                        orderItems.push(orderItem);
+                        //console.log('orderItems : '+_(orderItems).size());
+                    });
+                });
             } else {
-              console.log("From "+catalog.catalogUUID+", type:"+catalog.catalogType);
-              /* A la carte (ITEMZIED) catalog items. NOTE: model = item */
-              _(catalog.models).each(function(item, index, list) {
-                  var orderItem = {
-                      serviceAccommodatorId: sasl.sa(),
-                      serviceLocationId: sasl.sl(),
-                      priceId: item.get('priceId'),
-                      itemId: item.get('itemId'),
-                      groupId: item.get('groupId'),
-                      catalogId: item.get('catalogId'),
-                      itemVersion: item.get('itemVersion'),
-                      quantity: item.get('quantity')
-                  };
-                  orderItems.push(orderItem);
-                  //console.log('orderItems : '+_(orderItems).size());
-              });
+                console.log("From " + catalog.catalogUUID + ", type:" + catalog.catalogType);
+                /* A la carte (ITEMZIED) catalog items. NOTE: model = item */
+                _(catalog.models).each(function(item, index, list) {
+                    var orderItem = {
+                        serviceAccommodatorId: sasl.sa(),
+                        serviceLocationId: sasl.sl(),
+                        priceId: item.get('priceId'),
+                        itemId: item.get('itemId'),
+                        groupId: item.get('groupId'),
+                        catalogId: item.get('catalogId'),
+                        itemVersion: item.get('itemVersion'),
+                        quantity: item.get('quantity')
+                    };
+                    orderItems.push(orderItem);
+                    //console.log('orderItems : '+_(orderItems).size());
+                });
             }
         });
         //console.log('FINAL: orderItems : '+_(orderItems).size());
@@ -272,11 +272,17 @@ var RosterBasketModel = Backbone.Model.extend({
     getComboCount: function() {
         var count = 0;
         this.catalogs.each(function(catalog, index, list) {
-            /* is this added as the hacked catalog model? */
-            if (typeof catalog.quantity !== 'undefined') {; // ignore, since it is ala carte.
+             if (typeof catalog.quantity !== 'undefined') {
+                 if (catalog.catalogType === 'COMBO') {
+                    /* these are combo groups coming via the catalogMenu,
+                       so we add an entire catalog for every entry and count
+                       the number of entries. */
+                    count = count + 1;
+                 }
             } else {
-                //console.log(" catalog in basket "+catalog.get('catalogDisplayText'));
-                count = count + catalog.get('quantity');
+                 if (catalog.get('catalogType') === 'COMBO') {
+                     count = count + catalog.get('quantity');
+                }
             }
         });
         return count;
@@ -285,12 +291,17 @@ var RosterBasketModel = Backbone.Model.extend({
     getNonComboItemCount: function() {
         var count = 0;
         this.catalogs.each(function(catalog, index, list) {
-            if (catalog.get('catalogType') !== 'COMBO') {
+            var ctype = catalog.get('catalogType');
+            var ctype2 = catalog.catalogType;
 
+
+            if (catalog.catalogType === 'UNDEFINED' || catalog.catalogType==='ITEMIZED') {
                 catalog.each(function(item, index, list) {
                     count = count + item.get('quantity');
-                    //console.log('item: '+item.itemName+" quantity["+item.get('quantity')+"]");
+                    console.log(catalog.id+' item: '+item.itemName+" quantity["+item.get('quantity')+"]");
                 });
+            } else {
+
             }
         });
 

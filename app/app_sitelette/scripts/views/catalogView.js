@@ -75,7 +75,11 @@ var CatalogView = PageLayout.extend({
           sasl: this.sasl.id,
           id: this.rosterId,
           backToRoster:true, /* bad design: should be using reverse true */
-          rosterId:this.rosterId
+          rosterId:this.rosterId,
+          cloneCatalogAndAdd:true, /*TODO set to true if 'Add' but used to return */
+          catalogId:this.catalogId,
+          catalogType:this.catalogType.enumText,
+          catalogDisplayText:this.catalogDisplayText
        }, { reverse: true });
 
     },

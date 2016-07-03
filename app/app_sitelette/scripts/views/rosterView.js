@@ -90,11 +90,12 @@ var RosterView = PageLayout.extend({
     },
 
     /* used for showing the flyout for combo items */
-    openAddToBasketView: function(model, catalogId, catalogDisplayText) {
+    openAddToBasketView: function(model, catalogId, catalogDisplayText,catalogType) {
         this.openSubview('addToRosterBasket', model, {
             basket: this.basket,
             catalogId: catalogId,
-            catalogDisplayText: catalogDisplayText
+            catalogDisplayText: catalogDisplayText,
+            catalogType:catalogType
         });
     },
 
@@ -161,7 +162,7 @@ var RosterView = PageLayout.extend({
                                     var li = new RosterComboItemView({
                                         onClick: function(model) {
                                             //this.$('#cmtyex_roster_cart_summary').fadeIn('slow');
-                                            this.openAddToBasketView(model, catalogId, catalogDisplayText);
+                                            this.openAddToBasketView(model, catalogId, catalogDisplayText, catalogType);
                                         }.bind(this),
                                         model: catalog,
                                         parent: this
@@ -170,7 +171,7 @@ var RosterView = PageLayout.extend({
                                 } else {
                                     var li = new RosterCatalogItemView({
                                         showCatalog: function(model) {
-                                            this.triggerCatalogView(catalog, catalogId, catalogDisplayText);
+                                            this.triggerCatalogView(catalog, catalogId, catalogDisplayText,catalogType);
                                         }.bind(this),
                                         model: catalog,
                                         parent: this
@@ -184,7 +185,7 @@ var RosterView = PageLayout.extend({
 
                                 var li = new RosterCatalogItemView({
                                     showCatalog: function(model) {
-                                        this.triggerCatalogView(catalog, catalogId, catalogDisplayText);
+                                        this.triggerCatalogView(catalog, catalogId, catalogDisplayText,catalogType);
                                     }.bind(this),
                                     model: catalog,
                                     parent: this
