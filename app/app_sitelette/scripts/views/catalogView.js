@@ -19,16 +19,23 @@ var CatalogView = PageLayout.extend({
         this.addEvents({
             'click .back' : 'goBack',
             'click .order_button' : 'triggerOrder',
+            'click .add_button' : 'goBackAndSendCatalogInfo',
             'click .edit_button' : 'openEditPanel'
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.navbarView.hide();
-        if(this.backToRoster){
+        if(this.backToRoster===true){
+          console.log(" catalogview:backtoRoster="+this.backToRoster);
           /* hide the order button */
           this.$('.order_button').hide();
+          if(this.catalogType==='COMBO'){
+            this.$('.add_button').show();
+          }
         }else{
+          console.log(" catalogview:backtoRoster="+this.backToRoster);
           this.$('.order_button').show();
+          this.$('.add_button').hide();
         }
 
     },
@@ -69,14 +76,25 @@ var CatalogView = PageLayout.extend({
             this.navbarView.show();
         }
     },
-
+    goBackAndSendCatalogInfo : function(){
+        this.triggerRosterViewWithCatalog();
+    },
     triggerRosterView : function() {
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
           backToRoster:true, /* bad design: should be using reverse true */
           rosterId:this.rosterId,
-          cloneCatalogAndAdd:true, /*TODO set to true if 'Add' but used to return */
+          cloneCatalogAndAdd:false
+       }, { reverse: true });
+    },
+    triggerRosterViewWithCatalog : function() {
+      Vent.trigger('viewChange', 'roster', {
+          sasl: this.sasl.id,
+          id: this.rosterId,
+          backToRoster:true, /* bad design: should be using reverse true */
+          rosterId:this.rosterId,
+          cloneCatalogAndAdd:true,
           catalogId:this.catalogId,
           catalogType:this.catalogType.enumText,
           catalogDisplayText:this.catalogDisplayText
