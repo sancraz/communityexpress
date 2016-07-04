@@ -98,8 +98,25 @@
     .panel-body {
         padding-top: 0;
         background-color: $light-grey;
-        span {
-            font: 400 11px / 15px Ubuntu;
+        .bootstrap-datetimepicker-widget {
+            i.glyphicon {
+                color: $main;
+            }
+            button {
+                background-color: $main;
+            }
+            td.day.active {
+                background-color: $main;
+            }
+            td.today::before {
+                border-bottom-color: $main;
+            }
+            span.active {
+                background-color: $main;
+            }
+            span.timepicker-text {
+                font-size: 20px;
+            }
         }
     }
 
@@ -134,7 +151,7 @@
         padding-left: 0;
         padding-bottom: 0;
         position: relative;
-        bottom: 6px;
+        bottom: 3px;
     }
 
     .form-control.datetimepicker:focus {
