@@ -1,12 +1,10 @@
 'use strict';
 
-var template = require('ejs!../templates/preeQuestion.ejs'),
-    loader = require('../loader'),
+var template = require('ejs!./templates/preeQuestion.ejs'),
+    loader = require('../../loader'),
     preeQuestionCategoriesView = require('./PreeQuestionCategories'),
     preeQuestionTagsView = require('./PreeQuestionTags'),
-    answerCountView = require('./AnswerCountView'),
-    preeAnswerView = require('./PreeAnswerView'),
-    preeQuestionCreateView = require('./PreeQuestionCreateView');
+    answerCountView = require('./AnswerCountView');
 
 var FeedSelectorView = Mn.LayoutView.extend({
 
@@ -31,7 +29,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         answer: '.pree_question_answer',
         likesButton: '.pree_question_likes_button',
         likeCount: '.pree_question_likes_count',
-        createNewQuestion: '.pree_question_user_avatar'
+        shareButton: '.pree_question_share_button'
     },
 
     events: {
@@ -40,7 +38,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         'click @ui.preeQuestionTags': 'expandTags',
         'click @ui.likesButton': 'addLike',
         'click @ui.answer': 'checkIfUserCanAnswer',
-        'click @ui.createNewQuestion': 'openQuestionCreateView'
+        'click @ui.shareButton': 'openShareQuestionView'
     },
 
     initialize : function() {
@@ -138,7 +136,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.ui.preeQuestionDetailed.collapse('hide');
     },
 
-    addLike: function() {
+    addLike: function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         var currentLikes = this.model.get('likes');
         if (!this.model.get('alreadyLiked')) {
             this.model.set({
@@ -153,9 +153,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
         };
     },
 
-    openQuestionCreateView: function() {
-        console.log('create question');
-        this.popup_region.show(new preeQuestionCreateView());
+    openShareQuestionView: function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.trigger('sharePopup:show', this.model);
     }
 });
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!./info.ejs');
+var template = require('ejs!./templates/info.ejs');
 
 var InfoView = Mn.ItemView.extend({
     template: template,

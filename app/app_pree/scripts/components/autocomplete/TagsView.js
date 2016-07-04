@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!./newQuestionTagsTpl.ejs'),
+var template = require('ejs!./templates/tagsTpl.ejs'),
 	AutocompleteView = require('./AutocompleteView'),
 	TagsCollection = require('./../../models/PreeTagsCollection'),
 	TagsCollectionView = require('./TagsCollectionView');
@@ -15,9 +15,21 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	ui: {
-		
+		'go' : '.go-button',
+		'discard' : '.discard-button',
+		'collapsibleContent': '#tags-filter-expanded',
+		'toggle': '.pree_tags_close img'
 	},
 
+	events: {
+		'click @ui.go': 'updateFilters',
+		'click @ui.discard': 'discardChanges'
+	},
+
+	arrows: {
+		down: 'images/arrow_down.png',
+		up: 'images/arrow_up.png'
+	},
 
 	serializeData: function() {
 		return {
@@ -33,7 +45,7 @@ var TagsView = Mn.LayoutView.extend({
 		this.tagsCollection = new TagsCollection();
 
 		this.tagsCollection.off('change add remove reset')
-			.on('change add remove reset', _.bind(this.updateFilters, this));
+			.on('change add remove reset', _.bind(this.onChange, this));
 
 		var tagsCollectionView = new TagsCollectionView({
 			collection: this.tagsCollection,
@@ -42,28 +54,26 @@ var TagsView = Mn.LayoutView.extend({
 		this.getRegion('tagsRegion').show(tagsCollectionView);
 	},
 
-	onShow: function() {
-		this.preselectItems();
+	onChange: function(model, viev, action) {
+		this.tagsAutocompleteView.triggerMethod('changeDataSet',action, model);
 	},
 
-	preselectItems: function() {
-		var items = this.options.items;
-		if (this.options.preselected) {
-			_.each(this.options.preselected, _.bind(function(preselected){
-				var item = _.findWhere(items, {displayText: preselected});
-				if (item) {
-					item.value = item.displayText;
-					this.tagsCollection.add(new Backbone.Model(item));
-				} else if (this.options.type === 'tags') {
-					item = {
-						value: preselected,
-						displayText: preselected,
-						domainId: 29 // temporary for testing
-					}
-					this.tagsCollection.add(new Backbone.Model(item));
-				}
-			}, this));
-		}
+	onShow: function() {
+		this.toggleCollapsible();
+		//change collapse/expande arrow
+		this.ui.collapsibleContent.on('shown.bs.collapse', _.bind(function() {
+			this.ui.toggle.attr('src', this.arrows.up);
+		}, this));
+		this.ui.collapsibleContent.on('hidden.bs.collapse', _.bind(function() {
+			this.ui.toggle.attr('src', this.arrows.down);
+		}, this));
+	},
+
+	toggleCollapsible: function() {
+		//looks much better with timeout
+		setTimeout(_.bind(function() {
+			this.ui.collapsibleContent.collapse('toggle');
+		}, this), 10);
 	},
 
 	getTagsAutocompleteOptions: function() {
@@ -74,20 +84,22 @@ var TagsView = Mn.LayoutView.extend({
 			apiKey: 'domainId',
 			limit: 10,
 			name: this.options.type,
-			additionalParam: 'newQuestion',
 			callback: _.bind(function(name, model){
 				this.tagsCollection.add(model);
-				if (model.get('domainId') === '#newId') {
-					//new tag creation handler
-				}
 			}, this)
 		};
 	},
 
-	updateFilters: function(model, view, actions) {
-		this.tagsAutocompleteView.triggerMethod('changeDataSet',actions, model);
+	discardChanges: function() {
+		this.tagsCollection.reset();
+		this.updateFilters();
+	},
+
+	updateFilters: function() {
+		this.toggleCollapsible();
 		if (typeof this.options.updateFilters === 'function') {
-			this.options.updateFilters(this.tagsCollection.getTagsArray());
+			this.options.updateFilters(
+				this.tagsCollection.createQueryParams(this.options.type));
 		}
 	}
 

@@ -7,11 +7,11 @@ var App = require('../app'),
     config = require('../appConfig'),
     sessionActions = require('../actions/sessionActions'),
     userController = require('./userController'),
-    HeaderView = require('../views/header/HeaderView'),
-    InfoView = require('../views/header/infoView'),
-    SignInView = require('../views/header/SignInView'),
-    SignUpView = require('../views/header/SignUpView'),
-    SignOutView = require('../views/header/SignOutView');
+    HeaderView = require('../components/header/HeaderView'),
+    InfoView = require('../components/header/infoView'),
+    SignInView = require('../components/header/SignInView'),
+    SignUpView = require('../components/header/SignUpView'),
+    SignOutView = require('../components/header/SignOutView');
 
 module.exports = {
 

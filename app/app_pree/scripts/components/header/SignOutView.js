@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!./signOut.ejs');
+var template = require('ejs!./templates/signOut.ejs');
 
 var SignOutView = Mn.ItemView.extend({
     template: template,

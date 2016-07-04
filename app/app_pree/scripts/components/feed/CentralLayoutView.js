@@ -1,7 +1,7 @@
 'use strict';
 
-var template = require('ejs!../templates/centralLayout.ejs'),
-    App = require('../app');
+var template = require('ejs!./templates/centralLayout.ejs'),
+    App = require('../../app');
 
 var CentralLayoutView = Mn.LayoutView.extend({
 
@@ -12,7 +12,8 @@ var CentralLayoutView = Mn.LayoutView.extend({
     regions: {
         filtersRegion: '#filters-region',
         newQuestionRegion: '#new-question-region',
-        questionsRegion: '#questions-region'
+        questionsRegion: '#questions-region',
+        popupRegion: '#popup_region'
     },
 
     showFiltersView: function(view){
@@ -25,6 +26,10 @@ var CentralLayoutView = Mn.LayoutView.extend({
 
     showQuestionsView: function(view) {
         this.questionsRegion.show(view);
+    },
+
+    showShareQuestionView: function(view) {
+        this.popupRegion.show(view);
     }
 });
 

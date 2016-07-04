@@ -1,6 +1,6 @@
 'use strict';
 
-var itemTemplate = require('ejs!./itemTpl.ejs');
+var itemTemplate = require('ejs!./templates/itemTpl.ejs');
 
 var TagsItemView = Mn.ItemView.extend({
 	template: itemTemplate,

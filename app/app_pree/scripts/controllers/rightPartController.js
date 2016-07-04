@@ -1,9 +1,9 @@
 'use strict';
 
 var App = require('../app'),
-    RightLayoutView = require('../views/right-part/RightLayoutView'),
-    CreateQuestionBtnView = require('../views/right-part/CreateQuestionBtnView'),
-    WhoToFollowView = require('../views/right-part/WhoToFollowView');
+    RightLayoutView = require('../components/right-part/RightLayoutView'),
+    CreateQuestionBtnView = require('../components/right-part/CreateQuestionBtnView'),
+    WhoToFollowView = require('../components/right-part/WhoToFollowView');
 
 module.exports = {
 

@@ -2,7 +2,7 @@
 
 var Router = require('./router'),
     sessionActions = require('./actions/sessionActions'),
-    HeaderView = require('./views/header/HeaderView');
+    HeaderView = require('./components/header/HeaderView');
 
 var App = new Mn.Application();
 

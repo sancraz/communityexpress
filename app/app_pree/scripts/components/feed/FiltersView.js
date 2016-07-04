@@ -1,8 +1,8 @@
 'use strict';
 
-var gateway = require('../APIGateway/gateway'),
-	template = require('ejs!../templates/filters.ejs'),
-	TagsView = require('./autocomplete/TagsView');
+var gateway = require('../../APIGateway/gateway'),
+	template = require('ejs!./templates/filters.ejs'),
+	TagsView = require('../autocomplete/TagsView');
 
 var FiltersView = Mn.LayoutView.extend({
 

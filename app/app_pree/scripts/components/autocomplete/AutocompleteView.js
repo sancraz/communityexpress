@@ -1,7 +1,7 @@
 define([
   "jquery",
   "./autocomplete",
-  "ejs!./autocompleteTpl.ejs" ]
+  "ejs!./templates/autocompleteTpl.ejs" ]
   , function(
   $,
   MarionetteAutocomplete,

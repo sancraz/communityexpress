@@ -1,8 +1,8 @@
 'use strict';
 
 var PreeQuestionView = require('./PreeQuestionView'),
-    preeController = require('../controllers/preeController'),
-    loader = require('../loader');
+    preeController = require('../../controllers/preeController'),
+    loader = require('../../loader');
 
 var feedView = Mn.CollectionView.extend({
 
@@ -11,7 +11,8 @@ var feedView = Mn.CollectionView.extend({
     childEvents: {
         'collapseDetails': 'collapseDetails',
         'answerQuestion' : 'onAnswerQuestion',
-        'checkIfUserLogged': 'onCheckIfUserLogged'
+        'checkIfUserLogged': 'onCheckIfUserLogged',
+        'sharePopup:show': 'openSharePopup'
     },
 
     initialize : function() {
@@ -40,6 +41,10 @@ var feedView = Mn.CollectionView.extend({
 
     onCheckIfUserLogged: function(view, callback) {
         this.trigger('checkIfUserLogged', callback);
+    },
+
+    openSharePopup: function(view, questionModel) {
+        this.trigger('sharePopup:show', questionModel);
     }
 
 });

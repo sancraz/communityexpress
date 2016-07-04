@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!./signIn.ejs'),
+var template = require('ejs!./templates/signIn.ejs'),
     loader = require('../../loader'),
     Vent = require('../../Vent'),
     sessionActions = require('../../actions/sessionActions'),

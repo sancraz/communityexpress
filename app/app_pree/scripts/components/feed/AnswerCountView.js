@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!../templates/answerCount.ejs');
+var template = require('ejs!./templates/answerCount.ejs');
 
 var AnswerCountView = Mn.ItemView.extend({
 

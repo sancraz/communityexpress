@@ -5,11 +5,14 @@ var App = require('../app'),
     Vent = require('../Vent'),
     sessionActions = require('../actions/sessionActions'),
     gateway = require('../APIGateway/gateway'),
-    CentralLayoutView = require('../views/CentralLayoutView'),
-    CreateQuestionView = require('../views/CreateQuestionView'),
+    CentralLayoutView = require('../components/feed/CentralLayoutView'),
+    CreateQuestionView = require('../components/feed/CreateQuestionView'),
     CreateQuestionModel = require('../models/PreeNewQuestionModel'),
-    FeedView = require('../views/FeedView'),
-    FiltersView = require('../views/FiltersView'),
+    FeedView = require('../components/feed/FeedView'),
+    FiltersView = require('../components/feed/FiltersView'),
+    ShareQuestionView = require('../components/feed/ShareQuestionView'),
+    ShareQuestionWithMobile = require('../components/feed/ShareQuestionWithMobile'),
+    ShareQuestionWithEmail = require('../components/feed/ShareQuestionWithEmail'),
     FeedModel = require('../models/FeedModel');
 
 module.exports = {
@@ -48,6 +51,32 @@ module.exports = {
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getTags', _.bind(this.getTags, this));
         this.centralLayoutView.showNewQuestionView(this.createNewQuestion);
         this.createNewQuestion.listenTo(Vent, 'logout_success', _.bind(this.createNewQuestion.onDiscardQuestion, this.createNewQuestion));
+    },
+
+    showShareQuestion: function(questionModel) {
+        var shareQuestionView = new ShareQuestionView({
+            model: questionModel
+        });
+        shareQuestionView.listenTo(shareQuestionView, 'shareQuestion', _.bind(this.showShareQuestionEmailSMS, this));
+        this.centralLayoutView.showShareQuestionView(shareQuestionView);
+    },
+
+    showShareQuestionEmailSMS: function(param, model) {
+        var view;
+        switch (param) {
+            case 'sendSMS':
+                view = new ShareQuestionWithMobile({
+                    model: model
+                });
+                break;
+            case 'sendEmail':
+                view = new ShareQuestionWithEmail({
+                    model: model
+                });
+                break;
+            default:
+        };
+        this.centralLayoutView.showShareQuestionView(view)
     },
 
     hideCreateNewQuestion: function() {
@@ -121,6 +150,7 @@ module.exports = {
         });
         feedView.listenTo(feedView, 'answerQuestion', _.bind(this.onAnswerQuestion, this));
         feedView.listenTo(feedView, 'checkIfUserLogged', _.bind(this.onCheckIfUserLogged, this));
+        feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
         this.centralLayoutView.showQuestionsView(feedView);
     },
 
@@ -141,5 +171,4 @@ module.exports = {
 
         });
     }
-
 }

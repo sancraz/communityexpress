@@ -1,9 +1,9 @@
 'use strict';
 
 var moment = require('moment'),
-	gateway = require('../APIGateway/gateway'),
-	template = require('ejs!../templates/createQuestion.ejs'),
-	TagsView = require('./autocomplete/NewQuestionTagsView');
+	gateway = require('../../APIGateway/gateway'),
+	template = require('ejs!./templates/createQuestion.ejs'),
+	TagsView = require('../autocomplete/NewQuestionTagsView');
 
 var CreateQuestionView = Mn.LayoutView.extend({
 

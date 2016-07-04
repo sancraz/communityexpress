@@ -1,6 +1,6 @@
 'use strict';
 
-var template = require('ejs!../templates/preeQuestionTags.ejs');
+var template = require('ejs!./templates/preeQuestionTags.ejs');
 
 var PreeQuestionTags = Mn.ItemView.extend({
 
