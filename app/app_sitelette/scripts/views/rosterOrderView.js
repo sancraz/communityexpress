@@ -27,6 +27,7 @@ var RosterOrderView = PageLayout.extend({
         this.states = this.getStates();
         this.rosterId = options.rosterId;
         this.backToCatalog = options.backToCatalog;
+        this.launchedViaURL=options.launchedViaURL;
         this.backToCatalogs = options.backToCatalogs; /* this is passed on to catalogview, for its' decision-making */
         this.priceAddons = options.priceAddons;
         this.calculateTaxes();
@@ -68,7 +69,7 @@ var RosterOrderView = PageLayout.extend({
     },
 
     getTotalPriceWithTax: function() {
-        var priceWithoutTaxes = parseFloat(this.basket.getTotalPrice());
+        var priceWithoutTaxes = parseFloat(this.basket.getTotalPrice().toFixed(2));
         this.totalPriceWithTax = parseFloat((this.taxes + priceWithoutTaxes).toFixed(2));
     },
 
@@ -78,24 +79,11 @@ var RosterOrderView = PageLayout.extend({
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
-          backToRoster:false,
+          backToRoster:true,
           rosterId:this.rosterId,
+          launchedViaURL:this.launchedViaURL,
        }, { reverse: false });
 
-
-
-
-      /*
-
-        Vent.trigger('viewChange', 'roster', {
-            id: this.sasl.id,
-            rosterId:this.rosterId,
-            backToCatalog: this.backToCatalog,
-            backToCatalogs:this.backToCatalogs,
-            backToRoster:true,
-            navbarView:this.navbarView
-         }, { reverse: true });
-         */
     },
 
     onSubmitClick: function (e) {

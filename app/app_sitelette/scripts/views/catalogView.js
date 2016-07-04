@@ -19,11 +19,26 @@ var CatalogView = PageLayout.extend({
         this.addEvents({
             'click .back' : 'goBack',
             'click .order_button' : 'triggerOrder',
+            'click .add_combo_button' : 'goBackAndSendCatalogInfo',
             'click .edit_button' : 'openEditPanel'
         });
         this.renderItems();
         this.listenTo(this.basket, 'reset change add remove', this.updateBasket, this);
         this.navbarView.hide();
+        if(this.backToRoster===true){
+          /* hide the order button */
+          this.$('.order_button').hide();
+          if(this.catalogType.enumText==='COMBO'||this.catalogType==='COMBO'){
+            this.$('.add_combo_button').show();
+            $("#catalog_items_row").css("visibility", "hidden");
+            $("#catalog_extras_row").css("visibility", "hidden");
+          }else{
+            this.$('.add_combo_button').hide();
+          }
+        }else{
+          this.$('.order_button').show();
+          this.$('.add_combo_button').hide();
+        }
 
     },
 
@@ -43,6 +58,7 @@ var CatalogView = PageLayout.extend({
         // '#ffB2FD', '#FFCCCC' ];
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
+        this.launchedViaURL=options.launchedViaURL;
         this.navbarView = options.navbarView;
     },
 
@@ -62,13 +78,31 @@ var CatalogView = PageLayout.extend({
             this.navbarView.show();
         }
     },
-
+    goBackAndSendCatalogInfo : function(){
+        this.triggerRosterViewWithCatalog();
+    },
     triggerRosterView : function() {
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
           backToRoster:true, /* bad design: should be using reverse true */
-          rosterId:this.rosterId
+          rosterId:this.rosterId,
+          cloneCatalogAndAdd:false,
+          catalogId:this.catalogId,
+          catalogType:this.catalogType.enumText,
+          catalogDisplayText:this.catalogDisplayText
+       }, { reverse: true });
+    },
+    triggerRosterViewWithCatalog : function() {
+      Vent.trigger('viewChange', 'roster', {
+          sasl: this.sasl.id,
+          id: this.rosterId,
+          backToRoster:true, /* bad design: should be using reverse true */
+          rosterId:this.rosterId,
+          cloneCatalogAndAdd:true,
+          catalogId:this.catalogId,
+          catalogType:this.catalogType.enumText,
+          catalogDisplayText:this.catalogDisplayText
        }, { reverse: true });
 
     },
@@ -112,6 +146,7 @@ var CatalogView = PageLayout.extend({
                                                          * but passed back to
                                                          * catalog view
                                                          */
+                launchedViaURL:this.launchedViaURL,
                 navbarView : this.navbarView
             }, {
                 reverse : true
