@@ -7,8 +7,26 @@ var ShareQuestionWithEmail = Mn.ItemView.extend({
 
     className: 'modal fade share-question-email',
 
+    ui: {
+        close: '.close',
+        closeButton: '.close_button',
+        input: 'input',
+        shareButton: '.confirmation_button'
+    },
+
+    events: {
+        'click @ui.close': 'close',
+        'click @ui.closeButton': 'close',
+        'click @ui.shareButton': 'share'
+    },
+
     onShow: function() {
         this.$el.modal();
+    },
+
+    share: function() {
+        var email = this.ui.input.val();
+        this.trigger('sendEmail', this.model, email, this);
     },
 
     close: function() {

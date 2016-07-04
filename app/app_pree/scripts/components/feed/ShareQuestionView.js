@@ -8,6 +8,7 @@ var ShareQuestionView = Mn.ItemView.extend({
     className: 'modal fade share-question',
 
     ui: {
+        closeButton: '.close_button',
         close: '.close',
         smsButton: '.sms-button',
         emailButton: '.email-button'
@@ -15,6 +16,7 @@ var ShareQuestionView = Mn.ItemView.extend({
 
     events: {
         'click @ui.close': 'close',
+        'click @ui.closeButton': 'close',
         'click @ui.smsButton': 'sendMobile',
         'click @ui.emailButton': 'sendEmail'
     },
@@ -40,7 +42,6 @@ var ShareQuestionView = Mn.ItemView.extend({
         this.$el.modal('hide');
         this.$el.on('hidden.bs.modal', _.bind(function() {
             if (typeof param === 'string') {
-                debugger;
                 this.trigger('shareQuestion', param, this.model);
             };
             this.destroy();

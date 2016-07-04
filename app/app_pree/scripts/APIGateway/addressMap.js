@@ -17,6 +17,9 @@ module.exports = {
             registerNewMemberWithInvitationCode: ['POST', '/authentication/registerNewMemberWithInvitationCode'],
             createAnonymousUser: ['POST', '/authentication/registerAnonymousAdhocMember'],
 
+            sendPromoURLToEmail: ['GET', '/html/sendPromoURLToEmail'],
+            sendPromoURLToMobileviaSMS: ['GET', '/html/sendPromoURLToMobileviaSMS']
+
         };
     }
 };

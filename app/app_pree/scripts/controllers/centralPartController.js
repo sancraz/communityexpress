@@ -76,7 +76,37 @@ module.exports = {
                 break;
             default:
         };
+        view.listenTo(view, 'sendEmail', _.bind(this.sendEmail, this));
+        view.listenTo(view, 'sendMobile', _.bind(this.sendMobile, this));
         this.centralLayoutView.showShareQuestionView(view)
+    },
+
+    sendEmail: function(model, email, view) {
+        loader.show('email', 'sending');
+        gateway.sendRequest('sendPromoURLToEmail', {
+            UID: this.user.getUID(),
+            promoUUID: model.get('uuid'),
+            toEmail: email
+        }).then(_.bind(function(resp) {
+            loader.showFlashMessage( 'Promotion URL is sent to ' + email);
+            view.close();
+        }, this), function(e) {
+            loader.showFlashMessage('unable to send Promotion URL to ' + email);
+        });
+    },
+
+    sendMobile: function(model, phone, view) {
+        loader.show('to mobile', 'sending');
+        gateway.sendRequest('sendPromoURLToMobileviaSMS', {
+            UID: this.user.getUID(),
+            promoUUID: model.get('uuid'),
+            toTelephoneNumber: phone
+        }).then(_.bind(function() {
+            loader.showFlashMessage( 'Promotion URL is sent to ' + phone);
+            view.close();
+        }, this), function(e) {
+            loader.showFlashMessage('unable to send Promotion URL to ' + phone);
+        });
     },
 
     hideCreateNewQuestion: function() {

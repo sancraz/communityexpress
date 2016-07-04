@@ -20,6 +20,8 @@ module.exports = {
         $('.loader').show();
         if (!flash) {
             $('.loader-text').text('loading ' + text);
+        } else if (flash === 'sending') {
+            $('.loader-text').text(flash + ' ' + text);
         } else {
             $('.loader-img').hide();
             $('.loader.message').css('padding-top', '40px')

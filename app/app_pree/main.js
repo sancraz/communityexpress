@@ -3,6 +3,7 @@
 require('./styles/main.scss');
 require('bootstrap-webpack');
 require('./vendor/scripts/bootstrap-datetimepicker');
+require('jquery-mask-plugin');
 var moment = require('moment');
 
 var App = require('./scripts/app');
