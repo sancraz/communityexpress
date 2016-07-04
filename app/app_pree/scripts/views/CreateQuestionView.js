@@ -37,6 +37,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		// expirationTime: '#expirationTimePicker',
 		notificationDate: '#notificationDatePicker',
 		// notificationTime: '#notificationTimePicker'
+		addAnswerBtn: '.addAnswerBtn'
 	},
 
 	events: {
@@ -53,7 +54,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		'keydown @ui.bonusPoints': 'onKeyDownBonusPoints',
 		'keydown @ui.basePoints': 'onKeyDownBasePoints',
 		'change @ui.bonusPoints': 'onChangeBonusPoints',
-		'change @ui.basePoints': 'onChangeBasePoints'
+		'change @ui.basePoints': 'onChangeBasePoints',
+		'click @ui.addAnswerBtn': 'onAddAnswer'
 	},
 
 	serializeData: function() {
@@ -336,6 +338,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		if (convertedNotify) {
 			this.model.set('activationDate', convertedNotify);
 		}
+	},
+
+	onAddAnswer: function(e) {
+		e.preventDefault();
+		e.stopPropagation();
 	}
 
 });

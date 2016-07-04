@@ -2,6 +2,7 @@
 
 var App = require('../app'),
     loader = require('../loader'),
+    Vent = require('../Vent'),
     sessionActions = require('../actions/sessionActions'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../views/CentralLayoutView'),
@@ -20,6 +21,7 @@ module.exports = {
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
         this.showFilters();
         App.on('createNewQuestion:show', _.bind(this.showCreateNewQuestion, this));
+        App.on('refreshFeed', _.bind(this.getQuestions, this));
     },
 
     showFilters: function() {
@@ -45,6 +47,7 @@ module.exports = {
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getCategories', _.bind(this.getCategories, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getTags', _.bind(this.getTags, this));
         this.centralLayoutView.showNewQuestionView(this.createNewQuestion);
+        this.createNewQuestion.listenTo(Vent, 'logout_success', _.bind(this.createNewQuestion.onDiscardQuestion, this.createNewQuestion));
     },
 
     hideCreateNewQuestion: function() {
@@ -57,7 +60,7 @@ module.exports = {
         console.log(model.toJSON());
 
         gateway.sendRequest('createQuestion', {
-            UID: this.UID,
+            UID: this.user.getUID(),
             payload: model.toJSON()
         }).then(_.bind(function(resp) {
             callback();
@@ -133,9 +136,9 @@ module.exports = {
             uuid: uuid,
             choice: choiceId
         }).then(_.bind(function(resp) {
-            
+
         }, this), function(e) {
-          
+
         });
     }
 

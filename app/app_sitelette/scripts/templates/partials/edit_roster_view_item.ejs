@@ -1,0 +1,10 @@
+
+    <a class="cmntyex-remove-list-item ui-btn ui-shadow ui-corner-all
+       ui-icon-delete
+        ui-btn-icon-left">
+      <% if(typeof catalogDisplayText ==='undefined'){%>
+        [Itemized] <%= this.model.catalogDisplayText %> x <%= this.model.quantity %>
+      <%}else{%>
+        [Combos  ] <%=catalogDisplayText %> x <%=quantity %>
+      <% } %>
+    </a>

@@ -11,17 +11,25 @@ var CatalogBasketModel = Backbone.Collection.extend({
     /* catalog uuid */
     idAttribute : 'uUID',
 
+      id:0,
+      quantity:0,
+      price:0,
+
     initialize : function(models, options) {
        this.prices = new Backbone.Model();
+       this.price=0;
+       this.quantity=0;
 
     },
 
-    setCatalogDetails : function(catalogDetails) { 
+    setCatalogDetails : function(catalogDetails) {
+        this.id=catalogDetails.catalogUUID;
+        this.uUID=catalogDetails.catalogUUID;
         this.idAttribute = catalogDetails.catalogUUID;
         this.catalogDisplayText = catalogDetails.catalogDisplayText;
         this.catalogType = catalogDetails.catalogType;
         this.price=catalogDetails.price;
-        this.quantity=catalogDetails.quantity;
+        this.quantity=catalogDetails.quantity; 
     },
 
     changeItemInCombo : function(item, groupId, groupDisplayText,catalogId,catalogDisplayText) {
@@ -113,7 +121,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
             groupDisplayText:groupDisplayText,
             catalogId : catalogId,
             catalogDisplayText:catalogDisplayText
-            
+
         });
 
         /*
@@ -156,7 +164,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
     },
 
     dumpCartToConsole : function() {
-         
+
         console.log(">>>> CatalogBasket for catalog:" + this.catalogDisplayText);
         this.each(function(item, index, list) {
             var quantity = item.get('quantity');
@@ -171,9 +179,9 @@ var CatalogBasketModel = Backbone.Collection.extend({
     removeAllItems : function() {
         this.reset();
     },
-    
+
     isComboGroupRepresented:function(groupId){
-        
+
         var itemId;
         this.each(function(item, index, list) {
             if (item.itemType === 'COMBO') {
@@ -184,9 +192,9 @@ var CatalogBasketModel = Backbone.Collection.extend({
         });
         return itemId;
     },
-    
+
     hasCombo : function() {
-        var comboCount= _(this.getComboCatalogs()).size(); 
+        var comboCount= _(this.getComboCatalogs()).size();
         if(comboCount>0){
             return true;
         }else{
@@ -206,8 +214,8 @@ var CatalogBasketModel = Backbone.Collection.extend({
         var comboCatalogsArray={};
         this.each(function(item, index, list) {
             if (item.itemType === 'COMBO') {
-                if(! _(comboCatalogsArray).has(item.catalogId)){ 
-                  comboCatalogsArray[item.catalogId]={catalogDisplayText:item.catalogDisplayText,price:item.get('price')};  
+                if(! _(comboCatalogsArray).has(item.catalogId)){
+                  comboCatalogsArray[item.catalogId]={catalogDisplayText:item.catalogDisplayText,price:item.get('price')};
                 }else{
                     /* update the price */
                     var tmpObj=  comboCatalogsArray[item.catalogId];
@@ -221,7 +229,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         });
         return comboCatalogsArray;
     },
-    getComboCount : function() { 
+    getComboCount : function() {
         return  _(this.getComboCatalogs()).size();
     },
 
@@ -229,7 +237,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         var comboPrice=0;
         this.each(function(item, index, list) {
             if (item.itemType === 'COMBO') {
-                comboPrice=comboPrice+item.get('price'); 
+                comboPrice=comboPrice+item.get('price');
             }
             ;
         });
@@ -251,7 +259,7 @@ var CatalogBasketModel = Backbone.Collection.extend({
         var nonComboPrice=0;
         this.each(function(item, index, list) {
             if (item.itemType !== 'COMBO') {
-                nonComboPrice=nonComboPrice+item.get('price'); 
+                nonComboPrice=nonComboPrice+item.get('price');
             }
             ;
         });
