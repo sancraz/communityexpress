@@ -50,6 +50,16 @@
         font: 400 11px / 50px Ubuntu;
     }
 
+    .pree_question_img {
+        float: left;
+        margin: 10px;
+        margin-left: 0;
+
+        img {
+            height: 100px;
+        }
+    }
+
     .pree_question_text {
         color: $text;
         font: 400 14px / 21px Ubuntu;

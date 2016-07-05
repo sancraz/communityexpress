@@ -16,6 +16,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		tagsRegion: '#new-question-tags-region'
 	},
 
+	arrows: {
+		down: 'images/arrow_down_grey.png',
+		up: 'images/arrow_up_grey.png'
+	},
+
 	ui: {
 		container: '.create-question-container',
 		discard: '.discard-btn',
@@ -37,7 +42,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		// expirationTime: '#expirationTimePicker',
 		notificationDate: '#notificationDatePicker',
 		// notificationTime: '#notificationTimePicker'
-		addAnswerBtn: '.addAnswerBtn'
+		addAnswerBtn: '.addAnswerBtn',
+		collapsiblePredictionDetails: '#collapseOne',
+		collapsibleAnswerInfo: '#collapseTwo',
+		predictionArrow: '.prediction-arrow',
+		answerArrow: '.answer-arrow'
 	},
 
 	events: {
@@ -85,6 +94,18 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		this.trigger('getTags', _.bind(this.showTags, this), true); // true means silent
 		this.trigger('getCategories', _.bind(this.showCategories, this), true); // true means silent
 		this.onInitDatepickers();
+		this.ui.collapsiblePredictionDetails.on('shown.bs.collapse', _.bind(function() {
+			this.ui.predictionArrow.attr('src', this.arrows.up);
+		}, this));
+		this.ui.collapsiblePredictionDetails.on('hidden.bs.collapse', _.bind(function() {
+			this.ui.predictionArrow.attr('src', this.arrows.down);
+		}, this));
+		this.ui.collapsibleAnswerInfo.on('shown.bs.collapse', _.bind(function() {
+			this.ui.answerArrow.attr('src', this.arrows.up);
+		}, this));
+		this.ui.collapsibleAnswerInfo.on('hidden.bs.collapse', _.bind(function() {
+			this.ui.answerArrow.attr('src', this.arrows.down);
+		}, this));
 	},
 
 	onInitDatepickers: function() {

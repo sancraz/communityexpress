@@ -14,6 +14,9 @@
         </div>
     </header>
     <section class="questionBody">
+        <div class="pree_question_img">
+            <img src="<%= img_url %>" alt="" />
+        </div>
         <div class="pree_question_text"><%= displayText %></div>
         <% _.each(choices, function(choice){ %>
             <div class="pree_question_answer pree_question_answer_a answer">

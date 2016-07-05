@@ -49,7 +49,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onRender: function() {
-        // this.ui.preeQuestion.css('background', 'url(' + this.model.get('img_url') + ') no-repeat top left');
         this.pree_question_answers.show(new answerCountView({
             answers: this.model.get('totalAnswers')
         }));
