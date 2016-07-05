@@ -168,6 +168,7 @@ module.exports = {
         var backToCatalog = options.backToCatalog;
         var catalogId = options.catalogId;
         var navbarView = options.navbarView;
+        var launchedViaURL = options.launchedViaURL;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -212,7 +213,8 @@ module.exports = {
                     // sasl.sl()),
                     backToCatalogs: backToCatalogs,
                     catalogId: catalogId,
-                    navbarView: navbarView
+                    navbarView: navbarView,
+                    launchedViaURL :launchedViaURL
                 };
             });
     },

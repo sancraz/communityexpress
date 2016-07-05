@@ -181,9 +181,12 @@ var RosterBasketModel = Backbone.Model.extend({
         });
         console.log("*************---------------------------");
     },
-    removeItem: function(catalogId) {
-        console.log("removeItem:" + catalogId);
+
+
+    removeItem: function(item) {
+        console.log("removeItem:" + item);
     },
+    
     removeAllItems: function() {
         this.catalogs.reset();
     },

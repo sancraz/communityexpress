@@ -35,6 +35,7 @@ var RosterView = PageLayout.extend({
         }
 
 
+
         var comboCount = this.basket.getComboCount();
         var nonComboCount = this.basket.getNonComboItemCount();
         if(comboCount===0 && nonComboCount===0){
@@ -96,7 +97,8 @@ var RosterView = PageLayout.extend({
             basket: this.basket,
             catalogId: catalogId,
             catalogDisplayText: catalogDisplayText,
-            catalogType:catalogType
+            catalogType:catalogType,
+            launchedViaURL:this.launchedViaURL
         });
     },
 
@@ -123,23 +125,20 @@ var RosterView = PageLayout.extend({
     },
 
     openEditPanel: function() {
-        /*
-          create the model for edit view
-          */
+
         var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
 
         this.openSubview('editRosterView', editModel, {
             actions: {
                 removeItem: function(selected) {
                     _(selected).each(function(item) {
-                        editModel.removeItem(item);
+                        this.basket.removeItem(item);
                     }.bind(this));
                 }.bind(this)
             },
             template: require('ejs!../templates/partials/edit_roster_view_item.ejs')
         });
     },
-
 
     renderItems: function() {
 

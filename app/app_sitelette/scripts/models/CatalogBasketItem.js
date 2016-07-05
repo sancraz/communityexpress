@@ -1,13 +1,13 @@
 /*global define*/
 
 'use strict';
- 
+
 
 var CatalogBasketItem = Backbone.Model.extend({
     /*
      * what is id, cid and idAttribute?
      * http://stackoverflow.com/questions/12169822/backbone-js-id-vs-idattribute-vs-cid
-     * 
+     *
      * So, we are telling backbone to use the 'uUID' value as the id value for
      * this item.
      */
@@ -40,6 +40,7 @@ var CatalogBasketItem = Backbone.Model.extend({
         this.uUID = options.uUID;
         this.itemName = options.itemName;
         this.itemType = options.itemType.enumText;
+      
         // console.log("CatalogBasketItem:initialize::"+this.itemName+",
         // "+this.groupId+", "+this.catalogId);
     }
