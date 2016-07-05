@@ -298,7 +298,7 @@ module.exports = {
                             catalogDisplayText: catalogDisplayText,
                             catalogType: catalogType,
                             price:catalog.price,
-                            quantity:catalog.quantity
+                            quantity:1// can only add one at a time  
                         };
                         catalogClone.setCatalogDetails(catalogDetails);
                         //var catalogClone = $.extend({}, catalog);

@@ -11,7 +11,6 @@ var RosterBasketDerivedItem = Backbone.Model.extend({
   * So, we are telling backbone to use the 'uUID' value as the id value for
   * this item.
   */
-  idAttribute : 'uuid',
 
   defaults :{
     groupId : null,
@@ -30,7 +29,7 @@ var RosterBasketDerivedItem = Backbone.Model.extend({
 
   initialize : function(options) {
     this.set('displayText',options.displayText);
-    this.set('osterEntryType',options.rosterEntryType);
+    this.set('rosterEntryType',options.rosterEntryType);
     this.set('groupId' , options.groupId);
     this.set('catalogId' ,options.catalogId);
     this.set('itemId' , options.itemId);
