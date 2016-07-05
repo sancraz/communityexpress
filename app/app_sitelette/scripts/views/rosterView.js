@@ -6,6 +6,7 @@ var Vent = require('../Vent'), //
     loader = require('../loader'), //
     appCache = require('../appCache.js'),
     RosterBasketModel = require('../models/RosterBasketModel'), //
+    RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),//
     CatalogBasketModel = require('../models/CatalogBasketModel'), //
     orderActions = require('../actions/orderActions'), //
     PageLayout = require('./components/pageLayout'), //
@@ -32,6 +33,7 @@ var RosterView = PageLayout.extend({
         } else {
             $(this.el).find('.navbutton_back').show();
         }
+
 
 
         var comboCount = this.basket.getComboCount();
@@ -95,7 +97,8 @@ var RosterView = PageLayout.extend({
             basket: this.basket,
             catalogId: catalogId,
             catalogDisplayText: catalogDisplayText,
-            catalogType:catalogType
+            catalogType:catalogType,
+            launchedViaURL:this.launchedViaURL
         });
     },
 
@@ -123,8 +126,9 @@ var RosterView = PageLayout.extend({
 
     openEditPanel: function() {
 
+        var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
 
-        this.openSubview('editRosterView', this.basket.catalogs, {
+        this.openSubview('editRosterView', editModel, {
             actions: {
                 removeItem: function(selected) {
                     _(selected).each(function(item) {
@@ -135,7 +139,6 @@ var RosterView = PageLayout.extend({
             template: require('ejs!../templates/partials/edit_roster_view_item.ejs')
         });
     },
-
 
     renderItems: function() {
 

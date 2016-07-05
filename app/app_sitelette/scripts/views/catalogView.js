@@ -54,8 +54,7 @@ var CatalogView = PageLayout.extend({
         this.catalogId = options.catalog.data.catalogId;
         this.catalogType = options.catalog.data.catalogType;
         this.catalogDisplayText = options.catalog.data.displayText;
-        this.colors = options.catalog.data.colors;// [ '#444444', '#00ffB1',
-        // '#ffB2FD', '#FFCCCC' ];
+        this.colors = options.catalog.data.colors;
         /* add catalog name to basket */
         this.basket.catalogDisplayText = options.catalog.collection.displayText;
         this.launchedViaURL=options.launchedViaURL;
@@ -70,7 +69,7 @@ var CatalogView = PageLayout.extend({
 
     goBack : function() {
         if( this.backToRoster){
-          this.triggerRosterView();
+          this.triggerRosterView( );
         }else if(this.backToCatalogs) {
             this.triggerCatalogsView();
         } else {
@@ -90,7 +89,8 @@ var CatalogView = PageLayout.extend({
           cloneCatalogAndAdd:false,
           catalogId:this.catalogId,
           catalogType:this.catalogType.enumText,
-          catalogDisplayText:this.catalogDisplayText
+          catalogDisplayText:this.catalogDisplayText,
+          launchedViaURL:  this.launchedViaURL
        }, { reverse: true });
     },
     triggerRosterViewWithCatalog : function() {
@@ -102,7 +102,8 @@ var CatalogView = PageLayout.extend({
           cloneCatalogAndAdd:true,
           catalogId:this.catalogId,
           catalogType:this.catalogType.enumText,
-          catalogDisplayText:this.catalogDisplayText
+          catalogDisplayText:this.catalogDisplayText,
+          launchedViaURL:this.launchedViaURL
        }, { reverse: true });
 
     },
@@ -125,7 +126,8 @@ var CatalogView = PageLayout.extend({
             groupId : groupId,
             groupDisplayText : groupDisplayText,
             catalogId : catalogId,
-            catalogDisplayText : catalogDisplayText
+            catalogDisplayText : catalogDisplayText,
+            launchedViaURL:this.launchedViaURL
         });
     },
 
