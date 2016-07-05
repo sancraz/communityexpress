@@ -80,7 +80,8 @@ module.exports = {
                 this.render();
                 break;
             default:
-        }
+        };
+        App.trigger('statusChanged');
     },
 
     openViewAfterSignIn: function(triggerEvent) {

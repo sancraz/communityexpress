@@ -6,7 +6,7 @@
                 <img class="tile_image" src="<%= url %>" >
                 <div class="shareButtons">
                     <div id="tileviewdetails_twitterbutton">
-                        <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
+                        <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(window.community.protocol + '//' + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
                             <div class="sprite_navbar navbutton_twitter"></div>
                         </a>
                     </div>
@@ -16,7 +16,7 @@
                         </a>
                     </div>
                     <div id="tileviewdetails_facebookbutton">
-                        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.community.protocol + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(window.community.protocol + '//' + window.community.host + '/' + friendlyURL + '?t='+ uuidtype + '&u=' + uuid) %>" target="_blank">
                             <div class="sprite_navbar navbutton_facebook"></div>
                         </a>
                     </div>

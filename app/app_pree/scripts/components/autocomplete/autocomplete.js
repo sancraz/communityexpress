@@ -221,7 +221,7 @@
             domainId: '#newId'
           });
           this.trigger('selected', newModel);
-          
+
         }
       };
 

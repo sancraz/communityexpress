@@ -77,7 +77,7 @@ $errorMessage = NULL;
 $appleTouchIcon60URL = NULL;
 
 $isPrivate = FALSE;
-$canCreateAnonymousUser = TRUE;
+$canCreateAnonymousUser = FALSE;
 
 
 $themeCSS = 'styles.css';

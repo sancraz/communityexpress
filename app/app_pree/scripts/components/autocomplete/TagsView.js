@@ -91,8 +91,9 @@ var TagsView = Mn.LayoutView.extend({
 	},
 
 	discardChanges: function() {
-		this.tagsCollection.reset();
-		this.updateFilters();
+		// this.tagsCollection.reset();
+		$.when(this.ui.collapsibleContent.collapse('toggle')).then(setTimeout(_.bind(this.destroy, this), 300));
+		// this.updateFilters();
 	},
 
 	updateFilters: function() {

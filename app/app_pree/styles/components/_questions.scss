@@ -22,6 +22,10 @@
         position: relative;
         top: 2px;
         height: 50px;
+
+        img {
+            height: 46px;
+        }
     }
 
     .pree_question_user_username {
@@ -104,7 +108,7 @@
     .pree_question_tags {
         list-style: none;
         padding: 0;
-        
+
         .pree_question_tags_item {
             float: left;
             width: auto;

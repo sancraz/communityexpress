@@ -25,6 +25,7 @@ module.exports = {
         this.showFilters();
         App.on('createNewQuestion:show', _.bind(this.showCreateNewQuestion, this));
         App.on('refreshFeed', _.bind(this.getQuestions, this));
+        App.on('statusChanged', _.bind(this.getQuestions, this));
     },
 
     showFilters: function() {
@@ -155,10 +156,12 @@ module.exports = {
     },
 
     getQuestions: function(params) {
+        loader.hide();
+        this.params = params || {};
         this.hideCreateNewQuestion();
         loader.show('questions');
-        params['UID'] = this.UID;
-        gateway.sendRequest('getPreeQuestions', params)
+        this.params['UID'] = this.user.UID;
+        gateway.sendRequest('getPreeQuestions', this.params)
         .then(_.bind(function(resp) {
             var model = new FeedModel(resp);
             this.showQuestions(model);
