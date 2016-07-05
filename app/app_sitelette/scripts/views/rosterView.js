@@ -6,6 +6,7 @@ var Vent = require('../Vent'), //
     loader = require('../loader'), //
     appCache = require('../appCache.js'),
     RosterBasketModel = require('../models/RosterBasketModel'), //
+    RosterBasketDerivedCollection = require('../models/RosterBasketDerivedCollection'),//
     CatalogBasketModel = require('../models/CatalogBasketModel'), //
     orderActions = require('../actions/orderActions'), //
     PageLayout = require('./components/pageLayout'), //
@@ -122,13 +123,16 @@ var RosterView = PageLayout.extend({
     },
 
     openEditPanel: function() {
+        /*
+          create the model for edit view
+          */
+        var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
 
-
-        this.openSubview('editRosterView', this.basket.catalogs, {
+        this.openSubview('editRosterView', editModel, {
             actions: {
                 removeItem: function(selected) {
                     _(selected).each(function(item) {
-                        this.basket.removeItem(item);
+                        editModel.removeItem(item);
                     }.bind(this));
                 }.bind(this)
             },
