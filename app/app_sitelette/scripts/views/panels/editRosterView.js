@@ -88,6 +88,7 @@ var EditRosterView = PanelView.extend({
         }.bind(this), function() {
             loader.showFlashMessage(h().getErrorMessage(e, 'error deleting'));
         });
+        
         this.shut();
 
     },
