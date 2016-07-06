@@ -19,6 +19,7 @@ var RosterOrderView = PageLayout.extend({
         options = options || {};
         this.sasl = options.sasl;
         this.basket = options.basket;
+        this.editModel=options.editModel;
         this.catalogOptions = this.sasl.attributes.services.catalog;
         this.user = options.user;
         this.country = this.sasl.get('country');
@@ -58,7 +59,8 @@ var RosterOrderView = PageLayout.extend({
             priceAddons: this.priceAddons,
             taxes: this.taxes,
             totalPriceWithTax: this.totalPriceWithTax,
-            basket:this.basket
+            basket:this.basket,
+            editModel:this.editModel
         });
 
         return tmpData;

@@ -10,32 +10,16 @@
                     <th>Item Name</th>
                     <th>Price</th>
                 </thead>
-                
-                 <% if(basket.hasCombo()){ %>
-                  <% _(basket.getComboCatalogs()).each(function (item) { %>
-                    <tr>
-                        <td><%= 1 %></td>
-                        <td><%= item.catalogDisplayText%></td>
-                        <td>$<%=item.price.toFixed(2) %></td>
-                    </tr> 
-                  <% }) %>  
-                  <% _(basket.getNonComboItems()).each(function (item) { %>
-                    <tr>
-                        <td><%= item.quantity %></td>
-                        <td><%= item.itemName %></td>
-                        <td>$<%= (item.quantity * item.price).toFixed(2) %></td>
-                    </tr>
-                  <% }) %> 
-                <% } else { %>
-                  <% _(basket.models).each(function (item) { %>
+
+
+                  <% editModel.each(function (item) { %>
                     <tr>
                         <td><%= item.get('quantity') %></td>
-                        <td><%= item.get('itemName') %></td>
-                        <td>$<%= (item.get('quantity') * item.get('price')).toFixed(2) %></td>
+                        <td><%= item.get('displayText')%></td>
+                        <td>$<%=item.get('price').toFixed(2) %></td>
                     </tr>
-                  <% }) %>                    
-                <% } %>
-                 
+                  <% }); %>
+
                 <tr>
                     <td></td>
                     <td>Subtotal</td>

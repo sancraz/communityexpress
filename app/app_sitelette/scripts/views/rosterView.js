@@ -104,12 +104,17 @@ var RosterView = PageLayout.extend({
 
 
     triggerOrder: function() {
+
+        var editModel= new RosterBasketDerivedCollection ([], {basket:this.basket});
+
+
         this.withLogIn(function() {
             Vent.trigger('viewChange', 'roster_order', {
                 id: this.sasl.getUrlKey(),
                 rosterId: this.rosterId,
                 backToCatalog: true, // /* This will always be true */
                 backToCatalogs: this.backToCatalogs,
+                editModel : editModel,
                 /*
                  * not used by order,
                  * but passed back to
