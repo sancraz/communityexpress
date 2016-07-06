@@ -32,7 +32,7 @@ var EditRosterView = PanelView.extend({
             'id' : 'cmntyex_edit_favorites_panel'
         });
 
-        this.addEvents(this.addedEvents); 
+        this.addEvents(this.addedEvents);
     },
 
     render : function(update) {
@@ -78,16 +78,18 @@ var EditRosterView = PanelView.extend({
     },
 
     removeSelected : function() {
+
         loader.show('deleting items');
         var selected = this.collection.where({
             selected : true
         });
         $.when(this.actions.removeItem(selected)).then(function() {
-            //this.toggleEditable(); /* why do we need this? AF */
-            loader.hide();
+             loader.hide();
         }.bind(this), function() {
             loader.showFlashMessage(h().getErrorMessage(e, 'error deleting'));
         });
+        this.shut();
+
     },
 
     _update : function() {
