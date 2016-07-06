@@ -45,6 +45,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		addAnswerBtn: '.addAnswerBtn',
 		collapsiblePredictionDetails: '#collapseOne',
 		collapsibleAnswerInfo: '#collapseTwo',
+		predictionDetails: '.prediction-details',
 		predictionArrow: '.prediction-arrow',
 		answerArrow: '.answer-arrow'
 	},
@@ -170,6 +171,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 				this.model.set('subType', index);
 			}
 		}, this));
+		$target.siblings('span').text() === 'Prediction' ? this.ui.predictionDetails.slideDown() : this.ui.predictionDetails.slideUp();
 	},
 
 	onIsAnonymousChanged: function(e) {

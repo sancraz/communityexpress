@@ -33,12 +33,12 @@
                     </li>
                     <li class="dropdown">
                         <% if (!user.getUID()) { %>
-                            <a href="#" class="signin-button">
+                            <a href="#" class="signin-button p-r-0">
                                 <span>Sign in</span>
                                 <img src="images/Sign_in.png" alt="">
                             </a>
                         <% } else { %>
-                            <a href="#" class="dropdown-toggle signedin" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" class="dropdown-toggle signedin p-r-0" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <span><%= user.userName %></span>
                                 <img src="images/Sign_out.png" alt="">
                             </a>

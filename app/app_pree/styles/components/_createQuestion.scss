@@ -5,14 +5,6 @@
     border-bottom-right-radius: 2px;
     border: 1px solid $input;
 
-    .p-r-0 {
-        padding-right: 0px;
-    }
-
-    .p-l-0 {
-        padding-left: 0px;
-    }
-
     .modal-header {
         height: 40px;
         background-color: $main;
@@ -88,6 +80,10 @@
 
     input[type=checkbox]:not(old):checked + span {
         background: url(images/checkbox_active.png) no-repeat 0;
+    }
+
+    .prediction-details {
+        display: none;
     }
 
     .panel-heading {
