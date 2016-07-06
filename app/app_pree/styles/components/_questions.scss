@@ -62,7 +62,7 @@
 
     .pree_question_text {
         color: $text;
-        font: 400 14px / 21px Ubuntu;
+        font: 700 14px / 21px Ubuntu;
         display: inline-block;
         margin-top: 15px;
         margin-bottom: 25px;
@@ -193,10 +193,9 @@
 
     .pree_question_answers {
         color: $text;
-        font: 14px / 21px Ubuntu;
+        font: 400 14px / 21px Ubuntu;
         display: block;
         float: left;
-        font-weight: 700;
     }
 
     .questionFooter {

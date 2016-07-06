@@ -17,7 +17,8 @@ module.exports = {
         var createQuestion = new CreateQuestionBtnView(),
             whoToFollow = new WhoToFollowView();
         this.rightLayoutView.showCreateQuestionBtn(createQuestion);
-        this.rightLayoutView.showWhoToFollow(whoToFollow);
+        // Right block hidden
+        // this.rightLayoutView.showWhoToFollow(whoToFollow);
         createQuestion.listenTo(createQuestion, 'createQuestion', _.bind(this.createQuestion, this));
         createQuestion.listenTo(createQuestion, 'signin', _.bind(this.signin, this))
     },
