@@ -8,7 +8,7 @@ var RosterBasketDerivedItem = require('../models/RosterBasketDerivedItem'); //
 var RosterBasketDerivedCollection = Backbone.Collection.extend({
 
   model : RosterBasketDerivedItem,
-
+  
   initialize : function( models, options) {
     var self=this;
     this.basket = options.basket; /* real roster model */

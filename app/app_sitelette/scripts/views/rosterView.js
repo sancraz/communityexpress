@@ -240,6 +240,10 @@ var RosterView = PageLayout.extend({
         }, {
             reverse: false
         });
+    },
+
+    modelChanged:function(){
+       this.updateBasket();
     }
 
 });
