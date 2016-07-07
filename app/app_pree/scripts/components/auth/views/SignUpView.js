@@ -25,6 +25,7 @@ var SignUpView = Mn.ItemView.extend({
     },
 
     submitForm: function(e) {
+        debugger;
         e.preventDefault();
         var data = this.getFormData();
 

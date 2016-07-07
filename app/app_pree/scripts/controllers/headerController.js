@@ -24,7 +24,8 @@ module.exports = {
         this.showInfoView();
         App.on('signinForm:show', _.bind(this.headerView.signin, this.headerView));
         this.headerView.listenTo(this.headerView, 'infoView:show', _.bind(this.showInfoView, this));
-        this.headerView.listenTo(Vent, 'login_success logout_success', this.changeStatus, this);
+        // commented due to FEED is hidden when user not logged in
+        // this.headerView.listenTo(Vent, 'login_success logout_success', this.changeStatus, this);
         this.headerView.listenTo(this.headerView, 'signin', _.bind(this.signin, this));
         this.headerView.listenTo(this.headerView, 'confirmSignout', _.bind(this.confirmSignout, this));
     },
@@ -61,11 +62,17 @@ module.exports = {
 
     signout: function() {
         loader.show('');
-        userController.logout(this.user.getUID()).then(function(){
+        userController.logout(this.user.getUID()).then(function() {
             loader.showFlashMessage( 'signed out' );
-        }, function(e){
+            // Navigate to new temporary landing with contact us form
+            this.navigateCotuctUs();
+        }.bind(this), function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });
+    },
+
+    navigateCotuctUs: function() {
+        App.router.navigate('#auth', { trigger: true });
     },
 
     changeStatus: function(loginMethod) {

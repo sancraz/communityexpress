@@ -2,6 +2,7 @@
 
 var App = require('../../app'),
     loader = require('../../loader'),
+    Vent = require('../../Vent'),
     sessionActions = require('../../actions/sessionActions'),
     ContactLayoutView = require('./views/ContactLayoutView'),
     SignInView = require('./views/SignInView'),
@@ -10,8 +11,12 @@ var App = require('../../app'),
 module.exports = {
 
     showLayout: function() {
+        App.regions.headerRegion.empty();
+        App.regions.leftRegion.empty();
+        App.regions.rightRegion.empty();
         this.contactLayoutView = new ContactLayoutView();
         App.regions.getRegion('centralRegion').show(this.contactLayoutView);
+        Vent.on('login_success', _.bind(this.navigateToFeed, this));
         this.contactLayoutView.listenTo(this.contactLayoutView, 'signin signup', _.bind(this.authenticate, this));
     },
 
@@ -35,10 +40,7 @@ module.exports = {
         loader.show('');
         sessionActions.startSession(this.popup.val().username, this.popup.val().password)
             .then(function(response) {
-                this.popup.$el.on('hidden.bs.modal', _.bind(function() {
-                    loader.showFlashMessage( 'successfully signed in as ' + response.username );
-                    App.router.navigate('/', { trigger: true });
-                }, this.popup));
+                loader.showFlashMessage( 'successfully signed in as ' + response.username );
                 this.popup.close();
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
@@ -49,5 +51,11 @@ module.exports = {
                 }
             }.bind(this));
         return false;
+    },
+
+    navigateToFeed: function() {
+        this.contactLayoutView.$el.on('hidden.bs.modal', _.bind(function() {
+            App.router.navigate('/', { trigger: true });
+        }, this));
     }
 };

@@ -14,12 +14,17 @@ var ContactLayoutView = Mn.LayoutView.extend({
 
     ui: {
         signin: '.signin-button',
-        signup: '.signup-button'
+        signup: '.signup-button',
+        phoneInput: 'input[name=phone]'
     },
 
     events: {
         'click @ui.signin': 'signin',
         'click @ui.signup': 'signup'
+    },
+
+    onShow: function() {
+        this.ui.phoneInput.mask('(000) 000-0000');
     },
 
     signin: function() {

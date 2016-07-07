@@ -1,3 +1,7 @@
+'use strict';
+
+var App = require('./app');
+
 var API = {
     dashboard: function() {
         var centralPartController = require('./controllers/centralPartController'),
