@@ -8,7 +8,7 @@
                 <thead>
                     <th>QTY</th>
                     <th>Item Name</th>
-                    <th>Price</th>
+                    <th style="text-align:right;">Price</th>
                 </thead>
 
 
@@ -16,24 +16,24 @@
                     <tr>
                         <td><%= item.get('quantity') %></td>
                         <td><%= item.get('displayText')%></td>
-                        <td>$<%=item.get('price').toFixed(2) %></td>
+                        <td style="text-align:right;">$<%=item.get('price').toFixed(2) %></td>
                     </tr>
                   <% }); %>
 
                 <tr>
                     <td></td>
                     <td>Subtotal</td>
-                    <td class="subtotal">$<%= basket.getTotalPrice() %></td>
+                    <td style="text-align:right;"class="subtotal">$<%= basket.getTotalPrice().toFixed(2) %></td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>Tax</td>
-                    <td>$<%= taxes %></td>
+                    <td style="text-align:right;">$<%= taxes %></td>
                 </tr>
                 <thead>
                     <th></th>
                     <th class="total_price">Total</th>
-                    <th class="total_price">$<%= totalPriceWithTax %></th>
+                    <th style="text-align:right;"class="total_price">$<%= totalPriceWithTax %></th>
                 </thead>
             </table>
         </div>
