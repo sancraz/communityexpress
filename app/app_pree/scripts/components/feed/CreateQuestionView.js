@@ -364,8 +364,6 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	onAddAnswer: function(e) {
-		e.preventDefault();
-		e.stopPropagation();
 	}
 
 });

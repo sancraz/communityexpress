@@ -8,6 +8,11 @@ var API = {
         centralPartController.showLayout();
         leftPartController.showLayout();
         rightPartController.showLayout();
+    },
+
+    authenticate: function() {
+        var authController = require('./components/auth/authController');
+        authController.showLayout();
     }
 };
 
@@ -16,7 +21,8 @@ var AppRouter = Mn.AppRouter.extend({
     controller: API,
 
     appRoutes: {
-        '': 'dashboard'
+        '': 'dashboard',
+        'auth': 'authenticate'
     }
 });
 
