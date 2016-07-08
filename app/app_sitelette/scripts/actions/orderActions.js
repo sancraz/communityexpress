@@ -25,8 +25,8 @@ module.exports = {
 
     getCreditInfo: function() {
         return gateway.sendRequest('getCreditCardInfo', {
-            UID: getUser().getUID(),
-            simulate: true
+            UID: getUser().getUID()
+            // simulate: true
         });
     },
 

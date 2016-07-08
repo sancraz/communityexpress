@@ -43,7 +43,7 @@
         <p class="order_wishes">How do you want to receive it?</p>
         <div class="ui-grid-a">
             <div class="ui-block-a">
-                <input type="radio" name="pickupSelected" id="delivery" value="false" <%= allowDelivery ? "disabled" : "" %>>
+                <input type="radio" name="pickupSelected" id="delivery" value="false" <%= !allowDelivery ? "disabled" : "" %>>
                 <label class="showHideInfo" for="delivery">Delivery</label>
             </div>
             <div class="ui-block-b">
@@ -51,7 +51,7 @@
                 <label class="showHideInfo" for="pickup">Pick Up</label>
             </div>
         </div>
-        <% if (!allowDelivery) { %>
+        <% if (allowDelivery) { %>
             <div data-role="collapsible" id="collapsible" data-inset="false">
                 <h3>Delivery Address</h3>
                 <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false" value="<%= prefillAddress.street %>" />
