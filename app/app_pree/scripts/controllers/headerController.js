@@ -1,6 +1,7 @@
 'use strict';
 
 var App = require('../app'),
+    AppLayoutView = require('../components/AppLayoutView'),
     Vent = require('../Vent'),
     loader = require('../loader'),
     h = require('../globalHelpers'),
@@ -16,6 +17,7 @@ var App = require('../app'),
 module.exports = {
 
     showLayout: function() {
+        App.regions = new AppLayoutView();
         this.user = sessionActions.getCurrentUser();
         this.headerView = new HeaderView({
             user: this.user

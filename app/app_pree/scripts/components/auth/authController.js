@@ -1,6 +1,7 @@
 'use strict';
 
 var App = require('../../app'),
+    AppLayoutView = require('../AppLayoutView'),
     loader = require('../../loader'),
     Vent = require('../../Vent'),
     sessionActions = require('../../actions/sessionActions'),
@@ -11,9 +12,7 @@ var App = require('../../app'),
 module.exports = {
 
     showLayout: function() {
-        App.regions.headerRegion.empty();
-        App.regions.leftRegion.empty();
-        App.regions.rightRegion.empty();
+        App.regions = new AppLayoutView();
         this.contactLayoutView = new ContactLayoutView();
         App.regions.getRegion('centralRegion').show(this.contactLayoutView);
         Vent.on('login_success', _.bind(this.navigateToFeed, this));
@@ -55,6 +54,7 @@ module.exports = {
 
     navigateToFeed: function() {
         this.contactLayoutView.$el.on('hidden.bs.modal', _.bind(function() {
+            // App.regions.destroy();
             App.router.navigate('/', { trigger: true });
         }, this));
     }
