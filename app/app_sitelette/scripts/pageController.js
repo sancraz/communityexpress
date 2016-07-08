@@ -472,7 +472,8 @@ module.exports = {
     },
     roster_order: function(options) {
         var sasl,
-            cardType,
+            cardTypes,
+            fundsource,
             rosterId = options.rosterId,
             backToCatalog = true, // options.backToCatalogs;
             backToRoster = true,
@@ -483,7 +484,8 @@ module.exports = {
                 sasl = ret;
                 return orderActions.getCreditInfo();
             }).then(function(ret) {
-                cardType = ret;
+                cardTypes = ret.acceptedCards;
+                fundsource = ret.fundsource;
                 var sa = sasl.get('serviceAccommodatorId'),
                     sl = sasl.get('serviceLocationId');
                 return orderActions.getPriceAddons(sa, sl);
@@ -494,7 +496,8 @@ module.exports = {
                 var basket = appCache.get(sasl.sa() + ':' + sasl.sl() + ':' + rosterId + ':rosterbasket');
                 return {
                     sasl: sasl,
-                    cardType: cardType,
+                    cardTypes: cardTypes,
+                    fundsource: fundsource,
                     priceAddons: ret,
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/roster',

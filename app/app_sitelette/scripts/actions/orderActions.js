@@ -19,8 +19,15 @@ module.exports = {
         });
     },
 
+    // getCreditInfo: function() {
+    //     return gateway.sendRequest('getCreditCardTypes');
+    // },
+
     getCreditInfo: function() {
-        return gateway.sendRequest('getCreditCardTypes');
+        return gateway.sendRequest('getCreditCardInfo', {
+            UID: getUser().getUID(),
+            simulate: true
+        });
     },
 
     getPriceAddons: function(sa, sl) {

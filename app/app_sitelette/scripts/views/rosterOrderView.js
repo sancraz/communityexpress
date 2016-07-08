@@ -15,7 +15,8 @@ var RosterOrderView = PageLayout.extend({
     name: 'roster_order',
 
     initialize: function(options) {
-        this.cardType = options.cardType;
+        this.cardTypes = options.cardTypes;
+        this.fundsource = options.fundsource;
         options = options || {};
         this.sasl = options.sasl;
         this.basket = options.basket;
@@ -35,15 +36,19 @@ var RosterOrderView = PageLayout.extend({
         this.getTotalPriceWithTax();
         this.on('show', this.onShow, this);
         this.navbarView=options.navbarView;
+        this.prefillAddress = this.getPrefillAddress() || {};
     },
 
     onShow: function(){
+        if (this.fundsource) {
+            this.prefillCreditInfo();
+        };
+        this.$('.save_credit_data').find('input').attr('checked', true).checkboxradio("refresh");
         this.addEvents({
             'click .back': 'triggerRosterView',
             'click .cancel_button': 'triggerRosterView',
             'click .submit_button': 'onSubmitClick',
-            'click .showPaymentInfo': 'showPaymentInfo',
-            'click .hidePaymentInfo': 'hidePaymentInfo'
+            'click .showHideInfo': 'showHideInfo'
         });
     },
 
@@ -51,7 +56,8 @@ var RosterOrderView = PageLayout.extend({
 
         var tmpData = _.extend({},  this.catalogOptions, {
             username: this.user.userName,
-            cardTypes: this.cardType,
+            cardTypes: this.cardTypes,
+            fundsource: this.fundsource,
             country: this.country,
             years: this.years,
             months: this.months,
@@ -60,10 +66,38 @@ var RosterOrderView = PageLayout.extend({
             taxes: this.taxes,
             totalPriceWithTax: this.totalPriceWithTax,
             basket:this.basket,
-            editModel:this.editModel
+            editModel:this.editModel,
+            prefillAddress: this.prefillAddress
         });
 
         return tmpData;
+    },
+
+    prefillCreditInfo: function() {
+        console.log(this.fundsource);
+        var month = this.fundsource.expirationMonth,
+            year = this.fundsource.expirationYear;
+        this.$('select.cardtype');
+        this.$('input[name=cardNumber]').val(this.fundsource.creditCardNumber);
+        this.$('select.month option[value=' + month + ']').attr('selected', true);
+        this.$('select.month').selectmenu('refresh', true);
+        this.$('select.year option[value=' + year + ']').attr('selected', true);
+        this.$('select.year').selectmenu('refresh', true);
+        this.$('input[name=cvv]').val(this.fundsource.cvv);
+        this.$('input[name=firstname]').val(this.fundsource.firstName);
+        this.$('input[name=lastname]').val(this.fundsource.lastName);
+    },
+
+    getPrefillAddress: function() {
+        var queryString = h().parseQueryString(window.location.search.replace('?', '')),
+            address = unescape(queryString.prefilladdress),
+            street = address.substring(0, address.indexOf(',')),
+            city = address.substring(address.indexOf(',') + 1);
+        return {
+            street: street,
+            city: city==='undefined'?'':city,
+            street2: ''
+        };
     },
 
     calculateTaxes: function() {
@@ -98,6 +132,7 @@ var RosterOrderView = PageLayout.extend({
         var cardType = this.$('select.cardtype').val();
         var country = this.$('select.country').val();
         var street = this.$('input[name=street]').val();
+        var street2 = this.$('input[name=street]').val();
         var city = this.$('input[name=city]').val();
         var state = this.$('select.state').val();
         var zip = this.$('input[name=zip]').val();
@@ -140,8 +175,9 @@ var RosterOrderView = PageLayout.extend({
             deliveryAddress: {
                 street: street,
                 city: city,
-                state: state,
-                zip: zip,
+                // state: state,
+                // zip: zip,
+                street2: street2
             },
             creditCard: {
                 cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
@@ -173,11 +209,28 @@ var RosterOrderView = PageLayout.extend({
     },
 
     // EXPAND/COLLAPSE CREDIT INFO WHEN CREDIT/CASH SELECTED
-    showPaymentInfo: function() {
-        $('#collapsible1').collapsible('expand');
+    showHideInfo: function(e) {
+        var $target = $(e.target),
+            $input = $($target.siblings('input'));
+        switch ($input.attr('id')) {
+            case 'delivery':
+                $('#collapsible').collapsible('expand');
+            break;
+            case 'pickup':
+                $('#collapsible').collapsible('collapse');
+            break;
+            case 'credit':
+                $('#collapsible1').collapsible('expand');
+            break;
+            case 'cash':
+                $('#collapsible1').collapsible('collapse');
+            break;
+            default:
+        };
+        // $('#collapsible1').collapsible('expand');
     },
 
-    hidePaymentInfo: function() {
+    hideInfo: function() {
         $('#collapsible1').collapsible('collapse');
     },
     // THE END

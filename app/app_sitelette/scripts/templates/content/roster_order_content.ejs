@@ -43,33 +43,31 @@
         <p class="order_wishes">How do you want to receive it?</p>
         <div class="ui-grid-a">
             <div class="ui-block-a">
-                <input type="radio" name="pickupSelected" id="delivery" value="false" <%= !allowDelivery ? "disabled" : "" %>>
-                <label for="delivery">Delivery</label>
+                <input type="radio" name="pickupSelected" id="delivery" value="false" <%= allowDelivery ? "disabled" : "" %>>
+                <label class="showHideInfo" for="delivery">Delivery</label>
             </div>
             <div class="ui-block-b">
                 <input type="radio" name="pickupSelected" id="pickup" value="true" checked="checked">
-                <label for="pickup">Pick Up</label>
+                <label class="showHideInfo" for="pickup">Pick Up</label>
             </div>
         </div>
-        <% if (allowDelivery) { %>
-            <div data-role="collapsible" data-inset="false">
+        <% if (!allowDelivery) { %>
+            <div data-role="collapsible" id="collapsible" data-inset="false">
                 <h3>Delivery Address</h3>
-                <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="zip" placeholder="Zip" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="email" placeholder="Email" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="phone" placeholder="Phone" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false" value="<%= prefillAddress.street %>" />
+                <input autocapitalize="off" type="text" name="street2" placeholder="Apt/Bldg" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false" value="<%= prefillAddress.city %>" />
             </div>
         <% } %>
         <p class="order_wishes">How do you want to pay?</p>
         <div class="ui-grid-a">
             <div class="ui-block-a showPaymentInfo">
                 <input type="radio" name="creditCardSelected" id="credit" value="true" <%= !paymentOnlineAccepted ? "disabled" : "" %>>
-                <label for="credit">Credit</label>
+                <label class="showHideInfo" for="credit">Credit</label>
             </div>
             <div class="ui-block-b hidePaymentInfo">
                 <input type="radio" name="creditCardSelected" id="cash" value="false" checked="checked">
-                <label for="cash">Cash</label>
+                <label class="showHideInfo" for="cash">Cash</label>
             </div>
         </div>
         <% if (paymentOnlineAccepted) { %>
@@ -84,7 +82,7 @@
                 <select name="select-choice-1" class="cardtype"  id="select-choice-1">
                     <option>Card Type</option>
                     <% _(cardTypes).each(function (cardType) { %>
-                        <option value="<%= cardType.enumText %>"><%= cardType.displayText %></option>
+                        <option value="<%= cardType.enumText %>"><%= cardType %></option>
                      <% }) %>
                 </select>
                 <fieldset class="expiration_date" data-role="controlgroup" data-type="horizontal">

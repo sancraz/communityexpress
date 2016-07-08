@@ -37,6 +37,7 @@ _.extend(PanelView.prototype, Backbone.View.prototype, {
         'panelclose':'_onClose',
         'panelopen':'_onOpen',
         'click .close_button': 'shut',
+        'click .cmntyex-button-cancel': 'shut'
     },
 
     addEvents: function(eventObj) {

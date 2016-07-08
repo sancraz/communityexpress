@@ -81,7 +81,8 @@ module.exports = {
             getCatalogs: ['GET', '/retail/retrieveCatalogs'],
             getRoster: ['GET', '/retail/retrieveRoster'],
             createUserOrder: ['POST', '/retail/createUserOrderClient'],
-            getCreditCardTypes: ['GET', '/retail/getCreditCardTypes'],
+            // getCreditCardTypes: ['GET', '/retail/getCreditCardTypes'],
+            getCreditCardInfo: ['GET', '/retail/getCreditCardInfo'],
             getPriceAddons: ['GET', '/retail/retrieveRetailPriceAddon'],
 
             retrieveContestsForClient: ['GET', '/contests/retrieveContestsForClient'],
