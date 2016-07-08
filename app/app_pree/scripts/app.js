@@ -42,7 +42,7 @@ App.on('start',function() {
             pushState: true,
             silent: true
         });
-        App.router.navigate('#auth', {trigger: true});
+        //App.router.navigate('#auth', {trigger: true});
     }
 });
 
