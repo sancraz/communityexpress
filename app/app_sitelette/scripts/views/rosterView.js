@@ -153,6 +153,10 @@ var RosterView = PageLayout.extend({
                  * add the ul
                  */
                 var $ul = $('<ul></ul>');
+                /* sort the catalogs by index */
+                this.roster.catalogs=_.sortBy(this.roster.catalogs,function(catalog){
+                      return catalog.indexInRoster;
+                });
                 _(this.roster.catalogs).each(
                     function(catalog, i) {
                         var catalogType = catalog.catalogType.enumText;
