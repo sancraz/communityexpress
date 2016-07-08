@@ -40,6 +40,7 @@ var RosterOrderView = PageLayout.extend({
     },
 
     onShow: function(){
+        this.$('select').selectmenu('refresh', true);
         if (this.fundsource) {
             this.prefillCreditInfo();
         };
@@ -74,10 +75,11 @@ var RosterOrderView = PageLayout.extend({
     },
 
     prefillCreditInfo: function() {
-        console.log(this.fundsource);
         var month = this.fundsource.expirationMonth,
-            year = this.fundsource.expirationYear;
-        this.$('select.cardtype');
+            year = this.fundsource.expirationYear,
+            cardtype = this.fundsource.cardType;
+        this.$('select.cardtype option[value=' + cardtype + ']').attr('selected', true);
+        this.$('select.cardtype').selectmenu('refresh', true);
         this.$('input[name=cardNumber]').val(this.fundsource.creditCardNumber);
         this.$('select.month option[value=' + month + ']').attr('selected', true);
         this.$('select.month').selectmenu('refresh', true);
