@@ -298,7 +298,7 @@ module.exports = {
                             catalogDisplayText: catalogDisplayText,
                             catalogType: catalogType,
                             price:catalog.price,
-                            quantity:1// can only add one at a time  
+                            quantity:1// can only add one at a time
                         };
                         catalogClone.setCatalogDetails(catalogDetails);
                         //var catalogClone = $.extend({}, catalog);
@@ -476,7 +476,8 @@ module.exports = {
             rosterId = options.rosterId,
             backToCatalog = true, // options.backToCatalogs;
             backToRoster = true,
-            backToCatalogs = options.backToCatalogs;
+            backToCatalogs = options.backToCatalogs,
+            editModel=options.editModel;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -498,6 +499,7 @@ module.exports = {
                     user: sessionActions.getCurrentUser(),
                     url: getUrl(sasl) + '/roster',
                     basket: basket,
+                    editModel:editModel,
                     rosterId: rosterId,
                     backToRoster: true,
                     backToCatalog: backToCatalog,
