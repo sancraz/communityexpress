@@ -16,7 +16,7 @@
                     <tr>
                         <td><%= item.get('quantity') %></td>
                         <td><%= item.get('displayText')%></td>
-                        <td style="text-align:right;">$<%=item.get('price').toFixed(2) %></td>
+                        <td style="text-align:right;">$<%= (item.get('quantity') * item.get('price')).toFixed(2) %></td>
                     </tr>
                   <% }); %>
 
