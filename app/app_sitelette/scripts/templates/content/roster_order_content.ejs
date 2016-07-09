@@ -54,9 +54,9 @@
         <% if (allowDelivery) { %>
             <div data-role="collapsible" id="collapsible" data-inset="false">
                 <h3>Delivery Address</h3>
-                <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false" value="<%= prefillAddress.street %>" />
-                <input autocapitalize="off" type="text" name="street2" placeholder="Apt/Bldg" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false" value="<%= prefillAddress.city %>" />
+                <input autocapitalize="off" type="text" name="delivery_street" placeholder="Street" data-corners="false" value="<%= prefillAddress.delivery_street %>" />
+                <input autocapitalize="off" type="text" name="delivery_street2" placeholder="Apt/Bldg" data-corners="false"/>
+                <input autocapitalize="off" type="text" name="delivery_city" placeholder="City" data-corners="false" value="<%= prefillAddress.delivery_city %>" />
             </div>
         <% } %>
         <p class="order_wishes">How do you want to pay?</p>

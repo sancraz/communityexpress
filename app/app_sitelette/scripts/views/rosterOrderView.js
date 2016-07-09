@@ -134,7 +134,7 @@ var RosterOrderView = PageLayout.extend({
         var cardType = this.$('select.cardtype').val();
         var country = this.$('select.country').val();
         var street = this.$('input[name=street]').val();
-        var street2 = this.$('input[name=street]').val();
+        var street2 = this.$('input[name=street2]').val();
         var city = this.$('input[name=city]').val();
         var state = this.$('select.state').val();
         var zip = this.$('input[name=zip]').val();
@@ -151,6 +151,10 @@ var RosterOrderView = PageLayout.extend({
         var pickup = this.$('#pickup')[0].checked;
 
         var items = this.basket.getItems(this.sasl);
+        var delivery_street=this.$('input[name=delivery_street]').val();
+        var delivery_street2=this.$('input[name=delivery_street2').val();
+        var delivery_city=this.$('input[name=delivery_city]').val();
+
 
         this.onSubmit({
             serviceAccommodatorId: this.sasl.sa(),
@@ -175,11 +179,11 @@ var RosterOrderView = PageLayout.extend({
                 city: city
             },
             deliveryAddress: {
-                street: street,
-                city: city,
+                street: delivery_street,
+                city: delivery_city,
                 // state: state,
                 // zip: zip,
-                street2: street2
+                street2: delivery_street2
             },
             creditCard: {
                 cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
