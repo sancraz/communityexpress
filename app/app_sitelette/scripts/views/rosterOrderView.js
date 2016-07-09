@@ -152,7 +152,7 @@ var RosterOrderView = PageLayout.extend({
 
         var items = this.basket.getItems(this.sasl);
         var delivery_street=this.$('input[name=delivery_street]').val();
-        var delivery_street2=this.$('input[name=delivery_street2').val();
+        var delivery_street2=this.$('input[name=delivery_street2]').val();
         var delivery_city=this.$('input[name=delivery_city]').val();
 
 
