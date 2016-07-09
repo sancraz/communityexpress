@@ -478,7 +478,8 @@ module.exports = {
             backToCatalog = true, // options.backToCatalogs;
             backToRoster = true,
             backToCatalogs = options.backToCatalogs,
-            editModel=options.editModel;
+            editModel=options.editModel,
+            launchedViaURL=options.launchedViaURL;
         return saslActions.getSasl(options.id)
             .then(function(ret) {
                 sasl = ret;
@@ -506,7 +507,8 @@ module.exports = {
                     rosterId: rosterId,
                     backToRoster: true,
                     backToCatalog: backToCatalog,
-                    backToCatalogs: backToCatalogs
+                    backToCatalogs: backToCatalogs,
+                    launchedViaURL: launchedViaURL
                 };
             });
     },
