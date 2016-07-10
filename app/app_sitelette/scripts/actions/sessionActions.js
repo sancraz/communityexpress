@@ -112,13 +112,14 @@ module.exports = {
     },
 
     registerNewMember: function (sa, sl, username, password, email) {
-        return gateway.sendRequest('registerNewMember', {
+        var payload ={
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             username: username,
             password: password,
             email: email
-        }).then(onLoginSuccess);
+        };
+        return gateway.sendRequest('registerNewMember', {payload:payload}).then(onLoginSuccess);
     },
 
     createAnonymousUser: function() {
@@ -131,7 +132,7 @@ module.exports = {
 
                 /*
                 * save it in localstorage
-                * 
+                *
                 */
                 console.log(" saving to local storage cmxUID:"
                 + userRegistrationDetails.uid);

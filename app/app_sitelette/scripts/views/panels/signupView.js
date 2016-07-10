@@ -37,9 +37,11 @@ var SignupView = PopupView.extend({
         var data = this.getFormData();
 
         loader.show();
+
+
         sessionActions.registerNewMember(
-            this.model.sa(),
-            this.model.sl(),
+            window.community.serviceAccommodatorId,
+            window.community.serviceLocationId,
             data.username,
             data.password,
             data.email,
