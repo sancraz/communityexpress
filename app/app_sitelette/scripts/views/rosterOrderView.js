@@ -142,7 +142,7 @@ var RosterOrderView = PageLayout.extend({
         var phone = this.$('input[name=phone]').val();
         //var firstName = this.$('input[name=firstname]').val();
         //var lastName = this.$('input[name=lastname]').val();
-        v//ar zip = this.$('input[name=zip]').val();
+        //var zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
         var expirationMonth = parseInt(this.$('select.month').val());
         var expirationYear = parseInt(this.$('select.year').val());
@@ -161,7 +161,7 @@ var RosterOrderView = PageLayout.extend({
             serviceLocationId: this.sasl.sl(),
             deliveryEmail: email,
             deliveryPhone: phone,
-            deliveryContactName: firstName,
+            //deliveryContactName: firstName,
             pickupSelected: pickup,
             deliverySelected: !pickup,
             cashSelected: !creditCard,
