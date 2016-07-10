@@ -119,9 +119,10 @@ var RosterBasketModel = Backbone.Model.extend({
   },
   getItems: function(sasl) {
     var orderItems = [];
-
+    var intraOrderAssociationIndex=0;
 
     this.catalogs.each(function(catalog, tt, ee) {
+      intraOrderAssociationIndex++;
       if (typeof catalog.quantity === 'undefined') {
         /* COMBO orders, just get the catalog price */
         //totalPrice=totalPrice+(catalog.get('price')*catalog.get('quantity')) ;
@@ -137,14 +138,15 @@ var RosterBasketModel = Backbone.Model.extend({
               groupId: groupId,
               catalogId: catalogId,
               itemVersion: item.itemVersion,
-              quantity: catalog.get('quantity') //item.quantity,
+              quantity: catalog.get('quantity'), //item.quantity,
+              intraOrderAssociationTag:catalogId+intraOrderAssociationIndex
             };
             orderItems.push(orderItem);
             //console.log('orderItems : '+_(orderItems).size());
           });
         });
       } else {
-        console.log("From " + catalog.catalogUUID + ", type:" + catalog.catalogType);
+        console.log("From " + catalog.catalogId + ", type:" + catalog.catalogType);
         /* A la carte (ITEMZIED) catalog items. NOTE: model = item */
         _(catalog.models).each(function(item, index, list) {
           var orderItem = {
@@ -155,7 +157,8 @@ var RosterBasketModel = Backbone.Model.extend({
             groupId: item.get('groupId'),
             catalogId: item.get('catalogId'),
             itemVersion: item.get('itemVersion'),
-            quantity: item.get('quantity')
+            quantity: item.get('quantity'),
+            intraOrderAssociationTag:item.get('catalogId')+intraOrderAssociationIndex
           };
           orderItems.push(orderItem);
           //console.log('orderItems : '+_(orderItems).size());
