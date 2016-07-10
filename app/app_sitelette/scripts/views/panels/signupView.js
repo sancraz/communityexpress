@@ -42,7 +42,7 @@ var SignupView = PopupView.extend({
         sessionActions.registerNewMember(
             window.community.serviceAccommodatorId,
             window.community.serviceLocationId,
-            data.username,
+            //data.username,
             data.password,
             data.email,
             data.password_confirmation)

@@ -131,18 +131,18 @@ var RosterOrderView = PageLayout.extend({
             this.saveCreditCardForFutureReference = false;
         };
         e.preventDefault();
-        var cardType = this.$('select.cardtype').val();
-        var country = this.$('select.country').val();
-        var street = this.$('input[name=street]').val();
-        var street2 = this.$('input[name=street2]').val();
-        var city = this.$('input[name=city]').val();
-        var state = this.$('select.state').val();
-        var zip = this.$('input[name=zip]').val();
+        //var cardType = this.$('select.cardtype').val();
+        //var country = this.$('select.country').val();
+        //var street = this.$('input[name=street]').val();
+        //var street2 = this.$('input[name=street2]').val();
+        //var city = this.$('input[name=city]').val();
+        //var state = this.$('select.state').val();
+        //var zip = this.$('input[name=zip]').val();
         var email = this.$('input[name=email]').val();
         var phone = this.$('input[name=phone]').val();
-        var firstName = this.$('input[name=firstname]').val();
-        var lastName = this.$('input[name=lastname]').val();
-        var zip = this.$('input[name=zip]').val();
+        //var firstName = this.$('input[name=firstname]').val();
+        //var lastName = this.$('input[name=lastname]').val();
+        v//ar zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
         var expirationMonth = parseInt(this.$('select.month').val());
         var expirationYear = parseInt(this.$('select.year').val());
@@ -171,6 +171,7 @@ var RosterOrderView = PageLayout.extend({
             totalAmount: this.totalPriceWithTax,
             currencyCode: this.priceAddons.currencyCode,
             saveCreditCardForFutureReference: this.saveCreditCardForFutureReference,
+            /*
             billingAddress: {
                 zip: zip,
                 street: street,
@@ -178,6 +179,7 @@ var RosterOrderView = PageLayout.extend({
                 country: country,
                 city: city
             },
+            */
             deliveryAddress: {
                 street: delivery_street,
                 city: delivery_city,
@@ -186,9 +188,9 @@ var RosterOrderView = PageLayout.extend({
                 street2: delivery_street2
             },
             creditCard: {
-                cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
-                firstName: firstName,
-                lastName: lastName,
+                //cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
+                //firstName: firstName,
+                //lastName: lastName,
                 cardNumber: cardNumber,
                 expirationMonth: expirationMonth,
                 expirationYear: expirationYear,

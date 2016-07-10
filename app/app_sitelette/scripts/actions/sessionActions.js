@@ -115,7 +115,7 @@ module.exports = {
         var payload ={
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
-            username: username,
+            //username: username,
             password: password,
             email: email
         };
