@@ -2,11 +2,12 @@
     <div class="sprite_navbar navbutton_back back"></div>
     <div data-role="content" class="content">
         <div  class="ui-grid-c cmntyex-basket">
-        <div style="text-align: center;"><%=basket.catalogDisplayText%></div>
-            <div style="text-align: center;  <% if(! basket.hasCombo()) { %> visibility:none;<% } %> " id="catalog_combo_count_div">
+        <div style="padding-top:20px; text-align: center;"><%=basket.catalogDisplayText%></div>
+           <!--
+            <div style="padding-top:10px;text-align: center;  <% if(! basket.hasCombo()) { %> visibility:none;<% } %> " id="catalog_combo_count_div">
                 Combo: <span class="num-of-combo-items"><%= basket.getComboCount() %></span> : $<span class="combo-total-price"><%= basket.getComboPrice() %></span>
             </div>
-
+          -->
             <div class="ui-block-a">
                 <div class="edit_button sprite_navbar sub_edit"></div>
             </div>
