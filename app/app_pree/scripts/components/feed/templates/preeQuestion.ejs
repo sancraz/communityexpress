@@ -1,18 +1,48 @@
 <div class="pree_question">
-    <header class="questionHeader">
-        <div class="pree_question_user">
+    <ul class="questionHeader">
+        <li class="pree_question_user">
             <div class="pree_question_user_avatar">
                 <img src="images/question_user.png" alt="">
             </div>
             <div class="pree_question_user_username">username</div>
-        </div>
-        <div class="pree_question_title">
-            <div class="pree_question_title_date">
-                &bull; 1 week ago
+        </li>
+        <li class="pree_question_title">
+            <div class="pree_question_title_name">
+                <p><%= pollType.displayText.toUpperCase() %></p>
             </div>
-            <div class="pree_question_title_name"><%= pollType.displayText.toUpperCase() %></div>
-        </div>
-    </header>
+            <div class="pree_question_title_date">
+                <p>&bull; <%= activationDate %></p>
+            </div>
+        </li>
+        <li class="dropdown pree_categories_dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Topics <span><%= categories.length %></span></a>
+            <ul class="dropdown-menu">
+                <% _(categories).each(function(category) { %>
+                  <li class="pree_question_categories_item">
+                       <a href=""><%= category.displayText %></a>
+                   </li>
+                <% }) %>
+            </ul>
+        </li>
+        <li class="dropdown pree_tags_dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                Tags <span><%= tags.length %></span>
+            </a>
+            <ul class="dropdown-menu">
+                <% if (tags.length !== 0) { %>
+                    <% _(tags).each(function(tag) { %>
+                        <li class="pree_question_tags_item">
+                            <div>
+                                <a href="">#<%= tag.displayText %></a>
+                            </div>
+                        </li>
+                    <% }) %>
+                <% } else { %>
+                    <li>no tags</li>
+                <% } %>
+            </ul>
+        </li>
+    </ul>
     <section class="questionBody">
         <div class="pree_question_img">
             <img src="<%= img_url %>" alt="" />
@@ -53,7 +83,7 @@
         </div>
     </div>
     <footer class="questionFooter">
-        <div class="row tagsAndCategories">
+        <!-- <div class="row tagsAndCategories">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <ul class="pree_question_categories" style="display:inline-block; margin-bottom:10px">
                     <% _(categories).each(function(category) { %>
@@ -74,7 +104,7 @@
                     </ul>
                 </div>
             <% } %>
-        </div>
+        </div> -->
         <div class="pree_question_likes_button">
             <div class="pree_question_likes_icon">
                 <i class="fa fa-heart-o" aria-hidden="true"></i>

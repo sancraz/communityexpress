@@ -66,16 +66,17 @@ module.exports = {
         loader.show('');
         userController.logout(this.user.getUID()).then(function() {
             loader.showFlashMessage( 'signed out' );
+            App.trigger('viewChange', 'auth');
             // Navigate to new temporary landing with contact us form
-            this.navigateCotuctUs();
+            // this.navigateCotuctUs();
         }.bind(this), function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });
     },
 
-    navigateCotuctUs: function() {
-        App.router.navigate('#auth', { trigger: true });
-    },
+    // navigateCotuctUs: function() {
+    //     App.router.navigate('#auth', { trigger: true });
+    // },
 
     changeStatus: function(loginMethod) {
         switch (loginMethod) {

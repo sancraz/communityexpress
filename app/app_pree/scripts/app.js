@@ -2,47 +2,33 @@
 
 var Router = require('./router'),
     sessionActions = require('./actions/sessionActions'),
+    userController = require('./controllers/userController'),
+    pageController = require('./pageController'),
     HeaderView = require('./components/header/HeaderView');
 
 var App = new Mn.Application();
 
-App.on('before:start', function() {
+App.goToPage = function(viewName) {
+    if (viewName === 'feed') {
+        viewName = userController.hasCurrentUser() ? 'feed' : 'auth';
+    };
+    pageController[viewName]();
+};
 
-    // var AppLayoutView = Mn.LayoutView.extend({
-    //
-    //     template: require('ejs!./templates/appLayout.ejs'),
-    //
-    //     el: '#app-container',
-    //
-    //     regions: {
-    //         headerRegion: '#header-region',
-    //         leftRegion: '#left-region',
-    //         centralRegion: '#central-region',
-    //         rightRegion: '#right-region'
-    //     },
-    //
-    //     initialize: function() {
-    //         this.render();
-    //     }
-    // });
-    //
-    // App.regions = new AppLayoutView();
-});
+App.on('viewChange', App.goToPage);
 
 App.on('start',function() {
+    
     this.params = {};
-    App.router = new Router();
+
+    Backbone.history.start({pushState: true});
 
     if (localStorage.cmxUID) {
         sessionActions.getSessionFromLocalStorage().then(function () {
-            Backbone.history.start({pushState: true});
+            App.trigger('viewChange','feed');
         });
     } else {
-        Backbone.history.start({
-            pushState: true,
-            silent: true
-        });
-        //App.router.navigate('#auth', {trigger: true});
+        App.trigger('viewChange','auth');
     }
 });
 

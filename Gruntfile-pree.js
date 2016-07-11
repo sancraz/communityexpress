@@ -123,6 +123,14 @@ module.exports = function (grunt) {
           { src: './dist/**' }
         ]
       }
+    },
+    cacheBust: {
+        taskName: {
+            options: {
+                assets: ['<%= yeoman.dist %>/']
+            },
+            src: ['index.php']
+        }
     }
   });
   grunt.registerTask('default', function() {
@@ -132,7 +140,8 @@ module.exports = function (grunt) {
       'copy',
       'uglify',
       'cssmin',
-      'compress'
+      'compress',
+      'cacheBust'
     ]);
   });
 };
