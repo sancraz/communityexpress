@@ -96,9 +96,9 @@ var RosterOrderView = PageLayout.extend({
             street = address.substring(0, address.indexOf(',')),
             city = address.substring(address.indexOf(',') + 1);
         return {
-            street: street,
-            city: city==='undefined'?'':city,
-            street2: ''
+            deliveryStreet: street,
+            deliveryCity: city==='undefined'?'':city,
+            deliveryStreet2: ''
         };
     },
 
@@ -200,6 +200,8 @@ var RosterOrderView = PageLayout.extend({
     },
 
     onSubmit: function (options) {
+        debugger;
+        return;
         loader.show('placing your order');
         return orderActions.placeOrder(
             this.sasl.sa(),
