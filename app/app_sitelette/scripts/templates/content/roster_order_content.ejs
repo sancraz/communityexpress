@@ -54,8 +54,10 @@
         <% if (allowDelivery) { %>
             <div data-role="collapsible" id="collapsible" data-inset="false" data-collapsed="false">
                 <h3>Delivery Address</h3>
-                <input autocapitalize="off" type="text" name="delivery_street" placeholder="Street" data-corners="false" value="<%= prefillAddress.deliveryStreet %>" />
-                <input autocapitalize="off" type="text" name="deliveryStreet2" placeholder="Apt/Bldg" data-corners="false"/>
+                <fieldset class="delivery_inputs" data-type="horizontal">
+                    <input style="display: inline-block;" autocapitalize="off" type="text" name="delivery_street" placeholder="Street" data-corners="false" value="<%= prefillAddress.deliveryStreet %>" />
+                    <input style="display: inline-block;" autocapitalize="off" type="text" name="deliveryStreet2" placeholder="Apt/Bldg" data-corners="false"/>
+                </fieldset>
                 <input autocapitalize="off" type="text" name="delivery_city" placeholder="City" data-corners="false" value="<%= prefillAddress.deliveryCity %>" />
             </div>
         <% } %>
@@ -78,8 +80,10 @@
                     <option><%= country %></option>
                 </select>
                 -->
-                <input autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
-                <input autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
+                <fieldset class="name_inputs" data-type="horizontal">
+                    <input autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
+                    <input autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
+                </fieldset>
 
                 <input autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
                <!--

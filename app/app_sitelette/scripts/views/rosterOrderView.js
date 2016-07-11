@@ -200,8 +200,6 @@ var RosterOrderView = PageLayout.extend({
     },
 
     onSubmit: function (options) {
-        debugger;
-        return;
         loader.show('placing your order');
         return orderActions.placeOrder(
             this.sasl.sa(),

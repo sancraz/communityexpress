@@ -1290,3 +1290,9 @@ a.jquery-checkbox {
 .place_order div {
 	white-space: normal;
 }
+
+.delivery_inputs div,
+.name_inputs div {
+	display: inline-block;
+	width: 48%;
+}
