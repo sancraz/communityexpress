@@ -140,8 +140,8 @@ var RosterOrderView = PageLayout.extend({
         //var zip = this.$('input[name=zip]').val();
         var email = this.$('input[name=email]').val();
         var phone = this.$('input[name=phone]').val();
-        //var firstName = this.$('input[name=firstname]').val();
-        //var lastName = this.$('input[name=lastname]').val();
+        var firstName = this.$('input[name=firstname]').val();
+        var lastName = this.$('input[name=lastname]').val();
         //var zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
         var expirationMonth = parseInt(this.$('select.month').val());
@@ -189,8 +189,8 @@ var RosterOrderView = PageLayout.extend({
             },
             creditCard: {
                 //cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
-                //firstName: firstName,
-                //lastName: lastName,
+                firstName: firstName,
+                lastName: lastName,
                 cardNumber: cardNumber,
                 expirationMonth: expirationMonth,
                 expirationYear: expirationYear,
