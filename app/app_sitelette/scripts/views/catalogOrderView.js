@@ -170,7 +170,7 @@ var CatalogOrderView = PageLayout.extend({
             loader.showFlashMessage('order successful');
             setTimeout(function () {
                 this.triggerCatalogView();
-            }.bind(this), 3000);
+            }.bind(this), 20000);
         }.bind(this), function () {
             loader.showFlashMessage('error placing your order');
         });

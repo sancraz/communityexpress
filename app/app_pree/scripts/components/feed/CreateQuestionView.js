@@ -68,6 +68,13 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		'click @ui.addAnswerBtn': 'onAddAnswer'
 	},
 
+	initialize: function() {
+		var date = new Date();
+		// temporary set dates for FACT and OPINION
+		this.model.set('activationDate', this.moment(date).format('MM/DD/YYYY h:mm:ss'));
+		this.model.set('expirationDate', this.moment(date).format('MM/DD/YYYY h:mm:ss'));
+	},
+
 	serializeData: function() {
 		//TODO moment
 		var activationDate = '',
@@ -238,13 +245,15 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onQuestionPost: function() {
 		console.log('on post question');
 		this.checkDatepickersDate();
-		if (this.model.isValid()) {
-			// post model
-			this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
-		} else {
-			//on error
-			this.onValidationError(this.model.validationError);
-		}
+		debugger;
+		this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
+		// if (this.model.isValid()) {
+		// 	// post model
+		// 	this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
+		// } else {
+		// 	//on error
+		// 	this.onValidationError(this.model.validationError);
+		// }
 	},
 
 	onAddAtributionUrl: function(){

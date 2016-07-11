@@ -210,7 +210,7 @@ var RosterOrderView = PageLayout.extend({
             loader.showFlashMessage('order successful');
             setTimeout(function () {
                 this.triggerRosterView( );
-            }.bind(this), 9000);
+            }.bind(this), 20000);
         }.bind(this), function () {
             loader.showFlashMessage('error placing your order');
         });
