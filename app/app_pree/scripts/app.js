@@ -18,8 +18,8 @@ App.goToPage = function(viewName) {
 App.on('viewChange', App.goToPage);
 
 App.on('start',function() {
-    
-    this.params = {};
+
+    this.params = window.community;
 
     Backbone.history.start({pushState: true});
 

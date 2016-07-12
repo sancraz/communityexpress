@@ -181,6 +181,7 @@ module.exports = {
             el: $('.pree_feed_questions'),
             collection: model.questionCollection
         });
+        this.feedView = feedView;
         feedView.listenTo(feedView, 'answerQuestion', _.bind(this.onAnswerQuestion, this));
         feedView.listenTo(feedView, 'checkIfUserLogged', _.bind(this.onCheckIfUserLogged, this));
         feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
@@ -192,14 +193,14 @@ module.exports = {
         callback(logged);
     },
 
-    onAnswerQuestion: function(choiceId, uuid) {
+    onAnswerQuestion: function(choiceId, uuid, view) {
         console.log(choiceId, uuid);
         gateway.sendRequest('answerQuestion', {
             UID: this.UID,
             uuid: uuid,
             choice: choiceId
         }).then(_.bind(function(resp) {
-
+            view.reinitialize(resp);
         }, this), function(e) {
 
         });

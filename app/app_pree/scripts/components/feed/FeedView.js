@@ -36,7 +36,7 @@ var feedView = Mn.CollectionView.extend({
     },
 
     onAnswerQuestion: function(view, choiceId, uuid) {
-        this.trigger('answerQuestion', choiceId, uuid);
+        this.trigger('answerQuestion', choiceId, uuid, view);
     },
 
     onCheckIfUserLogged: function(view, callback) {
@@ -45,6 +45,10 @@ var feedView = Mn.CollectionView.extend({
 
     openSharePopup: function(view, questionModel) {
         this.trigger('sharePopup:show', questionModel);
+    },
+
+    rerenderChild: function(model) {
+
     }
 
 });

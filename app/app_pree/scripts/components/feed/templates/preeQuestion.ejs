@@ -19,7 +19,9 @@
             <ul class="dropdown-menu">
                 <% _(categories).each(function(category) { %>
                   <li class="pree_question_categories_item">
-                       <a href=""><%= category.displayText %></a>
+                      <div>
+                          <a href=""><%= category.displayText %></a>
+                      </div>
                    </li>
                 <% }) %>
             </ul>
@@ -52,19 +54,28 @@
             <div class="pree_question_answer pree_question_answer_a answer">
                 <input type="radio" name="<%= choice.contestUUID %>" data-id="<%= choice.choiceId %>"> <span class="ansLetter"><%= choice.choiceIndex %>:</span><%= choice.displayText %>
             </div>
-
         <% }) %>
     </section>
     <div class="pree_question_detailed collapse">
         <div class="pree_question_answer">
             <header class="answerHeader">
-            <span class="thanksText">Thank you! You’ve been awarded 100 points!</span>
-            <span class="score">Your new score is 1035 points</span>
+            <span class="thanksText">Thank you! <% if (points && points !== 0) { %>You’ve been awarded <%= points %> points!</span>
+            <span class="score">Your new score is 1035 points</span><% } %>
             </header>
             <section class="answerBody">
                 <p class="resultsText">Results:</p>
-                <span class="answerResultLetter">A: Agree</span>
-                <span class="answerResultLetter">B: Disagree</span>
+                <% _.each(choices, function(choice){ %>
+                    <div class="progress">
+                        <div class="progress-bar-<%= choice.isCorrect ? 'success' : 'warning' %> answerResultLetter"
+                            role="progressbar"
+                            aria-valuenow="<%= choice.entryCountForThisChoice*100/totalAnswers %>"
+                            aria-valuemin="0" aria-valuemax="100"
+                            style="width:<%= choice.entryCountForThisChoice*100/totalAnswers %>%">
+                            <span class="ansLetter"><%= choice.choiceIndex %>: </span>
+                            <%= choice.displayText %> - <%= choice.entryCountForThisChoice %> answers <%= (choice.entryCountForThisChoice*100/totalAnswers).toFixed(0) %>%
+                        </div>
+                    </div>
+                <% }) %>
             </section>
         </div>
         <div class="pree_question_answerInfo">

@@ -54,9 +54,7 @@ module.exports = {
 
     navigateToFeed: function() {
         this.contactLayoutView.$el.on('hidden.bs.modal', _.bind(function() {
-            // App.regions.destroy();
             App.trigger('viewChange', 'feed');
-            // App.router.navigate('/', { trigger: true });
         }, this));
     }
 };

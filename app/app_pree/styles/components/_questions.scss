@@ -14,7 +14,6 @@
 
     .questionHeader {
         display: block;
-        height: 50px;
     }
 
     .pree_question_user_avatar {
@@ -57,7 +56,7 @@
                 width: auto;
                 background-color: $light-grey;
                 padding: 6px 9px;
-                margin-right: 5px;
+                margin: 0 5px;
                 color: $main;
                 font: 400 11px / 15px Ubuntu;
                 border-radius: 3px;
@@ -73,7 +72,7 @@
                 border: solid 1px ;
                 border-radius: 3px;
                 padding: 5px 9px;
-                margin-right: 5px;
+                margin: 0 5px;
                 font: 400 11px / 15px Ubuntu;
             }
         }
@@ -242,6 +241,7 @@
     }
 
     .questionFooter {
+        margin-top: 10px;
         padding-bottom: 20px;
     }
 

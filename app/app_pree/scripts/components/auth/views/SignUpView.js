@@ -54,8 +54,8 @@ var SignUpView = Mn.ItemView.extend({
     },
 
     _onSignupError: function(e) {
-        if(e && e.type === 'validation'){
-            loader.showFlashMessage( e.message );
+        if(e && e.responseJSON.error.type === 'unabletocomplyexception'){
+            loader.showFlashMessage( e.responseJSON.error.message );
         } else {
             loader.showFlashMessage(h().getErrorMessage(e, 'Error signin up'));
         }

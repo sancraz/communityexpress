@@ -13,6 +13,7 @@ module.exports = {
             login: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],
             registerNewMember: ['POST', '/pree/registerNewMember'],
+            // registerNewMember: ['POST', '/authentication/registerNewMemberViaPostBody'],
             getAuthenticationStatus: ['GET', '/authentication/getAuthenticationStatus'],
             registerNewMemberWithInvitationCode: ['POST', '/authentication/registerNewMemberWithInvitationCode'],
             createAnonymousUser: ['POST', '/authentication/registerAnonymousAdhocMember'],

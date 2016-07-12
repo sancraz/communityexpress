@@ -57,23 +57,30 @@
         font: 400 10px / 12px Ubuntu;
     }
 
-    .answerBody, .answerInfoBody {
+    .answerBody,
+    .answerInfoBody {
         background-color: $light-grey;
         border-bottom-left-radius: 2px;
         border-bottom-right-radius: 2px;
         padding: 20px;
+
+        .progress {
+            height: auto;
+
+            .answerResultLetter {
+                min-width: 80px;
+                text-align: center;
+                color: $text-hover;
+                font: 400 12px / 21px Ubuntu;
+                display: block;
+            }
+        }
     }
 
     .resultsText {
         color: $text;
         font: 400 14px / 21px Ubuntu;
         margin-bottom: 5px;
-    }
-
-    .answerResultLetter {
-        color: $text-hover;
-        font: 400 12px / 21px Ubuntu;
-        display: block;
     }
 
     .answerInfoHeader {

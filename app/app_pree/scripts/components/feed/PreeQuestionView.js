@@ -21,6 +21,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     ui: {
         preeQuestion: '.pree_question',
+        questionBody: '.questionBody',
         preeQuestionCategories: '.pree_question_categories_button',
         preeQuestionTags: '.pree_question_tags_button',
         preeQuestionDetailed: '.pree_question_detailed',
@@ -33,7 +34,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     events: {
-        'click': 'checkIfAnswered',
+        'click @ui.questionBody': 'checkIfAnswered',
         'click @ui.preeQuestionCategories': 'expandCategories',
         'click @ui.preeQuestionTags': 'expandTags',
         'click @ui.likesButton': 'addLike',
@@ -47,6 +48,16 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.isAnswered = this.model.get('userStatus').enumText === 'ANSWERED' ? true : false;
         // this.isAnswered = true;
     },
+
+    reinitialize: function(attrs) {
+        this.model.set(attrs);
+        this.render();
+        this.showAnswerInfo();
+    },
+
+    // onBeforeRender: function() {
+    //     this.model.attributes.choices[0].entryCountForThisChoice = 1;
+    // },
 
     onRender: function() {
         this.pree_question_answers.show(new answerCountView({
@@ -91,8 +102,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         //TODO bug with radio input !!!!!!
         input.prop('checked', true);
         input.addClass('checked');
-        this.trigger('answerQuestion', choiceId, uuid);
-        this.showAnswerInfo();
+        this.trigger('answerQuestion', choiceId, uuid, this);
+        // this.showAnswerInfo();
         // loader.show('ANSWER');
     },
 

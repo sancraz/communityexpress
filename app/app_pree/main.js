@@ -1,10 +1,16 @@
 'use strict';
 
 require('./styles/main.scss');
+require('../vendor/styles/jquery.jqplot.min.css');
+
 require('bootstrap-webpack');
 require('./vendor/scripts/bootstrap-datetimepicker');
 require('jquery-mask-plugin');
 require('moment');
+require('../vendor/scripts/jquery.jqplot.min');
+require('../vendor/scripts/jqplot.barRenderer.min');
+require('../vendor/scripts/jqplot.categoryAxisRenderer.min');
+require('../vendor/scripts/jqplot.pointLabels.min');
 
 var App = require('./scripts/app'),
     h = require('./scripts/globalHelpers');

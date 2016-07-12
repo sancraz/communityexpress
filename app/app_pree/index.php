@@ -28,7 +28,7 @@ if (strcmp($server, 'localhost') === 0)
 if ($demo) {
  $server = "simfel.com";
 } else {
- $server = "communitylive.ws";
+ $server = "communitylive.co";
 }
 }
 
