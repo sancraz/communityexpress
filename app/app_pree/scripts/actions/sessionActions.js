@@ -86,11 +86,17 @@ module.exports = {
             .then(onLoginSuccess);
     },
 
-    registerNewMember: function (username, password, email) {
+    registerNewMember: function (sa,sl, email, password ) {
+        var payload ={
+          serviceAccommodatorId: sa,
+          serviceLocationId: sl,
+          //username: username,
+          email: email,
+          password: password
+        };
+
         return gateway.sendRequest('registerNewMember', {
-            username: username,
-            password: password,
-            email: email
+          payload:payload
         }).then(onLoginSuccess);
     },
 
