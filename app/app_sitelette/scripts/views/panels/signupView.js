@@ -43,8 +43,8 @@ var SignupView = PopupView.extend({
             window.community.serviceAccommodatorId,
             window.community.serviceLocationId,
             //data.username,
-            data.password,
             data.email,
+            data.password,
             data.password_confirmation)
                 .then(this._onSignupSuccess.bind(this), this._onSignupError.bind(this));
 

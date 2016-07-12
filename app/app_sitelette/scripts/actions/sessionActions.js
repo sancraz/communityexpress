@@ -111,13 +111,13 @@ module.exports = {
             .then(onLoginSuccess);
     },
 
-    registerNewMember: function (sa, sl, username, password, email) {
+    registerNewMember: function (sa, sl, email,password, password_confirmation) {
         var payload ={
             serviceAccommodatorId: sa,
             serviceLocationId: sl,
             //username: username,
-            password: password,
-            email: email
+            email: email,
+            password: password
         };
         return gateway.sendRequest('registerNewMember', {payload:payload}).then(onLoginSuccess);
     },
