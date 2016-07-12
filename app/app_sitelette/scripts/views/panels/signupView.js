@@ -16,7 +16,11 @@ var SignupView = PopupView.extend({
 
     id: 'signup_panel',
 
-    initialize: function(){
+    initialize: function(options) {
+        options = options || {};
+
+        this.callback = options.callback || function () {};
+
         this.addEvents({
             'submit': 'submitForm'
         });
@@ -61,12 +65,13 @@ var SignupView = PopupView.extend({
 
     _onSignupSuccess: function(response) {
         loader.showFlashMessage( 'successfully signed up as ' + response.username );
+        setTimeout(this.callback, 1000);
         this.shut();
     },
 
     _onSignupError: function(e) {
-        if(e && e.type === 'validation'){
-            loader.showFlashMessage( e.message );
+        if(e && e.responseJSON.error.type === 'unabletocomplyexception'){
+            loader.showFlashMessage( e.responseJSON.error.message );
         } else {
             loader.showFlashMessage(h().getErrorMessage(e, 'Error signin up'));
         }

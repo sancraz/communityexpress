@@ -63,10 +63,17 @@ module.exports = {
             return this.createLegendView();
         }
         else if ( viewMap[viewname] ){
+            var callback;
+            if (!$.isFunction(options)) {
+                callback = function() {};
+            } else {
+                callback = options;
+            };
             return new viewMap[viewname](_.extend({},{
                 collection: model,
                 model: model,
-                parent: parent
+                parent: parent,
+                callback: callback
             }, options ));
         }
         throw new Error('unknown view ' + viewname);
