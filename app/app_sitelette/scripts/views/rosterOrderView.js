@@ -123,10 +123,6 @@ var RosterOrderView = PageLayout.extend({
 
     },
 
-    onSubmitClick1: function() {
-        this.openSubview('textPopup', { text:'ordered!' });
-    },
-
     onSubmitClick: function (e) {
         if (this.$('.save_credit_data').find('input').is(':checked')) {
             this.saveCreditCardForFutureReference = true;

@@ -27,7 +27,13 @@ var TextPopup = PopupView.extend({
     },
 
     beforeShow: function() {
-        this.$el.css('max-width', '240px');
+        var h = $( window ).height();
+        var w = $( window ).width();
+        this.$el.css({
+            'max-height': 450,
+            'max-width': 300,
+            'width': w * 0.8
+        });
     },
 
     onShow: function () {
