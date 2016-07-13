@@ -145,8 +145,10 @@ var RosterOrderView = PageLayout.extend({
         //var zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
         var fundSourceId=0;
-        if(cardNumber===this.fundsource.creditCardNumber){
-          fundSourceId=this.fundsource.fundSourceId;
+        if(typeof fundsource!='undefined'){
+         if(cardNumber===this.fundsource.creditCardNumber){
+            fundSourceId=this.fundsource.fundSourceId;
+         }
         }
         var expirationMonth = parseInt(this.$('select.month').val());
         var expirationYear = parseInt(this.$('select.year').val());
