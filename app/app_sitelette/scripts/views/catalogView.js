@@ -28,6 +28,7 @@ var CatalogView = PageLayout.extend({
         if(this.backToRoster===true){
           /* hide the order button */
           this.$('.order_button').hide();
+          this.$('.edit_button').hide();
           if(this.catalogType.enumText==='COMBO'||this.catalogType==='COMBO'){
             this.$('.add_combo_button').show();
             $("#catalog_items_row").css("visibility", "hidden");
