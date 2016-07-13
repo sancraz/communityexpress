@@ -34,6 +34,7 @@ ul {
 
 #cmtyx_landingView {
 	height: 100%;
+	overflow-x: visible; /* added to remove scrolling when iframe using*/
 }
 
 .ui-mobile-rendering>* {

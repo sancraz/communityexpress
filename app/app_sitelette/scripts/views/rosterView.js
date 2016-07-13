@@ -32,7 +32,11 @@ var RosterView = PageLayout.extend({
             $(this.el).find('.navbutton_back').hide();
         } else {
             $(this.el).find('.navbutton_back').show();
-        }
+        };
+
+        // Temporary hack to hide scroll on rosterPage
+        var landingWidth = $('#cmtyx_landingView').width();
+        this.$('.content').css('width', landingWidth);
 
 
 
@@ -42,7 +46,7 @@ var RosterView = PageLayout.extend({
           $('#roster_order_button').prop('disabled', true);
         }else{
           $('#roster_order_button').prop('disabled', false);
-        }
+      };
     },
 
     initialize: function(options) {
