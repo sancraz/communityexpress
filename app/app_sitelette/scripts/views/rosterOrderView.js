@@ -113,15 +113,18 @@ var RosterOrderView = PageLayout.extend({
 
     triggerRosterView: function() {
 
-
       Vent.trigger('viewChange', 'roster', {
           sasl: this.sasl.id,
           id: this.rosterId,
-          backToRoster:true,
+          backToRoster: this.backToRoster===false ? false : true,
           rosterId:this.rosterId,
           launchedViaURL:this.launchedViaURL,
        }, { reverse: false });
 
+    },
+
+    onSubmitClick1: function() {
+        this.openSubview('textPopup', { text:'ordered!' });
     },
 
     onSubmitClick: function (e) {
@@ -211,15 +214,23 @@ var RosterOrderView = PageLayout.extend({
             this.sasl.sa(),
             this.sasl.sl(),
             options
-        ).then(function () {
+        ).then(function (e) {
             this.basket.reset();
-            loader.showFlashMessage('order successful');
-            setTimeout(function () {
-                this.triggerRosterView( );
-            }.bind(this), 20000);
-        }.bind(this), function () {
-            loader.showFlashMessage('error placing your order');
-        });
+            this.backToRoster = false;
+            var callback = this.triggerRosterView;
+            this.openSubview('textPopup', { text:'order successful' }, callback);
+            // setTimeout(function () {
+            //     this.triggerRosterView( );
+            // }.bind(this), 20000);
+        }.bind(this), function (e) {
+            if (e.statusText === 'timeout') {
+                this.openSubview('textPopup', { text:'timeout error' });
+            } else if(e && e.responseJSON.error.type === 'unabletocomplyexception'){
+                this.openSubview('textPopup', { text: e.responseJSON.error.message });
+            } else {
+                this.openSubview('textPopup', { text: 'error placing your order' });
+            };
+        }.bind(this));
     },
 
     // EXPAND/COLLAPSE CREDIT INFO WHEN CREDIT/CASH SELECTED
@@ -241,7 +252,6 @@ var RosterOrderView = PageLayout.extend({
             break;
             default:
         };
-        // $('#collapsible1').collapsible('expand');
     },
 
     hideInfo: function() {

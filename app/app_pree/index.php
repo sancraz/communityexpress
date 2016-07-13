@@ -32,6 +32,19 @@ if ($demo) {
 }
 }
 
+/* is serviceAccomodatorId specified (only from Portal) */
+if (validateParams('serviceAccommodatorId')) {
+ $serviceAccommodatorId = $_REQUEST['serviceAccommodatorId'];
+} else {
+ $serviceAccommodatorId = NULL;
+}
+
+if (validateParams('serviceLocationId')) {
+ $serviceLocationId = $_REQUEST['serviceLocationId'];
+} else {
+ $serviceLocationId = NULL;
+}
+
 
 if (validateParams('UID')) {
 $UID = $_REQUEST['UID'];
@@ -62,13 +75,10 @@ $debug = FALSE;
 if ($debug) {
 echo '$completeURL=' . $completeURL . "</br>";
 echo '$serverName=' . $serverName . "</br>";
-
 echo '$server=' . $server . "</br>";
 echo '$embedded=' . ($embedded ? 'true' : 'false') . "</br>";
 echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
-
 echo '$UID=' . $UID . "</br>";
-
 
 return;
 }
@@ -79,9 +89,33 @@ $appleTouchIcon60URL = NULL;
 $isPrivate = FALSE;
 $canCreateAnonymousUser = FALSE;
 
+/* NOT working */
+$apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=" . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId;
 
-$themeCSS = 'styles.css';
+$siteletteJSON = makeApiCall($apiURL);
 
-include_once ('pree.php');
+if ($siteletteJSON['curl_error']) {
+ $errorMessage = $siteletteJSON['curl_error'];
+ $errorMessage = 'Service unavailable.';
+
+ include_once ('pree.php');
+
+} else {
+ if (isset($siteletteJSON['error'])) {
+  $errorMessage = $siteletteJSON['error']['message'];
+
+  include_once ('pree.php');
+
+ } else {
+  $saslJSON = json_decode($siteletteJSON['saslJSON'], TRUE);
+  $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
+  $serviceLocationId = $saslJSON['serviceLocationId'];
+
+
+  $themeCSS = 'styles.css';
+
+  include_once ('pree.php');
+ }
+}
 
 ?>

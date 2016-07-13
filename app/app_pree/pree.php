@@ -63,6 +63,8 @@
         window.community.demo='<?php echo  $demo==TRUE?'true':'false'?>';
         window.community.server='<?php echo $server ?>';
         window.community.host='<?php echo $serverName ?>';
+        window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
+        window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
         window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
      </script>
 

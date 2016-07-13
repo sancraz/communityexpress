@@ -27,7 +27,8 @@ var OpeningHoursView = require('./views/popups/openingHoursView'),
     ContactPopup = require('./views/popups/contactPopup'),
     InvitationView = require('./views/popups/invitationView'),
     SupportView = require('./views/popups/supportView'),
-    ConfirmationPopup = require('./views/popups/confirmationPopup');
+    ConfirmationPopup = require('./views/popups/confirmationPopup'),
+    TextPopup = require('./views/popups/textPopup');
 
 var viewMap = {
     userPictures: UserPicturesView,
@@ -53,7 +54,8 @@ var viewMap = {
     contactPopup: ContactPopup,
     invitationView: InvitationView,
     confirmationPopup: ConfirmationPopup,
-    support: SupportView
+    support: SupportView,
+    textPopup: TextPopup
 };
 
 module.exports = {

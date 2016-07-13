@@ -482,7 +482,7 @@ ul {
 /* REVIEW STYLES */
 .cmntyex-content_placeholder {
 	min-height: 50px;
-	 background-image: url(images/ajax-loader-white.gif); 
+	 background-image: url(images/ajax-loader-white.gif);
 	background-repeat: no-repeat;
 	background-position: center center;
 }
@@ -1182,8 +1182,8 @@ a.jquery-checkbox {
 }
 
 /* ---- styled radio and checkboxes */
-/* 
-      Radio button 
+/*
+      Radio button
     */
 
 .catalog-radio-button {
@@ -1225,8 +1225,8 @@ a.jquery-checkbox {
 }
 
 
-/* 
-      Checkbox 
+/*
+      Checkbox
     */
 
 .catalog-checkbox {
@@ -1295,4 +1295,8 @@ a.jquery-checkbox {
 .name_inputs div {
 	display: inline-block;
 	width: 48%;
+}
+
+.cmntyex_text_message {
+	margin-top: 10px;
 }
