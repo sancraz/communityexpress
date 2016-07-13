@@ -144,6 +144,10 @@ var RosterOrderView = PageLayout.extend({
         var lastName = this.$('input[name=lastname]').val();
         //var zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
+        var fundSourceId=0;
+        if(cardNumber===this.fundsource.creditCardNumber){
+          fundSourceId=this.fundsource.fundSourceId;
+        }
         var expirationMonth = parseInt(this.$('select.month').val());
         var expirationYear = parseInt(this.$('select.year').val());
         var cvv = this.$('input[name=cvv]').val();
@@ -155,7 +159,6 @@ var RosterOrderView = PageLayout.extend({
         var delivery_street2=this.$('input[name=delivery_street2]').val();
         var delivery_city=this.$('input[name=delivery_city]').val();
 
-
         this.onSubmit({
             serviceAccommodatorId: this.sasl.sa(),
             serviceLocationId: this.sasl.sl(),
@@ -166,6 +169,7 @@ var RosterOrderView = PageLayout.extend({
             deliverySelected: !pickup,
             cashSelected: !creditCard,
             creditCardSelected: creditCard,
+            fundSourceId:fundSourceId,
             items: items,
             taxAmount: this.taxes,
             totalAmount: this.totalPriceWithTax,
