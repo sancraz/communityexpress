@@ -204,7 +204,6 @@ var RosterOrderView = PageLayout.extend({
                 street2: delivery_street2
             },
             creditCard: {
-                fundSourceId: fundSourceId,
                 //cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
                 firstName: firstName,
                 lastName: lastName,
