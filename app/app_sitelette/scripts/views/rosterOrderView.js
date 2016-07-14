@@ -49,7 +49,8 @@ var RosterOrderView = PageLayout.extend({
             'click .back': 'triggerRosterView',
             'click .cancel_button': 'triggerRosterView',
             'click .submit_button': 'onSubmitClick',
-            'click .showHideInfo': 'showHideInfo'
+            'click .showHideInfo': 'showHideInfo',
+            'focus .credit_card_modifying': 'clearCreditInfo'
         });
     },
 
@@ -72,6 +73,15 @@ var RosterOrderView = PageLayout.extend({
         });
 
         return tmpData;
+    },
+
+    clearCreditInfo: function() {
+        if ($('input[name=cardNumber]').val() === this.fundsource.creditCardNumber) {
+            this.$('.credit_card_modifying').val('');
+            this.$('select option[value=notselected]').attr('selected', true);
+            this.$('select').selectmenu('refresh', true);
+            this.fundsource =undefined
+        };
     },
 
     prefillCreditInfo: function() {
@@ -144,7 +154,7 @@ var RosterOrderView = PageLayout.extend({
         //var zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
         var fundSourceId=0;
-        if(typeof fundsource!=='undefined'){
+        if(typeof this.fundsource!=='undefined'){
          if(cardNumber===this.fundsource.creditCardNumber){
             fundSourceId=this.fundsource.fundSourceId;
          }
@@ -193,6 +203,7 @@ var RosterOrderView = PageLayout.extend({
                 street2: delivery_street2
             },
             creditCard: {
+                fundSourceId: fundSourceId,
                 //cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
                 firstName: firstName,
                 lastName: lastName,

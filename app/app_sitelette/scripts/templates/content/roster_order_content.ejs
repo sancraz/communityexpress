@@ -81,11 +81,11 @@
                 </select>
                 -->
                 <fieldset class="name_inputs" data-type="horizontal">
-                    <input autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
-                    <input autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
+                    <input class="credit_card_modifying" autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
+                    <input class="credit_card_modifying" autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
                 </fieldset>
 
-                <input autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
+                <input class="credit_card_modifying" autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
                <!--
                 <select name="select-choice-cardtype" class="cardtype"  id="select-choice-cardtype">
                     <option>Card Type</option>
@@ -95,20 +95,20 @@
                 </select>
               -->
                 <fieldset class="expiration_date" data-role="controlgroup" data-type="horizontal">
-                    <select name="select-choice-month" class="month" id="select-choice-month">
-                        <option>Exp.Month</option>
+                    <select name="select-choice-month" class="month credit_card_modifying" id="select-choice-month">
+                        <option value="notselected">Exp.Month</option>
                         <% _(months).each(function (month) { %>
                             <option value="<%= month %>"><%= month %></option>
                          <% }) %>
                     </select>
-                    <select name="select-choice-year" class="year" id="select-choice-year">
-                        <option>Exp.Year</option>
+                    <select name="select-choice-year" class="year credit_card_modifying" id="select-choice-year">
+                        <option value="notselected">Exp.Year</option>
                         <% _(years).each(function (year) { %>
                             <option value="<%= year %>"><%= year %></option>
                          <% }) %>
                     </select>
                 </fieldset>
-                <input autocapitalize="off" type="text" name="cvv" placeholder="CVV." data-corners="false"/>
+                <input class="credit_card_modifying" autocapitalize="off" type="text" name="cvv" placeholder="CVV." data-corners="false"/>
                 <!--
                 <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false"/>
                 <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>
