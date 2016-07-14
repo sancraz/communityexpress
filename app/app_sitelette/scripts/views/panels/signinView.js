@@ -54,19 +54,29 @@ var SigninView = PopupView.extend({
         loader.show();
         sessionActions.startSession(this.val().username, this.val().password)
             .then(function(response){
-                loader.showFlashMessage( 'successfully signed in as ' + response.username );
-                setTimeout(this.callback, 1000);
-                this.shut();
                 $('.menu_button_5').removeClass('navbutton_sign_in').addClass('navbutton_sign_out');
+                this.shut();
+                this.$el.on('popupafterclose', function () {
+                    this.parent.openSubview('textPopup', { text: 'successfully signed in as ' + response.username }, this.callback);
+                }.bind(this));
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
                     this.showLoginError();
                     loader.hide();
-                }else{
-                    loader.showFlashMessage(h().getErrorMessage(jqXHR, 'Error signin in'));
+                } else {
+                    var text = h().getErrorMessage(jqXHR, 'Error signin in'),
+                        callback = this.openSignin;
+                    this.shut();
+                    this.$el.on('popupafterclose', function () {
+                        this.parent.openSubview('textPopup', { text: text }, callback);
+                    }.bind(this));
                 }
             }.bind(this));
         return false;
+    },
+
+    openSignin: function() {
+        this.openSubview('signin');
     },
 
     showLoginError: function() {

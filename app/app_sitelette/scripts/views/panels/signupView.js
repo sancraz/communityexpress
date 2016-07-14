@@ -18,7 +18,7 @@ var SignupView = PopupView.extend({
 
     initialize: function(options) {
         options = options || {};
-
+        this.parent = options.parent;
         this.callback = options.callback || function () {};
 
         this.addEvents({
@@ -70,11 +70,16 @@ var SignupView = PopupView.extend({
     },
 
     _onSignupError: function(e) {
-        if(e && e.responseJSON.error.type === 'unabletocomplyexception'){
-            loader.showFlashMessage( e.responseJSON.error.message );
-        } else {
-            loader.showFlashMessage(h().getErrorMessage(e, 'Error signin up'));
-        }
+        var text = h().getErrorMessage(e, 'Error signin up'),
+            callback = this.openSignup;
+        this.shut();
+        this.$el.on('popupafterclose', function () {
+            this.parent.openSubview('textPopup', { text: text }, callback);
+        }.bind(this));
+    },
+
+    openSignup: function() {
+        this.openSubview('signup');
     }
 
 });

@@ -43,6 +43,7 @@ var RosterOrderView = PageLayout.extend({
         this.$('select').selectmenu('refresh', true);
         if (this.fundsource) {
             this.prefillCreditInfo();
+            this.$('input[name=cardNumber]').mask('AAAAAAAAAAAAAAAA').trigger('keyup');;
         };
         this.$('.save_credit_data').find('input').attr('checked', true).checkboxradio("refresh");
         this.addEvents({
@@ -230,13 +231,8 @@ var RosterOrderView = PageLayout.extend({
             //     this.triggerRosterView( );
             // }.bind(this), 20000);
         }.bind(this), function (e) {
-            if (e.statusText === 'timeout') {
-                this.openSubview('textPopup', { text:'timeout error' });
-            } else if(e && e.responseJSON.error.type === 'unabletocomplyexception'){
-                this.openSubview('textPopup', { text: e.responseJSON.error.message });
-            } else {
-                this.openSubview('textPopup', { text: 'error placing your order' });
-            };
+            var text = h().getErrorMessage(e, 'Error placing your order');
+            this.openSubview('textPopup', { text: text });
         }.bind(this));
     },
 

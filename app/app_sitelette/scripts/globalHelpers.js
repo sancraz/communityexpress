@@ -209,8 +209,11 @@ var helpers = function() {
         },
 
         getErrorMessage: function(e, msg) {
+            var excp = $.parseJSON(e.responseText).error;
             if (e && e.statusText === 'timeout') {
                 return config.timeoutErrorMessage;
+            } else if (excp.type === 'unabletocomplyexception') {
+                return excp.message;
             } else {
                 return msg;
             }
