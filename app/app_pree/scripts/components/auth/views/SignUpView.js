@@ -30,14 +30,14 @@ var SignUpView = Mn.ItemView.extend({
         var data = this.getFormData();
 
         loader.show('');
-       
+
         sessionActions.registerNewMember(
           window.community.serviceAccommodatorId,
           window.community.serviceLocationId,
           //username:data.username,
           data.email,
-          data.password,
-          ).then(this._onSignupSuccess.bind(this), this._onSignupError.bind(this));
+          data.password
+                  ).then(this._onSignupSuccess.bind(this), this._onSignupError.bind(this));
 
         return false;
     },
