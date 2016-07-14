@@ -72,16 +72,6 @@ $debug = FALSE;
 }
 
 
-if ($debug) {
-echo '$completeURL=' . $completeURL . "</br>";
-echo '$serverName=' . $serverName . "</br>";
-echo '$server=' . $server . "</br>";
-echo '$embedded=' . ($embedded ? 'true' : 'false') . "</br>";
-echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
-echo '$UID=' . $UID . "</br>";
-
-return;
-}
 
 $errorMessage = NULL;
 $appleTouchIcon60URL = NULL;
@@ -89,8 +79,20 @@ $appleTouchIcon60URL = NULL;
 $isPrivate = FALSE;
 $canCreateAnonymousUser = FALSE;
 
-/* NOT working */
-$apiURL = $protocol . $server . "/apptsvc/rest/html/retrieveSiteletteBySASL?UID=&latitude=&longitude=&serviceAccommodatorId=" . $serviceAccommodatorId . '&serviceLocationId=' . $serviceLocationId;
+$apiURL = $protocol . $server . "/apptsvc/rest/pree/retrieveSitelette?UID=&latitude=&longitude=";
+
+
+if ($debug) {
+ echo '$completeURL=' . $completeURL . "</br>";
+ echo '$serverName=' . $serverName . "</br>";
+ echo '$server=' . $server . "</br>";
+ echo '$embedded=' . ($embedded ? 'true' : 'false') . "</br>";
+ echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
+ echo '$UID=' . $UID . "</br>";
+ echo '$apiURL='.$apiURL."</br>";
+ return;
+}
+
 
 $siteletteJSON = makeApiCall($apiURL);
 
