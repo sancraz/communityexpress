@@ -155,7 +155,7 @@ var RosterOrderView = PageLayout.extend({
         //var zip = this.$('input[name=zip]').val();
         var cardNumber = this.$('input[name=cardNumber]').val();
         var fundSourceId=0;
-        if(typeof this.fundsource!=='undefined'){
+        if(typeof this.fundsource!=='undefined' && this.fundsource!==null){
          if(cardNumber===this.fundsource.creditCardNumber){
             fundSourceId=this.fundsource.fundSourceId;
          }
