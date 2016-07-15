@@ -35,10 +35,10 @@ var RosterView = PageLayout.extend({
         };
 
         // Temporary hack to hide scroll on rosterPage
-        setTimeout(_.bind(function() {
-            var landingWidth = $('#cmtyx_landingView').width();
-            this.$('.content').css('width', landingWidth)
-        }, this), 3000)
+        //setTimeout(_.bind(function() {
+        //    var landingWidth = $('#cmtyx_landingView').width();
+        //    this.$('.content').css('width', landingWidth)
+        //}, this), 3000)
 
 
 
