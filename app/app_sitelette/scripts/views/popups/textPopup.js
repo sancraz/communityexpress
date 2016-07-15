@@ -50,7 +50,7 @@ var TextPopup = PopupView.extend({
     triggerCallback: function() {
         this.shut();
         this.$el.on('popupafterclose', function () {
-            setTimeout(this.callback.bind(this.options.parent), 100);
+            setTimeout(this.callback.bind(this.options.parent), 0);
         }.bind(this));
     },
 

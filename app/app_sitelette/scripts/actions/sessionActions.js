@@ -111,10 +111,10 @@ module.exports = {
             .then(onLoginSuccess);
     },
 
-    registerNewMember: function (sa, sl, email,password, password_confirmation) {
+    registerNewMember: function (email, password, password_confirmation) {
         var payload ={
-            serviceAccommodatorId: sa,
-            serviceLocationId: sl,
+            serviceAccommodatorId: window.community.serviceAccommodatorId,
+            serviceLocationId: window.community.serviceLocationId,
             //username: username,
             email: email,
             password: password

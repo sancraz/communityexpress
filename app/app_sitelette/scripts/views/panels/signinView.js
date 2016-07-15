@@ -60,17 +60,12 @@ var SigninView = PopupView.extend({
                     this.parent.openSubview('textPopup', { text: 'successfully signed in as ' + response.username }, this.callback);
                 }.bind(this));
             }.bind(this), function(jqXHR) {
-                if( jqXHR.status === 400 ) {
-                    this.showLoginError();
-                    loader.hide();
-                } else {
-                    var text = h().getErrorMessage(jqXHR, 'Error signin in'),
-                        callback = this.openSignin;
-                    this.shut();
-                    this.$el.on('popupafterclose', function () {
-                        this.parent.openSubview('textPopup', { text: text }, callback);
-                    }.bind(this));
-                }
+                var text = h().getErrorMessage(jqXHR, 'Error signin in'),
+                    callback = this.openSignin;
+                this.shut();
+                this.$el.on('popupafterclose', function () {
+                    this.parent.openSubview('textPopup', { text: text }, callback);
+                }.bind(this));
             }.bind(this));
         return false;
     },

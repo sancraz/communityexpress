@@ -208,12 +208,20 @@ var helpers = function() {
             return result;
         },
 
-        getErrorMessage: function(e, msg) {
-            var excp = $.parseJSON(e.responseText).error;
-            if (e && e.statusText === 'timeout') {
+        getErrorMessage: function(jqXHR, msg) {
+            if (jqXHR && jqXHR.statusText === 'timeout') {
                 return config.timeoutErrorMessage;
-            } else if (excp.type === 'unabletocomplyexception') {
-                return excp.message;
+            } else if (jqXHR.responseText) {
+                var excp = $.parseJSON(jqXHR.responseText).error;
+                switch (excp.type) {
+                    case 'unabletocomplyexception':
+                        return excp.message;
+                    break;
+                    case 'panicexception':
+                        return msg;
+                    break;
+                    default:
+                }
             } else {
                 return msg;
             }
