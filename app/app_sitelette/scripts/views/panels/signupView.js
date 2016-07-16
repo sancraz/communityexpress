@@ -22,7 +22,8 @@ var SignupView = PopupView.extend({
         this.callback = options.callback || function () {};
 
         this.addEvents({
-            'submit': 'submitForm'
+            'submit': 'submitForm',
+            'focus input[type=password]': 'hideSignupError'
         });
     },
 
@@ -39,18 +40,36 @@ var SignupView = PopupView.extend({
     submitForm: function(e) {
         e.preventDefault();
         var data = this.getFormData();
+        if (this.validateForm(data)) {
 
-        loader.show();
+            loader.show();
 
+            sessionActions.registerNewMember(
+                //data.username,
+                data.email,
+                data.password,
+                data.password_confirmation)
+                    .then(this._onSignupSuccess.bind(this), this._onSignupError.bind(this));
 
-        sessionActions.registerNewMember(
-            //data.username,
-            data.email,
-            data.password,
-            data.password_confirmation)
-                .then(this._onSignupSuccess.bind(this), this._onSignupError.bind(this));
+            return false;
+        };
+    },
 
-        return false;
+    validateForm: function(data) {
+        if (data.password !== data.password_confirmation) {
+            this.showSignupError();
+            return false;
+        } else {
+            return true;
+        };
+    },
+
+    showSignupError: function() {
+        this.$el.find('.signup_error').slideDown();
+    },
+
+    hideSignupError: function() {
+        this.$el.find('.signup_error').slideUp();
     },
 
     getFormData: function() {

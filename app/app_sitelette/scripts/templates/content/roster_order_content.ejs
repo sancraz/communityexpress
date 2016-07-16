@@ -83,9 +83,12 @@
                 <fieldset class="name_inputs" data-type="horizontal">
                     <input class="credit_card_modifying" autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
                     <input class="credit_card_modifying" autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
+                    <p class="firstName hidden error">The first name field is required and cannot be empty</p>
+                    <p class="lastName hidden error">The last name field is required and cannot be empty</p>
                 </fieldset>
 
                 <input class="credit_card_modifying" autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
+                <p class="cardNumber hidden error">Please, enter the card number</p>
                <!--
                 <select name="select-choice-cardtype" class="cardtype"  id="select-choice-cardtype">
                     <option>Card Type</option>
@@ -108,7 +111,10 @@
                          <% }) %>
                     </select>
                 </fieldset>
+                <p class="expirationMonth hidden error">Please, select an expiration month</p>
+                <p class="expirationYear hidden error">Please, select an expiration year</p>
                 <input class="credit_card_modifying" autocapitalize="off" type="text" name="cvv" placeholder="CVV." data-corners="false"/>
+                <p class="cvv hidden error">Please, enter the cvv from back side of your credit card</p>
                 <!--
                 <input autocapitalize="off" type="text" name="street" placeholder="Street" data-corners="false"/>
                 <input autocapitalize="off" type="text" name="city" placeholder="City" data-corners="false"/>

@@ -77,7 +77,7 @@ var RosterOrderView = PageLayout.extend({
     },
 
     clearCreditInfo: function() {
-        if ($('input[name=cardNumber]').val() === this.fundsource.creditCardNumber) {
+        if (this.fundsource && $('input[name=cardNumber]').val() === this.fundsource.creditCardNumber) {
             this.$('.credit_card_modifying').val('');
             this.$('select option[value=notselected]').attr('selected', true);
             this.$('select').selectmenu('refresh', true);
@@ -135,12 +135,12 @@ var RosterOrderView = PageLayout.extend({
     },
 
     onSubmitClick: function (e) {
+        e.preventDefault();
         if (this.$('.save_credit_data').find('input').is(':checked')) {
             this.saveCreditCardForFutureReference = true;
         } else {
             this.saveCreditCardForFutureReference = false;
         };
-        e.preventDefault();
         //var cardType = this.$('select.cardtype').val();
         //var country = this.$('select.country').val();
         //var street = this.$('input[name=street]').val();
@@ -216,6 +216,9 @@ var RosterOrderView = PageLayout.extend({
     },
 
     onSubmit: function (options) {
+        if (!this.validateCardInfo(options.creditCard)) {
+            return;
+        };
         loader.show('placing your order');
         return orderActions.placeOrder(
             this.sasl.sa(),
@@ -233,6 +236,26 @@ var RosterOrderView = PageLayout.extend({
             var text = h().getErrorMessage(e, 'Error placing your order');
             this.openSubview('textPopup', { text: text });
         }.bind(this));
+    },
+
+    validateCardInfo: function(creditCard) {
+        this.$el.find('.hidden.error').slideUp();
+        for (var field in creditCard) {
+            if (!creditCard[field] ||
+                creditCard[field] == '') {
+                this.$('.'+field).slideDown();
+                return false;
+            };
+        };
+        return true;
+        // _(creditCard).every(function(value, item) {
+        //     debugger;
+        //     if (value == NaN || value == '') {
+        //         this.$('.'+item).slideDown();
+        //     };
+        //     return value !== NaN || value !== '';
+        //     // value === NaN || '' ? this.$('.'+item).show() : true;
+        // }.bind(this));
     },
 
     // EXPAND/COLLAPSE CREDIT INFO WHEN CREDIT/CASH SELECTED
