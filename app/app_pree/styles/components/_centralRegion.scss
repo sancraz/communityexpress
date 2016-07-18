@@ -1,0 +1,26 @@
+.central-region {
+    height: calc(100% - 117px);
+
+    .container-fluid {
+        height: 100%;
+
+        .central-scrolling {
+            height: calc(100% - 57px);
+
+            .questions-region {
+                position: relative;
+                overflow: hidden;
+                height: 100%;
+
+                .pree_feed_questions {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    overflow: auto;
+                    bottom: 0;
+                    width: calc(100% + 15px);
+                }
+            }
+        }
+    }
+}

@@ -68,7 +68,7 @@
         window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
      </script>
 
-     <div id="app-container"></div>
+     <div id="app-container" class="app-container"></div>
 
 
    <!-- Javascript files -->

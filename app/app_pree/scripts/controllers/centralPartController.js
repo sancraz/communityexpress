@@ -13,7 +13,8 @@ var App = require('../app'),
     ShareQuestionView = require('../components/feed/ShareQuestionView'),
     ShareQuestionWithMobile = require('../components/feed/ShareQuestionWithMobile'),
     ShareQuestionWithEmail = require('../components/feed/ShareQuestionWithEmail'),
-    FeedModel = require('../models/FeedModel');
+    FeedModel = require('../models/FeedModel'),
+    PreeQuestionModel = require('../models/PreeQuestionModel');
 
 module.exports = {
 
@@ -179,13 +180,34 @@ module.exports = {
 
         var feedView = new FeedView({
             el: $('.pree_feed_questions'),
-            collection: model.questionCollection
+            collection: model.questionCollection,
+            model: model
         });
         this.feedView = feedView;
         feedView.listenTo(feedView, 'answerQuestion', _.bind(this.onAnswerQuestion, this));
         feedView.listenTo(feedView, 'checkIfUserLogged', _.bind(this.onCheckIfUserLogged, this));
         feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
+        feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
         this.centralLayoutView.showQuestionsView(feedView);
+    },
+
+    getPreviousQuestions: function(nextId) {
+        loader.show('');
+        gateway.sendRequest('getPreeQuestions', {
+            count: 5,
+            nextId: nextId
+        }).then(_.bind(function(resp) {
+            this.feedView.model.set({
+                'previousId': resp.previousId,
+                'nextId': resp.nextId
+            });
+            _.each(resp.questions, _.bind(function(question) {
+                var model = new PreeQuestionModel(question);
+                this.feedView.collection.add(model);
+            },this));
+            this.feedView.bindScroll();
+            loader.hide();
+        }, this));
     },
 
     onCheckIfUserLogged: function(callback) {

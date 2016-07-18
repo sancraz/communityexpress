@@ -19,6 +19,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     tagName: 'li',
 
+    id: function() {
+        return this.model.get('id');
+    },
+
     ui: {
         preeQuestion: '.pree_question',
         questionBody: '.questionBody',
@@ -44,6 +48,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     initialize : function() {
         console.log("FeedSelectorView initialized");
+        this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.get('userStatus').enumText === 'ANSWERED' ? true : false;
         // this.isAnswered = true;

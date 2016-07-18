@@ -15,8 +15,13 @@ var feedView = Mn.CollectionView.extend({
         'sharePopup:show': 'openSharePopup'
     },
 
+    events: {
+        // 'scroll': 'calculateScroll'
+    },
+
     initialize : function() {
         this.listenTo(this.model, "change", this.modelEventHandler);
+        this.bindScroll();
     },
 
     onRender: function() {
@@ -26,6 +31,19 @@ var feedView = Mn.CollectionView.extend({
     modelEventHandler : function() {
         console.log(" Model event received");
         this.render();
+    },
+
+    bindScroll: function() {
+        this.$el.bind('scroll', _.bind(this.calculateScroll, this));
+    },
+
+    calculateScroll: function(e) {
+        var windowHeight = $(window).height();
+        var lastQuestionTop = this.$el.find('#'+this.model.get('previousId')).offset().top;
+        if (lastQuestionTop < windowHeight) {
+            this.trigger('getPreviousQuestions', this.model.get('previousId'));
+            this.$el.unbind('scroll');
+        };
     },
 
     collapseDetails: function(view) {
