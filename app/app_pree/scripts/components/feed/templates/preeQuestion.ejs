@@ -2,9 +2,13 @@
     <ul class="questionHeader">
         <li class="pree_question_user">
             <div class="pree_question_user_avatar">
-                <img src="images/question_user.png" alt="">
+                <% if (authorImageURL && authorImageURL.length !== 0) { %>
+                    <img src="<%= authorImageURL %>" alt="" />
+                <% } else { %>
+                    <img src="images/question_user.png" alt="">
+                <% } %>
             </div>
-            <div class="pree_question_user_username">username</div>
+            <div class="pree_question_user_username"><%= authorUserName %></div>
         </li>
         <li class="pree_question_title">
             <div class="pree_question_title_name">

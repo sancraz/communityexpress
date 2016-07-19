@@ -3,7 +3,7 @@
 var App = require('./app');
 
 module.exports = {
-    
+
     feed: function() {
         var centralPartController = require('./controllers/centralPartController'),
         	rightPartController = require('./controllers/rightPartController'),
@@ -11,7 +11,7 @@ module.exports = {
             leftPartController = require('./controllers/leftPartController');
         headerController.showLayout();
         centralPartController.showLayout();
-        leftPartController.showLayout();
+        // leftPartController.showLayout();
         rightPartController.showLayout();
     },
 

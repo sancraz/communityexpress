@@ -31,6 +31,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		question: '.question-text',
 		answerInfo: '.answer-info-text',
 		additionalLinks: '.additional-links-container',
+		answerRadioButton: '.radioCreateAnswer',
+		answerRadioButtonImg: '.inputRadioImg',
 		answers: '.pree_question_edit_answers li',
 		answerChoice: '.pree_question_edit_answers li .answer-choice',
 		answerExample: '.pree_question_edit_answers li .answer-example',
@@ -98,6 +100,15 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	onShow: function() {
 		this.ui.container.collapse('show');
+		this.ui.container.on('shown.bs.collapse', _.bind(function() {
+			var neededHeight = $(window).height() - this.$el.offset().top;
+			if (this.ui.container.height() > neededHeight) {
+				this.$el.parent().css({
+					'overflow': 'scroll',
+					'height': '90%'
+				});
+			}
+		}, this));
 
 		this.trigger('getTags', _.bind(this.showTags, this), true); // true means silent
 		this.trigger('getCategories', _.bind(this.showCategories, this), true); // true means silent
@@ -164,11 +175,18 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	onDiscardQuestion: function() {
 		this.ui.container.collapse('hide');
-		this.trigger('onNewQuestin:discarded');
-		this.destroy();
+		this.ui.container.on('hidden.bs.collapse', _.bind(function() {
+			this.$el.parent().css({
+				'overflow': '',
+				'height': ''
+			});
+			this.trigger('onNewQuestin:discarded');
+			this.destroy();
+		}, this));
 	},
 
 	onTypeChanged: function(e) {
+		this.ui.answerChoice.removeAttr('disabled');
 		var $target = $(e.currentTarget);
 		this.ui.type.each(_.bind(function(index, item){
 			if (  $(item).prop('checked')) {
@@ -176,7 +194,34 @@ var CreateQuestionView = Mn.LayoutView.extend({
 				console.log('subtype set as :'+index+1);
 			}
 		}, this));
-		$target.siblings('span').text() === 'Prediction' ? this.ui.predictionDetails.slideDown() : this.ui.predictionDetails.slideUp();
+		$target.siblings('span').text() === 'Prediction' ? this.showPredictionDetails() : this.hidePredictionDetails();
+	},
+
+	showPredictionDetails: function() {
+		this.ui.predictionDetails.slideDown();
+		setTimeout(_.bind(function() {
+			this.ui.collapsiblePredictionDetails.collapse('show');
+		}, this), 10);
+		this.ui.answerRadioButton.prop('checked', false);
+		this.hideAnswerRadioButtons();
+	},
+
+	hidePredictionDetails: function() {
+		this.ui.collapsiblePredictionDetails.collapse('hide');
+		this.ui.collapsiblePredictionDetails.on('hidden.bs.collapse', _.bind(function() {
+			this.ui.predictionDetails.slideUp();
+		}, this));
+		this.showAnswerRadioButtons();
+	},
+
+	showAnswerRadioButtons: function() {
+		this.ui.answerRadioButtonImg.show();
+		this.ui.answerRadioButton.show();
+	},
+
+	hideAnswerRadioButtons: function() {
+		this.ui.answerRadioButtonImg.hide();
+		this.ui.answerRadioButton.hide();
 	},
 
 	onIsAnonymousChanged: function(e) {
@@ -243,7 +288,6 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onQuestionPost: function() {
 		console.log('on post question');
 		this.checkDatepickersDate();
-		debugger;
 		this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
 		// if (this.model.isValid()) {
 		// 	// post model
@@ -289,8 +333,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 		if (!url.match(expresion)) {
 			link = 'http://' + url;
-		}
-		return '<a href="' + link + '">' + url
+		}this.ui.collapsiblePredictionDetails('show.bs.collapse');+ url
 			+ '</a><i class="remove-link fa fa-times remove-tag"></i>';
 	},
 
