@@ -1,11 +1,13 @@
 .central-region {
+    overflow: hidden;
     height: calc(100% - 117px);
 
     .container-fluid {
         height: 100%;
 
         .central-scrolling {
-            height: calc(100% - 57px);
+            height: 100%;
+            overflow: hidden;
 
             .questions-region {
                 position: relative;

@@ -72,7 +72,7 @@ var TagsView = Mn.LayoutView.extend({
 			data: tags,
 			valueKey: 'displayText',
 			apiKey: 'domainId',
-			limit: 10,
+			limit: this.options.items.length,
 			name: this.options.type,
 			additionalParam: 'newQuestion',
 			callback: _.bind(function(name, model){

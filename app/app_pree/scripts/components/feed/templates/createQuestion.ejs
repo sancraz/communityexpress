@@ -12,15 +12,15 @@
         <div class="modal-body">
             <ul class="pree_question_edit_type">Question type:
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox" <% if (model.subType===0 ) { %>checked
+                    <input name="pree_question_edit_type_item" type="radio" <% if (model.subType===0 ) { %>checked
                     <% } %>><span>Fact</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox" <% if (model.subType===1 ) { %>checked
+                    <input name="pree_question_edit_type_item"  type="radio" <% if (model.subType===1 ) { %>checked
                     <% } %>><span>Opinion</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input type="checkbox" <% if (model.subType===2 ) { %>checked
+                    <input name="pree_question_edit_type_item"  type="radio" <% if (model.subType===2 ) { %>checked
                     <% } %>><span>Prediction</span>
                 </li>
             </ul>
