@@ -45,7 +45,7 @@ module.exports = {
             processData: false,
             data: formData,
             url: url + '?UID=' + UID,
-            timeout: 10000
+            timeout: 60000
         });
     },
 
@@ -71,7 +71,7 @@ module.exports = {
             data: JSON.stringify(payload),
             contentType: 'application/json',
             processData: false,
-            timeout: 10000
+            timeout: 60000
         });
 
     }
