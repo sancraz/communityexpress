@@ -171,11 +171,9 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onTypeChanged: function(e) {
 		var $target = $(e.currentTarget);
 		this.ui.type.each(_.bind(function(index, item){
-			if (item !== $target.get(0)) {
-				item.checked = false;
-			} else {
-				item.checked = true;
-				this.model.set('subType', index);
+			if (  $(item).prop('checked')) {
+				this.model.set('subType', index+1);
+				console.log('subtype set as :'+index+1);
 			}
 		}, this));
 		$target.siblings('span').text() === 'Prediction' ? this.ui.predictionDetails.slideDown() : this.ui.predictionDetails.slideUp();
