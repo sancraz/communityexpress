@@ -77,6 +77,12 @@ module.exports = function (grunt) {
             src: ['vendor/**'],
             dest: '<%= yeoman.dist %>'
           },
+          // copy pages
+          { expand: true,
+            cwd: '<%= yeoman.app %>',
+            src: ['pages/**'],
+            dest: '<%= yeoman.dist %>'
+          },
           // copy the img files
           { expand: true,
             cwd: '<%= yeoman.app %>',

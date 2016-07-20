@@ -82,6 +82,15 @@ module.exports = function (grunt) {
                         ],
                         dest: '<%= yeoman.dist %>'
                     },
+                    // copy sitefiles
+                    {
+                        expand: true,
+                        cwd: '<%= yeoman.app %>',
+                        src: [
+                            'sitefiles/**'
+                        ],
+                        dest: '<%= yeoman.dist %>'
+                    },
                     {
                         expand: true,
                         cwd: '<%= yeoman.app %>',
