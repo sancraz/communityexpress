@@ -62,8 +62,8 @@ var feedView = Mn.CollectionView.extend({
         this.viewWithExpandedDetails = view;
     },
 
-    onAnswerQuestion: function(view, choiceId, uuid) {
-        this.trigger('answerQuestion', choiceId, uuid, view);
+    onAnswerQuestion: function(view, choiceId, uuid, isCorrect) {
+        this.trigger('answerQuestion', choiceId, uuid, isCorrect, view);
     },
 
     onCheckIfUserLogged: function(view, callback) {

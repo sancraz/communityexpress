@@ -213,14 +213,14 @@ module.exports = {
         callback(logged);
     },
 
-    onAnswerQuestion: function(choiceId, uuid, view) {
+    onAnswerQuestion: function(choiceId, uuid, isCorrect, view) {
         console.log(choiceId, uuid);
         gateway.sendRequest('answerQuestion', {
             UID: this.UID,
             uuid: uuid,
             choice: choiceId
         }).then(_.bind(function(resp) {
-            view.reinitialize(resp);
+            view.reinitialize(resp, isCorrect);
         }, this), function(e) {
 
         });
