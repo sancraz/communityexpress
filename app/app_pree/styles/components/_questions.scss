@@ -77,10 +77,18 @@
             }
         }
 
-        .pree_question_title_date,
-        .pree_question_title_name {
+        .pree_question_title_date {
             color: $grey;
-            font: 400 11px / 50px Ubuntu;
+            font: 400 13px / 50px Ubuntu;
+
+            p {
+                line-height: 1;
+            }
+        }
+
+        .pree_question_title_name {
+            color: $black;
+            font: 800 15px / 50px Ubuntu;
 
             p {
                 line-height: 1;
@@ -93,7 +101,7 @@
     }
 
     .pree_question_img {
-        float: left;
+        display: inline-block;
         margin: 10px;
         margin-left: 0;
 
@@ -151,6 +159,47 @@
     input[type=radio]:not(old):checked + span{
         background: url(images/Ellipse-4-green.png) no-repeat 0;
     }
+
+    // commented line
+    .inputRadioImg {
+        display: inline-block;
+        height: 14px;
+    }
+
+    input[type="radio"].radioAnswer {
+        display: inline-block;
+        float: left;
+        position: relative;
+        bottom: -8px;
+    }
+
+    input[type=radio].radioAnswer:not(old) {
+        width: 28px;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+    }
+
+    input[type=radio].radioAnswer:not(old) + div.inputRadioImg {
+        float: left;
+        display: inline-block;
+        margin-top: 7px;
+        margin-left: -28px;
+        padding-left: 20px;
+        background: url(images/Ellipse-4.png) no-repeat 0;
+        line-height: 24px;
+    }
+
+    input[type=radio].radioAnswer:not(old):checked + div.inputRadioImg {
+        background: url(images/Ellipse-4-green.png) no-repeat 0;
+    }
+
+    .input-group {
+        margin-bottom: 10px;
+        line-height: 10px;
+        height: 10px;
+    }
+    // commented line end
 
     .tagsAndCategories {
         margin-top: 20px;

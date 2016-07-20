@@ -48,14 +48,34 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     initialize : function() {
         console.log("FeedSelectorView initialized");
+        this.model.set('message', '');
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.get('userStatus').enumText === 'ANSWERED' ? true : false;
         // this.isAnswered = true;
     },
 
-    reinitialize: function(attrs) {
+    reinitialize: function(attrs, isCorrect) {
         this.model.set(attrs);
+        var pollType = attrs.pollType.enumText,
+            message;
+        switch (pollType) {
+            case 'FACT':
+                isCorrect ?
+                message = 'CONGRATULATIONS You answered correctly. You\'ve been awarded 250 Points!'
+                : message = 'Thank you, but you answered incorrectly. You\'ve been awarded 50 Points just for answering! See the correct answer below. Your new points total is';
+                break;
+            case 'PREDICTION':
+                isCorrect ?
+                message = 'CORRECT 250 Points'
+                : message = 'INCORRECT 50 Points';
+                break;
+            case 'OPINION':
+                message = 'Thank you! You\'ve been awarded 250 Points'
+                break;
+            default:
+        };
+        this.model.set('message', message);
         this.render();
         this.showAnswerInfo();
     },
@@ -102,12 +122,13 @@ var FeedSelectorView = Mn.LayoutView.extend({
     openAnswerView: function(e) {
         var input = $(e.currentTarget).find('input'),
             choiceId = input.data('id'),
+            isCorrect = input.data('iscorrect'),
             uuid = input.attr('name');
 
         //TODO bug with radio input !!!!!!
         input.prop('checked', true);
         input.addClass('checked');
-        this.trigger('answerQuestion', choiceId, uuid, this);
+        this.trigger('answerQuestion', choiceId, uuid, isCorrect, this);
         // this.showAnswerInfo();
         // loader.show('ANSWER');
     },

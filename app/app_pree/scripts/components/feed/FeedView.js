@@ -20,7 +20,11 @@ var feedView = Mn.CollectionView.extend({
     },
 
     initialize : function() {
+        this.params = this.model.get('params');
         this.listenTo(this.model, "change", this.modelEventHandler);
+    },
+
+    onShow: function() {
         this.bindScroll();
     },
 
@@ -38,10 +42,15 @@ var feedView = Mn.CollectionView.extend({
     },
 
     calculateScroll: function(e) {
+        if (!this.model.get('previousId')) {
+            return;
+        };
         var windowHeight = $(window).height();
         var lastQuestionTop = this.$el.find('#'+this.model.get('previousId')).offset().top;
         if (lastQuestionTop < windowHeight) {
-            this.trigger('getPreviousQuestions', this.model.get('previousId'));
+            this.params.nextId = this.model.get('previousId');
+            this.params.count = 5;
+            this.trigger('getPreviousQuestions', this.params);
             this.$el.unbind('scroll');
         };
     },
@@ -53,8 +62,8 @@ var feedView = Mn.CollectionView.extend({
         this.viewWithExpandedDetails = view;
     },
 
-    onAnswerQuestion: function(view, choiceId, uuid) {
-        this.trigger('answerQuestion', choiceId, uuid, view);
+    onAnswerQuestion: function(view, choiceId, uuid, isCorrect) {
+        this.trigger('answerQuestion', choiceId, uuid, isCorrect, view);
     },
 
     onCheckIfUserLogged: function(view, callback) {

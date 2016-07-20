@@ -54,17 +54,34 @@
             <img src="<%= img_url %>" alt="" />
         </div>
         <div class="pree_question_text"><%= displayText %></div>
-        <% _.each(choices, function(choice){ %>
-            <div class="pree_question_answer pree_question_answer_a answer">
+        <!-- <% _.each(choices, function(choice){ %>
+            <div class="pree_question_answer answer">
                 <input type="radio" name="<%= choice.contestUUID %>" data-id="<%= choice.choiceId %>"> <span class="ansLetter"><%= choice.choiceIndex %>:</span><%= choice.displayText %>
             </div>
-        <% }) %>
+        <% }) %> -->
+        <ul class="pree_question_input_answers">
+            <% _.each(choices, function(choice, index){ %>
+                <li>
+                    <div class="pree_question_edit_answers_item pree_question_answer">
+                        <input type="radio" name="<%= choice.contestUUID %>" data-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" >
+                            <div class="inputRadioImg"></div>
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <%= index + 1 %>
+                                </div>
+                                <input type="text" data-index="<%= index %>" class="form-control answer-example" id="exampleInputAmount" placeholder="Answer <%= index + 1 %>" value="<%= choice.displayText %>">
+                            </div>
+                    </div>
+                </li>
+                <% }) %>
+        </ul>
     </section>
     <div class="pree_question_detailed collapse">
         <div class="pree_question_answer">
             <header class="answerHeader">
-            <span class="thanksText">Thank you! <% if (points && points !== 0) { %>You’ve been awarded <%= points %> points!</span>
-            <span class="score">Your new score is 1035 points</span><% } %>
+                <span class="thanksText"><%= message %></span>
+                <!-- <span class="thanksText">Thank you! <% if (points && points !== 0) { %>You’ve been awarded <%= points %> points!</span> -->
+                <span class="score">Your new score is 1035 points</span><% } %>
             </header>
             <section class="answerBody">
                 <p class="resultsText">Results:</p>

@@ -177,6 +177,7 @@ module.exports = {
         model.questionCollection.each(function(model) {
             model.set('isAnonymous', !!Math.floor(Math.random()*2));
         });
+        model.set('params', this.params);
 
         var feedView = new FeedView({
             el: $('.pree_feed_questions'),
@@ -188,15 +189,12 @@ module.exports = {
         feedView.listenTo(feedView, 'checkIfUserLogged', _.bind(this.onCheckIfUserLogged, this));
         feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
         feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
-        this.centralLayoutView.showQuestionsView(feedView);
+        this.centralLayoutView.showQuestionsView(this.feedView);
     },
 
-    getPreviousQuestions: function(nextId) {
+    getPreviousQuestions: function(params) {
         loader.show('');
-        gateway.sendRequest('getPreeQuestions', {
-            count: 5,
-            nextId: nextId
-        }).then(_.bind(function(resp) {
+        gateway.sendRequest('getPreeQuestions', params).then(_.bind(function(resp) {
             this.feedView.model.set({
                 'previousId': resp.previousId,
                 'nextId': resp.nextId
@@ -215,14 +213,14 @@ module.exports = {
         callback(logged);
     },
 
-    onAnswerQuestion: function(choiceId, uuid, view) {
+    onAnswerQuestion: function(choiceId, uuid, isCorrect, view) {
         console.log(choiceId, uuid);
         gateway.sendRequest('answerQuestion', {
             UID: this.UID,
             uuid: uuid,
             choice: choiceId
         }).then(_.bind(function(resp) {
-            view.reinitialize(resp);
+            view.reinitialize(resp, isCorrect);
         }, this), function(e) {
 
         });

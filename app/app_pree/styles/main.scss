@@ -1,5 +1,6 @@
 @import 'base/colors';
 @import 'base/helpers';
+@import 'base/typography';
 @import 'components/loader';
 @import 'components/questions';
 @import 'components/questionDetailed';
@@ -17,6 +18,13 @@
 @import 'components/centralRegion';
 @import 'components/leftPanel';
 @import 'components/autocomplete';
+
+@font-face {
+  font-family: 'Promt', sans-serif;
+  src: url('https://fonts.google.com/specimen/Prompt?selection.family=Prompt');
+  font-weight: 400;
+  font-style: normal;
+}
 
 html,body {
 	width: 100%;

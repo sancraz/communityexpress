@@ -1,8 +1,8 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-include_once ('Mobile_Detect.php');
-include_once ('parser_api_utility.php');
+include_once ('sitefiles/php/Mobile_Detect.php');
+include_once ('sitefiles/php/parser_api_utility.php');
 
 /* is this for chalkboards? YES */
 if (validateParams('tileViewDetails')) {
