@@ -56,7 +56,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     reinitialize: function(attrs, isCorrect) {
-        debugger;
         this.model.set(attrs);
         var pollType = attrs.pollType.enumText,
             message;
