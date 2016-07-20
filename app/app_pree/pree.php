@@ -34,6 +34,7 @@
   <!-- Widgets stylesheet -->
   <link href="vendor/styles/widgets.css" rel="stylesheet">
   <!-- Custom CSS -->
+  <link rel="stylesheet" href="./styles/common_styles.css">
   <link href="build/styles.css" rel="stylesheet">
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
@@ -67,6 +68,12 @@
         window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
         window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
      </script>
+
+     <!-- Header start -->
+      <?php
+        include ('pages/navbar.php');
+      ?>
+      <!-- Header end -->
 
      <div id="app-container" class="app-container"></div>
 
