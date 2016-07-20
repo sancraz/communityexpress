@@ -7,7 +7,7 @@
 				<div class="slider-content text-center">
 				        <img class="text-center" src="sitefiles/images/logo_text.png" alt-text="Chalkboards" />
 					<!-- <h2 class="slider-title"> Chalkboards </h2> -->
-					<h4 class="slider-title">The ad-network for small businesses</h4>
+					<h4 class="slider-title">Reach your customers with order-ready emails/SMS</h4>
 					<!--
 					-->
 
@@ -34,9 +34,9 @@
 	<div class="container">
 		<div class="row">
 			<div class=" text-center">
-				<h2 class="sec-title">Tradition meets <span> technology</span></h2>
+				<h2 class="sec-title">Mobile power for <span> small businesses </span></h2>
 				<h4 class="sec-sub-title">
-					Your chalkboard sent to the mobiles of your customers
+				    Your customers love mobiles. Now you can sell to them directly.
 				</h4>
 			</div>
 		</div>
@@ -49,9 +49,9 @@
 							<!-- <i class="icon icon-adjustments"></i> -->
 							<img src="sitefiles/images/member_promo.png" />
 							<div class="about-content">
-								<h4>Let patrons create promos</h4>
+								<h4>Email / SMS </h4>
 								<p>
-									Your customers are tech savvy. Invite them to create a promo for you. You open up a whole new way of engaging your patrons but you stay in control. You have the final word.
+		Your customers will love our clean, colorful rich emails. Nothing to install. The 'Order' button is in the message.
 								</p>
 							</div>
 						</div>
@@ -60,10 +60,10 @@
 						<div class="about-inner ">
 							<img src="sitefiles/images/news_flash.png" />
 							<div class="about-content">
-								<h4>Broadcast a Newsflash</h4>
+								<h4>You are in control</h4>
 								<p>
-									You see an opportunity. You must let your customers know right away. Did the band just call in for a gig? Can you offer half-price dinners because salmon was cheap today?
-								</p>
+									Create promotions, specials and send them to your customers when it is right for you. You decide when, you decide what the deals are.
+								  								</p>
 							</div>
 						</div>
 					</div>
