@@ -15,10 +15,16 @@
         padding-right: 20px;
     }
 
-    .close {
-        opacity: 1;
+    .pree_question_edit_close {
+        color: $white;
+        text-shadow: none;
+        opacity: .8;
         line-height: 10px;
         outline: none;
+
+        &:hover {
+            color: $white;
+        }
     }
 
     .modal_header_title {

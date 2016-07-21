@@ -12,7 +12,7 @@ var PreeNewQuestionModel = Backbone.Model.extend({
         contestCustomerId : null,
         isAnonymous : false,
         contestUUID: null,
-        subType: 0,
+        subType: 2,
         url: '',
         infoURL1: '',
         infoURL2: '',
@@ -30,7 +30,7 @@ var PreeNewQuestionModel = Backbone.Model.extend({
                 isCorrect: false //true
             }
         ],
-        additionalInformation: '', 
+        additionalInformation: '',
         bonusPoints: 0,
         basePoints: 0
     },
@@ -80,7 +80,7 @@ var PreeNewQuestionModel = Backbone.Model.extend({
                         }
                         break;
                     case 'type':
-                        if (typeof attrs[field] === 'undefined' || attrs[field] === null || 
+                        if (typeof attrs[field] === 'undefined' || attrs[field] === null ||
                             typeof attrs[field] !== value) {
                             fails.push(field);
                         }

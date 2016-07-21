@@ -2,7 +2,7 @@
 <div class="pree_question_edit create-question-container collapse">
     <header>
         <div class="modal-header">
-            <!-- <button type="button" class="close pree_question_edit_close" data-dismiss="modal" aria-label="Close"><img src="images/close.png" alt=""></button> -->
+            <button type="button" class="close pree_question_edit_close" data-dismiss="modal" aria-label="Close">&times;</button>
             <div class="modal_header_title">
                 Create a new question
             </div>
@@ -12,15 +12,15 @@
         <div class="modal-body">
             <ul class="pree_question_edit_type">Question type:
                 <li class="pree_question_edit_type_item">
-                    <input name="pree_question_edit_type_item" type="radio" <% if (model.subType===0 ) { %>checked
+                    <input name="pree_question_edit_type_item" type="radio" data-subtype="2" <% if (model.subType===2 ) { %>checked
                     <% } %>><span>Fact</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input name="pree_question_edit_type_item"  type="radio" <% if (model.subType===1 ) { %>checked
+                    <input name="pree_question_edit_type_item"  type="radio" data-subtype="1" <% if (model.subType===1 ) { %>checked
                     <% } %>><span>Opinion</span>
                 </li>
                 <li class="pree_question_edit_type_item">
-                    <input name="pree_question_edit_type_item"  type="radio" <% if (model.subType===2 ) { %>checked
+                    <input name="pree_question_edit_type_item"  type="radio" data-subtype="3" <% if (model.subType===3 ) { %>checked
                     <% } %>><span>Prediction</span>
                 </li>
             </ul>
@@ -83,10 +83,10 @@
 
             <div class="pree_question_edit_text">
                 <textarea id="textarea" class="form-control question-text" maxlength="120" placeholder="Add your question here"><%= model.displayText %></textarea>
-                <div id="textAreaOptionsBlock">
+                <!-- <div id="textAreaOptionsBlock">
                     <img src="images/camera-outline.png" alt="" class="pree_question_edit_text_photo">
                     <span id="pree_question_edit_text_note"></span>
-                </div>
+                </div> -->
             </div>
 
             <div>
@@ -110,10 +110,10 @@
                 </ul>
                 <div class="pree_question_edit_answers_item">
                     <span class="selectAnswerText">Select the correct answer</span>
-                    <a href="" class="addAnswerBtn">
+                    <!-- <a href="" class="addAnswerBtn">
                         <img src="images/add2.png" alt="" class="miniPlusBtn">
                         <span>Add an answer</span>
-                    </a>
+                    </a> -->
                 </div>
             </div>
 

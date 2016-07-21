@@ -24,9 +24,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	ui: {
 		container: '.create-question-container',
 		discard: '.discard-btn',
+		close: '.close',
 		save: '.save-btn',
 		post: '.post-btn',
 		type: '.pree_question_edit_type input',
+		typeChecked: '.pree_question_edit_type input:checked',
 		anonymous: '.pree_question_is_anonymous_item input',
 		question: '.question-text',
 		answerInfo: '.answer-info-text',
@@ -54,6 +56,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	events: {
 		'click @ui.discard': 'onDiscardQuestion',
+		'click @ui.close': 'onDiscardQuestion',
 		'click @ui.save': 'onQuestionSave',
 		'click @ui.post': 'onQuestionPost',
 		'change @ui.type': 'onTypeChanged',
@@ -101,10 +104,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onShow: function() {
 		this.ui.container.collapse('show');
 		this.ui.container.on('shown.bs.collapse', _.bind(function() {
+			this.ui.collapsibleAnswerInfo.collapse('show');
 			var neededHeight = $(window).height() - this.$el.offset().top;
 			if (this.ui.container.height() > neededHeight) {
 				this.$el.parent().css({
-					'overflow': 'scroll',
+					'overflow-y': 'scroll',
 					'height': '90%'
 				});
 			}
@@ -125,6 +129,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		this.ui.collapsibleAnswerInfo.on('hidden.bs.collapse', _.bind(function() {
 			this.ui.answerArrow.attr('src', this.arrows.down);
 		}, this));
+		this.model.set('subType', this.ui.typeChecked.data('subtype'));
 	},
 
 	onInitDatepickers: function() {
@@ -188,12 +193,13 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onTypeChanged: function(e) {
 		this.ui.answerChoice.removeAttr('disabled');
 		var $target = $(e.currentTarget);
-		this.ui.type.each(_.bind(function(index, item){
-			if (  $(item).prop('checked')) {
-				this.model.set('subType', index+1);
-				console.log('subtype set as :'+index+1);
-			}
-		}, this));
+		this.model.set('subType', $target.data('subtype'));
+		// this.ui.type.each(_.bind(function(index, item){
+		// 	if (  $(item).prop('checked')) {
+		// 		this.model.set('subType', index+1);
+		// 		console.log('subtype set as :'+(index+1));
+		// 	}
+		// }, this));
 		$target.siblings('span').text() === 'Prediction' ? this.showPredictionDetails() : this.hidePredictionDetails();
 	},
 
@@ -333,8 +339,9 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 		if (!url.match(expresion)) {
 			link = 'http://' + url;
-		}this.ui.collapsiblePredictionDetails('show.bs.collapse');+ url
-			+ '</a><i class="remove-link fa fa-times remove-tag"></i>';
+		}
+		return '<a href="' + link + '">' + url
+ 			+ '</a><i class="remove-link fa fa-times remove-tag"></i>';
 	},
 
 	removeLink: function(e) {

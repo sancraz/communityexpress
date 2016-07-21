@@ -80,8 +80,7 @@
         <div class="pree_question_answer">
             <header class="answerHeader">
                 <span class="thanksText"><%= message %></span>
-                <!-- <span class="thanksText">Thank you! <% if (points && points !== 0) { %>You’ve been awarded <%= points %> points!</span> -->
-                <span class="score">Your new score is 1035 points</span><% } %>
+                <span class="score">Your new score is 1035 points</span>
             </header>
             <section class="answerBody">
                 <p class="resultsText">Results:</p>
@@ -101,16 +100,16 @@
         </div>
         <div class="pree_question_answerInfo">
             <header class="answerInfoHeader">
-            <span class="answerInfoHeaderTitle">
-                Answer Info
-            </span>
+                <span class="answerInfoHeaderTitle">
+                    Answer Info
+                </span>
             </header>
             <section class="answerInfoBody">
-                <p class="answerInfoText"><%= additionalInformation %>
-                </p>
-                 <p class="answerInfoText last">Attribution Links
-                  <a href="http://goo.gl/xne1Bj">http://goo.gl/xne1Bj</a>
-                </p>
+                <p class="answerInfoText"><%= additionalInformation %></p>
+                <div class="answerInfoText last">Attribution Links
+                  <a href="<%= infoURL1 %>"><%= infoURL1 %> </a>
+                  <a href="<%= infoURL2 %>"> <%= infoURL2 %></a>
+              </div>
             </section>
         </div>
     </div>
