@@ -89,7 +89,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             answers: this.model.get('totalAnswers')
         }));
         if (this.isAnswered) {
-            this.onIsAnswered();
+            // this.onIsAnswered();
         };
         if (this.justAnswered) {
             setTimeout(_.bind(function() {

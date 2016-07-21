@@ -45,7 +45,7 @@ module.exports = {
             processData: false,
             data: formData,
             url: url + '?UID=' + UID,
-            timeout: 60000
+            timeout: 90000
         });
     },
 
