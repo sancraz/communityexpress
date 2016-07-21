@@ -3,6 +3,7 @@
 var App = require('../app'),
     loader = require('../loader'),
     Vent = require('../Vent'),
+    h = require('../globalHelpers'),
     sessionActions = require('../actions/sessionActions'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../components/feed/CentralLayoutView'),
@@ -10,6 +11,7 @@ var App = require('../app'),
     CreateQuestionModel = require('../models/PreeNewQuestionModel'),
     FeedView = require('../components/feed/FeedView'),
     FiltersView = require('../components/feed/FiltersView'),
+    TextMessageView = require('../components/feed/TextMessageView'),
     ShareQuestionView = require('../components/feed/ShareQuestionView'),
     ShareQuestionWithMobile = require('../components/feed/ShareQuestionWithMobile'),
     ShareQuestionWithEmail = require('../components/feed/ShareQuestionWithEmail'),
@@ -221,8 +223,12 @@ module.exports = {
             choice: choiceId
         }).then(_.bind(function(resp) {
             view.reinitialize(resp, isCorrect);
-        }, this), function(e) {
-
-        });
+        }, this), _.bind(function(jqXHR) {
+            var text = h().getErrorMessage(jqXHR, 'Error signin in');
+            var errorMessageView = new TextMessageView({
+                text: text
+            });
+            this.centralLayoutView.showTextMessageView(errorMessageView);
+        }, this));
     }
 }

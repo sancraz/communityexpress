@@ -192,9 +192,20 @@ var helpers = function() {
             return result;
         },
 
-        getErrorMessage: function(e, msg) {
-            if (e && e.statusText === 'timeout') {
+        getErrorMessage: function(jqXHR, msg) {
+            if (jqXHR && jqXHR.statusText === 'timeout') {
                 return config.timeoutErrorMessage;
+            } else if (jqXHR.responseText) {
+                var excp = $.parseJSON(jqXHR.responseText).error;
+                switch (excp.type) {
+                    case 'unabletocomplyexception':
+                        return excp.message;
+                    break;
+                    case 'panicexception':
+                        return msg;
+                    break;
+                    default:
+                }
             } else {
                 return msg;
             }

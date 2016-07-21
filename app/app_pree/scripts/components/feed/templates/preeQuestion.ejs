@@ -69,7 +69,7 @@
                                 <div class="input-group-addon">
                                     <%= index + 1 %>
                                 </div>
-                                <input type="text" data-index="<%= index %>" class="form-control answer-example" id="exampleInputAmount" placeholder="Answer <%= index + 1 %>" value="<%= choice.displayText %>">
+                                <div data-index="<%= index %>" class="form-control answer-example" id="exampleInputAmount"><%= choice.displayText %></div>
                             </div>
                     </div>
                 </li>
@@ -79,8 +79,8 @@
     <div class="pree_question_detailed collapse">
         <div class="pree_question_answer">
             <header class="answerHeader">
-                <span class="thanksText"><%= message %></span>
-                <span class="score">Your new score is 1035 points</span>
+                <span class="thanksText"><%= message %> <% if (totalPoints) { %><%= totalPoints %> points<% } %></span>
+                <!-- <span class="score">Your new score is <% if (totalPoints) { %><%= totalPoints %> <% } %> points</span> -->
             </header>
             <section class="answerBody">
                 <p class="resultsText">Results:</p>
@@ -107,8 +107,9 @@
             <section class="answerInfoBody">
                 <p class="answerInfoText"><%= additionalInformation %></p>
                 <div class="answerInfoText last">Attribution Links
-                  <a href="<%= infoURL1 %>"><%= infoURL1 %> </a>
-                  <a href="<%= infoURL2 %>"> <%= infoURL2 %></a>
+                  <a href="<%= infoURL1 %>" target="_blank"><%= infoURL1 %> </a>
+                  <br />
+                  <a href="<%= infoURL2 %>" target="_blank"> <%= infoURL2 %></a>
               </div>
             </section>
         </div>

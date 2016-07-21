@@ -30,6 +30,10 @@ var CentralLayoutView = Mn.LayoutView.extend({
 
     showShareQuestionView: function(view) {
         this.popupRegion.show(view);
+    },
+
+    showTextMessageView: function(view) {
+        this.popupRegion.show(view);
     }
 });
 

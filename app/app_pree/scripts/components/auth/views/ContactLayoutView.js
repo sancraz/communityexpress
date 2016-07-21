@@ -24,6 +24,7 @@ var ContactLayoutView = Mn.LayoutView.extend({
     },
 
     onShow: function() {
+        $('.central-region').css('height', 'auto');
         this.ui.phoneInput.mask('(000) 000-0000');
     },
 

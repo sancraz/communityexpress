@@ -51,7 +51,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.model.set('message', '');
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
-        this.isAnswered = this.model.get('userStatus').enumText === 'ANSWERED' ? true : false;
+        this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
         // this.isAnswered = true;
     },
 
@@ -62,8 +62,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         switch (pollType) {
             case 'FACT':
                 isCorrect ?
-                message = 'CONGRATULATIONS You answered correctly. You\'ve been awarded 250 Points!'
-                : message = 'Thank you, but you answered incorrectly. You\'ve been awarded 50 Points just for answering! See the correct answer below. Your new points total is';
+                message = 'CONGRATULATIONS You answered correctly.<br /> You\'ve been awarded ' +(200 + attrs.points) + ' Points!'
+                : message = 'Thank you, but you answered incorrectly.<br /> You\'ve been awarded ' + attrs.points + ' Points just for answering!<br /> See the correct answer below. Your new points total is';
                 break;
             case 'PREDICTION':
                 isCorrect ?
@@ -71,13 +71,13 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 : message = 'INCORRECT 50 Points';
                 break;
             case 'OPINION':
-                message = 'Thank you! You\'ve been awarded 250 Points'
+                message = 'Thank you! You\'ve been awarded ' + (attrs.points) + ' Points.<br /> Your new points total is';
                 break;
             default:
         };
         this.model.set('message', message);
+        this.justAnswered = true;
         this.render();
-        this.showAnswerInfo();
     },
 
     // onBeforeRender: function() {
@@ -90,12 +90,17 @@ var FeedSelectorView = Mn.LayoutView.extend({
         }));
         if (this.isAnswered) {
             this.onIsAnswered();
-        }
+        };
+        if (this.justAnswered) {
+            setTimeout(_.bind(function() {
+                this.showAnswerInfo();
+            }, this), 500);
+        };
     },
 
     onIsAnswered: function() {
         // TODO we dont have answered from server and choice id ???
-        var choiceId = this.model.get('userStatus').id,
+        var choiceId = this.model.get('currentChoiceForUser'),
             answer = this.ui.answer.find('input[data-id="' + choiceId + '"]');
         answer.prop('checked', true);
         this.ui.answer.css('pointer-events', 'none');
@@ -141,7 +146,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     checkIfUserCanAnswer: function(e) {
-        if (this.isAnswered) return;
+        // if (this.isAnswered) return;
         var input = $(e.currentTarget).find('input');
         input.prop('checked', false);
         this.trigger('checkIfUserLogged', _.bind(function(logged){
