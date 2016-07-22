@@ -20,7 +20,7 @@
 		<?php
 		include ('sitefiles/includes/scriptfiles.html');
 		?>
-		<script type="text/javascript" src="sitefiles/pages_sitefiles/js/content_portalexpress.js"></script>
+		<script type="text/javascript" src="sitefiles/pages_js/content_portalexpress.js"></script>
 		<?php		include ('sitefiles/includes/footer.php');
 		?>
 	</body>
