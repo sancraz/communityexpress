@@ -75,9 +75,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	initialize: function() {
 		var date = new Date();
-		// temporary set dates for FACT and OPINION
-		this.model.set('activationDate', this.moment(date).format('MM/DD/YYYY h:mm:ss'));
-		this.model.set('expirationDate', this.moment(date).format('MM/DD/YYYY h:mm:ss'));
+	 this.model.set('activationDate', this.moment(date).format('MM/DD/YYYY h:mm:ss'));
+	 this.model.set('expirationDate', this.moment(date).format('MM/DD/YYYY h:mm:ss'));
+		/* we do not initialize the model here. We initialize it
+		   in the onShow method below */
+
 	},
 
 	serializeData: function() {
@@ -129,7 +131,16 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		this.ui.collapsibleAnswerInfo.on('hidden.bs.collapse', _.bind(function() {
 			this.ui.answerArrow.attr('src', this.arrows.down);
 		}, this));
-		this.model.set('subType', this.ui.typeChecked.data('subtype'));
+		/*
+		  ALEX: data is probably some function that tries to pull up its own
+			 type of values, but not necessary data-* attributes of an element. I don't
+			who adds the .data() function to jquery. Do you?
+			Instead we put our own attribute */
+		//   this.model.set('subType', this.ui.typeChecked.data('subtype'));
+
+		// temporary set dates for FACT and OPINION
+
+		this.model.set('subType', $target.attr('cmtyx-question-type'));
 	},
 
 	onInitDatepickers: function() {
@@ -193,7 +204,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onTypeChanged: function(e) {
 		this.ui.answerChoice.removeAttr('disabled');
 		var $target = $(e.currentTarget);
-		this.model.set('subType', $target.data('subtype'));
+		console.log(" picking subtype as :"+ $target.attr('cmtyx-question-type'));
+		this.model.set('subType', $target.attr('cmtyx-question-type'));
 		// this.ui.type.each(_.bind(function(index, item){
 		// 	if (  $(item).prop('checked')) {
 		// 		this.model.set('subType', index+1);
