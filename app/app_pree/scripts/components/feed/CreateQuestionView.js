@@ -338,7 +338,6 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		this.checkDatepickersDate();
 		// this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
 		if (this.model.isValid()) {
-			return;
 			// post model
 			this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
 		} else {

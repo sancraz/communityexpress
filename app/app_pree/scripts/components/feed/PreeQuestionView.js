@@ -61,12 +61,13 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     reinitialize: function(attrs, isCorrect) {
         this.model.set(attrs);
+        this.model.set('activationDate', this.moment(this.model.get('activationDate')).format('MM/DD/YYYY'));
         var pollType = attrs.pollType.enumText,
             message;
         switch (pollType) {
             case 'FACT':
                 isCorrect ?
-                message = 'CONGRATULATIONS You answered correctly.<br /> You\'ve been awarded ' +(200 + attrs.points) + ' Points!'
+                message = 'CONGRATULATIONS You answered correctly.<br /> You\'ve been awarded ' +(200 + attrs.points) + ' Points!<br /> Your new points total is'
                 : message = 'Thank you, but you answered incorrectly.<br /> You\'ve been awarded ' + attrs.points + ' Points just for answering!<br /> See the correct answer below. Your new points total is';
                 break;
             case 'PREDICTION':
@@ -75,7 +76,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 : message = 'INCORRECT 50 Points';
                 break;
             case 'OPINION':
-                message = 'Thank you! You\'ve been awarded ' + (attrs.points) + ' Points.<br /> Your new points total is';
+                message = 'Thank you! You\'ve been awarded ' + (200 + attrs.points) + ' Points.<br /> Your new points total is';
                 break;
             default:
         };
@@ -143,14 +144,14 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     showAnswerInfo: function() {
-        debugger;
         this.ui.preeQuestion.addClass('active');
         this.trigger('collapseDetails');
         this.ui.preeQuestionDetailed.collapse('show');
 
         // Adding jqPlot progress bars - IN PROGRESS
         this.ui.preeQuestionDetailed.on('shown.bs.collapse', function() {
-            var line = [[70, 2],[30, 1]];
+            var line = [[70, 2],[30, 1]],
+                ticks = ['answer1', 'answer2'];
             $('#answerBar').jqplot([line], {
                 seriesColors:['#388e3c',     '#ff0000'],
                 seriesDefaults: {
@@ -166,13 +167,29 @@ var FeedSelectorView = Mn.LayoutView.extend({
                     {
                         pointLabels: {
                         show: true,
-                        labels:['70', '30']
+                        labels:['30%', '70%']
                         }
                     }
                 ],
                 axes: {
                     yaxis: {
-                        renderer: $.jqplot.CategoryAxisRenderer
+                        ticks: ticks,
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        tickOptions: {
+                            show: false
+                        },
+                        rendererOptions: {
+                            drawBaseline: false
+                        }
+                    },
+                    xaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer,
+                        tickOptions: {
+                            show: false
+                        },
+                        rendererOptions: {
+                            drawBaseline: false
+                        }
                     }
                 }
             });
