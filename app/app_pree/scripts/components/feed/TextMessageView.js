@@ -17,6 +17,10 @@ var TextMessageView = Mn.ItemView.extend({
         'click @ui.close': 'close'
     },
 
+    initialize: function() {
+        this.callback = this.options.callback || function () {};
+    },
+
     serializeData: function() {
         return {
             text: this.options.text
@@ -29,6 +33,9 @@ var TextMessageView = Mn.ItemView.extend({
 
     close: function() {
         this.$el.modal('hide');
+        this.$el.on('hidden.bs.modal', _.bind(function() {
+            this.callback();
+        }, this));
     }
 });
 

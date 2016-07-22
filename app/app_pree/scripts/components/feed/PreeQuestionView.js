@@ -179,8 +179,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     addLike: function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+        // e.preventDefault();
+        // e.stopPropagation();
         var currentLikes = this.model.get('likes');
         if (!this.model.get('alreadyLiked')) {
             this.model.set({

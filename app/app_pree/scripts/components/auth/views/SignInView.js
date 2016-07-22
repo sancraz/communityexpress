@@ -72,7 +72,6 @@ var SignInView = Mn.ItemView.extend({
 
     close: function() {
         this.$el.modal('hide');
-        this
     }
 });
 

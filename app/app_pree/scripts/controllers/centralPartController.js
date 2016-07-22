@@ -224,9 +224,13 @@ module.exports = {
         }).then(_.bind(function(resp) {
             view.reinitialize(resp, isCorrect);
         }, this), _.bind(function(jqXHR) {
-            var text = h().getErrorMessage(jqXHR, 'Error signin in');
+            var text = h().getErrorMessage(jqXHR, 'You can\'t answer this question'),
+                callback = function() {
+                    console.log('callback');
+                };
             var errorMessageView = new TextMessageView({
-                text: text
+                text: text,
+                callback: callback
             });
             this.centralLayoutView.showTextMessageView(errorMessageView);
         }, this));
