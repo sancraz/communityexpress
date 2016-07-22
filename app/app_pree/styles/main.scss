@@ -36,4 +36,9 @@ html,body {
 	.app-container {
 		height: 100%;
 	}
+
+    .error {
+        display: none;
+        color: $red;
+    }
 }

@@ -15,7 +15,7 @@
                 <p><%= pollType.displayText.toUpperCase() %></p>
             </div>
             <div class="pree_question_title_date">
-                <p>&bull; <%= activationDate %></p>
+                <p><%= activationDate %></p>
             </div>
         </li>
         <li class="dropdown pree_categories_dropdown">
@@ -50,9 +50,11 @@
         </li>
     </ul>
     <section class="questionBody">
-        <div class="pree_question_img">
-            <img src="<%= img_url %>" alt="" />
-        </div>
+        <% if (img_url) { %>
+            <div class="pree_question_img">
+                <img src="<%= img_url %>" alt="" />
+            </div>
+        <% } %>
         <div class="pree_question_text"><%= displayText %></div>
         <!-- <% _.each(choices, function(choice){ %>
             <div class="pree_question_answer answer">
@@ -63,7 +65,7 @@
             <% _.each(choices, function(choice, index){ %>
                 <li>
                     <div class="pree_question_edit_answers_item pree_question_answer">
-                        <input type="radio" name="<%= choice.contestUUID %>" data-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" >
+                        <input type="radio" name="<%= choice.contestUUID %>" cmtyx-answer-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" >
                             <div class="inputRadioImg"></div>
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -84,6 +86,9 @@
             </header>
             <section class="answerBody">
                 <p class="resultsText">Results:</p>
+                <div id="answerBar" style="height:100px;width:100%; ">
+
+                </div>
                 <% _.each(choices, function(choice){ %>
                     <div class="progress">
                         <div class="progress-bar-<%= choice.isCorrect ? 'success' : 'warning' %> answerResultLetter"

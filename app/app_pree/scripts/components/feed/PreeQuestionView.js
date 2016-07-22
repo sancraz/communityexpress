@@ -2,6 +2,7 @@
 
 var template = require('ejs!./templates/preeQuestion.ejs'),
     loader = require('../../loader'),
+    moment = require('moment'),
     preeQuestionCategoriesView = require('./PreeQuestionCategories'),
     preeQuestionTagsView = require('./PreeQuestionTags'),
     answerCountView = require('./AnswerCountView');
@@ -22,6 +23,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
     id: function() {
         return this.model.get('id');
     },
+
+    moment: moment,
 
     ui: {
         preeQuestion: '.pree_question',
@@ -47,6 +50,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     initialize : function() {
+        this.model.set('activationDate', this.moment(this.model.get('activationDate')).format('MM/DD/YYYY'));
         console.log("FeedSelectorView initialized");
         this.model.set('message', '');
         this.id = this.model.get('id');
@@ -127,7 +131,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     openAnswerView: function(e) {
         var input = $(e.currentTarget).find('input'),
             choiceId = input.data('id'),
-            isCorrect = input.data('iscorrect'),
+            isCorrect = input.attr('cmtyx-answer-iscorrect'),
             uuid = input.attr('name');
 
         //TODO bug with radio input !!!!!!
@@ -139,9 +143,40 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     showAnswerInfo: function() {
+        debugger;
         this.ui.preeQuestion.addClass('active');
         this.trigger('collapseDetails');
         this.ui.preeQuestionDetailed.collapse('show');
+
+        // Adding jqPlot progress bars - IN PROGRESS
+        this.ui.preeQuestionDetailed.on('shown.bs.collapse', function() {
+            var line = [[70, 2],[30, 1]];
+            $('#answerBar').jqplot([line], {
+                seriesColors:['#388e3c',     '#ff0000'],
+                seriesDefaults: {
+                    renderer:$.jqplot.BarRenderer,
+                    pointLabels: { show: true, stackedValue: true },
+                    shadowAngle: 135,
+                    rendererOptions: {
+                        varyBarColor: true,
+                        barDirection: 'horizontal'
+                    }
+                },
+                series:[
+                    {
+                        pointLabels: {
+                        show: true,
+                        labels:['70', '30']
+                        }
+                    }
+                ],
+                axes: {
+                    yaxis: {
+                        renderer: $.jqplot.CategoryAxisRenderer
+                    }
+                }
+            });
+        });
         this.ui.answer.css('pointer-events', 'none');
     },
 

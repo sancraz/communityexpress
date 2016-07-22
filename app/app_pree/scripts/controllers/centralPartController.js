@@ -126,7 +126,12 @@ module.exports = {
             UID: this.user.getUID(),
             payload: model.toJSON()
         }).then(_.bind(function(resp) {
-            callback();
+            var callback = _.bind(this.getQuestions, this);
+            var successView = new TextMessageView({
+                text: 'Successfully created a question',
+                callback: callback
+            });
+            this.centralLayoutView.showTextMessageView(successView);
         }, this), function(e) {
             callback();
         });

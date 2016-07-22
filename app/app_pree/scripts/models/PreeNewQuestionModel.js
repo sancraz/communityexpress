@@ -58,6 +58,9 @@ var PreeNewQuestionModel = Backbone.Model.extend({
         },
         expirationDate: {
             length: 15
+        },
+        categories: {
+            length: 1
         }
     },
 

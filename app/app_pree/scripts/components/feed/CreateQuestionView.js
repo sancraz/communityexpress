@@ -51,7 +51,10 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		collapsibleAnswerInfo: '#collapseTwo',
 		predictionDetails: '.prediction-details',
 		predictionArrow: '.prediction-arrow',
-		answerArrow: '.answer-arrow'
+		answerArrow: '.answer-arrow',
+		categoriesError: '.categories_error',
+		choicesError: '.choices_error',
+		questionError: '.question_error'
 	},
 
 	events: {
@@ -301,19 +304,47 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	onValidationError: function(errors) {
 		console.log('fields error: ', errors);
+		for (var error in errors) {
+			switch (errors[error]) {
+				case 'categories':
+					this.ui.categoriesError.show();
+					this.ui.categoriesError
+						.siblings('div')
+						.find('input')
+						.on('focus',_.bind(function() {
+							this.ui.categoriesError.hide();
+						}, this));
+					break;
+				case 'choices':
+					this.ui.choicesError.show();
+					this.ui.answerExample.on('focus', _.bind(function() {
+						this.ui.choicesError.hide();
+					}, this));
+					break;
+				case 'displayText':
+					this.ui.questionError.show();
+					this.ui.question.on('focus', _.bind(function() {
+						this.ui.questionError.hide();
+					}, this));
+					break;
+				default:
+					break;
+			}
+		}
 	},
 
 	onQuestionPost: function() {
 		console.log('on post question');
 		this.checkDatepickersDate();
-		this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
-		// if (this.model.isValid()) {
-		// 	// post model
-		// 	this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
-		// } else {
-		// 	//on error
-		// 	this.onValidationError(this.model.validationError);
-		// }
+		// this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
+		if (this.model.isValid()) {
+			return;
+			// post model
+			this.trigger('onNewQuestin:post', this.model, _.bind(this.onDiscardQuestion, this));
+		} else {
+			//on error
+			this.onValidationError(this.model.validationError);
+		}
 	},
 
 	onAddAtributionUrl: function(){
