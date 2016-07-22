@@ -107,6 +107,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
+		this.ui.answerExample.val('');
+		this.ui.answerRadioButton.prop('checked', false);
 		this.ui.container.collapse('show');
 		this.ui.container.on('shown.bs.collapse', _.bind(function() {
 			this.ui.collapsibleAnswerInfo.collapse('show');
@@ -142,8 +144,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		//   this.model.set('subType', this.ui.typeChecked.data('subtype'));
 
 		// temporary set dates for FACT and OPINION
-
-		this.model.set('subType', $target.attr('cmtyx-question-type'));
+		this.model.set('subType', parseInt(this.ui.typeChecked.attr('cmtyx-question-type')));
 	},
 
 	onInitDatepickers: function() {
