@@ -208,8 +208,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onTypeChanged: function(e) {
 		this.ui.answerChoice.removeAttr('disabled');
 		var $target = $(e.currentTarget);
-		console.log(" picking subtype as :"+ $target.attr('cmtyx-question-type'));
-		this.model.set('subType', $target.attr('cmtyx-question-type'));
+		console.log(" picking subtype as :"+ parseInt($target.attr('cmtyx-question-type')));
+		this.model.set('subType', parseInt($target.attr('cmtyx-question-type')));
 		// this.ui.type.each(_.bind(function(index, item){
 		// 	if (  $(item).prop('checked')) {
 		// 		this.model.set('subType', index+1);

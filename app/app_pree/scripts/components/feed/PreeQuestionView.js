@@ -67,16 +67,16 @@ var FeedSelectorView = Mn.LayoutView.extend({
         switch (pollType) {
             case 'FACT':
                 isCorrect ?
-                message = 'CONGRATULATIONS You answered correctly.<br /> You\'ve been awarded ' +(200 + attrs.points) + ' Points!<br /> Your new points total is'
+                message = 'CONGRATULATIONS You answered correctly.<br /> You\'ve been awarded ' + attrs.points + ' Points!<br /> Your new points total is'
                 : message = 'Thank you, but you answered incorrectly.<br /> You\'ve been awarded ' + attrs.points + ' Points just for answering!<br /> See the correct answer below. Your new points total is';
                 break;
             case 'PREDICTION':
                 isCorrect ?
-                message = 'CORRECT 250 Points'
-                : message = 'INCORRECT 50 Points';
+                message = 'CONGRATULATIONS You\'ve been awarded ' + attrs.points + ' Points! <br /> Your new points total is'
+                : message = 'INCORRECT ' + attrs.points + ' Points. <br /> Your new points total is';
                 break;
             case 'OPINION':
-                message = 'Thank you! You\'ve been awarded ' + (200 + attrs.points) + ' Points.<br /> Your new points total is';
+                message = 'Thank you! You\'ve been awarded ' + attrs.points + ' Points.<br /> Your new points total is';
                 break;
             default:
         };
@@ -132,7 +132,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     openAnswerView: function(e) {
         var input = $(e.currentTarget).find('input'),
             choiceId = input.data('id'),
-            isCorrect = input.attr('cmtyx-answer-iscorrect'),
+            isCorrect = (input.attr('cmtyx-answer-iscorrect') == 'true'),
             uuid = input.attr('name');
 
         //TODO bug with radio input !!!!!!
