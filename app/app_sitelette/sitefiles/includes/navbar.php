@@ -46,8 +46,8 @@
       <li  <?php modifyUrlAndClass("common_signup") ?> >
        <a href="common_signup.php" >Sign Up</a>
       </li>
-      <li <?php modifyUrlAndClass("portalexpress") ?>>
-       <a  href="portalexpress" >Login</a>
+      <li <?php modifyUrlAndClass("common_portalexpress") ?>>
+       <a  href="common_portalexpress.php" >Login</a>
       </li>
            <li <?php modifyUrlAndClass("Invitation") ?>>
        <a  href="signup" >Invitation</a>

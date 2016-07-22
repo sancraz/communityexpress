@@ -82,7 +82,6 @@ com.faralam.common.sendAjaxRequest = function (url, type, data, onsuccess, onerr
         }
     });
 };
-
 com.faralam.common.ErrorHandling = function (data, pop_task, cmp) {
     if (data) {
         var response = data.replace(/\n/g, "");
@@ -339,7 +338,7 @@ com.faralam.evaluateEmailMobileVerificationStatus = function (data) {
 com.faralam.UserLogOut = function () {
     com.faralam.UserLogOutURL = com.faralam.serverURL + "authentication/logout?";
     var UserLogOutURL = com.faralam.UserLogOutURL + encodeURI('UID=' + sessionStorage.UID);
-	var redirectUrl = sessionStorage.ignorehistory=="true"?"http://sitelettes.com":"http://sitelettes.com/business";
+	var redirectUrl = sessionStorage.ignorehistory=="true"?"http://chalkboards.today":"http://chalkboards.today";
 	console.log(sessionStorage.ignorehistory);
 	console.log(redirectUrl);
     var onsuccess = function (data, textStatus, jqXHR) {
@@ -350,9 +349,10 @@ com.faralam.UserLogOut = function () {
             fn: function (btn) {
                 if (btn == 'ok') {
                     Ext.Ajax.request({
-                        url: redirectUrl, //again
+                        url: '/', //again
                         callback: function () {
-                            window.top.location.href = redirectUrl;
+                            window.top.location.href = '/';
+                            
                         }
                     });
                 }
@@ -1374,6 +1374,15 @@ com.faralam.StartScreenNavigate = function (config) {
             Ext.getCmp('main_tab').setActiveTab(48);
         }
     }
+    /*else if (config == 'appointmentService') {
+        if (sessionStorage.SASLNAME) {
+            Ext.getCmp('main_tab').down('#start_screen').setDisabled(true);
+            Ext.getCmp('main_tab').down('#appointment').setDisabled(false);
+            Ext.getCmp('appointmentService_pageHeader').update('<span style="color:#000;font-size:20px; font-weight: bold;">' + JSON.stringify(pageHeader).replace(/"/g, '') + '</span>');
+            Ext.getCmp('main_tab').setActiveTab(51);
+        }
+    }*/
+    
 }
 
 // ################################# Ends ###################################
@@ -5555,6 +5564,7 @@ com.faralam.RetrievePromoInfo = function () {
         var first_pic = '';
         var first_desc = '';
         var first_share_url=';'
+        var first_promo_UUID;
         var arr = new Array();
         var count = 0;
         if (response.length > 0) {
@@ -6064,7 +6074,7 @@ com.faralam.common.open_promotion_share_sec = function () {
                                             labelSeparator: '  ',
                                             vtype: 'email',
                                             vtypeText: 'Email format is not valid',
-                                            style: ' border-radius: 3px !important;padding: 5px !important;',
+                                            style: ' border-radius: 3px !important;padding: 5px !important;'
 										},
                                         {
                                             xtype: 'button',
@@ -7502,12 +7512,16 @@ com.faralam.common.retrieveCatalog_func = function (catalogId) {
         //console.log(response);
         var html = '';
         var arr = new Array();
+        
         if (response.groups.length > 0) {
+            var catalogType='<span class="gallery_txt" style="float:left;margin:15px;margin-left:0;font-style: italic;font-size:15px !important;font-weight:bold;color:black">Groups in '+response.catalogType.displayText+'</span>';
+            Ext.getCmp('groupCaption').update(catalogType);
             for (var i = 0; i < response.groups.length; i++) {
-                html += '<li class="catalog_li groups_in_catalog_menu_li_set" id="groupsincatalog_list_'+i+'" style="background-color:#f6f6ff;border:1px solid #ffffdc; width: 98%;margin-left: 1%;border-radius:3px"><img grincat="groupsincatalog_list_'+i+'" id="groupList_catalog_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd_catalog(event)" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetCalatogGroupDescEdit(this)" groupId="' + response.groups[i].groupId + '" style="height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 200px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important;width:99%;height:30px;">' + response.groups[i].groupDisplayText + '</span><img class="edit_catalog_icon" onclick="com.faralam.SetCalatogGroupDescEditWindow(this)" groupId="' + response.groups[i].groupId + '" groupDisplayText="' + response.groups[i].groupDisplayText + '" description="' + response.groups[i].description + '" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="25" height="26" border="0"><img class="move_catalog_icon" catalogId="'+response.catalogId+'" groupId="' + response.groups[i].groupId + '" ondragend="com.faralam.dragEnd_catalog(event)" id="groupList_catalog_drag_zone_move_active" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetCalatogGroupMove(this)" src="' + com.faralam.custom_img_path + 'icon_move.png" width="25" height="26" border="0" style="cursor:move;z-index:999;height: 26px;position: absolute;right: 10px;top: 2px;width: 25px;border:none;"></li><li class="catalog_li" style="height: 8px;padding: 0;"><img id="groupList_catalog_drag_zone_middlebar_active" class="before_dragging" ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" groupId="' + response.groups[i].groupId + '" style="height: 8px;left: 0;position: absolute;top: 0;width: 270px;border:none;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"></li>';
+                html += '<li class="catalog_li groups_in_catalog_menu_li_set" id="groupsincatalog_list_'+i+'" style="background-color:#f6f6ff;border:1px solid #ffffdc; width: 98%;margin-left: 1%;border-radius:3px"><img grincat="groupsincatalog_list_'+i+'" id="groupList_catalog_drag_zone_active" class="before_dragging" ondragend="com.faralam.dragEnd_catalog(event)" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetCalatogGroupDescEdit(this)" groupId="' + response.groups[i].groupId + '" style="height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 200px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important;width:99%;height:30px;">' + response.groups[i].groupDisplayText + '</span><img class="edit_catalog_icon" onclick="com.faralam.SetCalatogGroupDescEditWindow(this)" groupId="' + response.groups[i].groupId + '" groupDisplayText="' + response.groups[i].groupDisplayText + '" description="' + response.groups[i].description + '" groupType="'+response.groups[i].groupType.enumText+'"  src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="25" height="26" border="0"><img class="move_catalog_icon" catalogId="'+response.catalogId+'" groupId="' + response.groups[i].groupId + '" ondragend="com.faralam.dragEnd_catalog(event)" id="groupList_catalog_drag_zone_move_active" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetCalatogGroupMove(this)" src="' + com.faralam.custom_img_path + 'icon_move.png" width="25" height="26" border="0" style="cursor:move;z-index:999;height: 26px;position: absolute;right: 10px;top: 2px;width: 25px;border:none;"></li><li class="catalog_li" style="height: 8px;padding: 0;"><img id="groupList_catalog_drag_zone_middlebar_active" class="before_dragging" ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" groupId="' + response.groups[i].groupId + '" style="height: 8px;left: 0;position: absolute;top: 0;width: 270px;border:none;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"></li>';
             }
         }
         if (html) {
+            
             html = '<div id="group_list_parent_container" style="max-height: 120px;"><ul style="text-align:left;height:120px;margin-top: 5px;">' + html + '</ul></div><div class="drop_here_div_middle_panel">Drop group here<img ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="catalog_Group_panel_Section" src="' + com.faralam.custom_img_path + 'trans_img.jpg" class="drop_here_img_middle_panel"></div>';
             if (count == 3) {
                 arr = {
@@ -7543,13 +7557,13 @@ com.faralam.common.retrieveCatalogs_func = function () {
         var arr = new Array();
         if (response.length > 0) {
             for (var i = 0; i < response.length; i++) {
-				html += '<li class="catalog_li menu_list_li_set_bg" id="menu_li_'+i+'" style="background-color:#f6f6ff;border:1px solid #ffffdc; width: 98%;margin-left: 1%;border-radius:3px"><img mnid="menu_li_'+i+'" id="catalog_drag_zone_active" class="before_dragging catalog_drag_zone_active_overlay" onclick="com.faralam.SetCatalogDescEdit(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" style="height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 220px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important;width:100%;height:30px;">' + response[i].displayText + '</span><img class="edit_catalog_icon_panel1" onclick="com.faralam.common.EditCatalog(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" description="' + response[i].description + '" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="26" height="26" border="0"><img src="' + com.faralam.custom_img_path + 'icon_move.png" width="26" id="menu_rearrange" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" catalogId="'+response[i].catalogId+'" displayText="' + response[i].displayText + '" height="26" border="0" style="right: 41px;top: 2px;position: absolute;cursor:move;z-index:999" ></li><li style="height:20px"><div catalogId="'+response[i].catalogId+'"  ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="menu_drop_zone" style="height:100%; width:100%"></div></li>';
+				html += '<li class="catalog_li menu_list_li_set_bg" id="menu_li_'+i+'" style="background-color:#f6f6ff;border:1px solid #ffffdc; width: 98%;margin-left: 1%;border-radius:3px"><img mnid="menu_li_'+i+'" id="catalog_drag_zone_active" class="before_dragging catalog_drag_zone_active_overlay" onclick="com.faralam.SetCatalogDescEdit(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" style="height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 220px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important;width:100%;height:30px;">' + response[i].displayText + '</span><img class="edit_catalog_icon_panel1" onclick="com.faralam.common.EditCatalog(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" description="' + response[i].description + '" catalogType="'+ response[i].catalogType.enumText+'" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="26" height="26" border="0"><img src="' + com.faralam.custom_img_path + 'icon_move.png" width="26" id="menu_rearrange" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" catalogId="'+response[i].catalogId+'" displayText="' + response[i].displayText + '" height="26" border="0" style="right: 41px;top: 2px;position: absolute;cursor:move;z-index:999" ></li><li style="height:20px"><div catalogId="'+response[i].catalogId+'"  ondrop="com.faralam.drop_catalog(event)" ondragover="com.faralam.allowDrop_catalog(event)" id="menu_drop_zone" style="height:100%; width:100%"></div></li>';
                 /*<div catalogId="'+response[i].catalogId+'"  ondrop="com.faralam.drop_catalog(event)" id="menu_drop_zone" style="height:10px; width:100%"></div>*/
                /* html += '<li class="catalog_li" ><img id="catalog_drag_zone_active"  class="before_dragging catalog_drag_zone_active_overlay" ondragend="com.faralam.dragEnd_catalog(event)" ondragstart="com.faralam.dragStart_catalog(event)" onclick="com.faralam.SetCatalogDescEdit(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" style="margin-left:35px;height: 30px;left: 0;opacity: 0;position: absolute;top: 0;width: 190px;" src="' + com.faralam.custom_img_path + 'trans_img.jpg"><span style="color:#000 !important; width:100%;height:30px;">' + response[i].displayText + '</span><img onclick="com.faralam.common.EditCatalog(this)" catalogId="' + response[i].catalogId + '" displayText="' + response[i].displayText + '" description="' + response[i].description + '" src="' + com.faralam.custom_img_path + 'icon_pencil.png" width="26" height="26" border="0"><img style="float:right" src="' + com.faralam.custom_img_path + 'icon_move.png" width="26" height="26" border="0"></li>';*/
             }
         }
         if (html) {
-            html = '<ul id="catalog_list_parent_container" style="text-align:left;max-height: 150px;height: 150px;margin-top: 5px;">' + html + '</ul>';
+            html = '<ul id="catalog_list_parent_container" style="text-align:left;max-height: 150px;height: 150px;margin-top: 5px; overflow:hidden">' + html + '</ul>';
             if (count == 5) {
                 arr = {
                     suppressScrollX: true,
@@ -7557,16 +7571,19 @@ com.faralam.common.retrieveCatalogs_func = function () {
                 };
             }
         } else {
-            html = '<ul id="catalog_list_parent_container" style="text-align:center;height: 150px;"><li class="catalog_li">No catalog(s) available</li></ul>';
+            html = '<ul id="catalog_list_parent_container" style="text-align:center;height: 150px;overflow:hidden"><li class="catalog_li">No catalog(s) available</li></ul>';
             arr = {
                 suppressScrollX: true,
                 suppressScrollY: true
             };
         }
         Ext.getCmp('catalog_single_panel').update(html);
-       
+        
+        $('#catalog_list_parent_container').perfectScrollbar('destroy');
+        $("#catalog_list_parent_container").perfectScrollbar(arr);
+       /*
         $('div#catalog_single_panel-innerCt').perfectScrollbar('destroy');
-        $("div#catalog_single_panel-innerCt").perfectScrollbar(arr);
+        $("div#catalog_single_panel-innerCt").perfectScrollbar(arr);*/
     }
     var onerror = function (jqXHR, textStatus, errorThrown) {}
     com.faralam.common.sendAjaxRequest(com.faralam.retrieveCatalogs_func, "GET", {}, onsuccess, onerror);
@@ -7754,7 +7771,7 @@ com.faralam.common.RetrieveCatalogInfo = function (p_id,txt,coi) {
                                  
                              });
                     var editbtn='';
-                            editbtn='<img src="'+com.faralam.custom_img_path+'icon_pencil.png" onclick="com.faralam.common.CATALOGS_EDIT_ITEMS(this)" itemId="'+response.items[j].itemId+'" itemVersion='+response.items[j].itemVersion+' priceId='+response.items[j].priceId+' price="'+response.items[j].price+'" shortDescription="'+response.items[j].shortDescription+'" longDescription="'+response.items[j].longDescription+'" itemName="'+response.items[j].itemName+'" itemTag="'+response.items[j].itemTag+'" '+attr+' imgUrl="' + response.items[j].mediaURLs[0]+'" style="position:absolute;left:92px;top:2;z-index:9999;cursor:pointer;left:0">';
+                            editbtn='<img src="'+com.faralam.custom_img_path+'icon_pencil.png" onclick="com.faralam.common.CATALOGS_EDIT_ITEMS(this)" itemId="'+response.items[j].itemId+'" itemVersion='+response.items[j].itemVersion+' priceId='+response.items[j].priceId+' price="'+response.items[j].price+'" shortDescription="'+response.items[j].shortDescription+'" longDescription="'+response.items[j].longDescription+'" itemType="'+response.items[j].itemType.enumText+'" itemName="'+response.items[j].itemName+'" itemTag="'+response.items[j].itemTag+'" '+attr+' imgUrl="' + response.items[j].mediaURLs[0]+'" style="position:absolute;left:92px;top:2;z-index:9999;cursor:pointer;left:0">';
                             
                     var movebtn='<img src="'+com.faralam.custom_img_path+'icon_move.png" data-qtip=' + response.items[j].itemStatus.enumText + ' params=' + del_params + ' src="' + response.items[j].mediaURLs[0] + '" itemName="' + response.items[j].itemName + '" longDescription="' + response.items[j].longDescription + '" itemVersion="' + response.items[j].itemVersion + '" price="' + response.items[j].price + '" priceId="' + response.items[j].priceId + '" itemId="' + response.items[j].itemId + '" itemTag="' + response.items[j].itemTag + '" imgUrl="' + response.items[j].mediaURLs[0] + '" shortDescription="' + response.items[j].shortDescription + '" ondragstart="com.faralam.dragStart_catalog(event)" ondragend="com.faralam.dragEnd_catalog(event)" id="all_item_rearrange_icon"  style="position:absolute;z-index:99;top:2;border:none;right:0;cursor:move" >';
                             
@@ -8144,8 +8161,52 @@ com.faralam.common.AddNewItem = function () {
                                                             })
                                                         }
                                                         
-                                                    ]}
-                                                        ,
+                                                    ]
+                                                        },
+                                                        {
+                                    xtype: 'combo',
+                                    id: 'itemType',                                        
+                                    name: 'itemType',
+                                    hidden:true,
+                                    margin: '4 0 2 0', 
+                                    inputWidth: 350,                                                         
+                                    allowBlank: false,                                      
+                                    fieldLabel:'Item Type',
+                                    queryMode:'local',                      
+                                    autoSelect:true,
+                                    emptyText:'Select Item Type',
+                                    forceSelection:true	,
+                                    editable: false,
+                                    mode: 'remote',
+                                    displayField: 'displayText',
+                                    valueField: 'enumText',
+                                    store: Ext.create('Ext.data.ArrayStore', {
+                                    fields : ['displayText', 'enumText'],
+                                    autoLoad: false,
+                                    proxy: {
+                                        type: 'ajax',
+                                        url:  '',
+                                        reader: {
+                                            type: 'json',
+                                            getData: function(data){
+                                                var temparray = []; 
+                                                var count = 0;
+                                                Ext.each(data, function(rec) {
+                                                    temparray.push([]);
+                                                    temparray[count].push( new Array(1));
+                                                    temparray[count]['displayText'] = rec.displayText;
+                                                    temparray[count]['enumText'] = rec.enumText;
+                                                    count=count+1;
+                                                });									
+                                                data = temparray;
+                                                return data;
+                                            }
+                                        }
+                                    }
+                                })
+
+                                         },
+                                                        
                                                         {
                                                             xtype: 'image',
                                                             width: 350,
@@ -8285,7 +8346,7 @@ com.faralam.common.AddNewItem = function () {
                 item_modal = Ext.widget('window', {
                     title: 'Add Item',
                     id: 'item_modal',
-                    closeAction: 'hide',
+                    closeAction: 'destroy',
                     layout: 'fit',
                     resizable: false,
                     modal: true,
@@ -8295,9 +8356,16 @@ com.faralam.common.AddNewItem = function () {
                     listeners:{
                         close:function(){
                             Ext.getCmp('catalog_big_img').setSrc('');
-                            Ext.getCmp('thumb_img').setSrc('');
+                            Ext.getCmp('thumb_img').setSrc('');                            
                             item_modal_form.getForm().reset(true);
-                        }
+                            
+                        },
+                    show:function(){
+                            Ext.getCmp('itemType').setVisible(true);
+                            Ext.getCmp('itemType').getStore().removeAll();
+                            Ext.getCmp('itemType').getStore().proxy.url = com.faralam.serverURL + 'retail/getItemTypes?UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL;
+                            Ext.getCmp('itemType').getStore().reload();
+                    }
                     }
                 });
 
@@ -8630,6 +8698,49 @@ com.faralam.common.CATALOGS_EDIT_ITEMS = function (e) {
                                                     ]}
                                                         ,
                                                         {
+                                                            xtype: 'combo',
+                                                            id: 'edtitemType',                                        
+                                                            name: 'edtitemType',
+                                                            hidden:true,
+                                                            margin: '4 0 2 0', 
+                                                            inputWidth: 350,                                                         
+                                                            allowBlank: false,                                      
+                                                            fieldLabel:'Item Type',
+                                                            queryMode:'local',                      
+                                                            autoSelect:true,
+                                                            emptyText:'Select Item Type',
+                                                            forceSelection:true	,
+                                                            editable: false,
+                                                            mode: 'remote',
+                                                            displayField: 'displayText',
+                                                            valueField: 'enumText',
+                                                            store: Ext.create('Ext.data.ArrayStore', {
+                                                            fields : ['displayText', 'enumText'],
+                                                            autoLoad: false,
+                                                            proxy: {
+                                                                type: 'ajax',
+                                                                url:  '',
+                                                                reader: {
+                                                                    type: 'json',
+                                                                    getData: function(data){
+                                                                        var temparray = []; 
+                                                                        var count = 0;
+                                                                        Ext.each(data, function(rec) {
+                                                                            temparray.push([]);
+                                                                            temparray[count].push( new Array(1));
+                                                                            temparray[count]['displayText'] = rec.displayText;
+                                                                            temparray[count]['enumText'] = rec.enumText;
+                                                                            count=count+1;
+                                                                        });									
+                                                                        data = temparray;
+                                                                        return data;
+                                                                    }
+                                                                }
+                                                            }
+                                                        })
+
+                                         },
+                                                        {
                                                             xtype: 'image',
                                                             width: 350,
                                                             height: 135,
@@ -8750,7 +8861,15 @@ com.faralam.common.CATALOGS_EDIT_ITEMS = function (e) {
                             Ext.getCmp('edit_catalog_big_img').setSrc('');
                             Ext.getCmp('edit_thumb_img').setSrc('');
                             //edit_item_modal_form.getForm().reset(true);
-                        }
+                        },
+                    show:function(){
+                            Ext.getCmp('edtitemType').setVisible(true);
+                            Ext.getCmp('edtitemType').getStore().removeAll();
+                            Ext.getCmp('edtitemType').getStore().proxy.url = com.faralam.serverURL + 'retail/getItemTypes?UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL;
+                            Ext.getCmp('edtitemType').getStore().reload();
+                            console.log(e.getAttribute('itemType'));
+                            Ext.getCmp('edtitemType').setValue(e.getAttribute('itemType'));
+                    }
                     }
                 });
 
@@ -8762,7 +8881,10 @@ com.faralam.common.updateItem = function(){
                                     var itemName=Ext.getCmp('edit_item_title').getValue();
                                     var shortDescription=Ext.getCmp('edit_item_summary').getValue();
                                     var longDescription=Ext.getCmp('edit_catalog_msg').getValue();
-                                    var price=Ext.getCmp('edit_item_price').getValue();                                                          if(itemName.trim()=='')
+                                    var price=Ext.getCmp('edit_item_price').getValue();
+                                    var itemType=Ext.getCmp('edtitemType').getValue();
+    
+    if(itemName.trim()=='')
                                             {
                                     Ext.MessageBox.alert('Information', 'Please enter item name.');   
                                             }
@@ -8799,7 +8921,8 @@ com.faralam.common.updateItem = function(){
                                                                          
                                      var data={ 
                                     "serviceAccommodatorId": sessionStorage.SA, 
-                                    "serviceLocationId": sessionStorage.SL, 
+                                    "serviceLocationId": sessionStorage.SL,
+                                    "itemType":itemType,        
                                     "item": { 
                                     "itemId": Ext.getCmp('hid_itemId').getValue(), 
                                     "itemVersion":Ext.getCmp('hid_itemVersion').getValue(), 
@@ -8811,6 +8934,7 @@ com.faralam.common.updateItem = function(){
                                     "itemName": itemName, 
                                     "itemTag": Ext.getCmp('hid_itemTag').getValue(), 
                                     "attributes":JSON.parse(att_json)
+                                         
                                     } ;
                                                                         /* { 
                                     "Local": Ext.getCmp('hid_Local').getValue(), 
@@ -8840,6 +8964,8 @@ com.faralam.updateItem = com.faralam.updateItem + "?" + encodeURI('UID=' + sessi
 }
 com.faralam.common.addCatalog = function () {
     var catalog_id = Ext.getCmp('catalog_id').getValue();
+    var catalogType = Ext.getCmp('catalogType').getValue();
+    console.log("catalog type="+catalogType);
     var catalog = '';
     var method='POST';
     var msg='updated';
@@ -8867,6 +8993,7 @@ com.faralam.common.addCatalog = function () {
         "displayText": Ext.getCmp('catalog_title').getValue(),
         "description": Ext.getCmp('catalog_description').getValue(),
         "catalogId": catalog,
+        "catalogType":catalogType,    
         "serviceAccommodatorId": sessionStorage.SA,
         "serviceLocationId": sessionStorage.SL
     };
@@ -8878,7 +9005,7 @@ com.faralam.common.addCatalog = function () {
         "timeRange":null,
         "displayText": Ext.getCmp('catalog_title').getValue(),
         "description": Ext.getCmp('catalog_description').getValue(),
-        "catalogId": catalog,
+        "catalogId": catalog,           
         "serviceAccommodatorId": sessionStorage.SA,
         "serviceLocationId": sessionStorage.SL
     };
@@ -8926,8 +9053,9 @@ com.faralam.common.addGroupCatalog = function (catalogId) {
         "description":Ext.getCmp('catalog_group_description').getValue(),
         "catalogId":catalogId,
         "serviceAccommodatorId": sessionStorage.SA,
-        "serviceLocationId": sessionStorage.SL
-    };
+        "serviceLocationId": sessionStorage.SL,
+        "groupType":Ext.getCmp('groupType').getValue()
+    }
     } else {
         com.faralam.addGroupCatalog = com.faralam.serverURL + 'retail/updateGroup';
         msg1='Group updated successfully.';
@@ -8936,7 +9064,8 @@ com.faralam.common.addGroupCatalog = function (catalogId) {
   "displayText": Ext.getCmp('catalog_group').getValue(),
   "description": Ext.getCmp('catalog_group_description').getValue(),
   "serviceAccommodatorId": sessionStorage.SA,
-  "serviceLocationId": sessionStorage.SL
+  "serviceLocationId": sessionStorage.SL,
+  "groupType":Ext.getCmp('groupType').getValue()          
 };
     }
 
@@ -8955,7 +9084,7 @@ com.faralam.common.addGroupCatalog = function (catalogId) {
     
 
     data = JSON.stringify(data);
-
+    console.log(" Goup Data"+data);
     var onsuccess = function (response, textStatus, jqXHR) {
         Ext.MessageBox.alert('Success', msg1, function () {
             Ext.getCmp('catalog_group_modal').close();
@@ -9005,7 +9134,7 @@ com.faralam.SubmitCatalog = function () {
         
     var data = {
         "itemName": Ext.getCmp('item_title').getValue(),
-        "itemType": 1,
+        "itemType": Ext.getCmp('itemType').getValue(),
         "inventoryNotSold": 3,
         "serviceAccommodatorId": sessionStorage.SA,
         "mediaType": "GALLERY_OWNER",
@@ -9221,7 +9350,51 @@ com.faralam.common.EditCatalog = function (e) {
                                     value: '',
                                     id: 'catalog_description',
                                     allowBlank: false
-                                }/*,
+                                },
+                                {
+                                            xtype: 'combo',
+                                            id: 'catalogType',                                        
+                                            name: 'catalogType',
+                                            hidden:true,
+                                            margin: '20 0 0 0', 
+                                            inputWidth: 180,
+                                            allowBlank: false,                                      
+                                            fieldLabel:'Catalog Type',
+                                            queryMode:'local',                      
+                                            autoSelect:true,
+                                            emptyText:'Select Catalog Type',
+                                            forceSelection:true	,
+                                            editable: false,
+                                            mode: 'remote',
+                                            displayField: 'displayText',
+                                            valueField: 'enumText',
+                                            store: Ext.create('Ext.data.ArrayStore', {
+											fields : ['displayText', 'enumText'],
+											autoLoad: false,
+											proxy: {
+												type: 'ajax',
+												url:  '',
+												reader: {
+													type: 'json',
+													getData: function(data){
+														var temparray = []; 
+														var count = 0;
+														Ext.each(data, function(rec) {
+															temparray.push([]);
+															temparray[count].push( new Array(1));
+															temparray[count]['displayText'] = rec.displayText;
+															temparray[count]['enumText'] = rec.enumText;
+															count=count+1;
+														});									
+														data = temparray;
+														return data;
+													}
+												}
+											}
+										})
+
+                                         }
+                                /*,
                                 {
                                     xtype: 'radiogroup',
                                     width: 460,
@@ -9593,14 +9766,20 @@ com.faralam.common.EditCatalog = function (e) {
                     catalog_modal_form.getForm().reset(true);
                 },
                 show: function () {
+                        Ext.getCmp('catalogType').setVisible(true);
+                        Ext.getCmp('catalogType').getStore().removeAll();
+                        Ext.getCmp('catalogType').getStore().proxy.url = com.faralam.serverURL + 'retail/getCatalogTypes?UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL;
+                        Ext.getCmp('catalogType').getStore().reload();
                     if (e != '') {
                         /*var catalogId = e.getAttribute('catalogId');
                          //console.log(catalogId);
                          var displayText = e.getAttribute('displayText');
-                         //console.log(displayText);*/
+                         //console.log(displayText);*/            
+                        Ext.getCmp('catalogType').setValue(e.getAttribute('catalogType'));
                         Ext.getCmp('catalog_id').setValue(e.getAttribute('catalogId'));
                         Ext.getCmp('catalog_title').setValue(e.getAttribute('displayText'));
                         Ext.getCmp('catalog_description').setValue(e.getAttribute('description'));
+                        Ext.getCmp('catalogType').setVisible(true);
                     }
                 }
 
@@ -9624,8 +9803,10 @@ com.faralam.SetCalatogGroupDescEditWindow = function (e) {
     var groupName = e.getAttribute('groupDisplayText');
     //console.log(groupName);
     var groupDescription = e.getAttribute('description');
+    
+    var groupType= e.getAttribute('groupType');
     //console.log(groupDescription);
-    com.faralam.common.EditCatalogGroup(mode, catalogId, catalogName, groupId, groupName, groupDescription);
+    com.faralam.common.EditCatalogGroup(mode, catalogId, catalogName, groupId, groupName, groupDescription,groupType);
 }
 
 com.faralam.SetCalatogGroupDescEdit = function (e) {
@@ -9642,13 +9823,13 @@ com.faralam.SetCalatogGroupDescEdit = function (e) {
 
 }
 
-com.faralam.common.EditCatalogGroup = function (mode, catalogId, catalogName, groupId, groupName, groupDescription) {
+com.faralam.common.EditCatalogGroup = function (mode, catalogId, catalogName, groupId, groupName, groupDescription,groupType) {
     console.log(groupId);
     var catalog_group_modal;
     var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
     var catalogId = Ext.getCmp('catalogId').getValue();
     var txt="Add";
-    
+    var title="Add New Group";
     if (mode == 'add_group') {
     catalogId=null;
     } else if (mode == 'add_group_within_catalog') {
@@ -9658,6 +9839,7 @@ com.faralam.common.EditCatalogGroup = function (mode, catalogId, catalogName, gr
         // exit;
     } else if (mode == 'edit_group') {
         txt="Update";
+        title="Edit Group";
         if (catalogId == '') {
             Ext.MessageBox.alert('Error', 'Please select a catalog');
         }
@@ -9775,7 +9957,51 @@ com.faralam.common.EditCatalogGroup = function (mode, catalogId, catalogName, gr
                                     value: '',
                                     id: 'catalog_group_description',
                                     allowBlank: false
-                                }/*,
+                                },
+                                {
+                                    xtype: 'combo',
+                                    id: 'groupType',                                        
+                                    name: 'groupType',
+                                    hidden:true,
+                                    margin: '20 0 0 0', 
+                                    inputWidth: 180,
+                                    allowBlank: false,                                      
+                                    fieldLabel:'Group Type',
+                                    queryMode:'local',                      
+                                    autoSelect:true,
+                                    emptyText:'Select Group Type',
+                                    forceSelection:true	,
+                                    editable: false,
+                                    mode: 'remote',
+                                    displayField: 'displayText',
+                                    valueField: 'enumText',
+                                    store: Ext.create('Ext.data.ArrayStore', {
+                                    fields : ['displayText', 'enumText'],    
+                                    autoLoad: false,
+                                    proxy: {
+                                        type: 'ajax',
+                                        url:  '',
+                                        reader: {
+                                            type: 'json',
+                                            getData: function(data){
+                                                var temparray = []; 
+                                                var count = 0;
+                                                Ext.each(data, function(rec) {
+                                                    temparray.push([]);
+                                                    temparray[count].push( new Array(1));
+                                                    temparray[count]['displayText'] = rec.displayText;
+                                                    temparray[count]['enumText'] = rec.enumText;
+                                                    count=count+1;
+                                                });									
+                                                data = temparray;
+                                                return data;
+                                            }
+                                        }
+                                    }
+                                })
+
+                                         }
+                                /*,
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: '(Catalog)',
@@ -9796,7 +10022,7 @@ com.faralam.common.EditCatalogGroup = function (mode, catalogId, catalogName, gr
         });
 
         catalog_group_modal = Ext.widget('window', {
-            title: 'Add New Group',
+            title: title,
             id: 'catalog_group_modal',
             closeAction: 'hide',
             layout: 'fit',
@@ -9814,6 +10040,13 @@ com.faralam.common.EditCatalogGroup = function (mode, catalogId, catalogName, gr
                     Ext.getCmp('group_id').setValue(groupId);
                     Ext.getCmp('catalog_group').setValue(groupName);
                     Ext.getCmp('catalog_group_description').setValue(groupDescription);
+                    
+                    Ext.getCmp('groupType').setVisible(true);
+                    Ext.getCmp('groupType').getStore().removeAll();
+                    Ext.getCmp('groupType').getStore().proxy.url = com.faralam.serverURL + 'retail/getGroupTypes?UID=' + sessionStorage.UID + '&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL;
+                    Ext.getCmp('groupType').getStore().reload();
+                    console.log("groupType after edit="+groupType);
+                    Ext.getCmp('groupType').setValue(groupType);                    
                     //Ext.getCmp('catalog_name').setValue(catalogName);
                 }
             }
@@ -11952,7 +12185,7 @@ com.faralam.common.getMemberList_func = function (section) {
             $('#HtmlEmailService_memberList_table').perfectScrollbar('destroy');
             $('#HtmlEmailService_memberList_table').perfectScrollbar();
         } else if (section == 'NewsletterService') {
-            html = '<table border="0" style="height: 400px !important;overflow:hidden;" id="NewsletterService_memberList_table"><tr><td style="padding: 0  5px;height: 38px; text-align:center;" width="200px"><h3 style="color:#FFFFFF; border-bottom: 2px solid #fff;font-size:18px;">Members</h3></td></tr>' + html + '</table>';
+            html = '<table border="0" style="height: 290px !important;overflow:hidden;border-top:2px solid white;" id="NewsletterService_memberList_table"><tr><td style="padding: 0  5px;height: 38px; text-align:center;" width="200px"><h3 style="color:#FFFFFF; border-bottom: 2px solid #fff;font-size:18px;">Members</h3></td></tr>' + html + '</table>';
             Ext.getCmp('slide_panel_NewsletterService').update(html);
             $('#NewsletterService_memberList_table').perfectScrollbar('destroy');
             $('#NewsletterService_memberList_table').perfectScrollbar();
@@ -13936,14 +14169,27 @@ com.faralam.common.retriveEmailHTMLJSONBySASL = function () {
                         final_arr.push(module_arr2[i]);
                         }
                 }
+    
+    /*for catalog */
+    var catalog_arr=sessionStorage.catalogsModule;
+    var catalog_arr2=catalog_arr.split("*");
+    var final_arr_catalog=new Array();
+    for (var i=0;i<catalog_arr2.length;i++){
+                    if(catalog_arr2[i].trim()!='')
+                        {
+                        final_arr_catalog.push(catalog_arr2[i]);
+                        }
+                }
+    /*for catalog end */
     var data={
     "topic": Ext.getCmp('newsletterTitle').getValue(),
     "newsSummary": Ext.getCmp('newsletterMessage').getValue(),
     "serviceAccommodatorId": sessionStorage.SA,
     "serviceLocationId": sessionStorage.SL,
-    "modulesToIncludeInNewsLetter": final_arr
+    "modulesToIncludeInNewsLetter": final_arr,
+    "catalogsToIncludeInNewsLetter":final_arr_catalog    
     };
-    console.log("uril="+com.faralam.retriveEmailHTMLJSONBySASL);
+    //console.log("uril="+com.faralam.retriveEmailHTMLJSONBySASL);
         /*["GALLERY", "PROMOTIONS", "MENU_CATALOG", "BLOG", "EVENTS", "VIDEOS", "LOYALITY_PROGRAMS", "INTERACTIVE_ADS_POLLS", "INTERACTIVE_ADS_PHOTO"]*/
     data = JSON.stringify(data);
     console.log(data);
@@ -13989,11 +14235,34 @@ com.faralam.common.sendEmailHTMLBySASL = function (modal) {
                         final_arr.push(module_arr2[i]);
                         }
                 }
+    
+     /*for catalog */
+    var catalog_arr=sessionStorage.catalogsModule;
+    var catalog_arr2=catalog_arr.split("*");
+    var final_arr_catalog=new Array();
+    for (var i=0;i<catalog_arr2.length;i++){
+                    if(catalog_arr2[i].trim()!='')
+                        {
+                        final_arr_catalog.push(catalog_arr2[i]);
+                        }
+                }
+    /*for catalog end */
+    var nonMember=Ext.getCmp('nonmember_section').getValue();
+    var nonMember_arr2=nonMember.split(",");
+    var final_arr_nonMember=new Array();
+    for (var i=0;i<nonMember_arr2.length;i++){
+                    if(nonMember_arr2[i].trim()!='')
+                        {
+                        final_arr_nonMember.push(nonMember_arr2[i]);
+                        }
+                }
     var data={
     "message": Ext.getCmp('newsletterMessage').getValue(),
     "title": Ext.getCmp('newsletterTitle').getValue(),
     "usernames": [members],
-    "modulesToIncludeInNewsLetter": final_arr
+    "modulesToIncludeInNewsLetter": final_arr,
+    "catalogsToIncludeInNewsLetter":final_arr_catalog,
+    "nonMemberEmails":final_arr_nonMember    
 };
     data = JSON.stringify(data);
 console.log(data);
@@ -14401,7 +14670,8 @@ com.faralam.common.newsLetterPopup = function () {
                                 labelWidth: 120,
                                 inputColor: '#000000',
                                 style: ' border-radius: 3px !important; padding: 15px !important;'
-                    }, {
+                    }, 
+                                {
                                 xtype: 'textareafield',
                                 fieldLabel: '<h3 style="color: #000000 ; margin-right: 10px;">Message</h3>',
                                 inputType: 'text',
@@ -14434,7 +14704,7 @@ com.faralam.common.newsLetterPopup = function () {
                                 items: [
                                     {
                                         xtype: 'button',
-                                        margin: '10 10 10 10',
+                                        margin: '10 10 5 10',
                                         text: '<span style="color:#fff;">Back</span>',
                                         scale: 'small',
                                         width: 75,
@@ -14448,7 +14718,7 @@ com.faralam.common.newsLetterPopup = function () {
                             },
                                     {
                                         xtype: 'button',
-                                        margin: '10 10 10 500',
+                                        margin: '10 10 5 500',
                                         text: '<span style="color:#fff;">Next</span>',
                                         scale: 'small',
                                         width: 75,
@@ -14461,7 +14731,9 @@ com.faralam.common.newsLetterPopup = function () {
                                             Ext.getCmp('newsletterScreen4').hide();
                                         }
                             }]
-                        },{
+                        },
+                            
+                            {
                             xtype: 'container',
                             id:'news_letter_hidden_field',
                             width: 180,
@@ -14469,84 +14741,54 @@ com.faralam.common.newsLetterPopup = function () {
                             },
                             {
                             xtype: 'container',
+                            id:'news_letter_catalog_hidden_field',
+                            width: 180,
+                            items: []
+                            },
+                            {
+                                xtype: 'container',
+                                layout: 'hbox',
+                                style: 'width:700px !important;margin-top:10px',
+                                items: [
+                                
+                                    
+                            {
+                                xtype: 'fieldset',
+                                title: '<span style="color:black;font-weight:bold; !important;font-size:16px">Module</span>',
+                                collapsible: false,
+                                id:'module_fieldset',
+                                height:320,
+                                width:325,
+                                style: 'margin: 5px 0px 5px 10px;border:3px double #000;border-radius:5px',
+                                items: [        
+                                {
+                                xtype: 'container',
+                                layout: 'hbox',
+                                id:'news_letter_module_switch',
+                                style:"height:300px !important;overflow:hidden",
+                                html:''
+                                }
+                                ]
+                            },
+                            {
+                                xtype: 'fieldset',
+                                title: '<span style="color:black;font-weight:bold;font-size:16px">Catalogs</span>',
+                                collapsible: false,
+                                id:'catalog_fieldset',
+                                height:320,
+                                width:325,
+                                style: 'margin: 5px 3px 5px 10px;border:3px double #000;border-radius:5px',
+                                items: [          
+                            {
+                            xtype: 'container',
                             layout: 'hbox',
-                            id:'news_letter_module_switch',
-                            style:"height:300px !important;margin: 38px 3px 8px 250px;border:2px solid black",
-                            items: [],
+                            id:'news_letter_catalog_switch',
+                            style:"height:300px !important;overflow:hidden",
                             html:''
                             }
-                            /*{
-                                xtype: 'fieldcontainer',
-                                fieldLabel: '<h4 style="color: #000000; margin-right: 10px;">Gallery</h4>',
-                                defaultType: 'checkboxfield',
-                                msgTarget: 'none',
-                                margin: '30 10 10 100',
-                                labelAlign: 'left',
-                                labelWidth: 250,
-                                inputWidth: 80,
-                                labelSeparator: '  ',
-                                items: [
-                                    {
-                                        name: 'newsletter_gallery',
-                                        inputValue: 'true',
-                                        id: 'newsletter_gallery'
-                                }
-                            ]
-                        },
-                            {
-                                xtype: 'fieldcontainer',
-                                fieldLabel: '<h4 style="color: #000000; margin-right: 10px;">Promotions</h4>',
-                                defaultType: 'checkboxfield',
-                                msgTarget: 'none',
-                                margin: '10 10 10 100',
-                                labelAlign: 'left',
-                                labelWidth: 250,
-                                inputWidth: 80,
-                                labelSeparator: '  ',
-                                items: [
-                                    {
-                                        name: 'newsletter_promotions',
-                                        inputValue: 'true',
-                                        id: 'newsletter_promotions'
-                                }
-                            ]
-                        },
-                            {
-                                xtype: 'fieldcontainer',
-                                fieldLabel: '<h4 style="color: #000000; margin-right: 10px;">Menu/Catalog</h4>',
-                                defaultType: 'checkboxfield',
-                                msgTarget: 'none',                                
-                                margin: '10 10 10 100',
-                                labelAlign: 'left',                               
-                                labelWidth: 250,
-                                inputWidth: 80,
-                                labelSeparator: '  ',
-                                items: [
-                                    {
-                                        name: 'newsletter_menu',
-                                        inputValue: 'true',
-                                        id: 'newsletter_menu'
-                                }
-                            ]
-                        },
-                            {
-                                xtype: 'fieldcontainer',
-                                fieldLabel: '<h4 style="color: #000000; margin-right: 10px;">Blog</h4>',
-                                defaultType: 'checkboxfield',
-                                msgTarget: 'none',                                
-                                margin: '10 10 10 100',
-                                labelAlign: 'left',                               
-                                labelWidth: 250,
-                                inputWidth: 80,
-                                labelSeparator: '  ',
-                                items: [
-                                    {
-                                        name: 'newsletter_blog',
-                                        inputValue: 'true',
-                                        id: 'newsletter_blog'
-                                }
-                            ]
-                        }*/
+                                ]}
+                            ]}
+                            
                     ]
             },
                     {
@@ -14618,10 +14860,43 @@ com.faralam.common.newsLetterPopup = function () {
                             align: 'stretch'
                         },
                         //layout: 'vbox',
-                        style: 'width:700px !important; height:400px !important',
+                        style: 'width:700px !important; height:450px !important',
                         id: 'newsletterScreen4',
                         items: [
+                          
                             {
+                                xtype:'container',
+                                layout:'vbox',
+                                height:450,
+                                style: 'width:210px !important;',
+                                rowspan: 2,
+                                cls: 'blue_bg',
+                                items:[
+                              {
+                                xtype: 'textarea',
+                                fieldLabel: '<p style="margin: -5px 0px 2px 50px;color: #fff;font-size: 16px;font-weight: bold;">Non Member</p>',
+                                labelStyle: 'color:#000 !important;',
+                                labelSeparator: '',
+                                labelAlign: 'top',
+                                id: 'nonmember_section',
+                                style: 'width:225px !important;color:#000 important',
+                                emptyText: 'Enter multiple emails with comma separated names',
+                                margin:'5 0 5 5',
+                                height: 100,
+                                cls: 'blue_bg',
+                                value:''
+                             },
+                            {
+                                xtype: 'panel',
+                                id: 'slide_panel_NewsletterService',
+                                style: 'width:210px !important;',
+                                cls: 'blue_bg',
+                                html: '',    
+                                height: 290
+                             }
+                            ]
+                            }
+                            /*{
                                 xtype: 'panel',
                                 id: 'slide_panel_NewsletterService',
                                 style: 'width:210px !important;',
@@ -14629,7 +14904,7 @@ com.faralam.common.newsLetterPopup = function () {
                                 html: '',
                                 rowspan: 2,
                                 height: 400
-                        },
+                        }*/,
                             {
                                 xtype: 'button',
                                 margin: '10 10 10 10',
@@ -14695,7 +14970,8 @@ com.faralam.common.newsLetterPopup = function () {
                 modal: true,
                 width: 690,
                 style: 'background-color:#426FD9;',
-                //height:410,
+                height:450,
+                y:40,
                 items: HtmlEmail_modal_form,
                 listeners: {
                     close: function () {
@@ -14718,33 +14994,58 @@ com.faralam.common.newsLetterPopup = function () {
     }
 
 com.faralam.common.getModulestoIncludeinNewletter = function(){
-    var  hid_feilds=new Array();
+    var hid_feilds=new Array();
+    
 com.faralam.getModulestoIncludeinNewletter =  com.faralam.serverURL +'html/getModulestoIncludeinNewletter?';
 com.faralam.getModulestoIncludeinNewletter=  com.faralam.getModulestoIncludeinNewletter+ encodeURI('&UID=' + sessionStorage.UID+'&serviceAccommodatorId=' + sessionStorage.SA + '&serviceLocationId=' + sessionStorage.SL);
     
 var onsuccess = function (data, textStatus, jqXHR){
-    
+/*------------------------------------- module section  ------------------------------------------*/    
     sessionStorage.adsModule ='';
     var switch_html='<table id="news_letter_switch_tab" style="margin-left:8px;width:96%;overflow:hidden">';
-        for (var i=0;i<data.length;i++)
+    
+        for (var i=0;i<data.modules.length;i++)
             {      
               
                hid_feilds.push({
                         xtype: 'hiddenfield',
-                        id: 'module_'+data[i].enumText,
-                        name: 'module_'+data[i].enumText,
+                        id: 'module_'+data.modules[i].enumText,
+                        name: 'module_'+data.modules[i].enumText,
                         value:false
                         });
-                      switch_html=switch_html+'<tr style="height: 25px !important; font-weight: bold; font-size: 14px;"><td>'+data[i].displayText+'</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="'+data[i].enumText+'" module="'+data[i].enumText+'" class="cmn-toggle cmn-toggle-rounds" onclick="com.faralam.common.enablecheck_email_ads(this,\'module_'+data[i].enumText+'\')" type="checkbox"><label for="'+data[i].enumText+'"></label></div></td></tr>';
+                      switch_html=switch_html+'<tr style="height: 25px !important; font-weight: bold; font-size: 14px;"><td>'+data.modules[i].displayText+'</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="'+data.modules[i].enumText+'" module="'+data.modules[i].enumText+'" class="cmn-toggle cmn-toggle-rounds" onclick="com.faralam.common.enablecheck_email_ads(this,\'module_'+data.modules[i].enumText+'\')" type="checkbox"><label for="'+data.modules[i].enumText+'"></label></div></td></tr>';
                       
                       }
     switch_html=switch_html+"</table>";
     Ext.getCmp('news_letter_hidden_field').add(hid_feilds);
     Ext.getCmp('news_letter_module_switch').update(switch_html);
-    $('#news_letter_module_switch').perfectScrollbar('destroy');
-    $('#news_letter_module_switch').perfectScrollbar();
+    $('#news_letter_module_switch-innerCt').perfectScrollbar('destroy');
+    $('#news_letter_module_switch-innerCt').perfectScrollbar();
+ /*------------------------------------- module section end  ------------------------------------------*/    
    
-                  
+ /*------------------------------------- catalog section  ---------------------------------------------*/
+  sessionStorage.catalogsModule ='';
+  var hid_catalog_feilds=new Array();    
+    var catalog_switch_html='<table id="news_letter_catalog_tab" style="margin-left:8px;width:96%;overflow:hidden;">';
+        for (var i=0;i<data.catalogs.length;i++)
+            {      
+              
+               hid_catalog_feilds.push({
+                        xtype: 'hiddenfield',
+                        id: 'catalog_'+data.catalogs[i].catalogId,
+                        name: 'catalog_'+data.catalogs[i].catalogId,
+                        value:false
+                        });
+                      catalog_switch_html=catalog_switch_html+'<tr style="height: 25px !important; font-weight: bold; font-size: 14px;"><td>'+data.catalogs[i].displayText+'</td><td><div class="switch_email" style="padding:0px !important; float:left;"><input id="'+data.catalogs[i].catalogId+'" catalog="'+data.catalogs[i].catalogId+'" class="cmn-toggle cmn-toggle-rounds" onclick="com.faralam.common.enablecheck_email_ads_catalog(this,\'catalog_'+data.catalogs[i].catalogId+'\')" type="checkbox"><label for="'+data.catalogs[i].catalogId+'"></label></div></td></tr>';
+                      
+                      }
+    catalog_switch_html=catalog_switch_html+"</table>";
+    Ext.getCmp('news_letter_catalog_hidden_field').add(hid_catalog_feilds);
+    Ext.getCmp('news_letter_catalog_switch').update(catalog_switch_html);
+    $('#news_letter_catalog_switch-innerCt').perfectScrollbar('destroy');
+    $('#news_letter_catalog_switch-innerCt').perfectScrollbar();  
+
+/*------------------------------------- catalog section end ------------------------------------------*/     
 }
 var onerror = function (jqXHR, textStatus, errorThrown) {}
 com.faralam.common.sendAjaxRequest(com.faralam.getModulestoIncludeinNewletter, "GET", {}, onsuccess, onerror);
@@ -14785,6 +15086,45 @@ com.faralam.common.enablecheck_email_ads= function (e,field) {
             
            
             console.log("ar="+sessionStorage.adsModule);
+        }
+}
+
+com.faralam.common.enablecheck_email_ads_catalog= function (e,field) {
+    
+        if (e != '') {
+            //console.log("module="+e.getAttribute('module'));
+            
+            Ext.getCmp(field).setValue($(e).is(':checked'));
+            temp=sessionStorage.catalogsModule;
+            var module=e.getAttribute('catalog');
+            
+            //console.log(Ext.getCmp(field).getValue());
+            var modeTogle=Ext.getCmp(field).getValue();
+            
+            if(modeTogle=="true"){
+                temp=temp+module+"*";
+                sessionStorage.catalogsModule=temp;
+            }
+            else{
+                var pop='';
+                var tm=sessionStorage.catalogsModule;
+                var ar=tm.split("*");
+                for (var i=0;i<ar.length;i++){
+                    if(ar[i].trim()!='')
+                        {
+                            if(ar[i].trim()!=module.trim())
+                                {
+                                 pop=pop+ ar[i]+"*";  
+                                }
+                        }
+                }
+                sessionStorage.catalogsModule='';
+                sessionStorage.catalogsModule=pop;
+            }
+             //console.log("tmp="+temp);
+            
+           
+            console.log("ar="+sessionStorage.catalogsModule);
         }
 }
     /*============================================================================*/
@@ -16036,6 +16376,14 @@ com.faralam.common.retrievePollPortal_func = function () {
                 {
                 Ext.getCmp('pool_next_btn').hide();   
                 }
+            if(response.enableCreateNewButton)
+            {
+                Ext.getCmp('create_new_pool_btn').show();
+            }
+            else
+            {
+                Ext.getCmp('create_new_pool_btn').hide();  
+            }
             Ext.getCmp('pool_share_button').setDisabled(true);
             if(response.contest.contestStatus.enumText!="PROPOSED" && response.contest.contestStatus.enumText!="ACTIVE" )
                 {
@@ -17603,6 +17951,7 @@ com.faralam.common.close_Contest_preview = function(){
 }
 
 com.faralam.common.open_Contest_preview = function (url) {
+    url=decodeURIComponent(url);
     var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
 
     var contest_preview_modal;
@@ -17990,10 +18339,11 @@ var edit_image_code = '&nbsp;';
 var onsuccess = function (data, textStatus, jqXHR) {
     //console.log(data);
     if (data) {
-            var html = '<table width="900" cellpadding="3" cellspacing="0" style="color:#000000;"><tr style="border: 1px solid #000000;"><td>&nbsp;</td><td><strong>Event Name</strong></td><td><strong>Date</strong></td><td><strong>Status</strong></td></tr><tr><td colspan="4"></td></tr>';
+            
         var jsobj="";
         var latlong=null;
         if (data.events.length > 0) {
+            var html = '<table width="900" cellpadding="3" cellspacing="0" style="color:#000000;"><tr style="border: 1px solid #000000;"><td>&nbsp;</td><td><strong>Event Name</strong></td><td><strong>Date</strong></td><td><strong>Status</strong></td></tr><tr><td colspan="4"></td></tr>';
             for (var i = 0; i < data.events.length; i++) {
                 var act_btn="";
 				if(data.events[i].status=='ACTIVE' || data.events[i].status=='PROPOSED'){
@@ -19083,3 +19433,229 @@ var splitString = "";
 	Ext.getCmp('main_tab').down('#start_screen').setDisabled(true);
 	Ext.getCmp('main_tab').setActiveTab(tabId);
  }
+ 
+ /*-----------------------------Appoinment screen ------------------------------*/
+ /*............................. js for calender  ..............................*/
+/* var Calendar = function(o) {
+  this.divId = o.ParentID;
+  this.DaysOfWeek = o.DaysOfWeek;
+  this.Months = o.Months;
+  var d = new Date();
+  this.CurrentMonth = d.getMonth();
+  this.CurrentYear = d.getFullYear();
+  var f=o.Format;
+  if(typeof(f) == 'string') {
+    this.f  = f.charAt(0).toUpperCase();
+  } else {
+    this.f = 'M';
+  }
+};
+Calendar.prototype.nextMonth = function() {
+  if ( this.CurrentMonth == 11 ) {
+    this.CurrentMonth = 0;
+    this.CurrentYear = this.CurrentYear + 1;
+  } else {
+    this.CurrentMonth = this.CurrentMonth + 1;
+  }
+  this.showCurrent();
+};
+Calendar.prototype.previousMonth = function() {
+  if ( this.CurrentMonth == 0 ) {
+    this.CurrentMonth = 11;
+    this.CurrentYear = this.CurrentYear - 1;
+  } else {
+    this.CurrentMonth = this.CurrentMonth - 1;
+  }
+  this.showCurrent();
+};
+Calendar.prototype.previousYear = function() {
+  this.CurrentYear = this.CurrentYear - 1;
+  this.showCurrent();
+}
+Calendar.prototype.nextYear = function() {
+  this.CurrentYear = this.CurrentYear + 1;
+  this.showCurrent();
+}              
+Calendar.prototype.showCurrent = function() {
+  this.Calendar(this.CurrentYear, this.CurrentMonth);
+};
+Calendar.prototype.Calendar = function(y,m) {
+  typeof(y) == 'number' ? this.CurrentYear = y : null;
+  typeof(y) == 'number' ? this.CurrentMonth = m : null;
+  var firstDayOfCurrentMonth = new Date(y, m, 1).getDay();
+  var lastDateOfCurrentMonth = new Date(y, m+1, 0).getDate();
+  var lastDateOfLastMonth = m == 0 ? new Date(y-1, 11, 0).getDate() : new Date(y, m, 0).getDate();
+  var monthandyearhtml = '<span id="monthandyearspan">' + this.Months[m] + ' - ' + y + '</span>';
+  var html = '<table id="cal_tab">';
+  html += '<tr>';
+  for(var i=0; i < 7;i++) {
+    html += '<th class="daysheader daysheaderth" >' + this.DaysOfWeek[i] + '</th>';
+  }
+  html += '</tr>';
+  var p = dm = this.f == 'M' ? 1 : firstDayOfCurrentMonth == 0 ? -5 : 2;
+  var cellvalue;
+  for (var d, i=0, z0=0; z0<6; z0++) {
+    html += '<tr>';
+    for (var z0a = 0; z0a < 7; z0a++) {
+      d = i + dm - firstDayOfCurrentMonth;
+      if (d < 1){
+        cellvalue = lastDateOfLastMonth - firstDayOfCurrentMonth + p++;
+        html += '<td class="cal_trtd" id="prevmonthdates">' + 
+              '<span id="cellvaluespan">' + (cellvalue) + '</span><br/>' + 
+              '<ul id="cellvaluelist"></ul>' + 
+            '</td>';
+      } else if ( d > lastDateOfCurrentMonth){
+        html += '<td class="cal_trtd" id="nextmonthdates">' + (p++) + '</td>';
+      } else {
+        html += '<td class="cal_trtd" id="currentmonthdates">' + (d) + '</td>';
+        p = 1;
+      }
+      
+      if (i % 7 == 6 && d >= lastDateOfCurrentMonth) {
+        z0 = 10; // no more rows
+      }
+      i++;         
+    }
+
+    html += '</tr>';
+  }
+  html += '</table>';
+  document.getElementById("monthandyear").innerHTML = monthandyearhtml;
+  document.getElementById(this.divId).innerHTML = html;
+};
+com.faralam.common.init_Cal= function() {
+  var c = new Calendar({
+    ParentID:"divcalendartable",
+
+    DaysOfWeek:[
+    'MON',
+    'TUE',
+    'WED',
+    'THU',
+    'FRI',
+    'SAT',
+    'SUN'
+    ],
+
+    Months:['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ],
+
+    Format:'dd/mm/yyyy'
+  });
+
+  c.showCurrent();
+  
+  // Bind next and previous button clicks
+  getId('btnPrev').onclick = function(){
+    c.previousMonth();
+  };
+
+  getId('btnPrevYr').onclick = function(){
+    c.previousYear();
+  };
+
+  getId('btnNext').onclick = function(){
+    c.nextMonth();
+  };
+
+  getId('btnNextYr').onclick = function(){
+    c.nextYear();
+  };                        
+}
+function getId(id) {
+  return document.getElementById(id);
+}*/
+ /*............................. end js of calender ............................*/
+ /*com.faralam.common.openCreateTimeSlotSec = function(){
+     
+    var required = '<span style="color:red;font-weight:bold" data-qtip="Required">*</span>';
+
+    var appoinmentCreateTimeSlot_modal;
+
+    if (Ext.getCmp('appoinmentCreateTimeSlot_modal')) {
+        var modal = Ext.getCmp('appoinmentCreateTimeSlot_modal');
+        modal.destroy(modal, new Object());
+    }
+       
+        var appoinmentCreateTimeSlot_modal_form = Ext.widget('form', {
+            layout: {
+                type: 'vbox',
+                align: 'stretch'
+            },
+            //cls: 'x-body',
+            cls: 'white_bg',
+            border: '2px solid black',
+            bodyPadding: 10,
+            fieldDefaults: {
+                labelAlign: 'side',
+                labelWidth: 80,
+                labelStyle: 'font-weight:bold'
+            },
+            defaultType: 'textfield',
+            items: [
+                {
+                    xtype: 'container',
+                    style: 'width:680px;',
+                    tdAttrs: {
+                        style: {
+                            'vertical-align': 'top'
+                        }
+                    },
+                    items: [
+                        {
+                            xtype: 'form',
+                            layout: 'vbox',
+                            height:500,
+                            padding: '10 10 5 10',
+                            style: {
+                                border: '1px solid #fff;'
+                            },
+                            items: []
+                        }]
+                }
+            ]
+        });
+
+        appoinmentCreateTimeSlot_modal = Ext.widget('window', {
+            title: 'Create Time Slot',
+            id: 'appoinmentCreateTimeSlot_modal',
+            closeAction: 'hide',
+            layout: 'fit',
+            resizable: false,
+            modal: true,
+            width: 880,
+            cls: 'white_modal',
+            items: appoinmentCreateTimeSlot_modal_form,
+            listeners: {
+                close: function () {
+                    appoinmentCreateTimeSlot_modal_form.getForm().reset(true);
+                },
+                show: function () {
+                   
+                }
+
+            }
+        });
+    appoinmentCreateTimeSlot_modal.show();
+ }*/
+ 
+ /*-----------------------------Appoinment screen End ------------------------------*/
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
