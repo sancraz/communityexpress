@@ -9,30 +9,35 @@
   <?php
   include 'sitefiles/includes/stylesheets.html';
   ?>
-  <link href="desktop/desktop.css" rel="stylesheet">
+<link href="desktop/desktop.css" rel="stylesheet">
+<link href="sitefiles/css/bootstrap-select.min.css" rel="stylesheet">
 <title><?php
 if (isset($saslName)) {
     echo $saslName;
 } else {
-    echo 'ChalkboardsToday.com';
+    echo 'Chalkboards Demo';
 }
 ?></title>
+<!-- insert page specific css here -->
 </head>
 <body data-spy="scroll" data-target=".navbar-fixed-top" >
  <!-- Header start -->
  <?php
-include ('sitefiles/includes/navbar.php');
+include 'sitefiles/includes/navbar.php';
  ?>
  <!-- Header end -->
  <?php
-include ('desktop/desktop.html');
+include 'sitefiles/pages/content_senddemo.html';
  ?>
   <?php
-include ('sitefiles/includes/scriptfiles.html');
+include 'sitefiles/includes/scriptfiles.html';
   ?>
-  <script src="desktop/desktop.js"></script>
+  <!-- insert page specific javascript here -->
+  <script src="sitefiles/js/bootstrap-select.min.js"></script>
+  <script src="sitefiles/pages_js/content_senddemo.js"></script>
+
   <?php
-include ('sitefiles/includes/footer.php');
+include 'sitefiles/includes/footer.php';
   ?>
  </body>
 </html>

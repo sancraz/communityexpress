@@ -1,3 +1,28 @@
+function getObjectSize(obj) {
+	var size = 0, key;
+	for (key in obj) {
+		if (obj.hasOwnProperty(key))
+			size++;
+	}
+	return size;
+};
+
+function parseHashBangArgs(aURL) {
+	aURL = aURL || window.location.href;
+
+	var vars = {};
+	var hashes = aURL.slice(aURL.indexOf('?') + 1).split('&');
+	for (var i = 0; i < hashes.length; i++) {
+		var hash = hashes[i].split('=');
+		if (hash.length > 1) {
+			vars[hash[0]] = hash[1];
+		} else {
+			;// vars[hash[0]] = null;
+		}
+	}
+	return vars;
+}
+
 /*
  * detect browser and iPad
  */
@@ -11,14 +36,14 @@ if (typeof standaloneBrowser === 'undefined') {
 }
 
 /*
- This function will parse the URL 
+ This function will parse the URL
  and produce a global object with the necessary variables which can later be
- used by other functions. 
+ used by other functions.
  */
 
 
 function parseCommunityURL() {
- 
+
  window.communityRequestProfile = {
   idDemo : false,
 
@@ -32,8 +57,8 @@ function parseCommunityURL() {
   userName:undefined,
   code:undefined,
   /* end email verification*/
-  
-  
+
+
   mobile:undefined,
   sa:undefined,
   sl:undefined,
@@ -50,8 +75,8 @@ function parseCommunityURL() {
  /*
   * get the URL
   */
- var url  = new URI().query(true); 
- 
+ var url  = new URI().query(true);
+
  var demo =url['demo'];
 
  if (typeof demo !== 'undefined') {
@@ -82,29 +107,29 @@ function parseCommunityURL() {
   protocol = "https://";
  }
  communityRequestProfile.protocol=protocol;
- 
+
  var svc=url['svc'];
  if (typeof svc !== 'undefined') {
-  communityRequestProfile.isService = true; 
-  communityRequestProfile.service = svc; 
+  communityRequestProfile.isService = true;
+  communityRequestProfile.service = svc;
   communityRequestProfile.resetcode = url['code'];
   communityRequestProfile.email = url['email'];
-  
+
   if(svc ==='emailverification'){
-   communityRequestProfile.isEmailVerification=true; 
+   communityRequestProfile.isEmailVerification=true;
   }
-  communityRequestProfile.userName = url['userName'];  
-  communityRequestProfile.code=   url['code']; 
-   
-  
+  communityRequestProfile.userName = url['userName'];
+  communityRequestProfile.code=   url['code'];
+
+
   communityRequestProfile.mobile = url['mobile'];
   communityRequestProfile.sa = url['sa'];
   communityRequestProfile.sl = url['sl'];
-   
-  
+
+
  }
 
- var uid =url['UID']; 
+ var uid =url['UID'];
  if (typeof uid !== 'undefined') {
   communityRequestProfile.isUidSpecified = true;
   communityRequestProfile.uid = uid;
@@ -151,10 +176,10 @@ function processAjaxError(jqXHR) {
  }
 
  return extractedErrorMessage;
-} 
+}
 
 var  openCustomURLinIFrame = function(src) {
-  
+
  var iframe = document.createElement("IFRAME");
  iframe.setAttribute("src", src);
  document.documentElement.appendChild(iframe);
@@ -171,7 +196,7 @@ var sendToApp = function(_key, _val) {
   openCustomURLinIFrame(src);
 };
 
- 
+
 
 function createPortalExpressInRow($portalExpressRow, src) {
  var iFrameElement = document.createElement('iframe');
@@ -182,6 +207,6 @@ function createPortalExpressInRow($portalExpressRow, src) {
  iFrameElement.setAttribute('frameborder', '0');
  //$('#portalExpressRow').html('');
  setTimeout(function(){ $portalExpressRow.html(iFrameElement); }, 2000);
- 
- 
+
+
 }

@@ -1,3 +1,4 @@
+/*
 function getObjectSize(obj) {
 	var size = 0, key;
 	for (key in obj) {
@@ -22,10 +23,10 @@ function parseHashBangArgs(aURL) {
 	}
 	return vars;
 }
-
+*/
 var mobile_apiurl;
-var email_apiurl; 
-  
+var email_apiurl;
+
 
 function showResults(success, message) {
 	$('#demosite_message').text(message);
@@ -63,7 +64,7 @@ function submitMobileRequest() {
 		var success = false;
 		showError(success, message);
 		/*
-		 * 
+		 *
 		 */
 	}).always(function() {
 		ladda_submit_mobile_button.stop();
@@ -91,7 +92,7 @@ function submitEmailRequest() {
 		 */
 		showError(success, message);
 		/*
-		 * 
+		 *
 		 */
 	}).always(function() {
 		ladda_submit_email_button.stop();
@@ -221,7 +222,7 @@ function attachBootstrapValidatorsToSendMobileForm($demositeMobileForm,
 						submitMobileRequest();
 
 						/*
-						 * 
+						 *
 						 */
 					}).on('err.form.fv', function(e, data) {
 
@@ -340,7 +341,7 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
 						var $form = $(e.target); // The form instance
 						communityRequestProfile.email = $form.find(
 								'input[name="share_email"]').val();
- 
+
 						email_apiurl = communityRequestProfile.protocol
 								+ communityRequestProfile.api_server
 								+ '/apptsvc/rest/html/sendAppURLForUrlKeyToEmail?friendlyURL='
@@ -357,7 +358,7 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
 						submitEmailRequest();
 
 						/*
-						 * 
+						 *
 						 */
 					}).on('err.form.fv', function(e, data) {
 
@@ -379,13 +380,13 @@ $(document).ready(
 
 			 /*
 			    * this parses the URL and sets up the global variables object
-			    * 
+			    *
 			    * communityRequestProfile.
-			    * 
+			    *
 			    * Globals are ugly, but ok for now
 			    */
 			   parseCommunityURL();
- 
+
 			/*
 			    * setup ladda progress indicator
 			    */
@@ -407,7 +408,7 @@ $(document).ready(
 					submitMobileButton);
 
 			/*
-			 * 
+			 *
 			 * ---------- email form handler --------------
 			 */
 
@@ -420,7 +421,7 @@ $(document).ready(
 			 * ---------- end email form-----------
 			 */
 
-		  
+
 			var $demoInstructionsCarousel = $('#demoinstructions_carousel');
 
 			$demoInstructionsCarousel.owlCarousel({

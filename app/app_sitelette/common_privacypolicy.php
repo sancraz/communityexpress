@@ -6,7 +6,7 @@
   <?php
 include ('sitefiles/includes/stylesheets.html');
   ?>
-  <title>Chalkboards-Signup</title>
+  <title>Chalkboards-Privacy</title>
  </head>
  <body data-spy="scroll" data-target=".navbar-fixed-top" >
   <!-- Header start -->

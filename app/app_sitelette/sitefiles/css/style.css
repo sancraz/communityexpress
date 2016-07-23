@@ -1272,10 +1272,21 @@ h5{
     padding: 80px 0px;
     background: #fff;
 }
-.desktop_iframe{
+.font_color_white{
 	color:#BFBFBF;
 }
-.desktop_iframe .form-control{
+.font_color_white .form-control{
 	color:#FFFFFF;
+	background-color:#444444;
 }
+
+.selectContainer .form-control-feedback {
+    /* Adjust feedback icon position */
+    right: -15px;
+}
+.selectContainer .form-control-feedback {
+    /* Adjust feedback icon position */
+    right: -15px;
+}
+
 /**/
