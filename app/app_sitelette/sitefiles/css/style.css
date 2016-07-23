@@ -1280,13 +1280,16 @@ h5{
 	background-color:#444444;
 }
 
-.selectContainer .form-control-feedback {
-    /* Adjust feedback icon position */
-    right: -15px;
-}
+/* for bootstrap-select */
 .selectContainer .form-control-feedback {
     /* Adjust feedback icon position */
     right: -15px;
 }
 
-/**/
+.selectContainer .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
+	width:100% !important;
+}
+.selectContainer .bootstrap-select{
+	color:black;
+}
+/* end bootstrap-select*/

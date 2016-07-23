@@ -9,8 +9,8 @@
   <?php
   include 'sitefiles/includes/stylesheets.html';
   ?>
-<link href="desktop/desktop.css" rel="stylesheet">
-<link href="sitefiles/css/bootstrap-select.min.css" rel="stylesheet">
+  <link href="sitefiles/css/bootstrap-select.min.css" rel="stylesheet">
+  <link href="sitefiles/css/style.css" rel="stylesheet">
 <title><?php
 if (isset($saslName)) {
     echo $saslName;

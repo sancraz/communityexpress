@@ -78,12 +78,13 @@ if (validateParams('serviceLocationId')) {
 if (validateParams('friendlyURL')) {
   $friendlyURL = $_REQUEST['friendlyURL'];
   /* hack */
-  if($friendlyURL=='signup' ||
-     $friendlyURL=='about'  ||
-     $friendlyURL=='features' ||
-     $friendlyURL=='portalexpress' ||
-     $friendlyURL=='apiLicensing' ||
-     $friendlyURL=='developer'
+  if($friendlyURL==='signup' ||
+     $friendlyURL==='about'  ||
+     $friendlyURL==='features' ||
+     $friendlyURL==='portalexpress' || 
+     $friendlyURL==='apiLicensing' ||
+     $friendlyURL==='developer' ||
+     $friendlyURL==='common_senddemo.php'
     )
      $friendlyURL=null;
 } else {

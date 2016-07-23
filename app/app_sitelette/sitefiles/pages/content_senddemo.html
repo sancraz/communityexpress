@@ -1,4 +1,4 @@
-<div class="container-fluid font_color_white">
+<div class="container-fluid font_color_white push-down-for-menu">
  <div class="row">
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 " style="min-width:370px;">
    <!-- put a slider here or just on static image -->
@@ -7,13 +7,16 @@
    <!--  FORM row  -->
    <div id="demosite_form_row" class="row  " style="height: 500px;">
     <div style="height:40px;"></div>
-    <h2>Send yourself an email</h2>
+    <h2>Send yourself an demo</h2>
     <form id="demosite_email_form" role="form" class="form-horizontal">
-
+     <div id="sendEmailResultRow" class="alert    collapse fade   " role="alert">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <div class="result_span">n/a</div>
+     </div>
      <div class="form-group">
-      <label class="col-xs-3 control-label">Industry Type</label>
+      <label class="col-xs-3 control-label">Industry </label>
       <div class="col-xs-9 selectContainer">
-       <select id="share_email_industry" name="share_email_industry" class="selectpicker" data-style="btn-info">
+       <select id="share_email_industry" name="share_email_industry" class="selectpicker" data-style="btn-inverse">
         <option value="">[Please select]</option>
         <option value="RESTAURANT">Restaurant</option>
        </select>
@@ -36,15 +39,30 @@
      </div>
      <div class="form-group">
       <div class="col-xs-9 col-xs-offset-3">
-       <button id="submit_email" type="submit" class="btn btn-primary ladda-button" data-style="expand-right" name="submit_email" value="submit_email">
+       <button id="submit_email" type="submit" class="btn btn-primary ladda-button pull-right" data-style="expand-left" name="submit_email" value="submit_email">
         Send
        </button>
       </div>
      </div>
+
     </form>
     <hr style="height: 30px; border: none;" />
 
     <form id="demosite_mobile_form" role="form" class="form-horizontal">
+     <div id="sendMobileResultRow" class="alert alert-danger collapse fade   " role="alert">
+      <a href="#" class="close" data-dismiss="alert">&times;</a>
+      <div class="result_span">n/a </div>
+     </div>
+     <div class="form-group">
+      <label class="col-xs-3 control-label">Industry </label>
+      <div class="col-xs-9 selectContainer">
+       <select id="share_mobile_industry" name="share_mobile_industry" class="selectpicker" data-style="btn-inverse">
+        <option value="">[Please select]</option>
+        <option value="RESTAURANT">Restaurant</option>
+       </select>
+      </div>
+     </div>
+
      <div class="form-group">
       <label class="col-xs-3 control-label">Mobile</label>
       <div class="col-xs-9">
@@ -61,7 +79,7 @@
      </div>
      <div class="form-group">
       <div class="col-xs-9 col-xs-offset-3">
-       <button id="submit_mobile" type="submit" class="btn btn-primary ladda-button" data-style="expand-left" name="submit_mobile" value="submit_mobile">
+       <button id="submit_mobile" type="submit" class="btn btn-primary ladda-button pull-right" data-style="expand-left" name="submit_mobile" value="submit_mobile">
         Send
        </button>
       </div>
@@ -69,47 +87,14 @@
     </form>
 
    </div>
-   <!-- ERROR row -->
-   <div id="demosite_error_row" class="row  " style="display: none; height: 500px;">
-    <h2>Error</h2>
-    <div id="demosite_error_message">
-     Invalid request
-    </div>
-   </div>
-   <!-- RESULTS row -->
-   <div id="demosite_result_row" class="row  " style="display: none; height: 500px;">
-    <h2>Results</h2>
-    <div id="demosite_message"></div>
-   </div>
+
   </div>
 
   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 
-   <!-- Owl Slider -->
-   <!-- put a video here -->
-   <div>
-    <div id="demoinstructions_carousel" class="owl-carousel owl-theme">
-     <div>
-      <img src="desktop/images/demosite/demosite_carousel_1.jpg" width=100px alt="First slide">
-     </div>
-     <div>
-      <img src="desktop/images/demosite/demosite_carousel_2.jpg" width=100px alt="Second slide">
-     </div>
-     <div>
-      <img src="desktop/images/demosite/demosite_carousel_3.jpg" width=100px alt="Third slide">
-     </div>
-     <div>
-      <img src="desktop/images/demosite/demosite_carousel_4.jpg" width=100px alt="Fourth slide">
-     </div>
-     <div>
-      <img src="desktop/images/demosite/demosite_carousel_5.jpg" width=100px alt="Fifth slide">
-     </div>
-    </div>
-   </div>
 
-   <!-- END Carousel -->
-   <hr style="border: none;" />
-   <hr style="border: none;" />
+   <!-- put a video here -->
+
   </div>
 
 

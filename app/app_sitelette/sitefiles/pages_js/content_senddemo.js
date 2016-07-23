@@ -2,23 +2,55 @@ var mobile_apiurl;
 var email_apiurl;
 
 
-function showResults(success, message) {
- $('#demosite_message').text(message);
- $('#demosite_form_row').hide();
- $('#demosite_result_row').fadeIn('slow');
+function showEmailResults(success, message) {
+ $('#demosite_email_form').data('formValidation').resetForm({
+  resetFormData: true
+ });
+ /* unselect the bootstrap-select input manually using bootstrap-select method*/
+ $('#share_email_industry').selectpicker('val', '');
+ $('#demosite_email_form').data('formValidation').resetForm({
+  resetFormData: true
+ });
+ $('#demosite_email_form').data('formValidation').disableSubmitButtons(true);
+
+ $('#sendEmailResultRow').removeClass('alert-danger alert-success');
+ if (success) {
+  $('#sendEmailResultRow').addClass('alert-success');
+ } else {
+  $('#sendEmailResultRow').addClass('alert-danger');
+ }
+ $('#sendEmailResultRow div.result_span').html(message);
+ $('#sendEmailResultRow').addClass('in');
+ setTimeout(function() {
+  $('#sendEmailResultRow').removeClass('in')
+ }, 5000);
 }
 
-function hideResults(success, message) {
- $('#demosite_form_row').show();
- $('#demosite_result_row').hide();
+
+function showMobileResults(success, message) {
+ $('#demosite_mobile_form').data('formValidation').resetForm({
+  resetFormData: true
+ });
+ /* unselect the bootstrap-select input manually using bootstrap-select method*/
+ $('#share_mobile_industry').selectpicker('val', '');
+ $('#demosite_mobile_form').data('formValidation').resetForm({
+  resetFormData: true
+ });
+ $('#demosite_mobile_form').data('formValidation').disableSubmitButtons(true);
+
+ $('#sendMobileResultRow').removeClass('alert-danger alert-success');
+ if (success) {
+  $('#sendMobileResultRow').addClass('alert-success');
+ } else {
+  $('#sendMobileResultRow').addClass('alert-danger');
+ }
+ $('#sendMobileResultRow div.result_span').html(message);
+ $('#sendMobileResultRow').addClass('in');
+ setTimeout(function() {
+  $('#sendMobileResultRow').removeClass('in')
+ }, 5000);
 }
 
-function showError(success, message) {
- $('#demosite_error_message').text(message);
- $('#demosite_form_row').hide();
- $('#demosite_error_row').fadeIn('slow');
-
-}
 
 function submitMobileRequest() {
  $.ajax({
@@ -32,11 +64,11 @@ function submitMobileRequest() {
    */
   var message = "Your message has been sent";
   var success = true;
-  showResults(success, message);
+  showMobileResults(success, message);
  }).fail(function(jqXHR, textStatus, errorThrown) {
   var message = processAjaxError(jqXHR);
   var success = false;
-  showError(success, message);
+  showMobileResults(success, message);
   /*
    *
    */
@@ -57,14 +89,14 @@ function submitEmailRequest() {
    */
   var message = "Your message has been sent";
   var success = true;
-  showResults(success, message);
+  showEmailResults(success, message);
  }).fail(function(jqXHR, textStatus, errorThrown) {
   var message = processAjaxError(jqXHR);
   var success = false;
   /*
    * call function to show message
    */
-  showError(success, message);
+  showEmailResults(success, message);
   /*
    *
    */
@@ -103,6 +135,11 @@ function attachBootstrapValidatorsToSendMobileForm($demositeMobileForm,
      $icon.addClass(options.icon.required).show();
     }
    })
+  .find('#demosite_mobile_form')
+  .change(function(e) {
+   $('#demosite_mobile_form').formValidation('revalidateField', 'share_mobile_industry');
+  })
+  .end()
   .formValidation({
    framework: 'bootstrap',
    icon: {
@@ -140,6 +177,13 @@ function attachBootstrapValidatorsToSendMobileForm($demositeMobileForm,
      },
      onError: function(e, data) {
 
+     }
+    },
+    share_mobile_industry: {
+     validators: {
+      notEmpty: {
+       message: 'Please select an industry.'
+      }
      }
     }
    }
@@ -189,9 +233,9 @@ function attachBootstrapValidatorsToSendMobileForm($demositeMobileForm,
 
     mobile_apiurl = communityRequestProfile.protocol +
      communityRequestProfile.api_server +
-     '/apptsvc/rest/html/sendAppURLForUrlKeyToMobileviaSMS?friendlyURL=' +
-     communityRequestProfile.friendlyURL +
-     '&toTelephoneNumber=' +
+     '/apptsvc/rest/html/sendDemoToMobile?demoType=CHALKBOARDS&domain=' +
+     $('#share_mobile_industry').val() +
+     '&toMobile=' +
      communityRequestProfile.mobile;
     submitMobileRequest();
 
@@ -234,9 +278,7 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
     }
    })
   .find('#demosite_email_form')
-  //.selectpicker()
   .change(function(e) {
-   /* Revalidate the color when it is changed */
    $('#demosite_email_form').formValidation('revalidateField', 'share_email_industry');
   })
   .end()
@@ -283,10 +325,12 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
     share_email_industry: {
      validators: {
       notEmpty: {
-       message: 'Please select your industry.'
+       message: 'Please select an industry.'
       }
      }
     }
+
+
    }
    // end fields
   })
@@ -332,10 +376,10 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
 
     email_apiurl = communityRequestProfile.protocol +
      communityRequestProfile.api_server +
-     '/apptsvc/rest/html/sendAppURLForUrlKeyToEmail?friendlyURL=' +
-     communityRequestProfile.friendlyURL + '&toEmail=' +
+     '/apptsvc/rest/html/sendDemoToEmail?demoType=CHALKBOARDS&domain=' +
+     $('#share_email_industry').val() +
+     '&toEmail=' +
      communityRequestProfile.email;
-
     // Prevent form submission
     e.preventDefault();
     // var $form = $(e.target); // The form
@@ -404,7 +448,7 @@ $(document).ready(
    * ---------- end email form-----------
    */
 
-
+  /*
   var $demoInstructionsCarousel = $('#demoinstructions_carousel');
 
   $demoInstructionsCarousel.owlCarousel({
@@ -418,5 +462,5 @@ $(document).ready(
     // itemsMobile disabled - inherit from itemsTablet
     // option
   });
-
+	*/
  });
