@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-md-12 col-sm-12 col-xs-12 wow fadeInLeft">
 				<div class="slider-content text-center">
-				        <img class="text-center" src="sitefiles/images/logo_text.png" alt-text="Chalkboards" />
+				        <img class="img-responsive text-center" src="sitefiles/images/logo_text.png" alt-text="Chalkboards" />
 					<!-- <h2 class="slider-title"> Chalkboards </h2> -->
 					<h4 class="slider-title">Reach your customers with order-ready emails/SMS</h4>
 					<!--
@@ -47,7 +47,7 @@
 					<div class="col-md-12 wow slideInLeft" data-wow-delay=".3s">
 						<div class="about-inner ">
 							<!-- <i class="icon icon-adjustments"></i> -->
-							<img src="sitefiles/images/member_promo.png" />
+							<img class="img-responsive" src="sitefiles/images/member_promo.png" />
 							<div class="about-content">
 								<h4>Email / SMS </h4>
 								<p>
@@ -90,7 +90,7 @@
 					</div>
 					<div class="col-md-12 wow slideInRight" data-wow-delay=".5s">
 						<div class="about-inner ">
-							<img src="sitefiles/images/poll-contest.png" />
+							<img class="img-responsive" src="sitefiles/images/poll-contest.png" />
 							<div class="about-content">
 								<h4>Interactive Promotions</h4>
 								<p>
@@ -126,7 +126,7 @@
 				</p>
 
 				<!-- heading row end -->
-				<img src="sitefiles/images/projects/liveAds/liveAds_user_dude.png" width="800" />
+				<img class="img-responsive" src="sitefiles/images/projects/liveAds/liveAds_user_dude.png"  />
 			</div>
 		</div>
 	</div><!-- container end -->
