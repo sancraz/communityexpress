@@ -448,6 +448,11 @@ $(document).ready(
    * ---------- end email form-----------
    */
 
+  /* hack. normally we use communitylive as default server.
+  but for this, the default is simfel */
+  if(communityRequestProfile.api_server==='communitylive.ws'){
+    communityRequestProfile.api_server='simfel.com';
+  }
   /*
   var $demoInstructionsCarousel = $('#demoinstructions_carousel');
 
