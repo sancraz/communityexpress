@@ -1283,7 +1283,7 @@ h5{
 /* for bootstrap-select */
 .selectContainer .form-control-feedback {
     /* Adjust feedback icon position */
-    right: -15px;
+    right: 15px;
 }
 
 .selectContainer .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){
