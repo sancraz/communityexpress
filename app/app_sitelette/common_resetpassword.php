@@ -15,7 +15,7 @@ include ('sitefiles/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('sitefiles/pages/content_resetpassword.php');
+include ('sitefiles/pages/content_resetpassword.html');
   ?>
   <?php
 include ('sitefiles/includes/scriptfiles.html');

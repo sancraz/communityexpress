@@ -15,7 +15,7 @@
 		?>
 		<!-- Header end -->
 		<?php
-		include ('sitefiles/pages/content_portalexpress.php');
+		include ('sitefiles/pages/content_portalexpress.html');
 		?>
 		<?php
 		include ('sitefiles/includes/scriptfiles.html');

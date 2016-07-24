@@ -15,7 +15,7 @@
 		?>
 		<!-- Header end -->
 		<?php
-		include ('sitefiles/pages/content_services.php');
+		include ('sitefiles/pages/content_services.html');
 		?>
 		<?php
 		include ('sitefiles/includes/scriptfiles.html');

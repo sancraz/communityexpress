@@ -16,7 +16,7 @@ include ('sitefiles/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('sitefiles/pages/content_developer.php');
+include ('sitefiles/pages/content_developer.html');
   ?>
   <?php
 include ('sitefiles/includes/scriptfiles.html');

@@ -15,7 +15,7 @@ include ('sitefiles/includes/navbar.php');
   ?>
   <!-- Header end -->
   <?php
-include ('sitefiles/pages/content_createadhocbusiness.php');
+include ('sitefiles/pages/content_createadhocbusiness.html');
   ?>
   <?php
 include ('sitefiles/includes/scriptfiles.html');

@@ -32,7 +32,7 @@ include 'sitefiles/includes/navbar.php';
   <!-- Header end -->
 
   <?php
-include 'sitefiles/pages/content_index.php';
+include 'sitefiles/pages/content_index.html';
   ?>
 
   <?php

@@ -19,11 +19,12 @@ include ('sitefiles/includes/navbar.php');
   <!-- Header end -->
 
   <?php
-include ('sitefiles/pages/content_careers.php');
+include ('sitefiles/pages/content_careers.html');
   ?>
 
    <?php
 include ('sitefiles/includes/footer.php');
   ?>
+ 
  </body>
 </html>
