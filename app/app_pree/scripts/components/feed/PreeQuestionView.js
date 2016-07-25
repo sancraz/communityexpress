@@ -151,8 +151,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
         // Adding jqPlot progress bars - IN PROGRESS
         this.ui.preeQuestionDetailed.on('shown.bs.collapse', _.bind(function() {
-            var dataArray = this.model.get('dataArray'),
-                options = this.model.get('options');
+            var options = this.model.get('options'),
+                dataArray = this.model.get('dataArray');
+            if (!options) return;
             options.seriesDefaults.renderer = eval(options.seriesDefaults.renderer);
             options.axes.yaxis.renderer = eval(options.axes.yaxis.renderer);
             options.axes.yaxis.rendererOptions.tickRenderer = eval(options.axes.yaxis.rendererOptions.tickRenderer);
@@ -190,6 +191,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onCollapseDetailsInChild: function() {
+        debugger;
         this.ui.preeQuestion.removeClass('active');
         this.ui.preeQuestionDetailed.collapse('hide');
     },
