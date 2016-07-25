@@ -85,22 +85,13 @@
                 <!-- <span class="score">Your new score is <% if (totalPoints) { %><%= totalPoints %> <% } %> points</span> -->
             </header>
             <section class="answerBody">
-                <p class="resultsText">Results:</p>
-                <div id="answerBar" style="height:100px;width:100%; ">
-
+                <div class="resultsData">
+                    <p class="resultsText">Results:</p>
+                    <% _.each(choices, function(choice) { %>
+                        <div><p><%= choice.percentOfTotalResponses %>%</p><p>: <%= choice.choiceId %>: </p> <%= choice.displayText %> <% if (choice.thisIsYourChoice) { %> - <span>YOU</span> <% } %></div>
+                    <% }) %>
                 </div>
-                <% _.each(choices, function(choice){ %>
-                    <div class="progress">
-                        <div class="progress-bar-<%= choice.isCorrect ? 'success' : 'warning' %> answerResultLetter"
-                            role="progressbar"
-                            aria-valuenow="<%= choice.entryCountForThisChoice*100/totalAnswers %>"
-                            aria-valuemin="0" aria-valuemax="100"
-                            style="width:<%= choice.entryCountForThisChoice*100/totalAnswers %>%">
-                            <span class="ansLetter"><%= choice.choiceIndex %>: </span>
-                            <%= choice.displayText %> - <%= choice.entryCountForThisChoice %> answers <%= (choice.entryCountForThisChoice*100/totalAnswers).toFixed(0) %>%
-                        </div>
-                    </div>
-                <% }) %>
+                <div id="answerBar" class="answerBar"></div>
             </section>
         </div>
         <div class="pree_question_answerInfo">

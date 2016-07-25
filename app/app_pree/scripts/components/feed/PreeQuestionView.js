@@ -37,7 +37,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         answer: '.pree_question_answer',
         likesButton: '.pree_question_likes_button',
         likeCount: '.pree_question_likes_count',
-        shareButton: '.pree_question_share_button'
+        shareButton: '.pree_question_share_button',
+        answerBar: '#answerBar'
     },
 
     events: {
@@ -149,51 +150,14 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.ui.preeQuestionDetailed.collapse('show');
 
         // Adding jqPlot progress bars - IN PROGRESS
-        this.ui.preeQuestionDetailed.on('shown.bs.collapse', function() {
-            var line = [[70, 2],[30, 1]],
-                ticks = ['answer1', 'answer2'];
-            $('#answerBar').jqplot([line], {
-                seriesColors:['#388e3c',     '#ff0000'],
-                seriesDefaults: {
-                    renderer:$.jqplot.BarRenderer,
-                    pointLabels: { show: true, stackedValue: true },
-                    shadowAngle: 135,
-                    rendererOptions: {
-                        varyBarColor: true,
-                        barDirection: 'horizontal'
-                    }
-                },
-                series:[
-                    {
-                        pointLabels: {
-                        show: true,
-                        labels:['30%', '70%']
-                        }
-                    }
-                ],
-                axes: {
-                    yaxis: {
-                        ticks: ticks,
-                        renderer: $.jqplot.CategoryAxisRenderer,
-                        tickOptions: {
-                            show: false
-                        },
-                        rendererOptions: {
-                            drawBaseline: false
-                        }
-                    },
-                    xaxis: {
-                        renderer: $.jqplot.CategoryAxisRenderer,
-                        tickOptions: {
-                            show: false
-                        },
-                        rendererOptions: {
-                            drawBaseline: false
-                        }
-                    }
-                }
-            });
-        });
+        this.ui.preeQuestionDetailed.on('shown.bs.collapse', _.bind(function() {
+            var dataArray = this.model.get('dataArray'),
+                options = this.model.get('options');
+            options.seriesDefaults.renderer = eval(options.seriesDefaults.renderer);
+            options.axes.yaxis.renderer = eval(options.axes.yaxis.renderer);
+            options.axes.yaxis.rendererOptions.tickRenderer = eval(options.axes.yaxis.rendererOptions.tickRenderer);
+            $.jqplot('answerBar', dataArray, options);
+        }, this));
         this.ui.answer.css('pointer-events', 'none');
     },
 

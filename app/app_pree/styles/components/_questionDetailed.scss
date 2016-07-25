@@ -78,6 +78,30 @@
         }
     }
 
+    .answerBody {
+        .answerBar {
+            display: inline-block;
+            float: right;
+            height: 100px;
+            width: 45%;
+        }
+
+        .resultsData {
+            display: inline-block;
+            width: 45%;
+
+            div {
+                p {
+                    display: inline-block;
+                }
+
+                p:first-child {
+                    width: 38px;
+                }
+            }
+        }
+    }
+
     .resultsText {
         color: $text;
         font: 400 14px / 21px Ubuntu;
