@@ -9,7 +9,7 @@
 if (isset($saslName)) {
   echo $saslName;
 } else
-  echo 'sitelette.com';
+  echo 'chalkboardstoday.com';
 ?></title>
   <!--[if IE]>
   <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -21,7 +21,7 @@ if (isset($saslName)) {
   <link href="desktop/owl.transitions.css" rel="stylesheet">
   <link href="desktop/formvalidation/formValidation.min.css" rel="stylesheet">
   <link href="desktop/ladda-bootstrap/ladda-themeless.min.css" rel="stylesheet">
- 
+
   <link href="desktop/desktop.css" rel="stylesheet">
  </head>
  <body>

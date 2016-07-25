@@ -5,7 +5,7 @@
 		<meta charset="utf-8">
 		<meta name="description" content="">
 		<meta name="keywords" content="">
-		<title>Sitelettes</title>
+		<title>Chalkboards</title>
 
 		<link href="error_page/bootstrap.min.css" rel="stylesheet">
 		<link href="error_page/style.css" rel="stylesheet">
@@ -19,9 +19,9 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h1> <?php echo $errorMessage ?> <br> Get your free sitelette at <a href="https://sitelettes.com">sitelettes.com</a></h1>
+					<h1> <?php echo $errorMessage ?> <br> Get your free Chalkboards app at <a href="https://chalkboardstoday.com">chalkboardstoday.com</a></h1>
 				</div>
 			</div>
-		</div> 
+		</div>
 	</body>
 </html>

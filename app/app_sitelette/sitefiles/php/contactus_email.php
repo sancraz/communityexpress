@@ -1,11 +1,11 @@
 <?php
 
- 
-$toemail = 'contact@sitelettes.com'; // change this to your email id
-$name    =  $_REQUEST['name'] ;  
-$email   = $_REQUEST['email'] ;  
 
-$msg =$_REQUEST['message'] ; 
+$toemail = 'contact@chalkboardstoday.com'; // change this to your email id
+$name    =  $_REQUEST['name'] ;
+$email   = $_REQUEST['email'] ;
+
+$msg =$_REQUEST['message'] ;
 
 $subject = 'Contact from Chalkboard.today';
 
@@ -21,7 +21,7 @@ $message .= ', Message :'.$msg;
 
 $mailsendresult=mail($toemail, $subject, $message, $email, $headers );
 
- 
+
 
 // Prevent caching.
 header('Cache-Control: no-cache, must-revalidate');

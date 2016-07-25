@@ -37,7 +37,7 @@ App.prototype = {
 
         //Geolocation.startWatching();
         var conf = configurationActions.getConfigurations();
-        
+
 
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
         if (this.params.embedded) { conf.set('embedded', true); };
@@ -90,14 +90,14 @@ App.prototype = {
             viewName = userController.hasCurrentUser() ? 'chat' : 'restaurant';
         }
 
-       // if ( viewName === 'catalog') { //  
+       // if ( viewName === 'catalog') { //
              //if(typeof options==='undefined'){
-             //  var sa=window.community.serviceAccommodatorId;  
-             //  var sl=window.community.serviceLocationId; 
+             //  var sa=window.community.serviceAccommodatorId;
+             //  var sl=window.community.serviceLocationId;
              //}
        // }
 
-       
+
         loader.show('loading');
 
         this.initializePage(viewName, id, options).then(function(page){
@@ -134,7 +134,7 @@ App.prototype = {
                 title = pageModel.restaurant.get('saslName');
             break;
             default:
-                title = 'sitelette.com';
+                title = 'chalkboardstoday.com';
         }
         document.title = title;
     },
