@@ -191,7 +191,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onCollapseDetailsInChild: function() {
-        debugger;
         this.ui.preeQuestion.removeClass('active');
         this.ui.preeQuestionDetailed.collapse('hide');
     },
