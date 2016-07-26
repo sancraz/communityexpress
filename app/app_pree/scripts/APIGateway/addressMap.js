@@ -9,6 +9,7 @@ module.exports = {
             getPreeTags: ['GET', '/pree/retrieveHashTags'],
             createQuestion: ['POST', '/pree/createPoll'],
             answerQuestion: ['POST', '/pree/answerQuestion'],
+            likeDislikePoll: ['POST', '/pree/likeDislikePoll'],
 
             login: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],
@@ -18,8 +19,10 @@ module.exports = {
             registerNewMemberWithInvitationCode: ['POST', '/authentication/registerNewMemberWithInvitationCode'],
             createAnonymousUser: ['POST', '/authentication/registerAnonymousAdhocMember'],
 
-            sendPromoURLToEmail: ['GET', '/html/sendPromoURLToEmail'],
-            sendPromoURLToMobileviaSMS: ['GET', '/html/sendPromoURLToMobileviaSMS']
+            sendContactInfo: ['POST','/pree/sendContactUsEmail'],
+
+            sendPromoURLToEmail: ['GET', '/pree/sendPollContestURLToEmail'],
+            sendPromoURLToMobileviaSMS: ['GET', '/pree/sendPollContestURLToMobileviaSMS']
 
         };
     }

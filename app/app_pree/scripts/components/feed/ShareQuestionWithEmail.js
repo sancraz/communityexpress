@@ -26,7 +26,7 @@ var ShareQuestionWithEmail = Mn.ItemView.extend({
 
     share: function() {
         var email = this.ui.input.val();
-        this.trigger('sendEmail', this.model, email, this);
+        this.trigger('sendEmail', this.model.get('uuid'), email, this);
     },
 
     close: function() {

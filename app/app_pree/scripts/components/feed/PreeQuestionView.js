@@ -45,7 +45,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         'click @ui.questionBody': 'checkIfAnswered',
         'click @ui.preeQuestionCategories': 'expandCategories',
         'click @ui.preeQuestionTags': 'expandTags',
-        'click @ui.likesButton': 'addLike',
+        'click @ui.likesButton': 'addLikeDislike',
         'click @ui.answer': 'checkIfUserCanAnswer',
         'click @ui.shareButton': 'openShareQuestionView'
     },
@@ -195,9 +195,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.ui.preeQuestionDetailed.collapse('hide');
     },
 
-    addLike: function(e) {
-        // e.preventDefault();
-        // e.stopPropagation();
+    addLikeDislike: function(e) {
+        this.trigger('addLikeDislike', this.model.get('uuid'));
         var currentLikes = this.model.get('likes');
         if (!this.model.get('alreadyLiked')) {
             this.model.set({
@@ -205,10 +204,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 alreadyLiked: true
             });
         } else {
-            this.model.set({
-                likes: currentLikes - 1,
-                alreadyLiked: false
-            });
+            // this.model.set({
+            //     likes: currentLikes - 1,
+            //     alreadyLiked: false
+            // });
         };
     },
 

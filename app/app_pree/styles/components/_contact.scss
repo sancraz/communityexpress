@@ -27,6 +27,9 @@
             color: $text-hover;
             margin: 10px 0;
         }
+        p.error {
+            color: $red;
+        }
         label {
             margin-top: 10px;
         }

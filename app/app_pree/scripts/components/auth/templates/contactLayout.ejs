@@ -25,14 +25,19 @@
             <form action="#" method="post">
                 <label for="username">Name *</label>
                 <input class="form-control" type="text" autocapitalize="off" name="name" placeholder="Name" />
+                <p class="senderName error">Please, enter your name</p>
                 <label for="email">Email Address *</label>
                 <input class="form-control" type="text" autocapitalize="off" name="email" placeholder="Email" />
+                <p class="replyToEmail error">Please, enter an email address</p>
                 <label for="password">Phone</label>
                 <input class="form-control" type="text" autocapitalize="off" name="phone" placeholder="Phone" />
+                <p class="phoneNumber error">Please, enter your phone number</p>
                 <label for="password_confirmation">Company (if applicable)</label>
                 <input class="form-control" type="text" autocapitalize="off" name="company" placeholder="Company" />
+                <p class="companyName error">Please, enter your company</p>
                 <label for="comment">Your Inquiry</label>
-                <textarea class="form-control" rows="5" id="comment"></textarea>
+                <textarea class="form-control inquiry" rows="5" id="comment"></textarea>
+                <p class="description error">Please, enter your inquiry</p>
             </form>
         </div>
         <div class="col-xs-10 col-xs-offset-1">
