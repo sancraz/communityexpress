@@ -3,7 +3,7 @@ var portalExpressURL;
 
 var url;
 var api_server;
-var api_server_before_demo_switch = "http://communitylive.ws/";
+var api_server_before_demo_switch = "https://communitylive.ws/";
 var resetPassUrl;
 
 /*
