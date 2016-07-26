@@ -12,7 +12,8 @@ var feedView = Mn.CollectionView.extend({
         'collapseDetails': 'collapseDetails',
         'answerQuestion' : 'onAnswerQuestion',
         'checkIfUserLogged': 'onCheckIfUserLogged',
-        'sharePopup:show': 'openSharePopup'
+        'sharePopup:show': 'openSharePopup',
+        'addLikeDislike': 'addLikeDislike'
     },
 
     events: {
@@ -72,6 +73,10 @@ var feedView = Mn.CollectionView.extend({
 
     openSharePopup: function(view, questionModel) {
         this.trigger('sharePopup:show', questionModel);
+    },
+
+    addLikeDislike: function(view, uuid) {
+        this.trigger('addLikeDislike', view, uuid);
     },
 
     rerenderChild: function(model) {

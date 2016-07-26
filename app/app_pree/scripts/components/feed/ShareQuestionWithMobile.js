@@ -22,12 +22,12 @@ var ShareQuestionWithMobile = Mn.ItemView.extend({
 
     onShow: function() {
         this.$el.modal();
-        this.ui.input.mask('(000) 000-0000');
+        // this.ui.input.mask('(000) 000-0000');
     },
 
     share: function() {
         var phone = this.ui.input.val();
-        this.trigger('sendMobile', this.model, phone, this);
+        this.trigger('sendMobile', this.model.get('uuid'), phone, this);
     },
 
     close: function() {

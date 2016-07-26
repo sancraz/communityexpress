@@ -85,32 +85,62 @@ module.exports = {
         this.centralLayoutView.showShareQuestionView(view)
     },
 
-    sendEmail: function(model, email, view) {
+    sendEmail: function(uuid, email, view) {
         loader.show('email', 'sending');
         gateway.sendRequest('sendPromoURLToEmail', {
             UID: this.user.getUID(),
-            promoUUID: model.get('uuid'),
+            contestUUID: uuid,
             toEmail: email
         }).then(_.bind(function(resp) {
-            loader.showFlashMessage( 'Promotion URL is sent to ' + email);
+            var text = 'Promotion URL is sent to ' + email;
             view.close();
-        }, this), function(e) {
-            loader.showFlashMessage('unable to send Promotion URL to ' + email);
-        });
+            view.$el.on('hidden.bs.modal', _.bind(function() {
+                loader.hide();
+                var successView = new TextMessageView({
+                    text: text
+                });
+                this.centralLayoutView.showTextMessageView(successView);
+            }, this));
+        }, this), _.bind(function(jqXHR) {
+            var text = h().getErrorMessage(jqXHR, 'Unable to send Promotion URL to ' + email);
+            view.close();
+            view.$el.on('hidden.bs.modal', _.bind(function() {
+                loader.hide();
+                var errorMessageView = new TextMessageView({
+                    text: text
+                });
+                this.centralLayoutView.showTextMessageView(errorMessageView);
+            }, this));
+        }, this));
     },
 
-    sendMobile: function(model, phone, view) {
+    sendMobile: function(uuid, phone, view) {
         loader.show('to mobile', 'sending');
         gateway.sendRequest('sendPromoURLToMobileviaSMS', {
             UID: this.user.getUID(),
-            promoUUID: model.get('uuid'),
+            contestUUID: uuid,
             toTelephoneNumber: phone
         }).then(_.bind(function() {
-            loader.showFlashMessage( 'Promotion URL is sent to ' + phone);
+            var text = 'Promotion URL is sent to ' + phone;
             view.close();
-        }, this), function(e) {
-            loader.showFlashMessage('unable to send Promotion URL to ' + phone);
-        });
+            view.$el.on('hidden.bs.modal', _.bind(function() {
+                loader.hide();
+                var successView = new TextMessageView({
+                    text: text
+                });
+                this.centralLayoutView.showTextMessageView(successView);
+            }, this));
+        }, this), _.bind(function(jqXHR) {
+            var text = h().getErrorMessage(jqXHR, 'Unable to send Promotion URL to ' + phone);
+            view.close();
+            view.$el.on('hidden.bs.modal', _.bind(function() {
+                loader.hide();
+                var errorMessageView = new TextMessageView({
+                    text: text
+                });
+                this.centralLayoutView.showTextMessageView(errorMessageView);
+            }, this));
+        }, this));
     },
 
     hideCreateNewQuestion: function() {
@@ -196,7 +226,18 @@ module.exports = {
         feedView.listenTo(feedView, 'checkIfUserLogged', _.bind(this.onCheckIfUserLogged, this));
         feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
         feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
+        feedView.listenTo(feedView, 'addLikeDislike', _.bind(this.addLikeDislike, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
+    },
+
+    addLikeDislike: function(uuid) {
+        gateway.sendRequest('likeDislikePoll', {
+            UID: this.user.UID,
+            like: true,
+            contestUUID: uuid
+        }).then(function(resp) {
+            console.log(resp);
+        });
     },
 
     getPreviousQuestions: function(params) {
