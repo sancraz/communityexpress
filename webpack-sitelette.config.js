@@ -10,9 +10,10 @@ module.exports = {
 		'bundle': './app/app_sitelette/sitelette.js'
 	},
 	output: {
-		path: './app/app_sitelette/build/', 
+		path: './app/app_sitelette/build/',
 		filename: '[name].js'
 	},
+	//devtool: 'cheap-module-eval-source-map',
 	devtool: 'source-map',
 	watch: true,
 	keepalive: true,
