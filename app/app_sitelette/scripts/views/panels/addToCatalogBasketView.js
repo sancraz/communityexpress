@@ -12,8 +12,8 @@ var AddToCatalogBasketView = PanelView.extend({
     groupId:null,
     groupDisplayText:null,
     catalogDisplayText:null,
-    
-    
+
+
     initialize: function(options) {
         options = options || {};
         this.$el.attr('id', 'cmntyex_add-to-basket_panel' );
@@ -25,7 +25,7 @@ var AddToCatalogBasketView = PanelView.extend({
         this.groupId = options.groupId;
         this.groupDisplayText=options.groupDisplayText;
         this.catalogDisplayText=options.catalogDisplayText;
-        
+
         this.addEvents({
             'click .plus_button': 'incrementQuantity',
             'click .minus_button': 'decrementQuantity',
@@ -42,7 +42,7 @@ var AddToCatalogBasketView = PanelView.extend({
     decrementQuantity: function () {
         var qty = this.quantity.get('value');
 
-        if (qty === 0) return;
+        if (qty === 1) return;
 
         this.quantity.set('value', this.quantity.get('value') - 1);
     },

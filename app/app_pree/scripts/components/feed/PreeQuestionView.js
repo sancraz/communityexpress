@@ -192,8 +192,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onCollapseDetailsInChild: function() {
-        this.ui.preeQuestion.removeClass('active');
-        this.ui.preeQuestionDetailed.collapse('hide');
+        /* AF : adding fix, but I don't think I understand the 
+           actual problem. So, this is probably not going to work */
+        $(this.ui.preeQuestion).removeClass('active');
+        $(this.ui.preeQuestionDetailed).collapse('hide');
     },
 
     addLikeDislike: function(e) {
