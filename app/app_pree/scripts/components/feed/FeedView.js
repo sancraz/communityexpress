@@ -76,7 +76,7 @@ var feedView = Mn.CollectionView.extend({
     },
 
     addLikeDislike: function(view, uuid) {
-        this.trigger('addLikeDislike', view, uuid);
+        this.trigger('addLikeDislike', uuid);
     },
 
     rerenderChild: function(model) {

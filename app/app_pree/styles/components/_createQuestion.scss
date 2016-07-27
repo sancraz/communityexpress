@@ -267,15 +267,21 @@
         margin-left: 26px;
     }
 
-    a.addAnswerBtn {
+    a.addAnswerBtn,
+    a.removeAnswerBtn {
         text-decoration: none;
         float: right;
         color: $text-hover;
         font: 400 9px / 15px Ubuntu;
     }
 
+    .removeAnswerBtn {
+        display: none;
+    }
+
     .miniPlusBtn {
         margin-right: 5px;
+        margin-left: 10px;
         position: relative;
         bottom: 1px;
     }

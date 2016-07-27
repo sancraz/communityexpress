@@ -12,7 +12,7 @@ module.exports = {
 		path: './app/app_pree/build/',
 		filename: '[name].js'
 	},
-	devtool: 'source-map',
+	devtool: 'cheap-module-eval-source-map',
 	watch: true,
 	keepalive: true,
 	module: {

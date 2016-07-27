@@ -53,7 +53,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
     initialize : function() {
         this.model.set('activationDate', this.moment(this.model.get('activationDate')).format('MM/DD/YYYY'));
         console.log("FeedSelectorView initialized");
-        this.model.set('message', '');
+        this.model.set('messageLine1', '');
+        this.model.set('messageLine2', '');
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
@@ -81,7 +82,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 break;
             default:
         };
-        this.model.set('message', message);
+        // this.model.set('message', message);
         this.justAnswered = true;
         this.render();
     },
@@ -191,8 +192,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onCollapseDetailsInChild: function() {
-        this.ui.preeQuestion.removeClass('active');
-        this.ui.preeQuestionDetailed.collapse('hide');
+        /* AF : adding fix, but I don't think I understand the 
+           actual problem. So, this is probably not going to work */
+        $(this.ui.preeQuestion).removeClass('active');
+        $(this.ui.preeQuestionDetailed).collapse('hide');
     },
 
     addLikeDislike: function(e) {

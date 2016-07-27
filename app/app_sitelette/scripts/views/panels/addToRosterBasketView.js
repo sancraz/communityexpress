@@ -39,7 +39,7 @@ var AddToRosterBasketView = PanelView.extend({
     decrementQuantity: function () {
         var qty = this.quantity.get('value');
 
-        if (qty === 0) return;
+        if (qty === 1) return;
 
         this.quantity.set('value', this.quantity.get('value') - 1);
     },
@@ -50,7 +50,7 @@ var AddToRosterBasketView = PanelView.extend({
 
     addToBasket: function () {
     	var count=this.quantity.get('value');
-        
+
         this.basket.addCatalog(this.model, count,  this.catalogId,this.catalogDisplayText);
         this.shut();
     },
