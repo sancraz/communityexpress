@@ -65,7 +65,7 @@
             <% _.each(choices, function(choice, index){ %>
                 <li>
                     <div class="pree_question_edit_answers_item pree_question_answer">
-                        <input type="radio" name="<%= choice.contestUUID %>" cmtyx-answer-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" >
+                        <input type="radio" name="<%= choice.contestUUID %>" cmtyx-answer-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" <% if (choice.thisIsYourChoice) { %> checked <% } %> >
                             <div class="inputRadioImg"></div>
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -81,7 +81,7 @@
     <div class="pree_question_detailed collapse">
         <div class="pree_question_answer">
             <header class="answerHeader">
-                <span class="thanksText"><%= message %> <% if (totalPoints) { %><%= totalPoints %> points<% } %></span>
+                <span class="thanksText"><%= messageLine1 %><br /><%= messageLine2 %></span>
                 <!-- <span class="score">Your new score is <% if (totalPoints) { %><%= totalPoints %> <% } %> points</span> -->
             </header>
             <section class="answerBody">

@@ -53,7 +53,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
     initialize : function() {
         this.model.set('activationDate', this.moment(this.model.get('activationDate')).format('MM/DD/YYYY'));
         console.log("FeedSelectorView initialized");
-        this.model.set('message', '');
+        this.model.set('messageLine1', '');
+        this.model.set('messageLine2', '');
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
@@ -81,7 +82,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 break;
             default:
         };
-        this.model.set('message', message);
+        // this.model.set('message', message);
         this.justAnswered = true;
         this.render();
     },

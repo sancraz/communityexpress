@@ -3,6 +3,7 @@
 var moment = require('moment'),
 	gateway = require('../../APIGateway/gateway'),
 	template = require('ejs!./templates/createQuestion.ejs'),
+	AnswerItemView = require('./AnswerItemView'),
 	TagsView = require('../autocomplete/NewQuestionTagsView');
 
 var CreateQuestionView = Mn.LayoutView.extend({
@@ -35,6 +36,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		additionalLinks: '.additional-links-container',
 		answerRadioButton: '.radioCreateAnswer',
 		answerRadioButtonImg: '.inputRadioImg',
+		answersContainer: '.pree_question_edit_answers',
 		answers: '.pree_question_edit_answers li',
 		answerChoice: '.pree_question_edit_answers li .answer-choice',
 		answerExample: '.pree_question_edit_answers li .answer-example',
@@ -47,6 +49,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		notificationDate: '#notificationDatePicker',
 		// notificationTime: '#notificationTimePicker'
 		addAnswerBtn: '.addAnswerBtn',
+		removeAnswerBtn: '.removeAnswerBtn',
 		collapsiblePredictionDetails: '#collapseOne',
 		collapsibleAnswerInfo: '#collapseTwo',
 		predictionDetails: '.prediction-details',
@@ -73,7 +76,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		'keydown @ui.basePoints': 'onKeyDownBasePoints',
 		'change @ui.bonusPoints': 'onChangeBonusPoints',
 		'change @ui.basePoints': 'onChangeBasePoints',
-		'click @ui.addAnswerBtn': 'onAddAnswer'
+		'click @ui.addAnswerBtn': 'onAddAnswer',
+		'click @ui.removeAnswerBtn': 'onRemoveAnswer'
 	},
 
 	initialize: function() {
@@ -464,6 +468,37 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	onAddAnswer: function(e) {
+		var length = this.model.get('choices').length;
+		if (length < 5) {
+			this.model.attributes.choices[length] = {
+				choiceName: null,
+				displayText: '',
+				isCorrect: false
+			};
+			var answer = new AnswerItemView({
+				choiceName: null,
+				displayText: '',
+				isCorrect: false,
+				index: length
+			}).render().el;
+			this.ui.answersContainer.append(answer);
+			this.ui.removeAnswerBtn.show();
+			if (length === 4) {
+				this.ui.addAnswerBtn.hide();
+			}
+		}
+	},
+
+	onRemoveAnswer: function() {
+		var length = this.model.get('choices').length;
+		if (length > 2) {
+			this.model.get('choices').splice(length - 1);
+			this.ui.answersContainer.find('li').last().remove();
+			this.ui.addAnswerBtn.show();
+			if (length === 3) {
+				this.ui.removeAnswerBtn.hide();
+			}
+		}
 	}
 
 });
