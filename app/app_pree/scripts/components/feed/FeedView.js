@@ -51,6 +51,7 @@ var feedView = Mn.CollectionView.extend({
         if (lastQuestionTop < windowHeight) {
             this.params.nextId = this.model.get('previousId');
             this.params.count = 5;
+            if (!this.params.nextId) return;
             this.trigger('getPreviousQuestions', this.params);
             this.$el.unbind('scroll');
         };

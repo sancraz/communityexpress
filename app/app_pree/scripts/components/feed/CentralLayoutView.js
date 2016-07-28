@@ -16,6 +16,13 @@ var CentralLayoutView = Mn.LayoutView.extend({
         popupRegion: '#popup_region'
     },
 
+    onShow: function() {
+        // document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+        // setTimeout(function() {
+        //     var myScroll = new IScroll('#questions-region');
+        // }, 200);
+    },
+
     showFiltersView: function(view){
         this.filtersRegion.show(view);
     },

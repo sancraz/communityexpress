@@ -64,25 +64,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     reinitialize: function(attrs, isCorrect) {
         this.model.set(attrs);
         this.model.set('activationDate', this.moment(this.model.get('activationDate')).format('MM/DD/YYYY'));
-        var pollType = attrs.pollType.enumText,
-            message;
-        switch (pollType) {
-            case 'FACT':
-                isCorrect ?
-                message = 'CONGRATULATIONS You answered correctly.<br /> You\'ve been awarded ' + attrs.points + ' Points!<br /> Your new points total is'
-                : message = 'Thank you, but you answered incorrectly.<br /> You\'ve been awarded ' + attrs.points + ' Points just for answering!<br /> See the correct answer below. Your new points total is';
-                break;
-            case 'PREDICTION':
-                isCorrect ?
-                message = 'CONGRATULATIONS You\'ve been awarded ' + attrs.points + ' Points! <br /> Your new points total is'
-                : message = 'INCORRECT ' + attrs.points + ' Points. <br /> Your new points total is';
-                break;
-            case 'OPINION':
-                message = 'Thank you! You\'ve been awarded ' + attrs.points + ' Points.<br /> Your new points total is';
-                break;
-            default:
-        };
-        // this.model.set('message', message);
         this.justAnswered = true;
         this.render();
     },
@@ -158,7 +139,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             options.seriesDefaults.renderer = eval(options.seriesDefaults.renderer);
             options.axes.yaxis.renderer = eval(options.axes.yaxis.renderer);
             options.axes.yaxis.rendererOptions.tickRenderer = eval(options.axes.yaxis.rendererOptions.tickRenderer);
-            $.jqplot('answerBar', dataArray, options);
+            $.jqplot('answerBar' + this.model.get('uuid'), dataArray, options);
         }, this));
         this.ui.answer.css('pointer-events', 'none');
     },
@@ -192,7 +173,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onCollapseDetailsInChild: function() {
-        /* AF : adding fix, but I don't think I understand the 
+        /* AF : adding fix, but I don't think I understand the
            actual problem. So, this is probably not going to work */
         $(this.ui.preeQuestion).removeClass('active');
         $(this.ui.preeQuestionDetailed).collapse('hide');

@@ -71,7 +71,7 @@
 
 
      <div id="app-container" class="app-container">
- 
+
 
      </div>
 
@@ -102,7 +102,7 @@
    <!-- <script src="vendor/scripts/sparkline-index.js"></script> -->
    <!-- Custom JS -->
    <!-- <script src="scripts/custom.js"></script> -->
-
+   <script src="vendor/scripts/iscroll/build/iscroll.js"></script>
    <script src="build/bundle.js"></script>
 
  </body>

@@ -16,27 +16,34 @@
         display: block;
     }
 
-    .pree_question_user_avatar {
-        float: left;
-        position: relative;
-        top: 2px;
-        height: 50px;
+    .pree_question_user {
+        display: inline-block;
 
-        img {
-            height: 46px;
+        .pree_question_user_avatar {
+            // float: left;
+            position: relative;
+            top: 2px;
+            height: 50px;
+
+            img {
+                height: 46px;
+            }
         }
     }
 
     .pree_question_user_username {
-        float: left;
         color: $main;
-        padding-left: 15px;
 /*     font: 400 13px / 50px Ubuntu; */
         font-style: normal;
         font-weight:400;
         font-size: 13px;
-        line-height: 50px;
+        line-height: 25px;
         font-family: 'Open Sans';
+    }
+
+    .pree_tags_dropdown,
+    .pree_categories_dropdown {
+        float: right;
     }
 
     .pree_question_title,

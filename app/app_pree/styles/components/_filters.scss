@@ -15,7 +15,7 @@
             color: $text-hover;
             text-align: center;
             border: solid 1px $input;
-            width: 25%;
+            width: 30%;
             line-height: 40px;
             height: 42px;
             background-color: $white;
@@ -24,6 +24,10 @@
                 color: $text;
                 border-bottom: solid 3px $main-hover;
             }
+        }
+
+        a.refresh-feed {
+            width: 10%;
         }
 
         .active {
