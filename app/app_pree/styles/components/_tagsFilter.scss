@@ -14,7 +14,12 @@
         .panelHeaderTitle {
             display: inline-block;
             color: $white;
-            font: 400 12px / 40px Ubuntu;
+      /*      font: 400 12px / 40px Ubuntu; */
+           font-style: normal;
+           font-weight:400;
+           font-size: 12px;
+           line-height: 40px;
+           font-family: 'Open Sans';
         }
 
         .pree_tags_close {

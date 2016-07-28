@@ -47,7 +47,12 @@
     .thanksText {
         display: block;
         color: $white;
-        font: 700 12px / 12px Ubuntu;
+/*      font: 700 12px / 12px Ubuntu; */
+        font-style: normal;
+        font-weight:700;
+        font-size: 12px;
+        line-height: 12px;
+        font-family: 'Open Sans';
         margin-bottom: 5px;
         line-height: 1.3;
     }
@@ -55,7 +60,12 @@
     .score {
         display: block;
         color: $input;
-        font: 400 10px / 12px Ubuntu;
+    /*  font: 400 10px / 12px Ubuntu; */
+        font-style: normal;
+        font-weight:400;
+        font-size: 10px;
+        line-height: 12px;
+        font-family: 'Open Sans';
     }
 
     .answerBody,
@@ -72,7 +82,12 @@
                 min-width: 80px;
                 text-align: center;
                 color: $text-hover;
-                font: 400 12px / 21px Ubuntu;
+      /*        font: 400 12px / 21px Ubuntu; */
+                font-style: normal;
+                font-weight:400;
+                font-size: 12px;
+                line-height: 21px;
+                font-family: 'Open Sans';
                 display: block;
             }
         }
@@ -104,7 +119,12 @@
 
     .resultsText {
         color: $text;
-        font: 400 14px / 21px Ubuntu;
+/*      font: 400 14px / 21px Ubuntu; */
+        font-style: normal;
+        font-weight:400;
+        font-size: 14px;
+        line-height: 21px;
+        font-family: 'Open Sans';
         margin-bottom: 5px;
     }
 
@@ -119,12 +139,22 @@
     .answerInfoHeaderTitle {
         display: block;
         color: $white;
-        font: 700 12px / 12px Ubuntu;
+    /*  font: 700 12px / 12px Ubuntu; */
+        font-style: normal;
+        font-weight:700;
+        font-size: 12px;
+        line-height: 12px;
+        font-family: 'Open Sans';
     }
 
     .answerInfoText {
         color: $text-hover;
-        font: 400 10px / 15px Ubuntu;
+/*     font: 400 10px / 15px Ubuntu; */
+        font-style: normal;
+        font-weight:400;
+        font-size: 10px;
+        line-height: 15px;
+        font-family: 'Open Sans';
     }
 
     .answerInfoText.last {

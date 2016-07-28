@@ -4,7 +4,11 @@
 
     li {
         a {
-            font: 400 14px Ubuntu;
+  /*        font: 400 14px Ubuntu; */
+            font-style: normal;
+            font-weight:400;
+            font-size: 14px;
+            font-family: 'Open Sans';
             text-decoration: none;
             display: inline-block;
             float: left;

@@ -55,55 +55,8 @@
 
  <body>
 
-     <script>
-        window.community={};
-        window.community.protocol='<?php echo $protocol?>';
-        window.community.UID='<?php echo $UID ?>';
-        window.community.type='<?php echo $type ?>';
-        window.community.uuidURL='<?php echo $uuidURL ?>';
-        window.community.demo='<?php echo  $demo==TRUE?'true':'false'?>';
-        window.community.server='<?php echo $server ?>';
-        window.community.host='<?php echo $serverName ?>';
-        window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
-        window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
-        window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
-     </script>
-
-
-     <div id="app-container" class="app-container">
- 
-
-     </div>
-
-
-   <!-- Javascript files -->
-   <!-- jQuery -->
-   <!-- <script src="vendor/scripts/jquery.js"></script> -->
-   <!-- Bootstrap JS -->
-   <!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
-   <!-- jQuery UI -->
-   <!-- <script src="vendor/scripts/jquery-ui.min.js"></script> -->
-   <!-- jQuery Flot -->
-   <!-- <script src="vendor/scripts/excanvas.min.js"></script> -->
-   <!-- <script src="vendor/scripts/jquery.flot.js"></script> -->
-   <!-- <script src="vendor/scripts/jquery.flot.resize.js"></script> -->
-   <!-- <script src="vendor/scripts/jquery.flot.pie.js"></script> -->
-   <!-- <script src="vendor/scripts/jquery.flot.stack.js"></script> -->
-   <!-- Sparklines -->
-   <!-- <script src="vendor/scripts/sparklines.js"></script> -->
-   <!-- jQuery Gritter -->
-   <!-- <script src="vendor/scripts/jquery.gritter.min.js"></script> -->
-   <!-- Respond JS for IE8 -->
-   <!-- <script src="vendor/scripts/respond.min.js"></script> -->
-   <!-- HTML5 Support for IE -->
-   <!-- <script src="vendor/scripts/html5shiv.js"></script> -->
-
-   <!-- Script for this page -->
-   <!-- <script src="vendor/scripts/sparkline-index.js"></script> -->
-   <!-- Custom JS -->
-   <!-- <script src="scripts/custom.js"></script> -->
-
-   <script src="build/bundle.js"></script>
+   Admin page .
+   <a href="index.php">Home</a>
 
  </body>
 </html>

@@ -31,7 +31,12 @@
         float: left;
         color: $main;
         padding-left: 15px;
-        font: 400 13px / 50px Ubuntu;
+/*     font: 400 13px / 50px Ubuntu; */
+        font-style: normal;
+        font-weight:400;
+        font-size: 13px;
+        line-height: 50px;
+        font-family: 'Open Sans';
     }
 
     .pree_question_title,
@@ -58,7 +63,12 @@
                 padding: 6px 9px;
                 margin: 0 5px;
                 color: $main;
-                font: 400 11px / 15px Ubuntu;
+/*              font: 400 11px / 15px Ubuntu; */
+                font-style: normal;
+                font-weight:400;
+                font-size: 11px;
+                line-height: 15px;
+                font-family: 'Open Sans';
                 border-radius: 3px;
             }
         }
@@ -73,13 +83,23 @@
                 border-radius: 3px;
                 padding: 5px 9px;
                 margin: 0 5px;
-                font: 400 11px / 15px Ubuntu;
+ /*             font: 400 11px / 15px Ubuntu; */
+                font-style: normal;
+                font-weight:400;
+                font-size: 11px;
+                line-height: 15px;
+                font-family: 'Open Sans';
             }
         }
 
         .pree_question_title_date {
             color: $grey;
-            font: 400 13px / 50px Ubuntu;
+        /*  font: 400 13px / 50px Ubuntu; */
+            font-style: normal;
+            font-weight:400;
+            font-size: 13px;
+            line-height: 50px;
+            font-family: 'Open Sans';
 
             p {
                 line-height: 1;
@@ -88,7 +108,12 @@
 
         .pree_question_title_name {
             color: $black;
-            font: 800 15px / 50px Ubuntu;
+    /*      font: 800 15px / 50px Ubuntu; */
+            font-style: normal;
+            font-weight:700;
+            font-size: 15px;
+            line-height: 50px;
+            font-family: 'Open Sans';
 
             p {
                 line-height: 1;
@@ -112,7 +137,12 @@
 
     .pree_question_text {
         color: $text;
-        font: 700 14px / 21px Ubuntu;
+  /*    font: 700 14px / 21px Ubuntu; */
+        font-style: normal;
+        font-weight:700;
+        font-size: 14px;
+        line-height: 21px;
+        font-family: 'Open Sans';
         display: inline-block;
         margin-top: 15px;
         margin-bottom: 25px;
@@ -123,7 +153,12 @@
         background-color: $input;
         width: calc(100% - 0px);
         color: $text;
-        font: 400 14px / 35px Ubuntu;
+/*    font: 400 14px / 35px Ubuntu; */
+        font-style: normal;
+        font-weight:400;
+        font-size: 14px;
+        line-height: 35px;
+        font-family: 'Open Sans';
         margin-bottom: 3px;
         padding-left: 15px;
     }
@@ -217,7 +252,12 @@
             padding: 6px 9px;
             margin-right: 5px;
             color: $main;
-            font: 400 11px / 15px Ubuntu;
+    /*    font: 400 11px / 15px Ubuntu; */
+            font-style: normal;
+            font-weight:400;
+            font-size: 11px;
+            line-height: 15px;
+            font-family: 'Open Sans';
             border-radius: 3px;
         }
     }
@@ -235,7 +275,12 @@
             border-radius: 3px;
             padding: 5px 9px;
             margin-right: 5px;
-            font: 400 11px / 15px Ubuntu;
+      /*    font: 400 11px / 15px Ubuntu; */
+            font-style: normal;
+            font-weight:400;
+            font-size: 11px;
+            line-height: 15px;
+            font-family: 'Open Sans';
         }
     }
 
@@ -262,7 +307,12 @@
         padding-left: 8px;
         padding-right: 32px;
         color: $grey;
-        font: 400 14px / 21px Ubuntu;
+/*     font: 400 14px / 21px Ubuntu; */
+        font-style: normal;
+        font-weight:400;
+        font-size: 14px;
+        line-height: 21px;
+        font-family: 'Open Sans';
     }
 
     .pree_question_share_button {
@@ -284,7 +334,12 @@
 
     .pree_question_answers {
         color: $text;
-        font: 400 14px / 21px Ubuntu;
+/*      font: 400 14px / 21px Ubuntu; */
+        font-style: normal;
+        font-weight:400;
+        font-size: 14px;
+        line-height: 21px;
+        font-family: 'Open Sans';
         display: block;
         float: left;
     }
@@ -307,7 +362,12 @@
 
     @media only screen and (max-width: 370px) {
         #pree_feed_tabs_items li a {
-            font: 400 12px / 48px Ubuntu;
+        /*  font: 400 12px / 48px Ubuntu; */
+            font-style: normal;
+            font-weight:400;
+            font-size: 12px;
+            line-height: 48px;
+            font-family: 'Open Sans';
         }
         .questionFooter {
             padding-bottom: 55px;
