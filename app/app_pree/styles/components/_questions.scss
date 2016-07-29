@@ -2,6 +2,10 @@
     padding: 0;
     list-style: none;
 
+    li{
+      position:relative;
+    }
+
     .pree_question {
         padding: 20px;
         background-color: $white;
@@ -365,6 +369,15 @@
         float: right;
         opacity: 1;
         cursor: pointer;
+    }
+
+    .pree_question_answered_mask {
+      position:absolute;
+      background:rgba(0,0,0,0.6);
+      z-index:500;
+      width:100%;
+      height:100%;
+      display:none;
     }
 
     @media only screen and (max-width: 370px) {

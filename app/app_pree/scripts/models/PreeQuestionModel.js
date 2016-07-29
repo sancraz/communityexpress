@@ -11,10 +11,13 @@ var PreeQuestionModel = Backbone.Model.extend({
         expandResults:false,
         showInformation:false,
         answers:['This is answer 1','This is answer 2','None of the above']
-    }, 
+    },
 
     initialize : function(attributes, options) {
         console.log("PreeQuestionModel instantiated");
+        /* pull up the answered state */
+        this.isAnswered=attributes['userStatus']['enumText']==='ANSWERED';
+        console.log('Question '+this.isAnswered);
     },
 
     changedAttribute: function() {

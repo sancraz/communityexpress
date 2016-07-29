@@ -57,7 +57,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.model.set('messageLine2', '');
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
-        this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
+        this.isAnswered = this.model.isAnswered;
+
+        //this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
         // this.isAnswered = true;
     },
 
@@ -84,6 +86,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 this.showAnswerInfo();
             }, this), 500);
         };
+        if(this.isAnswered===true){
+          $(this.el).find('.pree_question_answered_mask').show();
+        }
     },
 
     onIsAnswered: function() {
@@ -92,6 +97,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             answer = this.ui.answer.find('input[data-id="' + choiceId + '"]');
         answer.prop('checked', true);
         this.ui.answer.css('pointer-events', 'none');
+        $(this.el).find('.pree_question_answered_mask').show();
     },
 
     modelEventHandler : function() {
