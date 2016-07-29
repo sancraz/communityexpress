@@ -80,6 +80,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.pree_question_answers.show(new answerCountView({
             answers: this.model.get('totalAnswers')
         }));
+
+        if (this.model.get('activatedByUUID') === true) {
+            this.ui.preeQuestion.addClass('activated_by_uuid');
+        };
         /* AF: please test booleans as x===true. JavaScript is weird
            and has funny 'truthy' syntax. Read up. */
         //if (this.isAnswered) {
