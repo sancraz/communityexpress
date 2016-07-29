@@ -95,17 +95,28 @@ var FeedSelectorView = Mn.LayoutView.extend({
             }, this), 500);
         };
         if(this.isAnswered===true){
-          this.ui.answeredMask.show();
+          this.showMask();
         }
     },
 
+    showMask:function(){
+      //$(this.el).find('.pree_question_answered_mask').show();
+      this.ui.answeredMask.show();
+      this.ui.answeredMask.click(function(e){
+        /*absorb all clicks */
+        e.preventDefault();
+        e.stopPropagation();
+
+        return false;
+      });
+    },
     onIsAnswered: function() {
         // TODO we dont have answered from server and choice id ???
         var choiceId = this.model.get('currentChoiceForUser'),
             answer = this.ui.answer.find('input[data-id="' + choiceId + '"]');
         answer.prop('checked', true);
         this.ui.answer.css('pointer-events', 'none');
-        $(this.el).find('.pree_question_answered_mask').show();
+        this.showMask();
     },
 
     modelEventHandler : function() {
