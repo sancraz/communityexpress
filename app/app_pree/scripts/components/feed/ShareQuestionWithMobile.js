@@ -26,8 +26,10 @@ var ShareQuestionWithMobile = Mn.ItemView.extend({
     },
 
     share: function() {
-        var phone = this.ui.input.val();
-        this.trigger('sendMobile', this.model.get('uuid'), phone, this);
+        var phone = this.ui.input.val(),
+            contestUUID = this.options.model.get('uuid'),
+            shareUrl = this.options.shareUrl;
+        this.trigger('sendMobile', contestUUID, phone, shareUrl, this);
     },
 
     close: function() {

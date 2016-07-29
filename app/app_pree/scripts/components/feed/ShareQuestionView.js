@@ -21,6 +21,17 @@ var ShareQuestionView = Mn.ItemView.extend({
         'click @ui.emailButton': 'sendEmail'
     },
 
+    initialize: function() {
+        this.shareUrl = window.encodeURIComponent(window.location.protocol + '//' + window.location.host + '/' + '?t=l&u=' + this.model.get('uuid'));
+    },
+
+    serializeData: function() {
+        return {
+            displayText: this.model.get('displayText'),
+            shareUrl: this.shareUrl
+        };
+    },
+
     onShow: function() {
         this.$el.modal();
     },
@@ -42,7 +53,11 @@ var ShareQuestionView = Mn.ItemView.extend({
         this.$el.modal('hide');
         this.$el.on('hidden.bs.modal', _.bind(function() {
             if (typeof param === 'string') {
-                this.trigger('shareQuestion', param, this.model);
+                this.trigger('shareQuestion', {
+                    param: param,
+                    model: this.model,
+                    shareUrl: this.shareUrl
+                });
             };
             this.destroy();
         }, this));

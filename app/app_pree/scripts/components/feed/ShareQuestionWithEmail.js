@@ -25,8 +25,10 @@ var ShareQuestionWithEmail = Mn.ItemView.extend({
     },
 
     share: function() {
-        var email = this.ui.input.val();
-        this.trigger('sendEmail', this.model.get('uuid'), email, this);
+        var email = this.ui.input.val(),
+            contestUUID = this.options.model.get('uuid'),
+            shareUrl = this.options.shareUrl;
+        this.trigger('sendEmail', contestUUID, email, shareUrl, this);
     },
 
     close: function() {

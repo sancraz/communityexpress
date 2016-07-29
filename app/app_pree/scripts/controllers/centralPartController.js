@@ -65,18 +65,14 @@ module.exports = {
         this.centralLayoutView.showShareQuestionView(shareQuestionView);
     },
 
-    showShareQuestionEmailSMS: function(param, model) {
+    showShareQuestionEmailSMS: function(options) {
         var view;
-        switch (param) {
+        switch (options.param) {
             case 'sendSMS':
-                view = new ShareQuestionWithMobile({
-                    model: model
-                });
+                view = new ShareQuestionWithMobile(options);
                 break;
             case 'sendEmail':
-                view = new ShareQuestionWithEmail({
-                    model: model
-                });
+                view = new ShareQuestionWithEmail(options);
                 break;
             default:
         };
@@ -85,12 +81,13 @@ module.exports = {
         this.centralLayoutView.showShareQuestionView(view)
     },
 
-    sendEmail: function(uuid, email, view) {
+    sendEmail: function(uuid, email, shareUrl, view) {
         loader.show('email', 'sending');
         gateway.sendRequest('sendPromoURLToEmail', {
             UID: this.user.getUID(),
             contestUUID: uuid,
-            toEmail: email
+            toEmail: email,
+            shareUrl: shareUrl
         }).then(_.bind(function(resp) {
             var text = 'Promotion URL is sent to ' + email;
             view.close();
@@ -114,12 +111,13 @@ module.exports = {
         }, this));
     },
 
-    sendMobile: function(uuid, phone, view) {
+    sendMobile: function(uuid, phone, shareUrl, view) {
         loader.show('to mobile', 'sending');
         gateway.sendRequest('sendPromoURLToMobileviaSMS', {
             UID: this.user.getUID(),
             contestUUID: uuid,
-            toTelephoneNumber: phone
+            toTelephoneNumber: phone,
+            shareUrl: shareUrl
         }).then(_.bind(function() {
             var text = 'Promotion URL is sent to ' + phone;
             view.close();

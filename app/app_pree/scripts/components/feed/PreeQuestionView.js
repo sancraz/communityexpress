@@ -35,10 +35,12 @@ var FeedSelectorView = Mn.LayoutView.extend({
         closeCategories: '.pree_question_categories_close',
         closeTags: '.pree_question_tags_close',
         answer: '.pree_question_answer',
+        answerInput: '.pree_question_answer input',
         likesButton: '.pree_question_likes_button',
         likeCount: '.pree_question_likes_count',
         shareButton: '.pree_question_share_button',
-        answerBar: '#answerBar'
+        answerBar: '#answerBar',
+        answeredMask: '.pree_question_answered_mask'
     },
 
     events: {
@@ -89,18 +91,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             }, this), 500);
         };
         if(this.isAnswered===true){
-          $(this.el).find('.pree_question_answered_mask').show();
-            var x=this.currentAnswerChecked;
-          /*TODO check the correct radio button which matches the right
-            users previous selection */
-          var $inputs=$(this.el).find('.pree_question_input_answers input');
-          _.each($inputs, function(input,i,l){
-             var dataIdForInput= parseInt($(input).attr('data-id'));
-             if(dataIdForInput===x){
-              $(input).prop('checked',true);
-            }
-          });
-          //}[data-id===1]').prop('checked',true);
+          this.ui.answeredMask.show();
         }
     },
 

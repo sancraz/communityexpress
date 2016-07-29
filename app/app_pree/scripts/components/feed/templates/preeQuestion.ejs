@@ -66,7 +66,7 @@
             <% _.each(choices, function(choice, index){ %>
                 <li>
                     <div class="pree_question_edit_answers_item pree_question_answer">
-                        <input type="radio" name="<%= choice.contestUUID %>" cmtyx-answer-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" <% if (choice.thisIsYourChoice) { %> checked <% } %> >
+                        <input type="radio" name="<%= choice.contestUUID %>" cmtyx-answer-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" <% if (currentChoiceForUser === index + 1) { %> checked <% } %> >
                             <div class="inputRadioImg"></div>
                             <div class="input-group">
                                 <div class="input-group-addon">
@@ -89,7 +89,7 @@
                 <div class="resultsData">
                     <p class="resultsText">Results:</p>
                     <% _.each(choices, function(choice) { %>
-                        <div><p><%= choice.percentOfTotalResponses %>%</p><p>: <%= choice.choiceId %>: </p> <%= choice.displayText %> <% if (choice.thisIsYourChoice) { %> - <span>YOU</span> <% } %></div>
+                        <div><p><% if (choice.percentOfTotalResponses !== null) { %> <%= choice.percentOfTotalResponses.toFixed(2) %><% } %>%</p><p>: <%= choice.choiceId %>: </p> <%= choice.displayText %> <% if (choice.thisIsYourChoice) { %> - <span>YOU</span> <% } %></div>
                     <% }) %>
                 </div>
                 <div id="answerBar<%= uuid %>" class="answerBar"></div>
