@@ -58,7 +58,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.isAnswered;
-
+        this.currentAnswerChecked=this.model.currentAnswerChecked;
         //this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
         // this.isAnswered = true;
     },
@@ -90,9 +90,17 @@ var FeedSelectorView = Mn.LayoutView.extend({
         };
         if(this.isAnswered===true){
           $(this.el).find('.pree_question_answered_mask').show();
+            var x=this.currentAnswerChecked;
           /*TODO check the correct radio button which matches the right
             users previous selection */
-
+          var $inputs=$(this.el).find('.pree_question_input_answers input');
+          _.each($inputs, function(input,i,l){
+             var dataIdForInput= parseInt($(input).attr('data-id'));
+             if(dataIdForInput===x){
+              $(input).prop('checked',true);
+            }
+          });
+          //}[data-id===1]').prop('checked',true);
         }
     },
 
