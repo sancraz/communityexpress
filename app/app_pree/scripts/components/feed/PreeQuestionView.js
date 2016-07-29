@@ -78,9 +78,11 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.pree_question_answers.show(new answerCountView({
             answers: this.model.get('totalAnswers')
         }));
-        if (this.isAnswered) {
+        /* AF: please test booleans as x===true. JavaScript is weird
+           and has funny 'truthy' syntax. Read up. */
+        //if (this.isAnswered) {
             // this.onIsAnswered();
-        };
+        //};
         if (this.justAnswered) {
             setTimeout(_.bind(function() {
                 this.showAnswerInfo();
@@ -88,6 +90,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         };
         if(this.isAnswered===true){
           $(this.el).find('.pree_question_answered_mask').show();
+          /*TODO check the correct radio button which matches the right
+            users previous selection */
+
         }
     },
 
