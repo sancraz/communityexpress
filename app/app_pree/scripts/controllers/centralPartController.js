@@ -99,7 +99,7 @@ module.exports = {
                 this.centralLayoutView.showTextMessageView(successView);
             }, this));
         }, this), _.bind(function(jqXHR) {
-            var text = h().getErrorMessage(jqXHR, 'Unable to send Promotion URL to ' + email);
+            var text = h().getErrorMessage(jqXHR, 'Unable to share question with ' + email);
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
@@ -129,7 +129,7 @@ module.exports = {
                 this.centralLayoutView.showTextMessageView(successView);
             }, this));
         }, this), _.bind(function(jqXHR) {
-            var text = h().getErrorMessage(jqXHR, 'Unable to send Promotion URL to ' + phone);
+            var text = h().getErrorMessage(jqXHR, 'Unable to share question with ' + phone);
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
