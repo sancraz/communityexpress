@@ -140,12 +140,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		this.ui.collapsibleAnswerInfo.on('hidden.bs.collapse', _.bind(function() {
 			this.ui.answerArrow.attr('src', this.arrows.down);
 		}, this));
-		/*
-		  ALEX: data is probably some function that tries to pull up its own
-			 type of values, but not necessary data-* attributes of an element. I don't
-			who adds the .data() function to jquery. Do you?
-			Instead we put our own attribute */
-		//   this.model.set('subType', this.ui.typeChecked.data('subtype'));
+
 
 		// temporary set dates for FACT and OPINION
 		this.model.set('subType', parseInt(this.ui.typeChecked.attr('cmtyx-question-type')));
@@ -154,13 +149,21 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	onInitDatepickers: function() {
 
 		this.ui.expirationDate.datetimepicker({
-			format: 'MM/DD/YYYY h:mm:ss'
+			format: 'MM/DD/YYYY h:mm:ss',
+			widgetPositioning: {
+        horizontal: 'auto',
+        vertical: 'bottom'
+      }
 		});
 		// this.ui.expirationTime.datetimepicker({
 		// 	format: 'LT'
 		// });
 		this.ui.notificationDate.datetimepicker({
-			format: 'MM/DD/YYYY h:mm:ss'
+			format: 'MM/DD/YYYY h:mm:ss',
+			widgetPositioning: {
+        horizontal: 'auto',
+        vertical: 'bottom'
+      }
 		});
 		// this.ui.notificationTime.datetimepicker({
 		// 	format: 'LT'
@@ -220,7 +223,7 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		// 		console.log('subtype set as :'+(index+1));
 		// 	}
 		// }, this));
-		$target.siblings('span').text() === 'Prediction' ? this.showPredictionDetails() : this.hidePredictionDetails();
+		$target.siblings('span').text() === ' Prediction' ? this.showPredictionDetails() : this.hidePredictionDetails();
 	},
 
 	showPredictionDetails: function() {
@@ -230,6 +233,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		}, this), 10);
 		this.ui.answerRadioButton.prop('checked', false);
 		this.hideAnswerRadioButtons();
+		/* prefil answers with AGREE/DISAGREE */
+		$(this.ui.answerExample[0]).val('Agree').change().prop('disabled',true);
+   	$(this.ui.answerExample[1]).val('Disagree').change().prop('disabled',true);
+    this.ui.addAnswerBtn.hide();
+		this.$el.find('.selectAnswerText').hide();
 	},
 
 	hidePredictionDetails: function() {
@@ -238,6 +246,14 @@ var CreateQuestionView = Mn.LayoutView.extend({
 			this.ui.predictionDetails.slideUp();
 		}, this));
 		this.showAnswerRadioButtons();
+		/* undo prefil answers */
+		$(this.ui.answerExample[0]).val('').change().prop('disabled',false);
+   	$(this.ui.answerExample[1]).val('').change().prop('disabled',false);
+		var length = this.model.get('choices').length;
+		if (length < 3) {
+				this.ui.addAnswerBtn.show();
+		}
+  	this.$el.find('.selectAnswerText').show();
 	},
 
 	showAnswerRadioButtons: function() {
