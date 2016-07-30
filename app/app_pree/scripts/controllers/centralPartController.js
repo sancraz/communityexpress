@@ -89,7 +89,7 @@ module.exports = {
             toEmail: email,
             shareUrl: shareUrl
         }).then(_.bind(function(resp) {
-            var text = 'Promotion URL is sent to ' + email;
+            var text = 'Question Shared with : ' + email;
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
@@ -119,7 +119,7 @@ module.exports = {
             toTelephoneNumber: phone,
             shareUrl: shareUrl
         }).then(_.bind(function() {
-            var text = 'Promotion URL is sent to ' + phone;
+            var text = 'Question Shared with ' + phone;
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
