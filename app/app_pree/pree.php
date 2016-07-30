@@ -70,11 +70,8 @@
      </script>
 
 
-     <div id="app-container" class="app-container">
-
-
-     </div>
-
+     <div id="app-container" class="app-container">  </div>
+     <?php include_once('pages/footer.php'); ?>
 
    <!-- Javascript files -->
    <!-- jQuery -->
