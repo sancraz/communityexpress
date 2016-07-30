@@ -70,12 +70,8 @@
      </script>
 
 
-     <div id="app-container" class="app-container">
-
-
-     </div>
-
-
+     <div id="app-container" class="app-container">  </div>
+   
    <!-- Javascript files -->
    <!-- jQuery -->
    <!-- <script src="vendor/scripts/jquery.js"></script> -->

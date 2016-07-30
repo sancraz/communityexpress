@@ -1,17 +1,17 @@
 .central-region {
     overflow: hidden;
-    height: calc(100% - 117px);
+    height: calc(100% - 70px);
 
     .container-fluid {
         height: 100%;
 
         .central-scrolling {
             height: 100%;
-            overflow: hidden;
+            /* overflow: hidden;*/
 
             .questions-region {
                 position: relative;
-                overflow: hidden;
+              /*  overflow: hidden;*/
                 height: 100%;
 
                 .pree_feed_questions {
