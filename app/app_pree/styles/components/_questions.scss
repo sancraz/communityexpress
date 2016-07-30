@@ -4,7 +4,7 @@
 
     .press_question_answers_wrapper {
       position:relative;
-    } 
+    }
 
     .pree_question {
         padding: 20px;
@@ -377,12 +377,21 @@
 
     .pree_question_answered_mask {
       position:absolute;
-      background:rgba(0,0,0,0.6);
+      background:rgba(0,0,0,0.1);
       z-index:500;
-      width:100%;
-      height:100%;
+      width: calc(100% + 10px) ;
+      height: calc(100% + 10px);
       display:none;
-    }
+      /* put a radius */
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -moz-box-sizing:border-box;
+      -webkit-box-sizing:border-box;
+      box-sizing:border-box;
+      border-radius:5px; 
+      margin-top:-5px;
+      margin-left:-5px;
+      }
 
     @media only screen and (max-width: 370px) {
         #pree_feed_tabs_items li a {
