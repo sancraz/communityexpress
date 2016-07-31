@@ -5,6 +5,7 @@ module.exports = {
     getAddressMap: function(){
         return {
             getPreeQuestions: ['GET', '/pree/retrieveFeed'],
+            getPreeQuestionByUUID:['GET','/pree/retrieveQuestion'],
             getPreeCategories: ['GET', '/pree/retrieveCategories'],
             getPreeTags: ['GET', '/pree/retrieveHashTags'],
             createQuestion: ['POST', '/pree/createPoll'],
@@ -13,7 +14,7 @@ module.exports = {
 
             login: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],
-            //registerNewMember: ['POST', '/pree/registerNewMember'],
+
             registerNewMember: ['POST', '/authentication/registerNewMemberViaPostBody'],
             getAuthenticationStatus: ['GET', '/authentication/getAuthenticationStatus'],
             registerNewMemberWithInvitationCode: ['POST', '/authentication/registerNewMemberWithInvitationCode'],

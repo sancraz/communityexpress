@@ -25,7 +25,7 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
-		this.onGetTrending();
+		this.onGetDefault();
 	},
 
 	onSelectFiltersTab: function(e) {
@@ -46,16 +46,24 @@ var FiltersView = Mn.LayoutView.extend({
 				this.onGetTags();
 				break;
 			default:
-				this.onGetTrending();
+				this.onGetDefault();
 				break;
 		}
 	},
 
-	onGetTrending: function() {
+	onGetDefault: function() {
 		this.getRegion('tagsRegion').$el.hide();
-		this.trigger('getQuestions', {
-			filterType: ''
-		});
+		/* check if we have a shared question we are loading */
+		var options;
+	  if( (typeof window.community.type !== 'undefined' ) && (window.community.type==='l')){
+			options={filterType:'', contestUUID:window.community.uuidURL};
+			/* remove the arguments in window.community so we don't do this a second time. */
+			window.community.type="";
+			window.community.uuidURL="";
+		}else{
+			options={filterType:''};
+		}
+		this.trigger('getQuestions', options);
 	},
 
 	onGetFollowing: function() {
