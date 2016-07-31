@@ -23,40 +23,33 @@ var feedView = Mn.CollectionView.extend({
     initialize : function() {
         this.params = this.model.get('params');
         this.listenTo(this.model, "change", this.modelEventHandler);
+        /* I implemented this but commented out because we changed the design */
 
-        if (community.type === 'l') {
-            // gateway.sendRequest('getQuestionByUUID', this.params.UID, community.uuidURL)
-            //     .then(_.bind(function(resp) {
-            //         this.collection.unshift(_.extend(resp, { activatedByUUID: true }));
-            //     }, this));
-            this.collection.unshift(_.extend({
-                authorImageURL: 'https://communitylive.co/apptsvc/static/images/placeholder_200x200.png',
-                userStatus: {
-                    displayText: 'Not Answered',
-                    enumText: 'NOT_ANSWERED',
-                    id: 1
-                },
-                pollType: {
-                    displayText: 'Fact',
-                    enumText: 'FACT',
-                    id: 1
-                },
-                tags: [],
-                categories: [],
-                authorUserName: 'Some Name',
-                img_url: null,
-                displayText: 'Cool question',
-                choices: [],
-                totalPoints: 0,
-                totalAnswers: 0,
-                uuid: 'someInterestingUUID',
-                additionalInformation: '',
-                infoURL1: '',
-                infoURL2: '',
-                likes: 0,
-                messages: 0
-            }, { activatedByUUID: true }));
+        /*
+          check if share url, then load the question shared.
+        */
+
+        /*
+        if( (typeof window.community.type !== 'undefined' ) && (window.community.type==='l')){
+          switch(window.community.type){
+            case 'l':
+             console.log(" share detected "+window.community.uuidURL);
+             var contestUUID = window.community.uuidURL;
+              gateway.sendRequest('getPreeQuestionByUUID',{ UID: this.params.UID, contestUUID: contestUUID})
+                   .then(_.bind(function(resp) {
+                     this.collection.unshift(_.extend(resp, { activatedByUUID: true }));
+                  }, this));
+
+
+            break;
+            default:
+             console.log(" WARNING: Unknown share type: "+window.community.type+", ignoring");
+           }
+        }else{
+          console.log(" no share detected");
         }
+        */
+
     },
 
     onShow: function() {
