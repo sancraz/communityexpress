@@ -205,26 +205,19 @@ var FeedSelectorView = Mn.LayoutView.extend({
         $(this.ui.preeQuestionDetailed).collapse('hide');
     },
 
-    addLikeDislike: function(e) {
+    addLikeDislike: function() {
+        if (this.isLiked===true) return;
+        /* Should we add dislike action if this.isLiked===true? */
         this.trigger('addLikeDislike', this.model.get('uuid'));
         var currentLikes = this.model.get('likes');
-        if (this.isLiked===false) {
-            this.model.set({
-                likes: currentLikes + 1,
-                alreadyLiked: true
-            });
-            this.ui.likesButton.find('div').addClass('active');
-        } else {
-            // this.model.set({
-            //     likes: currentLikes - 1,
-            //     alreadyLiked: false
-            // });
-        };
+        this.isLiked = true;
+        this.model.set({
+            likes: currentLikes + 1
+        });
+        this.ui.likesButton.find('div').addClass('active');
     },
 
-    openShareQuestionView: function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    openShareQuestionView: function() {
         this.trigger('sharePopup:show', this.model);
     }
 });
