@@ -310,15 +310,28 @@
         float: left;
         color: $grey;
         font-size: 20px;
+
+        &:hover {
+            color: $main;
+            cursor: pointer;
+        }
+
+        &.active {
+            color: $main;
+
+            i {
+                font-weight: bold;
+            }
+        }
     }
 
-    .pree_question_likes_icon:hover,
-    .pree_question_comment_icon:hover {
-        float: left;
-        color: $main;
-        font-size: 20px;
-        cursor: pointer;
-    }
+    // .pree_question_likes_icon:hover,
+    // .pree_question_comment_icon:hover {
+    //     float: left;
+    //     color: $main;
+    //     font-size: 20px;
+    //     cursor: pointer;
+    // }
 
     .pree_question_likes_count,
     .pree_question_comment_count {

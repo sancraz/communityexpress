@@ -14,7 +14,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     regions: {
         pree_question_expanded_menu: '.pree_question_expanded_menu',
         pree_question_answers: '.pree_question_answers',
-        pree_question_likes_count: '.pree_question_likes_count',
         popup_region: '.pree_question_answer_details'
     },
 
@@ -60,6 +59,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.isAnswered;
+        this.isLiked = this.model.isLiked;
         this.currentAnswerChecked=this.model.currentAnswerChecked;
         //this.isAnswered = this.model.get('currentChoiceByUser') === -1 ? false : true;
         // this.isAnswered = true;
@@ -94,6 +94,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         };
         if(this.isAnswered===true){
           this.showMask();
+        }
+        if (this.isLiked===true) {
+            this.ui.likesButton.find('div').addClass('active');
         }
     },
 
@@ -205,11 +208,12 @@ var FeedSelectorView = Mn.LayoutView.extend({
     addLikeDislike: function(e) {
         this.trigger('addLikeDislike', this.model.get('uuid'));
         var currentLikes = this.model.get('likes');
-        if (!this.model.get('alreadyLiked')) {
+        if (this.isLiked===false) {
             this.model.set({
                 likes: currentLikes + 1,
                 alreadyLiked: true
             });
+            this.ui.likesButton.find('div').addClass('active');
         } else {
             // this.model.set({
             //     likes: currentLikes - 1,
