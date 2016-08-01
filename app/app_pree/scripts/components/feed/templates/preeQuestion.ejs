@@ -67,7 +67,7 @@
             <% _.each(choices, function(choice, index){ %>
                 <li>
                     <div class="pree_question_edit_answers_item pree_question_answer">
-                        <input type="radio" name="<%= choice.contestUUID %>" cmtyx-answer-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" <% if (currentChoiceForUser === index + 1) { %> checked <% } %> >
+                        <input type="radio" name="<%= choice.contestUUID %>" cmtyx-answer-iscorrect="<%= choice.isCorrect ? true : false %>" data-index="<%= index %>" data-id="<%= choice.choiceId %>" class="radioAnswer answer-choice" <% if (currentChoiceByUser === index + 1) { %> checked <% } %> >
                             <div class="inputRadioImg"></div>
                             <div class="input-group">
                                 <div class="input-group-addon">

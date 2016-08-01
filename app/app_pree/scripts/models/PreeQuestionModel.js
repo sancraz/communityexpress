@@ -5,6 +5,7 @@ var PreeQuestionModel = Backbone.Model.extend({
     defaults : {
         title:'na',
         isAnswered : false,
+        isLiked : false,
         currentAnswerChecked : 0,
         options : null,
         anotatation : null,
@@ -17,8 +18,9 @@ var PreeQuestionModel = Backbone.Model.extend({
     initialize : function(attributes, options) {
         console.log("PreeQuestionModel instantiated");
         /* pull up the answered state */
-        this.isAnswered=attributes['userStatus']['enumText']==='ANSWERED';
-        this.currentAnswerChecked=attributes['currentChoiceForUser'];
+        this.isAnswered=attributes['answerStatus']['enumText']==='ANSWERED';
+        this.isLiked = attributes['likeStatus']['enumText']==='LIKE';
+        this.currentAnswerChecked=attributes['currentChoiceByUser'];
         this.highlighted=attributes['displayStyle']==='HIGHLIGHT';
         console.log('Question '+this.isAnswered);
     },

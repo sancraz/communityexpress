@@ -14,7 +14,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     regions: {
         pree_question_expanded_menu: '.pree_question_expanded_menu',
         pree_question_answers: '.pree_question_answers',
-        pree_question_likes_count: '.pree_question_likes_count',
         popup_region: '.pree_question_answer_details'
     },
 
@@ -60,8 +59,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.id = this.model.get('id');
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.isAnswered;
+        this.isLiked = this.model.isLiked;
         this.currentAnswerChecked=this.model.currentAnswerChecked;
-        //this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
+        //this.isAnswered = this.model.get('currentChoiceByUser') === -1 ? false : true;
         // this.isAnswered = true;
     },
 
@@ -95,6 +95,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         if(this.isAnswered===true){
           this.showMask();
         }
+        if (this.isLiked===true) {
+            this.ui.likesButton.find('div').addClass('active');
+        }
     },
 
     showMask:function(){
@@ -110,7 +113,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
     onIsAnswered: function() {
         // TODO we dont have answered from server and choice id ???
-        var choiceId = this.model.get('currentChoiceForUser'),
+        var choiceId = this.model.get('currentChoiceByUser'),
             answer = this.ui.answer.find('input[data-id="' + choiceId + '"]');
         answer.prop('checked', true);
         this.ui.answer.css('pointer-events', 'none');
@@ -202,25 +205,19 @@ var FeedSelectorView = Mn.LayoutView.extend({
         $(this.ui.preeQuestionDetailed).collapse('hide');
     },
 
-    addLikeDislike: function(e) {
+    addLikeDislike: function() {
+        if (this.isLiked===true) return;
+        /* Should we add dislike action if this.isLiked===true? */
         this.trigger('addLikeDislike', this.model.get('uuid'));
         var currentLikes = this.model.get('likes');
-        if (!this.model.get('alreadyLiked')) {
-            this.model.set({
-                likes: currentLikes + 1,
-                alreadyLiked: true
-            });
-        } else {
-            // this.model.set({
-            //     likes: currentLikes - 1,
-            //     alreadyLiked: false
-            // });
-        };
+        this.isLiked = true;
+        this.model.set({
+            likes: currentLikes + 1
+        });
+        this.ui.likesButton.find('div').addClass('active');
     },
 
-    openShareQuestionView: function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    openShareQuestionView: function() {
         this.trigger('sharePopup:show', this.model);
     }
 });
