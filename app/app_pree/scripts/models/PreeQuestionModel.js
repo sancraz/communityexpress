@@ -17,8 +17,8 @@ var PreeQuestionModel = Backbone.Model.extend({
     initialize : function(attributes, options) {
         console.log("PreeQuestionModel instantiated");
         /* pull up the answered state */
-        this.isAnswered=attributes['userStatus']['enumText']==='ANSWERED';
-        this.currentAnswerChecked=attributes['currentChoiceForUser'];
+        this.isAnswered=attributes['answerStatus']['enumText']==='ANSWERED';
+        this.currentAnswerChecked=attributes['currentChoiceByUser'];
         this.highlighted=attributes['displayStyle']==='HIGHLIGHT';
         console.log('Question '+this.isAnswered);
     },
