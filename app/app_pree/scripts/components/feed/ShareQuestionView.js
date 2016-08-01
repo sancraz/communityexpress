@@ -22,7 +22,8 @@ var ShareQuestionView = Mn.ItemView.extend({
     },
 
     initialize: function() {
-        this.shareUrl = window.location.protocol + '//' + window.location.host + '/' + '?t=l&u=' + this.model.get('uuid');
+        // this.shareUrl = window.location.protocol + '//' + window.location.host + '/' + '?t=l&u=' + this.model.get('uuid');
+        this.shareUrl = 'http://pree.it/dev123/' + '?t=l&u=' + this.model.get('uuid');
     },
 
     serializeData: function() {

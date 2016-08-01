@@ -16,7 +16,7 @@
         }
 
         &.highlighted {
-          background-color:#ffffcc; 
+          background-color:#ffffcc;
         }
     }
 
@@ -338,15 +338,11 @@
         float: left;
         line-height: 18px;
         font-size: 20px;
-        margin-right: 10px;
+        margin-right: 25px;
         opacity: 0.8;
     }
 
     .pree_question_share_button:hover {
-        float: left;
-        line-height: 18px;
-        font-size: 20px;
-        margin-right: 10px;
         opacity: 1;
         cursor: pointer;
     }
