@@ -61,7 +61,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.isAnswered;
         this.currentAnswerChecked=this.model.currentAnswerChecked;
-        //this.isAnswered = this.model.get('currentChoiceForUser') === -1 ? false : true;
+        //this.isAnswered = this.model.get('currentChoiceByUser') === -1 ? false : true;
         // this.isAnswered = true;
     },
 
@@ -110,7 +110,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
     onIsAnswered: function() {
         // TODO we dont have answered from server and choice id ???
-        var choiceId = this.model.get('currentChoiceForUser'),
+        var choiceId = this.model.get('currentChoiceByUser'),
             answer = this.ui.answer.find('input[data-id="' + choiceId + '"]');
         answer.prop('checked', true);
         this.ui.answer.css('pointer-events', 'none');
