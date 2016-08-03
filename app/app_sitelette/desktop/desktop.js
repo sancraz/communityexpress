@@ -318,11 +318,13 @@ function attachBootstrapValidatorsToSendEmailForm($demositeEmailForm,
 				// Check if there is at least one field which is not validated
 				// yet
 				// or being validated
+				/*
 				if (data.fv.isValid() === null) {
 					data.fv.disableSubmitButtons(true);
 				} else {
 					data.fv.disableSubmitButtons(false);
 				}
+				*/
 
 				/*
 				 * field has changed, so remove previous error

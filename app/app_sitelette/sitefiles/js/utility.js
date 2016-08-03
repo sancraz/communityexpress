@@ -93,15 +93,15 @@ function parseCommunityURL() {
   communityRequestProfile.api_server = api_server;
  } else {
   if (communityRequestProfile.isDemo) {
-   api_server = 'simfel.com';
+   communityRequestProfile.api_server = 'simfel.com';
   } else {
-   api_server = 'communitylive.ws';
+   communityRequestProfile.api_server = 'communitylive.ws';
   }
-  console.log("Server : " + api_server);
+  console.log("Server : " + communityRequestProfile.api_server);
  }
 
  var protocol;
- if (api_server === 'localhost:8080') {
+ if (communityRequestProfile.api_server === 'localhost:8080') {
   protocol = "http://";
  } else {
   protocol = "https://";
@@ -133,6 +133,11 @@ function parseCommunityURL() {
  if (typeof uid !== 'undefined') {
   communityRequestProfile.isUidSpecified = true;
   communityRequestProfile.uid = uid;
+ }
+ var uri=new URI();
+ var friendlyURL=uri.pathname(); /* directory does not work with localhost */
+ if(typeof friendlyURL !=='undefined'){
+   communityRequestProfile.friendlyURL=friendlyURL.slice(1)
  }
  /* save the global */
  window.communityRequestProfile = communityRequestProfile;
