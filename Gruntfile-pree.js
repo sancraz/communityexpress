@@ -98,7 +98,7 @@ module.exports = function (grunt) {
           { expand: true,
             cwd: '<%= yeoman.app %>',
             src: ['styles/**'],
-            dest: '<%= yeoman.dist %>'
+            dest: '<%= yeoman.dist %>/dev123/'
           },
           // copy the root files
           { expand: true,

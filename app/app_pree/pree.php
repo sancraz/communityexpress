@@ -87,14 +87,14 @@
                  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                      <ul class="nav navbar-nav navbar-right">
-                       <li>
+                       <!-- <li>
                            <a href="admin.php"> Admin </a>
 
-                       </li>
+                       </li> -->
                        <li class="dropdown">
                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                <img src="images/church-bell.png" alt="">
-                               <span class="menuItemText">Notifications</span>
+                               <!-- <span class="menuItemText">Notifications</span> -->
                            </a>
                            <ul class="dropdown-menu">
                                  <li class="disabled"><a href="#">Action</a></li>
@@ -110,7 +110,7 @@
                                  <img class="dropdown-toggle signin_image" src="images/Sign_in.png" alt="">
                              </a>
                              <ul class="dropdown-menu">
-                                 <li class="disabled"><a href="#">My Questions</a></li>
+                                 <!-- <li class="disabled"><a href="#">My Questions</a></li> -->
                                  <li class="disabled"><a href="#">Help</a></li>
                                  <li class="disabled"><a href="#">Blog</a></li>
                                  <li class="disabled"><a href="#">Privacy & Terms</a></li>
