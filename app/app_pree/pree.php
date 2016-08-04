@@ -34,7 +34,7 @@
   <!-- Widgets stylesheet -->
   <link href="vendor/styles/widgets.css" rel="stylesheet">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="./styles/common_styles.css">
+  <link rel="stylesheet" href="styles/common_styles.css">
   <link href="build/styles.css" rel="stylesheet">
   <!-- Favicon -->
   <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-icon-57x57.png">
@@ -51,7 +51,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
   <link rel="manifest" href="img/favicon/manifest.json">
-  <link rel="stylesheet" href="/styles/styles.css">
+  <link rel="stylesheet" href="styles/styles.css">
  </head>
 
  <body>
