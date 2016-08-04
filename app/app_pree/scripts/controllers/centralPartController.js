@@ -1,9 +1,11 @@
 'use strict';
 
 var App = require('../app'),
+    AppLayoutView = require('../components/AppLayoutView'),
     loader = require('../loader'),
     Vent = require('../Vent'),
     h = require('../globalHelpers'),
+    userController = require('./userController'),
     sessionActions = require('../actions/sessionActions'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../components/feed/CentralLayoutView'),
@@ -21,7 +23,17 @@ var App = require('../app'),
 module.exports = {
 
     showLayout: function() {
+        App.regions = new AppLayoutView();
         this.user = sessionActions.getCurrentUser();
+
+        $('.createQuestionBtn').show();
+        $('.signin_button span').text(this.user.userName);
+        $('.signin_button').attr('data-toggle', 'dropdown');
+        $('.signin_button img').attr('src', 'images/Sign_out.png');
+        $('.signout-button').text('Sign out');
+        $('.signout-button').on('click', _.bind(this.signout, this));
+        $('.createQuestionBtn').on('click', _.bind(this.showCreateNewQuestion, this));
+
         this.UID = this.user && this.user.UID ? this.user.UID : '';
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
@@ -29,6 +41,20 @@ module.exports = {
         App.on('createNewQuestion:show', _.bind(this.showCreateNewQuestion, this));
         App.on('refreshFeed', _.bind(this.getQuestions, this));
         App.on('statusChanged', _.bind(this.getQuestions, this));
+    },
+
+    signout: function() {
+        loader.show('');
+        userController.logout(this.user.getUID()).then(function() {
+            $('.signin_button span').text('Sign in');
+            $('.signin_button').attr('data-toggle', '');
+            $('.signin_button img').attr('src', 'images/Sign_in.png');
+            $('.signout-button').text('Sign in');
+            loader.showFlashMessage( 'signed out' );
+            App.trigger('viewChange', 'auth');
+        }.bind(this), function(e){
+            loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
+        });
     },
 
     showFilters: function() {

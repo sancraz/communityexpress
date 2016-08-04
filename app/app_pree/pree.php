@@ -51,6 +51,7 @@
   <link rel="icon" type="image/png" sizes="96x96" href="img/favicon/favicon-96x96.png">
   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
   <link rel="manifest" href="img/favicon/manifest.json">
+  <link rel="stylesheet" href="/styles/styles.css">
  </head>
 
  <body>
@@ -69,9 +70,77 @@
         window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
      </script>
 
+     <div class="navbar navbar-default navbar-fixed-top header">
+         <div class="container-fluid">
+             <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 p-r-0">
 
-     <div id="app-container" class="app-container">  </div>
-   
+                 <div class="navbar-header">
+                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                         <span class="sr-only">Toggle navigation</span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                         <span class="icon-bar"></span>
+                     </button>
+                    <a class="navbar-brand" href="#"><img class="img-responsive" src="img/pree.png" alt=""></a>
+                 </div>
+
+                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                     <ul class="nav navbar-nav navbar-right">
+                       <li>
+                           <a href="admin.php"> Admin </a>
+
+                       </li>
+                       <li class="dropdown">
+                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                               <img src="images/church-bell.png" alt="">
+                               <span class="menuItemText">Notifications</span>
+                           </a>
+                           <ul class="dropdown-menu">
+                                 <li class="disabled"><a href="#">Action</a></li>
+                                 <li class="disabled"><a href="#">Another action</a></li>
+                                 <li class="disabled"><a href="#">Something else here</a></li>
+                                 <li role="separator" class="divider"></li>
+                                 <li class="disabled"><a href="#">Separated link</a></li>
+                           </ul>
+                       </li>
+                       <li class="dropdown">
+                             <a href="#" class="dropdown-toggle signin_button">
+                                 <span>Sign in</span>
+                                 <img class="dropdown-toggle signin_image" src="images/Sign_in.png" alt="">
+                             </a>
+                             <ul class="dropdown-menu">
+                                 <li class="disabled"><a href="#">My Questions</a></li>
+                                 <li class="disabled"><a href="#">Help</a></li>
+                                 <li class="disabled"><a href="#">Blog</a></li>
+                                 <li class="disabled"><a href="#">Privacy & Terms</a></li>
+                                 <li role="separator" class="divider"></li>
+                                 <li><a class="signout-button" href="#">Sign in</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div>
+             </div>
+         </div>
+         <div class="infoPanel"></div>
+     </div>
+     <div class="main_content">
+         <div id="left-region" class="col-sm-3 col-md-3 col-lg-2 col-lg-offset-1 leftPanel"></div>
+
+         <!-- This is Backbone.marionette container -->
+         <div id="app-container" class="col-sm-12 col-md-6 col-lg-6 app-container"></div>
+         <!-- The end of Backbone.marionette container -->
+
+         <div id="right-region" class="col-sm-3 col-md-3 col-lg-2 rightPanel">
+             <div class="createQuestionBtn">
+                 <img src="images/pencil.png" alt="">
+                 <span class="createQuestionText">Create a question</span>
+             </div>
+         </div>
+
+     </div>
+     <!-- <div id="app-container" class="app-container">  </div> -->
+
    <!-- Javascript files -->
    <!-- jQuery -->
    <!-- <script src="vendor/scripts/jquery.js"></script> -->

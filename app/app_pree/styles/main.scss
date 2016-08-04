@@ -6,9 +6,6 @@
 @import 'components/questionDetailed';
 @import 'components/filters';
 @import 'components/tagsFilter';
-@import 'components/header';
-@import 'components/infoPanel';
-@import 'components/rightPanel';
 @import 'components/createQuestion';
 @import 'components/signIn';
 @import 'components/signUp';
@@ -16,7 +13,6 @@
 @import 'components/userInfo';
 @import 'components/contact';
 @import 'components/centralRegion';
-@import 'components/leftPanel';
 @import 'components/autocomplete';
 
 @font-face {
@@ -40,5 +36,10 @@ html,body {
     .error {
         display: none;
         color: $red;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
     }
 }
