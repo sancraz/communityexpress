@@ -18,6 +18,10 @@ module.exports = {
         App.regions = new AppLayoutView();
         this.contactLayoutView = new ContactLayoutView();
         App.regions.getRegion('centralRegion').show(this.contactLayoutView);
+
+        $('.createQuestionBtn').hide();
+        $('.signin_button').on('click', _.bind(this.authenticate, this, 'signin'));
+
         Vent.on('login_success', _.bind(this.navigateToFeed, this));
         this.contactLayoutView.listenTo(this.contactLayoutView, 'signin signup', _.bind(this.authenticate, this));
         this.contactLayoutView.listenTo(this.contactLayoutView, 'sendContactInfo', _.bind(this.sendContactInfo, this));
@@ -79,6 +83,7 @@ module.exports = {
 
     navigateToFeed: function() {
         this.contactLayoutView.$el.on('hidden.bs.modal', _.bind(function() {
+            $('.signin_button').off('click');
             App.trigger('viewChange', 'feed');
         }, this));
     }
