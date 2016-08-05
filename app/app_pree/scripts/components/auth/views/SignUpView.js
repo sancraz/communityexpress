@@ -33,7 +33,7 @@ var SignUpView = Mn.ItemView.extend({
         sessionActions.registerNewMember(
           window.community.serviceAccommodatorId,
           window.community.serviceLocationId,
-          //username:data.username,
+          data.username,
           data.email,
           data.password
                   ).then(this._onSignupSuccess.bind(this), this._onSignupError.bind(this));

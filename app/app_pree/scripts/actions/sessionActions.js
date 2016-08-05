@@ -86,11 +86,11 @@ module.exports = {
             .then(onLoginSuccess);
     },
 
-    registerNewMember: function (sa,sl, email, password ) {
+    registerNewMember: function (sa, sl, username, email, password ) {
         var payload ={
           serviceAccommodatorId: sa,
           serviceLocationId: sl,
-          //username: username,
+          username: username,
           email: email,
           password: password
         };

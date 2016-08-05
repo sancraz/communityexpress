@@ -351,6 +351,7 @@
     }
 
     .pree_question_likes_button,
+    .pree_question_comment_button,
     .pree_question_share_button,
     .pree_question_answers,
     .already_answered_text {
@@ -393,18 +394,16 @@
 
     .questionFooter {
         margin-top: 10px;
-        padding-bottom: 10px;
     }
 
     .pree_question_more {
-        float: right;
+        text-align: right;
         opacity: 0.8;
+        cursor: pointer;
     }
 
     .pree_question_more:hover {
-        float: right;
         opacity: 1;
-        cursor: pointer;
     }
 
     .pree_question_answered_mask {
@@ -432,9 +431,6 @@
             font-size: 12px;
             line-height: 48px;
             font-family: 'Open Sans';
-        }
-        .questionFooter {
-            padding-bottom: 55px;
         }
     }
 }
