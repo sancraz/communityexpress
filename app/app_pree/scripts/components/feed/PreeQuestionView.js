@@ -39,20 +39,22 @@ var FeedSelectorView = Mn.LayoutView.extend({
         likeCount: '.pree_question_likes_count',
         shareButton: '.pree_question_share_button',
         answerBar: '#answerBar',
-        answeredMask: '.pree_question_answered_mask'
+        answeredMask: '.pree_question_answered_mask',
+        infoIcon: '.show_hide_answer_info'
     },
 
     events: {
-        'click @ui.questionBody': 'checkIfAnswered',
+        // 'click @ui.questionBody': 'checkIfAnswered',
         'click @ui.preeQuestionCategories': 'expandCategories',
         'click @ui.preeQuestionTags': 'expandTags',
         'click @ui.likesButton': 'addLikeDislike',
         'click @ui.answer': 'checkIfUserCanAnswer',
-        'click @ui.shareButton': 'openShareQuestionView'
+        'click @ui.shareButton': 'openShareQuestionView',
+        'click @ui.infoIcon': 'showAnswerInfo'
     },
 
     initialize : function() {
-        this.model.set('activationDate', this.moment(this.model.get('activationDate')).format('MM/DD/YYYY'));
+        this.model.set('timeAgo', this.moment(this.model.get('activationDate')).fromNow());
         console.log("FeedSelectorView initialized");
         this.model.set('messageLine1', '');
         this.model.set('messageLine2', '');
@@ -60,6 +62,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.listenTo(this.model, "change", this.modelEventHandler);
         this.isAnswered = this.model.isAnswered;
         this.isLiked = this.model.isLiked;
+        this.currentLikes = this.model.get('likes');
         this.currentAnswerChecked=this.model.currentAnswerChecked;
         //this.isAnswered = this.model.get('currentChoiceByUser') === -1 ? false : true;
         // this.isAnswered = true;
@@ -67,7 +70,11 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     reinitialize: function(attrs, isCorrect) {
         this.model.set(attrs);
-        this.model.set('activationDate', this.moment(this.model.get('activationDate')).format('MM/DD/YYYY'));
+        this.model.set('timeAgo', this.moment(this.model.get('activationDate')).fromNow());
+        // When we answer we have in response 'currentChoiceForUser'
+        // When we retreiveFeed we have in response 'currentChoiceByUser'
+        this.model.set('currentChoiceByUser', this.model.get('currentChoiceForUser'));
+
         this.justAnswered = true;
         this.render();
     },
@@ -83,17 +90,19 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
         if (this.model.get('activatedByUUID') === true) {
             this.ui.preeQuestion.addClass('activated_by_uuid');
-        };
+        }
         if(this.model.highlighted===true){
             this.ui.preeQuestion.addClass('highlighted');
         }
         if (this.justAnswered===true) {
+            this.ui.infoIcon.show();
             setTimeout(_.bind(function() {
                 this.showAnswerInfo();
             }, this), 500);
-        };
+        }
         if(this.isAnswered===true){
           this.showMask();
+          this.ui.infoIcon.show();
         }
         if (this.isLiked===true) {
             this.ui.likesButton.find('div').addClass('active');
@@ -206,15 +215,30 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     addLikeDislike: function() {
-        if (this.isLiked===true) return;
-        /* Should we add dislike action if this.isLiked===true? */
-        this.trigger('addLikeDislike', this.model.get('uuid'));
-        var currentLikes = this.model.get('likes');
-        this.isLiked = true;
-        this.model.set({
-            likes: currentLikes + 1
-        });
-        this.ui.likesButton.find('div').addClass('active');
+        if (this.isAnswered===true || this.justAnswered===true) {
+            if (this.isLiked===true) {
+                this.trigger('addLikeDislike', {
+                    uuid: this.model.get('uuid'),
+                    like: false
+                });
+                this.isLiked = false;
+                this.currentLikes = this.currentLikes - 1;
+                this.ui.likeCount.text(this.currentLikes);
+                this.ui.likesButton.find('div').removeClass('active');
+            } else {
+                this.trigger('addLikeDislike', {
+                    uuid: this.model.get('uuid'),
+                    like: true
+                });
+                this.isLiked = true;
+                this.currentLikes = this.currentLikes + 1;
+                this.ui.likeCount.text(this.currentLikes);
+                this.ui.likesButton.find('div').addClass('active');
+            }
+        } else {
+            var text = 'Please answer the question before liking';
+            this.trigger('showNotAnsweredError', text);
+        }
     },
 
     openShareQuestionView: function() {

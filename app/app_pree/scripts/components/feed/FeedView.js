@@ -13,7 +13,8 @@ var feedView = Mn.CollectionView.extend({
         'answerQuestion' : 'onAnswerQuestion',
         'checkIfUserLogged': 'onCheckIfUserLogged',
         'sharePopup:show': 'openSharePopup',
-        'addLikeDislike': 'addLikeDislike'
+        'addLikeDislike': 'addLikeDislike',
+        'showNotAnsweredError': 'showNotAnsweredError'
     },
 
     events: {
@@ -104,8 +105,12 @@ var feedView = Mn.CollectionView.extend({
         this.trigger('sharePopup:show', questionModel);
     },
 
-    addLikeDislike: function(view, uuid) {
-        this.trigger('addLikeDislike', uuid);
+    addLikeDislike: function(view, options) {
+        this.trigger('addLikeDislike', options);
+    },
+
+    showNotAnsweredError: function(view, text) {
+        this.trigger('showNotAnsweredError', text);
     },
 
     rerenderChild: function(model) {

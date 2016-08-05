@@ -251,14 +251,22 @@ module.exports = {
         feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
         feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
         feedView.listenTo(feedView, 'addLikeDislike', _.bind(this.addLikeDislike, this));
+        feedView.listenTo(feedView, 'showNotAnsweredError', _.bind(this.showNotAnsweredError, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
     },
 
-    addLikeDislike: function(uuid) {
+    showNotAnsweredError: function(text) {
+        var errorMessageView = new TextMessageView({
+            text: text
+        });
+        this.centralLayoutView.showTextMessageView(errorMessageView)
+    },
+
+    addLikeDislike: function(options) {
         gateway.sendRequest('likeDislikePoll', {
             UID: this.user.UID,
-            like: true,
-            contestUUID: uuid
+            like: options.like,
+            contestUUID: options.uuid
         }).then(function(resp) {
             console.log(resp);
         });

@@ -92,7 +92,7 @@
 
                        </li> -->
                        <li class="dropdown">
-                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                           <a href="#" class="dropdown-toggle notification_button" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                <img src="images/church-bell.png" alt="">
                                <!-- <span class="menuItemText">Notifications</span> -->
                            </a>

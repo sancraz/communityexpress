@@ -8,13 +8,14 @@
                     <img src="images/question_user.png" alt="">
                 <% } %>
             </div>
+            <div class="pree_question_user_username"><%= authorUserName %></div>
         </li>
         <li class="pree_question_title">
             <div class="pree_question_title_name">
                 <p><%= pollType.displayText.toUpperCase() %></p>
             </div>
             <div class="pree_question_title_date">
-                <p><%= activationDate %></p>
+                <p><%= timeAgo %></p>
             </div>
         </li>
         <li class="dropdown pree_tags_dropdown">
@@ -48,7 +49,6 @@
             </ul>
         </li>
     </ul>
-    <div class="pree_question_user_username"><%= authorUserName %></div>
     <section class="questionBody">
         <% if (img_url) { %>
             <div class="pree_question_img">
@@ -56,11 +56,6 @@
             </div>
         <% } %>
         <div class="pree_question_text"><%= displayText %></div>
-        <!-- <% _.each(choices, function(choice){ %>
-            <div class="pree_question_answer answer">
-                <input type="radio" name="<%= choice.contestUUID %>" data-id="<%= choice.choiceId %>"> <span class="ansLetter"><%= choice.choiceIndex %>:</span><%= choice.displayText %>
-            </div>
-        <% }) %> -->
         <div class="press_question_answers_wrapper">
           <div class="pree_question_answered_mask"></div>
           <ul class="pree_question_input_answers">
@@ -81,6 +76,7 @@
           </ul>
         </div>
     </section>
+    <div class="show_hide_answer_info"><img src="images/info.png"></div>
     <div class="pree_question_detailed collapse">
         <div class="pree_question_answer">
             <header class="answerHeader">
@@ -106,40 +102,23 @@
             <section class="answerInfoBody">
                 <p class="answerInfoText"><%= additionalInformation %></p>
                 <div class="answerInfoText last">Attribution Links
-                  <a href="<%= infoURL1 %>" target="_blank"><%= infoURL1 %> </a>
-                  <br />
-                  <a href="<%= infoURL2 %>" target="_blank"> <%= infoURL2 %></a>
+                    <br />
+                    <% if (infoURL1) { %>
+                        infoURL1:
+                        <a href="<%= infoURL1 %>" target="_blank"> <%= infoURL1 %> </a>
+                    <% } %>
+                    <% if (infoURL2) { %>
+                        <br />
+                        infoURL2:
+                        <a href="<%= infoURL2 %>" target="_blank"> <%= infoURL2 %></a>
+                    <% } %>
               </div>
             </section>
         </div>
     </div>
     <footer class="questionFooter">
-        <!-- <div class="row tagsAndCategories">
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <ul class="pree_question_categories" style="display:inline-block; margin-bottom:10px">
-                    <% _(categories).each(function(category) { %>
-                      <li class="pree_question_categories_item">
-                           <%= category.displayText %>
-                       </li>
-                    <% }) %>
-                </ul>
-            </div>
-            <% if (tags.length !== 0) { %>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <ul class="pree_question_tags" style="display:inline-block">
-                        <% _(tags).each(function(tag) { %>
-                            <li class="pree_question_tags_item">
-                                #<%= tag.displayText %>
-                            </li>
-                        <% }) %>
-                    </ul>
-                </div>
-            <% } %>
-        </div> -->
         <div class="pree_question_likes_button">
-            <div class="pree_question_likes_icon">
-                <i class="fa fa-heart-o" aria-hidden="true"></i>
-            </div>
+            <div class="pree_question_likes_icon"></div>
             <div class="pree_question_likes_count"><%= likes %></div>
         </div>
         <!-- <div class="pree_question_comment_button">
@@ -154,12 +133,15 @@
         <div class="pree_question_answers">
             <span><span style="font-weight:400">Answers</span>: <%= totalAnswers %></span>
         </div>
-         <div class="pree_question_more">
+        <% if (answerStatus.enumText==='ANSWERED') { %>
+            <div class="already_answered_text">You've already Answered this Question</div>
+        <% } %>
+        <!-- <div class="pree_question_more">
             <img src="images/Ellipse-5-copy-4.png" alt="">
             <img src="images/Ellipse-5-copy-3.png" alt="">
             <img src="images/Ellipse-5-copy-2.png" alt="">
             <img src="images/Ellipse-5-copy.png" alt="">
-        </div> 
+        </div>  -->
     </footer>
     <div class="pree_question_answer_details"></div>
 

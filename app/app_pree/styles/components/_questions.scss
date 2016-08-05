@@ -32,7 +32,7 @@
         display: inline-block;
 
         .pree_question_user_avatar {
-            // float: left;
+            /*float: left;*/
             position: relative;
             top: 2px;
             height: 50px;
@@ -122,6 +122,7 @@
 
             p {
                 line-height: 1;
+                padding-top: 10px;
             }
         }
 
@@ -136,8 +137,20 @@
 
             p {
                 line-height: 1;
+                background-color: $yellow;
+                border: 1px solid $input;
+                padding: 10px;
+                margin: 0 20%;
+                min-width: 110px;
             }
         }
+    }
+
+    .pree_question_title {
+        width: 30%;
+        text-align: center;
+        vertical-align: top;
+        margin-top: 3px;
     }
 
     .questionBody {
@@ -156,10 +169,9 @@
 
     .pree_question_text {
         color: $text;
-  /*    font: 700 14px / 21px Ubuntu; */
         font-style: normal;
         font-weight:700;
-        font-size: 14px;
+        font-size: 14pt;
         line-height: 21px;
         font-family: 'Open Sans';
         display: inline-block;
@@ -172,7 +184,6 @@
         background-color: $input;
         width: calc(100% - 0px);
         color: $text;
-/*    font: 400 14px / 35px Ubuntu; */
         font-style: normal;
         font-weight:400;
         font-size: 14px;
@@ -271,7 +282,6 @@
             padding: 6px 9px;
             margin-right: 5px;
             color: $main;
-    /*    font: 400 11px / 15px Ubuntu; */
             font-style: normal;
             font-weight:400;
             font-size: 11px;
@@ -294,13 +304,16 @@
             border-radius: 3px;
             padding: 5px 9px;
             margin-right: 5px;
-      /*    font: 400 11px / 15px Ubuntu; */
             font-style: normal;
             font-weight:400;
             font-size: 11px;
             line-height: 15px;
             font-family: 'Open Sans';
         }
+    }
+
+    .show_hide_answer_info {
+        display: none;
     }
 
     .pree_question_likes_icon,
@@ -310,36 +323,26 @@
         float: left;
         color: $grey;
         font-size: 20px;
+        cursor: pointer;
+    }
 
-        &:hover {
-            color: $main;
-            cursor: pointer;
-        }
+    .pree_question_likes_icon {
+        width: 21px;
+        height: 21px;
+        background: url('./images/notLiked.png') no-repeat top left;
 
         &.active {
-            color: $main;
-
-            i {
-                font-weight: bold;
-            }
+            background: url('./images/liked.png') no-repeat top left;
         }
     }
 
-    // .pree_question_likes_icon:hover,
-    // .pree_question_comment_icon:hover {
-    //     float: left;
-    //     color: $main;
-    //     font-size: 20px;
-    //     cursor: pointer;
-    // }
-
     .pree_question_likes_count,
     .pree_question_comment_count {
-        float: left;
+        /*float: left;*/
+        display: inline-block;
         padding-left: 8px;
         padding-right: 32px;
         color: $grey;
-/*     font: 400 14px / 21px Ubuntu; */
         font-style: normal;
         font-weight:400;
         font-size: 14px;
@@ -347,8 +350,16 @@
         font-family: 'Open Sans';
     }
 
+    .pree_question_likes_button,
+    .pree_question_share_button,
+    .pree_question_answers,
+    .already_answered_text {
+        display: inline-block;
+    }
+
+
     .pree_question_share_button {
-        float: left;
+        /*float: left;*/
         line-height: 18px;
         font-size: 20px;
         margin-right: 25px;
@@ -362,19 +373,27 @@
 
     .pree_question_answers {
         color: $text;
-/*      font: 400 14px / 21px Ubuntu; */
         font-style: normal;
         font-weight:400;
         font-size: 14px;
         line-height: 21px;
         font-family: 'Open Sans';
-        display: block;
-        float: left;
+        /*display: block;*/
+        /*float: left;*/
+    }
+
+    .already_answered_text {
+        display: inline-block;
+        padding: 8px;
+        margin-top: 5px;
+        margin-left: 20px;
+        border: 1px solid $input;
+        background-color: $yellow;
     }
 
     .questionFooter {
         margin-top: 10px;
-        padding-bottom: 20px;
+        padding-bottom: 10px;
     }
 
     .pree_question_more {
@@ -408,7 +427,6 @@
 
     @media only screen and (max-width: 370px) {
         #pree_feed_tabs_items li a {
-        /*  font: 400 12px / 48px Ubuntu; */
             font-style: normal;
             font-weight:400;
             font-size: 12px;

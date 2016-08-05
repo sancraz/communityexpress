@@ -64,6 +64,10 @@
     padding-right: 0;
 }
 
+.nav.navbar-nav.navbar-right .dropdown .notification_button {
+    padding: 10px 15px;
+}
+
 .signin_image {
     height: 46px;
     padding-right: 10px;
