@@ -71,10 +71,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     reinitialize: function(attrs, isCorrect) {
         this.model.set(attrs);
         this.model.set('timeAgo', this.moment(this.model.get('activationDate')).fromNow());
-        // When we answer we have in response 'currentChoiceForUser'
-        // When we retreiveFeed we have in response 'currentChoiceByUser'
-        this.model.set('currentChoiceByUser', this.model.get('currentChoiceForUser'));
-
         this.justAnswered = true;
         this.render();
     },
