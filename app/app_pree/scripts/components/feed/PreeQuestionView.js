@@ -14,7 +14,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
     regions: {
         pree_question_expanded_menu: '.pree_question_expanded_menu',
         pree_question_answers: '.pree_question_answers',
-        popup_region: '.pree_question_answer_details'
+        popup_region: '.pree_question_answer_details',
+        messages_region: '.pree_question_messages' //for Alex
     },
 
     tagName: 'li',
