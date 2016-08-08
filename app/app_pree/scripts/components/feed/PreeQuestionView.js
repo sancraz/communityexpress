@@ -5,6 +5,7 @@ var template = require('ejs!./templates/preeQuestion.ejs'),
     moment = require('moment'),
     preeQuestionCategoriesView = require('./PreeQuestionCategories'),
     preeQuestionTagsView = require('./PreeQuestionTags'),
+    communicationActions = require('../../actions/communicationActions'),
     answerCountView = require('./AnswerCountView');
 
 var FeedSelectorView = Mn.LayoutView.extend({
@@ -41,7 +42,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         shareButton: '.pree_question_share_button',
         answerBar: '#answerBar',
         answeredMask: '.pree_question_answered_mask',
-        infoIcon: '.show_hide_answer_info'
+        infoIcon: '.show_hide_answer_info',
+        messageIcon: '.pree_question_comment_button'
     },
 
     events: {
@@ -51,7 +53,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         'click @ui.likesButton': 'addLikeDislike',
         'click @ui.answer': 'checkIfUserCanAnswer',
         'click @ui.shareButton': 'openShareQuestionView',
-        'click @ui.infoIcon': 'showAnswerInfo'
+        'click @ui.infoIcon': 'showAnswerInfo',
+        'click @ui.messageIcon': 'getMessages'
     },
 
     initialize : function() {
@@ -240,6 +243,14 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     openShareQuestionView: function() {
         this.trigger('sharePopup:show', this.model);
+    },
+
+    getMessages: function() {
+        this.trigger('getMessages');
+    },
+
+    onShowMessages: function(view) {
+        this.messages_region.show(view);
     }
 });
 

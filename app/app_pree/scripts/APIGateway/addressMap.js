@@ -11,6 +11,7 @@ module.exports = {
             createQuestion: ['POST', '/pree/createPoll'],
             answerQuestion: ['POST', '/pree/answerQuestion'],
             likeDislikePoll: ['POST', '/pree/likeDislikePoll'],
+            getConversationBetweenUserSASL: ['GET', '/communication/getConversationBetweenUserSASL'],
 
             login: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],

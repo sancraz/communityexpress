@@ -7,9 +7,11 @@ var App = require('../app'),
     h = require('../globalHelpers'),
     userController = require('./userController'),
     sessionActions = require('../actions/sessionActions'),
+    communicationActions = require('../actions/communicationActions'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../components/feed/CentralLayoutView'),
     CreateQuestionView = require('../components/feed/CreateQuestionView'),
+    PreeQuestionMessagesView = require('../components/feed/PreeQuestionMessagesView'),
     CreateQuestionModel = require('../models/PreeNewQuestionModel'),
     FeedView = require('../components/feed/FeedView'),
     FiltersView = require('../components/feed/FiltersView'),
@@ -18,6 +20,7 @@ var App = require('../app'),
     ShareQuestionWithMobile = require('../components/feed/ShareQuestionWithMobile'),
     ShareQuestionWithEmail = require('../components/feed/ShareQuestionWithEmail'),
     FeedModel = require('../models/FeedModel'),
+    MessagesCollection = require('../models/MessagesCollection'),
     PreeQuestionModel = require('../models/PreeQuestionModel');
 
 module.exports = {
@@ -252,7 +255,18 @@ module.exports = {
         feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
         feedView.listenTo(feedView, 'addLikeDislike', _.bind(this.addLikeDislike, this));
         feedView.listenTo(feedView, 'showNotAnsweredError', _.bind(this.showNotAnsweredError, this));
+        feedView.listenTo(feedView, 'getMessages', _.bind(this.getMessages, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
+    },
+
+    getMessages: function(questionView) {
+        communicationActions.getMessages().then(_.bind(function(resp) {
+            var preeQuestionMessagesView = new PreeQuestionMessagesView({
+                collection: new MessagesCollection(resp.messages),
+                user: this.user
+            });
+            questionView.triggerMethod('showMessages', preeQuestionMessagesView);
+        }, this));
     },
 
     showNotAnsweredError: function(text) {

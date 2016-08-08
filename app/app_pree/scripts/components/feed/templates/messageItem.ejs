@@ -1,0 +1,15 @@
+<div>
+	<p>You are commenting as <%= user.userName %></p>
+	<% if (message.showMessageInput) { %>
+		<textarea class="type_comment"></textarea>
+		<button class="post_comment">Post Comment</button>
+	<% } %>
+	<% if (message.showReply) { %>
+		<div class="message_body">
+			<p><%= message.userName %></p>
+			<p><%= message.messageBody %></p>
+			<p><%= message.timeStamp %></p>
+		</div>
+		<div>Reply container here</div>
+	<% } %>
+</div>

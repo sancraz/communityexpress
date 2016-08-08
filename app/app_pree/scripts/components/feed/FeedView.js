@@ -14,7 +14,8 @@ var feedView = Mn.CollectionView.extend({
         'checkIfUserLogged': 'onCheckIfUserLogged',
         'sharePopup:show': 'openSharePopup',
         'addLikeDislike': 'addLikeDislike',
-        'showNotAnsweredError': 'showNotAnsweredError'
+        'showNotAnsweredError': 'showNotAnsweredError',
+        'getMessages': 'getMessages'
     },
 
     events: {
@@ -111,6 +112,10 @@ var feedView = Mn.CollectionView.extend({
 
     showNotAnsweredError: function(view, text) {
         this.trigger('showNotAnsweredError', text);
+    },
+
+    getMessages: function(view) {
+        this.trigger('getMessages', view);
     },
 
     rerenderChild: function(model) {
