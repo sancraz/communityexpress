@@ -15,7 +15,8 @@ var feedView = Mn.CollectionView.extend({
         'sharePopup:show': 'openSharePopup',
         'addLikeDislike': 'addLikeDislike',
         'showNotAnsweredError': 'showNotAnsweredError',
-        'getMessages': 'getMessages'
+        'getMessages': 'getMessages',
+        'postComment': 'postComment'
     },
 
     events: {
@@ -116,6 +117,10 @@ var feedView = Mn.CollectionView.extend({
 
     getMessages: function(view) {
         this.trigger('getMessages', view);
+    },
+
+    postComment: function(view, options) {
+        this.trigger('postComment', view, options);
     },
 
     rerenderChild: function(model) {

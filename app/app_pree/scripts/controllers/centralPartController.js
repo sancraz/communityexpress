@@ -21,6 +21,7 @@ var App = require('../app'),
     ShareQuestionWithEmail = require('../components/feed/ShareQuestionWithEmail'),
     FeedModel = require('../models/FeedModel'),
     MessagesCollection = require('../models/MessagesCollection'),
+    MessageModel = require('../models/MessageModel'),
     PreeQuestionModel = require('../models/PreeQuestionModel');
 
 module.exports = {
@@ -256,17 +257,31 @@ module.exports = {
         feedView.listenTo(feedView, 'addLikeDislike', _.bind(this.addLikeDislike, this));
         feedView.listenTo(feedView, 'showNotAnsweredError', _.bind(this.showNotAnsweredError, this));
         feedView.listenTo(feedView, 'getMessages', _.bind(this.getMessages, this));
+        feedView.listenTo(feedView, 'postComment', _.bind(this.postComment, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
     },
 
-    getMessages: function(questionView) {
-        communicationActions.getMessages().then(_.bind(function(resp) {
-            var preeQuestionMessagesView = new PreeQuestionMessagesView({
+    getMessages: function(questionView, message) {
+
+        var uuid = questionView.model.get('uuid');
+        
+        communicationActions.getMessages(uuid).then(_.bind(function(resp) {
+            // if (resp.messages.length===0) return;
+            this.preeQuestionMessagesView = new PreeQuestionMessagesView({
                 collection: new MessagesCollection(resp.messages),
                 user: this.user
             });
-            questionView.triggerMethod('showMessages', preeQuestionMessagesView);
+            if (message!==undefined) {
+                this.preeQuestionMessagesView.collection.add(new MessageModel(message));
+            }
+            questionView.triggerMethod('showMessages', this.preeQuestionMessagesView);
         }, this));
+    },
+
+    postComment: function(questionView, options) {
+        communicationActions.postComment(options).then(_.bind(function(resp) {
+            this.getMessages(questionView, resp);
+        }, this))
     },
 
     showNotAnsweredError: function(text) {

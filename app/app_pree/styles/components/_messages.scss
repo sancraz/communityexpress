@@ -1,9 +1,61 @@
-.messages_list {
-	.type_comment {
-		width: 100%;
+.pree_question_messages {
+	margin-top: 10px;
+
+	.root_comment_field {
+
+		textarea {
+			width: 80%;
+			height: 30px;
+			padding: 4px;
+		}
+
+		a {
+			display: inline-block;
+			vertical-align: top;
+			border-radius: 2px;
+			padding: 4px 6px;
+			color: $white;
+			background-color: $main;
+			text-decoration: none;
+		}
 	}
 
-	.post_comment {
-		clear: right;
+	.messages_region {
+		margin: 10px 0;
+
+		.messages_list {
+
+			.message_body {
+
+				.user_name {
+					color: $main;
+				}
+
+				.message_text {
+					font-size: 11px;
+				}
+
+				.time_ago {
+					color: $main;
+					font-size: 11px;
+				}
+			}
+
+			.options_bar {
+				border-top: 1px solid $grey;
+				border-bottom: 1px solid $grey;
+
+				div {
+					display: inline-block;
+					padding: 5px;
+				}
+
+				.reply,
+				.like_comment {
+					float: right;
+					cursor: pointer;
+				}
+			}
+		}
 	}
 }

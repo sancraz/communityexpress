@@ -338,10 +338,8 @@
 
     .pree_question_likes_count,
     .pree_question_comment_count {
-        /*float: left;*/
         display: inline-block;
         padding-left: 8px;
-        padding-right: 32px;
         color: $grey;
         font-style: normal;
         font-weight:400;
@@ -356,14 +354,13 @@
     .pree_question_answers,
     .already_answered_text {
         display: inline-block;
+        margin-right: 20px;
     }
 
 
     .pree_question_share_button {
-        /*float: left;*/
         line-height: 18px;
         font-size: 20px;
-        margin-right: 25px;
         opacity: 0.8;
     }
 
@@ -379,15 +376,12 @@
         font-size: 14px;
         line-height: 21px;
         font-family: 'Open Sans';
-        /*display: block;*/
-        /*float: left;*/
     }
 
     .already_answered_text {
         display: inline-block;
         padding: 8px;
         margin-top: 5px;
-        margin-left: 20px;
         border: 1px solid $input;
         background-color: $yellow;
     }

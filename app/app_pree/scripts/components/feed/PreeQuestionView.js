@@ -16,7 +16,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         pree_question_expanded_menu: '.pree_question_expanded_menu',
         pree_question_answers: '.pree_question_answers',
         popup_region: '.pree_question_answer_details',
-        messages_region: '.pree_question_messages' //for Alex
+        messages_region: '.messages_region' //for Alex
     },
 
     tagName: 'li',
@@ -43,7 +43,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
         answerBar: '#answerBar',
         answeredMask: '.pree_question_answered_mask',
         infoIcon: '.show_hide_answer_info',
-        messageIcon: '.pree_question_comment_button'
+        messageIcon: '.pree_question_comment_button',
+        messages: '.pree_question_messages',
+        postRootComment: '.root_comment_field a',
+        messageBody: '.root_comment_field textarea'
     },
 
     events: {
@@ -54,7 +57,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         'click @ui.answer': 'checkIfUserCanAnswer',
         'click @ui.shareButton': 'openShareQuestionView',
         'click @ui.infoIcon': 'showAnswerInfo',
-        'click @ui.messageIcon': 'getMessages'
+        'click @ui.messageIcon': 'getMessages',
+        'click @ui.postRootComment': 'postRootComment',
+        'keyup @ui.messageBody': 'calculateMessageLength'
     },
 
     initialize : function() {
@@ -120,6 +125,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         return false;
       });
     },
+
     onIsAnswered: function() {
         // TODO we dont have answered from server and choice id ???
         var choiceId = this.model.get('currentChoiceByUser'),
@@ -166,15 +172,86 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.trigger('collapseDetails');
         this.ui.preeQuestionDetailed.collapse('show');
 
-        // Adding jqPlot progress bars - IN PROGRESS
         this.ui.preeQuestionDetailed.on('shown.bs.collapse', _.bind(function() {
-            var options = this.model.get('options'),
-                dataArray = this.model.get('dataArray');
-            if (!options) return;
-            options.seriesDefaults.renderer = eval(options.seriesDefaults.renderer);
-            options.axes.yaxis.renderer = eval(options.axes.yaxis.renderer);
-            options.axes.yaxis.rendererOptions.tickRenderer = eval(options.axes.yaxis.rendererOptions.tickRenderer);
+            var options = {  
+               "animate":true,
+               "captureRightClick":true,
+               "grid":{  
+                  "shadow":false
+               },
+               "seriesColors":[  
+                  "#73C774",
+                  "#00749F"
+               ],
+               "axes":{  
+                  "xaxis":{  
+                     "showTicks":false,
+                     "drawMajorGridlines":false
+                  },
+                  "yaxis":{  
+                     "showTicks":true,
+                     "drawMajorGridlines":true,
+                     "rendererOptions":{  
+                        "tickOptions":{  
+                           "mark":null,
+                           "fontSize":14
+                        }
+                     },
+                     "ticks":[]
+                  }
+               },
+               "seriesDefaults":{  
+                  "shadow":false,
+                  "rendererOptions":{  
+                     "varyBarColor":true,
+                     "barDirection":"horizontal",
+                     "barPadding":0,
+                     "barMargin":0,
+                     "barWidth":18,
+                     "highlightMouseDown":true
+                  },
+                  "pointLabels":{  
+                     "show":true,
+                     "stacked":true
+                  }
+               }
+            };
+            var colorChoices = [
+                '#85802b',
+                '#00749F',
+                '#73C774',
+                '#C7754C',
+                '#17BDB8',
+                '#C157C8',
+                '#639E44',
+                '#C14D3B',
+                '#51878A',
+                '#AF527A',
+                '#7476BB',
+                '#A67C33'
+            ];
+            var array = [];
+            var a = [], b = [];
+            _.each(this.model.get('choices'), function(choice) {
+                a.push(choice.choiceId);
+                b.push(choice.entryCountForThisChoice);
+            });
+            b.reverse();
+            for (var i = 0; i < a.length; i++) {
+                options.axes.yaxis.ticks[i] = a.length - i;
+                array.push([b[i], a[i]]);
+                options.seriesColors[i] = colorChoices[i];
+            }
+            var dataArray = [array];
+            console.log(dataArray);
+            // var options = this.model.get('options'),
+            //     dataArray = this.model.get('dataArray');
+            if (!options || this.jqPlotCreated===true) return;
+            options.seriesDefaults.renderer = $.jqplot.BarRenderer;
+            options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
+            options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;
             $.jqplot('answerBar' + this.model.get('uuid'), dataArray, options);
+            this.jqPlotCreated = true;
         }, this));
         this.ui.answer.css('pointer-events', 'none');
     },
@@ -246,11 +323,27 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     getMessages: function() {
-        this.trigger('getMessages');
+        this.trigger('getMessages', this.model.get('uuid'));
     },
 
     onShowMessages: function(view) {
         this.messages_region.show(view);
+    },
+
+    postRootComment: function() {
+        var options = {
+            messageBody: this.ui.messageBody.val(),
+            inReplyToCommunicationId: 1,
+            // Is this the question creator ID or user which replying ID?
+            // In response we have userName as creator of this question
+            authorId: this.model.get('authorUID'),
+            communicationId: this.model.get('uuid'),
+            urgent: false
+        };
+        this.trigger('postComment', options);
+    },
+
+    calculateMessageLength: function() {
     }
 });
 
