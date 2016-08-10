@@ -7,9 +7,11 @@ var App = require('../app'),
     h = require('../globalHelpers'),
     userController = require('./userController'),
     sessionActions = require('../actions/sessionActions'),
+    communicationActions = require('../actions/communicationActions'),
     gateway = require('../APIGateway/gateway'),
     CentralLayoutView = require('../components/feed/CentralLayoutView'),
     CreateQuestionView = require('../components/feed/CreateQuestionView'),
+    PreeQuestionMessagesView = require('../components/feed/PreeQuestionMessagesView'),
     CreateQuestionModel = require('../models/PreeNewQuestionModel'),
     FeedView = require('../components/feed/FeedView'),
     FiltersView = require('../components/feed/FiltersView'),
@@ -18,6 +20,8 @@ var App = require('../app'),
     ShareQuestionWithMobile = require('../components/feed/ShareQuestionWithMobile'),
     ShareQuestionWithEmail = require('../components/feed/ShareQuestionWithEmail'),
     FeedModel = require('../models/FeedModel'),
+    MessagesCollection = require('../models/MessagesCollection'),
+    MessageModel = require('../models/MessageModel'),
     PreeQuestionModel = require('../models/PreeQuestionModel');
 
 module.exports = {
@@ -252,7 +256,32 @@ module.exports = {
         feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
         feedView.listenTo(feedView, 'addLikeDislike', _.bind(this.addLikeDislike, this));
         feedView.listenTo(feedView, 'showNotAnsweredError', _.bind(this.showNotAnsweredError, this));
+        feedView.listenTo(feedView, 'getMessages', _.bind(this.getMessages, this));
+        feedView.listenTo(feedView, 'postComment', _.bind(this.postComment, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
+    },
+
+    getMessages: function(questionView, message) {
+
+        var uuid = questionView.model.get('uuid');
+        
+        communicationActions.getMessages(uuid).then(_.bind(function(resp) {
+            // if (resp.messages.length===0) return;
+            this.preeQuestionMessagesView = new PreeQuestionMessagesView({
+                collection: new MessagesCollection(resp.messages),
+                user: this.user
+            });
+            if (message!==undefined) {
+                this.preeQuestionMessagesView.collection.add(new MessageModel(message));
+            }
+            questionView.triggerMethod('showMessages', this.preeQuestionMessagesView);
+        }, this));
+    },
+
+    postComment: function(questionView, options) {
+        communicationActions.postComment(options).then(_.bind(function(resp) {
+            this.getMessages(questionView, resp);
+        }, this))
     },
 
     showNotAnsweredError: function(text) {

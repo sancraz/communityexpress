@@ -4,7 +4,6 @@
 
     li {
         a {
-  /*        font: 400 14px Ubuntu; */
             font-style: normal;
             font-weight:400;
             font-size: 14px;
@@ -28,6 +27,7 @@
 
         a.refresh-feed {
             width: 10%;
+            padding: 12px;
         }
 
         .active {
