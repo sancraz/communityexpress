@@ -6,6 +6,7 @@ var template = require('ejs!./templates/preeQuestion.ejs'),
     preeQuestionCategoriesView = require('./PreeQuestionCategories'),
     preeQuestionTagsView = require('./PreeQuestionTags'),
     communicationActions = require('../../actions/communicationActions'),
+    jqPlotOptions = require('./jqPlotOptions'),
     answerCountView = require('./AnswerCountView');
 
 var FeedSelectorView = Mn.LayoutView.extend({
@@ -173,65 +174,12 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.ui.preeQuestionDetailed.collapse('show');
 
         this.ui.preeQuestionDetailed.on('shown.bs.collapse', _.bind(function() {
-            var options = {  
-               "animate":true,
-               "captureRightClick":true,
-               "grid":{  
-                  "shadow":false
-               },
-               "seriesColors":[  
-                  "#73C774",
-                  "#00749F"
-               ],
-               "axes":{  
-                  "xaxis":{  
-                     "showTicks":false,
-                     "drawMajorGridlines":false
-                  },
-                  "yaxis":{  
-                     "showTicks":true,
-                     "drawMajorGridlines":true,
-                     "rendererOptions":{  
-                        "tickOptions":{  
-                           "mark":null,
-                           "fontSize":14
-                        }
-                     },
-                     "ticks":[]
-                  }
-               },
-               "seriesDefaults":{  
-                  "shadow":false,
-                  "rendererOptions":{  
-                     "varyBarColor":true,
-                     "barDirection":"horizontal",
-                     "barPadding":0,
-                     "barMargin":0,
-                     "barWidth":18,
-                     "highlightMouseDown":true
-                  },
-                  "pointLabels":{  
-                     "show":true,
-                     "stacked":true
-                  }
-               }
-            };
-            var colorChoices = [
-                '#85802b',
-                '#00749F',
-                '#73C774',
-                '#C7754C',
-                '#17BDB8',
-                '#C157C8',
-                '#639E44',
-                '#C14D3B',
-                '#51878A',
-                '#AF527A',
-                '#7476BB',
-                '#A67C33'
-            ];
-            var array = [];
-            var a = [], b = [];
+            if (this.jqPlotCreated===true) return;
+            
+            var options = jqPlotOptions.options,
+                colorChoices = jqPlotOptions.colorChoices;
+
+            var array = [], a = [], b = [];
             _.each(this.model.get('choices'), function(choice) {
                 a.push(choice.choiceId);
                 b.push(choice.entryCountForThisChoice);
@@ -243,10 +191,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
                 options.seriesColors[i] = colorChoices[i];
             }
             var dataArray = [array];
-            console.log(dataArray);
+
             // var options = this.model.get('options'),
             //     dataArray = this.model.get('dataArray');
-            if (!options || this.jqPlotCreated===true) return;
             options.seriesDefaults.renderer = $.jqplot.BarRenderer;
             options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
             options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;

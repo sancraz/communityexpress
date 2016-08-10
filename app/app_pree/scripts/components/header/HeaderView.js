@@ -1,18 +1,11 @@
 'use strict';
 
-var template = require('ejs!./templates/header.ejs');
-
 var HeaderView = Mn.LayoutView.extend({
 
-    template: template,
-
-    regions: {
-        infoRegion: '.info-region',
-        popupRegion: '.popup-region'
-    },
+    el: '.header_element',
 
     ui: {
-        signin: '.signin-button',
+        signin: '.signin_button',
         signout: '.signout-button'
     },
 
@@ -22,25 +15,33 @@ var HeaderView = Mn.LayoutView.extend({
     },
 
     initialize: function(options) {
-        this.user = options.user;
-    },
-
-    serializeData: function() {
-        return {
-            user: this.user
-        };
-    },
-
-    onRender: function() {
-        this.trigger('infoView:show');
+        if (options.user && options.user.UID!=='') {
+            this.user = options.user;
+            this.signedIn();
+        }
     },
 
     confirmSignout: function () {
         this.trigger('confirmSignout');
     },
 
+    signedIn: function() {
+        $('.signin_button span').text(this.user.userName);
+        $('.signin_button').attr('data-toggle', 'dropdown');
+        $('.signin_button img').attr('src', 'images/Sign_out.png');
+        $('.signout-button').text('Sign out');
+    },
+
+    signedOut: function() {
+        $('.signin_button span').text('Sign in');
+        $('.signin_button').attr('data-toggle', '');
+        $('.signin_button img').attr('src', 'images/Sign_in.png');
+        $('.signout-button').text('Sign in');
+    },
+
     signin: function(triggerEvent) {
-        this.trigger('signin', triggerEvent);
+        if (this.user !== undefined) return;
+        this.trigger('authentificate', triggerEvent);
     }
 });
 

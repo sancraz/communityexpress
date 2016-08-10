@@ -15,12 +15,13 @@ var App = require('../../app'),
 module.exports = {
 
     showLayout: function() {
-        App.regions = new AppLayoutView();
+        // App.regions = new AppLayoutView();
         this.contactLayoutView = new ContactLayoutView();
         App.regions.getRegion('centralRegion').show(this.contactLayoutView);
+        App.on('authenticate', _.bind(this.authenticate, this));
 
-        $('.createQuestionBtn').hide();
-        $('.signin_button').on('click', _.bind(this.authenticate, this, 'signin'));
+        // $('.createQuestionBtn').hide();
+        // $('.signin_button').on('click', _.bind(this.authenticate, this, 'signin'));
 
         Vent.on('login_success', _.bind(this.navigateToFeed, this));
         this.contactLayoutView.listenTo(this.contactLayoutView, 'signin signup', _.bind(this.authenticate, this));

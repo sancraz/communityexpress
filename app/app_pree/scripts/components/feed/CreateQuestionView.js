@@ -116,13 +116,10 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		this.ui.container.collapse('show');
 		this.ui.container.on('shown.bs.collapse', _.bind(function() {
 			this.ui.collapsibleAnswerInfo.collapse('show');
-			var neededHeight = $(window).height() - this.$el.offset().top;
-			if (this.ui.container.height() > neededHeight) {
-				this.$el.parent().css({
-					'overflow-y': 'scroll',
-					'height': '90%'
-				});
-			}
+			this.$el.parent().css({
+				'overflow-y': 'scroll',
+				'height': '100%'
+			});
 		}, this));
 
 		this.trigger('getTags', _.bind(this.showTags, this), true); // true means silent

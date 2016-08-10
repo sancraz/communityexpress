@@ -6,10 +6,6 @@
          <!-- The end of Backbone.marionette container -->
 
          <div id="right-region" class="col-sm-3 col-md-3 col-lg-2 rightPanel">
-             <div class="createQuestionBtn">
-                 <img src="images/pencil.png" alt="">
-                 <span class="createQuestionText">Create a question</span>
-             </div>
          </div>
 
      </div>

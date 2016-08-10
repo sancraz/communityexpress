@@ -7,10 +7,8 @@ var AppLayoutView = Mn.LayoutView.extend({
     el: '#app-container',
 
     regions: {
-        headerRegion: '#header-region',
-        leftRegion: '#left-region',
         centralRegion: '#central-region',
-        rightRegion: '#right-region'
+        popupRegion: '#popup-region'
     },
 
     initialize: function() {
