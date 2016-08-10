@@ -10,7 +10,8 @@ var userController = require('./controllers/userController'),
 	Vent = require('./Vent.js'),
 	loader = require('./loader'),
 	pageFactory = require('./pageFactory.js'),
-	Geolocation = require('./Geolocation.js');
+	Geolocation = require('./Geolocation.js'),
+  Cookies = require('../../vendor/scripts/js.cookie');
 
 var hasUIDinQueryParams = function () {
     var params = location.search.match(/UID=/);
@@ -42,7 +43,8 @@ App.prototype = {
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
         if (this.params.embedded) { conf.set('embedded', true); };
         if (this.params.UID) {
-            localStorage.setItem("cmxUID", this.params.UID);
+            //localStorage.setItem("cmxUID", this.params.UID);
+						Cookies.set("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
                     Backbone.history.start({pushState: true});
