@@ -56,6 +56,10 @@ module.exports = {
         })).then(createRestaurant);
     },
 
+    getRestaurantWithStoredSASL: function(saslData) {
+        return $.Deferred().resolve(createRestaurant(saslData)).promise();
+    },
+
     getRestaurantSummaryByUIDAndLocation: function(lat, lon, domain, uid, simulate) {
         return getRestaurantSummary(lat, lon, domain, uid, simulate).then(createRestaurantSummary);
     },

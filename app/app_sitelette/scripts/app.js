@@ -10,7 +10,8 @@ var userController = require('./controllers/userController'),
 	Vent = require('./Vent.js'),
 	loader = require('./loader'),
 	pageFactory = require('./pageFactory.js'),
-	Geolocation = require('./Geolocation.js');
+	Geolocation = require('./Geolocation.js'),
+    appCache = require('./appCache.js');
 
 var hasUIDinQueryParams = function () {
     var params = location.search.match(/UID=/);
@@ -22,6 +23,9 @@ var App = function() {
     /*
      * .on([eventkey], function(model, value, options), [context]);
      */
+    if (window.saslData) {
+        appCache.set('saslData', window.saslData);
+    }
     Vent.on('viewChange', this.goToPage, this);
     Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
 };
