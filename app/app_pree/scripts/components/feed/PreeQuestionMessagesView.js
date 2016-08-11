@@ -14,15 +14,27 @@ var MessageItemView = Mn.ItemView.extend({
 
 	ui: {
 		postComment: '.post_comment',
-		messageBody: '.message_body'
+		messageBody: '.message_body',
+		messageLength: '.reply_comment_field .message_length',
+		reply: '.reply',
+		replyCommentField: '.reply_comment_field',
+		postReplyComment: '.reply_comment_field a',
+		messageReplyBody: '.reply_comment_field textarea'
 	},
 
 	events: {
-		'click @ui.postComment': 'postComment'
+		'click @ui.postComment': 'postComment',
+		'click @ui.reply': 'showReplyField',
+		'click @ui.postReplyComment': 'postComment',
+		'keyup @ui.messageReplyBody': 'calculateMessageLength'
 	},
 
 	initialize: function() {
 		this.timeAgo = moment(this.model.get('timeStamp')).fromNow();
+	},
+
+	onShow: function() {
+		this.ui.messageBody.css('margin-left', this.model.get('offset')*15 + 'px');
 	},
 
 	serializeData: function() {
@@ -34,8 +46,55 @@ var MessageItemView = Mn.ItemView.extend({
 	},
 
 	postComment: function() {
-		this.trigger('postComment');
-	}
+		var options = {
+            messageBody: this.ui.messageReplyBody.val(),
+            inReplyToCommunicationId: this.model.get('offset'),
+            authorId: this.options.user.UID,
+            communicationId: this.model.get('communicationId'),
+            urgent: false
+        };
+		this.trigger('postComment', options);
+	},
+
+	showReplyField: function() {
+		if (this.expandedReply) {
+			this.expandedReply = false;
+			this.onHideReplyField();
+			this.trigger('showRootCommentField');
+			return;
+		}
+		this.trigger('hideRootCommentField');
+		this.trigger('hideOpenedReply');
+		this.ui.replyCommentField.slideDown();
+		this.expandedReply = true;
+	},
+
+	onHideReplyField: function() {
+		this.ui.replyCommentField.slideUp();
+	},
+
+	calculateMessageLength: function(e) {
+        var maxLength = 500;
+        var messageLength = this.ui.messageReplyBody.val().length;
+        if (messageLength >= maxLength) {
+            this.ui.messageReplyBody.val(this.ui.messageReplyBody.val().substring(0, maxLength));
+            this.ui.messageLength.html(0);
+            this.ui.messageReplyBody.attr('maxlength', maxLength);
+            return;
+        }
+        var counter = maxLength - messageLength;
+        this.ui.messageLength.html(counter);
+
+        if(e.keyCode == 8) {
+            this.ui.messageReplyBody.attr('maxlength', '');
+        }
+
+        var height = this.ui.messageReplyBody[0].scrollHeight + 2;
+        this.ui.messageReplyBody.css({
+            overflow: 'hidden',
+            height: height + 'px'
+        });
+    }
 });
 
 var PreeQuestionMessagesView = Mn.CollectionView.extend({
@@ -47,11 +106,17 @@ var PreeQuestionMessagesView = Mn.CollectionView.extend({
 	childView: MessageItemView,
 
 	childEvents: {
-		'postComment': 'postComment'
+		'postComment': 'postComment',
+		'hideRootCommentField': 'hideRootCommentField',
+		'hideOpenedReply': 'hideOpenedReply',
+		'showRootCommentField': 'showRootCommentField'
 	},
 
 	childViewOptions: function() {
-		return { user: this.options.user };
+		return {
+			user: this.options.user,
+			parent: this.options.parent
+		};
 	},
 
 	initialize: function() {
@@ -62,8 +127,23 @@ var PreeQuestionMessagesView = Mn.CollectionView.extend({
 		// );
 	},
 
-	postComment: function(view) {
-		this.trigger('postComment', view);
+	hideRootCommentField: function() {
+		this.trigger('hideRootCommentField');
+	},
+
+	showRootCommentField: function() {
+		this.trigger('showRootCommentField');
+	},
+
+	hideOpenedReply: function(view) {
+		if (this.viewWithExpandedReply) {
+			this.viewWithExpandedReply.triggerMethod('hideReplyField');
+		}
+		this.viewWithExpandedReply = view;
+	},
+
+	postComment: function(view, options) {
+		this.trigger('postComment', this.options.parent, options);
 	}
 
 });

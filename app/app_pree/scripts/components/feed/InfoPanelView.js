@@ -16,6 +16,7 @@ var InfoPanelView = Mn.ItemView.extend({
     },
 
     initialize: function() {
+        this.$el.show();
     },
 
     onSelectFiltersTab: function(e) {

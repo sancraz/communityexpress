@@ -11,14 +11,14 @@ module.exports = {
 	getMessages: function(uuid) {
 		return gateway.sendRequest('getConversationBetweenUserSASL', {
 			UID: getUID(),
-			serviceAccommodatorId: window.community.serviceAccommodatorId,
-			serviceLocationId: window.community.serviceLocationId,
-			count: 100,
-			contestUUID: uuid
+			// serviceAccommodatorId: window.community.serviceAccommodatorId,
+			// serviceLocationId: window.community.serviceLocationId,
+			count: 10,
+			threadUUID: uuid
 		});
 	},
 
-	postComment: function(options) {	
+	postComment: function(options) {
 		var payload = {
 			messageBody: options.messageBody,
 			authorId: options.authorId,

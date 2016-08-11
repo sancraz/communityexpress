@@ -61,6 +61,7 @@ module.exports = {
     signout: function() {
         loader.show('');
         userController.logout(this.user.getUID()).then(function() {
+            App.trigger('signout');
             this.headerView.signedOut();
             loader.showFlashMessage( 'signed out' );
             App.trigger('viewChange', 'auth');

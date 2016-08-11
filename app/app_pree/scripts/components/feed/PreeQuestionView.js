@@ -17,7 +17,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         pree_question_expanded_menu: '.pree_question_expanded_menu',
         pree_question_answers: '.pree_question_answers',
         popup_region: '.pree_question_answer_details',
-        messages_region: '.messages_region' //for Alex
+        messages_region: '.messages_region'
     },
 
     tagName: 'li',
@@ -46,12 +46,13 @@ var FeedSelectorView = Mn.LayoutView.extend({
         infoIcon: '.show_hide_answer_info',
         messageIcon: '.pree_question_comment_button',
         messages: '.pree_question_messages',
+        rootCommentField: '.root_comment_field',
         postRootComment: '.root_comment_field a',
-        messageBody: '.root_comment_field textarea'
+        messageBody: '.root_comment_field textarea',
+        messageLength: '.message_length'
     },
 
     events: {
-        // 'click @ui.questionBody': 'checkIfAnswered',
         'click @ui.preeQuestionCategories': 'expandCategories',
         'click @ui.preeQuestionTags': 'expandTags',
         'click @ui.likesButton': 'addLikeDislike',
@@ -64,6 +65,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     initialize : function() {
+        this.model.set('user', this.options.user);
         this.model.set('timeAgo', this.moment(this.model.get('activationDate')).fromNow());
         console.log("FeedSelectorView initialized");
         this.model.set('messageLine1', '');
@@ -175,7 +177,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
         this.ui.preeQuestionDetailed.on('shown.bs.collapse', _.bind(function() {
             if (this.jqPlotCreated===true) return;
-            
+
             var options = jqPlotOptions.options,
                 colorChoices = jqPlotOptions.colorChoices;
 
@@ -270,27 +272,60 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     getMessages: function() {
+        this.trigger('collapseMessages');
+        this.onShowRootCommentField();
         this.trigger('getMessages', this.model.get('uuid'));
     },
 
     onShowMessages: function(view) {
+        this.messages_region.$el.show();
         this.messages_region.show(view);
+    },
+
+    onHideMessages: function() {
+        this.messages_region.$el.hide();
     },
 
     postRootComment: function() {
         var options = {
             messageBody: this.ui.messageBody.val(),
             inReplyToCommunicationId: 1,
-            // Is this the question creator ID or user which replying ID?
-            // In response we have userName as creator of this question
-            authorId: this.model.get('authorUID'),
+            authorId: this.model.get('user').UID,
             communicationId: this.model.get('uuid'),
             urgent: false
         };
         this.trigger('postComment', options);
     },
 
-    calculateMessageLength: function() {
+    onHideRootCommentField: function() {
+        this.ui.rootCommentField.slideUp();
+    },
+
+    onShowRootCommentField: function() {
+        this.ui.rootCommentField.slideDown();
+    },
+
+    calculateMessageLength: function(e) {
+        var maxLength = 500;
+        var messageLength = this.ui.messageBody.val().length;
+        if (messageLength >= maxLength) {
+            this.ui.messageBody.val(this.ui.messageBody.val().substring(0, maxLength));
+            this.ui.messageLength.html(0);
+            this.ui.messageBody.attr('maxlength', maxLength);
+            return;
+        }
+        var counter = maxLength - messageLength;
+        this.ui.messageLength.html(counter);
+
+        if(e.keyCode == 8) {
+            this.ui.messageBody.attr('maxlength', '');
+        }
+
+        var height = this.ui.messageBody[0].scrollHeight + 2;
+        this.ui.messageBody.css({
+            overflow: 'hidden',
+            height: height + 'px'
+        });
     }
 });
 

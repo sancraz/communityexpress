@@ -10,6 +10,7 @@ var feedView = Mn.CollectionView.extend({
 
     childEvents: {
         'collapseDetails': 'collapseDetails',
+        'collapseMessages': 'collapseMessages',
         'answerQuestion' : 'onAnswerQuestion',
         'checkIfUserLogged': 'onCheckIfUserLogged',
         'sharePopup:show': 'openSharePopup',
@@ -19,40 +20,13 @@ var feedView = Mn.CollectionView.extend({
         'postComment': 'postComment'
     },
 
-    events: {
-        // 'scroll': 'calculateScroll'
-    },
+    childViewOptions: function() {
+		return { user: this.options.user };
+	},
 
     initialize : function() {
         this.params = this.model.get('params');
         this.listenTo(this.model, "change", this.modelEventHandler);
-        /* I implemented this but commented out because we changed the design */
-
-        /*
-          check if share url, then load the question shared.
-        */
-
-        /*
-        if( (typeof window.community.type !== 'undefined' ) && (window.community.type==='l')){
-          switch(window.community.type){
-            case 'l':
-             console.log(" share detected "+window.community.uuidURL);
-             var contestUUID = window.community.uuidURL;
-              gateway.sendRequest('getPreeQuestionByUUID',{ UID: this.params.UID, contestUUID: contestUUID})
-                   .then(_.bind(function(resp) {
-                     this.collection.unshift(_.extend(resp, { activatedByUUID: true }));
-                  }, this));
-
-
-            break;
-            default:
-             console.log(" WARNING: Unknown share type: "+window.community.type+", ignoring");
-           }
-        }else{
-          console.log(" no share detected");
-        }
-        */
-
     },
 
     onShow: function() {
@@ -93,6 +67,13 @@ var feedView = Mn.CollectionView.extend({
             this.viewWithExpandedDetails.triggerMethod('collapseDetailsInChild');
         }
         this.viewWithExpandedDetails = view;
+    },
+
+    collapseMessages: function(view) {
+        if (this.viewWithExpandedMessages) {
+            this.viewWithExpandedMessages.triggerMethod('hideMessages')
+        }
+        this.viewWithExpandedMessages = view;
     },
 
     onAnswerQuestion: function(view, choiceId, uuid, isCorrect) {

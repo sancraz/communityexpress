@@ -36,19 +36,24 @@ module.exports = {
         App.on('createNewQuestion:show', _.bind(this.showCreateNewQuestion, this));
         App.on('refreshFeed', _.bind(this.getQuestions, this));
         App.on('statusChanged', _.bind(this.getQuestions, this));
+        App.on('signout', _.bind(this.hideFilters, this));
     },
 
     showFilters: function() {
-        var infoPanelView = new InfoPanelView();
+        this.infoPanelView = new InfoPanelView();
         var filtersView = new FiltersView({});
-        infoPanelView.listenTo(infoPanelView, 'selectFilter', function(filter) {
+        this.infoPanelView.listenTo(this.infoPanelView, 'selectFilter', function(filter) {
             filtersView.triggerMethod('selectFiltersTab', filter);
         });
-        infoPanelView.listenTo(infoPanelView, 'createQuestion', _.bind(this.showCreateNewQuestion, this));
+        this.infoPanelView.listenTo(this.infoPanelView, 'createQuestion', _.bind(this.showCreateNewQuestion, this));
         filtersView.listenTo(filtersView, 'getCategories', _.bind(this.getCategories, this));
         filtersView.listenTo(filtersView, 'getTags', _.bind(this.getTags, this));
         filtersView.listenTo(filtersView, 'getQuestions', _.bind(this.getQuestions, this));
         this.centralLayoutView.showFiltersView(filtersView);
+    },
+
+    hideFilters: function() {
+        this.infoPanelView.$el.hide();
     },
 
     showCreateNewQuestion: function() {
@@ -229,7 +234,8 @@ module.exports = {
         var feedView = new FeedView({
             el: $('.pree_feed_questions'),
             collection: model.questionCollection,
-            model: model
+            model: model,
+            user: this.user
         });
         this.feedView = feedView;
         feedView.listenTo(feedView, 'answerQuestion', _.bind(this.onAnswerQuestion, this));
@@ -251,11 +257,19 @@ module.exports = {
             // if (resp.messages.length===0) return;
             this.preeQuestionMessagesView = new PreeQuestionMessagesView({
                 collection: new MessagesCollection(resp.messages),
-                user: this.user
+                user: this.user,
+                parent: questionView
             });
             if (message!==undefined) {
                 this.preeQuestionMessagesView.collection.add(new MessageModel(message));
             }
+            this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'hideRootCommentField', _.bind(function() {
+                questionView.triggerMethod('hideRootCommentField');
+            }, this));
+            this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'showRootCommentField', _.bind(function() {
+                questionView.triggerMethod('showRootCommentField');
+            }, this));
+            this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'postComment', _.bind(this.postComment, this));
             questionView.triggerMethod('showMessages', this.preeQuestionMessagesView);
         }, this));
     },

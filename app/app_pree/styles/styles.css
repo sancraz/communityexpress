@@ -12,6 +12,10 @@ html {
     border: none;
 }
 
+.navbar.navbar-default.header .container-fluid {
+    border-bottom: 1px solid #eee;
+}
+
 .dropdown-menu {
     margin-top: 6px;
 }
@@ -86,6 +90,7 @@ html {
 }
 
 .infoPanel {
+    display: none;
     background-color: #388e3c;
     height: 50px;
     margin-bottom: 20px;
