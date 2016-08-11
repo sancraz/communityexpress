@@ -10,7 +10,8 @@ var userController = require('../controllers/userController.js'),
     appCache = require('../appCache.js'),
     gateway = require('../APIGateway/gateway'),
     User = require('../models/user.js'),
-    updateActions = require('./updateActions');
+    updateActions = require('./updateActions'),
+    Cookies = require('../../../vendor/scripts/js.cookie');
 
 var onLoginSuccess = function (response) {
 
@@ -21,12 +22,14 @@ var onLoginSuccess = function (response) {
     favoriteActions.getFavoritesForCurrentUser();
 
     if (response.localStorage !== false) {
-        localStorage.setItem('cmxUID', response.uid);
+        //localStorage.setItem('cmxUID', response.uid);
+        Cookies.set('cmxUID',response.uid);
     };
     Vent.trigger('login_success');
 
     if ("undefined" !== typeof $("#apiURLprefix").get(0)) {
-        var a = localStorage.getItem("cmxUID");
+        //var a = localStorage.getItem("cmxUID");
+        var a = Cookies.get("cmxUID");
         if ("undefined" !== typeof a && null !== a) {
             loyaltyActions.updateLoyaltyStatus(a);
             loyaltyActions.retrieveCalendar(a);
@@ -83,7 +86,8 @@ module.exports = {
         var dfd = $.Deferred();
         var persistedUID;
 
-        persistedUID = localStorage.getItem('cmxUID');
+        //persistedUID = localStorage.getItem('cmxUID');
+        persistedUID = Cookies.get('cmxUID');
         if (persistedUID) {
             window.asdesds=persistedUID;
             gateway.sendRequest('getAuthenticationStatus', {UID: persistedUID}).then(function (response) {
@@ -93,11 +97,13 @@ module.exports = {
                         userName: response.userName
                     });
                 } else {
-                    localStorage.removeItem('cmxUID');
+                    //localStorage.removeItem('cmxUID');
+                    Cookies.remove('cmxUID');
                 }
                 dfd.resolve();
             }, function onRequestError () {
-                localStorage.removeItem('cmxUID');
+                //localStorage.removeItem('cmxUID');
+                Cookies.remove('cmxUID');
                 dfd.resolve();
             });
         } else {
@@ -136,8 +142,8 @@ module.exports = {
                 */
                 console.log(" saving to local storage cmxUID:"
                 + userRegistrationDetails.uid);
-                localStorage.setItem("cmxUID", userRegistrationDetails.uid);
-
+                //localStorage.setItem("cmxUID", userRegistrationDetails.uid);
+                Cookies.set('cmxUID',userRegistrationDetails.uid);
                 self.setUser(userRegistrationDetails.uid, userRegistrationDetails.userName);
             }
         });

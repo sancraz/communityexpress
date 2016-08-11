@@ -4,6 +4,7 @@
 
 var Vent = require('../../Vent'),
     loader = require('../../loader'),
+    appCache = require('../../appCache.js'),
     sessionActions = require('../../actions/sessionActions'),
     userController = require('../../controllers/userController'),
     promotionsController = require('../../controllers/promotionsController');
@@ -52,7 +53,28 @@ var NavbarView = Backbone.View.extend({
     },
 
     triggerCatalogsView: function() {
-        Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
+        var saslData = appCache.get('saslData');
+
+        // saslData.showRoster = true; //!!!remove it later
+
+        if (saslData && saslData.showRoster) {
+            // if showRoster param in Sasl true
+            this.triggerRosterView();
+        } else {
+            Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
+        }
+    },
+
+    triggerRosterView: function() {
+        var uuid = 'ROSTER',
+            modelId = this.options.page.model.id;
+        Vent.trigger('viewChange', 'roster', {
+            sasl: modelId,
+            id: uuid,
+            backToRoster:false,
+            rosterId:uuid,
+            launchedViaURL:false
+         }, { reverse: false });
     },
 
     openPromotion: function(pid) {

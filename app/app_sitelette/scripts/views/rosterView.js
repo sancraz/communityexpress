@@ -48,7 +48,22 @@ var RosterView = PageLayout.extend({
           $('#roster_order_button').prop('disabled', true);
         }else{
           $('#roster_order_button').prop('disabled', false);
-      };
+        };
+        this.checkIfOpened();
+    },
+
+    // check if user can make an order at this time
+    checkIfOpened: function() {
+        // this.roster.isOpen = !Math.round(Math.random());
+        this.roster.isOpen = true; // remove this row when param will be available !!!
+        if (!this.roster.isOpen) {
+            this.openSubview('textPopup', 
+                { text: 'The business is not taking orders now. Please try tomorrow' },
+                this.goBack);
+            // I don't know, exactly, what should be when I click OK
+            // right now we return to the restaurant
+            // is it correct ???
+        }
     },
 
     initialize: function(options) {

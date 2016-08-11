@@ -2,7 +2,7 @@
 
 var userController = require('./controllers/userController'),
 	configurationActions = require('./actions/configurationActions'),
-    updateActions = require('./actions/updateActions'),
+  updateActions = require('./actions/updateActions'),
 	sessionActions = require('./actions/sessionActions'),
 	pageController = require('./pageController.js'),
 	config = require('./appConfig.js'),
@@ -10,7 +10,9 @@ var userController = require('./controllers/userController'),
 	Vent = require('./Vent.js'),
 	loader = require('./loader'),
 	pageFactory = require('./pageFactory.js'),
-	Geolocation = require('./Geolocation.js');
+	Geolocation = require('./Geolocation.js'),
+    appCache = require('./appCache.js'),
+    Cookies = require('../../vendor/scripts/js.cookie');
 
 var hasUIDinQueryParams = function () {
     var params = location.search.match(/UID=/);
@@ -22,6 +24,9 @@ var App = function() {
     /*
      * .on([eventkey], function(model, value, options), [context]);
      */
+    if (window.saslData) {
+        appCache.set('saslData', window.saslData);
+    }
     Vent.on('viewChange', this.goToPage, this);
     Vent.trigger('viewChange', 'restaurant', window.community.friendlyURL);
 };
@@ -42,12 +47,14 @@ App.prototype = {
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
         if (this.params.embedded) { conf.set('embedded', true); };
         if (this.params.UID) {
-            localStorage.setItem("cmxUID", this.params.UID);
+            //localStorage.setItem("cmxUID", this.params.UID);
+						Cookies.set("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
                     Backbone.history.start({pushState: true});
                 });
-        } else if (localStorage.cmxUID) {
+        //  } else if (localStorage.cmxUID) {
+				} else if (Cookies.get('cmxUID')) {
             sessionActions.getSessionFromLocalStorage().then(function () {
                 Backbone.history.start({pushState: true});
             });
