@@ -3,7 +3,7 @@
         <div class="col-sm-12 col-md-12 col-lg-10 col-lg-offset-1 p-r-0">
 
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-collapse-1" aria-expanded="false">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -12,9 +12,9 @@
                <a class="navbar-brand" href="index.php"><img class="img-responsive" src="img/pree.png" alt=""></a>
             </div>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <div class="collapse navbar-collapse" id="bs-collapse-1">
 
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right header_element">
                   <!--
                   <li>
                       <a href="admin.php"> Admin </a>
@@ -37,7 +37,7 @@
                   <li class="dropdown">
                         <a href="#" class="dropdown-toggle signin_button">
                             <span>Sign in</span>
-                            <img class="dropdown-toggle signin_image" src="images/Sign_in.png" alt="">
+                            <img class="signin_image" src="images/Sign_in.png" alt="">
                         </a>
                         <ul class="dropdown-menu">
                             <!-- <li class="disabled"><a href="#">My Questions</a></li> -->
@@ -52,7 +52,28 @@
             </div>
         </div>
     </div>
-    <div class="infoPanel"></div>
+    <div class="infoPanel">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li data-filtertype="TRENDING" class="navigation-link filter_tab"><a href="#">Home</a></li>
+                <li class="navigation-link filters-link">
+                    <button type="button" class="navbar-toggle collapsed toggle_btn" data-toggle="collapse" data-target="#bs-collapse-2" aria-expanded="false">
+                        Filters<span class="caret"></span>
+                    </button>
+                    <div class="collapse navbar-collapse collapsed-filters" id="bs-collapse-2">
+                        <ul class="nav navbar-nav collapsed-links">
+                            <li data-filtertype="CATEGORIES" class="filter_tab"><a href="#">Topic</a></li>
+                            <li data-filtertype="TAGS" class="filter_tab"><a href="#">Tags</a></li>
+                            <li data-filtertype="TYPE" class="filter_tab"><a href="#">Type</a></li>
+                            <li data-filtertype="MYQUESTIONS" class="filter_tab"><a href="#">My questions</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li data-filtertype="TRENDING" class="navigation-link filter_tab refresh_button"><a href="#"><span class="glyphicon glyphicon-refresh"></span></a></li>
+                <li class="navigation-link create_question_btn"><a href="#">Create</a></li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 

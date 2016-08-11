@@ -40,8 +40,6 @@ var MessageItemView = Mn.ItemView.extend({
 
 var PreeQuestionMessagesView = Mn.CollectionView.extend({
 
-	// el: '.messages_list',
-
 	tagName: 'ul',
 
 	className: 'messages_list',

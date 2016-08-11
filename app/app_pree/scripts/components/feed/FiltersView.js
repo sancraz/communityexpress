@@ -28,13 +28,7 @@ var FiltersView = Mn.LayoutView.extend({
 		this.onGetDefault();
 	},
 
-	onSelectFiltersTab: function(e) {
-		var $target = $(e.currentTarget),
-			filter = $target.data('filtertype');
-
-		if ($target.find('a').hasClass('active')) return;
-		this.ui.filtersTabs.find('a').removeClass('active');
-		$target.find('a').addClass('active');
+	onSelectFiltersTab: function(filter) {
 		switch(filter) {
 			case 'FOLLOWING':
 				this.onGetFollowing();

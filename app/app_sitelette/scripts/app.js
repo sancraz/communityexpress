@@ -2,7 +2,7 @@
 
 var userController = require('./controllers/userController'),
 	configurationActions = require('./actions/configurationActions'),
-    updateActions = require('./actions/updateActions'),
+  updateActions = require('./actions/updateActions'),
 	sessionActions = require('./actions/sessionActions'),
 	pageController = require('./pageController.js'),
 	config = require('./appConfig.js'),
@@ -11,7 +11,8 @@ var userController = require('./controllers/userController'),
 	loader = require('./loader'),
 	pageFactory = require('./pageFactory.js'),
 	Geolocation = require('./Geolocation.js'),
-    appCache = require('./appCache.js');
+    appCache = require('./appCache.js'),
+    Cookies = require('../../vendor/scripts/js.cookie');
 
 var hasUIDinQueryParams = function () {
     var params = location.search.match(/UID=/);
@@ -46,12 +47,14 @@ App.prototype = {
         if (this.params.demo) { configurationActions.toggleSimulate(true); };
         if (this.params.embedded) { conf.set('embedded', true); };
         if (this.params.UID) {
-            localStorage.setItem("cmxUID", this.params.UID);
+            //localStorage.setItem("cmxUID", this.params.UID);
+						Cookies.set("cmxUID", this.params.UID);
             sessionActions.authenticate(this.params.UID)
                 .always(function() {
                     Backbone.history.start({pushState: true});
                 });
-        } else if (localStorage.cmxUID) {
+        //  } else if (localStorage.cmxUID) {
+				} else if (Cookies.get('cmxUID')) {
             sessionActions.getSessionFromLocalStorage().then(function () {
                 Backbone.history.start({pushState: true});
             });

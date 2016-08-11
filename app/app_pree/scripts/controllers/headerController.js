@@ -22,13 +22,9 @@ module.exports = {
         this.headerView = new HeaderView({
             user: this.user
         });
-        App.regions.getRegion('headerRegion').show(this.headerView);
-        this.showInfoView();
-        App.on('signinForm:show', _.bind(this.headerView.signin, this.headerView));
-        this.headerView.listenTo(this.headerView, 'infoView:show', _.bind(this.showInfoView, this));
-        // commented due to FEED is hidden when user not logged in
-        // this.headerView.listenTo(Vent, 'login_success logout_success', this.changeStatus, this);
-        this.headerView.listenTo(this.headerView, 'signin', _.bind(this.signin, this));
+        this.headerView.listenTo(this.headerView, 'authentificate', _.bind(function() {
+            App.trigger('authenticate', 'signin');
+        }, this));
         this.headerView.listenTo(this.headerView, 'confirmSignout', _.bind(this.confirmSignout, this));
     },
 
@@ -43,7 +39,7 @@ module.exports = {
             parent: this.headerView,
             event: triggerEvent
         });
-        this.headerView.getRegion('popupRegion').show(signInView);
+        App.regions.getRegion('popupRegion').show(signInView);
         signInView.listenTo(signInView, 'signUpView:show', _.bind(this.openSignupView, this));
         signInView.listenTo(signInView, 'openView', _.bind(this.openViewAfterSignIn, this));
         signInView.listenTo(signInView, 'passwordRecovery', _.bind(this.passwordRecovery, this));
@@ -51,7 +47,7 @@ module.exports = {
 
     openSignupView: function() {
         var signUpView = new SignUpView();
-        this.headerView.getRegion('popupRegion').show(signUpView);
+        App.regions.getRegion('popupRegion').show(signUpView);
     },
 
     confirmSignout: function() {
@@ -59,24 +55,19 @@ module.exports = {
             text: 'Are you sure you want to sign out?',
             action: this.signout.bind(this)
         });
-        this.headerView.getRegion('popupRegion').show(signOutView);
+        App.regions.getRegion('popupRegion').show(signOutView);
     },
 
     signout: function() {
         loader.show('');
         userController.logout(this.user.getUID()).then(function() {
+            this.headerView.signedOut();
             loader.showFlashMessage( 'signed out' );
             App.trigger('viewChange', 'auth');
-            // Navigate to new temporary landing with contact us form
-            // this.navigateCotuctUs();
         }.bind(this), function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
         });
     },
-
-    // navigateCotuctUs: function() {
-    //     App.router.navigate('#auth', { trigger: true });
-    // },
 
     changeStatus: function(loginMethod) {
         switch (loginMethod) {

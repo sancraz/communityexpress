@@ -15,6 +15,7 @@ var App = require('../app'),
     CreateQuestionModel = require('../models/PreeNewQuestionModel'),
     FeedView = require('../components/feed/FeedView'),
     FiltersView = require('../components/feed/FiltersView'),
+    InfoPanelView = require('../components/feed/InfoPanelView'),
     TextMessageView = require('../components/feed/TextMessageView'),
     ShareQuestionView = require('../components/feed/ShareQuestionView'),
     ShareQuestionWithMobile = require('../components/feed/ShareQuestionWithMobile'),
@@ -27,17 +28,7 @@ var App = require('../app'),
 module.exports = {
 
     showLayout: function() {
-        App.regions = new AppLayoutView();
         this.user = sessionActions.getCurrentUser();
-
-        $('.createQuestionBtn').show();
-        $('.signin_button span').text(this.user.userName);
-        $('.signin_button').attr('data-toggle', 'dropdown');
-        $('.signin_button img').attr('src', 'images/Sign_out.png');
-        $('.signout-button').text('Sign out');
-        $('.signout-button').on('click', _.bind(this.signout, this));
-        $('.createQuestionBtn').on('click', _.bind(this.showCreateNewQuestion, this));
-
         this.UID = this.user && this.user.UID ? this.user.UID : '';
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
@@ -47,22 +38,13 @@ module.exports = {
         App.on('statusChanged', _.bind(this.getQuestions, this));
     },
 
-    signout: function() {
-        loader.show('');
-        userController.logout(this.user.getUID()).then(function() {
-            $('.signin_button span').text('Sign in');
-            $('.signin_button').attr('data-toggle', '');
-            $('.signin_button img').attr('src', 'images/Sign_in.png');
-            $('.signout-button').text('Sign in');
-            loader.showFlashMessage( 'signed out' );
-            App.trigger('viewChange', 'auth');
-        }.bind(this), function(e){
-            loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
-        });
-    },
-
     showFilters: function() {
+        var infoPanelView = new InfoPanelView();
         var filtersView = new FiltersView({});
+        infoPanelView.listenTo(infoPanelView, 'selectFilter', function(filter) {
+            filtersView.triggerMethod('selectFiltersTab', filter);
+        });
+        infoPanelView.listenTo(infoPanelView, 'createQuestion', _.bind(this.showCreateNewQuestion, this));
         filtersView.listenTo(filtersView, 'getCategories', _.bind(this.getCategories, this));
         filtersView.listenTo(filtersView, 'getTags', _.bind(this.getTags, this));
         filtersView.listenTo(filtersView, 'getQuestions', _.bind(this.getQuestions, this));
@@ -264,7 +246,7 @@ module.exports = {
     getMessages: function(questionView, message) {
 
         var uuid = questionView.model.get('uuid');
-        
+
         communicationActions.getMessages(uuid).then(_.bind(function(resp) {
             // if (resp.messages.length===0) return;
             this.preeQuestionMessagesView = new PreeQuestionMessagesView({
