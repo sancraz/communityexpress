@@ -45,33 +45,36 @@ module.exports = {
         });
     },
 
-    getSasl: function (id) {
-        // temporary commented previous sasl rows
-        // should be tested
-        // var uid = sessionActions.getCurrentUser().getUID();
-        // var cache =  appCache.fetch('sasls', new SaslCollection()).get(id);
-        var cached = appCache.get('saslData');
-        // var coords =  geolocation.getPreviousLocation();
-        // var remote;
+    // !!! getSasl backup !!!
+    // getSasl: function (id) {
+    //     var uid = sessionActions.getCurrentUser().getUID();
+    //     var cache =  appCache.fetch('sasls', new SaslCollection()).get(id);
+    //     var coords =  geolocation.getPreviousLocation();
+    //     var remote;
         
-        // function handleResponse (response) {
-        //     appCache.get('sasls').unshift(response);
-        //     return response;
-        // }
-        // } else if ($.isArray(arguments[0])) {
-        //     remote = restaurantController.getRestaurantBySASL(id[0], id[1], coords.latitude, coords.longitude, uid)
-        //     .then(handleResponse);
-        // } else {
-        //     remote = restaurantController.getRestaurantByURLkey(id , coords.latitude, coords.longitude, uid)
-        //     .then(handleResponse);
-        // }
+    //     function handleResponse (response) {
+    //         appCache.get('sasls').unshift(response);
+    //         return response;
+    //     }
 
-        // return cache ? $.Deferred().resolve(cache).promise() : remote;
+    //     if ($.isArray(arguments[0])) {
+    //         remote = restaurantController.getRestaurantBySASL(id[0], id[1], coords.latitude, coords.longitude, uid)
+    //         .then(handleResponse);
+    //     } else {
+    //         remote = restaurantController.getRestaurantByURLkey(id , coords.latitude, coords.longitude, uid)
+    //         .then(handleResponse);
+    //     }
+
+    //     return cache ? $.Deferred().resolve(cache).promise() : remote;
+    // },
+
+    getSasl: function (id) {
+        var cached = appCache.get('saslData');
+
         return restaurantController.getRestaurantWithStoredSASL(cached);
     },
 
     getSaslSummaryByLocation: function (lat, lng) {
-
         var uid = sessionActions.getCurrentUser().getUID();
         var simulate = configurationActions.getConfigurations().get('simulate');
         var cache =  appCache.fetch('saslSummary', new SaslSummary());
