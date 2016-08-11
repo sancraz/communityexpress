@@ -5,7 +5,8 @@
 var gateway = require('../APIGateway/gateway.js'),
     appCache = require('../appCache.js'),
     Vent = require('../Vent.js'),
-    User = require('../models/user.js');
+    User = require('../models/user.js'), 
+    Cookies = require('../../../vendor/scripts/js.cookie');;
 
 var initUser = function(response) {
     return appCache.get('user').init(response.uid, response.userName)
@@ -17,7 +18,8 @@ var initUser = function(response) {
 
 var killUser = function(response) {
     appCache.get('user').kill();
-    localStorage.removeItem('cmxUID');
+    //localStorage.removeItem('cmxUID');
+    Cookies.remove('cmxUID');
     Vent.trigger('logout_success');
     return response;
 };

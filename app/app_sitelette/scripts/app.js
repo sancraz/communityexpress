@@ -2,7 +2,7 @@
 
 var userController = require('./controllers/userController'),
 	configurationActions = require('./actions/configurationActions'),
-    updateActions = require('./actions/updateActions'),
+  updateActions = require('./actions/updateActions'),
 	sessionActions = require('./actions/sessionActions'),
 	pageController = require('./pageController.js'),
 	config = require('./appConfig.js'),
@@ -49,7 +49,8 @@ App.prototype = {
                 .always(function() {
                     Backbone.history.start({pushState: true});
                 });
-        } else if (localStorage.cmxUID) {
+        //  } else if (localStorage.cmxUID) {
+				} else if (Cookies.get('cmxUID')) {
             sessionActions.getSessionFromLocalStorage().then(function () {
                 Backbone.history.start({pushState: true});
             });

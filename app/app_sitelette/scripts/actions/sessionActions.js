@@ -97,11 +97,13 @@ module.exports = {
                         userName: response.userName
                     });
                 } else {
-                    localStorage.removeItem('cmxUID');
+                    //localStorage.removeItem('cmxUID');
+                    Cookies.remove('cmxUID');
                 }
                 dfd.resolve();
             }, function onRequestError () {
-                localStorage.removeItem('cmxUID');
+                //localStorage.removeItem('cmxUID');
+                Cookies.remove('cmxUID');
                 dfd.resolve();
             });
         } else {
