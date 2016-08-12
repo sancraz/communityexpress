@@ -44,7 +44,7 @@ var LandingView = PageLayout.extend({
                 this.triggerPhotoContestView();
             break;
             case 'r':
-                this.triggerRosterView();
+                this.triggerRosterViewFromURL();
             break;
         };
     },
@@ -107,7 +107,7 @@ var LandingView = PageLayout.extend({
         Vent.trigger('viewChange', 'aboutUs', this.model.getUrlKey());
     },
 
-    triggerRosterView: function() {
+    triggerRosterViewFromURL: function() {
 
         var uuid;
         if (community.type == 'r') {
@@ -208,10 +208,32 @@ var LandingView = PageLayout.extend({
     },
 
     triggerCatalogsView: function() {
-        console.log("landingview firing viewchange into catalog");
-        var x=appCache;
-        Vent.trigger('viewChange', 'catalogs', this.model.getUrlKey() );
+      var saslData = appCache.get('saslData');
+      var showRoster=false;
+      if (saslData && saslData.services.catalog.catalogAggregationType==='ROSTERIZED') {
+        showRoster=true;
+      }
 
+      if (showRoster) {
+          this.triggerRosterView();
+      } else {
+          Vent.trigger('viewChange', 'catalogs', this.model.getUrlKey() );
+      }
+
+    },
+
+    triggerRosterView: function() {
+
+        /* TODO: need to pull up roster id from api retrieveRosters */
+        var uuid = 'ROSTER';//,
+            //modelId = this.options.page.model.id;
+        Vent.trigger('viewChange', 'roster', {
+            //sasl: modelId,
+            id: uuid,
+            backToRoster:false,
+            rosterId:uuid,
+            launchedViaURL:false
+         }, { reverse: false });
     },
 
     triggerAppointmentView: function() {
