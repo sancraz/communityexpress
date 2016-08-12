@@ -10,22 +10,22 @@
                     <th>Item Name</th>
                     <th>Price</th>
                 </thead>
-                
+
                  <% if(basket.hasCombo()){ %>
                   <% _(basket.getComboCatalogs()).each(function (item) { %>
                     <tr>
                         <td><%= 1 %></td>
                         <td><%= item.catalogDisplayText%></td>
                         <td>$<%=item.price.toFixed(2) %></td>
-                    </tr> 
-                  <% }) %>  
+                    </tr>
+                  <% }) %>
                   <% _(basket.getNonComboItems()).each(function (item) { %>
                     <tr>
                         <td><%= item.quantity %></td>
                         <td><%= item.itemName %></td>
                         <td>$<%= (item.quantity * item.price).toFixed(2) %></td>
                     </tr>
-                  <% }) %> 
+                  <% }) %>
                 <% } else { %>
                   <% _(basket.models).each(function (item) { %>
                     <tr>
@@ -33,9 +33,9 @@
                         <td><%= item.get('itemName') %></td>
                         <td>$<%= (item.get('quantity') * item.get('price')).toFixed(2) %></td>
                     </tr>
-                  <% }) %>                    
+                  <% }) %>
                 <% } %>
-                 
+
                 <tr>
                     <td></td>
                     <td>Subtotal</td>
@@ -97,12 +97,7 @@
                 <input autocapitalize="off" type="text" name="firstname" placeholder="FirstName" data-corners="false"/>
                 <input autocapitalize="off" type="text" name="lastname" placeholder="LastName" data-corners="false"/>
                 <input autocapitalize="off" type="text" name="cardNumber" placeholder="Card Number" data-corners="false"/>
-                <select name="select-choice-1" class="cardtype"  id="select-choice-1">
-                    <option>Card Type</option>
-                    <% _(cardTypes).each(function (cardType) { %>
-                        <option value="<%= cardType.enumText %>"><%= cardType.displayText %></option>
-                     <% }) %>
-                </select>
+                 
                 <fieldset class="expiration_date" data-role="controlgroup" data-type="horizontal">
                     <select name="select-choice-month" class="month" id="select-choice-month">
                         <option>Exp.Month</option>

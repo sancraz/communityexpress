@@ -107,7 +107,9 @@ var CatalogOrderView = PageLayout.extend({
         var cvv = this.$('input[name=cvv]').val();
         var creditCard = this.$('#credit')[0].checked;
         var pickup = this.$('#pickup')[0].checked;
+        var intraOrderAssociationIndex=0;
         var items = this.basket.map(function (item) {
+            intraOrderAssociationIndex++;
             return {
                 serviceAccommodatorId: this.sasl.sa(),
                 serviceLocationId: this.sasl.sl(),
@@ -116,7 +118,8 @@ var CatalogOrderView = PageLayout.extend({
                 groupId:item.get('groupId'),
                 catalogId:item.get('catalogId'),
                 itemVersion: item.get('itemVersion'),
-                quantity: item.get('quantity')
+                quantity: item.get('quantity'),
+                intraOrderAssociationTag:item.get('catalogId')+intraOrderAssociationIndex
             };
         }.bind(this));
         this.onSubmit({
@@ -148,7 +151,6 @@ var CatalogOrderView = PageLayout.extend({
                 zip: zip,
             },
             creditCard: {
-                cardType: cardType === 'Card Type' ? 'UNDEFINED' : cardType,
                 firstName: firstName,
                 lastName: lastName,
                 cardNumber: cardNumber,

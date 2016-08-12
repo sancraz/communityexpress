@@ -54,11 +54,12 @@ var NavbarView = Backbone.View.extend({
 
     triggerCatalogsView: function() {
         var saslData = appCache.get('saslData');
+        var showRoster=false;
+        if (saslData && saslData.services.catalog.catalogAggregationType==='ROSTERIZED') {
+          showRoster=true;
+        }
 
-        // saslData.showRoster = true; //!!!remove it later
-
-        if (saslData && saslData.showRoster) {
-            // if showRoster param in Sasl true
+        if (showRoster) {
             this.triggerRosterView();
         } else {
             Vent.trigger('viewChange', 'catalogs', [this.sa, this.sl]);
@@ -66,10 +67,10 @@ var NavbarView = Backbone.View.extend({
     },
 
     triggerRosterView: function() {
-        var uuid = 'ROSTER',
-            modelId = this.options.page.model.id;
+        var uuid = 'ROSTER';//
+            //modelId = this.options.page.model.id;
         Vent.trigger('viewChange', 'roster', {
-            sasl: modelId,
+          //  sasl: modelId,
             id: uuid,
             backToRoster:false,
             rosterId:uuid,
@@ -138,12 +139,12 @@ var NavbarView = Backbone.View.extend({
             this.confirmSignout();
         }
     },
-    
+
     hide : function(){
     	$(this.el).slideUp('slow');
     	this.visible=false;
     },
-    
+
     show : function(){
     	$(this.el).slideDown('slow');
     	this.visible=true;
