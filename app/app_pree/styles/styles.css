@@ -132,7 +132,7 @@ html {
 }
 
 .main_content {
-    padding-top: 117px;
+    padding-top: 125px;
     height: 100%;
 }
 
@@ -159,7 +159,7 @@ html {
     margin-left: 10px;
 }
 
-@media (max-width: 767px) {
+@media only screen and (max-width: 767px) {
     .infoPanel {
         height: 40px;
     }

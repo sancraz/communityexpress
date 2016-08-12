@@ -34,7 +34,13 @@ var MessageItemView = Mn.ItemView.extend({
 	},
 
 	onShow: function() {
-		this.ui.messageBody.css('margin-left', this.model.get('offset')*15 + 'px');
+		var marginLeft = this.model.get('offset')*10;
+
+		// temporary decision to show deep replies
+		if (this.$el.width() < 400 && marginLeft > 180) {
+			marginLeft = 180;
+		}
+		this.ui.messageBody.css('margin-left', marginLeft + 'px');
 	},
 
 	serializeData: function() {

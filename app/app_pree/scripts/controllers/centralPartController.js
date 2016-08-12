@@ -254,7 +254,7 @@ module.exports = {
         var uuid = questionView.model.get('uuid');
 
         communicationActions.getMessages(uuid).then(_.bind(function(resp) {
-            // if (resp.messages.length===0) return;
+            if (resp.comments.length===0) return;
             this.preeQuestionMessagesView = new PreeQuestionMessagesView({
                 collection: new MessagesCollection(resp.messages),
                 user: this.user,

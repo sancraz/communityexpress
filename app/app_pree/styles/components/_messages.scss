@@ -33,6 +33,14 @@
 		}
 	}
 
+	@media only screen and (max-width: 461px) {
+		.root_comment_field {
+			textarea {
+				width: 70%;
+			}
+		}
+	}
+
 	.messages_region {
 		margin: 10px 0;
 
@@ -68,6 +76,10 @@
 				div {
 					display: inline-block;
 					padding: 5px;
+
+					img {
+						height: 18px;
+					}
 				}
 
 				.reply,

@@ -1,5 +1,9 @@
 <div class="message_body">
-	<img src="images/question_user.png" alt="" />
+	<% if (message.authorImageUrl && message.authorImageUrl.length !== 0) { %>
+		<img src="<%= message.authorImageURL %>" alt="" />
+	<% } else { %>
+		<img src="images/question_user.png" alt="">
+	<% } %>
 	<p class="user_name"><%= message.userName %></p>
 	<p class="message_text"><%= message.messageBody %></p>
 	<p class="time_ago"><%= timeAgo %></p>

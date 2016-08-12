@@ -16,7 +16,7 @@
         }
 
         &.highlighted {
-          background-color:#ffffcc;
+          background-color: $highlighted;
         }
     }
 
@@ -45,7 +45,6 @@
 
     .pree_question_user_username {
         color: $main;
-/*     font: 400 13px / 50px Ubuntu; */
         font-style: normal;
         font-weight:400;
         font-size: 13px;
@@ -82,7 +81,6 @@
                 padding: 6px 9px;
                 margin: 0 5px;
                 color: $main;
-/*              font: 400 11px / 15px Ubuntu; */
                 font-style: normal;
                 font-weight:400;
                 font-size: 11px;
@@ -102,7 +100,6 @@
                 border-radius: 3px;
                 padding: 5px 9px;
                 margin: 0 5px;
- /*             font: 400 11px / 15px Ubuntu; */
                 font-style: normal;
                 font-weight:400;
                 font-size: 11px;
@@ -113,7 +110,6 @@
 
         .pree_question_title_date {
             color: $grey;
-        /*  font: 400 13px / 50px Ubuntu; */
             font-style: normal;
             font-weight:400;
             font-size: 13px;
@@ -128,7 +124,6 @@
 
         .pree_question_title_name {
             color: $black;
-    /*      font: 800 15px / 50px Ubuntu; */
             font-style: normal;
             font-weight:700;
             font-size: 15px;
@@ -151,6 +146,18 @@
         text-align: center;
         vertical-align: top;
         margin-top: 3px;
+    }
+
+    @media only screen and (max-width: 461px) {
+        .pree_question_title {
+            width: 60%;
+        }
+    }
+
+    @media only screen and (max-width: 360px) {
+        .pree_question_title {
+            width: 40%;
+        }
     }
 
     .questionBody {
@@ -225,7 +232,6 @@
         background: url(images/Ellipse-4-green.png) no-repeat 0;
     }
 
-    // commented line
     .inputRadioImg {
         display: inline-block;
         height: 14px;
@@ -264,7 +270,6 @@
         line-height: 10px;
         height: 10px;
     }
-    // commented line end
 
     .tagsAndCategories {
         margin-top: 20px;
@@ -361,7 +366,7 @@
     .pree_question_share_button {
         line-height: 18px;
         font-size: 20px;
-        opacity: 0.8;
+        opacity: .8;
     }
 
     .pree_question_share_button:hover {
@@ -392,7 +397,7 @@
 
     .pree_question_more {
         text-align: right;
-        opacity: 0.8;
+        opacity: .8;
         cursor: pointer;
     }
 

@@ -76,6 +76,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.isLiked = this.model.isLiked;
         this.currentLikes = this.model.get('likes');
         this.currentAnswerChecked=this.model.currentAnswerChecked;
+        this.expandedMessages = false;
         //this.isAnswered = this.model.get('currentChoiceByUser') === -1 ? false : true;
         // this.isAnswered = true;
     },
@@ -272,18 +273,25 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     getMessages: function() {
+        if (this.expandedMessages===false) {
+            this.trigger('getMessages', this.model.get('uuid'));
+        }
         this.trigger('collapseMessages');
         this.onShowRootCommentField();
-        this.trigger('getMessages', this.model.get('uuid'));
     },
 
     onShowMessages: function(view) {
-        this.messages_region.$el.show();
+        this.expandedMessages = true;
         this.messages_region.show(view);
+        var scrollTop = $('.pree_feed_questions').scrollTop() - $('.pree_feed_questions').offset().top + this.ui.messages.offset().top;
+        $('.pree_feed_questions').animate({
+            scrollTop: scrollTop
+        }, 10);
     },
 
     onHideMessages: function() {
-        this.messages_region.$el.hide();
+        this.expandedMessages = false;
+        this.messages_region.empty();
     },
 
     postRootComment: function() {
