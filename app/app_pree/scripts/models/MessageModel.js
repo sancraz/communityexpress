@@ -5,12 +5,12 @@ var MessageModel = Backbone.Model.extend({
 		showMessageInput: false,
 		showReply: true,
 		fromUser: false,
-		offset: 1,
+		messageId: 1,
 		messageBody: '',
 		authorId: '',
 		userName: '',
 		communicationId: '',
-		inReplyToCommunicationId: 1,
+		inReplyToMessageId: 1,
 		timeStamp: ''
 	}
 });

@@ -297,7 +297,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
     postRootComment: function() {
         var options = {
             messageBody: this.ui.messageBody.val(),
-            inReplyToCommunicationId: 1,
+            inReplyToMessageId: 1,
             authorId: this.model.get('user').UID,
             communicationId: this.model.get('uuid'),
             urgent: false
