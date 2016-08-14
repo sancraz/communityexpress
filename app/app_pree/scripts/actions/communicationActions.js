@@ -26,7 +26,7 @@ module.exports = {
 			toServiceLocationId: window.community.serviceLocationId,
 			urgent: options.urgent,
 			communicationId: options.communicationId,
-			inReplyToCommunicationId: options.inReplyToCommunicationId
+			inReplyToMessageId: options.inReplyToMessageId
 		};
 		return gateway.sendRequest('sendMessageToSASL', {
 			UID: getUID(),

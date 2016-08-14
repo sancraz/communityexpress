@@ -63,6 +63,17 @@ $uuidURL = $_REQUEST['u'];
 $uuidURL = NULL;
 }
 
+if (validateParams('shareId')) {
+  $shareId = $_REQUEST['shareId'];
+} else {
+  $shareId = NULL;
+}
+
+if($type==='l'){
+  $sharedPree=TRUE;
+}else {
+  $sharedPree=FALSE;
+}
 /* NOTE: if debug=true then PHP will echo variables and exit */
 if (validateParams('debug')) {
 $debug = TRUE;
@@ -84,6 +95,10 @@ if ($debug) {
  echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
  echo '$UID=' . $UID . "</br>";
  echo '$apiURL='.$apiURL."</br>";
+ echo '$type='.$type."</br>";
+ echo '$uuidURL='.$uuidURL."</br>";
+ echo '$sharedPree='.$sharedPree."</br>";
+ echo '$shareId='.$shareId.'</br>';
  return;
 }
 
@@ -99,10 +114,37 @@ if ($siteletteJSON['curl_error']) {
   $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
   $serviceLocationId = $saslJSON['serviceLocationId'];
   $themeCSS = 'styles.css';
+  /* PREE specific: sharing related meta data */
+  $og_url=$completeURL;
+  $og_type="article";
+  $og_title="When Great Minds Don’t Think Alike";
+  $og_description="Test your knowledge. Share with friends. Learn while having fun.";
+  $og_image=$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/?f1=pree&f=default.jpg";
+
+  if( $sharedPree ){
+    /* pull up the question and prepare the meta data */
+
+    $apiURL = $protocol . $server . "/apptsvc/rest/pree/retrieveQuestion?contestUUID=".$uuidURL;
+    $questionJSON = makeApiCall($apiURL);
+    if ($questionJSON['curl_error']) {
+     $errorMessage = $siteletteJSON['curl_error'];
+     $errorMessage = 'Service unavailable.';
+    } else if (isset($questionJSON['error'])) {
+      $errorMessage = $questionJSON['error']['message'];
+    } else {
+      /* change meta data based on question */
+      $og_url=$completeURL;
+      $og_type="article";
+      $og_title=$questionJSON['ogTitle'];
+      $og_description=$questionJSON['ogDescription'];
+      $og_image =$questionJSON['ogImage'];
+
+    }
+  }
  }
 }
 
-?> 
+?>
 <script>
    window.community={};
    window.community.protocol='<?php echo $protocol?>';
@@ -115,4 +157,6 @@ if ($siteletteJSON['curl_error']) {
    window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
    window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
    window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
+   window.community.sharedPree='<?php echo $sharedPree==TRUE?'true':'false'?>';
+   window.community.shareId='<?php echo $shareId ?>';
 </script>

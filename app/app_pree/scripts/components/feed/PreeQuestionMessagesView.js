@@ -34,7 +34,7 @@ var MessageItemView = Mn.ItemView.extend({
 	},
 
 	onShow: function() {
-		var marginLeft = this.model.get('offset')*10;
+		var marginLeft = this.model.get('messageId')*10;
 
 		// temporary decision to show deep replies
 		if (this.$el.width() < 400 && marginLeft > 180) {
@@ -54,7 +54,7 @@ var MessageItemView = Mn.ItemView.extend({
 	postComment: function() {
 		var options = {
             messageBody: this.ui.messageReplyBody.val(),
-            inReplyToCommunicationId: this.model.get('offset'),
+            inReplyToMessageId: this.model.get('messageId'),
             authorId: this.options.user.UID,
             communicationId: this.model.get('communicationId'),
             urgent: false

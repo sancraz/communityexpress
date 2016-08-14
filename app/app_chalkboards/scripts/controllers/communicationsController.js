@@ -45,7 +45,7 @@ module.exports = {
                 toServiceLocationId: sl,
                 messageBody: messageBody,
                 authorId: uid,
-                inReplyToCommunicationId: offset,
+                inReplyToMessageId: offset,
                 communicationId: communicationId,
             },
             UID: uid
