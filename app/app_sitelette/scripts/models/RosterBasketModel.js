@@ -146,9 +146,12 @@ var RosterBasketModel = Backbone.Model.extend({
           });
         });
       } else {
-        console.log("From " + catalog.catalogId + ", type:" + catalog.catalogType);
+        console.log("From " + catalog.id + ", type:" + catalog.catalogType);
         /* A la carte (ITEMZIED) catalog items. NOTE: model = item */
         _(catalog.models).each(function(item, index, list) {
+
+          var x =   item.get('catalogId');
+
           var orderItem = {
             serviceAccommodatorId: sasl.sa(),
             serviceLocationId: sasl.sl(),
