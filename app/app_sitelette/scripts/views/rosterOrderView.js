@@ -216,7 +216,7 @@ var RosterOrderView = PageLayout.extend({
     },
 
     onSubmit: function (options) {
-        if (!this.validateCardInfo(options.creditCard)) {
+        if (!options.cashSelected && !this.validateCardInfo(options.creditCard)) {
             return;
         };
         loader.show('placing your order');
