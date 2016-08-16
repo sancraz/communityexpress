@@ -58,7 +58,7 @@ var RosterView = PageLayout.extend({
         //this.roster.isOpen = true; // remove this row when param will be available !!!
         if (!this.roster.isOpen) {
             this.openSubview('textPopup',
-                { text: 'The business is not taking orders now. Please try tomorrow' },
+                { text: 'Business accept orders upto 10 AM for todays orders, 3 PM onwards for next day orders.' },
                 this.goBack);
             // I don't know, exactly, what should be when I click OK
             // right now we return to the restaurant
