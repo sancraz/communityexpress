@@ -22,6 +22,7 @@ var SignupView = PopupView.extend({
         this.callback = options.callback || function () {};
 
         this.addEvents({
+            'click .submit_signup': 'submitForm',
             'submit': 'submitForm',
             'focus input[type=password]': 'hideSignupError'
         });
