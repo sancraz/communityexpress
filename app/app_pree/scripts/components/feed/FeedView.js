@@ -30,7 +30,6 @@ var feedView = Mn.CollectionView.extend({
     },
 
     onShow: function() {
-        console.log(this.collection);
         this.bindScroll();
     },
 

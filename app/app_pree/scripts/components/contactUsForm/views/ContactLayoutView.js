@@ -8,10 +8,6 @@ var ContactLayoutView = Mn.LayoutView.extend({
 
     className: 'contact-form',
 
-    regions: {
-        popupRegion: '#popup-region'
-    },
-
     ui: {
         signin: '.signin-button',
         signup: '.signup-button',
@@ -90,10 +86,6 @@ var ContactLayoutView = Mn.LayoutView.extend({
 
     signup: function() {
         this.trigger('signup', 'signup');
-    },
-
-    openPopupView: function(view) {
-        this.popupRegion.show(view);
     }
 
 });

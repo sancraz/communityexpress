@@ -3,15 +3,15 @@
 var Router = require('./router'),
     sessionActions = require('./actions/sessionActions'),
     userController = require('./controllers/userController'),
-    pageController = require('./pageController'),
-    HeaderView = require('./components/header/HeaderView');
+    pageController = require('./pageController');
 
 var App = new Mn.Application();
 
 App.goToPage = function(viewName) {
-    if (viewName === 'feed') {
-        viewName = userController.hasCurrentUser() ? 'feed' : 'auth';
-    };
+    if (window.community.sharedPree===true) {
+     viewName = 'feed'
+    }
+
     pageController[viewName]();
 };
 
@@ -37,10 +37,14 @@ App.on('start',function() {
 
     if (localStorage.cmxUID) {
         sessionActions.getSessionFromLocalStorage().then(function () {
+            pageController.auth();
             App.trigger('viewChange','feed');
         });
     } else {
-        App.trigger('viewChange','auth');
+        pageController.auth();
+        window.community.sharedPree===true ?
+        App.trigger('viewChange', 'feed') :
+        App.trigger('viewChange','contactus');
     }
 });
 

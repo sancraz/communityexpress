@@ -22,7 +22,7 @@ var HeaderView = Mn.LayoutView.extend({
     },
 
     confirmSignout: function () {
-        this.trigger('confirmSignout');
+        this.trigger('confirmSignout', this);
     },
 
     signedIn: function() {
@@ -40,8 +40,8 @@ var HeaderView = Mn.LayoutView.extend({
     },
 
     signin: function(triggerEvent) {
-        if (this.user !== undefined) return;
-        this.trigger('authentificate', triggerEvent);
+        if (typeof this.options.user !== 'undefined' && this.options.user.UID !== '') return;
+        this.trigger('authentificate', 'signin');
     }
 });
 

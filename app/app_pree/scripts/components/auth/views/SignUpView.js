@@ -12,7 +12,9 @@ var SignUpView = Mn.ItemView.extend({
 
     ui: {
         close: '.close_button',
-        submit: '.submit_button'
+        submit: '.submit_button',
+        username: 'input[name="username"]',
+        password: 'input[name="password"]'
     },
 
     events: {
@@ -49,9 +51,16 @@ var SignUpView = Mn.ItemView.extend({
         return values;
     },
 
+    val: function () {
+        return {
+            username: this.ui.username.val(),
+            password: this.ui.password.val()
+        };
+    },
+
     _onSignupSuccess: function(response) {
         loader.showFlashMessage( 'successfully signed up as ' + response.username );
-        this.close();
+        this.trigger('submitSignin');
     },
 
     _onSignupError: function(e) {
@@ -62,7 +71,7 @@ var SignUpView = Mn.ItemView.extend({
         }
     },
 
-    close: function() {
+    close: function(callback) {
         this.$el.modal('hide');
     }
 });

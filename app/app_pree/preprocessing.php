@@ -157,6 +157,6 @@ if ($siteletteJSON['curl_error']) {
    window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
    window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
    window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
-   window.community.sharedPree='<?php echo $sharedPree==TRUE?'true':'false'?>';
+   window.community.sharedPree=<?php echo $sharedPree==TRUE?'true':'false'?>;
    window.community.shareId='<?php echo $shareId ?>';
 </script>

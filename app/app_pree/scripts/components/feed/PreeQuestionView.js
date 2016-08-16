@@ -105,6 +105,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         }
         if (this.justAnswered===true) {
             this.ui.infoIcon.show();
+            this.ui.messages.show();
             setTimeout(_.bind(function() {
                 this.showAnswerInfo();
             }, this), 500);
@@ -112,6 +113,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         if(this.isAnswered===true){
           this.showMask();
           this.ui.infoIcon.show();
+          this.ui.messages.show();
         }
         if (this.isLiked===true) {
             this.ui.likesButton.find('div').addClass('active');
@@ -131,7 +133,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     onIsAnswered: function() {
-        // TODO we dont have answered from server and choice id ???
         var choiceId = this.model.get('currentChoiceByUser'),
             answer = this.ui.answer.find('input[data-id="' + choiceId + '"]');
         answer.prop('checked', true);
@@ -273,11 +274,16 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     getMessages: function() {
-        if (this.expandedMessages===false) {
-            this.trigger('getMessages', this.model.get('uuid'));
+        if (this.isAnswered===true || this.justAnswered===true) {
+            if (this.expandedMessages===false) {
+                this.trigger('getMessages', this.model.get('uuid'));
+            }
+            this.trigger('collapseMessages');
+            this.onShowRootCommentField();
+        } else {
+            var text = 'Please answer the question before commenting';
+            this.trigger('showNotAnsweredError', text);
         }
-        this.trigger('collapseMessages');
-        this.onShowRootCommentField();
     },
 
     onShowMessages: function(view) {
@@ -329,6 +335,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             this.ui.messageBody.attr('maxlength', '');
         }
 
+        this.ui.messageBody.css('height', 0);
         var height = this.ui.messageBody[0].scrollHeight + 2;
         this.ui.messageBody.css({
             overflow: 'hidden',

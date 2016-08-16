@@ -1,4 +1,5 @@
 .pree_question_messages {
+	display: none;
 	margin-top: 10px;
 
 	.reply_comment_field {
@@ -47,6 +48,7 @@
 		.messages_list {
 
 			.message_body {
+				margin-top: 10px;
 
 				img {
 					height: 40px;

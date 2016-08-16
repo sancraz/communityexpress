@@ -12,8 +12,7 @@ var CentralLayoutView = Mn.LayoutView.extend({
     regions: {
         filtersRegion: '#filters-region',
         newQuestionRegion: '#new-question-region',
-        questionsRegion: '#questions-region',
-        popupRegion: '#popup_region'
+        questionsRegion: '#questions-region'
     },
 
     showFiltersView: function(view){
@@ -26,15 +25,8 @@ var CentralLayoutView = Mn.LayoutView.extend({
 
     showQuestionsView: function(view) {
         this.questionsRegion.show(view);
-    },
-
-    showShareQuestionView: function(view) {
-        this.popupRegion.show(view);
-    },
-
-    showTextMessageView: function(view) {
-        this.popupRegion.show(view);
     }
+
 });
 
 module.exports = CentralLayoutView;

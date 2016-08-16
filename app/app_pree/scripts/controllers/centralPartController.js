@@ -28,11 +28,15 @@ var App = require('../app'),
 module.exports = {
 
     showLayout: function() {
+        App.regions = new AppLayoutView();
         this.user = sessionActions.getCurrentUser();
         this.UID = this.user && this.user.UID ? this.user.UID : '';
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
         this.showFilters();
+        if (this.user.UID !== ''  && typeof this.user.UID !== 'undefined') {
+            this.showInfoPanel();
+        }
         App.on('createNewQuestion:show', _.bind(this.showCreateNewQuestion, this));
         App.on('refreshFeed', _.bind(this.getQuestions, this));
         App.on('statusChanged', _.bind(this.getQuestions, this));
@@ -40,16 +44,19 @@ module.exports = {
     },
 
     showFilters: function() {
+        this.filtersView = new FiltersView({});
+        this.filtersView.listenTo(this.filtersView, 'getCategories', _.bind(this.getCategories, this));
+        this.filtersView.listenTo(this.filtersView, 'getTags', _.bind(this.getTags, this));
+        this.filtersView.listenTo(this.filtersView, 'getQuestions', _.bind(this.getQuestions, this));
+        this.centralLayoutView.showFiltersView(this.filtersView);
+    },
+
+    showInfoPanel: function() {
         this.infoPanelView = new InfoPanelView();
-        var filtersView = new FiltersView({});
-        this.infoPanelView.listenTo(this.infoPanelView, 'selectFilter', function(filter) {
-            filtersView.triggerMethod('selectFiltersTab', filter);
-        });
+        this.infoPanelView.listenTo(this.infoPanelView, 'selectFilter', _.bind(function(filter) {
+            this.filtersView.triggerMethod('selectFiltersTab', filter);
+        }, this));
         this.infoPanelView.listenTo(this.infoPanelView, 'createQuestion', _.bind(this.showCreateNewQuestion, this));
-        filtersView.listenTo(filtersView, 'getCategories', _.bind(this.getCategories, this));
-        filtersView.listenTo(filtersView, 'getTags', _.bind(this.getTags, this));
-        filtersView.listenTo(filtersView, 'getQuestions', _.bind(this.getQuestions, this));
-        this.centralLayoutView.showFiltersView(filtersView);
     },
 
     hideFilters: function() {
@@ -79,7 +86,7 @@ module.exports = {
             model: questionModel
         });
         shareQuestionView.listenTo(shareQuestionView, 'shareQuestion', _.bind(this.showShareQuestionEmailSMS, this));
-        this.centralLayoutView.showShareQuestionView(shareQuestionView);
+        App.regions.getRegion('popupRegion').show(shareQuestionView);
     },
 
     showShareQuestionEmailSMS: function(options) {
@@ -95,7 +102,7 @@ module.exports = {
         };
         view.listenTo(view, 'sendEmail', _.bind(this.sendEmail, this));
         view.listenTo(view, 'sendMobile', _.bind(this.sendMobile, this));
-        this.centralLayoutView.showShareQuestionView(view)
+        App.regions.getRegion('popupRegion').show(view);
     },
 
     sendEmail: function(uuid, email, shareUrl, view) {
@@ -113,7 +120,7 @@ module.exports = {
                 var successView = new TextMessageView({
                     text: text
                 });
-                this.centralLayoutView.showTextMessageView(successView);
+                App.regions.getRegion('popupRegion').show(successView);
             }, this));
         }, this), _.bind(function(jqXHR) {
             var text = h().getErrorMessage(jqXHR, 'Unable to share question with ' + email);
@@ -123,7 +130,7 @@ module.exports = {
                 var errorMessageView = new TextMessageView({
                     text: text
                 });
-                this.centralLayoutView.showTextMessageView(errorMessageView);
+                App.regions.getRegion('popupRegion').show(errorMessageView);
             }, this));
         }, this));
     },
@@ -143,7 +150,7 @@ module.exports = {
                 var successView = new TextMessageView({
                     text: text
                 });
-                this.centralLayoutView.showTextMessageView(successView);
+                App.regions.getRegion('popupRegion').show(successView);
             }, this));
         }, this), _.bind(function(jqXHR) {
             var text = h().getErrorMessage(jqXHR, 'Unable to share question with ' + phone);
@@ -153,7 +160,7 @@ module.exports = {
                 var errorMessageView = new TextMessageView({
                     text: text
                 });
-                this.centralLayoutView.showTextMessageView(errorMessageView);
+                App.regions.getRegion('popupRegion').show(errorMessageView);
             }, this));
         }, this));
     },
@@ -176,7 +183,7 @@ module.exports = {
                 text: 'Successfully created a question',
                 callback: callback
             });
-            this.centralLayoutView.showTextMessageView(successView);
+            App.regions.getRegion('popupRegion').show(successView);
         }, this), function(e) {
             callback();
         });
@@ -256,13 +263,10 @@ module.exports = {
         communicationActions.getMessages(uuid).then(_.bind(function(resp) {
             if (resp.comments.length===0) return;
             this.preeQuestionMessagesView = new PreeQuestionMessagesView({
-                collection: new MessagesCollection(resp.messages),
+                collection: new MessagesCollection(resp.comments),
                 user: this.user,
                 parent: questionView
             });
-            if (message!==undefined) {
-                this.preeQuestionMessagesView.collection.add(new MessageModel(message));
-            }
             this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'hideRootCommentField', _.bind(function() {
                 questionView.triggerMethod('hideRootCommentField');
             }, this));
@@ -284,7 +288,7 @@ module.exports = {
         var errorMessageView = new TextMessageView({
             text: text
         });
-        this.centralLayoutView.showTextMessageView(errorMessageView)
+        App.regions.getRegion('popupRegion').show(errorMessageView);
     },
 
     addLikeDislike: function(options) {
@@ -335,7 +339,7 @@ module.exports = {
                 text: text,
                 callback: callback
             });
-            this.centralLayoutView.showTextMessageView(errorMessageView);
+            App.regions.getRegion('popupRegion').show(errorMessageView);
         }, this));
     }
 }

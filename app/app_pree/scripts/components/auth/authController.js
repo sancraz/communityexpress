@@ -7,62 +7,33 @@ var App = require('../../app'),
     gateway = require('../../APIGateway/gateway'),
     h = require('../../globalHelpers'),
     sessionActions = require('../../actions/sessionActions'),
-    ContactLayoutView = require('./views/ContactLayoutView'),
+    userController = require('../../controllers/userController'),
     SignInView = require('./views/SignInView'),
     SignUpView = require('./views/SignUpView'),
+    SignOutView = require('./views/SignOutView'),
     TextMessageView = require('../feed/TextMessageView');
 
 module.exports = {
 
     showLayout: function() {
-        // App.regions = new AppLayoutView();
-        this.contactLayoutView = new ContactLayoutView();
-        App.regions.getRegion('centralRegion').show(this.contactLayoutView);
+        this.user = sessionActions.getCurrentUser();
         App.on('authenticate', _.bind(this.authenticate, this));
-
-        // $('.createQuestionBtn').hide();
-        // $('.signin_button').on('click', _.bind(this.authenticate, this, 'signin'));
-
-        Vent.on('login_success', _.bind(this.navigateToFeed, this));
-        this.contactLayoutView.listenTo(this.contactLayoutView, 'signin signup', _.bind(this.authenticate, this));
-        this.contactLayoutView.listenTo(this.contactLayoutView, 'sendContactInfo', _.bind(this.sendContactInfo, this));
-    },
-
-    sendContactInfo: function(options) {
-        loader.show('sending');
-        gateway.sendRequest('sendContactInfo', {
-            payload: options
-        }).then(_.bind(function(resp) {
-            loader.hide();
-            var text = 'successfully sent your info';
-            var successView = new TextMessageView({
-                text: text
-            });
-            this.contactLayoutView.openPopupView(successView);
-        }, this), _.bind(function(jqXHR) {
-            loader.hide();
-            var text = h().getErrorMessage(jqXHR, 'Unable to send information');
-            var errorView = new TextMessageView({
-                text: text
-            });
-            this.contactLayoutView.openPopupView(errorView);
-        }, this));
+        App.on('confirmSignout', _.bind(this.confirmSignout, this));
     },
 
     authenticate: function(auth) {
-        var view;
         switch (auth) {
             case 'signin':
-                view = new SignInView();
-                this.contactLayoutView.listenTo(view, 'signup', _.bind(this.authenticate, this));
+                this.authView = new SignInView();
+                this.authView.listenTo(this.authView, 'signup', _.bind(this.authenticate, this));
                 break;
             case 'signup':
-                view = new SignUpView();
+                this.authView = new SignUpView();
             default:
         };
-        this.popup = view;
-        this.contactLayoutView.openPopupView(view);
-        this.contactLayoutView.listenTo(view, 'submitSignin', _.bind(this.submitSignin, this));
+        this.popup = this.authView;
+        App.regions.getRegion('popupRegion').show(this.authView);
+        this.authView.listenTo(this.authView, 'submitSignin', _.bind(this.submitSignin, this));
     },
 
     submitSignin: function() {
@@ -71,6 +42,8 @@ module.exports = {
             .then(function(response) {
                 loader.showFlashMessage( 'successfully signed in as ' + response.username );
                 this.popup.close();
+                App.trigger('login_success');
+                this.navigateToFeed();
             }.bind(this), function(jqXHR) {
                 if( jqXHR.status === 400 ) {
                     this.popup.showLoginError();
@@ -82,8 +55,30 @@ module.exports = {
         return false;
     },
 
+    confirmSignout: function(view) {
+        this.headerChangeView = view;
+        this.signOutView = new SignOutView({
+            text: 'Are you sure you want to sign out?',
+            action: this.signout.bind(this)
+        });
+        App.regions.getRegion('popupRegion').show(this.signOutView);
+        this.signOutView.listenTo(this.signOutView, 'signout', _.bind(this.signout, this));
+    },
+
+    signout: function() {
+        loader.show('');
+        userController.logout(this.user.getUID()).then(function() {
+            App.trigger('signout');
+            this.headerChangeView.signedOut();
+            loader.showFlashMessage( 'signed out' );
+            App.trigger('viewChange', 'contactus');
+        }.bind(this), function(e){
+            loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
+        });
+    },
+
     navigateToFeed: function() {
-        this.contactLayoutView.$el.on('hidden.bs.modal', _.bind(function() {
+        this.authView.$el.on('hidden.bs.modal', _.bind(function() {
             $('.signin_button').off('click');
             App.trigger('viewChange', 'feed');
         }, this));

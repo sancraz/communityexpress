@@ -1,4 +1,7 @@
 .contact-form {
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
     background-color: $white;
     margin-bottom: 15px;
     border: 1px solid $input;

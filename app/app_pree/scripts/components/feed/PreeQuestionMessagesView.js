@@ -34,7 +34,9 @@ var MessageItemView = Mn.ItemView.extend({
 	},
 
 	onShow: function() {
-		var marginLeft = this.model.get('messageId')*10;
+		var displayOffset = this.model.get('inReplyToMessageId');
+		var marginLeft;
+		displayOffset > 1 ? marginLeft = 20 : marginLeft = 0;
 
 		// temporary decision to show deep replies
 		if (this.$el.width() < 400 && marginLeft > 180) {
@@ -95,6 +97,7 @@ var MessageItemView = Mn.ItemView.extend({
             this.ui.messageReplyBody.attr('maxlength', '');
         }
 
+		this.ui.messageReplyBody.css('height', 0);
         var height = this.ui.messageReplyBody[0].scrollHeight + 2;
         this.ui.messageReplyBody.css({
             overflow: 'hidden',

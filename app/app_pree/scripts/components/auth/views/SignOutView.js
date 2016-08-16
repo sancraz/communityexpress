@@ -30,7 +30,7 @@ var SignOutView = Mn.ItemView.extend({
     performAction: function() {
         this.$el.modal('hide');
         this.$el.on('hidden.bs.modal', function() {
-            this.options.action();
+            this.trigger('signout');
         }.bind(this));
     },
 
