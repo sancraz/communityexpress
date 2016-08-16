@@ -18,6 +18,13 @@ $demo = TRUE;
 $demo = FALSE;
 }
 
+/*is demo=true */
+if (validateParams('embedded')) {
+$embedded= TRUE;
+} else {
+$embedded = FALSE;
+}
+
 /* is API server specified? */
 if (validateParams('server')) {
 $server = $_REQUEST['server'];
@@ -87,21 +94,6 @@ $isPrivate = FALSE;
 $canCreateAnonymousUser = FALSE;
 $apiURL = $protocol . $server . "/apptsvc/rest/pree/retrieveSitelette?UID=&latitude=&longitude=";
 
-if ($debug) {
- echo '$completeURL=' . $completeURL . "</br>";
- echo '$serverName=' . $serverName . "</br>";
- echo '$server=' . $server . "</br>";
- echo '$embedded=' . ($embedded ? 'true' : 'false') . "</br>";
- echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
- echo '$UID=' . $UID . "</br>";
- echo '$apiURL='.$apiURL."</br>";
- echo '$type='.$type."</br>";
- echo '$uuidURL='.$uuidURL."</br>";
- echo '$sharedPree='.$sharedPree."</br>";
- echo '$shareId='.$shareId.'</br>';
- return;
-}
-
 $siteletteJSON = makeApiCall($apiURL);
 if ($siteletteJSON['curl_error']) {
  $errorMessage = $siteletteJSON['curl_error'];
@@ -117,7 +109,7 @@ if ($siteletteJSON['curl_error']) {
   /* PREE specific: sharing related meta data */
   $og_url=$completeURL;
   $og_type="article";
-  $og_title="When Great Minds Don’t Think Alike";
+  $og_title="Where Great Minds Don't Think Alike";
   $og_description="Test your knowledge. Share with friends. Learn while having fun.";
   $og_image=$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/?f1=pree&f=default.jpg";
 
@@ -142,6 +134,30 @@ if ($siteletteJSON['curl_error']) {
     }
   }
  }
+}
+
+if ($debug) {
+ echo '$completeURL=' . $completeURL . "</br>";
+ echo '$serverName=' . $serverName . "</br>";
+ echo '$server=' . $server . "</br>";
+ echo '$embedded=' . ($embedded ? 'true' : 'false') . "</br>";
+ echo '$demo=' . ($demo ? 'true' : 'false') . "</br>";
+ echo '$UID=' . $UID . "</br>";
+ echo '$apiURL='.$apiURL."</br>";
+ echo '$type='.$type."</br>";
+ echo '$uuidURL='.$uuidURL."</br>";
+ echo '$sharedPree='.$sharedPree."</br>";
+ echo '$shareId='.$shareId.'</br>';
+ if($errorMessage){
+   echo '$errorMessage='.$errorMessage.'</br>';
+ }else{
+   echo '$og_url='.$og_url.'</br>';
+   echo '$og_type='.$og_type.'</br>';
+   echo '$og_title='.$og_title.'</br>';
+   echo '$og_description='.$og_description.'</br>';
+   echo '$og_image='.$og_image.'</br>';
+ }
+ exit("End of debug output");
 }
 
 ?>
