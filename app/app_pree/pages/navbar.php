@@ -54,24 +54,26 @@
     </div>
     <div class="infoPanel">
         <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li data-filtertype="TRENDING" class="navigation-link filter_tab"><a href="#">Home</a></li>
-                <li class="navigation-link filters-link">
-                    <button type="button" class="navbar-toggle collapsed toggle_btn" data-toggle="collapse" data-target="#bs-collapse-2" aria-expanded="false">
-                        Filters<span class="caret"></span>
-                    </button>
-                    <div class="collapse navbar-collapse collapsed-filters" id="bs-collapse-2">
-                        <ul class="nav navbar-nav collapsed-links">
-                            <li data-filtertype="CATEGORIES" class="filter_tab"><a href="#">Topic</a></li>
-                            <li data-filtertype="TAGS" class="filter_tab"><a href="#">Tags</a></li>
-                            <li data-filtertype="TYPE" class="filter_tab"><a href="#">Type</a></li>
-                            <li data-filtertype="MYQUESTIONS" class="filter_tab"><a href="#">My questions</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li data-filtertype="TRENDING" class="navigation-link filter_tab refresh_button"><a href="#"><span class="glyphicon glyphicon-refresh"></span></a></li>
-                <li class="navigation-link create_question_btn"><a href="#">Create</a></li>
-            </ul>
+            <div class="col-md-9 col-md-offset-3 col-sm-12">
+                <ul class="nav navbar-nav">
+                    <li data-filtertype="TRENDING" class="navigation-link filter_tab"><a href="#">Home</a></li>
+                    <li class="navigation-link filters-link">
+                        <button type="button" class="navbar-toggle collapsed toggle_btn" data-toggle="collapse" data-target="#bs-collapse-2" aria-expanded="false">
+                            Filters<span class="caret"></span>
+                        </button>
+                        <div class="collapse navbar-collapse collapsed-filters" id="bs-collapse-2">
+                            <ul class="nav navbar-nav collapsed-links">
+                                <li data-filtertype="CATEGORIES" class="filter_tab"><a href="#">Topic</a></li>
+                                <li data-filtertype="TAGS" class="filter_tab"><a href="#">Tags</a></li>
+                                <li data-filtertype="TYPE" class="filter_tab"><a href="#">Type</a></li>
+                                <li data-filtertype="MYQUESTIONS" class="filter_tab"><a href="#">My questions</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li data-filtertype="TRENDING" class="navigation-link filter_tab refresh_button"><a href="#"><span class="glyphicon glyphicon-refresh"></span></a></li>
+                    <li class="navigation-link create_question_btn"><a href="#">Create</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

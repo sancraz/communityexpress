@@ -317,10 +317,6 @@
         }
     }
 
-    .show_hide_answer_info {
-        display: none;
-    }
-
     .pree_question_likes_icon,
     .pree_question_comment_icon {
         display: block;
@@ -357,9 +353,15 @@
     .pree_question_comment_button,
     .pree_question_share_button,
     .pree_question_answers,
-    .already_answered_text {
+    .already_answered_text,
+    .show_hide_answer_info {
         display: inline-block;
         margin-right: 20px;
+        margin-top: 10px;
+    }
+
+    .show_hide_answer_info {
+        display: none;
     }
 
 

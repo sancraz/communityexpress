@@ -280,6 +280,9 @@ module.exports = {
 
     postComment: function(questionView, options) {
         communicationActions.postComment(options).then(_.bind(function(resp) {
+            questionView.onShowRootCommentField();
+            var textarea = questionView.$el.find('.root_textarea');
+            textarea.val('').css('height', 0).css('height', textarea[0].scrollHeight + 2 + 'px');
             this.getMessages(questionView, resp);
         }, this))
     },

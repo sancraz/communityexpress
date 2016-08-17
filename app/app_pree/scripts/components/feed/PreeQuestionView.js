@@ -104,7 +104,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             this.ui.preeQuestion.addClass('highlighted');
         }
         if (this.justAnswered===true) {
-            this.ui.infoIcon.show();
+            this.ui.infoIcon.css('display', 'inline-block');
             this.ui.messages.show();
             setTimeout(_.bind(function() {
                 this.showAnswerInfo();
@@ -112,7 +112,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
         }
         if(this.isAnswered===true){
           this.showMask();
-          this.ui.infoIcon.show();
+          this.ui.infoIcon.css('display', 'inline-block');
           this.ui.messages.show();
         }
         if (this.isLiked===true) {
@@ -196,8 +196,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
             }
             var dataArray = [array];
 
-            // var options = this.model.get('options'),
-            //     dataArray = this.model.get('dataArray');
             options.seriesDefaults.renderer = $.jqplot.BarRenderer;
             options.axes.yaxis.renderer = $.jqplot.CategoryAxisRenderer;
             options.axes.yaxis.rendererOptions.tickRenderer = $.jqplot.AxisTickRenderer;

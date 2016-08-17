@@ -76,7 +76,6 @@
           </ul>
         </div>
     </section>
-    <div class="show_hide_answer_info"><img src="images/info.png"></div>
     <div class="pree_question_detailed collapse">
         <div class="pree_question_answer">
             <header class="answerHeader">
@@ -115,6 +114,7 @@
         </div>
     </div>
     <footer class="questionFooter">
+        <div class="show_hide_answer_info"><img src="images/info.png"></div>
         <div class="pree_question_likes_button">
             <div class="pree_question_likes_icon"></div>
             <div class="pree_question_likes_count"><%= likes %></div>
@@ -138,7 +138,7 @@
     <div class="pree_question_answer_details"></div>
     <div class="pree_question_messages">
         <div class="root_comment_field">
-            <textarea placeholder="leave comment as <%= user.userName %>"></textarea>
+            <textarea class="root_textarea" placeholder="leave comment as <%= user.userName %>"></textarea>
             <a href="">POST</a>
             <div class="counter">
                 <div class="message_length">500</div>
