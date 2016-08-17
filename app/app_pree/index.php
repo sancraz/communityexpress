@@ -27,7 +27,16 @@
 <meta property="og:title"              content="<?PHP echo $og_title?>"/>
 <meta property="og:description"        content="<?PHP echo $og_description?>"/>
 <meta property="og:image"              content="<?PHP echo $og_image?>"/>
-  <!-- Title here -->
+
+ <!-- twitter meta tags -->
+<meta name="twitter:card"              content="<?PHP echo $twitter_card?>"/>
+<meta name="twitter:site"              content="<?PHP echo $twitter_site?>"/>
+<meta name="twitter:creator"           content="@Pree"/>
+<meta name="twitter:title"             content="<?PHP echo $twitter_title?>"/>
+<meta name="twitter:description"       content="<?PHP echo $twitter_description?>"/>
+<meta name="twitter:image"             content="<?PHP echo $twitter_image?>"/>
+ 
+
  <title>Pree - Home</title>
  <?php
      include_once ('pages/header.php');

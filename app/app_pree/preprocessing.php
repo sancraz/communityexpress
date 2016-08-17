@@ -106,12 +106,18 @@ if ($siteletteJSON['curl_error']) {
   $serviceAccommodatorId = $saslJSON['serviceAccommodatorId'];
   $serviceLocationId = $saslJSON['serviceLocationId'];
   $themeCSS = 'styles.css';
-  /* PREE specific: sharing related meta data */
+  /* Facebook specific: sharing related meta data */
   $og_url=$completeURL;
   $og_type="article";
   $og_title="Where Great Minds Don't Think Alike";
   $og_description="Test your knowledge. Share with friends. Learn while having fun.";
   $og_image=$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/pree/default.jpg";
+  /* Twitter related */
+  $twitter_card="summary_large_image";
+  $twitter_site="@Pree";
+  $twitter_title="Where Great Minds Don't Think Alike";
+  $twitter_description="Test your knowledge. Share with friends. Learn while having fun.";
+  $twitter_image=$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/pree/default.jpg";
 
   if( $sharedPree ){
     /* pull up the question and prepare the meta data */
@@ -125,12 +131,14 @@ if ($siteletteJSON['curl_error']) {
       $errorMessage = $questionJSON['error']['message'];
     } else {
       /* change meta data based on question */
-      $og_url=$completeURL;
-      $og_type="article";
+     
       $og_title=$questionJSON['ogTitle'];
       $og_description=$questionJSON['ogDescription'];
       $og_image =$questionJSON['ogImage'];
 
+      $twitter_title=$questionJSON['ogTitle'];
+      $twitter_description=$questionJSON['ogDescription'];
+      $twitter_image=$questionJSON['ogImage'];
     }
   }
  }
