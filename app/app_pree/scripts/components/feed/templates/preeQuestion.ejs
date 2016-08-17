@@ -86,7 +86,7 @@
                 <div class="resultsData">
                     <p class="resultsText">Results:</p>
                     <% _.each(choices, function(choice) { %>
-                        <div><p><% if (choice.percentOfTotalResponses !== null) { %> <%= choice.percentOfTotalResponses.toFixed(2) %><% } %>%</p><p>: <%= choice.choiceId %>: </p> <%= choice.displayText %> <% if (choice.thisIsYourChoice) { %> - <span>YOU</span> <% } %></div>
+                        <div><p><% if (choice.percentOfTotalResponses !== null && choice.percentOfTotalResponses !== "NaN") { %> <%= choice.percentOfTotalResponses.toFixed(2) %><% } %>%</p><p>: <%= choice.choiceId %>: </p> <%= choice.displayText %> <% if (choice.thisIsYourChoice) { %> - <span>YOU</span> <% } %></div>
                     <% }) %>
                 </div>
                 <div id="answerBar<%= uuid %>" class="answerBar"></div>

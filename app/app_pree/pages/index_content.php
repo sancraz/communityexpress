@@ -7,7 +7,7 @@ Accumsan dui a, cubilia orci a pellentesque, consequat nulla, vitae nonummy susc
          </div>
 
          <!-- This is Backbone.marionette container -->
-         <div id="app-container" class="col-xs-12 col-sm-6 col-md-6 col-lg-6 app-container"></div>
+         <div id="app-container" class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-lg-6 app-container"></div>
          <!-- The end of Backbone.marionette container -->
 
          <div id="right-region" class="col-sm-3 col-md-3 col-lg-2 rightPanel">

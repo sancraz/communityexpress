@@ -42,6 +42,7 @@ App.on('start',function() {
             'overflow-y': 'scroll',
             'height': '100%'
         });
+        $('.app-container').removeClass('col-sm-offset-3');
         $('.leftPanel').addClass('pree_share_first_tile');
     }
 
