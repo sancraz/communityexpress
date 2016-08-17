@@ -1,4 +1,9 @@
-# turn on gzip compression 
+RewriteEngine on
+RewriteRule ^(.*)/(.*)/(.*)(.)?$ index.php?temppath=$1&t=$2&u=$3 [L]
+RewriteRule ^(.*)/(.*)(.)?$ index.php?t=$1&u=$2 [L]
+#RewriteRule ^(.*)(.)?$ index.php?t=$1 [L]
+
+# turn on gzip compression
 AddOutputFilterByType DEFLATE text/plain
 AddOutputFilterByType DEFLATE text/html
 AddOutputFilterByType DEFLATE text/xml
