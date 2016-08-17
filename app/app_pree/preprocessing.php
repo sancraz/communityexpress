@@ -161,18 +161,3 @@ if ($debug) {
 }
 
 ?>
-<script>
-   window.community={};
-   window.community.protocol='<?php echo $protocol?>';
-   window.community.UID='<?php echo $UID ?>';
-   window.community.type='<?php echo $type ?>';
-   window.community.uuidURL='<?php echo $uuidURL ?>';
-   window.community.demo='<?php echo  $demo==TRUE?'true':'false'?>';
-   window.community.server='<?php echo $server ?>';
-   window.community.host='<?php echo $serverName ?>';
-   window.community.serviceAccommodatorId='<?php echo $serviceAccommodatorId ?>';
-   window.community.serviceLocationId='<?php echo $serviceLocationId ?>';
-   window.community.canCreateAnonymousUser=<?php echo  $canCreateAnonymousUser==TRUE?'true':'false'?>;
-   window.community.sharedPree=<?php echo $sharedPree==TRUE?'true':'false'?>;
-   window.community.shareId='<?php echo $shareId ?>';
-</script>
