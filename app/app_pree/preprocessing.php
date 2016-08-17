@@ -61,7 +61,7 @@ $UID = NULL;
 if (validateParams('t')) {
 $type = $_REQUEST['t'];
 } else {
-$type = NULL;
+$type = 'l';
 }
 
 if (validateParams('u')) {
