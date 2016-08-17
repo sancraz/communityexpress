@@ -58,7 +58,7 @@ var RosterView = PageLayout.extend({
         //this.roster.isOpen = true; // remove this row when param will be available !!!
         if (!this.roster.isOpen) {
             this.openSubview('textPopup',
-                { text: 'We accept orders until 10 am for the same day OR from 3 pm for the next day.' },
+                { text: this.isOpenWarningMessage },
                 this.goBack);
             // I don't know, exactly, what should be when I click OK
             // right now we return to the restaurant
@@ -74,6 +74,7 @@ var RosterView = PageLayout.extend({
         this.rosterId = options.rosterId;
         this.rosterType = options.roster.data.rosterType.enumText;
         this.rosterDisplayText = options.roster.data.displayText;
+        this.isOpenWarningMessage = options.roster.data.isOpenWarningMessage;
         this.navbarView = options.navbarView;
         this.launchedViaURL = options.launchedViaURL;
         this.on('show', this.onShow, this);
