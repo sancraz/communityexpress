@@ -111,7 +111,7 @@ if ($siteletteJSON['curl_error']) {
   $og_type="article";
   $og_title="Where Great Minds Don't Think Alike";
   $og_description="Test your knowledge. Share with friends. Learn while having fun.";
-  $og_image=$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/?f1=pree&f=default.jpg";
+  $og_image=$protocol.$server."/apptsvc/rest/media/retrieveStaticMedia/pree/default.jpg";
 
   if( $sharedPree ){
     /* pull up the question and prepare the meta data */
