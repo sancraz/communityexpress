@@ -85,6 +85,9 @@ var FeedSelectorView = Mn.LayoutView.extend({
         this.model.set(attrs);
         this.model.set('timeAgo', this.moment(this.model.get('activationDate')).fromNow());
         this.justAnswered = true;
+        if (window.community.sharedPree===true) {
+            this.trigger('refreshPanels');
+        }
         this.render();
     },
 
@@ -241,6 +244,10 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     addLikeDislike: function() {
+        if (window.community.sharedPree===true) {
+            this.trigger('signinRequired');
+            return;
+        }
         if (this.isAnswered===true || this.justAnswered===true) {
             if (this.isLiked===true) {
                 this.trigger('addLikeDislike', {
@@ -268,10 +275,18 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     openShareQuestionView: function() {
+        if (window.community.sharedPree===true) {
+            this.trigger('signinRequired');
+            return;
+        }
         this.trigger('sharePopup:show', this.model);
     },
 
     getMessages: function() {
+        if (window.community.sharedPree===true) {
+            this.trigger('signinRequired');
+            return;
+        }
         if (this.isAnswered===true || this.justAnswered===true) {
             if (this.expandedMessages===false) {
                 this.trigger('getMessages', this.model.get('uuid'));

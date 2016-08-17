@@ -25,6 +25,8 @@ var FiltersView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
+		window.community.sharedPree===true ?
+		this.onGetSharedQuestion() :
 		this.onGetDefault();
 	},
 
@@ -43,6 +45,13 @@ var FiltersView = Mn.LayoutView.extend({
 				this.onGetDefault();
 				break;
 		}
+	},
+
+	onGetSharedQuestion: function() {
+		var options = {
+			contestUUID: window.community.uuidURL
+		};
+		this.trigger('getQuestion', options);
 	},
 
 	onGetDefault: function() {

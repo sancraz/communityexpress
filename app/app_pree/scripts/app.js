@@ -35,15 +35,23 @@ App.on('start',function() {
 
     Backbone.history.start({pushState: true});
 
-    if (localStorage.cmxUID) {
+    if (window.community.sharedPree===true) {
+        $('.login_status').hide();
+        $('.main_content').css({
+            'padding-top': '60px',
+            'overflow-y': 'scroll',
+            'height': '100%'
+        });
+        $('.leftPanel').addClass('pree_share_first_tile');
+    }
+
+    if (localStorage.cmxUID || window.community.sharedPree===true) {
         sessionActions.getSessionFromLocalStorage().then(function () {
             pageController.auth();
             App.trigger('viewChange','feed');
         });
     } else {
         pageController.auth();
-        window.community.sharedPree===true ?
-        App.trigger('viewChange', 'feed') :
         App.trigger('viewChange','contactus');
     }
 });

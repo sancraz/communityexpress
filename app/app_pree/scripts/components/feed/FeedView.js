@@ -17,7 +17,9 @@ var feedView = Mn.CollectionView.extend({
         'addLikeDislike': 'addLikeDislike',
         'showNotAnsweredError': 'showNotAnsweredError',
         'getMessages': 'getMessages',
-        'postComment': 'postComment'
+        'postComment': 'postComment',
+        'refreshPanels': 'refreshPanels',
+        'signinRequired': 'triggerSigninRequired'
     },
 
     childViewOptions: function() {
@@ -101,6 +103,15 @@ var feedView = Mn.CollectionView.extend({
 
     postComment: function(view, options) {
         this.trigger('postComment', view, options);
+    },
+
+    refreshPanels: function() {
+        this.trigger('refreshPanels');
+    },
+
+    triggerSigninRequired: function() {
+        var text = 'Please, login or create your account';
+        this.trigger('signinRequired', text);
     },
 
     rerenderChild: function(model) {

@@ -14,7 +14,7 @@
 
             <div class="collapse navbar-collapse" id="bs-collapse-1">
 
-                <ul class="nav navbar-nav navbar-right header_element">
+                <ul class="nav navbar-nav navbar-right header_element login_status">
                   <!--
                   <li>
                       <a href="admin.php"> Admin </a>

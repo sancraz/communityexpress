@@ -34,7 +34,7 @@ module.exports = {
         this.centralLayoutView = new CentralLayoutView();
         App.regions.getRegion('centralRegion').show(this.centralLayoutView);
         this.showFilters();
-        if (this.user.UID !== ''  && typeof this.user.UID !== 'undefined') {
+        if (this.user.UID !== ''  && typeof this.user.UID !== 'undefined' && !window.community.sharedPree) {
             this.showInfoPanel();
         }
         App.on('createNewQuestion:show', _.bind(this.showCreateNewQuestion, this));
@@ -48,6 +48,7 @@ module.exports = {
         this.filtersView.listenTo(this.filtersView, 'getCategories', _.bind(this.getCategories, this));
         this.filtersView.listenTo(this.filtersView, 'getTags', _.bind(this.getTags, this));
         this.filtersView.listenTo(this.filtersView, 'getQuestions', _.bind(this.getQuestions, this));
+        this.filtersView.listenTo(this.filtersView, 'getQuestion', _.bind(this.getQuestion, this));
         this.centralLayoutView.showFiltersView(this.filtersView);
     },
 
@@ -117,20 +118,14 @@ module.exports = {
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
-                var successView = new TextMessageView({
-                    text: text
-                });
-                App.regions.getRegion('popupRegion').show(successView);
+                this.showTextMessageView(text);
             }, this));
         }, this), _.bind(function(jqXHR) {
             var text = h().getErrorMessage(jqXHR, 'Unable to share question with ' + email);
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
-                var errorMessageView = new TextMessageView({
-                    text: text
-                });
-                App.regions.getRegion('popupRegion').show(errorMessageView);
+                this.showTextMessageView(text);
             }, this));
         }, this));
     },
@@ -147,20 +142,14 @@ module.exports = {
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
-                var successView = new TextMessageView({
-                    text: text
-                });
-                App.regions.getRegion('popupRegion').show(successView);
+                this.showTextMessageView(text);
             }, this));
         }, this), _.bind(function(jqXHR) {
             var text = h().getErrorMessage(jqXHR, 'Unable to share question with ' + phone);
             view.close();
             view.$el.on('hidden.bs.modal', _.bind(function() {
                 loader.hide();
-                var errorMessageView = new TextMessageView({
-                    text: text
-                });
-                App.regions.getRegion('popupRegion').show(errorMessageView);
+                this.showTextMessageView(text);
             }, this));
         }, this));
     },
@@ -178,12 +167,9 @@ module.exports = {
             UID: this.user.getUID(),
             payload: model.toJSON()
         }).then(_.bind(function(resp) {
-            var callback = _.bind(this.getQuestions, this);
-            var successView = new TextMessageView({
-                text: 'Successfully created a question',
-                callback: callback
-            });
-            App.regions.getRegion('popupRegion').show(successView);
+            var callback = _.bind(this.getQuestions, this),
+                text = 'Successfully created a question';
+            this.showTextMessageView(text, callback);
         }, this), function(e) {
             callback();
         });
@@ -221,14 +207,37 @@ module.exports = {
         this.hideCreateNewQuestion();
         loader.show('questions');
         this.params['UID'] = this.user.UID;
+        // this.params['throw'] = true;
         gateway.sendRequest('getPreeQuestions', this.params)
         .then(_.bind(function(resp) {
             var model = new FeedModel(resp);
             this.showQuestions(model);
-        }, this), function(e) {
+        }, this), _.bind(function(e) {
           loader.hide();
-          loader.showErrorMessage(e, 'unable to load questions')
-        });
+          var text = h().getErrorMessage(e, 'unable to load questions');
+          this.showTextMessageView(text);
+      }, this));
+    },
+
+    getQuestion: function(params) {
+        loader.hide();
+        this.params = params || {};
+        loader.show('shared question');
+        this.params['UID'] = sessionActions.getCurrentUser().getUID();
+        // this.params['throw'] = true;
+        gateway.sendRequest('getPreeQuestionByUUID', this.params)
+        .then(_.bind(function(resp) {
+            var model = new FeedModel();
+            model.questionCollection.add(resp);
+            this.showQuestions(model);
+        }, this), _.bind(function(e) {
+            loader.hide();
+            var text = h().getErrorMessage(e, 'unable to load question'),
+                callback = function() {
+                    window.location = window.location.pathname;
+                };
+            this.showTextMessageView(text, callback);
+        }, this));
     },
 
     showQuestions: function(model) {
@@ -250,10 +259,20 @@ module.exports = {
         feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
         feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
         feedView.listenTo(feedView, 'addLikeDislike', _.bind(this.addLikeDislike, this));
-        feedView.listenTo(feedView, 'showNotAnsweredError', _.bind(this.showNotAnsweredError, this));
+        feedView.listenTo(feedView, 'showNotAnsweredError', _.bind(this.showTextMessageView, this));
         feedView.listenTo(feedView, 'getMessages', _.bind(this.getMessages, this));
         feedView.listenTo(feedView, 'postComment', _.bind(this.postComment, this));
+        feedView.listenTo(feedView, 'refreshPanels', _.bind(this.refreshPanels, this));
+        feedView.listenTo(feedView, 'signinRequired', _.bind(this.showTextMessageView, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
+    },
+
+    refreshPanels: function() {
+        $('.pree_share_first_tile').css({
+            'font-size': '20px',
+            'color': '#ff0000',
+            'text-align': 'center'
+        }).text('Thank you for answering.')
     },
 
     getMessages: function(questionView, message) {
@@ -285,13 +304,6 @@ module.exports = {
             textarea.val('').css('height', 0).css('height', textarea[0].scrollHeight + 2 + 'px');
             this.getMessages(questionView, resp);
         }, this))
-    },
-
-    showNotAnsweredError: function(text) {
-        var errorMessageView = new TextMessageView({
-            text: text
-        });
-        App.regions.getRegion('popupRegion').show(errorMessageView);
     },
 
     addLikeDislike: function(options) {
@@ -328,7 +340,7 @@ module.exports = {
     onAnswerQuestion: function(choiceId, uuid, isCorrect, view) {
         console.log(choiceId, uuid);
         gateway.sendRequest('answerQuestion', {
-            UID: this.UID,
+            UID: window.community.sharedPree===true ? '' : this.UID,
             uuid: uuid,
             choice: choiceId
         }).then(_.bind(function(resp) {
@@ -338,11 +350,15 @@ module.exports = {
                 callback = function() {
                     console.log('callback');
                 };
-            var errorMessageView = new TextMessageView({
-                text: text,
-                callback: callback
-            });
-            App.regions.getRegion('popupRegion').show(errorMessageView);
+            this.showTextMessageView(text, callback);
         }, this));
+    },
+
+    showTextMessageView: function(text, callback) {
+        var textMessageView = new TextMessageView({
+            text: text,
+            callback: callback
+        });
+        App.regions.getRegion('popupRegion').show(textMessageView);
     }
-}
+};

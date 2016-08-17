@@ -197,4 +197,8 @@ html {
     .leftPanel {
         display: none;
     }
+
+    .pree_share_first_tile {
+        display: block;
+    }
 }
