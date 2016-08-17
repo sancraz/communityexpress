@@ -107,7 +107,7 @@ if ($siteletteJSON['curl_error']) {
   $serviceLocationId = $saslJSON['serviceLocationId'];
   $themeCSS = 'styles.css';
   /* Facebook specific: sharing related meta data */
-  $og_url=$completeURL;
+  //$og_url=$completeURL;
   $og_type="article";
   $og_title="Where Great Minds Don't Think Alike";
   $og_description="Test your knowledge. Share with friends. Learn while having fun.";
@@ -131,7 +131,7 @@ if ($siteletteJSON['curl_error']) {
       $errorMessage = $questionJSON['error']['message'];
     } else {
       /* change meta data based on question */
-     
+
       $og_title=$questionJSON['ogTitle'];
       $og_description=$questionJSON['ogDescription'];
       $og_image =$questionJSON['ogImage'];
