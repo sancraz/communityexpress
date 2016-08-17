@@ -18,7 +18,7 @@ Options +FollowSymLinks -MultiViews
  RewriteCond %{REQUEST_FILENAME} !-f
  RewriteCond %{REQUEST_FILENAME} !-d
 # RewriteRule ^([^/]*)/?$ index.php?friendlyURL=$1 [L,QSA]
-RewriteRule ^([^/]*)/?$ index.php?u=$1 [L,QSA] 
+# GOOD single RewriteRule ^([^/]*)/?$ index.php?u=$1 [L,QSA] 
 #BAD RewriteRule ^([^/]*)/([^/]*)/endshare/(.*)?$ index.php/$3 [L,QSA]
 # RewriteRule ^(.*)$ /$1 [NC,L]
 
