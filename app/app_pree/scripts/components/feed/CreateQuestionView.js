@@ -143,7 +143,17 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		// temporary set dates for FACT and OPINION
 		this.model.set('subType', parseInt(this.ui.typeChecked.attr('cmtyx-question-type')));
 
-		this.ui.uploadImage.html5imageupload();
+		this.ui.uploadImage.html5imageupload({
+			save: false,  // use custom method
+			canvas: true, // should be true for handle
+			data: {},
+			onSave: this.onSaveImage
+		});
+	},
+
+	onSaveImage: function(imageData) {
+		console.log(imageData);
+
 	},
 
 	onInitDatepickers: function() {
