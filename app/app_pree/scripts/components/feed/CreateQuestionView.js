@@ -147,7 +147,13 @@ var CreateQuestionView = Mn.LayoutView.extend({
 			save: false,  // use custom method
 			canvas: true, // should be true for handle
 			data: {},
-			onSave: this.onSaveImage.bind(this)
+			onSave: this.onSaveImage.bind(this),
+			onAfterSelectImage: function(){
+				$(this.element).addClass('added');
+			},
+			onAfterCancel: function() {
+				$(this.element).removeClass('added');
+			}
 		});
 	},
 

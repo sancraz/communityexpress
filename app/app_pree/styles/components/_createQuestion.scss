@@ -522,9 +522,12 @@
 
     .pree_question_upload_image {
         max-width:800px;
-        max-height: 300px;
+        max-height: 400px;
         margin-bottom: 20px;
         .dropzone {
+            border-radius: 3px;
+            height: 50px!important;
+            transition: 0.5s;
             .cropWrapper {
                 img {
                 }
@@ -536,7 +539,10 @@
                 
             }
             &::after {
-                /*bottom: 0;*/
+                bottom: 10%;
+            }
+            &.added {
+                height: 400px!important;
             }
         }
     }

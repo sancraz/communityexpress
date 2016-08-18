@@ -283,7 +283,7 @@
 		        })(f);
 		        reader.readAsDataURL(f);
 		    }
-		    if (_self.options.onAfterSelectImage) _self.options.onAfterSelectImage.call(_self, response, _self);
+		    if (_self.options.onAfterSelectImage) _self.options.onAfterSelectImage.call(_self);
 		},
 		
 		readImage: function(image, src, name, mimeType) {
