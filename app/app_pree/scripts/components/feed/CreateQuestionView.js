@@ -57,7 +57,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		answerArrow: '.answer-arrow',
 		categoriesError: '.categories_error',
 		choicesError: '.choices_error',
-		questionError: '.question_error'
+		questionError: '.question_error',
+		uploadImage: '.pree_question_upload_image .dropzone'
 	},
 
 	events: {
@@ -141,6 +142,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 		// temporary set dates for FACT and OPINION
 		this.model.set('subType', parseInt(this.ui.typeChecked.attr('cmtyx-question-type')));
+
+		this.ui.uploadImage.html5imageupload();
 	},
 
 	onInitDatepickers: function() {

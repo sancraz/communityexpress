@@ -519,4 +519,25 @@
             padding-left: 15px;
         }
     }
+
+    .pree_question_upload_image {
+        max-width:800px;
+        max-height: 300px;
+        margin-bottom: 20px;
+        .dropzone {
+            .cropWrapper {
+                img {
+                }
+            }
+            .tools {
+
+            }
+            &::before {
+                
+            }
+            &::after {
+                /*bottom: 0;*/
+            }
+        }
+    }
 }
