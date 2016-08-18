@@ -536,13 +536,17 @@
 
             }
             &::before {
-                
+                font-size: 44px;
+                top: -6px;
             }
             &::after {
                 bottom: 10%;
             }
             &.added {
                 height: 400px!important;
+            }
+            &.loading:after {
+                visibility: hidden;
             }
         }
     }
