@@ -66,6 +66,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
 
     initialize : function() {
         this.model.set('user', this.options.user);
+        this.isLoggedin = this.options.user.getUID() === '' ? false : true;
         this.model.set('timeAgo', this.moment(this.model.get('activationDate')).fromNow());
         console.log("FeedSelectorView initialized");
         this.model.set('messageLine1', '');
@@ -117,9 +118,6 @@ var FeedSelectorView = Mn.LayoutView.extend({
           this.showMask();
           this.ui.infoIcon.css('display', 'inline-block');
           this.ui.messages.show();
-        }
-        if (this.isLiked===true) {
-            this.ui.likesButton.find('div').addClass('active');
         }
     },
 
@@ -213,13 +211,14 @@ var FeedSelectorView = Mn.LayoutView.extend({
         var input = $(e.currentTarget).find('input');
         input.prop('checked', false);
         this.trigger('checkIfUserLogged', _.bind(function(logged){
-            if (logged) {
+            if (logged || window.community.sharedPree) {
                 this.openAnswerView(e);
             } else {
                 // this.model.set('isAnonymous', true);
                 if (this.model.get('isAnonymous')) {
                     this.openAnswerView(e);
                 } else {
+                    debugger;
                     this.onUserShouldLogin();
                 }
             }
@@ -244,47 +243,40 @@ var FeedSelectorView = Mn.LayoutView.extend({
     },
 
     addLikeDislike: function() {
-        if (window.community.sharedPree===true) {
-            this.trigger('signinRequired');
+        if (this.isLoggedin===false) {
+            var text = 'Please, login or create an account to like a question'
+            this.trigger('showTextMessage', text);
             return;
         }
         if (this.isAnswered===true || this.justAnswered===true) {
-            if (this.isLiked===true) {
-                this.trigger('addLikeDislike', {
-                    uuid: this.model.get('uuid'),
-                    like: false
-                });
-                this.isLiked = false;
-                this.currentLikes = this.currentLikes - 1;
-                this.ui.likeCount.text(this.currentLikes);
-                this.ui.likesButton.find('div').removeClass('active');
-            } else {
-                this.trigger('addLikeDislike', {
-                    uuid: this.model.get('uuid'),
-                    like: true
-                });
-                this.isLiked = true;
-                this.currentLikes = this.currentLikes + 1;
-                this.ui.likeCount.text(this.currentLikes);
-                this.ui.likesButton.find('div').addClass('active');
-            }
+            this.trigger('addLikeDislike', {
+                uuid: this.model.get('uuid'),
+                like: this.isLiked ? false : true
+            }, this.model);
         } else {
-            var text = 'Please answer the question before liking';
-            this.trigger('showNotAnsweredError', text);
+            var text = 'Please, answer the question before liking';
+            this.trigger('showTextMessage', text);
         }
     },
 
     openShareQuestionView: function() {
-        if (window.community.sharedPree===true) {
-            this.trigger('signinRequired');
+        if (this.isLoggedin===false) {
+            var text = 'Please, login or create an account to share question'
+            this.trigger('showTextMessage', text);
             return;
         }
-        this.trigger('sharePopup:show', this.model);
+        if (this.isAnswered === true || this.justAnswered === true) {
+            this.trigger('sharePopup:show', this.model);
+        } else {
+            var text = 'Please, answer the question before sharing';
+            this.trigger('showTextMessage', text);
+        }
     },
 
     getMessages: function() {
-        if (window.community.sharedPree===true) {
-            this.trigger('signinRequired');
+        if (this.isLoggedin===false) {
+            var text = 'Please, login or create an account to leave a comment';
+            this.trigger('showTextMessage', text);
             return;
         }
         if (this.isAnswered===true || this.justAnswered===true) {
@@ -294,8 +286,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
             this.trigger('collapseMessages');
             this.onShowRootCommentField();
         } else {
-            var text = 'Please answer the question before commenting';
-            this.trigger('showNotAnsweredError', text);
+            var text = 'Please, answer the question before commenting';
+            this.trigger('showTextMessage', text);
         }
     },
 
@@ -341,7 +333,7 @@ var FeedSelectorView = Mn.LayoutView.extend({
             this.ui.messageBody.attr('maxlength', maxLength);
             return;
         }
-        var counter = maxLength - messageLength;
+        var counter = messageLength;
         this.ui.messageLength.html(counter);
 
         if(e.keyCode == 8) {

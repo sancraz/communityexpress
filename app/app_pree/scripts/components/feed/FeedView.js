@@ -15,11 +15,10 @@ var feedView = Mn.CollectionView.extend({
         'checkIfUserLogged': 'onCheckIfUserLogged',
         'sharePopup:show': 'openSharePopup',
         'addLikeDislike': 'addLikeDislike',
-        'showNotAnsweredError': 'showNotAnsweredError',
+        'showTextMessage': 'showTextMessage',
         'getMessages': 'getMessages',
         'postComment': 'postComment',
-        'refreshPanels': 'refreshPanels',
-        'signinRequired': 'triggerSigninRequired'
+        'refreshPanels': 'refreshPanels'
     },
 
     childViewOptions: function() {
@@ -90,11 +89,11 @@ var feedView = Mn.CollectionView.extend({
     },
 
     addLikeDislike: function(view, options) {
-        this.trigger('addLikeDislike', options);
+        this.trigger('addLikeDislike', options, view);
     },
 
-    showNotAnsweredError: function(view, text) {
-        this.trigger('showNotAnsweredError', text);
+    showTextMessage: function(view, text) {
+        this.trigger('showTextMessage', text);
     },
 
     getMessages: function(view) {
@@ -107,11 +106,6 @@ var feedView = Mn.CollectionView.extend({
 
     refreshPanels: function() {
         this.trigger('refreshPanels');
-    },
-
-    triggerSigninRequired: function() {
-        var text = 'Please, login or create your account';
-        this.trigger('signinRequired', text);
     },
 
     rerenderChild: function(model) {

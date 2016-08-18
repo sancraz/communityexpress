@@ -116,7 +116,7 @@
     <footer class="questionFooter">
         <div class="show_hide_answer_info"><img src="images/info.png"></div>
         <div class="pree_question_likes_button">
-            <div class="pree_question_likes_icon"></div>
+            <div class="pree_question_likes_icon <%= likeStatus.enumText==="LIKE" ? "active" : "" %>"></div>
             <div class="pree_question_likes_count"><%= likes %></div>
         </div>
          <div class="pree_question_comment_button">
@@ -141,7 +141,7 @@
             <textarea class="root_textarea" placeholder="leave comment as <%= user.userName %>"></textarea>
             <a href="">POST</a>
             <div class="counter">
-                <div class="message_length">500</div>
+                <div class="message_length">0</div>
                 <div>/500</div>
             </div>
         </div>

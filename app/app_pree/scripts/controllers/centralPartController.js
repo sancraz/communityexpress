@@ -259,11 +259,10 @@ module.exports = {
         feedView.listenTo(feedView, 'sharePopup:show', _.bind(this.showShareQuestion, this));
         feedView.listenTo(feedView, 'getPreviousQuestions', _.bind(this.getPreviousQuestions, this));
         feedView.listenTo(feedView, 'addLikeDislike', _.bind(this.addLikeDislike, this));
-        feedView.listenTo(feedView, 'showNotAnsweredError', _.bind(this.showTextMessageView, this));
+        feedView.listenTo(feedView, 'showTextMessage', _.bind(this.showTextMessageView, this));
         feedView.listenTo(feedView, 'getMessages', _.bind(this.getMessages, this));
         feedView.listenTo(feedView, 'postComment', _.bind(this.postComment, this));
         feedView.listenTo(feedView, 'refreshPanels', _.bind(this.refreshPanels, this));
-        feedView.listenTo(feedView, 'signinRequired', _.bind(this.showTextMessageView, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
     },
 
@@ -306,13 +305,17 @@ module.exports = {
         }, this))
     },
 
-    addLikeDislike: function(options) {
+    addLikeDislike: function(options, view) {
         gateway.sendRequest('likeDislikePoll', {
             UID: this.user.UID,
             like: options.like,
             contestUUID: options.uuid
         }).then(function(resp) {
-            console.log(resp);
+            view.model.set({
+                'likes': resp.likes,
+                'likeStatus': resp.likeStatus
+            });
+            view.isLiked = view.model.get('likeStatus').enumText==='LIKE';
         });
     },
 
@@ -346,6 +349,7 @@ module.exports = {
         }).then(_.bind(function(resp) {
             view.reinitialize(resp, isCorrect);
         }, this), _.bind(function(jqXHR) {
+            view.$el.find('input').prop('checked', false);
             var text = h().getErrorMessage(jqXHR, 'You can\'t answer this question'),
                 callback = function() {
                     console.log('callback');
