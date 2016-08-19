@@ -13,7 +13,7 @@ module.exports = {
             likeDislikePoll: ['POST', '/pree/likeDislikePoll'],
 
             getConversationBetweenUserSASL: ['GET', '/communication/retrieveCommentsOnPostFromSASL'],
-            sendMessageToSASL: ['POST', '/communication/commentOnPostFromSASL'],
+            sendMessageToSASL: ['POST', '/pree/commentOnPostFromSASL'],
             deleteCommentOnPostFromSASL: ['DELETE' , '/communication/deleteCommentOnPostFromSASL'],
 
             login: ['POST', '/authentication/login'],
