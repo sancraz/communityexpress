@@ -18,7 +18,8 @@ var feedView = Mn.CollectionView.extend({
         'showTextMessage': 'showTextMessage',
         'getMessages': 'getMessages',
         'postComment': 'postComment',
-        'refreshPanels': 'refreshPanels'
+        'refreshPanels': 'refreshPanels',
+        'showPreviousMessages': 'showPreviousMessages'
     },
 
     childViewOptions: function() {
@@ -98,6 +99,10 @@ var feedView = Mn.CollectionView.extend({
 
     getMessages: function(view) {
         this.trigger('getMessages', view);
+    },
+
+    showPreviousMessages: function(view, options) {
+        this.trigger('showPreviousMessages', options);
     },
 
     postComment: function(view, options) {

@@ -12,6 +12,13 @@ var MessageItemView = Mn.ItemView.extend({
 
 	tagName: 'li',
 
+	attributes: function() {
+		return {
+			messageId: this.model.get('messageId'),
+			threadUUID: this.model.get('communicationId')
+		}
+	},
+
 	ui: {
 		postComment: '.post_comment',
 		messageBody: '.message_body',
@@ -19,14 +26,16 @@ var MessageItemView = Mn.ItemView.extend({
 		reply: '.reply',
 		replyCommentField: '.reply_comment_field',
 		postReplyComment: '.reply_comment_field a',
-		messageReplyBody: '.reply_comment_field textarea'
+		messageReplyBody: '.reply_comment_field textarea',
+		deleteComment: '.trash'
 	},
 
 	events: {
 		'click @ui.postComment': 'postComment',
 		'click @ui.reply': 'showReplyField',
 		'click @ui.postReplyComment': 'postComment',
-		'keyup @ui.messageReplyBody': 'calculateMessageLength'
+		'keyup @ui.messageReplyBody': 'calculateMessageLength',
+		'click @ui.deleteComment': 'deleteComment'
 	},
 
 	initialize: function() {
@@ -62,6 +71,14 @@ var MessageItemView = Mn.ItemView.extend({
             urgent: false
         };
 		this.trigger('postComment', options);
+	},
+
+	deleteComment: function() {
+		var options = {
+			communicationId: this.model.get('communicationId'),
+			messageId: this.model.get('messageId')
+		};
+		this.trigger('deleteComment', options);
 	},
 
 	showReplyField: function() {
@@ -118,7 +135,8 @@ var PreeQuestionMessagesView = Mn.CollectionView.extend({
 		'postComment': 'postComment',
 		'hideRootCommentField': 'hideRootCommentField',
 		'hideOpenedReply': 'hideOpenedReply',
-		'showRootCommentField': 'showRootCommentField'
+		'showRootCommentField': 'showRootCommentField',
+		'deleteComment': 'deleteComment'
 	},
 
 	childViewOptions: function() {
@@ -126,14 +144,6 @@ var PreeQuestionMessagesView = Mn.CollectionView.extend({
 			user: this.options.user,
 			parent: this.options.parent
 		};
-	},
-
-	initialize: function() {
-		// this.collection.add(new MessageModel({
-		// 		showMessageInput: true,
-		// 		showReply: false
-		// 	}), { at: 0 }
-		// );
 	},
 
 	hideRootCommentField: function() {
@@ -153,6 +163,10 @@ var PreeQuestionMessagesView = Mn.CollectionView.extend({
 
 	postComment: function(view, options) {
 		this.trigger('postComment', this.options.parent, options);
+	},
+
+	deleteComment: function(options) {
+		this.trigger('deleteComment', this.options.parent, options);
 	}
 
 });

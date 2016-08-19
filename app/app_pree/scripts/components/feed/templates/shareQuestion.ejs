@@ -8,17 +8,17 @@
             <h4><%= displayText %></h4>
             <p>SHARE WITH:</p><% shareUrl %>
             <div class="share-block">
-                <div class="share-button sms-button">
-                    <a href=""><img src="images/sms_button.png" alt="" /></a>
-                </div>
-                <div class="share-button email-button">
-                    <a href=""><img src="images/email_button.png" alt="" /></a>
-                </div>
                 <div class="share-button facebook-button">
                     <a href="https://www.facebook.com/sharer/sharer.php?u=<%= window.encodeURIComponent(shareUrl) %>" target="_blank"><img src="images/fb.png" alt="" /></a>
                 </div>
                 <div class="share-button twitter-button">
                     <a href="https://twitter.com/intent/tweet?text=<%= window.encodeURIComponent(shareUrl) %>" target="_blank"><img src="images/twitter.png" alt="" /></a>
+                </div>
+                <div class="share-button email-button">
+                    <a href=""><img src="images/email_button.png" alt="" /></a>
+                </div>
+                <div class="share-button sms-button">
+                    <a href=""><img src="images/sms_button.png" alt="" /></a>
                 </div>
             </div>
         </div>

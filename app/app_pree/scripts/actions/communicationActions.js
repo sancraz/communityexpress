@@ -16,6 +16,16 @@ module.exports = {
 		});
 	},
 
+	getPreviousMessages: function(options) {
+		// TODO: change API
+		return gateway.sendRequest('getConversationBetweenUserSASL', {
+			UID: getUID(),
+			count: 10,
+			threadUUID: options.contestUUID,
+			previousId: options.previousId
+		});
+	},
+
 	postComment: function(options) {
 		var payload = {
 			postbody: options.messageBody,
@@ -29,6 +39,14 @@ module.exports = {
 		return gateway.sendRequest('sendMessageToSASL', {
 			UID: getUID(),
 			payload: payload
+		});
+	},
+
+	deleteComment: function(options) {
+		return gateway.sendRequest('deleteCommentOnPostFromSASL', {
+			UID: getUID(),
+			communicationId: options.communicationId,
+			messageId: options.messageId
 		});
 	}
 }

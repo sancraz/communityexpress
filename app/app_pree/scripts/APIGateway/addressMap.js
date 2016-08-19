@@ -14,6 +14,7 @@ module.exports = {
 
             getConversationBetweenUserSASL: ['GET', '/communication/retrieveCommentsOnPostFromSASL'],
             sendMessageToSASL: ['POST', '/communication/commentOnPostFromSASL'],
+            deleteCommentOnPostFromSASL: ['DELETE' , '/communication/deleteCommentOnPostFromSASL'],
 
             login: ['POST', '/authentication/login'],
             logout: ['GET', '/authentication/logout'],

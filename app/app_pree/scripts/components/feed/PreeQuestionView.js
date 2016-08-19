@@ -49,7 +49,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         rootCommentField: '.root_comment_field',
         postRootComment: '.root_comment_field a',
         messageBody: '.root_comment_field textarea',
-        messageLength: '.message_length'
+        messageLength: '.message_length',
+        previousMessagesButton: '.previous_button a'
     },
 
     events: {
@@ -61,7 +62,8 @@ var FeedSelectorView = Mn.LayoutView.extend({
         'click @ui.infoIcon': 'showAnswerInfo',
         'click @ui.messageIcon': 'getMessages',
         'click @ui.postRootComment': 'postRootComment',
-        'keyup @ui.messageBody': 'calculateMessageLength'
+        'keyup @ui.messageBody': 'calculateMessageLength',
+        'click @ui.previousMessagesButton': 'showPreviousMessages'
     },
 
     initialize : function() {
@@ -298,6 +300,23 @@ var FeedSelectorView = Mn.LayoutView.extend({
         $('.pree_feed_questions').animate({
             scrollTop: scrollTop
         }, 10);
+    },
+
+    onShowPreviousButton: function(options) {
+        this.ui.previousMessagesButton.show();
+        this.ui.previousMessagesButton.attr({
+            'nextid': options.nextId,
+            // 'previousid': options.previousId
+            'previousid': 3
+        });
+    },
+
+    showPreviousMessages: function() {
+        var options = {
+            previousId: this.ui.previousMessagesButton.attr('previousid'),
+            contestUUID: this.model.get('uuid')
+        };
+        this.trigger('showPreviousMessages', options);
     },
 
     onHideMessages: function() {

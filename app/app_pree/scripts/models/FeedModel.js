@@ -7,7 +7,7 @@ var FeedModel = Backbone.Model.extend({
 
 	defaults : {
 		hasNext : false,
-		hasPrev : false,
+		hasPrevious : false,
 		pageCount : 0,
 
 		currentSelection : 0,

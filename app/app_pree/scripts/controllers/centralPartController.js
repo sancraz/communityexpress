@@ -21,6 +21,7 @@ var App = require('../app'),
     ShareQuestionWithMobile = require('../components/feed/ShareQuestionWithMobile'),
     ShareQuestionWithEmail = require('../components/feed/ShareQuestionWithEmail'),
     FeedModel = require('../models/FeedModel'),
+    MessagesModel = require('../models/MessagesModel'),
     MessagesCollection = require('../models/MessagesCollection'),
     MessageModel = require('../models/MessageModel'),
     PreeQuestionModel = require('../models/PreeQuestionModel');
@@ -227,6 +228,7 @@ module.exports = {
         // this.params['throw'] = true;
         gateway.sendRequest('getPreeQuestionByUUID', this.params)
         .then(_.bind(function(resp) {
+            loader.hide();
             var model = new FeedModel();
             model.questionCollection.add(resp);
             this.showQuestions(model);
@@ -263,6 +265,7 @@ module.exports = {
         feedView.listenTo(feedView, 'getMessages', _.bind(this.getMessages, this));
         feedView.listenTo(feedView, 'postComment', _.bind(this.postComment, this));
         feedView.listenTo(feedView, 'refreshPanels', _.bind(this.refreshPanels, this));
+        feedView.listenTo(feedView, 'showPreviousMessages', _.bind(this.showPreviousMessages, this));
         this.centralLayoutView.showQuestionsView(this.feedView);
     },
 
@@ -274,35 +277,97 @@ module.exports = {
         }).text('Thank you for answering.')
     },
 
-    getMessages: function(questionView, message) {
-
+    getMessages: function(questionView) {
+        loader.hide();
         var uuid = questionView.model.get('uuid');
+        loader.show('question comments');
 
-        communicationActions.getMessages(uuid).then(_.bind(function(resp) {
+        communicationActions.getMessages(uuid)
+        .then(_.bind(function(resp) {
+            loader.hide();
             if (resp.comments.length===0) return;
-            this.preeQuestionMessagesView = new PreeQuestionMessagesView({
-                collection: new MessagesCollection(resp.comments),
-                user: this.user,
-                parent: questionView
+            var model = new MessagesModel(resp);
+            if (resp.hasPrevious===true) {
+                this.showPreviousButton(questionView, resp);
+            }
+            this.showMessages(model, questionView);
+        }, this), _.bind(function(e) {
+            loader.hide();
+            var text = h().getErrorMessage(e, 'unable to load comments');
+            this.showTextMessageView(text);
+        }, this));
+    },
+
+    showMessages: function(model, questionView) {
+        this.preeQuestionMessagesView = new PreeQuestionMessagesView({
+            model: model,
+            collection: model.messagesCollection,
+            user: this.user,
+            parent: questionView
+        });
+        questionView.triggerMethod('showMessages', this.preeQuestionMessagesView);
+
+        this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'hideRootCommentField', _.bind(function() {
+            questionView.triggerMethod('hideRootCommentField');
+        }, this));
+        this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'showRootCommentField', _.bind(function() {
+            questionView.triggerMethod('showRootCommentField');
+        }, this));
+        this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'postComment', _.bind(this.postComment, this));
+        this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'deleteComment', _.bind(this.deleteComment, this));
+    },
+
+    showPreviousButton: function(questionView, resp) {
+        var options = {
+            'nextId': resp.firstIdInWindow,
+            'previousId': resp.lastIdInWindow
+        };
+        questionView.triggerMethod('showPreviousButton', options);
+    },
+
+    showPreviousMessages: function(options) {
+        communicationActions.getPreviousMessages(options).then(_.bind(function(resp) {
+            this.preeQuestionMessagesView.model.set({
+                'previousId': resp.lastIdInWindow,
+                'nextId': resp.firstIdInWindow
             });
-            this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'hideRootCommentField', _.bind(function() {
-                questionView.triggerMethod('hideRootCommentField');
-            }, this));
-            this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'showRootCommentField', _.bind(function() {
-                questionView.triggerMethod('showRootCommentField');
-            }, this));
-            this.preeQuestionMessagesView.listenTo(this.preeQuestionMessagesView, 'postComment', _.bind(this.postComment, this));
-            questionView.triggerMethod('showMessages', this.preeQuestionMessagesView);
+            _.each(resp.comments, _.bind(function(comment) {
+                var model = new MessageModel(comment);
+                this.preeQuestionMessagesView.collection.add(model);
+            },this));
+            loader.hide();
+        }, this), _.bind(function(e) {
+            loader.hide();
+            var text = h().getErrorMessage(e, 'unable to load comments');
+            this.showTextMessageView(text);
         }, this));
     },
 
     postComment: function(questionView, options) {
-        communicationActions.postComment(options).then(_.bind(function(resp) {
+        communicationActions.postComment(options)
+        .then(_.bind(function(resp) {
             questionView.onShowRootCommentField();
             var textarea = questionView.$el.find('.root_textarea');
             textarea.val('').css('height', 0).css('height', textarea[0].scrollHeight + 2 + 'px');
             this.getMessages(questionView, resp);
-        }, this))
+        }, this), _.bind(function(e) {
+            loader.hide();
+            var text = h().getErrorMessage(e, 'unable to post comment');
+            this.showTextMessageView(text);
+        }, this));
+    },
+
+    deleteComment: function(questionView, options) {
+        communicationActions.deleteComment(options)
+        .then(_.bind(function(resp) {
+            debugger;
+            questionView.onShowRootCommentField();
+            this.getMessages(questionView, resp);
+        }, this), _.bind(function(e) {
+            loader.hide();
+            var text = h().getErrorMessage(e, 'unable to delete comment');
+            this.showTextMessageView(text);
+        }, this));
     },
 
     addLikeDislike: function(options, view) {
