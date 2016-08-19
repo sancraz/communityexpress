@@ -49,6 +49,49 @@ module.exports = {
         });
     },
 
+
+    //send poll with media
+    sendMultipart: function(name, options) {
+        options = options || {};
+        var url, method, formData, UID;
+
+        try {
+            url = resolveAddress(name);
+            method = resolveMethod(name);
+        } catch(e) {
+            console.error('request "' + name + '" could not be mapped to any api call');
+            return $.Deferred().reject('request "' + name + '" could not be mapped to any api call').promise();
+        }
+
+        UID = options.UID;
+        delete options.UID;
+
+        formData = new FormData();
+
+        var payload = options.payload;
+        delete options.payload;
+
+        if (payload) {
+            formData.append('poll', JSON.stringify(payload));
+        };
+
+        var image = options.image;
+        delete options.image;
+
+        if (image) {
+            formData.append('image', image, 'picFromCanvas.jpg');
+        };
+        return $.ajax({
+            type: method,
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: formData,
+            url: url + '?UID=' + UID,
+            timeout: 10000
+        });
+    },
+
     sendRequest: function(name, options) {
         options = options || {};
         var url, method, formData, UID;

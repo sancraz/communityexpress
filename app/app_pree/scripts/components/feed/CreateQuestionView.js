@@ -112,6 +112,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
+		var self = this;
+
 		this.ui.answerExample.val('');
 		this.ui.answerRadioButton.prop('checked', false);
 		this.ui.container.collapse('show');
@@ -154,17 +156,18 @@ var CreateQuestionView = Mn.LayoutView.extend({
 			},
 			onAfterCancel: function() {
 				$(this.element).removeClass('added');
+				self.onCancelImage();
 			}
 		});
 	},
 
 	onSaveImage: function(imageData) {
 		console.log(imageData);
-		this.trigger('onNewQuestin:postMedia', imageData, _.bind(this.whenImageSaved, this));
+		this.trigger('onNewQuestin:saveMedia', imageData);
 	},
 
-	whenImageSaved: function(resp) {
-		console.log(resp);
+	onCancelImage: function() {
+		this.trigger('onNewQuestin:removeMedia');
 	},
 
 	onInitDatepickers: function() {

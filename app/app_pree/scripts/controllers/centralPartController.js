@@ -75,7 +75,8 @@ module.exports = {
         this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:discarded', _.bind(function(){
             this.createNewQuestion = null;
         }, this));
-        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:postMedia', _.bind(this.postMedia, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:saveMedia', _.bind(this.saveMedia, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:removeMedia', _.bind(this.removeMedia, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:post', _.bind(this.postNewQuestion, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getCategories', _.bind(this.getCategories, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getTags', _.bind(this.getTags, this));
@@ -161,19 +162,14 @@ module.exports = {
         }
     },
 
-    postMedia: function(imageData, callback) {
-        gateway.sendFile('createWNewPictureNewMetaData', {
-            image: this.dataURLtoBlob(imageData.data),
-            serviceAccommodatorId: window.community.serviceAccommodatorId, //temporary
-            serviceLocationId: window.community.serviceLocationId, //temporary
-            title: '',
-            message: '',
-            UID: this.user.getUID()
-        }).then(_.bind(function(resp) {
-            callback(resp);
-        }, this), function(e) {
-            //error
-        });
+    questionMedia: null, //default value
+
+    saveMedia: function(imageData) {
+        this.questionMedia = this.dataURLtoBlob(imageData.data);
+    },
+
+    removeMedia: function() {
+        this.questionMedia = null;
     },
 
     dataURLtoBlob: function(data) {
@@ -200,13 +196,15 @@ module.exports = {
     postNewQuestion: function(model, callback) {
         console.log(model.toJSON());
 
-        gateway.sendRequest('createQuestion', {
+        gateway.sendMultipart('createQuestion', {
             UID: this.user.getUID(),
-            payload: model.toJSON()
+            payload: model.toJSON(),
+            image: this.questionMedia
         }).then(_.bind(function(resp) {
             var callback = _.bind(this.getQuestions, this),
                 text = 'Successfully created a question';
             this.showTextMessageView(text, callback);
+            this.questionMedia = null;
         }, this), function(e) {
             callback();
         });
