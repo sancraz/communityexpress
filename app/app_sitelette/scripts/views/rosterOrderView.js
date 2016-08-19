@@ -167,6 +167,7 @@ var RosterOrderView = PageLayout.extend({
         var pickup = this.$('#pickup')[0].checked;
 
         var items = this.basket.getItems(this.sasl);
+        var delivery_number=this.$('input[name=delivery_number]').val();
         var delivery_street=this.$('input[name=delivery_street]').val();
         var delivery_street2=this.$('input[name=delivery_street2]').val();
         var delivery_city=this.$('input[name=delivery_city]').val();
@@ -197,6 +198,7 @@ var RosterOrderView = PageLayout.extend({
             },
             */
             deliveryAddress: {
+                number: delivery_number,
                 street: delivery_street,
                 city: delivery_city,
                 // state: state,
