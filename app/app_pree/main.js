@@ -5,6 +5,8 @@ require('../vendor/styles/jquery.jqplot.min.css');
 
 require('bootstrap-webpack');
 require('./vendor/scripts/bootstrap-datetimepicker');
+require('./vendor/codecanyon/assets/css/html5imageupload.css');
+require('./vendor/codecanyon/assets/js/html5imageupload');
 require('jquery-mask-plugin');
 require('moment');
 require('../vendor/scripts/jquery.jqplot.min');

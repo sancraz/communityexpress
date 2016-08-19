@@ -5,12 +5,7 @@ include_once ('parser_api_utility.php');
 
 $completeURL = full_url($_SERVER, true);
 $serverName = $_SERVER['SERVER_NAME'];
-/* determine the http host */
-if (strpos($serverName, 'localhost') !== false) {
-$protocol = 'http://';
-} else {
-$protocol = 'https://';
-}
+
 /*is demo=true */
 if (validateParams('demo')) {
 $demo = TRUE;
@@ -27,15 +22,22 @@ $embedded = FALSE;
 
 /* is API server specified? */
 if (validateParams('server')) {
-$server = $_REQUEST['server'];
-if (strcmp($server, 'localhost') === 0)
- $server = $server . ':8080';
-} else {
-if ($demo) {
- $server = "simfel.com";
-} else {
- $server = "communitylive.co";
+  $server = $_REQUEST['server'];
+   if (strcmp($server, 'localhost') === 0)
+    $server = $server . ':8080';
+   } else {
+  if ($demo) {
+   $server = "simfel.com";
+  } else {
+   $server = "communitylive.co";
+  }
 }
+
+/* determine the api protocol */
+if (strpos($server, 'localhost') !== false) {
+  $protocol = 'http://';
+}  else {
+  $protocol = 'https://';
 }
 
 /* is serviceAccomodatorId specified (only from Portal) */

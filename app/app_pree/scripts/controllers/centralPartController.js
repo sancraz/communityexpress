@@ -76,6 +76,8 @@ module.exports = {
         this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:discarded', _.bind(function(){
             this.createNewQuestion = null;
         }, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:saveMedia', _.bind(this.saveMedia, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:removeMedia', _.bind(this.removeMedia, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:post', _.bind(this.postNewQuestion, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getCategories', _.bind(this.getCategories, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getTags', _.bind(this.getTags, this));
@@ -161,16 +163,49 @@ module.exports = {
         }
     },
 
+    questionMedia: null, //default value
+
+    saveMedia: function(imageData) {
+        this.questionMedia = this.dataURLtoBlob(imageData.data);
+    },
+
+    removeMedia: function() {
+        this.questionMedia = null;
+    },
+
+    dataURLtoBlob: function(data) {
+        var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
+        var byteString = atob(data.split(',')[1]);
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        var bb = (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder);
+        if (bb) {   
+            bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
+            bb.append(ab);
+            return bb.getBlob(mimeString);
+        } else {
+            bb = new Blob([ab], {
+                'type': (mimeString)
+            });
+            return bb;
+        }
+    },
+
     postNewQuestion: function(model, callback) {
         console.log(model.toJSON());
 
-        gateway.sendRequest('createQuestion', {
+        gateway.sendMultipart('createQuestion', {
             UID: this.user.getUID(),
-            payload: model.toJSON()
+            payload: model.toJSON(),
+            image: this.questionMedia
         }).then(_.bind(function(resp) {
             var callback = _.bind(this.getQuestions, this),
                 text = 'Successfully created a question';
             this.showTextMessageView(text, callback);
+            this.questionMedia = null;
         }, this), function(e) {
             callback();
         });

@@ -27,7 +27,9 @@ module.exports = {
             sendContactInfo: ['POST','/pree/sendContactUsEmail'],
 
             sendPromoURLToEmail: ['GET', '/pree/sendPollContestURLToEmail'],
-            sendPromoURLToMobileviaSMS: ['GET', '/pree/sendPollContestURLToMobileviaSMS']
+            sendPromoURLToMobileviaSMS: ['GET', '/pree/sendPollContestURLToMobileviaSMS'],
+
+            createWNewPictureNewMetaData: ['POST', '/usersasl/createWNewPictureNewMetaData']
 
         };
     }

@@ -57,7 +57,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 		answerArrow: '.answer-arrow',
 		categoriesError: '.categories_error',
 		choicesError: '.choices_error',
-		questionError: '.question_error'
+		questionError: '.question_error',
+		uploadImage: '.pree_question_upload_image .dropzone'
 	},
 
 	events: {
@@ -111,6 +112,8 @@ var CreateQuestionView = Mn.LayoutView.extend({
 	},
 
 	onShow: function() {
+		var self = this;
+
 		this.ui.answerExample.val('');
 		this.ui.answerRadioButton.prop('checked', false);
 		this.ui.container.collapse('show');
@@ -141,6 +144,30 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 		// temporary set dates for FACT and OPINION
 		this.model.set('subType', parseInt(this.ui.typeChecked.attr('cmtyx-question-type')));
+
+		this.ui.uploadImage.html5imageupload({
+			save: false,  // use custom method
+			canvas: true, // should be true for handle
+			data: {},
+			resize: false, // doesn't work correct when true, should be chacked
+			onSave: this.onSaveImage.bind(this),
+			onAfterSelectImage: function(){
+				$(this.element).addClass('added');
+			},
+			onAfterCancel: function() {
+				$(this.element).removeClass('added');
+				self.onCancelImage();
+			}
+		});
+	},
+
+	onSaveImage: function(imageData) {
+		console.log(imageData);
+		this.trigger('onNewQuestin:saveMedia', imageData);
+	},
+
+	onCancelImage: function() {
+		this.trigger('onNewQuestin:removeMedia');
 	},
 
 	onInitDatepickers: function() {

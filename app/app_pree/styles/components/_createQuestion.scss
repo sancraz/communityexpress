@@ -381,6 +381,7 @@
 
     .pree_question_edit_categories_label,
     .pree_question_edit_tags_label,
+    .pree_question_add_picture_label,
     .pree_question_edit_atribution_link_label {
         color: $text;
         font-style: normal;
@@ -517,6 +518,37 @@
 
         .p-l-0 {
             padding-left: 15px;
+        }
+    }
+
+    .pree_question_upload_image {
+        max-width:320px;
+        max-height: 568px;
+        margin-bottom: 0;
+        .dropzone {
+            border-radius: 4px;
+            height: 100px!important;
+            transition: .8s;
+            .cropWrapper {
+                img {
+                }
+            }
+            .tools {
+
+            }
+            &::before {
+                font-size: 60px;
+                top: 7px;
+            }
+            &::after {
+                bottom: 10%;
+            }
+            &.added {
+                height: 568px!important;
+            }
+            &.loading:after {
+                visibility: hidden;
+            }
         }
     }
 }
