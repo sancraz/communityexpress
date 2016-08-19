@@ -90,7 +90,7 @@ var MessageItemView = Mn.ItemView.extend({
             this.ui.messageReplyBody.attr('maxlength', maxLength);
             return;
         }
-        var counter = maxLength - messageLength;
+        var counter = messageLength;
         this.ui.messageLength.html(counter);
 
         if(e.keyCode == 8) {

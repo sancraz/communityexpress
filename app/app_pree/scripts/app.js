@@ -37,12 +37,7 @@ App.on('start',function() {
 
     if (window.community.sharedPree===true) {
         $('.login_status').hide();
-        $('.main_content').css({
-            'padding-top': '60px',
-            'overflow-y': 'scroll',
-            'height': '100%'
-        });
-        $('.app-container').removeClass('col-sm-offset-3');
+        $('.main_content').addClass('hidden_info_panel');
         $('.leftPanel').addClass('pree_share_first_tile');
     }
 
@@ -52,6 +47,7 @@ App.on('start',function() {
             App.trigger('viewChange','feed');
         });
     } else {
+        $('.main_content').addClass('hidden_info_panel');
         pageController.auth();
         App.trigger('viewChange','contactus');
     }

@@ -71,6 +71,7 @@ module.exports = {
             App.trigger('signout');
             this.headerChangeView.signedOut();
             loader.showFlashMessage( 'signed out' );
+            $('.main_content').addClass('hidden_info_panel');
             App.trigger('viewChange', 'contactus');
         }.bind(this), function(e){
             loader.showFlashMessage(h().getErrorMessage(e, config.defaultErrorMsg));
@@ -79,7 +80,7 @@ module.exports = {
 
     navigateToFeed: function() {
         this.authView.$el.on('hidden.bs.modal', _.bind(function() {
-            $('.signin_button').off('click');
+            $('.main_content').removeClass('hidden_info_panel');
             App.trigger('viewChange', 'feed');
         }, this));
     }

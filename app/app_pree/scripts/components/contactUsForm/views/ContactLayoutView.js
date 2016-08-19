@@ -6,7 +6,7 @@ var ContactLayoutView = Mn.LayoutView.extend({
 
     template: template,
 
-    className: 'contact-form',
+    className: 'contact-form container-fluid',
 
     ui: {
         signin: '.signin-button',
