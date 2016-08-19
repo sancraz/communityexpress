@@ -161,14 +161,18 @@ module.exports = {
         }
     },
 
-    postMedia: function(imageData) {
+    postMedia: function(imageData, callback) {
         gateway.sendFile('createWNewPictureNewMetaData', {
             image: this.dataURLtoBlob(imageData.data),
             serviceAccommodatorId: window.community.serviceAccommodatorId, //temporary
             serviceLocationId: window.community.serviceLocationId, //temporary
-            title: 'testTitle',
-            message: 'testMessage',
+            title: '',
+            message: '',
             UID: this.user.getUID()
+        }).then(_.bind(function(resp) {
+            callback(resp);
+        }, this), function(e) {
+            //error
         });
     },
 

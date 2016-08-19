@@ -160,7 +160,11 @@ var CreateQuestionView = Mn.LayoutView.extend({
 
 	onSaveImage: function(imageData) {
 		console.log(imageData);
-		this.trigger('onNewQuestin:postMedia', imageData);
+		this.trigger('onNewQuestin:postMedia', imageData, _.bind(this.whenImageSaved, this));
+	},
+
+	whenImageSaved: function(resp) {
+		console.log(resp);
 	},
 
 	onInitDatepickers: function() {
