@@ -75,6 +75,7 @@ module.exports = {
         this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:discarded', _.bind(function(){
             this.createNewQuestion = null;
         }, this));
+        this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:postMedia', _.bind(this.postMedia, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'onNewQuestin:post', _.bind(this.postNewQuestion, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getCategories', _.bind(this.getCategories, this));
         this.createNewQuestion.listenTo(this.createNewQuestion, 'getTags', _.bind(this.getTags, this));
@@ -157,6 +158,38 @@ module.exports = {
     hideCreateNewQuestion: function() {
         if (this.createNewQuestion) {
             this.createNewQuestion.triggerMethod('discardQuestion');
+        }
+    },
+
+    postMedia: function(imageData) {
+        gateway.sendFile('createWNewPictureNewMetaData', {
+            image: this.dataURLtoBlob(imageData.data),
+            serviceAccommodatorId: window.community.serviceAccommodatorId, //temporary
+            serviceLocationId: window.community.serviceLocationId, //temporary
+            title: 'testTitle',
+            message: 'testMessage',
+            UID: this.user.getUID()
+        });
+    },
+
+    dataURLtoBlob: function(data) {
+        var mimeString = data.split(',')[0].split(':')[1].split(';')[0];
+        var byteString = atob(data.split(',')[1]);
+        var ab = new ArrayBuffer(byteString.length);
+        var ia = new Uint8Array(ab);
+        for (var i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        var bb = (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder);
+        if (bb) {   
+            bb = new (window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder)();
+            bb.append(ab);
+            return bb.getBlob(mimeString);
+        } else {
+            bb = new Blob([ab], {
+                'type': (mimeString)
+            });
+            return bb;
         }
     },
 
