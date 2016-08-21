@@ -9,7 +9,7 @@ var getUID = function () {
 
 module.exports = {
 	getMessages: function(uuid) {
-		return gateway.sendRequest('getConversationBetweenUserSASL', {
+		return gateway.sendRequest('retrieveCommentsOnPreeQuestion', {
 			UID: getUID(),
 			count: 10,
 			threadUUID: uuid
@@ -18,7 +18,7 @@ module.exports = {
 
 	getPreviousMessages: function(options) {
 		// TODO: change API
-		return gateway.sendRequest('getConversationBetweenUserSASL', {
+		return gateway.sendRequest('retrieveCommentsOnPreeQuestion', {
 			UID: getUID(),
 			count: 10,
 			threadUUID: options.contestUUID,
