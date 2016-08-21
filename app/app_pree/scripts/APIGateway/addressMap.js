@@ -12,7 +12,7 @@ module.exports = {
             answerQuestion: ['POST', '/pree/answerQuestion'],
             likeDislikePoll: ['POST', '/pree/likeDislikePoll'],
 
-            getConversationBetweenUserSASL: ['GET', '/communication/retrieveCommentsOnPostFromSASL'],
+            retrieveCommentsOnPreeQuestion: ['GET', '/communication/retrieveCommentsOnPostFromSASL'],
             sendMessageToSASL: ['POST', '/pree/commentOnPostFromSASL'],
             deleteCommentOnPostFromSASL: ['DELETE' , '/communication/deleteCommentOnPostFromSASL'],
 
